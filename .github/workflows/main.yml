@@ -1,5 +1,9 @@
 name: main
 
+permissions:
+  contents: write
+
+
 "on":
   push:
     branches:
@@ -13,7 +17,7 @@ name: main
 
 jobs:
   main:
-    uses: jaxxstorm/workflows/.github/workflows/main.yml@fe98a0730026bf97b10e11bd96b3d38425031bd1
+    uses: jaxxstorm/workflows/.github/workflows/main.yml@df55f0116159ea8d30f836557f05a3c699a37a63
     with:
       pulumi_test_owner: "lbrlabs"
       provider_name: "ovh"
