@@ -13,7 +13,7 @@ name: main
 
 jobs:
   main:
-    uses: jaxxstorm/workflows/this-repo/.github/workflows/main.yml@fe98a0730026bf97b10e11bd96b3d38425031bd1
+    uses: jaxxstorm/workflows/.github/workflows/main.yml@fe98a0730026bf97b10e11bd96b3d38425031bd1
     with:
       pulumi_test_owner: "lbrlabs"
       provider_name: "ovh"
