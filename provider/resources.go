@@ -12,28 +12,55 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package xyz
+package ovh
 
 import (
 	"fmt"
 	"path/filepath"
+	"unicode"
 
+	ovh "github.com/ovh/terraform-provider-ovh/ovh"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
-	"github.com/pulumi/pulumi-xyz/provider/pkg/version"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
-	"github.com/terraform-providers/terraform-provider-xyz/xyz"
+	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
+	"github.com/pulumiverse/pulumi-ovh/provider/pkg/version"
 )
 
 // all of the token components used below.
 const (
-	// This variable controls the default name of the package in the package
-	// registries for nodejs and python:
-	mainPkg = "xyz"
+	// packages:
+	ovhPkg = "ovh"
 	// modules:
-	mainMod = "index" // the xyz module
+	ovhMod = "index" // the y module
 )
+
+// ovhMember manufactures a type token for the Ovh package and the given module and type.
+func ovhMember(mod string, mem string) tokens.ModuleMember {
+	return tokens.ModuleMember(ovhPkg + ":" + mod + ":" + mem)
+}
+
+// ovhType manufactures a type token for the Ovh package and the given module and type.
+func ovhType(mod string, typ string) tokens.Type {
+	return tokens.Type(ovhMember(mod, typ))
+}
+
+// ovhDataSource manufactures a standard resource token given a module and resource name.
+// It automatically uses the Ovh package and names the file by simply lower casing the data
+// source's first character.
+func ovhDataSource(mod string, res string) tokens.ModuleMember {
+	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
+	return ovhMember(mod+"/"+fn, res)
+}
+
+// ovhResource manufactures a standard resource token given a module and resource name.
+// It automatically uses the ovh package and names the file by simply lower casing the resource's
+// first character.
+func ovhResource(mod string, res string) tokens.Type {
+	fn := string(unicode.ToLower(rune(res[0]))) + res[1:]
+	return ovhType(mod+"/"+fn, res)
+}
 
 // preConfigureCallback is called before the providerConfigure function of the underlying provider.
 // It should validate that the provider can be configured, and provide actionable errors in the case
@@ -46,20 +73,20 @@ func preConfigureCallback(vars resource.PropertyMap, c shim.ResourceConfig) erro
 // Provider returns additional overlaid schema and metadata associated with the provider..
 func Provider() tfbridge.ProviderInfo {
 	// Instantiate the Terraform provider
-	p := shimv2.NewProvider(xyz.Provider())
+	p := shimv2.NewProvider(ovh.Provider())
 
 	// Create a Pulumi provider mapping
 	prov := tfbridge.ProviderInfo{
 		P:    p,
-		Name: "xyz",
+		Name: "ovh",
 		// DisplayName is a way to be able to change the casing of the provider
 		// name when being displayed on the Pulumi registry
-		DisplayName: "",
+		DisplayName: "OVH",
 		// The default publisher for all packages is Pulumi.
 		// Change this to your personal name (or a company name) that you
 		// would like to be shown in the Pulumi Registry if this package is published
 		// there.
-		Publisher: "Pulumi",
+		Publisher: "Pulumiverse",
 		// LogoURL is optional but useful to help identify your package in the Pulumi Registry
 		// if this package is published there.
 		//
@@ -69,18 +96,18 @@ func Provider() tfbridge.ProviderInfo {
 		// PluginDownloadURL is an optional URL used to download the Provider
 		// for use in Pulumi programs
 		// e.g https://github.com/org/pulumi-provider-name/releases/
-		PluginDownloadURL: "",
-		Description:       "A Pulumi package for creating and managing xyz cloud resources.",
+		PluginDownloadURL: "github://api.github.com/pulumiverse",
+		Description:       "A Pulumi package for creating and managing OVH cloud resources.",
 		// category/cloud tag helps with categorizing the package in the Pulumi Registry.
 		// For all available categories, see `Keywords` in
 		// https://www.pulumi.com/docs/guides/pulumi-packages/schema/#package.
-		Keywords:   []string{"pulumi", "xyz", "category/cloud"},
+		Keywords:   []string{"pulumi", "ovh", "category/cloud"},
 		License:    "Apache-2.0",
 		Homepage:   "https://www.pulumi.com",
-		Repository: "https://github.com/pulumi/pulumi-xyz",
+		Repository: "https://github.com/pulumiverse/pulumi-ovh",
 		// The GitHub Org for the provider - defaults to `terraform-providers`. Note that this
 		// should match the TF provider module's require directive, not any replace directives.
-		GitHubOrg: "",
+		GitHubOrg: "ovh",
 		Config:    map[string]*tfbridge.SchemaInfo{
 			// Add any required configuration here, or remove the example below if
 			// no additional points are required.
@@ -92,24 +119,297 @@ func Provider() tfbridge.ProviderInfo {
 			// },
 		},
 		PreConfigureCallback: preConfigureCallback,
-		Resources:            map[string]*tfbridge.ResourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi type. Two examples
-			// are below - the single line form is the common case. The multi-line form is
-			// needed only if you wish to override types or other default options.
-			//
-			// "aws_iam_role": {Tok: tfbridge.MakeResource(mainPkg, mainMod, "IamRole")}
-			//
-			// "aws_acm_certificate": {
-			// 	Tok: tfbridge.MakeResource(mainPkg, mainMod, "Certificate"),
-			// 	Fields: map[string]*tfbridge.SchemaInfo{
-			// 		"tags": {Type: tfbridge.MakeType(mainPkg, "Tags")},
-			// 	},
-			// },
+		Resources: map[string]*tfbridge.ResourceInfo{
+			"ovh_cloud_project": {Tok: ovhResource(ovhMod, "CloudProject")},
+			"ovh_cloud_project_containerregistry": {
+				Tok: ovhResource(ovhMod, "CloudProjectContainerRegistry"),
+			},
+			"ovh_cloud_project_containerregistry_user": {
+				Tok: ovhResource(ovhMod, "CloudProjectContainerRegistryUser"),
+			},
+			"ovh_cloud_project_database": {
+				Tok: ovhResource(ovhMod, "CloudProjectDatabase"),
+			},
+			"ovh_cloud_project_database_ip_restriction": {
+				Tok: ovhResource(ovhMod, "CloudProjectDatabaseIpRestriction"),
+			},
+			"ovh_cloud_project_database_postgresql_user": {
+				Tok: ovhResource(ovhMod, "CloudProjectDatabasePostgresSqlUser"),
+			},
+			"ovh_cloud_project_database_user": {
+				Tok: ovhResource(ovhMod, "CloudProjectDatabaseUser"),
+			},
+			"ovh_cloud_project_failover_ip_attach": {
+				Tok: ovhResource(ovhMod, "CloudProjectFailoverIpAttach"),
+			},
+			"ovh_cloud_project_kube": {
+				Tok: ovhResource(ovhMod, "CloudProjectKube"),
+			},
+			"ovh_cloud_project_kube_iprestrictions": {
+				Tok: ovhResource(ovhMod, "CloudProjectKubeIpRestrictions"),
+			},
+			"ovh_cloud_project_kube_nodepool": {
+				Tok: ovhResource(ovhMod, "CloudProjectKubeNodePool"),
+			},
+			"ovh_cloud_project_kube_oidc": {
+				Tok: ovhResource(ovhMod, "CloudProjectKubeOidc"),
+			},
+			"ovh_cloud_project_network_private": {
+				Tok: ovhResource(ovhMod, "CloudProjectNetworkPrivate"),
+			},
+			"ovh_cloud_project_network_private_subnet": {
+				Tok: ovhResource(ovhMod, "CloudProjectNetworkPrivateSubnet"),
+			},
+			"ovh_cloud_project_user": {
+				Tok: ovhResource(ovhMod, "CloudProjectUser"),
+			},
+			"ovh_dbaas_logs_input": {
+				Tok: ovhResource(ovhMod, "DbaasLogsInput"),
+			},
+			"ovh_dbaas_logs_output_graylog_stream": {
+				Tok: ovhResource(ovhMod, "DbaasLogsOutputGraylogStream"),
+			},
+			"ovh_dedicated_ceph_acl": {
+				Tok: ovhResource(ovhMod, "DedicatedCephAcl"),
+			},
+			"ovh_dedicated_server_install_task": {
+				Tok: ovhResource(ovhMod, "DedicatedServiceInstallTask"),
+			},
+			"ovh_dedicated_server_reboot_task": {
+				Tok: ovhResource(ovhMod, "DedicatedServerRebootTask"),
+			},
+			"ovh_dedicated_server_update": {
+				Tok: ovhResource(ovhMod, "DedicatedServerUpdate"),
+			},
+			"ovh_domain_zone": {
+				Tok: ovhResource(ovhMod, "DomainZone"),
+			},
+			"ovh_domain_zone_record": {
+				Tok: ovhResource(ovhMod, "DomainZoneRecord"),
+			},
+			"ovh_domain_zone_redirection": {
+				Tok: ovhResource(ovhMod, "DomainZoneRedirection"),
+			},
+			"ovh_ip_reverse": {
+				Tok: ovhResource(ovhMod, "IpReverse"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"ip_reverse": {
+						CSharpName: "IpReverseAddress",
+					},
+				},
+			},
+			"ovh_ip_service": {
+				Tok: ovhResource(ovhMod, "IpService"),
+			},
+			"ovh_iploadbalancing": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancing"),
+			},
+			"ovh_iploadbalancing_http_farm": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingHttpFarm"),
+			},
+			"ovh_iploadbalancing_http_farm_server": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingHttpFarmServer"),
+			},
+			"ovh_iploadbalancing_http_frontend": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingHttpFrontend"),
+			},
+			"ovh_iploadbalancing_http_route": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingHttpRoute"),
+			},
+			"ovh_iploadbalancing_http_route_rule": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingHttpRouteRule"),
+			},
+			"ovh_iploadbalancing_refresh": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingRefresh"),
+			},
+			"ovh_iploadbalancing_tcp_farm": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingTcpFarm"),
+			},
+			"ovh_iploadbalancing_tcp_farm_server": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingTcpFarmServer"),
+			},
+			"ovh_iploadbalancing_tcp_frontend": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingTcpFrontend"),
+			},
+			"ovh_iploadbalancing_tcp_route": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingTcpRoute"),
+			},
+			"ovh_iploadbalancing_tcp_route_rule": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingTcpRouteRule"),
+			},
+			"ovh_iploadbalancing_vrack_network": {
+				Tok: ovhResource(ovhMod, "IpLoadBalancingVrackNetwork"),
+			},
+			"ovh_me_identity_user": {
+				Tok: ovhResource(ovhMod, "MeIdentityUser"),
+			},
+			"ovh_me_installation_template_partition_scheme": {
+				Tok: ovhResource(ovhMod, "MeInstallationTemplatePartitionScheme"),
+			},
+			"ovh_me_installation_template_partition_scheme_hardware_raid": {
+				Tok: ovhResource(ovhMod, "MeInstallationTemplatePartitionSchemeHardwareRaid"),
+			},
+			"ovh_me_installation_template_partition_scheme_partition": {
+				Tok: ovhResource(ovhMod, "MeInstallationTemplatePartitionSchemePartition"),
+			},
+			"ovh_me_ipxe_script": {
+				Tok: ovhResource(ovhMod, "MeIpxeScript"),
+			},
+			"ovh_me_ssh_key": {
+				Tok: ovhResource(ovhMod, "MeSshKey"),
+			},
+			"ovh_vrack": {
+				Tok: ovhResource(ovhMod, "Vrack"),
+			},
+			"ovh_vrack_cloudproject": {
+				Tok: ovhResource(ovhMod, "VrackCloudProject"),
+			},
+			"ovh_vrack_dedicated_server": {
+				Tok: ovhResource(ovhMod, "VrackDedicatedServer"),
+			},
+			"ovh_vrack_dedicated_server_interface": {
+				Tok: ovhResource(ovhMod, "VrackDedicatedServerInterface"),
+			},
+			"ovh_vrack_ip": {
+				Tok: ovhResource(ovhMod, "VrackIp"),
+			},
+			"ovh_vrack_iploadbalancing": {
+				Tok: ovhResource(ovhMod, "VrackIpLoadbalancing"),
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
-			// Map each resource in the Terraform provider to a Pulumi function. An example
-			// is below.
-			// "aws_ami": {Tok: tfbridge.MakeDataSource(mainPkg, mainMod, "getAmi")},
+			"ovh_cloud_project_capabilities_containerregistry": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectCapabilitiesContainerRegistry"),
+			},
+			"ovh_cloud_project_capabilities_containerregistry_filter": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectCapabilitiesContainerFilter"),
+			},
+			"ovh_cloud_project_containerregistries": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectContainerRegistries"),
+			},
+			"ovh_cloud_project_containerregistry": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectContainerRegistry"),
+			},
+			"ovh_cloud_project_containerregistry_users": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectContainerRegistryUsers"),
+			},
+			"ovh_cloud_project_database": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabase"),
+			},
+			"ovh_cloud_project_database_ip_restrictions": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabaseIpRestrictions"),
+			},
+			"ovh_cloud_project_database_postgresql_user": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabasePostgresSqlUser"),
+			},
+			"ovh_cloud_project_database_user": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabaseUser"),
+			},
+			"ovh_cloud_project_database_users": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabaseUsers"),
+			},
+			"ovh_cloud_project_databases": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabases"),
+			},
+			"ovh_cloud_project_failover_ip_attach": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectFailoverIpAttach"),
+			},
+			"ovh_cloud_project_kube": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectKube"),
+			},
+			"ovh_cloud_project_kube_iprestrictions": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectKubeIpRestrictions"),
+			},
+			"ovh_cloud_project_kube_nodepool": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectKubeIpNodePool"),
+			},
+			"ovh_cloud_project_region": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectRegion"),
+			},
+			"ovh_cloud_project_regions": {
+				Tok: ovhDataSource(ovhMod, "getCloudProjectRegions"),
+			},
+			"ovh_dbaas_logs_input_engine": {
+				Tok: ovhDataSource(ovhMod, "getDbaasLogsInputEngine"),
+			},
+			"ovh_dbaas_logs_output_graylog_stream": {
+				Tok: ovhDataSource(ovhMod, "getDbaasLogsOutputGraylogStream"),
+			},
+			"ovh_dedicated_ceph": {
+				Tok: ovhDataSource(ovhMod, "getDedicatedCeph"),
+			},
+			"ovh_dedicated_installation_templates": {
+				Tok: ovhDataSource(ovhMod, "getDedicatedInstallationTemplates"),
+			},
+			"ovh_dedicated_server": {
+				Tok: ovhDataSource(ovhMod, "getDedicatedServer"),
+			},
+			"ovh_dedicated_servers": {
+				Tok: ovhDataSource(ovhMod, "getDedicatedServers"),
+			},
+			"ovh_domain_zone": {
+				Tok: ovhDataSource(ovhMod, "getDomainZone"),
+			},
+			"ovh_ip_service": {
+				Tok: ovhDataSource(ovhMod, "getIpService"),
+			},
+			"ovh_iploadbalancing_vrack_network": {
+				Tok: ovhDataSource(ovhMod, "getIpLoadbalancingVrackNetwork"),
+			},
+			"ovh_iploadbalancing_vrack_networks": {
+				Tok: ovhDataSource(ovhMod, "getIpLoadbalancingVrackNetworks"),
+			},
+			"ovh_me": {
+				Tok: ovhDataSource(ovhMod, "getMe"),
+			},
+			"ovh_me_identity_user": {
+				Tok: ovhDataSource(ovhMod, "getMeIdentityUser"),
+			},
+			"ovh_me_identity_users": {
+				Tok: ovhDataSource(ovhMod, "getMeIdentityUsers"),
+			},
+			"ovh_me_installation_template": {
+				Tok: ovhDataSource(ovhMod, "getMeInstallationTemplate"),
+			},
+			"ovh_me_installation_templates": {
+				Tok: ovhDataSource(ovhMod, "getMeInstallationTemplates"),
+			},
+			"ovh_me_ipxe_script": {
+				Tok: ovhDataSource(ovhMod, "getMeIpxeScript"),
+			},
+			"ovh_me_ipxe_scripts": {
+				Tok: ovhDataSource(ovhMod, "getMeIpxeScripts"),
+			},
+			"ovh_me_paymentmean_bankaccount": {
+				Tok: ovhDataSource(ovhMod, "getMePaymentmeanBankAccount"),
+			},
+			"ovh_me_paymentmean_creditcard": {
+				Tok: ovhDataSource(ovhMod, "getMePaymentmeanCreditCard"),
+			},
+			"ovh_me_ssh_key": {
+				Tok: ovhDataSource(ovhMod, "getMeSshKey"),
+			},
+			"ovh_order_cart": {
+				Tok: ovhDataSource(ovhMod, "getOrderCart"),
+			},
+			"ovh_order_cart_product": {
+				Tok: ovhDataSource(ovhMod, "getOrderCartProduct"),
+			},
+			"ovh_order_cart_product_options": {
+				Tok: ovhDataSource(ovhMod, "getOrderCartProductOptions"),
+			},
+			"ovh_order_cart_product_options_plan": {
+				Tok: ovhDataSource(ovhMod, "getOrderCartProductOptionsPlan"),
+			},
+			"ovh_order_cart_product_plan": {
+				Tok: ovhDataSource(ovhMod, "getOrderCartProductPlan"),
+			},
+			"ovh_vps": {
+				Tok: ovhDataSource(ovhMod, "getVps"),
+			},
+			"ovh_vracks": {
+				Tok: ovhDataSource(ovhMod, "getVracks"),
+			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
 			// List any npm dependencies and their versions
@@ -133,10 +433,10 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumi/pulumi-%[1]s/sdk/", mainPkg),
+				fmt.Sprintf("github.com/pulumiverse/pulumi-%[1]s/sdk/", ovhPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
-				mainPkg,
+				ovhPkg,
 			),
 			GenerateResourceContainerTypes: true,
 		},
