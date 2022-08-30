@@ -55,10 +55,12 @@ export class Provider extends pulumi.ProviderResource {
         {
             resourceInputs["applicationKey"] = (args ? args.applicationKey : undefined) ?? utilities.getEnv("OVH_APPLICATION_KEY");
             resourceInputs["applicationSecret"] = (args ? args.applicationSecret : undefined) ?? utilities.getEnv("OVH_APPLICATION_SECRET");
-            resourceInputs["consumerKey"] = args ? args.consumerKey : undefined;
+            resourceInputs["consumerKey"] = (args?.consumerKey ? pulumi.secret(args.consumerKey) : undefined) ?? utilities.getEnv("OVH_CONSUMER_KEY");
             resourceInputs["endpoint"] = (args ? args.endpoint : undefined) ?? utilities.getEnv("OVH_ENDPOINT");
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+        const secretOpts = { additionalSecretOutputs: ["consumerKey"] };
+        opts = pulumi.mergeOptions(opts, secretOpts);
         super(Provider.__pulumiType, name, resourceInputs, opts);
     }
 }

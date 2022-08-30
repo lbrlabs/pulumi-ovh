@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Pulumi.Ovh
+namespace Pulumiverse.Ovh
 {
     public static class Config
     {
@@ -52,7 +52,7 @@ namespace Pulumi.Ovh
             set => _applicationSecret.Set(value);
         }
 
-        private static readonly __Value<string?> _consumerKey = new __Value<string?>(() => __config.Get("consumerKey"));
+        private static readonly __Value<string?> _consumerKey = new __Value<string?>(() => __config.Get("consumerKey") ?? Utilities.GetEnv("OVH_CONSUMER_KEY"));
         /// <summary>
         /// The OVH API Consumer key.
         /// </summary>

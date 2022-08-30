@@ -28,7 +28,11 @@ func GetApplicationSecret(ctx *pulumi.Context) string {
 
 // The OVH API Consumer key.
 func GetConsumerKey(ctx *pulumi.Context) string {
-	return config.Get(ctx, "ovh:consumerKey")
+	v, err := config.Try(ctx, "ovh:consumerKey")
+	if err == nil {
+		return v
+	}
+	return getEnvOrDefault("", nil, "OVH_CONSUMER_KEY").(string)
 }
 
 // The OVH API endpoint to target (ex: "ovh-eu").

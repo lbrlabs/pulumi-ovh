@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Ovh
+namespace Pulumiverse.Ovh
 {
     /// <summary>
     /// Creates a backend server entry linked to http loadbalancing group (farm)

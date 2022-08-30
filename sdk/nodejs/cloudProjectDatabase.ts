@@ -34,7 +34,7 @@ import * as utilities from "./utilities";
  * To deploy an enterprise MongoDB service with three nodes on private network:
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@pulumiverse/ovh";
  *
  * const mongodb = new ovh.CloudProjectDatabase("mongodb", {
  *     serviceName: _var.openstack_infos.project_id,

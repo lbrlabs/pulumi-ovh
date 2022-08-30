@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Ovh
+namespace Pulumiverse.Ovh
 {
     /// <summary>
     /// Apply IP restrictions to an OVHcloud Managed Database cluster.
@@ -18,6 +19,7 @@ namespace Pulumi.Ovh
     /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Ovh = Pulumi.Ovh;
+    /// using Ovh = Pulumiverse.Ovh;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {

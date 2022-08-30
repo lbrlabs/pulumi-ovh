@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Ovh
+namespace Pulumiverse.Ovh
 {
     [OvhResourceType("ovh:index/dbaasLogsOutputGraylogStream:DbaasLogsOutputGraylogStream")]
     public partial class DbaasLogsOutputGraylogStream : global::Pulumi.CustomResource

@@ -1,9 +1,11 @@
+// Copyright 2016-2017, Pulumi Corporation.  All rights reserved.
 //go:build python || all
 // +build python all
 
 package examples
 
 import (
+	"path"
 	"path/filepath"
 	"testing"
 
@@ -11,8 +13,9 @@ import (
 )
 
 func getPythonBaseOptions(t *testing.T) integration.ProgramTestOptions {
-	base := getBaseOptions()
+	base := getBaseOptions(t)
 	basePython := base.With(integration.ProgramTestOptions{
+		ExpectRefreshChanges: true,
 		Dependencies: []string{
 			filepath.Join("..", "sdk", "python", "bin"),
 		},

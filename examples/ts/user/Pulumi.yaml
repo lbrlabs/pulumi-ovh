@@ -1,0 +1,3 @@
+name: ovh_user_ts
+runtime: nodejs
+description: A minimal TypeScript Pulumi program

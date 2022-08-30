@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Ovh
+namespace Pulumiverse.Ovh
 {
     /// <summary>
     /// Use this resource to create partition scheme for a custom installation template available for dedicated servers.

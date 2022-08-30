@@ -190,6 +190,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         public ProviderArgs build() {
             $.applicationKey = Codegen.stringProp("applicationKey").output().arg($.applicationKey).env("OVH_APPLICATION_KEY").getNullable();
             $.applicationSecret = Codegen.stringProp("applicationSecret").output().arg($.applicationSecret).env("OVH_APPLICATION_SECRET").getNullable();
+            $.consumerKey = Codegen.stringProp("consumerKey").secret().arg($.consumerKey).env("OVH_CONSUMER_KEY").getNullable();
             $.endpoint = Codegen.stringProp("endpoint").output().arg($.endpoint).env("OVH_ENDPOINT").getNullable();
             return $;
         }

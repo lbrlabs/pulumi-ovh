@@ -40,9 +40,19 @@ func NewProvider(ctx *pulumi.Context,
 	if isZero(args.ApplicationSecret) {
 		args.ApplicationSecret = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_APPLICATION_SECRET").(string))
 	}
+	if isZero(args.ConsumerKey) {
+		args.ConsumerKey = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_CONSUMER_KEY").(string))
+	}
 	if isZero(args.Endpoint) {
 		args.Endpoint = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_ENDPOINT").(string))
 	}
+	if args.ConsumerKey != nil {
+		args.ConsumerKey = pulumi.ToSecret(args.ConsumerKey).(pulumi.StringPtrOutput)
+	}
+	secrets := pulumi.AdditionalSecretOutputs([]string{
+		"consumerKey",
+	})
+	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:ovh", name, args, &resource, opts...)

@@ -29,7 +29,7 @@ public final class Config {
  * 
  */
     public Optional<String> consumerKey() {
-        return Codegen.stringProp("consumerKey").config(config).get();
+        return Codegen.stringProp("consumerKey").config(config).env("OVH_CONSUMER_KEY").get();
     }
 /**
  * The OVH API endpoint to target (ex: &#34;ovh-eu&#34;).

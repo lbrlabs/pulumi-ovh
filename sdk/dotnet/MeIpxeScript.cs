@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Ovh
+namespace Pulumiverse.Ovh
 {
     /// <summary>
     /// Creates an IPXE Script.
@@ -18,7 +19,7 @@ namespace Pulumi.Ovh
     /// using System.Collections.Generic;
     /// using System.IO;
     /// using Pulumi;
-    /// using Ovh = Pulumi.Ovh;
+    /// using Ovh = Pulumiverse.Ovh;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {

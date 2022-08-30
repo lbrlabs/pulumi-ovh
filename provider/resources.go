@@ -130,7 +130,7 @@ func Provider() tfbridge.ProviderInfo {
 					EnvVars: []string{"OVH_APPLICATION_SECRET"},
 				},
 			},
-			"OVH_CONSUMER_KEY": {
+			"consumer_key": {
 				Default: &tfbridge.DefaultInfo{
 					EnvVars: []string{"OVH_CONSUMER_KEY"},
 				},
@@ -439,13 +439,10 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			// See the documentation for tfbridge.OverlayInfo for how to lay out this
-			// section, or refer to the AWS provider. Delete this section if there are
-			// no overlay files.
-			//Overlay: &tfbridge.OverlayInfo{},
+			PackageName: "@pulumiverse/ovh",
 		},
 		Python: &tfbridge.PythonInfo{
-			// List any Python dependencies and their version ranges
+			PackageName: "pulumiverse_ovh",
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
@@ -460,6 +457,7 @@ func Provider() tfbridge.ProviderInfo {
 			GenerateResourceContainerTypes: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
+			RootNamespace: "Pulumiverse",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},

@@ -19,6 +19,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@pulumiverse/ovh";
  *
  * const mycart = ovh.getOrderCart({
  *     ovhSubsidiary: "fr",

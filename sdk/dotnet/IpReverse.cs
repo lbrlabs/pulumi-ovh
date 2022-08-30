@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Ovh
+namespace Pulumiverse.Ovh
 {
     /// <summary>
     /// Provides a OVH IP reverse.
@@ -17,7 +18,7 @@ namespace Pulumi.Ovh
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
-    /// using Ovh = Pulumi.Ovh;
+    /// using Ovh = Pulumiverse.Ovh;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {

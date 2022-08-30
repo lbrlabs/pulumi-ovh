@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@pulumiverse/ovh";
  *
  * const my_oidc = new ovh.CloudProjectKubeOidc("my-oidc", {
  *     serviceName: _var.projectid,

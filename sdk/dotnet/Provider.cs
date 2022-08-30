@@ -6,8 +6,9 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Threading.Tasks;
 using Pulumi.Serialization;
+using Pulumi;
 
-namespace Pulumi.Ovh
+namespace Pulumiverse.Ovh
 {
     /// <summary>
     /// The provider type for the ovh package. By default, resources use package-wide configuration
@@ -61,6 +62,10 @@ namespace Pulumi.Ovh
             {
                 Version = Utilities.Version,
                 PluginDownloadURL = "github://api.github.com/pulumiverse",
+                AdditionalSecretOutputs =
+                {
+                    "consumerKey",
+                },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.
@@ -83,11 +88,21 @@ namespace Pulumi.Ovh
         [Input("applicationSecret")]
         public Input<string>? ApplicationSecret { get; set; }
 
+        [Input("consumerKey")]
+        private Input<string>? _consumerKey;
+
         /// <summary>
         /// The OVH API Consumer key.
         /// </summary>
-        [Input("consumerKey")]
-        public Input<string>? ConsumerKey { get; set; }
+        public Input<string>? ConsumerKey
+        {
+            get => _consumerKey;
+            set
+            {
+                var emptySecret = Output.CreateSecret(0);
+                _consumerKey = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
 
         /// <summary>
         /// The OVH API endpoint to target (ex: "ovh-eu").
@@ -99,6 +114,7 @@ namespace Pulumi.Ovh
         {
             ApplicationKey = Utilities.GetEnv("OVH_APPLICATION_KEY");
             ApplicationSecret = Utilities.GetEnv("OVH_APPLICATION_SECRET");
+            ConsumerKey = Utilities.GetEnv("OVH_CONSUMER_KEY");
             Endpoint = Utilities.GetEnv("OVH_ENDPOINT");
         }
         public static new ProviderArgs Empty => new ProviderArgs();

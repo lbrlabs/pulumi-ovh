@@ -35,7 +35,7 @@ Object.defineProperty(exports, "applicationSecret", {
 export declare const consumerKey: string | undefined;
 Object.defineProperty(exports, "consumerKey", {
     get() {
-        return __config.get("consumerKey");
+        return __config.get("consumerKey") ?? utilities.getEnv("OVH_CONSUMER_KEY");
     },
     enumerable: true,
 });
