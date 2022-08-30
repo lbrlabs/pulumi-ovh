@@ -104,7 +104,7 @@ install_dotnet_sdk::
 	find . -name '*.nupkg' -print -exec cp -p {} ${WORKING_DIR}/nuget \;
 
 install_python_sdk::
-   pip3 install -e $(WORKING_DIR)/sdk/python
+	pip3 install -e $(WORKING_DIR)/sdk/python
 
 install_go_sdk::
 
