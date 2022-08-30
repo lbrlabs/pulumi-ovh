@@ -1,4 +1,4 @@
-module github.com/pulumi/pulumi-ovhz/sdk
+module github.com/pulumiverse/pulumi-ovh/sdk
 
 go 1.19
 
