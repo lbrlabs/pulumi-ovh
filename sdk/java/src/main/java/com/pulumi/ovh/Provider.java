@@ -69,14 +69,14 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * 
      */
     @Export(name="endpoint", type=String.class, parameters={})
-    private Output<String> endpoint;
+    private Output</* @Nullable */ String> endpoint;
 
     /**
      * @return The OVH API endpoint to target (ex: &#34;ovh-eu&#34;).
      * 
      */
-    public Output<String> endpoint() {
-        return this.endpoint;
+    public Output<Optional<String>> endpoint() {
+        return Codegen.optional(this.endpoint);
     }
 
     /**
@@ -91,7 +91,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * @param name The _unique_ name of the resulting resource.
      * @param args The arguments to use to populate this resource's properties.
      */
-    public Provider(String name, ProviderArgs args) {
+    public Provider(String name, @Nullable ProviderArgs args) {
         this(name, args, null);
     }
     /**
@@ -100,7 +100,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * @param args The arguments to use to populate this resource's properties.
      * @param options A bag of options that control this resource's behavior.
      */
-    public Provider(String name, ProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
+    public Provider(String name, @Nullable ProviderArgs args, @Nullable com.pulumi.resources.CustomResourceOptions options) {
         super("ovh", name, args == null ? ProviderArgs.Empty : args, makeResourceOptions(options, Codegen.empty()));
     }
 

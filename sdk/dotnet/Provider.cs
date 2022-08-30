@@ -40,7 +40,7 @@ namespace Pulumi.Ovh
         /// The OVH API endpoint to target (ex: "ovh-eu").
         /// </summary>
         [Output("endpoint")]
-        public Output<string> Endpoint { get; private set; } = null!;
+        public Output<string?> Endpoint { get; private set; } = null!;
 
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Pulumi.Ovh
         /// <param name="name">The unique name of the resource</param>
         /// <param name="args">The arguments used to populate this resource's properties</param>
         /// <param name="options">A bag of options that control this resource's behavior</param>
-        public Provider(string name, ProviderArgs args, CustomResourceOptions? options = null)
+        public Provider(string name, ProviderArgs? args = null, CustomResourceOptions? options = null)
             : base("ovh", name, args ?? new ProviderArgs(), MakeResourceOptions(options, ""))
         {
         }
@@ -92,11 +92,14 @@ namespace Pulumi.Ovh
         /// <summary>
         /// The OVH API endpoint to target (ex: "ovh-eu").
         /// </summary>
-        [Input("endpoint", required: true)]
-        public Input<string> Endpoint { get; set; } = null!;
+        [Input("endpoint")]
+        public Input<string>? Endpoint { get; set; }
 
         public ProviderArgs()
         {
+            ApplicationKey = Utilities.GetEnv("OVH_APPLICATION_KEY");
+            ApplicationSecret = Utilities.GetEnv("OVH_APPLICATION_SECRET");
+            Endpoint = Utilities.GetEnv("OVH_ENDPOINT");
         }
         public static new ProviderArgs Empty => new ProviderArgs();
     }

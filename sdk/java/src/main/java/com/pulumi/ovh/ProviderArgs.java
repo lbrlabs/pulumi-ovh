@@ -5,6 +5,7 @@ package com.pulumi.ovh;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.core.internal.Codegen;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -64,15 +65,15 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
      * The OVH API endpoint to target (ex: &#34;ovh-eu&#34;).
      * 
      */
-    @Import(name="endpoint", required=true)
-    private Output<String> endpoint;
+    @Import(name="endpoint")
+    private @Nullable Output<String> endpoint;
 
     /**
      * @return The OVH API endpoint to target (ex: &#34;ovh-eu&#34;).
      * 
      */
-    public Output<String> endpoint() {
-        return this.endpoint;
+    public Optional<Output<String>> endpoint() {
+        return Optional.ofNullable(this.endpoint);
     }
 
     private ProviderArgs() {}
@@ -171,7 +172,7 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder endpoint(Output<String> endpoint) {
+        public Builder endpoint(@Nullable Output<String> endpoint) {
             $.endpoint = endpoint;
             return this;
         }
@@ -187,7 +188,9 @@ public final class ProviderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         public ProviderArgs build() {
-            $.endpoint = Objects.requireNonNull($.endpoint, "expected parameter 'endpoint' to be non-null");
+            $.applicationKey = Codegen.stringProp("applicationKey").output().arg($.applicationKey).env("OVH_APPLICATION_KEY").getNullable();
+            $.applicationSecret = Codegen.stringProp("applicationSecret").output().arg($.applicationSecret).env("OVH_APPLICATION_SECRET").getNullable();
+            $.endpoint = Codegen.stringProp("endpoint").output().arg($.endpoint).env("OVH_ENDPOINT").getNullable();
             return $;
         }
     }

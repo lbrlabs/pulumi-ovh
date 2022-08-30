@@ -20,14 +20,14 @@ class _ExportableConfig(types.ModuleType):
         """
         The OVH API Application Key.
         """
-        return __config__.get('applicationKey')
+        return __config__.get('applicationKey') or _utilities.get_env('OVH_APPLICATION_KEY')
 
     @property
     def application_secret(self) -> Optional[str]:
         """
         The OVH API Application Secret.
         """
-        return __config__.get('applicationSecret')
+        return __config__.get('applicationSecret') or _utilities.get_env('OVH_APPLICATION_SECRET')
 
     @property
     def consumer_key(self) -> Optional[str]:
@@ -41,5 +41,5 @@ class _ExportableConfig(types.ModuleType):
         """
         The OVH API endpoint to target (ex: "ovh-eu").
         """
-        return __config__.get('endpoint')
+        return __config__.get('endpoint') or _utilities.get_env('OVH_ENDPOINT')
 

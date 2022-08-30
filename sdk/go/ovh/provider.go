@@ -7,7 +7,6 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -25,18 +24,24 @@ type Provider struct {
 	// The OVH API Consumer key.
 	ConsumerKey pulumi.StringPtrOutput `pulumi:"consumerKey"`
 	// The OVH API endpoint to target (ex: "ovh-eu").
-	Endpoint pulumi.StringOutput `pulumi:"endpoint"`
+	Endpoint pulumi.StringPtrOutput `pulumi:"endpoint"`
 }
 
 // NewProvider registers a new resource with the given unique name, arguments, and options.
 func NewProvider(ctx *pulumi.Context,
 	name string, args *ProviderArgs, opts ...pulumi.ResourceOption) (*Provider, error) {
 	if args == nil {
-		return nil, errors.New("missing one or more required arguments")
+		args = &ProviderArgs{}
 	}
 
-	if args.Endpoint == nil {
-		return nil, errors.New("invalid value for required argument 'Endpoint'")
+	if isZero(args.ApplicationKey) {
+		args.ApplicationKey = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_APPLICATION_KEY").(string))
+	}
+	if isZero(args.ApplicationSecret) {
+		args.ApplicationSecret = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_APPLICATION_SECRET").(string))
+	}
+	if isZero(args.Endpoint) {
+		args.Endpoint = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_ENDPOINT").(string))
 	}
 	opts = pkgResourceDefaultOpts(opts)
 	var resource Provider
@@ -55,7 +60,7 @@ type providerArgs struct {
 	// The OVH API Consumer key.
 	ConsumerKey *string `pulumi:"consumerKey"`
 	// The OVH API endpoint to target (ex: "ovh-eu").
-	Endpoint string `pulumi:"endpoint"`
+	Endpoint *string `pulumi:"endpoint"`
 }
 
 // The set of arguments for constructing a Provider resource.
@@ -67,7 +72,7 @@ type ProviderArgs struct {
 	// The OVH API Consumer key.
 	ConsumerKey pulumi.StringPtrInput
 	// The OVH API endpoint to target (ex: "ovh-eu").
-	Endpoint pulumi.StringInput
+	Endpoint pulumi.StringPtrInput
 }
 
 func (ProviderArgs) ElementType() reflect.Type {
@@ -123,8 +128,8 @@ func (o ProviderOutput) ConsumerKey() pulumi.StringPtrOutput {
 }
 
 // The OVH API endpoint to target (ex: "ovh-eu").
-func (o ProviderOutput) Endpoint() pulumi.StringOutput {
-	return o.ApplyT(func(v *Provider) pulumi.StringOutput { return v.Endpoint }).(pulumi.StringOutput)
+func (o ProviderOutput) Endpoint() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Provider) pulumi.StringPtrOutput { return v.Endpoint }).(pulumi.StringPtrOutput)
 }
 
 func init() {

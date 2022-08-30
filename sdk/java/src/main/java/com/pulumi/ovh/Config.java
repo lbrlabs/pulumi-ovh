@@ -15,14 +15,14 @@ public final class Config {
  * 
  */
     public Optional<String> applicationKey() {
-        return Codegen.stringProp("applicationKey").config(config).get();
+        return Codegen.stringProp("applicationKey").config(config).env("OVH_APPLICATION_KEY").get();
     }
 /**
  * The OVH API Application Secret.
  * 
  */
     public Optional<String> applicationSecret() {
-        return Codegen.stringProp("applicationSecret").config(config).get();
+        return Codegen.stringProp("applicationSecret").config(config).env("OVH_APPLICATION_SECRET").get();
     }
 /**
  * The OVH API Consumer key.
@@ -36,6 +36,6 @@ public final class Config {
  * 
  */
     public String endpoint() {
-        return Codegen.stringProp("endpoint").config(config).require();
+        return Codegen.stringProp("endpoint").config(config).env("OVH_ENDPOINT").require();
     }
 }
