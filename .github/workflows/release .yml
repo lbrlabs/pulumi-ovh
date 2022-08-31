@@ -1,0 +1,26 @@
+name: release
+
+permissions:
+  contents: write
+
+"on":
+  push:
+    tags:
+    - v*.*.*
+    - '!v*.*.*-**'
+
+env:
+  OVH_ENDPOINT: "ovh-us"
+  OVH_APPLICATION_KEY: ${{ secrets.OVH_APPLICATION_KEY }}
+  OVH_APPLICATION_SECRET: ${{ secrets.OVH_APPLICATION_SECRET }}
+  OVH_CONSUMER_KEY: ${{ secrets.OVH_CONSUMER_KEY }}
+  
+jobs:
+  main:
+    #uses: jaxxstorm/workflows/.github/workflows/main.yml@df55f0116159ea8d30f836557f05a3c699a37a63
+    uses: ./.github/workflows/release-reusable.yml
+    secrets: inherit
+    with:
+      pulumi_test_owner: "lbrlabs"
+      provider_name: "ovh"
+
