@@ -3,17 +3,11 @@ name: main
 permissions:
   contents: write
 
-
+name: prerelease
 "on":
   push:
-    branches:
-    - main
-    paths-ignore:
-    - CHANGELOG.md
-    tags-ignore:
-    - v*
-    - sdk/*
-    - '**'
+    tags:
+    - v*.*.*-**
 
 env:
   OVH_ENDPOINT: "ovh-us"
@@ -24,7 +18,7 @@ env:
 jobs:
   main:
     #uses: jaxxstorm/workflows/.github/workflows/main.yml@df55f0116159ea8d30f836557f05a3c699a37a63
-    uses: ./.github/workflows/reusable/main.yml
+    uses: ./.github/workflows/reusable/prerelease.yml
     secrets: inherit
     with:
       pulumi_test_owner: "lbrlabs"

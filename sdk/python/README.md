@@ -50,6 +50,7 @@ The following configuration points are available for the `Ovh` provider:
 
 - `ovh:endpoint` (environment: `OVH_ENDPOINT`) - the Ovh endpoint, such `ovh-us`
 - `ovh:applicationKey` (environment: `OVH_APPLICATION_KEY`) - the Ovh application key
+- `ovh:applicationSecret` (environment: `OVH_APPLICATION_SECRET`) - the Ovh application secret
 - `ovh:consumerKey` (environment: `OVH_CONSUMER_KEY`) - the Ovh consumer key
 
 ## Reference

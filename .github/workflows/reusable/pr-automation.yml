@@ -1,0 +1,28 @@
+on:
+  workflow_call:
+    inputs:
+      pulumi_test_owner:
+        required: true
+        type: string
+      provider_name:
+        required: true
+        type: string
+
+jobs:
+  automerge:
+    name: automerge labelled pull-requests
+    runs-on: ubuntu-latest
+    steps:
+    - env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        MERGE_COMMIT_MESSAGE: pull-request-title
+        MERGE_FORKS: "false"
+        MERGE_LABELS: automation/merge,impact/no-changelog-required
+        MERGE_METHOD: squash
+        MERGE_REMOVE_LABELS: automation/merge
+        MERGE_RETRIES: "30"
+        MERGE_RETRY_SLEEP: "60000"
+        UPDATE_LABELS: automation/update
+        UPDATE_METHOD: rebase
+      name: Automerge
+      uses: pascalgn/automerge-action@v0.13.1
