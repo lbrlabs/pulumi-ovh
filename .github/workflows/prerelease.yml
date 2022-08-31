@@ -18,7 +18,7 @@ env:
 jobs:
   main:
     #uses: jaxxstorm/workflows/.github/workflows/main.yml@df55f0116159ea8d30f836557f05a3c699a37a63
-    uses: ./.github/workflows/reusable/prerelease.yml
+    uses: ./.github/workflows/prerelease-reusable.yml
     secrets: inherit
     with:
       pulumi_test_owner: "lbrlabs"
