@@ -1,9 +1,8 @@
-name: main
+name: prerelease
 
 permissions:
   contents: write
 
-name: prerelease
 "on":
   push:
     tags:
