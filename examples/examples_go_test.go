@@ -11,13 +11,23 @@ import (
 	"github.com/pulumi/pulumi/pkg/v3/testing/integration"
 )
 
+func TestAccUserGo(t *testing.T) {
+	test := getGoBaseOptions(t).
+		With(integration.ProgramTestOptions{
+			Dir: filepath.Join(getCwd(t), "go/user"),
+		})
+
+	integration.ProgramTest(t, &test)
+}
+
+
 func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 
 	baseGo := base.With(integration.ProgramTestOptions{
 		ExpectRefreshChanges: true,
 		Dependencies: []string{
-			"github.com/pulumiverse/pulumi-ovh/sdk",
+			"github.com/pulumiverse/pulumi-ovh/sdk/go/ovh",
 		},
 	})
 
