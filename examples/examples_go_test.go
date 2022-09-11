@@ -20,14 +20,13 @@ func TestAccUserGo(t *testing.T) {
 	integration.ProgramTest(t, &test)
 }
 
-
 func getGoBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 
 	baseGo := base.With(integration.ProgramTestOptions{
 		ExpectRefreshChanges: true,
 		Dependencies: []string{
-			"github.com/pulumiverse/pulumi-ovh/sdk/go/ovh",
+			"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh",
 		},
 	})
 

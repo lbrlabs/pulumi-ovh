@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Ovh
+namespace lbrlabs.Ovh
 {
     public static class GetMeInstallationTemplate
     {

@@ -1,4 +1,4 @@
-module github.com/pulumiverse/pulumi-ovh/provider
+module github.com/lbrlabs/pulumi-ovh/provider
 
 go 1.19
 

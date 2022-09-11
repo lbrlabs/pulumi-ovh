@@ -1,4 +1,4 @@
-module github.com/pulumiverse/pulumi-ovh/examples/go/user
+module github.com/lbrlabs/pulumi-ovh/examples/go/user
 
 go 1.19
 
@@ -57,5 +57,5 @@ require (
 )
 
 replace (
-	github.com/pulumiverse/pulumi-ovh/sdk/go/ovh => ../../../sdk/
+	github.com/lbrlabs/pulumi-ovh/sdk/go/ovh => ../../../sdk/
 )

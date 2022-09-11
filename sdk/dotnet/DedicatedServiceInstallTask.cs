@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Ovh
+namespace lbrlabs.Ovh
 {
     [OvhResourceType("ovh:index/dedicatedServiceInstallTask:DedicatedServiceInstallTask")]
     public partial class DedicatedServiceInstallTask : global::Pulumi.CustomResource
@@ -102,7 +102,7 @@ namespace Pulumiverse.Ovh
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/pulumiverse",
+                PluginDownloadURL = "github://api.github.com/lbrlabs",
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
             // Override the ID if one was specified for consistency with other language SDKs.

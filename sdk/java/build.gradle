@@ -90,12 +90,12 @@ publishing {
                 packaging = "jar"
                 description = ""
 
-                url = "https://github.com/pulumiverse/pulumi-ovh"
+                url = "https://github.com/lbrlabs/pulumi-ovh"
 
                 scm {
-                    connection = "git@github.com/pulumiverse/pulumi-ovh.git"
-                    developerConnection = "git@github.com/pulumiverse/pulumi-ovh.git"
-                    url = "https://github.com/pulumiverse/pulumi-ovh"
+                    connection = "git@github.com/lbrlabs/pulumi-ovh.git"
+                    developerConnection = "git@github.com/lbrlabs/pulumi-ovh.git"
+                    url = "https://github.com/lbrlabs/pulumi-ovh"
                 }
 
                 licenses {

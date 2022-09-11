@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Ovh
+namespace lbrlabs.Ovh
 {
     /// <summary>
     /// The provider type for the ovh package. By default, resources use package-wide configuration
@@ -61,7 +61,7 @@ namespace Pulumiverse.Ovh
             var defaultOptions = new CustomResourceOptions
             {
                 Version = Utilities.Version,
-                PluginDownloadURL = "github://api.github.com/pulumiverse",
+                PluginDownloadURL = "github://api.github.com/lbrlabs",
                 AdditionalSecretOutputs =
                 {
                     "consumerKey",

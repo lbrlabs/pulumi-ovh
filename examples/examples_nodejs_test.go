@@ -20,13 +20,12 @@ func TestAccUser(t *testing.T) {
 	integration.ProgramTest(t, &test)
 }
 
-
 func getJSBaseOptions(t *testing.T) integration.ProgramTestOptions {
 	base := getBaseOptions(t)
 	baseJS := base.With(integration.ProgramTestOptions{
 		ExpectRefreshChanges: true,
 		Dependencies: []string{
-			"@pulumiverse/scaleway",
+			"@lbrlabs/scaleway",
 		},
 	})
 

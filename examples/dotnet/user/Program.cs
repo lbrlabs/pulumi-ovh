@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Pulumi;
-using Pulumiverse.Ovh;
+using lbrlabs.Ovh;
 
 return await Deployment.RunAsync(() =>
 {

@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Pulumi" Version="3.*" />
-    <!-- <PackageReference Include="Pulumiverse.Ovh" Version="0.0.1-alpha.1661904869" /> -->
+    <!-- <PackageReference Include="lbrlabs.Ovh" Version="0.0.1-alpha.1661904869" /> -->
   </ItemGroup>
 
 </Project>

@@ -36,6 +36,6 @@ jobs:
         issue-type: pull-request
         permission: write
         reaction-token: ${{ secrets.GITHUB_TOKEN }}
-        repository: pulumiverse/pulumi-${{ inputs.provider_name }}
+        repository: lbrlabs/pulumi-${{ inputs.provider_name }}
         token: ${{ secrets.PULUMI_BOT_TOKEN }}
     strategy: {}

@@ -15,7 +15,7 @@ class InstallPluginCommand(install):
     def run(self):
         install.run(self)
         try:
-            check_call(['pulumi', 'plugin', 'install', 'resource', 'ovh', PLUGIN_VERSION, '--server', 'github://api.github.com/pulumiverse'])
+            check_call(['pulumi', 'plugin', 'install', 'resource', 'ovh', PLUGIN_VERSION, '--server', 'github://api.github.com/lbrlabs'])
         except OSError as error:
             if error.errno == errno.ENOENT:
                 print(f"""
@@ -37,7 +37,7 @@ def readme():
         return "ovh Pulumi Package - Development Version"
 
 
-setup(name='pulumiverse_ovh',
+setup(name='lbrlabs_pulumi_ovh',
       version=VERSION,
       description="A Pulumi package for creating and managing OVH cloud resources.",
       long_description=readme(),
@@ -48,12 +48,12 @@ setup(name='pulumiverse_ovh',
       keywords='pulumi ovh category/cloud',
       url='https://www.pulumi.com',
       project_urls={
-          'Repository': 'https://github.com/pulumiverse/pulumi-ovh'
+          'Repository': 'https://github.com/lbrlabs/pulumi-ovh'
       },
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'pulumiverse_ovh': [
+          'lbrlabs_pulumi_ovh': [
               'py.typed',
               'pulumi-plugin.json',
           ]

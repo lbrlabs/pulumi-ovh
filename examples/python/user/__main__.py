@@ -1,4 +1,4 @@
-import pulumiverse_ovh as ovh
+import lbrlabs_ovh as ovh
 
 user = ovh.CloudProjectUser(
     "example",

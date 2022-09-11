@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace Pulumiverse.Ovh.Inputs
+namespace lbrlabs.Ovh.Inputs
 {
 
     public sealed class DbaasLogsInputConfigurationFlowggerGetArgs : global::Pulumi.ResourceArgs

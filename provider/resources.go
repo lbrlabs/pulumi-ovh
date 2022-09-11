@@ -1,4 +1,4 @@
-// Copyright 2016-2022, Pulumiverse.
+// Copyright 2016-2022, lbrlabs.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,13 +19,13 @@ import (
 	"path/filepath"
 	"unicode"
 
+	"github.com/lbrlabs/pulumi-ovh/provider/pkg/version"
 	ovh "github.com/ovh/terraform-provider-ovh/ovh"
 	"github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfbridge"
 	shim "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim"
 	shimv2 "github.com/pulumi/pulumi-terraform-bridge/v3/pkg/tfshim/sdk-v2"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/resource"
 	"github.com/pulumi/pulumi/sdk/v3/go/common/tokens"
-	"github.com/pulumiverse/pulumi-ovh/provider/pkg/version"
 )
 
 // all of the token components used below.
@@ -86,14 +86,14 @@ func Provider() tfbridge.ProviderInfo {
 		P:                 p,
 		Name:              "ovh",
 		DisplayName:       "OVH",
-		Publisher:         "Pulumiverse",
-		PluginDownloadURL: "github://api.github.com/pulumiverse",
+		Publisher:         "lbrlabs",
+		PluginDownloadURL: "github://api.github.com/lbrlabs",
 		Description:       "A Pulumi package for creating and managing OVH cloud resources.",
 		Keywords:          []string{"pulumi", "ovh", "category/cloud"},
 		License:           "Apache-2.0",
-		LogoURL:           "https://raw.githubusercontent.com/pulumiverse/pulumi-ovh/main/assets/ovh.svg",
+		LogoURL:           "https://raw.githubusercontent.com/lbrlabs/pulumi-ovh/main/assets/ovh.svg",
 		Homepage:          "https://www.pulumi.com",
-		Repository:        "https://github.com/pulumiverse/pulumi-ovh",
+		Repository:        "https://github.com/lbrlabs/pulumi-ovh",
 		GitHubOrg:         "ovh",
 		Config: map[string]*tfbridge.SchemaInfo{
 			"endpoint": {
@@ -420,17 +420,17 @@ func Provider() tfbridge.ProviderInfo {
 				"@types/node": "^10.0.0", // so we can access strongly typed node definitions.
 				"@types/mime": "^2.0.0",
 			},
-			PackageName: "@pulumiverse/ovh",
+			PackageName: "@lbrlabs/pulumi_ovh",
 		},
 		Python: &tfbridge.PythonInfo{
-			PackageName: "pulumiverse_ovh",
+			PackageName: "lbrlabs_pulumi_ovh",
 			Requires: map[string]string{
 				"pulumi": ">=3.0.0,<4.0.0",
 			},
 		},
 		Golang: &tfbridge.GolangInfo{
 			ImportBasePath: filepath.Join(
-				fmt.Sprintf("github.com/pulumiverse/pulumi-%[1]s/sdk/", ovhPkg),
+				fmt.Sprintf("github.com/lbrlabs/pulumi-%[1]s/sdk/", ovhPkg),
 				tfbridge.GetModuleMajorVersion(version.Version),
 				"go",
 				ovhPkg,
@@ -438,7 +438,7 @@ func Provider() tfbridge.ProviderInfo {
 			GenerateResourceContainerTypes: true,
 		},
 		CSharp: &tfbridge.CSharpInfo{
-			RootNamespace: "Pulumiverse",
+			RootNamespace: "lbrlabs",
 			PackageReferences: map[string]string{
 				"Pulumi": "3.*",
 			},

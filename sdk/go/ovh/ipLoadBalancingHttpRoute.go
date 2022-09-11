@@ -24,9 +24,9 @@ import (
 //
 //	"fmt"
 //
+//	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh"
 //	"github.com/pulumi/pulumi-ovh/sdk/go/ovh"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
-//	"github.com/pulumiverse/pulumi-ovh/sdk/go/ovh"
 //
 // )
 //

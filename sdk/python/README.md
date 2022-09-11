@@ -11,13 +11,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @pulumiverse/ovh
+npm install @lbrlabs/ovh
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @pulumiverse/ovh
+yarn add @lbrlabs/ovh
 ```
 
 ### Python
@@ -25,7 +25,7 @@ yarn add @pulumiverse/ovh
 To use from Python, install using `pip`:
 
 ```bash
-pip install pulumiverse_ovh
+pip install lbrlabs_ovh
 ```
 
 ### Go
@@ -33,7 +33,7 @@ pip install pulumiverse_ovh
 To use from Go, use `go get` to grab the latest version of the library:
 
 ```bash
-go get github.com/pulumiverse/pulumi-ovh/sdk/go/...
+go get github.com/lbrlabs/pulumi-ovh/sdk/go/...
 ```
 
 ### .NET
@@ -41,7 +41,7 @@ go get github.com/pulumiverse/pulumi-ovh/sdk/go/...
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-dotnet add package Pulumiverse.Ovh
+dotnet add package lbrlabs.Ovh
 ```
 
 ## Configuration
