@@ -1,5 +1,5 @@
 {
-    "name": "@lbrlabs/pulumi_ovh",
+    "name": "@lbrlabs/ovh",
     "version": "${VERSION}",
     "description": "A Pulumi package for creating and managing OVH cloud resources.",
     "keywords": [

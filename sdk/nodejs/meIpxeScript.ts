@@ -12,7 +12,7 @@ import * as utilities from "./utilities";
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as fs from "fs";
- * import * as pulumi_ovh from "@lbrlabs/pulumi_ovh";
+ * import * as ovh from "@lbrlabs/ovh";
  *
  * const script = new ovh.MeIpxeScript("script", {script: fs.readFileSync(`${path.module}/boot.ipxe`)});
  * ```

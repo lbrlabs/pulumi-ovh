@@ -11,8 +11,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@lbrlabs/ovh";
  * import * as ovh from "@pulumi/ovh";
- * import * as pulumi_ovh from "@lbrlabs/pulumi_ovh";
  *
  * const my-ceph = ovh.getDedicatedCeph({
  *     serviceName: "94d423da-0e55-45f2-9812-836460a19939",
