@@ -11,7 +11,7 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@lbrlabs/ovh";
+ * import * as pulumi_ovh from "@lbrlabs/pulumi-ovh";
  *
  * const reject = new ovh.IpLoadBalancingTcpRoute("reject", {
  *     serviceName: "loadbalancer-xxxxxxxxxxxxxxxxxx",

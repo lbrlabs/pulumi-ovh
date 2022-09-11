@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Ovh
+namespace Lbrlabs_Pulumi.Ovh
 {
     /// <summary>
     /// The provider type for the ovh package. By default, resources use package-wide configuration

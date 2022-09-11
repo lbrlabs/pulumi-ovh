@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Ovh
+namespace Lbrlabs_Pulumi.Ovh
 {
     /// <summary>
     /// Manage rules for HTTP route.
@@ -20,7 +20,7 @@ namespace lbrlabs.Ovh
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
-    /// using Ovh = lbrlabs.Ovh;
+    /// using Ovh = Lbrlabs_Pulumi.Ovh;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
@@ -57,7 +57,7 @@ namespace lbrlabs.Ovh
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
-    /// using Ovh = lbrlabs.Ovh;
+    /// using Ovh = Lbrlabs_Pulumi.Ovh;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {

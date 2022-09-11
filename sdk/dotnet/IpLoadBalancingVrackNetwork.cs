@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Ovh
+namespace Lbrlabs_Pulumi.Ovh
 {
     /// <summary>
     /// Manage a vrack network for your IP Loadbalancing service.

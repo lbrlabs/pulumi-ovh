@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Ovh.Inputs
+namespace Lbrlabs_Pulumi.Ovh.Inputs
 {
 
     public sealed class CloudProjectKubeNodePoolTemplateGetArgs : global::Pulumi.ResourceArgs

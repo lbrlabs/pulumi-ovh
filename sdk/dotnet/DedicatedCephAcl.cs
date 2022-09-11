@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Ovh
+namespace Lbrlabs_Pulumi.Ovh
 {
     /// <summary>
     /// Add a new access ACL for the given network/mask.
@@ -18,8 +18,8 @@ namespace lbrlabs.Ovh
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
+    /// using Ovh = Lbrlabs_Pulumi.Ovh;
     /// using Ovh = Pulumi.Ovh;
-    /// using Ovh = lbrlabs.Ovh;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {

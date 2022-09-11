@@ -37,7 +37,7 @@ def readme():
         return "ovh Pulumi Package - Development Version"
 
 
-setup(name='lbrlabs_ovh',
+setup(name='lbrlabs_pulumi_ovh',
       version=VERSION,
       description="A Pulumi package for creating and managing OVH cloud resources.",
       long_description=readme(),
@@ -53,7 +53,7 @@ setup(name='lbrlabs_ovh',
       license='Apache-2.0',
       packages=find_packages(),
       package_data={
-          'lbrlabs_ovh': [
+          'lbrlabs_pulumi_ovh': [
               'py.typed',
               'pulumi-plugin.json',
           ]

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Ovh.Outputs
+namespace Lbrlabs_Pulumi.Ovh.Outputs
 {
 
     [OutputType]

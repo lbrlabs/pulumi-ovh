@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Pulumi.Serialization;
 using Pulumi;
 
-namespace lbrlabs.Ovh
+namespace Lbrlabs_Pulumi.Ovh
 {
     [OvhResourceType("ovh:index/dedicatedServerRebootTask:DedicatedServerRebootTask")]
     public partial class DedicatedServerRebootTask : global::Pulumi.CustomResource
