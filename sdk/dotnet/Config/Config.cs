@@ -4,7 +4,7 @@
 using System;
 using System.Collections.Immutable;
 
-namespace Lbrlabs_Pulumi.Ovh
+namespace Lbrlabs.PulumiPackage.Ovh
 {
     public static class Config
     {
