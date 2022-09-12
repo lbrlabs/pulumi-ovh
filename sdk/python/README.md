@@ -11,13 +11,13 @@ This package is available for several languages/platforms:
 To use from JavaScript or TypeScript in Node.js, install using either `npm`:
 
 ```bash
-npm install @lbrlabs/ovh
+npm install @lbrlabs/pulumi-ovh
 ```
 
 or `yarn`:
 
 ```bash
-yarn add @lbrlabs/ovh
+yarn add @lbrlabs/pulumi-ovh
 ```
 
 ### Python
@@ -25,7 +25,7 @@ yarn add @lbrlabs/ovh
 To use from Python, install using `pip`:
 
 ```bash
-pip install lbrlabs_ovh
+pip install lbrlabs-pulumi-ovh
 ```
 
 ### Go
@@ -41,7 +41,7 @@ go get github.com/lbrlabs/pulumi-ovh/sdk/go/...
 To use from .NET, install using `dotnet add package`:
 
 ```bash
-dotnet add package lbrlabs.Ovh
+dotnet add package Lbrlabs.PulumiPackage.Ovh
 ```
 
 ## Configuration
