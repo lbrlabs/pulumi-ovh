@@ -20,7 +20,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh"
-//	"github.com/pulumi/pulumi-ovh/sdk/go/ovh"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )
@@ -59,7 +58,6 @@ import (
 // import (
 //
 //	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh"
-//	"github.com/pulumi/pulumi-ovh/sdk/go/ovh"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
 // )

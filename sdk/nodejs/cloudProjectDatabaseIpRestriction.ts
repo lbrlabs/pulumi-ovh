@@ -11,8 +11,8 @@ import * as utilities from "./utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  * import * as ovh from "@pulumi/ovh";
- * import * as pulumi_ovh from "@lbrlabs/pulumi-ovh";
  *
  * const db = ovh.getCloudProjectDatabase({
  *     serviceName: "XXXX",
