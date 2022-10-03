@@ -745,8 +745,8 @@ github.com/opentracing/opentracing-go v1.2.0 h1:uEJPy/1a5RIPAJ0Ov+OIO8OxWu77jEv+
 github.com/opentracing/opentracing-go v1.2.0/go.mod h1:GxEUsuufX4nBwe+T+Wl9TAgYrxe9dPLANfrWvHYVTgc=
 github.com/ovh/go-ovh v1.1.0 h1:bHXZmw8nTgZin4Nv7JuaLs0KG5x54EQR7migYTd1zrk=
 github.com/ovh/go-ovh v1.1.0/go.mod h1:AxitLZ5HBRPyUd+Zl60Ajaag+rNTdVXWIkzfrVuTXWA=
-github.com/ovh/terraform-provider-ovh v0.19.1 h1:N5VbOnnV2xkJXZ/+Z0PRD4jxj44icwB5AvuOStMelAQ=
-github.com/ovh/terraform-provider-ovh v0.19.1/go.mod h1:+JxGHMY5sDGYjrxUr5j4pWeQtYNHPYkJmpHkLG05K08=
+github.com/ovh/terraform-provider-ovh v0.21.0 h1:ZobyeMwWDxluMYrOOzeiVz+emiDui3DWMrD3no5gF3A=
+github.com/ovh/terraform-provider-ovh v0.21.0/go.mod h1:ddHp2PvzO9XT4lYekPEC++KNIcTvndX5rQqf0z61bTc=
 github.com/pascaldekloe/goe v0.1.0/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
 github.com/pgavlin/goldmark v1.1.33-0.20200616210433-b5eb04559386 h1:LoCV5cscNVWyK5ChN/uCoIFJz8jZD63VQiGJIRgr6uo=
 github.com/pgavlin/goldmark v1.1.33-0.20200616210433-b5eb04559386/go.mod h1:MRxHTJrf9FhdfNQ8Hdeh9gmHevC9RJE/fu8M3JIGjoE=
