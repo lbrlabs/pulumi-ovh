@@ -745,8 +745,8 @@ github.com/opentracing/opentracing-go v1.2.0 h1:uEJPy/1a5RIPAJ0Ov+OIO8OxWu77jEv+
 github.com/opentracing/opentracing-go v1.2.0/go.mod h1:GxEUsuufX4nBwe+T+Wl9TAgYrxe9dPLANfrWvHYVTgc=
 github.com/ovh/go-ovh v1.1.0 h1:bHXZmw8nTgZin4Nv7JuaLs0KG5x54EQR7migYTd1zrk=
 github.com/ovh/go-ovh v1.1.0/go.mod h1:AxitLZ5HBRPyUd+Zl60Ajaag+rNTdVXWIkzfrVuTXWA=
-github.com/ovh/terraform-provider-ovh v0.19.1 h1:N5VbOnnV2xkJXZ/+Z0PRD4jxj44icwB5AvuOStMelAQ=
-github.com/ovh/terraform-provider-ovh v0.19.1/go.mod h1:+JxGHMY5sDGYjrxUr5j4pWeQtYNHPYkJmpHkLG05K08=
+github.com/ovh/terraform-provider-ovh v0.22.0 h1:1B1khYU8cLItFpgbdmYcMH3zGhGuI7UtNWSJWjWJUSM=
+github.com/ovh/terraform-provider-ovh v0.22.0/go.mod h1:oLOdL8Wcxn+f6/dxd4jNGBHoJv8YfN6209+cdXF9sZI=
 github.com/pascaldekloe/goe v0.1.0/go.mod h1:lzWF7FIEvWOWxwDKqyGYQf6ZUaNfKdP144TG7ZOy1lc=
 github.com/pgavlin/goldmark v1.1.33-0.20200616210433-b5eb04559386 h1:LoCV5cscNVWyK5ChN/uCoIFJz8jZD63VQiGJIRgr6uo=
 github.com/pgavlin/goldmark v1.1.33-0.20200616210433-b5eb04559386/go.mod h1:MRxHTJrf9FhdfNQ8Hdeh9gmHevC9RJE/fu8M3JIGjoE=
@@ -895,6 +895,8 @@ github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415 h1:EzJWgHo
 github.com/xeipuuv/gojsonreference v0.0.0-20180127040603-bd5ef7bd5415/go.mod h1:GwrjFmJcFw6At/Gs6z4yjiIwzuJ1/+UwLxMQDVQXShQ=
 github.com/xeipuuv/gojsonschema v1.2.0 h1:LhYJRs+L4fBtjZUfuSZIKGeVu0QRy8e5Xi7D17UxZ74=
 github.com/xeipuuv/gojsonschema v1.2.0/go.mod h1:anYRn/JVcOK2ZgGU+IjEV4nwlhoK5sQluxsYJ78Id3Y=
+github.com/ybriffa/rfc3339 v0.0.0-20220203155318-1789e3fd6e70 h1:eLNDtF6iVvMgWzQsxJrX+BQhuFgBZ9yeUWfVK0veHcs=
+github.com/ybriffa/rfc3339 v0.0.0-20220203155318-1789e3fd6e70/go.mod h1:zm6iUC+TqI9sIhE8TLV2vAbi/cUzFYvBPZqfDVl6u7k=
 github.com/yuin/goldmark v1.1.25/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.27/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
 github.com/yuin/goldmark v1.1.32/go.mod h1:3hX8gzYuyVAZsxl0MRgGTJEmQBFcNTphYh9decYSb74=
