@@ -2,694 +2,10 @@
 // *** Do not edit by hand unless you're certain you know what you are doing! ***
 
 import * as pulumi from "@pulumi/pulumi";
-import { input as inputs, output as outputs } from "../types";
+import * as inputs from "../types/input";
+import * as outputs from "../types/output";
 
-export interface CloudProjectContainerRegistryPlan {
-    /**
-     * Plan code from the catalog
-     */
-    code: string;
-    /**
-     * Plan creation date
-     */
-    createdAt: string;
-    /**
-     * Features of the plan
-     */
-    features: outputs.CloudProjectContainerRegistryPlanFeature[];
-    /**
-     * Plan ID
-     */
-    id: string;
-    /**
-     * Registry name
-     */
-    name: string;
-    /**
-     * Container registry limits
-     */
-    registryLimits: outputs.CloudProjectContainerRegistryPlanRegistryLimit[];
-    /**
-     * Registry last update date
-     */
-    updatedAt: string;
-}
-
-export interface CloudProjectContainerRegistryPlanFeature {
-    /**
-     * Vulnerability scanning
-     */
-    vulnerability: boolean;
-}
-
-export interface CloudProjectContainerRegistryPlanRegistryLimit {
-    /**
-     * Docker image storage limits in bytes
-     */
-    imageStorage: number;
-    /**
-     * Parallel requests on Docker image API (/v2 Docker registry API)
-     */
-    parallelRequest: number;
-}
-
-export interface CloudProjectDatabaseEndpoint {
-    /**
-     * Type of component the URI relates to.
-     */
-    component: string;
-    /**
-     * Domain of the cluster.
-     */
-    domain: string;
-    /**
-     * Path of the endpoint.
-     */
-    path: string;
-    /**
-     * Connection port for the endpoint.
-     */
-    port: number;
-    /**
-     * Scheme used to generate the URI.
-     */
-    scheme: string;
-    /**
-     * Defines whether the endpoint uses SSL.
-     */
-    ssl: boolean;
-    /**
-     * SSL mode used to connect to the service if the SSL is enabled.
-     */
-    sslMode: string;
-    /**
-     * URI of the endpoint.
-     */
-    uri: string;
-}
-
-export interface CloudProjectDatabaseNode {
-    /**
-     * Private network id in which the node should be deployed.
-     */
-    networkId?: string;
-    /**
-     * Public cloud region in which the node should be deployed.
-     * Ex: "GRA'.
-     */
-    region: string;
-    /**
-     * Private subnet ID in which the node is.
-     */
-    subnetId?: string;
-}
-
-export interface CloudProjectKubeNodePoolTemplate {
-    metadata?: outputs.CloudProjectKubeNodePoolTemplateMetadata;
-    spec?: outputs.CloudProjectKubeNodePoolTemplateSpec;
-}
-
-export interface CloudProjectKubeNodePoolTemplateMetadata {
-    annotations?: {[key: string]: string};
-    finalizers?: string[];
-    labels?: {[key: string]: string};
-}
-
-export interface CloudProjectKubeNodePoolTemplateSpec {
-    taints?: {[key: string]: any}[];
-    unschedulable?: boolean;
-}
-
-export interface CloudProjectKubePrivateNetworkConfiguration {
-    defaultVrackGateway: string;
-    privateNetworkRoutingAsDefault: boolean;
-}
-
-export interface CloudProjectNetworkPrivateRegionsAttribute {
-    openstackid: string;
-    region: string;
-    /**
-     * the status of the network. should be normally set to 'ACTIVE'.
-     */
-    status: string;
-}
-
-export interface CloudProjectNetworkPrivateRegionsStatus {
-    region: string;
-    /**
-     * the status of the network. should be normally set to 'ACTIVE'.
-     */
-    status: string;
-}
-
-export interface CloudProjectNetworkPrivateSubnetIpPool {
-    /**
-     * Enable DHCP.
-     * Changing this forces a new resource to be created. Defaults to false.
-     * _
-     */
-    dhcp: boolean;
-    /**
-     * Last ip for this region.
-     * Changing this value recreates the subnet.
-     */
-    end: string;
-    /**
-     * Global network in CIDR format.
-     * Changing this value recreates the subnet
-     */
-    network: string;
-    /**
-     * The region in which the network subnet will be created.
-     * Ex.: "GRA1". Changing this value recreates the resource.
-     */
-    region: string;
-    /**
-     * First ip for this region.
-     * Changing this value recreates the subnet.
-     */
-    start: string;
-}
-
-export interface CloudProjectOrder {
-    /**
-     * date
-     */
-    date: string;
-    /**
-     * Information about a Bill entry
-     */
-    details: outputs.CloudProjectOrderDetail[];
-    /**
-     * expiration date
-     */
-    expirationDate: string;
-    /**
-     * order id
-     */
-    orderId: number;
-}
-
-export interface CloudProjectOrderDetail {
-    /**
-     * A description associated with the user.
-     */
-    description: string;
-    /**
-     * expiration date
-     */
-    domain: string;
-    /**
-     * order detail id
-     */
-    orderDetailId: number;
-    /**
-     * quantity
-     */
-    quantity: string;
-}
-
-export interface CloudProjectPlan {
-    /**
-     * Catalog name
-     */
-    catalogName?: string;
-    /**
-     * Representation of a configuration item for personalizing product
-     */
-    configurations?: outputs.CloudProjectPlanConfiguration[];
-    /**
-     * duration
-     */
-    duration: string;
-    /**
-     * Plan code
-     */
-    planCode: string;
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-}
-
-export interface CloudProjectPlanConfiguration {
-    /**
-     * Identifier of the resource
-     */
-    label: string;
-    /**
-     * Path to the resource in API.OVH.COM
-     */
-    value: string;
-}
-
-export interface CloudProjectPlanOption {
-    /**
-     * Catalog name
-     */
-    catalogName?: string;
-    /**
-     * Representation of a configuration item for personalizing product
-     */
-    configurations?: outputs.CloudProjectPlanOptionConfiguration[];
-    /**
-     * duration
-     */
-    duration: string;
-    /**
-     * Plan code
-     */
-    planCode: string;
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-}
-
-export interface CloudProjectPlanOptionConfiguration {
-    /**
-     * Identifier of the resource
-     */
-    label: string;
-    /**
-     * Path to the resource in API.OVH.COM
-     */
-    value: string;
-}
-
-export interface CloudProjectUserRole {
-    /**
-     * A description associated with the user.
-     */
-    description: string;
-    /**
-     * id of the role
-     */
-    id: string;
-    /**
-     * name of the role
-     */
-    name: string;
-    /**
-     * list of permissions associated with the role
-     */
-    permissions: string[];
-}
-
-export interface DbaasLogsInputConfiguration {
-    /**
-     * Flowgger configuration
-     */
-    flowgger?: outputs.DbaasLogsInputConfigurationFlowgger;
-    /**
-     * Logstash configuration
-     */
-    logstash?: outputs.DbaasLogsInputConfigurationLogstash;
-}
-
-export interface DbaasLogsInputConfigurationFlowgger {
-    /**
-     * Type of format to decode. One of "RFC5424", "LTSV", "GELF", "CAPNP"
-     */
-    logFormat: string;
-    /**
-     * Indicates how messages are delimited. One of "LINE", "NUL", "SYSLEN", "CAPNP"
-     */
-    logFraming: string;
-}
-
-export interface DbaasLogsInputConfigurationLogstash {
-    /**
-     * The filter section of logstash.conf
-     */
-    filterSection?: string;
-    /**
-     * The filter section of logstash.conf
-     */
-    inputSection: string;
-    /**
-     * The list of customs Grok patterns
-     */
-    patternSection?: string;
-}
-
-export interface DedicatedServiceInstallTaskDetails {
-    /**
-     * Template change log details.
-     *
-     * @deprecated field is not used anymore
-     */
-    changeLog?: string;
-    /**
-     * Set up the server using the provided hostname instead of the default hostname.
-     */
-    customHostname?: string;
-    /**
-     * Disk group id.
-     */
-    diskGroupId?: number;
-    /**
-     * set to true to install RTM.
-     */
-    installRtm?: boolean;
-    /**
-     * set to true to install sql server (Windows template only).
-     */
-    installSqlServer?: boolean;
-    /**
-     * language.
-     */
-    language?: string;
-    /**
-     * set to true to disable RAID.
-     */
-    noRaid?: boolean;
-    /**
-     * Indicate the URL where your postinstall customisation script is located.
-     */
-    postInstallationScriptLink?: string;
-    /**
-     * Indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
-     */
-    postInstallationScriptReturn?: string;
-    /**
-     * set to true to make a hardware raid reset.
-     */
-    resetHwRaid?: boolean;
-    /**
-     * soft raid devices.
-     */
-    softRaidDevices?: number;
-    /**
-     * Name of the ssh key that should be installed. Password login will be disabled.
-     */
-    sshKeyName?: string;
-    /**
-     * Use the distribution's native kernel instead of the recommended OVH Kernel.
-     */
-    useDistribKernel?: boolean;
-    /**
-     * set to true to use SPLA.
-     */
-    useSpla?: boolean;
-}
-
-export interface DomainZoneOrder {
-    /**
-     * date
-     */
-    date: string;
-    /**
-     * Information about a Bill entry
-     */
-    details: outputs.DomainZoneOrderDetail[];
-    /**
-     * expiration date
-     */
-    expirationDate: string;
-    /**
-     * order id
-     */
-    orderId: number;
-}
-
-export interface DomainZoneOrderDetail {
-    /**
-     * description
-     */
-    description: string;
-    /**
-     * expiration date
-     */
-    domain: string;
-    /**
-     * order detail id
-     */
-    orderDetailId: number;
-    /**
-     * quantity
-     */
-    quantity: string;
-}
-
-export interface DomainZonePlan {
-    /**
-     * Catalog name
-     */
-    catalogName?: string;
-    /**
-     * Representation of a configuration item for personalizing product
-     */
-    configurations?: outputs.DomainZonePlanConfiguration[];
-    /**
-     * duration
-     */
-    duration: string;
-    /**
-     * Plan code
-     */
-    planCode: string;
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-}
-
-export interface DomainZonePlanConfiguration {
-    /**
-     * Identifier of the resource
-     */
-    label: string;
-    /**
-     * Path to the resource in API.OVH.COM
-     */
-    value: string;
-}
-
-export interface DomainZonePlanOption {
-    /**
-     * Catalog name
-     */
-    catalogName?: string;
-    /**
-     * Representation of a configuration item for personalizing product
-     */
-    configurations?: outputs.DomainZonePlanOptionConfiguration[];
-    /**
-     * duration
-     */
-    duration: string;
-    /**
-     * Plan code
-     */
-    planCode: string;
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-}
-
-export interface DomainZonePlanOptionConfiguration {
-    /**
-     * Identifier of the resource
-     */
-    label: string;
-    /**
-     * Path to the resource in API.OVH.COM
-     */
-    value: string;
-}
-
-export interface GetCloudProjectCapabilitiesContainerFilterFeature {
-    /**
-     * Vulnerability scanning
-     */
-    vulnerability: boolean;
-}
-
-export interface GetCloudProjectCapabilitiesContainerFilterRegistryLimit {
-    /**
-     * Docker image storage limits in bytes
-     */
-    imageStorage: number;
-    /**
-     * Parallel requests on Docker image API (/v2 Docker registry API)
-     */
-    parallelRequest: number;
-}
-
-export interface GetCloudProjectCapabilitiesContainerRegistryResult {
-    /**
-     * Available plans in the region
-     */
-    plans: outputs.GetCloudProjectCapabilitiesContainerRegistryResultPlan[];
-    /**
-     * The region name
-     */
-    regionName: string;
-}
-
-export interface GetCloudProjectCapabilitiesContainerRegistryResultPlan {
-    /**
-     * Plan code from the catalog
-     */
-    code: string;
-    /**
-     * Plan creation date
-     */
-    createdAt: string;
-    /**
-     * Features of the plan
-     */
-    features: outputs.GetCloudProjectCapabilitiesContainerRegistryResultPlanFeature[];
-    /**
-     * Plan ID
-     */
-    id: string;
-    /**
-     * Plan name
-     */
-    name: string;
-    /**
-     * Container registry limits
-     */
-    registryLimits: outputs.GetCloudProjectCapabilitiesContainerRegistryResultPlanRegistryLimit[];
-    /**
-     * Plan last update date
-     */
-    updatedAt: string;
-}
-
-export interface GetCloudProjectCapabilitiesContainerRegistryResultPlanFeature {
-    /**
-     * Vulnerability scanning
-     */
-    vulnerability: boolean;
-}
-
-export interface GetCloudProjectCapabilitiesContainerRegistryResultPlanRegistryLimit {
-    /**
-     * Docker image storage limits in bytes
-     */
-    imageStorage: number;
-    /**
-     * Parallel requests on Docker image API (/v2 Docker registry API)
-     */
-    parallelRequest: number;
-}
-
-export interface GetCloudProjectContainerRegistriesResult {
-    /**
-     * Registry creation date
-     */
-    createdAt: string;
-    /**
-     * Registry ID
-     */
-    id: string;
-    /**
-     * Registry name
-     */
-    name: string;
-    /**
-     * Project ID of your registry
-     */
-    projectId: string;
-    /**
-     * Region of the registry
-     */
-    region: string;
-    /**
-     * Current size of the registry (bytes)
-     */
-    size: number;
-    /**
-     * Registry status
-     */
-    status: string;
-    /**
-     * Registry last update date
-     */
-    updatedAt: string;
-    /**
-     * Access url of the registry
-     */
-    url: string;
-    /**
-     * Version of your registry
-     */
-    version: string;
-}
-
-export interface GetCloudProjectContainerRegistryUsersResult {
-    /**
-     * User email
-     */
-    email: string;
-    /**
-     * User ID
-     */
-    id: string;
-    /**
-     * User name
-     */
-    user: string;
-}
-
-export interface GetCloudProjectDatabaseEndpoint {
-    /**
-     * Type of component the URI relates to.
-     */
-    component: string;
-    /**
-     * Domain of the cluster.
-     */
-    domain: string;
-    /**
-     * Path of the endpoint.
-     */
-    path: string;
-    /**
-     * Connection port for the endpoint.
-     */
-    port: number;
-    /**
-     * Scheme used to generate the URI.
-     */
-    scheme: string;
-    /**
-     * Defines whether the endpoint uses SSL.
-     */
-    ssl: boolean;
-    /**
-     * SSL mode used to connect to the service if the SSL is enabled.
-     */
-    sslMode: string;
-    /**
-     * URI of the endpoint.
-     */
-    uri: string;
-}
-
-export interface GetCloudProjectDatabaseNode {
-    networkId: string;
-    region: string;
-    subnetId: string;
-}
-
-export interface GetCloudProjectRegionService {
-    /**
-     * The name of the region associated with the public cloud
-     * project.
-     */
-    name: string;
-    /**
-     * the status of the service
-     */
-    status: string;
-}
-
-export interface GetDedicatedServerVni {
+export interface GetServerVni {
     /**
      * VirtualNetworkInterface activation state
      */
@@ -717,992 +33,1930 @@ export interface GetDedicatedServerVni {
     vrack: string;
 }
 
-export interface GetIpServiceRoutedTo {
-    /**
-     * The service name
-     */
-    serviceName: string;
+export namespace CloudProject {
+    export interface ContainerRegistryPlan {
+        /**
+         * Plan code from the catalog
+         */
+        code: string;
+        /**
+         * Plan creation date
+         */
+        createdAt: string;
+        /**
+         * Features of the plan
+         */
+        features: outputs.CloudProject.ContainerRegistryPlanFeature[];
+        /**
+         * Plan ID
+         */
+        id: string;
+        /**
+         * Registry name
+         */
+        name: string;
+        /**
+         * Container registry limits
+         */
+        registryLimits: outputs.CloudProject.ContainerRegistryPlanRegistryLimit[];
+        /**
+         * Registry last update date
+         */
+        updatedAt: string;
+    }
+
+    export interface ContainerRegistryPlanFeature {
+        /**
+         * Vulnerability scanning
+         */
+        vulnerability: boolean;
+    }
+
+    export interface ContainerRegistryPlanRegistryLimit {
+        /**
+         * Docker image storage limits in bytes
+         */
+        imageStorage: number;
+        /**
+         * Parallel requests on Docker image API (/v2 Docker registry API)
+         */
+        parallelRequest: number;
+    }
+
+    export interface DatabaseEndpoint {
+        /**
+         * Type of component the URI relates to.
+         */
+        component: string;
+        /**
+         * Domain of the cluster.
+         */
+        domain: string;
+        /**
+         * Path of the endpoint.
+         */
+        path: string;
+        /**
+         * Connection port for the endpoint.
+         */
+        port: number;
+        /**
+         * Scheme used to generate the URI.
+         */
+        scheme: string;
+        /**
+         * Defines whether the endpoint uses SSL.
+         */
+        ssl: boolean;
+        /**
+         * SSL mode used to connect to the service if the SSL is enabled.
+         */
+        sslMode: string;
+        /**
+         * URI of the endpoint.
+         */
+        uri: string;
+    }
+
+    export interface DatabaseNode {
+        /**
+         * Private network id in which the node should be deployed. It's the regional openstackId of the private network
+         */
+        networkId?: string;
+        /**
+         * Public cloud region in which the node should be deployed.
+         * Ex: "GRA'.
+         */
+        region: string;
+        /**
+         * Private subnet ID in which the node is.
+         */
+        subnetId?: string;
+    }
+
+    export interface GetCapabilitiesContainerFilterFeature {
+        /**
+         * Vulnerability scanning
+         */
+        vulnerability: boolean;
+    }
+
+    export interface GetCapabilitiesContainerFilterRegistryLimit {
+        /**
+         * Docker image storage limits in bytes
+         */
+        imageStorage: number;
+        /**
+         * Parallel requests on Docker image API (/v2 Docker registry API)
+         */
+        parallelRequest: number;
+    }
+
+    export interface GetCapabilitiesContainerRegistryResult {
+        /**
+         * Available plans in the region
+         */
+        plans: outputs.CloudProject.GetCapabilitiesContainerRegistryResultPlan[];
+        /**
+         * The region name
+         */
+        regionName: string;
+    }
+
+    export interface GetCapabilitiesContainerRegistryResultPlan {
+        /**
+         * Plan code from the catalog
+         */
+        code: string;
+        /**
+         * Plan creation date
+         */
+        createdAt: string;
+        /**
+         * Features of the plan
+         */
+        features: outputs.CloudProject.GetCapabilitiesContainerRegistryResultPlanFeature[];
+        /**
+         * Plan ID
+         */
+        id: string;
+        /**
+         * Plan name
+         */
+        name: string;
+        /**
+         * Container registry limits
+         */
+        registryLimits: outputs.CloudProject.GetCapabilitiesContainerRegistryResultPlanRegistryLimit[];
+        /**
+         * Plan last update date
+         */
+        updatedAt: string;
+    }
+
+    export interface GetCapabilitiesContainerRegistryResultPlanFeature {
+        /**
+         * Vulnerability scanning
+         */
+        vulnerability: boolean;
+    }
+
+    export interface GetCapabilitiesContainerRegistryResultPlanRegistryLimit {
+        /**
+         * Docker image storage limits in bytes
+         */
+        imageStorage: number;
+        /**
+         * Parallel requests on Docker image API (/v2 Docker registry API)
+         */
+        parallelRequest: number;
+    }
+
+    export interface GetContainerRegistriesResult {
+        /**
+         * Registry creation date
+         */
+        createdAt: string;
+        /**
+         * Registry ID
+         */
+        id: string;
+        /**
+         * Registry name
+         */
+        name: string;
+        /**
+         * Project ID of your registry
+         */
+        projectId: string;
+        /**
+         * Region of the registry
+         */
+        region: string;
+        /**
+         * Current size of the registry (bytes)
+         */
+        size: number;
+        /**
+         * Registry status
+         */
+        status: string;
+        /**
+         * Registry last update date
+         */
+        updatedAt: string;
+        /**
+         * Access url of the registry
+         */
+        url: string;
+        /**
+         * Version of your registry
+         */
+        version: string;
+    }
+
+    export interface GetContainerRegistryUsersResult {
+        /**
+         * User email
+         */
+        email: string;
+        /**
+         * User ID
+         */
+        id: string;
+        /**
+         * User name
+         */
+        user: string;
+    }
+
+    export interface GetKubeCustomization {
+        apiserver: outputs.CloudProject.GetKubeCustomizationApiserver;
+    }
+
+    export interface GetKubeCustomizationApiserver {
+        admissionplugins: outputs.CloudProject.GetKubeCustomizationApiserverAdmissionplugins;
+    }
+
+    export interface GetKubeCustomizationApiserverAdmissionplugins {
+        disableds: string[];
+        enableds: string[];
+    }
+
+    export interface GetOpenSearchUserAcl {
+        /**
+         * Pattern of the ACL.
+         */
+        pattern: string;
+        /**
+         * Permission of the ACL.
+         */
+        permission: string;
+    }
+
+    export interface GetRegionService {
+        /**
+         * The name of the region associated with the public cloud
+         * project.
+         */
+        name: string;
+        /**
+         * the status of the service
+         */
+        status: string;
+    }
+
+    export interface GetUserRole {
+        /**
+         * description of the role
+         */
+        description: string;
+        /**
+         * id of the role
+         */
+        id: string;
+        /**
+         * name of the role
+         */
+        name: string;
+        /**
+         * list of permissions associated with the role
+         */
+        permissions: string[];
+    }
+
+    export interface GetUsersUser {
+        /**
+         * the date the user was created.
+         */
+        creationDate: string;
+        /**
+         * description of the role
+         */
+        description: string;
+        /**
+         * A list of roles associated with the user.
+         */
+        roles: outputs.CloudProject.GetUsersUserRole[];
+        /**
+         * the status of the user. should be normally set to 'ok'.
+         */
+        status: string;
+        /**
+         * The ID of a public cloud project's user.
+         */
+        userId: string;
+        /**
+         * the username generated for the user. This username can be used with
+         * the Openstack API.
+         */
+        username: string;
+    }
+
+    export interface GetUsersUserRole {
+        /**
+         * description of the role
+         */
+        description: string;
+        /**
+         * id of the role
+         */
+        id: string;
+        /**
+         * name of the role
+         */
+        name: string;
+        /**
+         * list of permissions associated with the role
+         */
+        permissions: string[];
+    }
+
+    export interface KubeCustomization {
+        apiserver: outputs.CloudProject.KubeCustomizationApiserver;
+    }
+
+    export interface KubeCustomizationApiserver {
+        admissionplugins: outputs.CloudProject.KubeCustomizationApiserverAdmissionplugins;
+    }
+
+    export interface KubeCustomizationApiserverAdmissionplugins {
+        disableds: string[];
+        enableds: string[];
+    }
+
+    export interface KubeNodePoolTemplate {
+        metadata?: outputs.CloudProject.KubeNodePoolTemplateMetadata;
+        spec?: outputs.CloudProject.KubeNodePoolTemplateSpec;
+    }
+
+    export interface KubeNodePoolTemplateMetadata {
+        annotations?: {[key: string]: string};
+        finalizers?: string[];
+        labels?: {[key: string]: string};
+    }
+
+    export interface KubeNodePoolTemplateSpec {
+        taints?: {[key: string]: any}[];
+        unschedulable?: boolean;
+    }
+
+    export interface KubePrivateNetworkConfiguration {
+        defaultVrackGateway: string;
+        privateNetworkRoutingAsDefault: boolean;
+    }
+
+    export interface NetworkPrivateRegionsAttribute {
+        openstackid: string;
+        region: string;
+        /**
+         * the status of the network. should be normally set to 'ACTIVE'.
+         */
+        status: string;
+    }
+
+    export interface NetworkPrivateRegionsStatus {
+        region: string;
+        /**
+         * the status of the network. should be normally set to 'ACTIVE'.
+         */
+        status: string;
+    }
+
+    export interface NetworkPrivateSubnetIpPool {
+        /**
+         * Enable DHCP.
+         * Changing this forces a new resource to be created. Defaults to false.
+         * _
+         */
+        dhcp: boolean;
+        /**
+         * Last ip for this region.
+         * Changing this value recreates the subnet.
+         */
+        end: string;
+        /**
+         * Global network in CIDR format.
+         * Changing this value recreates the subnet
+         */
+        network: string;
+        /**
+         * The region in which the network subnet will be created.
+         * Ex.: "GRA1". Changing this value recreates the resource.
+         */
+        region: string;
+        /**
+         * First ip for this region.
+         * Changing this value recreates the subnet.
+         */
+        start: string;
+    }
+
+    export interface ProjectOrder {
+        /**
+         * date
+         */
+        date: string;
+        /**
+         * Information about a Bill entry
+         */
+        details: outputs.CloudProject.ProjectOrderDetail[];
+        /**
+         * expiration date
+         */
+        expirationDate: string;
+        /**
+         * order id
+         */
+        orderId: number;
+    }
+
+    export interface ProjectOrderDetail {
+        /**
+         * A description associated with the user.
+         */
+        description: string;
+        /**
+         * expiration date
+         */
+        domain: string;
+        /**
+         * order detail id
+         */
+        orderDetailId: number;
+        /**
+         * quantity
+         */
+        quantity: string;
+    }
+
+    export interface ProjectPlan {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.CloudProject.ProjectPlanConfiguration[];
+        /**
+         * duration
+         */
+        duration: string;
+        /**
+         * Plan code
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface ProjectPlanConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
+    export interface ProjectPlanOption {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.CloudProject.ProjectPlanOptionConfiguration[];
+        /**
+         * duration
+         */
+        duration: string;
+        /**
+         * Plan code
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface ProjectPlanOptionConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
+    export interface UserRole {
+        /**
+         * A description associated with the user.
+         */
+        description: string;
+        /**
+         * id of the role
+         */
+        id: string;
+        /**
+         * name of the role
+         */
+        name: string;
+        /**
+         * list of permissions associated with the role
+         */
+        permissions: string[];
+    }
+
 }
 
-export interface GetMeCurrency {
-    code: string;
-    symbol: string;
+export namespace CloudProjectDatabase {
+    export interface GetCapabilitiesEngine {
+        /**
+         * Default version used for the engine.
+         */
+        defaultVersion: string;
+        /**
+         * Description of the plan.
+         */
+        description: string;
+        /**
+         * Name of the plan.
+         */
+        name: string;
+        /**
+         * SSL modes for this engine.
+         */
+        sslModes: string[];
+        /**
+         * Versions available for this engine.
+         */
+        versions: string[];
+    }
+
+    export interface GetCapabilitiesFlavor {
+        /**
+         * Flavor core number.
+         */
+        core: number;
+        /**
+         * Flavor ram size in GB.
+         */
+        memory: number;
+        /**
+         * Name of the plan.
+         */
+        name: string;
+        /**
+         * Flavor disk size in GB.
+         */
+        storage: number;
+    }
+
+    export interface GetCapabilitiesOption {
+        /**
+         * Name of the plan.
+         */
+        name: string;
+        /**
+         * Type of the option.
+         */
+        type: string;
+    }
+
+    export interface GetCapabilitiesPlan {
+        /**
+         * Automatic backup retention duration.
+         */
+        backupRetention: string;
+        /**
+         * Description of the plan.
+         */
+        description: string;
+        /**
+         * Name of the plan.
+         */
+        name: string;
+    }
+
+    export interface GetDatabaseEndpoint {
+        /**
+         * Type of component the URI relates to.
+         */
+        component: string;
+        /**
+         * Domain of the cluster.
+         */
+        domain: string;
+        /**
+         * Path of the endpoint.
+         */
+        path: string;
+        /**
+         * Connection port for the endpoint.
+         */
+        port: number;
+        /**
+         * Scheme used to generate the URI.
+         */
+        scheme: string;
+        /**
+         * Defines whether the endpoint uses SSL.
+         */
+        ssl: boolean;
+        /**
+         * SSL mode used to connect to the service if the SSL is enabled.
+         */
+        sslMode: string;
+        /**
+         * URI of the endpoint.
+         */
+        uri: string;
+    }
+
+    export interface GetDatabaseNode {
+        /**
+         * Private network id in which the node should be deployed. It's the regional openstackId of the private network
+         */
+        networkId: string;
+        /**
+         * Public cloud region in which the node should be deployed.
+         */
+        region: string;
+        /**
+         * Private subnet ID in which the node is.
+         */
+        subnetId: string;
+    }
+
+    export interface OpensearchUserAcl {
+        /**
+         * Pattern of the ACL.
+         */
+        pattern: string;
+        /**
+         * Permission of the ACL
+         * Available permission:
+         * * `admin`
+         * * `read`
+         * * `write`
+         * * `readwrite`
+         * * `deny`
+         */
+        permission: string;
+    }
+
 }
 
-export interface GetMeInstallationTemplateCustomization {
-    /**
-     * @deprecated field is not used anymore
-     */
-    changeLog: string;
-    customHostname: string;
-    postInstallationScriptLink: string;
-    postInstallationScriptReturn: string;
-    /**
-     * @deprecated field is not used anymore
-     */
-    rating: number;
-    sshKeyName: string;
-    useDistributionKernel: boolean;
+export namespace Dbaas {
+    export interface LogsInputConfiguration {
+        /**
+         * Flowgger configuration
+         */
+        flowgger?: outputs.Dbaas.LogsInputConfigurationFlowgger;
+        /**
+         * Logstash configuration
+         */
+        logstash?: outputs.Dbaas.LogsInputConfigurationLogstash;
+    }
+
+    export interface LogsInputConfigurationFlowgger {
+        /**
+         * Type of format to decode. One of "RFC5424", "LTSV", "GELF", "CAPNP"
+         */
+        logFormat: string;
+        /**
+         * Indicates how messages are delimited. One of "LINE", "NUL", "SYSLEN", "CAPNP"
+         */
+        logFraming: string;
+    }
+
+    export interface LogsInputConfigurationLogstash {
+        /**
+         * The filter section of logstash.conf
+         */
+        filterSection?: string;
+        /**
+         * The filter section of logstash.conf
+         */
+        inputSection: string;
+        /**
+         * The list of customs Grok patterns
+         */
+        patternSection?: string;
+    }
+
 }
 
-export interface GetMeInstallationTemplatePartitionScheme {
-    hardwareRaids: outputs.GetMeInstallationTemplatePartitionSchemeHardwareRaid[];
-    name: string;
-    partitions: outputs.GetMeInstallationTemplatePartitionSchemePartition[];
-    priority: number;
+export namespace Dedicated {
+    export interface ServiceInstallTaskDetails {
+        /**
+         * Template change log details.
+         *
+         * @deprecated field is not used anymore
+         */
+        changeLog?: string;
+        /**
+         * Set up the server using the provided hostname instead of the default hostname.
+         */
+        customHostname?: string;
+        /**
+         * Disk group id.
+         */
+        diskGroupId?: number;
+        /**
+         * set to true to install RTM.
+         */
+        installRtm?: boolean;
+        /**
+         * set to true to install sql server (Windows template only).
+         */
+        installSqlServer?: boolean;
+        /**
+         * language.
+         */
+        language?: string;
+        /**
+         * set to true to disable RAID.
+         */
+        noRaid?: boolean;
+        /**
+         * Indicate the URL where your postinstall customisation script is located.
+         */
+        postInstallationScriptLink?: string;
+        /**
+         * Indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
+         */
+        postInstallationScriptReturn?: string;
+        /**
+         * set to true to make a hardware raid reset.
+         */
+        resetHwRaid?: boolean;
+        /**
+         * soft raid devices.
+         */
+        softRaidDevices?: number;
+        /**
+         * Name of the ssh key that should be installed. Password login will be disabled.
+         */
+        sshKeyName?: string;
+        /**
+         * Use the distribution's native kernel instead of the recommended OVHcloud Kernel.
+         */
+        useDistribKernel?: boolean;
+        /**
+         * set to true to use SPLA.
+         */
+        useSpla?: boolean;
+    }
+
 }
 
-export interface GetMeInstallationTemplatePartitionSchemeHardwareRaid {
-    disks: string[];
-    mode: string;
-    name: string;
-    step: number;
+export namespace Domain {
+    export interface ZoneOrder {
+        /**
+         * date
+         */
+        date: string;
+        /**
+         * Information about a Bill entry
+         */
+        details: outputs.Domain.ZoneOrderDetail[];
+        /**
+         * expiration date
+         */
+        expirationDate: string;
+        /**
+         * order id
+         */
+        orderId: number;
+    }
+
+    export interface ZoneOrderDetail {
+        /**
+         * description
+         */
+        description: string;
+        /**
+         * expiration date
+         */
+        domain: string;
+        /**
+         * order detail id
+         */
+        orderDetailId: number;
+        /**
+         * quantity
+         */
+        quantity: string;
+    }
+
+    export interface ZonePlan {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.Domain.ZonePlanConfiguration[];
+        /**
+         * duration
+         */
+        duration: string;
+        /**
+         * Plan code
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface ZonePlanConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
+    export interface ZonePlanOption {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.Domain.ZonePlanOptionConfiguration[];
+        /**
+         * duration
+         */
+        duration: string;
+        /**
+         * Plan code
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface ZonePlanOptionConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
 }
 
-export interface GetMeInstallationTemplatePartitionSchemePartition {
-    filesystem: string;
-    mountpoint: string;
-    order: number;
-    raid: string;
-    size: number;
-    type: string;
-    volumeName: string;
+export namespace Ip {
+    export interface GetServiceRoutedTo {
+        /**
+         * The service name
+         */
+        serviceName: string;
+    }
+
+    export interface IpServiceOrder {
+        /**
+         * date
+         */
+        date: string;
+        /**
+         * Information about a Bill entry
+         */
+        details: outputs.Ip.IpServiceOrderDetail[];
+        /**
+         * expiration date
+         */
+        expirationDate: string;
+        /**
+         * order id
+         */
+        orderId: number;
+    }
+
+    export interface IpServiceOrderDetail {
+        /**
+         * Custom description on your ip.
+         */
+        description: string;
+        /**
+         * expiration date
+         */
+        domain: string;
+        /**
+         * order detail id
+         */
+        orderDetailId: number;
+        /**
+         * quantity
+         */
+        quantity: string;
+    }
+
+    export interface IpServicePlan {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.Ip.IpServicePlanConfiguration[];
+        /**
+         * duration
+         */
+        duration: string;
+        /**
+         * Plan code
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface IpServicePlanConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
+    export interface IpServicePlanOption {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.Ip.IpServicePlanOptionConfiguration[];
+        /**
+         * duration
+         */
+        duration: string;
+        /**
+         * Plan code
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface IpServicePlanOptionConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
+    export interface IpServiceRoutedTo {
+        /**
+         * Service where ip is routed to
+         * * `serviceName`: service name
+         */
+        serviceName: string;
+    }
+
 }
 
-export interface GetOrderCartProductOptionsPlanPrice {
-    /**
-     * Capacities of the pricing (type of pricing)
-     */
-    capacities: any[];
-    /**
-     * Description of the pricing
-     */
-    description: string;
-    /**
-     * Duration for ordering the product
-     */
-    duration: string;
-    /**
-     * Interval of renewal
-     */
-    interval: number;
-    /**
-     * Maximum quantity that can be ordered
-     */
-    maximumQuantity: number;
-    /**
-     * Maximum repeat for renewal
-     */
-    maximumRepeat: number;
-    /**
-     * Minimum quantity that can be ordered
-     */
-    minimumQuantity: number;
-    /**
-     * Minimum repeat for renewal
-     */
-    minimumRepeat: number;
-    /**
-     * Price of the product in micro-centims
-     */
-    priceInUcents: number;
-    /**
-     * Price of the product (Price with its currency and textual representation)
-     */
-    prices: outputs.GetOrderCartProductOptionsPlanPricePrice[];
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-    /**
-     * Pricing type
-     */
-    pricingType: string;
+export namespace IpLoadBalancing {
+    export interface GetIpLoadBalancingOrderableZone {
+        /**
+         * The zone three letter code
+         */
+        name: string;
+        /**
+         * The billing planCode for this zone
+         */
+        planCode: string;
+    }
+
+    export interface HttpFarmProbe {
+        /**
+         * Force use of SSL (TLS)
+         */
+        forceSsl?: boolean;
+        /**
+         * probe interval, Value between 30 and 3600 seconds, default 30
+         */
+        interval?: number;
+        /**
+         * What to match `pattern` against (`contains`, `default`, `internal`, `matches`, `status`)
+         */
+        match: string;
+        /**
+         * HTTP probe method (`GET`, `HEAD`, `OPTIONS`, `internal`)
+         */
+        method: string;
+        /**
+         * Negate probe result
+         */
+        negate?: boolean;
+        /**
+         * Pattern to match against `match`
+         */
+        pattern: string;
+        /**
+         * Port for backends to receive traffic on.
+         */
+        port: number;
+        /**
+         * Valid values : `http`, `internal`, `mysql`, `oco`, `pgsql`, `smtp`, `tcp`
+         */
+        type: string;
+        /**
+         * URL for HTTP probe type.
+         */
+        url: string;
+    }
+
+    export interface HttpRouteAction {
+        /**
+         * HTTP status code for "redirect" and "reject" actions
+         */
+        status?: number;
+        /**
+         * Farm ID for "farm" action type or URL template for "redirect" action. You may use ${uri}, ${protocol}, ${host}, ${port} and ${path} variables in redirect target
+         */
+        target?: string;
+        /**
+         * Action to trigger if all the rules of this route matches
+         */
+        type: string;
+    }
+
+    export interface HttpRouteRule {
+        /**
+         * Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
+         */
+        field: string;
+        /**
+         * Matching operator. Not all operators are available for all fields. See "availableRules"
+         * * `negate`- Invert the matching operator effect
+         */
+        match: string;
+        negate: boolean;
+        /**
+         * Value to match against this match. Interpretation if this field depends on the match and field
+         */
+        pattern: string;
+        /**
+         * Id of your rule
+         */
+        ruleId: number;
+        /**
+         * Name of sub-field, if applicable. This may be a Cookie or Header name for instance
+         */
+        subField: string;
+    }
+
+    export interface LoadBalancerOrder {
+        /**
+         * date
+         */
+        date: string;
+        /**
+         * Information about a Bill entry
+         */
+        details: outputs.IpLoadBalancing.LoadBalancerOrderDetail[];
+        /**
+         * expiration date
+         */
+        expirationDate: string;
+        /**
+         * order id
+         */
+        orderId: number;
+    }
+
+    export interface LoadBalancerOrderDetail {
+        /**
+         * description
+         */
+        description: string;
+        /**
+         * expiration date
+         */
+        domain: string;
+        /**
+         * order detail id
+         */
+        orderDetailId: number;
+        /**
+         * quantity
+         */
+        quantity: string;
+    }
+
+    export interface LoadBalancerOrderableZone {
+        /**
+         * The zone three letter code
+         */
+        name: string;
+        /**
+         * Plan code
+         */
+        planCode: string;
+    }
+
+    export interface LoadBalancerPlan {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.IpLoadBalancing.LoadBalancerPlanConfiguration[];
+        /**
+         * duration
+         */
+        duration: string;
+        /**
+         * Plan code
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface LoadBalancerPlanConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
+    export interface LoadBalancerPlanOption {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.IpLoadBalancing.LoadBalancerPlanOptionConfiguration[];
+        /**
+         * duration
+         */
+        duration: string;
+        /**
+         * Plan code
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface LoadBalancerPlanOptionConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
+    export interface TcpFarmProbe {
+        /**
+         * Force use of SSL (TLS)
+         */
+        forceSsl?: boolean;
+        /**
+         * probe interval, Value between 30 and 3600 seconds, default 30
+         */
+        interval?: number;
+        /**
+         * What to match `pattern` against (`contains`, `default`, `internal`, `matches`, `status`)
+         */
+        match: string;
+        /**
+         * HTTP probe method (`GET`, `HEAD`, `OPTIONS`, `internal`)
+         */
+        method?: string;
+        /**
+         * Negate probe result
+         */
+        negate?: boolean;
+        /**
+         * Pattern to match against `match`
+         */
+        pattern?: string;
+        /**
+         * Port for backends to receive traffic on.
+         */
+        port?: number;
+        /**
+         * Valid values : `http`, `internal`, `mysql`, `oco`, `pgsql`, `smtp`, `tcp`
+         */
+        type: string;
+        /**
+         * URL for HTTP probe type.
+         */
+        url?: string;
+    }
+
+    export interface TcpRouteAction {
+        /**
+         * Farm ID for "farm" action type, empty for others.
+         */
+        target?: string;
+        /**
+         * Action to trigger if all the rules of this route matches
+         */
+        type: string;
+    }
+
+    export interface TcpRouteRule {
+        /**
+         * Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
+         */
+        field: string;
+        /**
+         * Matching operator. Not all operators are available for all fields. See "availableRules"
+         * * `negate`- Invert the matching operator effect
+         */
+        match: string;
+        negate: boolean;
+        /**
+         * Value to match against this match. Interpretation if this field depends on the match and field
+         */
+        pattern: string;
+        /**
+         * Id of your rule
+         */
+        ruleId: number;
+        /**
+         * Name of sub-field, if applicable. This may be a Cookie or Header name for instance
+         */
+        subField: string;
+    }
+
 }
 
-export interface GetOrderCartProductOptionsPlanPricePrice {
-    /**
-     * Currency code
-     */
-    currencyCode: string;
-    /**
-     * Textual representation
-     */
-    text: string;
-    /**
-     * The effective price
-     */
-    value: number;
+export namespace Me {
+    export interface GetInstallationTemplateCustomization {
+        /**
+         * @deprecated field is not used anymore
+         */
+        changeLog: string;
+        customHostname: string;
+        postInstallationScriptLink: string;
+        postInstallationScriptReturn: string;
+        /**
+         * @deprecated field is not used anymore
+         */
+        rating: number;
+        sshKeyName: string;
+        useDistributionKernel: boolean;
+    }
+
+    export interface GetInstallationTemplatePartitionScheme {
+        hardwareRaids: outputs.Me.GetInstallationTemplatePartitionSchemeHardwareRaid[];
+        name: string;
+        partitions: outputs.Me.GetInstallationTemplatePartitionSchemePartition[];
+        priority: number;
+    }
+
+    export interface GetInstallationTemplatePartitionSchemeHardwareRaid {
+        disks: string[];
+        mode: string;
+        name: string;
+        step: number;
+    }
+
+    export interface GetInstallationTemplatePartitionSchemePartition {
+        filesystem: string;
+        mountpoint: string;
+        order: number;
+        raid: string;
+        size: number;
+        type: string;
+        volumeName: string;
+    }
+
+    export interface GetMeCurrency {
+        code: string;
+        symbol: string;
+    }
+
+    export interface InstallationTemplateCustomization {
+        /**
+         * @deprecated field is not used anymore
+         */
+        changeLog?: string;
+        customHostname?: string;
+        postInstallationScriptLink?: string;
+        postInstallationScriptReturn?: string;
+        /**
+         * @deprecated field is not used anymore
+         */
+        rating?: number;
+        sshKeyName?: string;
+        useDistributionKernel?: boolean;
+    }
+
 }
 
-export interface GetOrderCartProductOptionsPlanSelectedPrice {
-    /**
-     * Capacities of the pricing (type of pricing)
-     */
-    capacities: any[];
-    /**
-     * Description of the pricing
-     */
-    description: string;
-    /**
-     * Duration for ordering the product
-     */
-    duration: string;
-    /**
-     * Interval of renewal
-     */
-    interval: number;
-    /**
-     * Maximum quantity that can be ordered
-     */
-    maximumQuantity: number;
-    /**
-     * Maximum repeat for renewal
-     */
-    maximumRepeat: number;
-    /**
-     * Minimum quantity that can be ordered
-     */
-    minimumQuantity: number;
-    /**
-     * Minimum repeat for renewal
-     */
-    minimumRepeat: number;
-    /**
-     * Price of the product in micro-centims
-     */
-    priceInUcents: number;
-    /**
-     * Price of the product (Price with its currency and textual representation)
-     */
-    prices: outputs.GetOrderCartProductOptionsPlanSelectedPricePrice[];
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-    /**
-     * Pricing type
-     */
-    pricingType: string;
+export namespace Order {
+    export interface GetCartProductOptionsPlanPrice {
+        /**
+         * Capacities of the pricing (type of pricing)
+         */
+        capacities: any[];
+        /**
+         * Description of the pricing
+         */
+        description: string;
+        /**
+         * Duration for ordering the product
+         */
+        duration: string;
+        /**
+         * Interval of renewal
+         */
+        interval: number;
+        /**
+         * Maximum quantity that can be ordered
+         */
+        maximumQuantity: number;
+        /**
+         * Maximum repeat for renewal
+         */
+        maximumRepeat: number;
+        /**
+         * Minimum quantity that can be ordered
+         */
+        minimumQuantity: number;
+        /**
+         * Minimum repeat for renewal
+         */
+        minimumRepeat: number;
+        /**
+         * Price of the product in micro-centims
+         */
+        priceInUcents: number;
+        /**
+         * Price of the product (Price with its currency and textual representation)
+         */
+        prices: outputs.Order.GetCartProductOptionsPlanPricePrice[];
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+        /**
+         * Pricing type
+         */
+        pricingType: string;
+    }
+
+    export interface GetCartProductOptionsPlanPricePrice {
+        /**
+         * Currency code
+         */
+        currencyCode: string;
+        /**
+         * Textual representation
+         */
+        text: string;
+        /**
+         * The effective price
+         */
+        value: number;
+    }
+
+    export interface GetCartProductOptionsPlanSelectedPrice {
+        /**
+         * Capacities of the pricing (type of pricing)
+         */
+        capacities: any[];
+        /**
+         * Description of the pricing
+         */
+        description: string;
+        /**
+         * Duration for ordering the product
+         */
+        duration: string;
+        /**
+         * Interval of renewal
+         */
+        interval: number;
+        /**
+         * Maximum quantity that can be ordered
+         */
+        maximumQuantity: number;
+        /**
+         * Maximum repeat for renewal
+         */
+        maximumRepeat: number;
+        /**
+         * Minimum quantity that can be ordered
+         */
+        minimumQuantity: number;
+        /**
+         * Minimum repeat for renewal
+         */
+        minimumRepeat: number;
+        /**
+         * Price of the product in micro-centims
+         */
+        priceInUcents: number;
+        /**
+         * Price of the product (Price with its currency and textual representation)
+         */
+        prices: outputs.Order.GetCartProductOptionsPlanSelectedPricePrice[];
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+        /**
+         * Pricing type
+         */
+        pricingType: string;
+    }
+
+    export interface GetCartProductOptionsPlanSelectedPricePrice {
+        /**
+         * Currency code
+         */
+        currencyCode: string;
+        /**
+         * Textual representation
+         */
+        text: string;
+        /**
+         * The effective price
+         */
+        value: number;
+    }
+
+    export interface GetCartProductOptionsResult {
+        /**
+         * Define if options of this family are exclusive with each other
+         */
+        exclusive: boolean;
+        /**
+         * Option family
+         */
+        family: string;
+        /**
+         * Define if an option of this family is mandatory
+         */
+        mandatory: boolean;
+        /**
+         * Product offer identifier
+         */
+        planCode: string;
+        /**
+         * Prices of the product offer
+         */
+        prices: outputs.Order.GetCartProductOptionsResultPrice[];
+        /**
+         * Name of the product
+         */
+        productName: string;
+        /**
+         * Product type
+         */
+        productType: string;
+    }
+
+    export interface GetCartProductOptionsResultPrice {
+        /**
+         * Capacities of the pricing (type of pricing)
+         */
+        capacities: any[];
+        /**
+         * Description of the pricing
+         */
+        description: string;
+        /**
+         * Duration for ordering the product
+         */
+        duration: string;
+        /**
+         * Interval of renewal
+         */
+        interval: number;
+        /**
+         * Maximum quantity that can be ordered
+         */
+        maximumQuantity: number;
+        /**
+         * Maximum repeat for renewal
+         */
+        maximumRepeat: number;
+        /**
+         * Minimum quantity that can be ordered
+         */
+        minimumQuantity: number;
+        /**
+         * Minimum repeat for renewal
+         */
+        minimumRepeat: number;
+        /**
+         * Price of the product in micro-centims
+         */
+        priceInUcents: number;
+        /**
+         * Price of the product (Price with its currency and textual representation)
+         */
+        prices: outputs.Order.GetCartProductOptionsResultPricePrice[];
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+        /**
+         * Pricing type
+         */
+        pricingType: string;
+    }
+
+    export interface GetCartProductOptionsResultPricePrice {
+        /**
+         * Currency code
+         */
+        currencyCode: string;
+        /**
+         * Textual representation
+         */
+        text: string;
+        /**
+         * The effective price
+         */
+        value: number;
+    }
+
+    export interface GetCartProductPlanPrice {
+        /**
+         * Capacities of the pricing (type of pricing)
+         */
+        capacities: any[];
+        /**
+         * Description of the pricing
+         */
+        description: string;
+        /**
+         * Duration for ordering the product
+         */
+        duration: string;
+        /**
+         * Interval of renewal
+         */
+        interval: number;
+        /**
+         * Maximum quantity that can be ordered
+         */
+        maximumQuantity: number;
+        /**
+         * Maximum repeat for renewal
+         */
+        maximumRepeat: number;
+        /**
+         * Minimum quantity that can be ordered
+         */
+        minimumQuantity: number;
+        /**
+         * Minimum repeat for renewal
+         */
+        minimumRepeat: number;
+        /**
+         * Price of the product in micro-centims
+         */
+        priceInUcents: number;
+        /**
+         * Price of the product (Price with its currency and textual representation)
+         */
+        prices: outputs.Order.GetCartProductPlanPricePrice[];
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+        /**
+         * Pricing type
+         */
+        pricingType: string;
+    }
+
+    export interface GetCartProductPlanPricePrice {
+        /**
+         * Currency code
+         */
+        currencyCode: string;
+        /**
+         * Textual representation
+         */
+        text: string;
+        /**
+         * The effective price
+         */
+        value: number;
+    }
+
+    export interface GetCartProductPlanSelectedPrice {
+        /**
+         * Capacities of the pricing (type of pricing)
+         */
+        capacities: any[];
+        /**
+         * Description of the pricing
+         */
+        description: string;
+        /**
+         * Duration for ordering the product
+         */
+        duration: string;
+        /**
+         * Interval of renewal
+         */
+        interval: number;
+        /**
+         * Maximum quantity that can be ordered
+         */
+        maximumQuantity: number;
+        /**
+         * Maximum repeat for renewal
+         */
+        maximumRepeat: number;
+        /**
+         * Minimum quantity that can be ordered
+         */
+        minimumQuantity: number;
+        /**
+         * Minimum repeat for renewal
+         */
+        minimumRepeat: number;
+        /**
+         * Price of the product in micro-centims
+         */
+        priceInUcents: number;
+        /**
+         * Price of the product (Price with its currency and textual representation)
+         */
+        prices: outputs.Order.GetCartProductPlanSelectedPricePrice[];
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+        /**
+         * Pricing type
+         */
+        pricingType: string;
+    }
+
+    export interface GetCartProductPlanSelectedPricePrice {
+        /**
+         * Currency code
+         */
+        currencyCode: string;
+        /**
+         * Textual representation
+         */
+        text: string;
+        /**
+         * The effective price
+         */
+        value: number;
+    }
+
+    export interface GetCartProductResult {
+        /**
+         * Product offer identifier
+         */
+        planCode: string;
+        /**
+         * Prices of the product offer
+         */
+        prices: outputs.Order.GetCartProductResultPrice[];
+        /**
+         * Name of the product
+         */
+        productName: string;
+        /**
+         * Product type
+         */
+        productType: string;
+    }
+
+    export interface GetCartProductResultPrice {
+        /**
+         * Capacities of the pricing (type of pricing)
+         */
+        capacities: any[];
+        /**
+         * Description of the pricing
+         */
+        description: string;
+        /**
+         * Duration for ordering the product
+         */
+        duration: string;
+        /**
+         * Interval of renewal
+         */
+        interval: number;
+        /**
+         * Maximum quantity that can be ordered
+         */
+        maximumQuantity: number;
+        /**
+         * Maximum repeat for renewal
+         */
+        maximumRepeat: number;
+        /**
+         * Minimum quantity that can be ordered
+         */
+        minimumQuantity: number;
+        /**
+         * Minimum repeat for renewal
+         */
+        minimumRepeat: number;
+        /**
+         * Price of the product in micro-centims
+         */
+        priceInUcents: number;
+        /**
+         * Price of the product (Price with its currency and textual representation)
+         */
+        prices: outputs.Order.GetCartProductResultPricePrice[];
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+        /**
+         * Pricing type
+         */
+        pricingType: string;
+    }
+
+    export interface GetCartProductResultPricePrice {
+        /**
+         * Currency code
+         */
+        currencyCode: string;
+        /**
+         * Textual representation
+         */
+        text: string;
+        /**
+         * The effective price
+         */
+        value: number;
+    }
+
 }
 
-export interface GetOrderCartProductOptionsPlanSelectedPricePrice {
-    /**
-     * Currency code
-     */
-    currencyCode: string;
-    /**
-     * Textual representation
-     */
-    text: string;
-    /**
-     * The effective price
-     */
-    value: number;
-}
+export namespace Vrack {
+    export interface VrackOrder {
+        /**
+         * date
+         */
+        date: string;
+        /**
+         * Information about a Bill entry
+         */
+        details: outputs.Vrack.VrackOrderDetail[];
+        /**
+         * expiration date
+         */
+        expirationDate: string;
+        /**
+         * order id
+         */
+        orderId: number;
+    }
 
-export interface GetOrderCartProductOptionsResult {
-    /**
-     * Define if options of this family are exclusive with each other
-     */
-    exclusive: boolean;
-    /**
-     * Option family
-     */
-    family: string;
-    /**
-     * Define if an option of this family is mandatory
-     */
-    mandatory: boolean;
-    /**
-     * Product offer identifier
-     */
-    planCode: string;
-    /**
-     * Prices of the product offer
-     */
-    prices: outputs.GetOrderCartProductOptionsResultPrice[];
-    /**
-     * Name of the product
-     */
-    productName: string;
-    /**
-     * Product type
-     */
-    productType: string;
-}
+    export interface VrackOrderDetail {
+        /**
+         * yourvrackdescription
+         */
+        description: string;
+        /**
+         * expiration date
+         */
+        domain: string;
+        /**
+         * order detail id
+         */
+        orderDetailId: number;
+        /**
+         * quantity
+         */
+        quantity: string;
+    }
 
-export interface GetOrderCartProductOptionsResultPrice {
-    /**
-     * Capacities of the pricing (type of pricing)
-     */
-    capacities: any[];
-    /**
-     * Description of the pricing
-     */
-    description: string;
-    /**
-     * Duration for ordering the product
-     */
-    duration: string;
-    /**
-     * Interval of renewal
-     */
-    interval: number;
-    /**
-     * Maximum quantity that can be ordered
-     */
-    maximumQuantity: number;
-    /**
-     * Maximum repeat for renewal
-     */
-    maximumRepeat: number;
-    /**
-     * Minimum quantity that can be ordered
-     */
-    minimumQuantity: number;
-    /**
-     * Minimum repeat for renewal
-     */
-    minimumRepeat: number;
-    /**
-     * Price of the product in micro-centims
-     */
-    priceInUcents: number;
-    /**
-     * Price of the product (Price with its currency and textual representation)
-     */
-    prices: outputs.GetOrderCartProductOptionsResultPricePrice[];
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-    /**
-     * Pricing type
-     */
-    pricingType: string;
-}
+    export interface VrackPlan {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.Vrack.VrackPlanConfiguration[];
+        /**
+         * duration
+         */
+        duration: string;
+        /**
+         * Plan code
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
 
-export interface GetOrderCartProductOptionsResultPricePrice {
-    /**
-     * Currency code
-     */
-    currencyCode: string;
-    /**
-     * Textual representation
-     */
-    text: string;
-    /**
-     * The effective price
-     */
-    value: number;
-}
+    export interface VrackPlanConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
 
-export interface GetOrderCartProductPlanPrice {
-    /**
-     * Capacities of the pricing (type of pricing)
-     */
-    capacities: any[];
-    /**
-     * Description of the pricing
-     */
-    description: string;
-    /**
-     * Duration for ordering the product
-     */
-    duration: string;
-    /**
-     * Interval of renewal
-     */
-    interval: number;
-    /**
-     * Maximum quantity that can be ordered
-     */
-    maximumQuantity: number;
-    /**
-     * Maximum repeat for renewal
-     */
-    maximumRepeat: number;
-    /**
-     * Minimum quantity that can be ordered
-     */
-    minimumQuantity: number;
-    /**
-     * Minimum repeat for renewal
-     */
-    minimumRepeat: number;
-    /**
-     * Price of the product in micro-centims
-     */
-    priceInUcents: number;
-    /**
-     * Price of the product (Price with its currency and textual representation)
-     */
-    prices: outputs.GetOrderCartProductPlanPricePrice[];
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-    /**
-     * Pricing type
-     */
-    pricingType: string;
-}
+    export interface VrackPlanOption {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.Vrack.VrackPlanOptionConfiguration[];
+        /**
+         * duration
+         */
+        duration: string;
+        /**
+         * Plan code
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
 
-export interface GetOrderCartProductPlanPricePrice {
-    /**
-     * Currency code
-     */
-    currencyCode: string;
-    /**
-     * Textual representation
-     */
-    text: string;
-    /**
-     * The effective price
-     */
-    value: number;
-}
+    export interface VrackPlanOptionConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
 
-export interface GetOrderCartProductPlanSelectedPrice {
-    /**
-     * Capacities of the pricing (type of pricing)
-     */
-    capacities: any[];
-    /**
-     * Description of the pricing
-     */
-    description: string;
-    /**
-     * Duration for ordering the product
-     */
-    duration: string;
-    /**
-     * Interval of renewal
-     */
-    interval: number;
-    /**
-     * Maximum quantity that can be ordered
-     */
-    maximumQuantity: number;
-    /**
-     * Maximum repeat for renewal
-     */
-    maximumRepeat: number;
-    /**
-     * Minimum quantity that can be ordered
-     */
-    minimumQuantity: number;
-    /**
-     * Minimum repeat for renewal
-     */
-    minimumRepeat: number;
-    /**
-     * Price of the product in micro-centims
-     */
-    priceInUcents: number;
-    /**
-     * Price of the product (Price with its currency and textual representation)
-     */
-    prices: outputs.GetOrderCartProductPlanSelectedPricePrice[];
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-    /**
-     * Pricing type
-     */
-    pricingType: string;
 }
-
-export interface GetOrderCartProductPlanSelectedPricePrice {
-    /**
-     * Currency code
-     */
-    currencyCode: string;
-    /**
-     * Textual representation
-     */
-    text: string;
-    /**
-     * The effective price
-     */
-    value: number;
-}
-
-export interface GetOrderCartProductResult {
-    /**
-     * Product offer identifier
-     */
-    planCode: string;
-    /**
-     * Prices of the product offer
-     */
-    prices: outputs.GetOrderCartProductResultPrice[];
-    /**
-     * Name of the product
-     */
-    productName: string;
-    /**
-     * Product type
-     */
-    productType: string;
-}
-
-export interface GetOrderCartProductResultPrice {
-    /**
-     * Capacities of the pricing (type of pricing)
-     */
-    capacities: any[];
-    /**
-     * Description of the pricing
-     */
-    description: string;
-    /**
-     * Duration for ordering the product
-     */
-    duration: string;
-    /**
-     * Interval of renewal
-     */
-    interval: number;
-    /**
-     * Maximum quantity that can be ordered
-     */
-    maximumQuantity: number;
-    /**
-     * Maximum repeat for renewal
-     */
-    maximumRepeat: number;
-    /**
-     * Minimum quantity that can be ordered
-     */
-    minimumQuantity: number;
-    /**
-     * Minimum repeat for renewal
-     */
-    minimumRepeat: number;
-    /**
-     * Price of the product in micro-centims
-     */
-    priceInUcents: number;
-    /**
-     * Price of the product (Price with its currency and textual representation)
-     */
-    prices: outputs.GetOrderCartProductResultPricePrice[];
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-    /**
-     * Pricing type
-     */
-    pricingType: string;
-}
-
-export interface GetOrderCartProductResultPricePrice {
-    /**
-     * Currency code
-     */
-    currencyCode: string;
-    /**
-     * Textual representation
-     */
-    text: string;
-    /**
-     * The effective price
-     */
-    value: number;
-}
-
-export interface IpLoadBalancingHttpFarmProbe {
-    /**
-     * Force use of SSL (TLS)
-     */
-    forceSsl?: boolean;
-    /**
-     * probe interval, Value between 30 and 3600 seconds, default 30
-     */
-    interval?: number;
-    /**
-     * What to mach `pattern` against (`contains`, `default`, `internal`, `matches`, `status`)
-     */
-    match: string;
-    /**
-     * HTTP probe method (`GET`, `HEAD`, `OPTIONS`, `internal`)
-     */
-    method: string;
-    /**
-     * Negate probe result
-     */
-    negate?: boolean;
-    /**
-     * Pattern to match against `match`
-     */
-    pattern: string;
-    /**
-     * Port for backends to recieve traffic on.
-     */
-    port: number;
-    /**
-     * Valid values : `http`, `internal`, `mysql`, `oco`, `pgsql`, `smtp`, `tcp`
-     */
-    type: string;
-    /**
-     * URL for HTTP probe type.
-     */
-    url: string;
-}
-
-export interface IpLoadBalancingHttpRouteAction {
-    /**
-     * HTTP status code for "redirect" and "reject" actions
-     */
-    status?: number;
-    /**
-     * Farm ID for "farm" action type or URL template for "redirect" action. You may use ${uri}, ${protocol}, ${host}, ${port} and ${path} variables in redirect target
-     */
-    target?: string;
-    /**
-     * Action to trigger if all the rules of this route matches
-     */
-    type: string;
-}
-
-export interface IpLoadBalancingHttpRouteRule {
-    /**
-     * Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
-     */
-    field: string;
-    /**
-     * Matching operator. Not all operators are available for all fields. See "availableRules"
-     * * `negate`- Invert the matching operator effect
-     */
-    match: string;
-    negate: boolean;
-    /**
-     * Value to match against this match. Interpretation if this field depends on the match and field
-     */
-    pattern: string;
-    /**
-     * Id of your rule
-     */
-    ruleId: number;
-    /**
-     * Name of sub-field, if applicable. This may be a Cookie or Header name for instance
-     */
-    subField: string;
-}
-
-export interface IpLoadBalancingOrder {
-    /**
-     * date
-     */
-    date: string;
-    /**
-     * Information about a Bill entry
-     */
-    details: outputs.IpLoadBalancingOrderDetail[];
-    /**
-     * expiration date
-     */
-    expirationDate: string;
-    /**
-     * order id
-     */
-    orderId: number;
-}
-
-export interface IpLoadBalancingOrderDetail {
-    /**
-     * description
-     */
-    description: string;
-    /**
-     * expiration date
-     */
-    domain: string;
-    /**
-     * order detail id
-     */
-    orderDetailId: number;
-    /**
-     * quantity
-     */
-    quantity: string;
-}
-
-export interface IpLoadBalancingOrderableZone {
-    /**
-     * The zone three letter code
-     */
-    name: string;
-    /**
-     * Plan code
-     */
-    planCode: string;
-}
-
-export interface IpLoadBalancingPlan {
-    /**
-     * Catalog name
-     */
-    catalogName?: string;
-    /**
-     * Representation of a configuration item for personalizing product
-     */
-    configurations?: outputs.IpLoadBalancingPlanConfiguration[];
-    /**
-     * duration
-     */
-    duration: string;
-    /**
-     * Plan code
-     */
-    planCode: string;
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-}
-
-export interface IpLoadBalancingPlanConfiguration {
-    /**
-     * Identifier of the resource
-     */
-    label: string;
-    /**
-     * Path to the resource in API.OVH.COM
-     */
-    value: string;
-}
-
-export interface IpLoadBalancingPlanOption {
-    /**
-     * Catalog name
-     */
-    catalogName?: string;
-    /**
-     * Representation of a configuration item for personalizing product
-     */
-    configurations?: outputs.IpLoadBalancingPlanOptionConfiguration[];
-    /**
-     * duration
-     */
-    duration: string;
-    /**
-     * Plan code
-     */
-    planCode: string;
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-}
-
-export interface IpLoadBalancingPlanOptionConfiguration {
-    /**
-     * Identifier of the resource
-     */
-    label: string;
-    /**
-     * Path to the resource in API.OVH.COM
-     */
-    value: string;
-}
-
-export interface IpLoadBalancingTcpFarmProbe {
-    /**
-     * Force use of SSL (TLS)
-     */
-    forceSsl?: boolean;
-    /**
-     * probe interval, Value between 30 and 3600 seconds, default 30
-     */
-    interval?: number;
-    /**
-     * What to mach `pattern` against (`contains`, `default`, `internal`, `matches`, `status`)
-     */
-    match: string;
-    /**
-     * HTTP probe method (`GET`, `HEAD`, `OPTIONS`, `internal`)
-     */
-    method?: string;
-    /**
-     * Negate probe result
-     */
-    negate?: boolean;
-    /**
-     * Pattern to match against `match`
-     */
-    pattern?: string;
-    /**
-     * Port for backends to recieve traffic on.
-     */
-    port?: number;
-    /**
-     * Valid values : `http`, `internal`, `mysql`, `oco`, `pgsql`, `smtp`, `tcp`
-     */
-    type: string;
-    /**
-     * URL for HTTP probe type.
-     */
-    url?: string;
-}
-
-export interface IpLoadBalancingTcpRouteAction {
-    /**
-     * Farm ID for "farm" action type, empty for others.
-     */
-    target?: string;
-    /**
-     * Action to trigger if all the rules of this route matches
-     */
-    type: string;
-}
-
-export interface IpLoadBalancingTcpRouteRule {
-    /**
-     * Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
-     */
-    field: string;
-    /**
-     * Matching operator. Not all operators are available for all fields. See "availableRules"
-     * * `negate`- Invert the matching operator effect
-     */
-    match: string;
-    negate: boolean;
-    /**
-     * Value to match against this match. Interpretation if this field depends on the match and field
-     */
-    pattern: string;
-    /**
-     * Id of your rule
-     */
-    ruleId: number;
-    /**
-     * Name of sub-field, if applicable. This may be a Cookie or Header name for instance
-     */
-    subField: string;
-}
-
-export interface IpServiceOrder {
-    /**
-     * date
-     */
-    date: string;
-    /**
-     * Information about a Bill entry
-     */
-    details: outputs.IpServiceOrderDetail[];
-    /**
-     * expiration date
-     */
-    expirationDate: string;
-    /**
-     * order id
-     */
-    orderId: number;
-}
-
-export interface IpServiceOrderDetail {
-    /**
-     * Custom description on your ip.
-     */
-    description: string;
-    /**
-     * expiration date
-     */
-    domain: string;
-    /**
-     * order detail id
-     */
-    orderDetailId: number;
-    /**
-     * quantity
-     */
-    quantity: string;
-}
-
-export interface IpServicePlan {
-    /**
-     * Catalog name
-     */
-    catalogName?: string;
-    /**
-     * Representation of a configuration item for personalizing product
-     */
-    configurations?: outputs.IpServicePlanConfiguration[];
-    /**
-     * duration
-     */
-    duration: string;
-    /**
-     * Plan code
-     */
-    planCode: string;
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-}
-
-export interface IpServicePlanConfiguration {
-    /**
-     * Identifier of the resource
-     */
-    label: string;
-    /**
-     * Path to the resource in API.OVH.COM
-     */
-    value: string;
-}
-
-export interface IpServicePlanOption {
-    /**
-     * Catalog name
-     */
-    catalogName?: string;
-    /**
-     * Representation of a configuration item for personalizing product
-     */
-    configurations?: outputs.IpServicePlanOptionConfiguration[];
-    /**
-     * duration
-     */
-    duration: string;
-    /**
-     * Plan code
-     */
-    planCode: string;
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-}
-
-export interface IpServicePlanOptionConfiguration {
-    /**
-     * Identifier of the resource
-     */
-    label: string;
-    /**
-     * Path to the resource in API.OVH.COM
-     */
-    value: string;
-}
-
-export interface IpServiceRoutedTo {
-    /**
-     * Service where ip is routed to
-     * * `serviceName`: service name
-     */
-    serviceName: string;
-}
-
-export interface VrackOrder {
-    /**
-     * date
-     */
-    date: string;
-    /**
-     * Information about a Bill entry
-     */
-    details: outputs.VrackOrderDetail[];
-    /**
-     * expiration date
-     */
-    expirationDate: string;
-    /**
-     * order id
-     */
-    orderId: number;
-}
-
-export interface VrackOrderDetail {
-    /**
-     * yourvrackdescription
-     */
-    description: string;
-    /**
-     * expiration date
-     */
-    domain: string;
-    /**
-     * order detail id
-     */
-    orderDetailId: number;
-    /**
-     * quantity
-     */
-    quantity: string;
-}
-
-export interface VrackPlan {
-    /**
-     * Catalog name
-     */
-    catalogName?: string;
-    /**
-     * Representation of a configuration item for personalizing product
-     */
-    configurations?: outputs.VrackPlanConfiguration[];
-    /**
-     * duration
-     */
-    duration: string;
-    /**
-     * Plan code
-     */
-    planCode: string;
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-}
-
-export interface VrackPlanConfiguration {
-    /**
-     * Identifier of the resource
-     */
-    label: string;
-    /**
-     * Path to the resource in API.OVH.COM
-     */
-    value: string;
-}
-
-export interface VrackPlanOption {
-    /**
-     * Catalog name
-     */
-    catalogName?: string;
-    /**
-     * Representation of a configuration item for personalizing product
-     */
-    configurations?: outputs.VrackPlanOptionConfiguration[];
-    /**
-     * duration
-     */
-    duration: string;
-    /**
-     * Plan code
-     */
-    planCode: string;
-    /**
-     * Pricing model identifier
-     */
-    pricingMode: string;
-}
-
-export interface VrackPlanOptionConfiguration {
-    /**
-     * Identifier of the resource
-     */
-    label: string;
-    /**
-     * Path to the resource in API.OVH.COM
-     */
-    value: string;
-}
-

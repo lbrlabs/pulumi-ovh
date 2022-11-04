@@ -5,521 +5,566 @@
 from . import _utilities
 import typing
 # Export this package's modules as members:
-from .cloud_project import *
-from .cloud_project_container_registry import *
-from .cloud_project_container_registry_user import *
-from .cloud_project_database import *
-from .cloud_project_database_ip_restriction import *
-from .cloud_project_database_postgres_sql_user import *
-from .cloud_project_database_user import *
-from .cloud_project_failover_ip_attach import *
-from .cloud_project_kube import *
-from .cloud_project_kube_ip_restrictions import *
-from .cloud_project_kube_node_pool import *
-from .cloud_project_kube_oidc import *
-from .cloud_project_network_private import *
-from .cloud_project_network_private_subnet import *
-from .cloud_project_user import *
-from .dbaas_logs_input import *
-from .dbaas_logs_output_graylog_stream import *
-from .dedicated_ceph_acl import *
-from .dedicated_server_reboot_task import *
-from .dedicated_server_update import *
-from .dedicated_service_install_task import *
-from .domain_zone import *
-from .domain_zone_record import *
-from .domain_zone_redirection import *
-from .get_cloud_project_capabilities_container_filter import *
-from .get_cloud_project_capabilities_container_registry import *
-from .get_cloud_project_container_registries import *
-from .get_cloud_project_container_registry import *
-from .get_cloud_project_container_registry_users import *
-from .get_cloud_project_database import *
-from .get_cloud_project_database_ip_restrictions import *
-from .get_cloud_project_database_postgres_sql_user import *
-from .get_cloud_project_database_user import *
-from .get_cloud_project_database_users import *
-from .get_cloud_project_databases import *
-from .get_cloud_project_failover_ip_attach import *
-from .get_cloud_project_kube import *
-from .get_cloud_project_kube_ip_node_pool import *
-from .get_cloud_project_kube_ip_restrictions import *
-from .get_cloud_project_region import *
-from .get_cloud_project_regions import *
-from .get_dbaas_logs_input_engine import *
-from .get_dbaas_logs_output_graylog_stream import *
-from .get_dedicated_ceph import *
-from .get_dedicated_installation_templates import *
-from .get_dedicated_server import *
-from .get_dedicated_servers import *
-from .get_domain_zone import *
-from .get_ip_loadbalancing_vrack_network import *
-from .get_ip_loadbalancing_vrack_networks import *
-from .get_ip_service import *
-from .get_me import *
-from .get_me_identity_user import *
-from .get_me_identity_users import *
-from .get_me_installation_template import *
-from .get_me_installation_templates import *
-from .get_me_ipxe_script import *
-from .get_me_ipxe_scripts import *
-from .get_me_paymentmean_bank_account import *
-from .get_me_paymentmean_credit_card import *
-from .get_me_ssh_key import *
-from .get_order_cart import *
-from .get_order_cart_product import *
-from .get_order_cart_product_options import *
-from .get_order_cart_product_options_plan import *
-from .get_order_cart_product_plan import *
-from .get_vps import *
-from .get_vracks import *
-from .ip_load_balancing import *
-from .ip_load_balancing_http_farm import *
-from .ip_load_balancing_http_farm_server import *
-from .ip_load_balancing_http_frontend import *
-from .ip_load_balancing_http_route import *
-from .ip_load_balancing_http_route_rule import *
-from .ip_load_balancing_refresh import *
-from .ip_load_balancing_tcp_farm import *
-from .ip_load_balancing_tcp_farm_server import *
-from .ip_load_balancing_tcp_frontend import *
-from .ip_load_balancing_tcp_route import *
-from .ip_load_balancing_tcp_route_rule import *
-from .ip_load_balancing_vrack_network import *
-from .ip_reverse import *
-from .ip_service import *
-from .me_identity_user import *
-from .me_installation_template_partition_scheme import *
-from .me_installation_template_partition_scheme_hardware_raid import *
-from .me_installation_template_partition_scheme_partition import *
-from .me_ipxe_script import *
-from .me_ssh_key import *
+from .get_installation_templates import *
+from .get_server import *
+from .get_servers import *
+from .get_vrack_networks import *
 from .provider import *
-from .vrack import *
-from .vrack_cloud_project import *
-from .vrack_dedicated_server import *
-from .vrack_dedicated_server_interface import *
-from .vrack_ip import *
-from .vrack_ip_loadbalancing import *
-from ._inputs import *
 from . import outputs
 
 # Make subpackages available:
 if typing.TYPE_CHECKING:
+    import lbrlabs_pulumi_ovh.cloudproject as __cloudproject
+    cloudproject = __cloudproject
+    import lbrlabs_pulumi_ovh.cloudprojectdatabase as __cloudprojectdatabase
+    cloudprojectdatabase = __cloudprojectdatabase
     import lbrlabs_pulumi_ovh.config as __config
     config = __config
+    import lbrlabs_pulumi_ovh.dbaas as __dbaas
+    dbaas = __dbaas
+    import lbrlabs_pulumi_ovh.dedicated as __dedicated
+    dedicated = __dedicated
+    import lbrlabs_pulumi_ovh.domain as __domain
+    domain = __domain
+    import lbrlabs_pulumi_ovh.ip as __ip
+    ip = __ip
+    import lbrlabs_pulumi_ovh.iploadbalancing as __iploadbalancing
+    iploadbalancing = __iploadbalancing
+    import lbrlabs_pulumi_ovh.me as __me
+    me = __me
+    import lbrlabs_pulumi_ovh.order as __order
+    order = __order
+    import lbrlabs_pulumi_ovh.vps as __vps
+    vps = __vps
+    import lbrlabs_pulumi_ovh.vrack as __vrack
+    vrack = __vrack
 else:
+    cloudproject = _utilities.lazy_import('lbrlabs_pulumi_ovh.cloudproject')
+    cloudprojectdatabase = _utilities.lazy_import('lbrlabs_pulumi_ovh.cloudprojectdatabase')
     config = _utilities.lazy_import('lbrlabs_pulumi_ovh.config')
+    dbaas = _utilities.lazy_import('lbrlabs_pulumi_ovh.dbaas')
+    dedicated = _utilities.lazy_import('lbrlabs_pulumi_ovh.dedicated')
+    domain = _utilities.lazy_import('lbrlabs_pulumi_ovh.domain')
+    ip = _utilities.lazy_import('lbrlabs_pulumi_ovh.ip')
+    iploadbalancing = _utilities.lazy_import('lbrlabs_pulumi_ovh.iploadbalancing')
+    me = _utilities.lazy_import('lbrlabs_pulumi_ovh.me')
+    order = _utilities.lazy_import('lbrlabs_pulumi_ovh.order')
+    vps = _utilities.lazy_import('lbrlabs_pulumi_ovh.vps')
+    vrack = _utilities.lazy_import('lbrlabs_pulumi_ovh.vrack')
 
 _utilities.register(
     resource_modules="""
 [
  {
   "pkg": "ovh",
-  "mod": "index/cloudProject",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/containerRegistry",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProject:CloudProject": "CloudProject"
+   "ovh:CloudProject/containerRegistry:ContainerRegistry": "ContainerRegistry"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectContainerRegistry",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/containerRegistryUser",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectContainerRegistry:CloudProjectContainerRegistry": "CloudProjectContainerRegistry"
+   "ovh:CloudProject/containerRegistryUser:ContainerRegistryUser": "ContainerRegistryUser"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectContainerRegistryUser",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/database",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectContainerRegistryUser:CloudProjectContainerRegistryUser": "CloudProjectContainerRegistryUser"
+   "ovh:CloudProject/database:Database": "Database"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectDatabase",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/failoverIpAttach",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectDatabase:CloudProjectDatabase": "CloudProjectDatabase"
+   "ovh:CloudProject/failoverIpAttach:FailoverIpAttach": "FailoverIpAttach"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectDatabaseIpRestriction",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/kube",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectDatabaseIpRestriction:CloudProjectDatabaseIpRestriction": "CloudProjectDatabaseIpRestriction"
+   "ovh:CloudProject/kube:Kube": "Kube"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectDatabasePostgresSqlUser",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/kubeIpRestrictions",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectDatabasePostgresSqlUser:CloudProjectDatabasePostgresSqlUser": "CloudProjectDatabasePostgresSqlUser"
+   "ovh:CloudProject/kubeIpRestrictions:KubeIpRestrictions": "KubeIpRestrictions"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectDatabaseUser",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/kubeNodePool",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectDatabaseUser:CloudProjectDatabaseUser": "CloudProjectDatabaseUser"
+   "ovh:CloudProject/kubeNodePool:KubeNodePool": "KubeNodePool"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectFailoverIpAttach",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/kubeOidc",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectFailoverIpAttach:CloudProjectFailoverIpAttach": "CloudProjectFailoverIpAttach"
+   "ovh:CloudProject/kubeOidc:KubeOidc": "KubeOidc"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectKube",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/networkPrivate",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectKube:CloudProjectKube": "CloudProjectKube"
+   "ovh:CloudProject/networkPrivate:NetworkPrivate": "NetworkPrivate"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectKubeIpRestrictions",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/networkPrivateSubnet",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectKubeIpRestrictions:CloudProjectKubeIpRestrictions": "CloudProjectKubeIpRestrictions"
+   "ovh:CloudProject/networkPrivateSubnet:NetworkPrivateSubnet": "NetworkPrivateSubnet"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectKubeNodePool",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/project",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectKubeNodePool:CloudProjectKubeNodePool": "CloudProjectKubeNodePool"
+   "ovh:CloudProject/project:Project": "Project"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectKubeOidc",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/s3Credential",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectKubeOidc:CloudProjectKubeOidc": "CloudProjectKubeOidc"
+   "ovh:CloudProject/s3Credential:S3Credential": "S3Credential"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectNetworkPrivate",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/s3Policy",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectNetworkPrivate:CloudProjectNetworkPrivate": "CloudProjectNetworkPrivate"
+   "ovh:CloudProject/s3Policy:S3Policy": "S3Policy"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectNetworkPrivateSubnet",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProject/user",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
-   "ovh:index/cloudProjectNetworkPrivateSubnet:CloudProjectNetworkPrivateSubnet": "CloudProjectNetworkPrivateSubnet"
+   "ovh:CloudProject/user:User": "User"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/cloudProjectUser",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/databaseInstance",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/cloudProjectUser:CloudProjectUser": "CloudProjectUser"
+   "ovh:CloudProjectDatabase/databaseInstance:DatabaseInstance": "DatabaseInstance"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/dbaasLogsInput",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/integration",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/dbaasLogsInput:DbaasLogsInput": "DbaasLogsInput"
+   "ovh:CloudProjectDatabase/integration:Integration": "Integration"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/dbaasLogsOutputGraylogStream",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/ipRestriction",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/dbaasLogsOutputGraylogStream:DbaasLogsOutputGraylogStream": "DbaasLogsOutputGraylogStream"
+   "ovh:CloudProjectDatabase/ipRestriction:IpRestriction": "IpRestriction"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/dedicatedCephAcl",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/kafkaAcl",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/dedicatedCephAcl:DedicatedCephAcl": "DedicatedCephAcl"
+   "ovh:CloudProjectDatabase/kafkaAcl:KafkaAcl": "KafkaAcl"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/dedicatedServerRebootTask",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/kafkaTopic",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/dedicatedServerRebootTask:DedicatedServerRebootTask": "DedicatedServerRebootTask"
+   "ovh:CloudProjectDatabase/kafkaTopic:KafkaTopic": "KafkaTopic"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/dedicatedServerUpdate",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/m3DbNamespace",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/dedicatedServerUpdate:DedicatedServerUpdate": "DedicatedServerUpdate"
+   "ovh:CloudProjectDatabase/m3DbNamespace:M3DbNamespace": "M3DbNamespace"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/dedicatedServiceInstallTask",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/m3DbUser",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/dedicatedServiceInstallTask:DedicatedServiceInstallTask": "DedicatedServiceInstallTask"
+   "ovh:CloudProjectDatabase/m3DbUser:M3DbUser": "M3DbUser"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/domainZone",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/mongoDbUser",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/domainZone:DomainZone": "DomainZone"
+   "ovh:CloudProjectDatabase/mongoDbUser:MongoDbUser": "MongoDbUser"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/domainZoneRecord",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/opensearchPattern",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/domainZoneRecord:DomainZoneRecord": "DomainZoneRecord"
+   "ovh:CloudProjectDatabase/opensearchPattern:OpensearchPattern": "OpensearchPattern"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/domainZoneRedirection",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/opensearchUser",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/domainZoneRedirection:DomainZoneRedirection": "DomainZoneRedirection"
+   "ovh:CloudProjectDatabase/opensearchUser:OpensearchUser": "OpensearchUser"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancing",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/postgresSqlUser",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/ipLoadBalancing:IpLoadBalancing": "IpLoadBalancing"
+   "ovh:CloudProjectDatabase/postgresSqlUser:PostgresSqlUser": "PostgresSqlUser"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingHttpFarm",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/redisUser",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/ipLoadBalancingHttpFarm:IpLoadBalancingHttpFarm": "IpLoadBalancingHttpFarm"
+   "ovh:CloudProjectDatabase/redisUser:RedisUser": "RedisUser"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingHttpFarmServer",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "CloudProjectDatabase/user",
+  "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
-   "ovh:index/ipLoadBalancingHttpFarmServer:IpLoadBalancingHttpFarmServer": "IpLoadBalancingHttpFarmServer"
+   "ovh:CloudProjectDatabase/user:User": "User"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingHttpFrontend",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "Dbaas/logsInput",
+  "fqn": "lbrlabs_pulumi_ovh.dbaas",
   "classes": {
-   "ovh:index/ipLoadBalancingHttpFrontend:IpLoadBalancingHttpFrontend": "IpLoadBalancingHttpFrontend"
+   "ovh:Dbaas/logsInput:LogsInput": "LogsInput"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingHttpRoute",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "Dbaas/logsOutputGraylogStream",
+  "fqn": "lbrlabs_pulumi_ovh.dbaas",
   "classes": {
-   "ovh:index/ipLoadBalancingHttpRoute:IpLoadBalancingHttpRoute": "IpLoadBalancingHttpRoute"
+   "ovh:Dbaas/logsOutputGraylogStream:LogsOutputGraylogStream": "LogsOutputGraylogStream"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingHttpRouteRule",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "Dedicated/cephAcl",
+  "fqn": "lbrlabs_pulumi_ovh.dedicated",
   "classes": {
-   "ovh:index/ipLoadBalancingHttpRouteRule:IpLoadBalancingHttpRouteRule": "IpLoadBalancingHttpRouteRule"
+   "ovh:Dedicated/cephAcl:CephAcl": "CephAcl"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingRefresh",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "Dedicated/serverRebootTask",
+  "fqn": "lbrlabs_pulumi_ovh.dedicated",
   "classes": {
-   "ovh:index/ipLoadBalancingRefresh:IpLoadBalancingRefresh": "IpLoadBalancingRefresh"
+   "ovh:Dedicated/serverRebootTask:ServerRebootTask": "ServerRebootTask"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingTcpFarm",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "Dedicated/serverUpdate",
+  "fqn": "lbrlabs_pulumi_ovh.dedicated",
   "classes": {
-   "ovh:index/ipLoadBalancingTcpFarm:IpLoadBalancingTcpFarm": "IpLoadBalancingTcpFarm"
+   "ovh:Dedicated/serverUpdate:ServerUpdate": "ServerUpdate"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingTcpFarmServer",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "Dedicated/serviceInstallTask",
+  "fqn": "lbrlabs_pulumi_ovh.dedicated",
   "classes": {
-   "ovh:index/ipLoadBalancingTcpFarmServer:IpLoadBalancingTcpFarmServer": "IpLoadBalancingTcpFarmServer"
+   "ovh:Dedicated/serviceInstallTask:ServiceInstallTask": "ServiceInstallTask"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingTcpFrontend",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "Domain/zone",
+  "fqn": "lbrlabs_pulumi_ovh.domain",
   "classes": {
-   "ovh:index/ipLoadBalancingTcpFrontend:IpLoadBalancingTcpFrontend": "IpLoadBalancingTcpFrontend"
+   "ovh:Domain/zone:Zone": "Zone"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingTcpRoute",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "Domain/zoneRecord",
+  "fqn": "lbrlabs_pulumi_ovh.domain",
   "classes": {
-   "ovh:index/ipLoadBalancingTcpRoute:IpLoadBalancingTcpRoute": "IpLoadBalancingTcpRoute"
+   "ovh:Domain/zoneRecord:ZoneRecord": "ZoneRecord"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingTcpRouteRule",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "Domain/zoneRedirection",
+  "fqn": "lbrlabs_pulumi_ovh.domain",
   "classes": {
-   "ovh:index/ipLoadBalancingTcpRouteRule:IpLoadBalancingTcpRouteRule": "IpLoadBalancingTcpRouteRule"
+   "ovh:Domain/zoneRedirection:ZoneRedirection": "ZoneRedirection"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipLoadBalancingVrackNetwork",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "Ip/ipService",
+  "fqn": "lbrlabs_pulumi_ovh.ip",
   "classes": {
-   "ovh:index/ipLoadBalancingVrackNetwork:IpLoadBalancingVrackNetwork": "IpLoadBalancingVrackNetwork"
+   "ovh:Ip/ipService:IpService": "IpService"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipReverse",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "Ip/reverse",
+  "fqn": "lbrlabs_pulumi_ovh.ip",
   "classes": {
-   "ovh:index/ipReverse:IpReverse": "IpReverse"
+   "ovh:Ip/reverse:Reverse": "Reverse"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/ipService",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/httpFarm",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/ipService:IpService": "IpService"
+   "ovh:IpLoadBalancing/httpFarm:HttpFarm": "HttpFarm"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/meIdentityUser",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/httpFarmServer",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/meIdentityUser:MeIdentityUser": "MeIdentityUser"
+   "ovh:IpLoadBalancing/httpFarmServer:HttpFarmServer": "HttpFarmServer"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/meInstallationTemplatePartitionScheme",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/httpFrontend",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/meInstallationTemplatePartitionScheme:MeInstallationTemplatePartitionScheme": "MeInstallationTemplatePartitionScheme"
+   "ovh:IpLoadBalancing/httpFrontend:HttpFrontend": "HttpFrontend"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/meInstallationTemplatePartitionSchemeHardwareRaid",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/httpRoute",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/meInstallationTemplatePartitionSchemeHardwareRaid:MeInstallationTemplatePartitionSchemeHardwareRaid": "MeInstallationTemplatePartitionSchemeHardwareRaid"
+   "ovh:IpLoadBalancing/httpRoute:HttpRoute": "HttpRoute"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/meInstallationTemplatePartitionSchemePartition",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/httpRouteRule",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/meInstallationTemplatePartitionSchemePartition:MeInstallationTemplatePartitionSchemePartition": "MeInstallationTemplatePartitionSchemePartition"
+   "ovh:IpLoadBalancing/httpRouteRule:HttpRouteRule": "HttpRouteRule"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/meIpxeScript",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/loadBalancer",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/meIpxeScript:MeIpxeScript": "MeIpxeScript"
+   "ovh:IpLoadBalancing/loadBalancer:LoadBalancer": "LoadBalancer"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/meSshKey",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/refresh",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/meSshKey:MeSshKey": "MeSshKey"
+   "ovh:IpLoadBalancing/refresh:Refresh": "Refresh"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/vrack",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/tcpFarm",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/vrack:Vrack": "Vrack"
+   "ovh:IpLoadBalancing/tcpFarm:TcpFarm": "TcpFarm"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/vrackCloudProject",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/tcpFarmServer",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/vrackCloudProject:VrackCloudProject": "VrackCloudProject"
+   "ovh:IpLoadBalancing/tcpFarmServer:TcpFarmServer": "TcpFarmServer"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/vrackDedicatedServer",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/tcpFrontend",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/vrackDedicatedServer:VrackDedicatedServer": "VrackDedicatedServer"
+   "ovh:IpLoadBalancing/tcpFrontend:TcpFrontend": "TcpFrontend"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/vrackDedicatedServerInterface",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/tcpRoute",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/vrackDedicatedServerInterface:VrackDedicatedServerInterface": "VrackDedicatedServerInterface"
+   "ovh:IpLoadBalancing/tcpRoute:TcpRoute": "TcpRoute"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/vrackIp",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/tcpRouteRule",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/vrackIp:VrackIp": "VrackIp"
+   "ovh:IpLoadBalancing/tcpRouteRule:TcpRouteRule": "TcpRouteRule"
   }
  },
  {
   "pkg": "ovh",
-  "mod": "index/vrackIpLoadbalancing",
-  "fqn": "lbrlabs_pulumi_ovh",
+  "mod": "IpLoadBalancing/vrackNetwork",
+  "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
-   "ovh:index/vrackIpLoadbalancing:VrackIpLoadbalancing": "VrackIpLoadbalancing"
+   "ovh:IpLoadBalancing/vrackNetwork:VrackNetwork": "VrackNetwork"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Me/identityUser",
+  "fqn": "lbrlabs_pulumi_ovh.me",
+  "classes": {
+   "ovh:Me/identityUser:IdentityUser": "IdentityUser"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Me/installationTemplate",
+  "fqn": "lbrlabs_pulumi_ovh.me",
+  "classes": {
+   "ovh:Me/installationTemplate:InstallationTemplate": "InstallationTemplate"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Me/installationTemplatePartitionScheme",
+  "fqn": "lbrlabs_pulumi_ovh.me",
+  "classes": {
+   "ovh:Me/installationTemplatePartitionScheme:InstallationTemplatePartitionScheme": "InstallationTemplatePartitionScheme"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Me/installationTemplatePartitionSchemeHardwareRaid",
+  "fqn": "lbrlabs_pulumi_ovh.me",
+  "classes": {
+   "ovh:Me/installationTemplatePartitionSchemeHardwareRaid:InstallationTemplatePartitionSchemeHardwareRaid": "InstallationTemplatePartitionSchemeHardwareRaid"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Me/installationTemplatePartitionSchemePartition",
+  "fqn": "lbrlabs_pulumi_ovh.me",
+  "classes": {
+   "ovh:Me/installationTemplatePartitionSchemePartition:InstallationTemplatePartitionSchemePartition": "InstallationTemplatePartitionSchemePartition"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Me/ipxeScript",
+  "fqn": "lbrlabs_pulumi_ovh.me",
+  "classes": {
+   "ovh:Me/ipxeScript:IpxeScript": "IpxeScript"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Me/sshKey",
+  "fqn": "lbrlabs_pulumi_ovh.me",
+  "classes": {
+   "ovh:Me/sshKey:SshKey": "SshKey"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Vrack/cloudProject",
+  "fqn": "lbrlabs_pulumi_ovh.vrack",
+  "classes": {
+   "ovh:Vrack/cloudProject:CloudProject": "CloudProject"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Vrack/dedicatedServer",
+  "fqn": "lbrlabs_pulumi_ovh.vrack",
+  "classes": {
+   "ovh:Vrack/dedicatedServer:DedicatedServer": "DedicatedServer"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Vrack/dedicatedServerInterface",
+  "fqn": "lbrlabs_pulumi_ovh.vrack",
+  "classes": {
+   "ovh:Vrack/dedicatedServerInterface:DedicatedServerInterface": "DedicatedServerInterface"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Vrack/ipAddress",
+  "fqn": "lbrlabs_pulumi_ovh.vrack",
+  "classes": {
+   "ovh:Vrack/ipAddress:IpAddress": "IpAddress"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Vrack/ipLoadbalancing",
+  "fqn": "lbrlabs_pulumi_ovh.vrack",
+  "classes": {
+   "ovh:Vrack/ipLoadbalancing:IpLoadbalancing": "IpLoadbalancing"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Vrack/vrack",
+  "fqn": "lbrlabs_pulumi_ovh.vrack",
+  "classes": {
+   "ovh:Vrack/vrack:Vrack": "Vrack"
   }
  }
 ]
