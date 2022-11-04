@@ -5,330 +5,60 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "./utilities";
 
 // Export members:
-export * from "./cloudProject";
-export * from "./cloudProjectContainerRegistry";
-export * from "./cloudProjectContainerRegistryUser";
-export * from "./cloudProjectDatabase";
-export * from "./cloudProjectDatabaseIpRestriction";
-export * from "./cloudProjectDatabasePostgresSqlUser";
-export * from "./cloudProjectDatabaseUser";
-export * from "./cloudProjectFailoverIpAttach";
-export * from "./cloudProjectKube";
-export * from "./cloudProjectKubeIpRestrictions";
-export * from "./cloudProjectKubeNodePool";
-export * from "./cloudProjectKubeOidc";
-export * from "./cloudProjectNetworkPrivate";
-export * from "./cloudProjectNetworkPrivateSubnet";
-export * from "./cloudProjectUser";
-export * from "./dbaasLogsInput";
-export * from "./dbaasLogsOutputGraylogStream";
-export * from "./dedicatedCephAcl";
-export * from "./dedicatedServerRebootTask";
-export * from "./dedicatedServerUpdate";
-export * from "./dedicatedServiceInstallTask";
-export * from "./domainZone";
-export * from "./domainZoneRecord";
-export * from "./domainZoneRedirection";
-export * from "./getCloudProjectCapabilitiesContainerFilter";
-export * from "./getCloudProjectCapabilitiesContainerRegistry";
-export * from "./getCloudProjectContainerRegistries";
-export * from "./getCloudProjectContainerRegistry";
-export * from "./getCloudProjectContainerRegistryUsers";
-export * from "./getCloudProjectDatabase";
-export * from "./getCloudProjectDatabaseIpRestrictions";
-export * from "./getCloudProjectDatabasePostgresSqlUser";
-export * from "./getCloudProjectDatabaseUser";
-export * from "./getCloudProjectDatabaseUsers";
-export * from "./getCloudProjectDatabases";
-export * from "./getCloudProjectFailoverIpAttach";
-export * from "./getCloudProjectKube";
-export * from "./getCloudProjectKubeIpNodePool";
-export * from "./getCloudProjectKubeIpRestrictions";
-export * from "./getCloudProjectRegion";
-export * from "./getCloudProjectRegions";
-export * from "./getDbaasLogsInputEngine";
-export * from "./getDbaasLogsOutputGraylogStream";
-export * from "./getDedicatedCeph";
-export * from "./getDedicatedInstallationTemplates";
-export * from "./getDedicatedServer";
-export * from "./getDedicatedServers";
-export * from "./getDomainZone";
-export * from "./getIpLoadbalancingVrackNetwork";
-export * from "./getIpLoadbalancingVrackNetworks";
-export * from "./getIpService";
-export * from "./getMe";
-export * from "./getMeIdentityUser";
-export * from "./getMeIdentityUsers";
-export * from "./getMeInstallationTemplate";
-export * from "./getMeInstallationTemplates";
-export * from "./getMeIpxeScript";
-export * from "./getMeIpxeScripts";
-export * from "./getMePaymentmeanBankAccount";
-export * from "./getMePaymentmeanCreditCard";
-export * from "./getMeSshKey";
-export * from "./getOrderCart";
-export * from "./getOrderCartProduct";
-export * from "./getOrderCartProductOptions";
-export * from "./getOrderCartProductOptionsPlan";
-export * from "./getOrderCartProductPlan";
-export * from "./getVps";
-export * from "./getVracks";
-export * from "./ipLoadBalancing";
-export * from "./ipLoadBalancingHttpFarm";
-export * from "./ipLoadBalancingHttpFarmServer";
-export * from "./ipLoadBalancingHttpFrontend";
-export * from "./ipLoadBalancingHttpRoute";
-export * from "./ipLoadBalancingHttpRouteRule";
-export * from "./ipLoadBalancingRefresh";
-export * from "./ipLoadBalancingTcpFarm";
-export * from "./ipLoadBalancingTcpFarmServer";
-export * from "./ipLoadBalancingTcpFrontend";
-export * from "./ipLoadBalancingTcpRoute";
-export * from "./ipLoadBalancingTcpRouteRule";
-export * from "./ipLoadBalancingVrackNetwork";
-export * from "./ipReverse";
-export * from "./ipService";
-export * from "./meIdentityUser";
-export * from "./meInstallationTemplatePartitionScheme";
-export * from "./meInstallationTemplatePartitionSchemeHardwareRaid";
-export * from "./meInstallationTemplatePartitionSchemePartition";
-export * from "./meIpxeScript";
-export * from "./meSshKey";
-export * from "./provider";
-export * from "./vrack";
-export * from "./vrackCloudProject";
-export * from "./vrackDedicatedServer";
-export * from "./vrackDedicatedServerInterface";
-export * from "./vrackIp";
-export * from "./vrackIpLoadbalancing";
+export { GetInstallationTemplatesResult } from "./getInstallationTemplates";
+export const getInstallationTemplates: typeof import("./getInstallationTemplates").getInstallationTemplates = null as any;
+utilities.lazyLoad(exports, ["getInstallationTemplates"], () => require("./getInstallationTemplates"));
+
+export { GetServerArgs, GetServerResult, GetServerOutputArgs } from "./getServer";
+export const getServer: typeof import("./getServer").getServer = null as any;
+export const getServerOutput: typeof import("./getServer").getServerOutput = null as any;
+utilities.lazyLoad(exports, ["getServer","getServerOutput"], () => require("./getServer"));
+
+export { GetServersResult } from "./getServers";
+export const getServers: typeof import("./getServers").getServers = null as any;
+utilities.lazyLoad(exports, ["getServers"], () => require("./getServers"));
+
+export { GetVrackNetworksArgs, GetVrackNetworksResult, GetVrackNetworksOutputArgs } from "./getVrackNetworks";
+export const getVrackNetworks: typeof import("./getVrackNetworks").getVrackNetworks = null as any;
+export const getVrackNetworksOutput: typeof import("./getVrackNetworks").getVrackNetworksOutput = null as any;
+utilities.lazyLoad(exports, ["getVrackNetworks","getVrackNetworksOutput"], () => require("./getVrackNetworks"));
+
+export { ProviderArgs } from "./provider";
+export type Provider = import("./provider").Provider;
+export const Provider: typeof import("./provider").Provider = null as any;
+utilities.lazyLoad(exports, ["Provider"], () => require("./provider"));
+
 
 // Export sub-modules:
+import * as cloudproject from "./cloudproject";
+import * as cloudprojectdatabase from "./cloudprojectdatabase";
 import * as config from "./config";
+import * as dbaas from "./dbaas";
+import * as dedicated from "./dedicated";
+import * as domain from "./domain";
+import * as ip from "./ip";
+import * as iploadbalancing from "./iploadbalancing";
+import * as me from "./me";
+import * as order from "./order";
 import * as types from "./types";
+import * as vps from "./vps";
+import * as vrack from "./vrack";
 
 export {
+    cloudproject,
+    cloudprojectdatabase,
     config,
+    dbaas,
+    dedicated,
+    domain,
+    ip,
+    iploadbalancing,
+    me,
+    order,
     types,
+    vps,
+    vrack,
 };
-
-// Import resources to register:
-import { CloudProject } from "./cloudProject";
-import { CloudProjectContainerRegistry } from "./cloudProjectContainerRegistry";
-import { CloudProjectContainerRegistryUser } from "./cloudProjectContainerRegistryUser";
-import { CloudProjectDatabase } from "./cloudProjectDatabase";
-import { CloudProjectDatabaseIpRestriction } from "./cloudProjectDatabaseIpRestriction";
-import { CloudProjectDatabasePostgresSqlUser } from "./cloudProjectDatabasePostgresSqlUser";
-import { CloudProjectDatabaseUser } from "./cloudProjectDatabaseUser";
-import { CloudProjectFailoverIpAttach } from "./cloudProjectFailoverIpAttach";
-import { CloudProjectKube } from "./cloudProjectKube";
-import { CloudProjectKubeIpRestrictions } from "./cloudProjectKubeIpRestrictions";
-import { CloudProjectKubeNodePool } from "./cloudProjectKubeNodePool";
-import { CloudProjectKubeOidc } from "./cloudProjectKubeOidc";
-import { CloudProjectNetworkPrivate } from "./cloudProjectNetworkPrivate";
-import { CloudProjectNetworkPrivateSubnet } from "./cloudProjectNetworkPrivateSubnet";
-import { CloudProjectUser } from "./cloudProjectUser";
-import { DbaasLogsInput } from "./dbaasLogsInput";
-import { DbaasLogsOutputGraylogStream } from "./dbaasLogsOutputGraylogStream";
-import { DedicatedCephAcl } from "./dedicatedCephAcl";
-import { DedicatedServerRebootTask } from "./dedicatedServerRebootTask";
-import { DedicatedServerUpdate } from "./dedicatedServerUpdate";
-import { DedicatedServiceInstallTask } from "./dedicatedServiceInstallTask";
-import { DomainZone } from "./domainZone";
-import { DomainZoneRecord } from "./domainZoneRecord";
-import { DomainZoneRedirection } from "./domainZoneRedirection";
-import { IpLoadBalancing } from "./ipLoadBalancing";
-import { IpLoadBalancingHttpFarm } from "./ipLoadBalancingHttpFarm";
-import { IpLoadBalancingHttpFarmServer } from "./ipLoadBalancingHttpFarmServer";
-import { IpLoadBalancingHttpFrontend } from "./ipLoadBalancingHttpFrontend";
-import { IpLoadBalancingHttpRoute } from "./ipLoadBalancingHttpRoute";
-import { IpLoadBalancingHttpRouteRule } from "./ipLoadBalancingHttpRouteRule";
-import { IpLoadBalancingRefresh } from "./ipLoadBalancingRefresh";
-import { IpLoadBalancingTcpFarm } from "./ipLoadBalancingTcpFarm";
-import { IpLoadBalancingTcpFarmServer } from "./ipLoadBalancingTcpFarmServer";
-import { IpLoadBalancingTcpFrontend } from "./ipLoadBalancingTcpFrontend";
-import { IpLoadBalancingTcpRoute } from "./ipLoadBalancingTcpRoute";
-import { IpLoadBalancingTcpRouteRule } from "./ipLoadBalancingTcpRouteRule";
-import { IpLoadBalancingVrackNetwork } from "./ipLoadBalancingVrackNetwork";
-import { IpReverse } from "./ipReverse";
-import { IpService } from "./ipService";
-import { MeIdentityUser } from "./meIdentityUser";
-import { MeInstallationTemplatePartitionScheme } from "./meInstallationTemplatePartitionScheme";
-import { MeInstallationTemplatePartitionSchemeHardwareRaid } from "./meInstallationTemplatePartitionSchemeHardwareRaid";
-import { MeInstallationTemplatePartitionSchemePartition } from "./meInstallationTemplatePartitionSchemePartition";
-import { MeIpxeScript } from "./meIpxeScript";
-import { MeSshKey } from "./meSshKey";
-import { Vrack } from "./vrack";
-import { VrackCloudProject } from "./vrackCloudProject";
-import { VrackDedicatedServer } from "./vrackDedicatedServer";
-import { VrackDedicatedServerInterface } from "./vrackDedicatedServerInterface";
-import { VrackIp } from "./vrackIp";
-import { VrackIpLoadbalancing } from "./vrackIpLoadbalancing";
-
-const _module = {
-    version: utilities.getVersion(),
-    construct: (name: string, type: string, urn: string): pulumi.Resource => {
-        switch (type) {
-            case "ovh:index/cloudProject:CloudProject":
-                return new CloudProject(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectContainerRegistry:CloudProjectContainerRegistry":
-                return new CloudProjectContainerRegistry(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectContainerRegistryUser:CloudProjectContainerRegistryUser":
-                return new CloudProjectContainerRegistryUser(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectDatabase:CloudProjectDatabase":
-                return new CloudProjectDatabase(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectDatabaseIpRestriction:CloudProjectDatabaseIpRestriction":
-                return new CloudProjectDatabaseIpRestriction(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectDatabasePostgresSqlUser:CloudProjectDatabasePostgresSqlUser":
-                return new CloudProjectDatabasePostgresSqlUser(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectDatabaseUser:CloudProjectDatabaseUser":
-                return new CloudProjectDatabaseUser(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectFailoverIpAttach:CloudProjectFailoverIpAttach":
-                return new CloudProjectFailoverIpAttach(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectKube:CloudProjectKube":
-                return new CloudProjectKube(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectKubeIpRestrictions:CloudProjectKubeIpRestrictions":
-                return new CloudProjectKubeIpRestrictions(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectKubeNodePool:CloudProjectKubeNodePool":
-                return new CloudProjectKubeNodePool(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectKubeOidc:CloudProjectKubeOidc":
-                return new CloudProjectKubeOidc(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectNetworkPrivate:CloudProjectNetworkPrivate":
-                return new CloudProjectNetworkPrivate(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectNetworkPrivateSubnet:CloudProjectNetworkPrivateSubnet":
-                return new CloudProjectNetworkPrivateSubnet(name, <any>undefined, { urn })
-            case "ovh:index/cloudProjectUser:CloudProjectUser":
-                return new CloudProjectUser(name, <any>undefined, { urn })
-            case "ovh:index/dbaasLogsInput:DbaasLogsInput":
-                return new DbaasLogsInput(name, <any>undefined, { urn })
-            case "ovh:index/dbaasLogsOutputGraylogStream:DbaasLogsOutputGraylogStream":
-                return new DbaasLogsOutputGraylogStream(name, <any>undefined, { urn })
-            case "ovh:index/dedicatedCephAcl:DedicatedCephAcl":
-                return new DedicatedCephAcl(name, <any>undefined, { urn })
-            case "ovh:index/dedicatedServerRebootTask:DedicatedServerRebootTask":
-                return new DedicatedServerRebootTask(name, <any>undefined, { urn })
-            case "ovh:index/dedicatedServerUpdate:DedicatedServerUpdate":
-                return new DedicatedServerUpdate(name, <any>undefined, { urn })
-            case "ovh:index/dedicatedServiceInstallTask:DedicatedServiceInstallTask":
-                return new DedicatedServiceInstallTask(name, <any>undefined, { urn })
-            case "ovh:index/domainZone:DomainZone":
-                return new DomainZone(name, <any>undefined, { urn })
-            case "ovh:index/domainZoneRecord:DomainZoneRecord":
-                return new DomainZoneRecord(name, <any>undefined, { urn })
-            case "ovh:index/domainZoneRedirection:DomainZoneRedirection":
-                return new DomainZoneRedirection(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancing:IpLoadBalancing":
-                return new IpLoadBalancing(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingHttpFarm:IpLoadBalancingHttpFarm":
-                return new IpLoadBalancingHttpFarm(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingHttpFarmServer:IpLoadBalancingHttpFarmServer":
-                return new IpLoadBalancingHttpFarmServer(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingHttpFrontend:IpLoadBalancingHttpFrontend":
-                return new IpLoadBalancingHttpFrontend(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingHttpRoute:IpLoadBalancingHttpRoute":
-                return new IpLoadBalancingHttpRoute(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingHttpRouteRule:IpLoadBalancingHttpRouteRule":
-                return new IpLoadBalancingHttpRouteRule(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingRefresh:IpLoadBalancingRefresh":
-                return new IpLoadBalancingRefresh(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingTcpFarm:IpLoadBalancingTcpFarm":
-                return new IpLoadBalancingTcpFarm(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingTcpFarmServer:IpLoadBalancingTcpFarmServer":
-                return new IpLoadBalancingTcpFarmServer(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingTcpFrontend:IpLoadBalancingTcpFrontend":
-                return new IpLoadBalancingTcpFrontend(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingTcpRoute:IpLoadBalancingTcpRoute":
-                return new IpLoadBalancingTcpRoute(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingTcpRouteRule:IpLoadBalancingTcpRouteRule":
-                return new IpLoadBalancingTcpRouteRule(name, <any>undefined, { urn })
-            case "ovh:index/ipLoadBalancingVrackNetwork:IpLoadBalancingVrackNetwork":
-                return new IpLoadBalancingVrackNetwork(name, <any>undefined, { urn })
-            case "ovh:index/ipReverse:IpReverse":
-                return new IpReverse(name, <any>undefined, { urn })
-            case "ovh:index/ipService:IpService":
-                return new IpService(name, <any>undefined, { urn })
-            case "ovh:index/meIdentityUser:MeIdentityUser":
-                return new MeIdentityUser(name, <any>undefined, { urn })
-            case "ovh:index/meInstallationTemplatePartitionScheme:MeInstallationTemplatePartitionScheme":
-                return new MeInstallationTemplatePartitionScheme(name, <any>undefined, { urn })
-            case "ovh:index/meInstallationTemplatePartitionSchemeHardwareRaid:MeInstallationTemplatePartitionSchemeHardwareRaid":
-                return new MeInstallationTemplatePartitionSchemeHardwareRaid(name, <any>undefined, { urn })
-            case "ovh:index/meInstallationTemplatePartitionSchemePartition:MeInstallationTemplatePartitionSchemePartition":
-                return new MeInstallationTemplatePartitionSchemePartition(name, <any>undefined, { urn })
-            case "ovh:index/meIpxeScript:MeIpxeScript":
-                return new MeIpxeScript(name, <any>undefined, { urn })
-            case "ovh:index/meSshKey:MeSshKey":
-                return new MeSshKey(name, <any>undefined, { urn })
-            case "ovh:index/vrack:Vrack":
-                return new Vrack(name, <any>undefined, { urn })
-            case "ovh:index/vrackCloudProject:VrackCloudProject":
-                return new VrackCloudProject(name, <any>undefined, { urn })
-            case "ovh:index/vrackDedicatedServer:VrackDedicatedServer":
-                return new VrackDedicatedServer(name, <any>undefined, { urn })
-            case "ovh:index/vrackDedicatedServerInterface:VrackDedicatedServerInterface":
-                return new VrackDedicatedServerInterface(name, <any>undefined, { urn })
-            case "ovh:index/vrackIp:VrackIp":
-                return new VrackIp(name, <any>undefined, { urn })
-            case "ovh:index/vrackIpLoadbalancing:VrackIpLoadbalancing":
-                return new VrackIpLoadbalancing(name, <any>undefined, { urn })
-            default:
-                throw new Error(`unknown resource type ${type}`);
-        }
-    },
-};
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProject", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectContainerRegistry", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectContainerRegistryUser", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectDatabase", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectDatabaseIpRestriction", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectDatabasePostgresSqlUser", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectDatabaseUser", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectFailoverIpAttach", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectKube", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectKubeIpRestrictions", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectKubeNodePool", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectKubeOidc", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectNetworkPrivate", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectNetworkPrivateSubnet", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/cloudProjectUser", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/dbaasLogsInput", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/dbaasLogsOutputGraylogStream", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/dedicatedCephAcl", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/dedicatedServerRebootTask", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/dedicatedServerUpdate", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/dedicatedServiceInstallTask", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/domainZone", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/domainZoneRecord", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/domainZoneRedirection", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancing", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingHttpFarm", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingHttpFarmServer", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingHttpFrontend", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingHttpRoute", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingHttpRouteRule", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingRefresh", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingTcpFarm", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingTcpFarmServer", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingTcpFrontend", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingTcpRoute", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingTcpRouteRule", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipLoadBalancingVrackNetwork", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipReverse", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/ipService", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/meIdentityUser", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/meInstallationTemplatePartitionScheme", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/meInstallationTemplatePartitionSchemeHardwareRaid", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/meInstallationTemplatePartitionSchemePartition", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/meIpxeScript", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/meSshKey", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/vrack", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/vrackCloudProject", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/vrackDedicatedServer", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/vrackDedicatedServerInterface", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/vrackIp", _module)
-pulumi.runtime.registerResourceModule("ovh", "index/vrackIpLoadbalancing", _module)
-
-import { Provider } from "./provider";
-
 pulumi.runtime.registerResourcePackage("ovh", {
     version: utilities.getVersion(),
     constructProvider: (name: string, type: string, urn: string): pulumi.ProviderResource => {

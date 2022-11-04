@@ -30,7 +30,7 @@ namespace Lbrlabs.PulumiPackage.Ovh
             }
         }
 
-        private static readonly Pulumi.Config __config = new Pulumi.Config("ovh");
+        private static readonly global::Pulumi.Config __config = new global::Pulumi.Config("ovh");
 
         private static readonly __Value<string?> _applicationKey = new __Value<string?>(() => __config.Get("applicationKey") ?? Utilities.GetEnv("OVH_APPLICATION_KEY"));
         /// <summary>

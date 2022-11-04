@@ -33,8 +33,18 @@ const (
 	// packages:
 	ovhPkg = "ovh"
 	// modules:
-	ovhMod = "index" // the y module
-
+	ovhMod             = "index"
+	cloudProjectMod    = "CloudProject"
+	cloudProjectDbMod  = "CloudProjectDatabase"
+	dbaasMod           = "Dbaas"
+	dedicatedMod       = "Dedicated"
+	domainMod          = "Domain"
+	ipMod              = "Ip"
+	ipLoadBalancingMod = "IpLoadBalancing"
+	meMod              = "Me"
+	vrackMod           = "Vrack"
+	orderMod           = "Order"
+	vpsMod             = "Vps"
 )
 
 // boolRef returns a reference to the bool argument.
@@ -120,295 +130,423 @@ func Provider() tfbridge.ProviderInfo {
 		},
 		PreConfigureCallback: preConfigureCallback,
 		Resources: map[string]*tfbridge.ResourceInfo{
-			"ovh_cloud_project": {Tok: ovhResource(ovhMod, "CloudProject")},
+			"ovh_cloud_project": {Tok: ovhResource(cloudProjectMod, "Project")},
 			"ovh_cloud_project_containerregistry": {
-				Tok: ovhResource(ovhMod, "CloudProjectContainerRegistry"),
+				Tok: ovhResource(cloudProjectMod, "ContainerRegistry"),
 			},
 			"ovh_cloud_project_containerregistry_user": {
-				Tok: ovhResource(ovhMod, "CloudProjectContainerRegistryUser"),
+				Tok: ovhResource(cloudProjectMod, "ContainerRegistryUser"),
 			},
 			"ovh_cloud_project_database": {
-				Tok: ovhResource(ovhMod, "CloudProjectDatabase"),
+				Tok: ovhResource(cloudProjectMod, "Database"),
+			},
+			"ovh_cloud_project_database_database": {
+				Tok: ovhResource(cloudProjectDbMod, "DatabaseInstance"),
 			},
 			"ovh_cloud_project_database_ip_restriction": {
-				Tok: ovhResource(ovhMod, "CloudProjectDatabaseIpRestriction"),
+				Tok: ovhResource(cloudProjectDbMod, "IpRestriction"),
+			},
+			"ovh_cloud_project_database_integration": {
+				Tok: ovhResource(cloudProjectDbMod, "Integration"),
+			},
+			"ovh_cloud_project_database_kafka_acl": {
+				Tok: ovhResource(cloudProjectDbMod, "KafkaAcl"),
+			},
+			"ovh_cloud_project_database_kafka_topic": {
+				Tok: ovhResource(cloudProjectDbMod, "KafkaTopic"),
 			},
 			"ovh_cloud_project_database_postgresql_user": {
-				Tok: ovhResource(ovhMod, "CloudProjectDatabasePostgresSqlUser"),
+				Tok: ovhResource(cloudProjectDbMod, "PostgresSqlUser"),
+			},
+			"ovh_cloud_project_database_m3db_namespace": {
+				Tok: ovhResource(cloudProjectDbMod, "M3DbNamespace"),
+			},
+			"ovh_cloud_project_database_m3db_user": {
+				Tok: ovhResource(cloudProjectDbMod, "M3DbUser"),
+			},
+			"ovh_cloud_project_database_mongodb_user": {
+				Tok: ovhResource(cloudProjectDbMod, "MongoDbUser"),
+			},
+			"ovh_cloud_project_database_opensearch_pattern": {
+				Tok: ovhResource(cloudProjectDbMod, "OpensearchPattern"),
+			},
+			"ovh_cloud_project_database_opensearch_user": {
+				Tok: ovhResource(cloudProjectDbMod, "OpensearchUser"),
+			},
+			"ovh_cloud_project_database_redis_user": {
+				Tok: ovhResource(cloudProjectDbMod, "RedisUser"),
 			},
 			"ovh_cloud_project_database_user": {
-				Tok: ovhResource(ovhMod, "CloudProjectDatabaseUser"),
+				Tok: ovhResource(cloudProjectDbMod, "User"),
 			},
 			"ovh_cloud_project_failover_ip_attach": {
-				Tok: ovhResource(ovhMod, "CloudProjectFailoverIpAttach"),
+				Tok: ovhResource(cloudProjectMod, "FailoverIpAttach"),
 			},
 			"ovh_cloud_project_kube": {
-				Tok: ovhResource(ovhMod, "CloudProjectKube"),
+				Tok: ovhResource(cloudProjectMod, "Kube"),
 			},
 			"ovh_cloud_project_kube_iprestrictions": {
-				Tok: ovhResource(ovhMod, "CloudProjectKubeIpRestrictions"),
+				Tok: ovhResource(cloudProjectMod, "KubeIpRestrictions"),
 			},
 			"ovh_cloud_project_kube_nodepool": {
-				Tok: ovhResource(ovhMod, "CloudProjectKubeNodePool"),
+				Tok: ovhResource(cloudProjectMod, "KubeNodePool"),
 			},
 			"ovh_cloud_project_kube_oidc": {
-				Tok: ovhResource(ovhMod, "CloudProjectKubeOidc"),
+				Tok: ovhResource(cloudProjectMod, "KubeOidc"),
 			},
 			"ovh_cloud_project_network_private": {
-				Tok: ovhResource(ovhMod, "CloudProjectNetworkPrivate"),
+				Tok: ovhResource(cloudProjectMod, "NetworkPrivate"),
 			},
 			"ovh_cloud_project_network_private_subnet": {
-				Tok: ovhResource(ovhMod, "CloudProjectNetworkPrivateSubnet"),
+				Tok: ovhResource(cloudProjectMod, "NetworkPrivateSubnet"),
 			},
 			"ovh_cloud_project_user": {
-				Tok: ovhResource(ovhMod, "CloudProjectUser"),
+				Tok: ovhResource(cloudProjectMod, "User"),
+			},
+			"ovh_cloud_project_user_s3_credential": {
+				Tok: ovhResource(cloudProjectMod, "S3Credential"),
+			},
+			"ovh_cloud_project_user_s3_policy": {
+				Tok: ovhResource(cloudProjectMod, "S3Policy"),
 			},
 			"ovh_dbaas_logs_input": {
-				Tok: ovhResource(ovhMod, "DbaasLogsInput"),
+				Tok: ovhResource(dbaasMod, "LogsInput"),
 			},
 			"ovh_dbaas_logs_output_graylog_stream": {
-				Tok: ovhResource(ovhMod, "DbaasLogsOutputGraylogStream"),
+				Tok: ovhResource(dbaasMod, "LogsOutputGraylogStream"),
 			},
 			"ovh_dedicated_ceph_acl": {
-				Tok: ovhResource(ovhMod, "DedicatedCephAcl"),
+				Tok: ovhResource(dedicatedMod, "CephAcl"),
 			},
 			"ovh_dedicated_server_install_task": {
-				Tok: ovhResource(ovhMod, "DedicatedServiceInstallTask"),
+				Tok: ovhResource(dedicatedMod, "ServiceInstallTask"),
 			},
 			"ovh_dedicated_server_reboot_task": {
-				Tok: ovhResource(ovhMod, "DedicatedServerRebootTask"),
+				Tok: ovhResource(dedicatedMod, "ServerRebootTask"),
 			},
 			"ovh_dedicated_server_update": {
-				Tok: ovhResource(ovhMod, "DedicatedServerUpdate"),
+				Tok: ovhResource(dedicatedMod, "ServerUpdate"),
 			},
 			"ovh_domain_zone": {
-				Tok: ovhResource(ovhMod, "DomainZone"),
+				Tok: ovhResource(domainMod, "Zone"),
 			},
 			"ovh_domain_zone_record": {
-				Tok: ovhResource(ovhMod, "DomainZoneRecord"),
+				Tok: ovhResource(domainMod, "ZoneRecord"),
 			},
 			"ovh_domain_zone_redirection": {
-				Tok: ovhResource(ovhMod, "DomainZoneRedirection"),
+				Tok: ovhResource(domainMod, "ZoneRedirection"),
 			},
 			"ovh_ip_reverse": {
-				Tok: ovhResource(ovhMod, "IpReverse"),
+				Tok: ovhResource(ipMod, "Reverse"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"ip_reverse": {
-						CSharpName: "IpReverseAddress",
+						Name:       "ReverseIp",
+					},
+					"reverse": {
+						Name:       "ReverseValue",
 					},
 				},
 			},
 			"ovh_ip_service": {
-				Tok: ovhResource(ovhMod, "IpService"),
+				Tok: ovhResource(ipMod, "IpService"),
 			},
 			"ovh_iploadbalancing": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancing"),
+				Tok: ovhResource(ipLoadBalancingMod, "LoadBalancer"),
 			},
 			"ovh_iploadbalancing_http_farm": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingHttpFarm"),
+				Tok: ovhResource(ipLoadBalancingMod, "HttpFarm"),
 			},
 			"ovh_iploadbalancing_http_farm_server": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingHttpFarmServer"),
+				Tok: ovhResource(ipLoadBalancingMod, "HttpFarmServer"),
 			},
 			"ovh_iploadbalancing_http_frontend": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingHttpFrontend"),
+				Tok: ovhResource(ipLoadBalancingMod, "HttpFrontend"),
 			},
 			"ovh_iploadbalancing_http_route": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingHttpRoute"),
+				Tok: ovhResource(ipLoadBalancingMod, "HttpRoute"),
 			},
 			"ovh_iploadbalancing_http_route_rule": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingHttpRouteRule"),
+				Tok: ovhResource(ipLoadBalancingMod, "HttpRouteRule"),
 			},
 			"ovh_iploadbalancing_refresh": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingRefresh"),
+				Tok: ovhResource(ipLoadBalancingMod, "Refresh"),
 			},
 			"ovh_iploadbalancing_tcp_farm": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingTcpFarm"),
+				Tok: ovhResource(ipLoadBalancingMod, "TcpFarm"),
 			},
 			"ovh_iploadbalancing_tcp_farm_server": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingTcpFarmServer"),
+				Tok: ovhResource(ipLoadBalancingMod, "TcpFarmServer"),
 			},
 			"ovh_iploadbalancing_tcp_frontend": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingTcpFrontend"),
+				Tok: ovhResource(ipLoadBalancingMod, "TcpFrontend"),
 			},
 			"ovh_iploadbalancing_tcp_route": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingTcpRoute"),
+				Tok: ovhResource(ipLoadBalancingMod, "TcpRoute"),
 			},
 			"ovh_iploadbalancing_tcp_route_rule": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingTcpRouteRule"),
+				Tok: ovhResource(ipLoadBalancingMod, "TcpRouteRule"),
 			},
 			"ovh_iploadbalancing_vrack_network": {
-				Tok: ovhResource(ovhMod, "IpLoadBalancingVrackNetwork"),
+				Tok: ovhResource(ipLoadBalancingMod, "VrackNetwork"),
 			},
 			"ovh_me_identity_user": {
-				Tok: ovhResource(ovhMod, "MeIdentityUser"),
+				Tok: ovhResource(meMod, "IdentityUser"),
+			},
+			"ovh_me_installation_template": {
+				Tok: ovhResource(meMod, "InstallationTemplate"),
 			},
 			"ovh_me_installation_template_partition_scheme": {
-				Tok: ovhResource(ovhMod, "MeInstallationTemplatePartitionScheme"),
+				Tok: ovhResource(meMod, "InstallationTemplatePartitionScheme"),
 			},
 			"ovh_me_installation_template_partition_scheme_hardware_raid": {
-				Tok: ovhResource(ovhMod, "MeInstallationTemplatePartitionSchemeHardwareRaid"),
+				Tok: ovhResource(meMod, "InstallationTemplatePartitionSchemeHardwareRaid"),
 			},
 			"ovh_me_installation_template_partition_scheme_partition": {
-				Tok: ovhResource(ovhMod, "MeInstallationTemplatePartitionSchemePartition"),
+				Tok: ovhResource(meMod, "InstallationTemplatePartitionSchemePartition"),
 			},
 			"ovh_me_ipxe_script": {
-				Tok: ovhResource(ovhMod, "MeIpxeScript"),
+				Tok: ovhResource(meMod, "IpxeScript"),
 			},
 			"ovh_me_ssh_key": {
-				Tok: ovhResource(ovhMod, "MeSshKey"),
+				Tok: ovhResource(meMod, "SshKey"),
 			},
 			"ovh_vrack": {
-				Tok: ovhResource(ovhMod, "Vrack"),
+				Tok: ovhResource(vrackMod, "Vrack"),
 			},
 			"ovh_vrack_cloudproject": {
-				Tok: ovhResource(ovhMod, "VrackCloudProject"),
+				Tok: ovhResource(vrackMod, "CloudProject"),
 			},
 			"ovh_vrack_dedicated_server": {
-				Tok: ovhResource(ovhMod, "VrackDedicatedServer"),
+				Tok: ovhResource(vrackMod, "DedicatedServer"),
 			},
 			"ovh_vrack_dedicated_server_interface": {
-				Tok: ovhResource(ovhMod, "VrackDedicatedServerInterface"),
+				Tok: ovhResource(vrackMod, "DedicatedServerInterface"),
 			},
 			"ovh_vrack_ip": {
-				Tok: ovhResource(ovhMod, "VrackIp"),
+				Tok: ovhResource(vrackMod, "IpAddress"),
 			},
 			"ovh_vrack_iploadbalancing": {
-				Tok: ovhResource(ovhMod, "VrackIpLoadbalancing"),
+				Tok: ovhResource(vrackMod, "IpLoadbalancing"),
+				Fields: map[string]*tfbridge.SchemaInfo{
+					"ip_loadbalancing": {
+						Name: "LoadbalancingId",
+					},
+				},
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"ovh_cloud_project_capabilities_containerregistry": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectCapabilitiesContainerRegistry"),
+				Tok: ovhDataSource(cloudProjectMod, "getCapabilitiesContainerRegistry"),
 			},
 			"ovh_cloud_project_capabilities_containerregistry_filter": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectCapabilitiesContainerFilter"),
+				Tok: ovhDataSource(cloudProjectMod, "getCapabilitiesContainerFilter"),
 			},
 			"ovh_cloud_project_containerregistries": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectContainerRegistries"),
+				Tok: ovhDataSource(cloudProjectMod, "getContainerRegistries"),
 			},
 			"ovh_cloud_project_containerregistry": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectContainerRegistry"),
+				Tok: ovhDataSource(cloudProjectMod, "getContainerRegistry"),
 			},
 			"ovh_cloud_project_containerregistry_users": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectContainerRegistryUsers"),
+				Tok: ovhDataSource(cloudProjectMod, "getContainerRegistryUsers"),
 			},
 			"ovh_cloud_project_database": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabase"),
+				Tok: ovhDataSource(cloudProjectDbMod, "getDatabase"),
+			},
+			"ovh_cloud_project_database_capabilities": {
+				Tok: ovhDataSource(cloudProjectDbMod, "getCapabilities"),
+			},
+			"ovh_cloud_project_database_database": {
+				Tok: ovhDataSource(cloudProjectDbMod, "getDatabaseInstance"),
+			},
+			"ovh_cloud_project_database_databases": {
+				Tok: ovhDataSource(cloudProjectDbMod, "getDatabaseInstances"),
+			},
+			"ovh_cloud_project_database_integration": {
+				Tok: ovhDataSource(cloudProjectDbMod, "getDatabaseIntegration"),
+			},
+			"ovh_cloud_project_database_integrations": {
+				Tok: ovhDataSource(cloudProjectDbMod, "getDatabaseIntegrations"),
+			},
+			"ovh_cloud_project_database_certificates": {
+				Tok: ovhDataSource(cloudProjectDbMod, "getCertificates"),
 			},
 			"ovh_cloud_project_database_ip_restrictions": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabaseIpRestrictions"),
+				Tok: ovhDataSource(cloudProjectDbMod, "getIpRestrictions"),
+			},
+			"ovh_cloud_project_database_kafka_acl": {
+				Tok: ovhDataSource(cloudProjectDbMod, "getKafkaAcl"),
+			},
+			"ovh_cloud_project_database_kafka_acls": {
+				Tok: ovhDataSource(cloudProjectDbMod, "getKafkaAcls"),
+			},
+			"ovh_cloud_project_database_kafka_topic": {
+				Tok: ovhDataSource(cloudProjectDbMod, "getKafkaTopic"),
+			},
+			"ovh_cloud_project_database_kafka_topics": {
+				Tok: ovhDataSource(cloudProjectDbMod, "getKafkaTopics"),
+			},
+			"ovh_cloud_project_database_kafka_user_access": {
+				Tok: ovhDataSource(cloudProjectDbMod, "getKafkaUserAccess"),
 			},
 			"ovh_cloud_project_database_postgresql_user": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabasePostgresSqlUser"),
+				Tok: ovhDataSource(cloudProjectDbMod, "getPostgresSqlUser"),
 			},
 			"ovh_cloud_project_database_user": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabaseUser"),
+				Tok: ovhDataSource(cloudProjectDbMod, "getUser"),
 			},
 			"ovh_cloud_project_database_users": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabaseUsers"),
+				Tok: ovhDataSource(cloudProjectDbMod, "getUsers"),
 			},
 			"ovh_cloud_project_databases": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectDatabases"),
+				Tok: ovhDataSource(cloudProjectDbMod, "getDatabases"),
 			},
 			"ovh_cloud_project_failover_ip_attach": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectFailoverIpAttach"),
+				Tok: ovhDataSource(cloudProjectMod, "getFailoverIpAttach"),
 			},
 			"ovh_cloud_project_kube": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectKube"),
+				Tok: ovhDataSource(cloudProjectMod, "getKube"),
 			},
 			"ovh_cloud_project_kube_iprestrictions": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectKubeIpRestrictions"),
+				Tok: ovhDataSource(cloudProjectMod, "getKubeIpRestrictions"),
 			},
 			"ovh_cloud_project_kube_nodepool": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectKubeIpNodePool"),
+				Tok: ovhDataSource(cloudProjectMod, "getKubeIpNodePool"),
+			},
+			"ovh_cloud_project_database_m3db_namespace": {
+				Tok: ovhDataSource(cloudProjectMod, "getM3dbNamespace"),
+			},
+			"ovh_cloud_project_database_m3db_namespaces": {
+				Tok: ovhDataSource(cloudProjectMod, "getM3dbNamespaces"),
+			},
+			"ovh_cloud_project_database_m3db_user": {
+				Tok: ovhDataSource(cloudProjectMod, "getM3dbUser"),
+			},
+			"ovh_cloud_project_database_mongodb_user": {
+				Tok: ovhDataSource(cloudProjectMod, "getMongoDbUser"),
+			},
+			"ovh_cloud_project_database_opensearch_pattern": {
+				Tok: ovhDataSource(cloudProjectMod, "getOpenSearchPattern"),
+			},
+			"ovh_cloud_project_database_opensearch_patterns": {
+				Tok: ovhDataSource(cloudProjectMod, "getOpenSearchPatterns"),
+			},
+			"ovh_cloud_project_database_opensearch_user": {
+				Tok: ovhDataSource(cloudProjectMod, "getOpenSearchUser"),
+			},
+			"ovh_cloud_project_database_redis_user": {
+				Tok: ovhDataSource(cloudProjectMod, "getRedisUser"),
 			},
 			"ovh_cloud_project_region": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectRegion"),
+				Tok: ovhDataSource(cloudProjectMod, "getRegion"),
 			},
 			"ovh_cloud_project_regions": {
-				Tok: ovhDataSource(ovhMod, "getCloudProjectRegions"),
+				Tok: ovhDataSource(cloudProjectMod, "getRegions"),
+			},
+			"ovh_cloud_project_user": {
+				Tok: ovhDataSource(cloudProjectMod, "getUser"),
+			},
+			"ovh_cloud_project_user_s3_credential": {
+				Tok: ovhDataSource(cloudProjectMod, "getUserS3Credential"),
+			},
+			"ovh_cloud_project_user_s3_credentials": {
+				Tok: ovhDataSource(cloudProjectMod, "getUserS3Credentials"),
+			},
+			"ovh_cloud_project_user_s3_policy": {
+				Tok: ovhDataSource(cloudProjectMod, "getUserS3Policy"),
+			},
+			"ovh_cloud_project_users": {
+				Tok: ovhDataSource(cloudProjectMod, "getUsers"),
 			},
 			"ovh_dbaas_logs_input_engine": {
-				Tok: ovhDataSource(ovhMod, "getDbaasLogsInputEngine"),
+				Tok: ovhDataSource(dbaasMod, "getLogsInputEngine"),
 			},
 			"ovh_dbaas_logs_output_graylog_stream": {
-				Tok: ovhDataSource(ovhMod, "getDbaasLogsOutputGraylogStream"),
+				Tok: ovhDataSource(dbaasMod, "getLogsOutputGraylogStream"),
 			},
 			"ovh_dedicated_ceph": {
-				Tok: ovhDataSource(ovhMod, "getDedicatedCeph"),
+				Tok: ovhDataSource(dedicatedMod, "getCeph"),
+			},
+			"ovh_dedicated_server_boots": {
+				Tok: ovhDataSource(dedicatedMod, "getServerBoots"),
 			},
 			"ovh_dedicated_installation_templates": {
-				Tok: ovhDataSource(ovhMod, "getDedicatedInstallationTemplates"),
+				Tok: ovhDataSource(ovhMod, "getInstallationTemplates"),
 			},
 			"ovh_dedicated_server": {
-				Tok: ovhDataSource(ovhMod, "getDedicatedServer"),
+				Tok: ovhDataSource(ovhMod, "getServer"),
 			},
 			"ovh_dedicated_servers": {
-				Tok: ovhDataSource(ovhMod, "getDedicatedServers"),
+				Tok: ovhDataSource(ovhMod, "getServers"),
 			},
 			"ovh_domain_zone": {
-				Tok: ovhDataSource(ovhMod, "getDomainZone"),
+				Tok: ovhDataSource(domainMod, "getZone"),
 			},
 			"ovh_ip_service": {
-				Tok: ovhDataSource(ovhMod, "getIpService"),
+				Tok: ovhDataSource(ipMod, "getService"),
 			},
 			"ovh_iploadbalancing_vrack_network": {
-				Tok: ovhDataSource(ovhMod, "getIpLoadbalancingVrackNetwork"),
+				Tok: ovhDataSource(ipLoadBalancingMod, "getVrackNetwork"),
+			},
+			"ovh_iploadbalancing": {
+				Tok: ovhDataSource(ipLoadBalancingMod, "getIpLoadBalancing"),
 			},
 			"ovh_iploadbalancing_vrack_networks": {
-				Tok: ovhDataSource(ovhMod, "getIpLoadbalancingVrackNetworks"),
+				Tok: ovhDataSource(ovhMod, "getVrackNetworks"),
 			},
 			"ovh_me": {
-				Tok: ovhDataSource(ovhMod, "getMe"),
+				Tok: ovhDataSource(meMod, "getMe"),
 			},
 			"ovh_me_identity_user": {
-				Tok: ovhDataSource(ovhMod, "getMeIdentityUser"),
+				Tok: ovhDataSource(meMod, "getIdentityUser"),
 			},
 			"ovh_me_identity_users": {
-				Tok: ovhDataSource(ovhMod, "getMeIdentityUsers"),
+				Tok: ovhDataSource(meMod, "getIdentityUsers"),
 			},
 			"ovh_me_installation_template": {
-				Tok: ovhDataSource(ovhMod, "getMeInstallationTemplate"),
+				Tok: ovhDataSource(meMod, "getInstallationTemplate"),
 			},
 			"ovh_me_installation_templates": {
-				Tok: ovhDataSource(ovhMod, "getMeInstallationTemplates"),
+				Tok: ovhDataSource(meMod, "getInstallationTemplates"),
 			},
 			"ovh_me_ipxe_script": {
-				Tok: ovhDataSource(ovhMod, "getMeIpxeScript"),
+				Tok: ovhDataSource(meMod, "getIpxeScript"),
 			},
 			"ovh_me_ipxe_scripts": {
-				Tok: ovhDataSource(ovhMod, "getMeIpxeScripts"),
+				Tok: ovhDataSource(meMod, "getIpxeScripts"),
 			},
 			"ovh_me_paymentmean_bankaccount": {
-				Tok: ovhDataSource(ovhMod, "getMePaymentmeanBankAccount"),
+				Tok: ovhDataSource(meMod, "getPaymentmeanBankAccount"),
 			},
 			"ovh_me_paymentmean_creditcard": {
-				Tok: ovhDataSource(ovhMod, "getMePaymentmeanCreditCard"),
+				Tok: ovhDataSource(meMod, "getPaymentmeanCreditCard"),
 			},
 			"ovh_me_ssh_key": {
-				Tok: ovhDataSource(ovhMod, "getMeSshKey"),
+				Tok: ovhDataSource(meMod, "getSshKey"),
+			},
+			"ovh_me_ssh_keys": {
+				Tok: ovhDataSource(meMod, "getSshKeys"),
 			},
 			"ovh_order_cart": {
-				Tok: ovhDataSource(ovhMod, "getOrderCart"),
+				Tok: ovhDataSource(orderMod, "getCart"),
 			},
 			"ovh_order_cart_product": {
-				Tok: ovhDataSource(ovhMod, "getOrderCartProduct"),
+				Tok: ovhDataSource(orderMod, "getCartProduct"),
 			},
 			"ovh_order_cart_product_options": {
-				Tok: ovhDataSource(ovhMod, "getOrderCartProductOptions"),
+				Tok: ovhDataSource(orderMod, "getCartProductOptions"),
 			},
 			"ovh_order_cart_product_options_plan": {
-				Tok: ovhDataSource(ovhMod, "getOrderCartProductOptionsPlan"),
+				Tok: ovhDataSource(orderMod, "getCartProductOptionsPlan"),
 			},
 			"ovh_order_cart_product_plan": {
-				Tok: ovhDataSource(ovhMod, "getOrderCartProductPlan"),
+				Tok: ovhDataSource(orderMod, "getCartProductPlan"),
 			},
 			"ovh_vps": {
-				Tok: ovhDataSource(ovhMod, "getVps"),
+				Tok: ovhDataSource(vpsMod, "getVps"),
 			},
 			"ovh_vracks": {
-				Tok: ovhDataSource(ovhMod, "getVracks"),
+				Tok: ovhDataSource(vrackMod, "getVracks"),
 			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
