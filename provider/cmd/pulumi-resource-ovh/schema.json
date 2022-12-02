@@ -1,6 +1,6 @@
 {
     "name": "ovh",
-    "displayName": "OVH",
+    "displayName": "OVHcloud",
     "description": "A Pulumi package for creating and managing OVH cloud resources.",
     "keywords": [
         "pulumi",
