@@ -5,7 +5,7 @@ go 1.19
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20220824175045-450992f2f5b9
 
 require (
-	github.com/ovh/terraform-provider-ovh v0.22.0
+	github.com/ovh/terraform-provider-ovh v0.26.0
 	github.com/pulumi/pulumi-terraform-bridge/v3 v3.33.0
 	github.com/pulumi/pulumi/sdk/v3 v3.45.0
 )
@@ -160,7 +160,7 @@ require (
 	github.com/oklog/run v1.1.0 // indirect
 	github.com/opentracing/basictracer-go v1.1.0 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
-	github.com/ovh/go-ovh v1.1.0 // indirect
+	github.com/ovh/go-ovh v1.3.0 // indirect
 	github.com/pgavlin/goldmark v1.1.33-0.20200616210433-b5eb04559386 // indirect
 	github.com/pierrec/lz4 v2.6.1+incompatible // indirect
 	github.com/pkg/browser v0.0.0-20210115035449-ce105d075bb4 // indirect
