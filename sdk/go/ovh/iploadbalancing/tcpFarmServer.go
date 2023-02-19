@@ -35,25 +35,25 @@ import (
 //				return err
 //			}
 //			farmname, err := IpLoadBalancing.NewTcpFarm(ctx, "farmname", &IpLoadBalancing.TcpFarmArgs{
-//				ServiceName: pulumi.String(lb.Id),
 //				Port:        pulumi.Int(8080),
+//				ServiceName: pulumi.String(lb.Id),
 //				Zone:        pulumi.String("all"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = IpLoadBalancing.NewTcpFarmServer(ctx, "backend", &IpLoadBalancing.TcpFarmServerArgs{
-//				ServiceName:          pulumi.String(lb.Id),
-//				FarmId:               farmname.ID(),
-//				DisplayName:          pulumi.String("mybackend"),
 //				Address:              pulumi.String("4.5.6.7"),
-//				Status:               pulumi.String("active"),
-//				Port:                 pulumi.Int(80),
-//				ProxyProtocolVersion: pulumi.Any(v2),
-//				Weight:               pulumi.Int(2),
-//				Probe:                pulumi.Bool(true),
-//				Ssl:                  pulumi.Bool(false),
 //				Backup:               pulumi.Bool(true),
+//				DisplayName:          pulumi.String("mybackend"),
+//				FarmId:               farmname.ID(),
+//				Port:                 pulumi.Int(80),
+//				Probe:                pulumi.Bool(true),
+//				ProxyProtocolVersion: pulumi.String("v2"),
+//				ServiceName:          pulumi.String(lb.Id),
+//				Ssl:                  pulumi.Bool(false),
+//				Status:               pulumi.String("active"),
+//				Weight:               pulumi.Int(2),
 //			})
 //			if err != nil {
 //				return err
@@ -75,6 +75,8 @@ type TcpFarmServer struct {
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
 	// ID of the farm this server is attached to
 	FarmId pulumi.IntOutput `pulumi:"farmId"`
+	// enable action when backend marked down. (`shutdown-sessions`)
+	OnMarkedDown pulumi.StringPtrOutput `pulumi:"onMarkedDown"`
 	// Port that backend will respond on
 	Port pulumi.IntPtrOutput `pulumi:"port"`
 	// defines if backend will be probed to determine health and keep as active in farm if healthy
@@ -142,6 +144,8 @@ type tcpFarmServerState struct {
 	DisplayName *string `pulumi:"displayName"`
 	// ID of the farm this server is attached to
 	FarmId *int `pulumi:"farmId"`
+	// enable action when backend marked down. (`shutdown-sessions`)
+	OnMarkedDown *string `pulumi:"onMarkedDown"`
 	// Port that backend will respond on
 	Port *int `pulumi:"port"`
 	// defines if backend will be probed to determine health and keep as active in farm if healthy
@@ -168,6 +172,8 @@ type TcpFarmServerState struct {
 	DisplayName pulumi.StringPtrInput
 	// ID of the farm this server is attached to
 	FarmId pulumi.IntPtrInput
+	// enable action when backend marked down. (`shutdown-sessions`)
+	OnMarkedDown pulumi.StringPtrInput
 	// Port that backend will respond on
 	Port pulumi.IntPtrInput
 	// defines if backend will be probed to determine health and keep as active in farm if healthy
@@ -198,6 +204,8 @@ type tcpFarmServerArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	// ID of the farm this server is attached to
 	FarmId int `pulumi:"farmId"`
+	// enable action when backend marked down. (`shutdown-sessions`)
+	OnMarkedDown *string `pulumi:"onMarkedDown"`
 	// Port that backend will respond on
 	Port *int `pulumi:"port"`
 	// defines if backend will be probed to determine health and keep as active in farm if healthy
@@ -225,6 +233,8 @@ type TcpFarmServerArgs struct {
 	DisplayName pulumi.StringPtrInput
 	// ID of the farm this server is attached to
 	FarmId pulumi.IntInput
+	// enable action when backend marked down. (`shutdown-sessions`)
+	OnMarkedDown pulumi.StringPtrInput
 	// Port that backend will respond on
 	Port pulumi.IntPtrInput
 	// defines if backend will be probed to determine health and keep as active in farm if healthy
@@ -350,6 +360,11 @@ func (o TcpFarmServerOutput) DisplayName() pulumi.StringPtrOutput {
 // ID of the farm this server is attached to
 func (o TcpFarmServerOutput) FarmId() pulumi.IntOutput {
 	return o.ApplyT(func(v *TcpFarmServer) pulumi.IntOutput { return v.FarmId }).(pulumi.IntOutput)
+}
+
+// enable action when backend marked down. (`shutdown-sessions`)
+func (o TcpFarmServerOutput) OnMarkedDown() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *TcpFarmServer) pulumi.StringPtrOutput { return v.OnMarkedDown }).(pulumi.StringPtrOutput)
 }
 
 // Port that backend will respond on

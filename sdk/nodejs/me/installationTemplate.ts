@@ -17,7 +17,7 @@ import * as utilities from "../utilities";
  *
  * const mytemplate = new ovh.Me.InstallationTemplate("mytemplate", {
  *     baseTemplateName: "centos7_64",
- *     defaultLanguage: "fr",
+ *     defaultLanguage: "en",
  *     templateName: "mytemplate",
  * });
  * ```
@@ -124,10 +124,6 @@ export class InstallationTemplate extends pulumi.CustomResource {
      */
     public /*out*/ readonly supportsDistributionKernel!: pulumi.Output<boolean>;
     /**
-     * This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-     */
-    public /*out*/ readonly supportsGptLabel!: pulumi.Output<boolean>;
-    /**
      * This distribution supports RTM software
      */
     public /*out*/ readonly supportsRtm!: pulumi.Output<boolean>;
@@ -135,10 +131,6 @@ export class InstallationTemplate extends pulumi.CustomResource {
      * This distribution supports the microsoft SQL server
      */
     public /*out*/ readonly supportsSqlServer!: pulumi.Output<boolean>;
-    /**
-     * This distribution supports UEFI setup (no,only,yes)
-     */
-    public /*out*/ readonly supportsUefi!: pulumi.Output<string>;
     /**
      * This template name
      */
@@ -174,10 +166,8 @@ export class InstallationTemplate extends pulumi.CustomResource {
             resourceInputs["lvmReady"] = state ? state.lvmReady : undefined;
             resourceInputs["removeDefaultPartitionSchemes"] = state ? state.removeDefaultPartitionSchemes : undefined;
             resourceInputs["supportsDistributionKernel"] = state ? state.supportsDistributionKernel : undefined;
-            resourceInputs["supportsGptLabel"] = state ? state.supportsGptLabel : undefined;
             resourceInputs["supportsRtm"] = state ? state.supportsRtm : undefined;
             resourceInputs["supportsSqlServer"] = state ? state.supportsSqlServer : undefined;
-            resourceInputs["supportsUefi"] = state ? state.supportsUefi : undefined;
             resourceInputs["templateName"] = state ? state.templateName : undefined;
         } else {
             const args = argsOrState as InstallationTemplateArgs | undefined;
@@ -208,10 +198,8 @@ export class InstallationTemplate extends pulumi.CustomResource {
             resourceInputs["lastModification"] = undefined /*out*/;
             resourceInputs["lvmReady"] = undefined /*out*/;
             resourceInputs["supportsDistributionKernel"] = undefined /*out*/;
-            resourceInputs["supportsGptLabel"] = undefined /*out*/;
             resourceInputs["supportsRtm"] = undefined /*out*/;
             resourceInputs["supportsSqlServer"] = undefined /*out*/;
-            resourceInputs["supportsUefi"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(InstallationTemplate.__pulumiType, name, resourceInputs, opts);
@@ -288,10 +276,6 @@ export interface InstallationTemplateState {
      */
     supportsDistributionKernel?: pulumi.Input<boolean>;
     /**
-     * This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-     */
-    supportsGptLabel?: pulumi.Input<boolean>;
-    /**
      * This distribution supports RTM software
      */
     supportsRtm?: pulumi.Input<boolean>;
@@ -299,10 +283,6 @@ export interface InstallationTemplateState {
      * This distribution supports the microsoft SQL server
      */
     supportsSqlServer?: pulumi.Input<boolean>;
-    /**
-     * This distribution supports UEFI setup (no,only,yes)
-     */
-    supportsUefi?: pulumi.Input<string>;
     /**
      * This template name
      */

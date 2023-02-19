@@ -26,7 +26,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			rescue, err := Dedicated.GetServerBoots(ctx, &dedicated.GetServerBootsArgs{
-//				ServiceName: "ns00000.ip-1-2-3.eu",
+//				ServiceName: "nsxxxxxxx.ip-xx-xx-xx.eu",
 //				BootType:    pulumi.StringRef("rescue"),
 //				Kernel:      pulumi.StringRef("rescue64-pro"),
 //			}, nil)
@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			_, err = Dedicated.NewServerUpdate(ctx, "server", &Dedicated.ServerUpdateArgs{
-//				ServiceName: pulumi.String("ns00000.ip-1-2-3.eu"),
+//				ServiceName: pulumi.String("nsxxxxxxx.ip-xx-xx-xx.eu"),
 //				BootId:      pulumi.Int(rescue.Results[0]),
 //				Monitoring:  pulumi.Bool(true),
 //				State:       pulumi.String("ok"),

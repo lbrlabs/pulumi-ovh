@@ -226,6 +226,14 @@ export class Database extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * The disk size (in GB) of the database service.
+     */
+    public readonly diskSize!: pulumi.Output<number>;
+    /**
+     * Defines the disk type of the database service.
+     */
+    public /*out*/ readonly diskType!: pulumi.Output<string>;
+    /**
      * List of all endpoints objects of the service.
      */
     public /*out*/ readonly endpoints!: pulumi.Output<outputs.CloudProject.DatabaseEndpoint[]>;
@@ -296,6 +304,8 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["backupTime"] = state ? state.backupTime : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["diskSize"] = state ? state.diskSize : undefined;
+            resourceInputs["diskType"] = state ? state.diskType : undefined;
             resourceInputs["endpoints"] = state ? state.endpoints : undefined;
             resourceInputs["engine"] = state ? state.engine : undefined;
             resourceInputs["flavor"] = state ? state.flavor : undefined;
@@ -329,6 +339,7 @@ export class Database extends pulumi.CustomResource {
                 throw new Error("Missing required property 'version'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["diskSize"] = args ? args.diskSize : undefined;
             resourceInputs["engine"] = args ? args.engine : undefined;
             resourceInputs["flavor"] = args ? args.flavor : undefined;
             resourceInputs["kafkaRestApi"] = args ? args.kafkaRestApi : undefined;
@@ -339,6 +350,7 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["version"] = args ? args.version : undefined;
             resourceInputs["backupTime"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["diskType"] = undefined /*out*/;
             resourceInputs["endpoints"] = undefined /*out*/;
             resourceInputs["maintenanceTime"] = undefined /*out*/;
             resourceInputs["networkType"] = undefined /*out*/;
@@ -365,6 +377,14 @@ export interface DatabaseState {
      * Small description of the database service.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The disk size (in GB) of the database service.
+     */
+    diskSize?: pulumi.Input<number>;
+    /**
+     * Defines the disk type of the database service.
+     */
+    diskType?: pulumi.Input<string>;
     /**
      * List of all endpoints objects of the service.
      */
@@ -429,6 +449,10 @@ export interface DatabaseArgs {
      * Small description of the database service.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The disk size (in GB) of the database service.
+     */
+    diskSize?: pulumi.Input<number>;
     /**
      * The database engine you want to deploy. To get a full list of available engine visit.
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).

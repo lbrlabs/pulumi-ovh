@@ -13,12 +13,12 @@ import * as utilities from "../utilities";
  * import * as ovh from "@pulumi/ovh";
  *
  * const rescue = ovh.Dedicated.getServerBoots({
- *     serviceName: "ns00000.ip-1-2-3.eu",
+ *     serviceName: "nsxxxxxxx.ip-xx-xx-xx.eu",
  *     bootType: "rescue",
  *     kernel: "rescue64-pro",
  * });
  * const server = new ovh.dedicated.ServerUpdate("server", {
- *     serviceName: "ns00000.ip-1-2-3.eu",
+ *     serviceName: "nsxxxxxxx.ip-xx-xx-xx.eu",
  *     bootId: rescue.then(rescue => rescue.results?[0]),
  *     monitoring: true,
  *     state: "ok",

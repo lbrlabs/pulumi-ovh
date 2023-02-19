@@ -31,24 +31,24 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
     /// 
     ///     var farmname = new Ovh.IpLoadBalancing.HttpFarm("farmname", new()
     ///     {
-    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
     ///         Port = 8080,
+    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
     ///         Zone = "all",
     ///     });
     /// 
     ///     var backend = new Ovh.IpLoadBalancing.HttpFarmServer("backend", new()
     ///     {
-    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
-    ///         FarmId = farmname.Id,
-    ///         DisplayName = "mybackend",
     ///         Address = "4.5.6.7",
-    ///         Status = "active",
-    ///         Port = 80,
-    ///         ProxyProtocolVersion = v2,
-    ///         Weight = 2,
-    ///         Probe = true,
-    ///         Ssl = false,
     ///         Backup = true,
+    ///         DisplayName = "mybackend",
+    ///         FarmId = farmname.Id,
+    ///         Port = 80,
+    ///         Probe = true,
+    ///         ProxyProtocolVersion = "v2",
+    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
+    ///         Ssl = false,
+    ///         Status = "active",
+    ///         Weight = 2,
     ///     });
     /// 
     /// });
@@ -89,6 +89,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         /// </summary>
         [Output("farmId")]
         public Output<int> FarmId { get; private set; } = null!;
+
+        /// <summary>
+        /// enable action when backend marked down. (`shutdown-sessions`)
+        /// </summary>
+        [Output("onMarkedDown")]
+        public Output<string?> OnMarkedDown { get; private set; } = null!;
 
         /// <summary>
         /// Port that backend will respond on
@@ -207,6 +213,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         public Input<int> FarmId { get; set; } = null!;
 
         /// <summary>
+        /// enable action when backend marked down. (`shutdown-sessions`)
+        /// </summary>
+        [Input("onMarkedDown")]
+        public Input<string>? OnMarkedDown { get; set; }
+
+        /// <summary>
         /// Port that backend will respond on
         /// </summary>
         [Input("port")]
@@ -288,6 +300,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         /// </summary>
         [Input("farmId")]
         public Input<int>? FarmId { get; set; }
+
+        /// <summary>
+        /// enable action when backend marked down. (`shutdown-sessions`)
+        /// </summary>
+        [Input("onMarkedDown")]
+        public Input<string>? OnMarkedDown { get; set; }
 
         /// <summary>
         /// Port that backend will respond on

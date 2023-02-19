@@ -48,6 +48,14 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import
+ * 
+ * The resource can be imported using the `ip`, `ip_reverse` of the address, separated by &#34;|&#34; E.g., bash
+ * 
+ * ```sh
+ *  $ pulumi import ovh:Ip/reverse:Reverse my_reverse &#39;2001:0db8:c0ff:ee::/64|2001:0db8:c0ff:ee::42&#39;
+ * ```
+ * 
  */
 @ResourceType(type="ovh:Ip/reverse:Reverse")
 public class Reverse extends com.pulumi.resources.CustomResource {

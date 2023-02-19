@@ -46,6 +46,21 @@ public final class GetLogsInputEnginePlainArgs extends com.pulumi.resources.Invo
     }
 
     /**
+     * The service name. It&#39;s the ID of your Logs Data Platform instance.
+     * 
+     */
+    @Import(name="serviceName", required=true)
+    private String serviceName;
+
+    /**
+     * @return The service name. It&#39;s the ID of your Logs Data Platform instance.
+     * 
+     */
+    public String serviceName() {
+        return this.serviceName;
+    }
+
+    /**
      * Software version
      * 
      */
@@ -65,6 +80,7 @@ public final class GetLogsInputEnginePlainArgs extends com.pulumi.resources.Invo
     private GetLogsInputEnginePlainArgs(GetLogsInputEnginePlainArgs $) {
         this.isDeprecated = $.isDeprecated;
         this.name = $.name;
+        this.serviceName = $.serviceName;
         this.version = $.version;
     }
 
@@ -109,6 +125,17 @@ public final class GetLogsInputEnginePlainArgs extends com.pulumi.resources.Invo
         }
 
         /**
+         * @param serviceName The service name. It&#39;s the ID of your Logs Data Platform instance.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder serviceName(String serviceName) {
+            $.serviceName = serviceName;
+            return this;
+        }
+
+        /**
          * @param version Software version
          * 
          * @return builder
@@ -120,6 +147,7 @@ public final class GetLogsInputEnginePlainArgs extends com.pulumi.resources.Invo
         }
 
         public GetLogsInputEnginePlainArgs build() {
+            $.serviceName = Objects.requireNonNull($.serviceName, "expected parameter 'serviceName' to be non-null");
             return $;
         }
     }

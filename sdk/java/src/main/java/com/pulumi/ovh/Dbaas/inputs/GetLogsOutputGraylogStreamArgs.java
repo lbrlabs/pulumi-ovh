@@ -14,14 +14,14 @@ public final class GetLogsOutputGraylogStreamArgs extends com.pulumi.resources.I
     public static final GetLogsOutputGraylogStreamArgs Empty = new GetLogsOutputGraylogStreamArgs();
 
     /**
-     * The service name
+     * The service name. It&#39;s the ID of your Logs Data Platform instance.
      * 
      */
     @Import(name="serviceName", required=true)
     private Output<String> serviceName;
 
     /**
-     * @return The service name
+     * @return The service name. It&#39;s the ID of your Logs Data Platform instance.
      * 
      */
     public Output<String> serviceName() {
@@ -69,7 +69,7 @@ public final class GetLogsOutputGraylogStreamArgs extends com.pulumi.resources.I
         }
 
         /**
-         * @param serviceName The service name
+         * @param serviceName The service name. It&#39;s the ID of your Logs Data Platform instance.
          * 
          * @return builder
          * 
@@ -80,7 +80,7 @@ public final class GetLogsOutputGraylogStreamArgs extends com.pulumi.resources.I
         }
 
         /**
-         * @param serviceName The service name
+         * @param serviceName The service name. It&#39;s the ID of your Logs Data Platform instance.
          * 
          * @return builder
          * 

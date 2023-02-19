@@ -84,7 +84,7 @@ export class Kube extends pulumi.CustomResource {
      */
     public readonly privateNetworkConfiguration!: pulumi.Output<outputs.CloudProject.KubePrivateNetworkConfiguration | undefined>;
     /**
-     * OpenStack private network ID to use.
+     * OpenStack private network (or vrack) ID to use.
      * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
      */
     public readonly privateNetworkId!: pulumi.Output<string | undefined>;
@@ -219,7 +219,7 @@ export interface KubeState {
      */
     privateNetworkConfiguration?: pulumi.Input<inputs.CloudProject.KubePrivateNetworkConfiguration>;
     /**
-     * OpenStack private network ID to use.
+     * OpenStack private network (or vrack) ID to use.
      * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
      */
     privateNetworkId?: pulumi.Input<string>;
@@ -276,7 +276,7 @@ export interface KubeArgs {
      */
     privateNetworkConfiguration?: pulumi.Input<inputs.CloudProject.KubePrivateNetworkConfiguration>;
     /**
-     * OpenStack private network ID to use.
+     * OpenStack private network (or vrack) ID to use.
      * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
      */
     privateNetworkId?: pulumi.Input<string>;

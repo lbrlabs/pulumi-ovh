@@ -110,24 +110,24 @@ class Refresh(pulumi.CustomResource):
         lb = ovh.IpLoadBalancing.get_ip_load_balancing(service_name="ip-1.2.3.4",
             state="ok")
         farmname = ovh.ip_load_balancing.TcpFarm("farmname",
-            service_name=lb.id,
             port=8080,
+            service_name=lb.id,
             zone="all")
         backend = ovh.ip_load_balancing.TcpFarmServer("backend",
-            service_name=lb.id,
-            farm_id=farmname.id,
-            display_name="mybackend",
             address="4.5.6.7",
-            status="active",
+            backup=True,
+            display_name="mybackend",
+            farm_id=farmname.id,
             port=80,
-            proxy_protocol_version=v2,
-            weight=2,
             probe=True,
-            ssl=False,
-            backup=True)
-        mylb = ovh.ip_load_balancing.Refresh("mylb",
+            proxy_protocol_version="v2",
             service_name=lb.id,
-            keepers=[[__item.address for __item in [backend]]])
+            ssl=False,
+            status="active",
+            weight=2)
+        mylb = ovh.ip_load_balancing.Refresh("mylb",
+            keepers=[[__item.address for __item in [backend]]],
+            service_name=lb.id)
         ```
 
         :param str resource_name: The name of the resource.
@@ -154,24 +154,24 @@ class Refresh(pulumi.CustomResource):
         lb = ovh.IpLoadBalancing.get_ip_load_balancing(service_name="ip-1.2.3.4",
             state="ok")
         farmname = ovh.ip_load_balancing.TcpFarm("farmname",
-            service_name=lb.id,
             port=8080,
+            service_name=lb.id,
             zone="all")
         backend = ovh.ip_load_balancing.TcpFarmServer("backend",
-            service_name=lb.id,
-            farm_id=farmname.id,
-            display_name="mybackend",
             address="4.5.6.7",
-            status="active",
+            backup=True,
+            display_name="mybackend",
+            farm_id=farmname.id,
             port=80,
-            proxy_protocol_version=v2,
-            weight=2,
             probe=True,
-            ssl=False,
-            backup=True)
-        mylb = ovh.ip_load_balancing.Refresh("mylb",
+            proxy_protocol_version="v2",
             service_name=lb.id,
-            keepers=[[__item.address for __item in [backend]]])
+            ssl=False,
+            status="active",
+            weight=2)
+        mylb = ovh.ip_load_balancing.Refresh("mylb",
+            keepers=[[__item.address for __item in [backend]]],
+            service_name=lb.id)
         ```
 
         :param str resource_name: The name of the resource.

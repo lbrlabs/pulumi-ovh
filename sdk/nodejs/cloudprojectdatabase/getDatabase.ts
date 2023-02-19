@@ -74,6 +74,14 @@ export interface GetDatabaseResult {
      */
     readonly description: string;
     /**
+     * The disk size (in GB) of the database service.
+     */
+    readonly diskSize: number;
+    /**
+     * The disk type of the database service.
+     */
+    readonly diskType: string;
+    /**
      * List of all endpoints objects of the service.
      */
     readonly endpoints: outputs.CloudProjectDatabase.GetDatabaseEndpoint[];

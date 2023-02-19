@@ -572,6 +572,23 @@ class KubeNodePool(pulumi.CustomResource):
 
         ## Example Usage
 
+        Create a simple node pool in your Kubernetes cluster:
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_ovh as ovh
+
+        node_pool = ovh.cloud_project.KubeNodePool("nodePool",
+            desired_nodes=3,
+            flavor_name="b2-7",
+            kube_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            max_nodes=3,
+            min_nodes=3,
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        ```
+
+        Create an advanced node pool in your Kubernetes cluster:
+
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh
@@ -579,7 +596,7 @@ class KubeNodePool(pulumi.CustomResource):
         pool = ovh.cloud_project.KubeNodePool("pool",
             desired_nodes=3,
             flavor_name="b2-7",
-            kube_id="xxxxxxxx-2bf9-xxxx-xxxx-xxxxxxxxxxxx",
+            kube_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             max_nodes=3,
             min_nodes=3,
             service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -614,7 +631,7 @@ class KubeNodePool(pulumi.CustomResource):
         OVHcloud Managed Kubernetes Service cluster node pool can be imported using the `service_name`, the `id` of the cluster, and the `id` of the nodepool separated by "/" E.g., bash
 
         ```sh
-         $ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool my_kube_cluster service_name/kube_id/poolid
+         $ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool pool service_name/kube_id/poolid
         ```
 
         :param str resource_name: The name of the resource.
@@ -649,6 +666,23 @@ class KubeNodePool(pulumi.CustomResource):
 
         ## Example Usage
 
+        Create a simple node pool in your Kubernetes cluster:
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_ovh as ovh
+
+        node_pool = ovh.cloud_project.KubeNodePool("nodePool",
+            desired_nodes=3,
+            flavor_name="b2-7",
+            kube_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+            max_nodes=3,
+            min_nodes=3,
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+        ```
+
+        Create an advanced node pool in your Kubernetes cluster:
+
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh
@@ -656,7 +690,7 @@ class KubeNodePool(pulumi.CustomResource):
         pool = ovh.cloud_project.KubeNodePool("pool",
             desired_nodes=3,
             flavor_name="b2-7",
-            kube_id="xxxxxxxx-2bf9-xxxx-xxxx-xxxxxxxxxxxx",
+            kube_id="xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
             max_nodes=3,
             min_nodes=3,
             service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -691,7 +725,7 @@ class KubeNodePool(pulumi.CustomResource):
         OVHcloud Managed Kubernetes Service cluster node pool can be imported using the `service_name`, the `id` of the cluster, and the `id` of the nodepool separated by "/" E.g., bash
 
         ```sh
-         $ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool my_kube_cluster service_name/kube_id/poolid
+         $ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool pool service_name/kube_id/poolid
         ```
 
         :param str resource_name: The name of the resource.
@@ -848,7 +882,7 @@ class KubeNodePool(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="antiAffinity")
-    def anti_affinity(self) -> pulumi.Output[Optional[bool]]:
+    def anti_affinity(self) -> pulumi.Output[bool]:
         """
         should the pool use the anti-affinity feature. Default to `false`.
         """
@@ -856,7 +890,7 @@ class KubeNodePool(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def autoscale(self) -> pulumi.Output[Optional[bool]]:
+    def autoscale(self) -> pulumi.Output[bool]:
         """
         Enable auto-scaling for the pool. Default to `false`.
         """
@@ -940,7 +974,7 @@ class KubeNodePool(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="monthlyBilled")
-    def monthly_billed(self) -> pulumi.Output[Optional[bool]]:
+    def monthly_billed(self) -> pulumi.Output[bool]:
         """
         should the nodes be billed on a monthly basis. Default to `false`.
         """

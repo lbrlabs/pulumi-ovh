@@ -282,6 +282,18 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Output<string?> Description { get; private set; } = null!;
 
         /// <summary>
+        /// The disk size (in GB) of the database service.
+        /// </summary>
+        [Output("diskSize")]
+        public Output<int> DiskSize { get; private set; } = null!;
+
+        /// <summary>
+        /// Defines the disk type of the database service.
+        /// </summary>
+        [Output("diskType")]
+        public Output<string> DiskType { get; private set; } = null!;
+
+        /// <summary>
         /// List of all endpoints objects of the service.
         /// </summary>
         [Output("endpoints")]
@@ -413,6 +425,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Input<string>? Description { get; set; }
 
         /// <summary>
+        /// The disk size (in GB) of the database service.
+        /// </summary>
+        [Input("diskSize")]
+        public Input<int>? DiskSize { get; set; }
+
+        /// <summary>
         /// The database engine you want to deploy. To get a full list of available engine visit.
         /// [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         /// </summary>
@@ -497,6 +515,18 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
+
+        /// <summary>
+        /// The disk size (in GB) of the database service.
+        /// </summary>
+        [Input("diskSize")]
+        public Input<int>? DiskSize { get; set; }
+
+        /// <summary>
+        /// Defines the disk type of the database service.
+        /// </summary>
+        [Input("diskType")]
+        public Input<string>? DiskType { get; set; }
 
         [Input("endpoints")]
         private InputList<Inputs.DatabaseEndpointGetArgs>? _endpoints;

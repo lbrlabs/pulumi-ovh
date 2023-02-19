@@ -23,6 +23,7 @@ class DatabaseArgs:
                  service_name: pulumi.Input[str],
                  version: pulumi.Input[str],
                  description: Optional[pulumi.Input[str]] = None,
+                 disk_size: Optional[pulumi.Input[int]] = None,
                  kafka_rest_api: Optional[pulumi.Input[bool]] = None,
                  opensearch_acls_enabled: Optional[pulumi.Input[bool]] = None):
         """
@@ -40,6 +41,7 @@ class DatabaseArgs:
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] version: The version of the engine in which the service should be deployed
         :param pulumi.Input[str] description: Small description of the database service.
+        :param pulumi.Input[int] disk_size: The disk size (in GB) of the database service.
         :param pulumi.Input[bool] kafka_rest_api: Defines whether the REST API is enabled on a kafka cluster
         :param pulumi.Input[bool] opensearch_acls_enabled: Defines whether the ACLs are enabled on an OpenSearch cluster
         """
@@ -51,6 +53,8 @@ class DatabaseArgs:
         pulumi.set(__self__, "version", version)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
         if kafka_rest_api is not None:
             pulumi.set(__self__, "kafka_rest_api", kafka_rest_api)
         if opensearch_acls_enabled is not None:
@@ -147,6 +151,18 @@ class DatabaseArgs:
         pulumi.set(self, "description", value)
 
     @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The disk size (in GB) of the database service.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
     @pulumi.getter(name="kafkaRestApi")
     def kafka_rest_api(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -177,6 +193,8 @@ class _DatabaseState:
                  backup_time: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disk_size: Optional[pulumi.Input[int]] = None,
+                 disk_type: Optional[pulumi.Input[str]] = None,
                  endpoints: Optional[pulumi.Input[Sequence[pulumi.Input['DatabaseEndpointArgs']]]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
                  flavor: Optional[pulumi.Input[str]] = None,
@@ -194,6 +212,8 @@ class _DatabaseState:
         :param pulumi.Input[str] backup_time: Time on which backups start every day.
         :param pulumi.Input[str] created_at: Date of the creation of the cluster.
         :param pulumi.Input[str] description: Small description of the database service.
+        :param pulumi.Input[int] disk_size: The disk size (in GB) of the database service.
+        :param pulumi.Input[str] disk_type: Defines the disk type of the database service.
         :param pulumi.Input[Sequence[pulumi.Input['DatabaseEndpointArgs']]] endpoints: List of all endpoints objects of the service.
         :param pulumi.Input[str] engine: The database engine you want to deploy. To get a full list of available engine visit.
                [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
@@ -219,6 +239,10 @@ class _DatabaseState:
             pulumi.set(__self__, "created_at", created_at)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if disk_size is not None:
+            pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type is not None:
+            pulumi.set(__self__, "disk_type", disk_type)
         if endpoints is not None:
             pulumi.set(__self__, "endpoints", endpoints)
         if engine is not None:
@@ -279,6 +303,30 @@ class _DatabaseState:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> Optional[pulumi.Input[int]]:
+        """
+        The disk size (in GB) of the database service.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @disk_size.setter
+    def disk_size(self, value: Optional[pulumi.Input[int]]):
+        pulumi.set(self, "disk_size", value)
+
+    @property
+    @pulumi.getter(name="diskType")
+    def disk_type(self) -> Optional[pulumi.Input[str]]:
+        """
+        Defines the disk type of the database service.
+        """
+        return pulumi.get(self, "disk_type")
+
+    @disk_type.setter
+    def disk_type(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "disk_type", value)
 
     @property
     @pulumi.getter
@@ -437,6 +485,7 @@ class Database(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disk_size: Optional[pulumi.Input[int]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
                  flavor: Optional[pulumi.Input[str]] = None,
                  kafka_rest_api: Optional[pulumi.Input[bool]] = None,
@@ -618,6 +667,7 @@ class Database(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Small description of the database service.
+        :param pulumi.Input[int] disk_size: The disk size (in GB) of the database service.
         :param pulumi.Input[str] engine: The database engine you want to deploy. To get a full list of available engine visit.
                [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         :param pulumi.Input[str] flavor: A valid OVHcloud public cloud database flavor name in which the nodes will be started.
@@ -824,6 +874,7 @@ class Database(pulumi.CustomResource):
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
                  description: Optional[pulumi.Input[str]] = None,
+                 disk_size: Optional[pulumi.Input[int]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
                  flavor: Optional[pulumi.Input[str]] = None,
                  kafka_rest_api: Optional[pulumi.Input[bool]] = None,
@@ -842,6 +893,7 @@ class Database(pulumi.CustomResource):
             __props__ = DatabaseArgs.__new__(DatabaseArgs)
 
             __props__.__dict__["description"] = description
+            __props__.__dict__["disk_size"] = disk_size
             if engine is None and not opts.urn:
                 raise TypeError("Missing required property 'engine'")
             __props__.__dict__["engine"] = engine
@@ -864,6 +916,7 @@ class Database(pulumi.CustomResource):
             __props__.__dict__["version"] = version
             __props__.__dict__["backup_time"] = None
             __props__.__dict__["created_at"] = None
+            __props__.__dict__["disk_type"] = None
             __props__.__dict__["endpoints"] = None
             __props__.__dict__["maintenance_time"] = None
             __props__.__dict__["network_type"] = None
@@ -881,6 +934,8 @@ class Database(pulumi.CustomResource):
             backup_time: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
+            disk_size: Optional[pulumi.Input[int]] = None,
+            disk_type: Optional[pulumi.Input[str]] = None,
             endpoints: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseEndpointArgs']]]]] = None,
             engine: Optional[pulumi.Input[str]] = None,
             flavor: Optional[pulumi.Input[str]] = None,
@@ -903,6 +958,8 @@ class Database(pulumi.CustomResource):
         :param pulumi.Input[str] backup_time: Time on which backups start every day.
         :param pulumi.Input[str] created_at: Date of the creation of the cluster.
         :param pulumi.Input[str] description: Small description of the database service.
+        :param pulumi.Input[int] disk_size: The disk size (in GB) of the database service.
+        :param pulumi.Input[str] disk_type: Defines the disk type of the database service.
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['DatabaseEndpointArgs']]]] endpoints: List of all endpoints objects of the service.
         :param pulumi.Input[str] engine: The database engine you want to deploy. To get a full list of available engine visit.
                [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
@@ -929,6 +986,8 @@ class Database(pulumi.CustomResource):
         __props__.__dict__["backup_time"] = backup_time
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
+        __props__.__dict__["disk_size"] = disk_size
+        __props__.__dict__["disk_type"] = disk_type
         __props__.__dict__["endpoints"] = endpoints
         __props__.__dict__["engine"] = engine
         __props__.__dict__["flavor"] = flavor
@@ -966,6 +1025,22 @@ class Database(pulumi.CustomResource):
         Small description of the database service.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> pulumi.Output[int]:
+        """
+        The disk size (in GB) of the database service.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskType")
+    def disk_type(self) -> pulumi.Output[str]:
+        """
+        Defines the disk type of the database service.
+        """
+        return pulumi.get(self, "disk_type")
 
     @property
     @pulumi.getter

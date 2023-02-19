@@ -48,6 +48,46 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
     /// 
     /// });
     /// ```
+    /// ### With HTTP Header
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
+    /// using Ovh = Pulumi.Ovh;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var lb = Ovh.IpLoadBalancing.GetIpLoadBalancing.Invoke(new()
+    ///     {
+    ///         ServiceName = "ip-1.2.3.4",
+    ///         State = "ok",
+    ///     });
+    /// 
+    ///     var farm80 = new Ovh.IpLoadBalancing.HttpFarm("farm80", new()
+    ///     {
+    ///         DisplayName = "ingress-8080-gra",
+    ///         Port = 80,
+    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.ServiceName),
+    ///         Zone = "all",
+    ///     });
+    /// 
+    ///     var testfrontend = new Ovh.IpLoadBalancing.HttpFrontend("testfrontend", new()
+    ///     {
+    ///         DefaultFarmId = farm80.Id,
+    ///         DisplayName = "ingress-8080-gra",
+    ///         HttpHeaders = new[]
+    ///         {
+    ///             "X-Ip-Header %%ci",
+    ///             "X-Port-Header %%cp",
+    ///         },
+    ///         Port = "80,443",
+    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.ServiceName),
+    ///         Zone = "all",
+    ///     });
+    /// 
+    /// });
+    /// ```
     /// </summary>
     [OvhResourceType("ovh:IpLoadBalancing/httpFrontend:HttpFrontend")]
     public partial class HttpFrontend : global::Pulumi.CustomResource
@@ -87,6 +127,18 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         /// </summary>
         [Output("displayName")]
         public Output<string?> DisplayName { get; private set; } = null!;
+
+        /// <summary>
+        /// HTTP Strict Transport Security. Default: 'false'
+        /// </summary>
+        [Output("hsts")]
+        public Output<bool?> Hsts { get; private set; } = null!;
+
+        /// <summary>
+        /// HTTP headers to add to the frontend. List of string.
+        /// </summary>
+        [Output("httpHeaders")]
+        public Output<ImmutableArray<string>> HttpHeaders { get; private set; } = null!;
 
         /// <summary>
         /// Port(s) attached to your frontend. Supports single port (numerical value),
@@ -216,6 +268,24 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         public Input<string>? DisplayName { get; set; }
 
         /// <summary>
+        /// HTTP Strict Transport Security. Default: 'false'
+        /// </summary>
+        [Input("hsts")]
+        public Input<bool>? Hsts { get; set; }
+
+        [Input("httpHeaders")]
+        private InputList<string>? _httpHeaders;
+
+        /// <summary>
+        /// HTTP headers to add to the frontend. List of string.
+        /// </summary>
+        public InputList<string> HttpHeaders
+        {
+            get => _httpHeaders ?? (_httpHeaders = new InputList<string>());
+            set => _httpHeaders = value;
+        }
+
+        /// <summary>
         /// Port(s) attached to your frontend. Supports single port (numerical value),
         /// range (2 dash-delimited increasing ports) and comma-separated list of 'single port'
         /// and/or 'range'. Each port must be in the [1;49151] range
@@ -302,6 +372,24 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         /// </summary>
         [Input("displayName")]
         public Input<string>? DisplayName { get; set; }
+
+        /// <summary>
+        /// HTTP Strict Transport Security. Default: 'false'
+        /// </summary>
+        [Input("hsts")]
+        public Input<bool>? Hsts { get; set; }
+
+        [Input("httpHeaders")]
+        private InputList<string>? _httpHeaders;
+
+        /// <summary>
+        /// HTTP headers to add to the frontend. List of string.
+        /// </summary>
+        public InputList<string> HttpHeaders
+        {
+            get => _httpHeaders ?? (_httpHeaders = new InputList<string>());
+            set => _httpHeaders = value;
+        }
 
         /// <summary>
         /// Port(s) attached to your frontend. Supports single port (numerical value),

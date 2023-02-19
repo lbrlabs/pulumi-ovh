@@ -47,7 +47,7 @@ type Kube struct {
 	// * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
 	// * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkConfiguration KubePrivateNetworkConfigurationPtrOutput `pulumi:"privateNetworkConfiguration"`
-	// OpenStack private network ID to use.
+	// OpenStack private network (or vrack) ID to use.
 	// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
 	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// a valid OVHcloud public cloud region ID in which the kubernetes
@@ -130,7 +130,7 @@ type kubeState struct {
 	// * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
 	// * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkConfiguration *KubePrivateNetworkConfiguration `pulumi:"privateNetworkConfiguration"`
-	// OpenStack private network ID to use.
+	// OpenStack private network (or vrack) ID to use.
 	// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// a valid OVHcloud public cloud region ID in which the kubernetes
@@ -174,7 +174,7 @@ type KubeState struct {
 	// * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
 	// * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkConfiguration KubePrivateNetworkConfigurationPtrInput
-	// OpenStack private network ID to use.
+	// OpenStack private network (or vrack) ID to use.
 	// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
 	PrivateNetworkId pulumi.StringPtrInput
 	// a valid OVHcloud public cloud region ID in which the kubernetes
@@ -212,7 +212,7 @@ type kubeArgs struct {
 	// * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
 	// * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkConfiguration *KubePrivateNetworkConfiguration `pulumi:"privateNetworkConfiguration"`
-	// OpenStack private network ID to use.
+	// OpenStack private network (or vrack) ID to use.
 	// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// a valid OVHcloud public cloud region ID in which the kubernetes
@@ -243,7 +243,7 @@ type KubeArgs struct {
 	// * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
 	// * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkConfiguration KubePrivateNetworkConfigurationPtrInput
-	// OpenStack private network ID to use.
+	// OpenStack private network (or vrack) ID to use.
 	// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
 	PrivateNetworkId pulumi.StringPtrInput
 	// a valid OVHcloud public cloud region ID in which the kubernetes
@@ -393,7 +393,7 @@ func (o KubeOutput) PrivateNetworkConfiguration() KubePrivateNetworkConfiguratio
 	return o.ApplyT(func(v *Kube) KubePrivateNetworkConfigurationPtrOutput { return v.PrivateNetworkConfiguration }).(KubePrivateNetworkConfigurationPtrOutput)
 }
 
-// OpenStack private network ID to use.
+// OpenStack private network (or vrack) ID to use.
 // Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
 func (o KubeOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Kube) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)

@@ -157,7 +157,7 @@ public class Kube extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.privateNetworkConfiguration);
     }
     /**
-     * OpenStack private network ID to use.
+     * OpenStack private network (or vrack) ID to use.
      * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
      * 
      */
@@ -165,7 +165,7 @@ public class Kube extends com.pulumi.resources.CustomResource {
     private Output</* @Nullable */ String> privateNetworkId;
 
     /**
-     * @return OpenStack private network ID to use.
+     * @return OpenStack private network (or vrack) ID to use.
      * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
      * 
      */

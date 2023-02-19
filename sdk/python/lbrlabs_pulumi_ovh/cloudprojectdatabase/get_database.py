@@ -22,7 +22,7 @@ class GetDatabaseResult:
     """
     A collection of values returned by getDatabase.
     """
-    def __init__(__self__, backup_time=None, created_at=None, description=None, endpoints=None, engine=None, flavor=None, id=None, kafka_rest_api=None, maintenance_time=None, network_type=None, nodes=None, opensearch_acls_enabled=None, plan=None, service_name=None, status=None, version=None):
+    def __init__(__self__, backup_time=None, created_at=None, description=None, disk_size=None, disk_type=None, endpoints=None, engine=None, flavor=None, id=None, kafka_rest_api=None, maintenance_time=None, network_type=None, nodes=None, opensearch_acls_enabled=None, plan=None, service_name=None, status=None, version=None):
         if backup_time and not isinstance(backup_time, str):
             raise TypeError("Expected argument 'backup_time' to be a str")
         pulumi.set(__self__, "backup_time", backup_time)
@@ -32,6 +32,12 @@ class GetDatabaseResult:
         if description and not isinstance(description, str):
             raise TypeError("Expected argument 'description' to be a str")
         pulumi.set(__self__, "description", description)
+        if disk_size and not isinstance(disk_size, int):
+            raise TypeError("Expected argument 'disk_size' to be a int")
+        pulumi.set(__self__, "disk_size", disk_size)
+        if disk_type and not isinstance(disk_type, str):
+            raise TypeError("Expected argument 'disk_type' to be a str")
+        pulumi.set(__self__, "disk_type", disk_type)
         if endpoints and not isinstance(endpoints, list):
             raise TypeError("Expected argument 'endpoints' to be a list")
         pulumi.set(__self__, "endpoints", endpoints)
@@ -95,6 +101,22 @@ class GetDatabaseResult:
         Small description of the database service.
         """
         return pulumi.get(self, "description")
+
+    @property
+    @pulumi.getter(name="diskSize")
+    def disk_size(self) -> int:
+        """
+        The disk size (in GB) of the database service.
+        """
+        return pulumi.get(self, "disk_size")
+
+    @property
+    @pulumi.getter(name="diskType")
+    def disk_type(self) -> str:
+        """
+        The disk type of the database service.
+        """
+        return pulumi.get(self, "disk_type")
 
     @property
     @pulumi.getter
@@ -207,6 +229,8 @@ class AwaitableGetDatabaseResult(GetDatabaseResult):
             backup_time=self.backup_time,
             created_at=self.created_at,
             description=self.description,
+            disk_size=self.disk_size,
+            disk_type=self.disk_type,
             endpoints=self.endpoints,
             engine=self.engine,
             flavor=self.flavor,
@@ -260,6 +284,8 @@ def get_database(engine: Optional[str] = None,
         backup_time=__ret__.backup_time,
         created_at=__ret__.created_at,
         description=__ret__.description,
+        disk_size=__ret__.disk_size,
+        disk_type=__ret__.disk_type,
         endpoints=__ret__.endpoints,
         engine=__ret__.engine,
         flavor=__ret__.flavor,

@@ -24,22 +24,32 @@ import * as utilities from "../utilities";
  *     ovhSubsidiary: "fr",
  *     description: "my cloud order cart",
  * });
- * const cloudCartProductPlan = mycart.then(mycart => ovh.Order.getCartProductPlan({
+ * const cloud = mycart.then(mycart => ovh.Order.getCartProductPlan({
  *     cartId: mycart.id,
  *     priceCapacity: "renew",
  *     product: "cloud",
  *     planCode: "project.2018",
  * }));
- * const cloudProject = new ovh.cloudproject.Project("cloudProject", {
+ * const myCloudProject = new ovh.cloudproject.Project("myCloudProject", {
  *     ovhSubsidiary: mycart.then(mycart => mycart.ovhSubsidiary),
  *     description: "my cloud project",
  *     paymentMean: "fidelity",
  *     plan: {
- *         duration: cloudCartProductPlan.then(cloudCartProductPlan => cloudCartProductPlan.selectedPrices?[0]?.duration),
- *         planCode: cloudCartProductPlan.then(cloudCartProductPlan => cloudCartProductPlan.planCode),
- *         pricingMode: cloudCartProductPlan.then(cloudCartProductPlan => cloudCartProductPlan.selectedPrices?[0]?.pricingMode),
+ *         duration: cloud.then(cloud => cloud.selectedPrices?[0]?.duration),
+ *         planCode: cloud.then(cloud => cloud.planCode),
+ *         pricingMode: cloud.then(cloud => cloud.selectedPrices?[0]?.pricingMode),
  *     },
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * Cloud project can be imported using the `order_id` that can be retrieved in the [order page](https://www.ovh.com/manager/#/dedicated/billing/orders/orders) at the creation time of the Public Cloud project.
+ *
+ * bash
+ *
+ * ```sh
+ *  $ pulumi import ovh:CloudProject/project:Project my_cloud_project order_id
  * ```
  */
 export class Project extends pulumi.CustomResource {
@@ -70,16 +80,13 @@ export class Project extends pulumi.CustomResource {
         return obj['__pulumiType'] === Project.__pulumiType;
     }
 
-    /**
-     * project access
-     */
     public /*out*/ readonly access!: pulumi.Output<string>;
     /**
      * A description associated with the user.
      */
     public readonly description!: pulumi.Output<string>;
     /**
-     * Details about an Order
+     * Details about the order that was used to create the public cloud project
      */
     public /*out*/ readonly orders!: pulumi.Output<outputs.CloudProject.ProjectOrder[]>;
     /**
@@ -165,16 +172,13 @@ export class Project extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Project resources.
  */
 export interface ProjectState {
-    /**
-     * project access
-     */
     access?: pulumi.Input<string>;
     /**
      * A description associated with the user.
      */
     description?: pulumi.Input<string>;
     /**
-     * Details about an Order
+     * Details about the order that was used to create the public cloud project
      */
     orders?: pulumi.Input<pulumi.Input<inputs.CloudProject.ProjectOrder>[]>;
     /**

@@ -35,10 +35,8 @@ public final class GetInstallationTemplateResult {
     private Boolean lvmReady;
     private List<GetInstallationTemplatePartitionScheme> partitionSchemes;
     private Boolean supportsDistributionKernel;
-    private Boolean supportsGptLabel;
     private Boolean supportsRtm;
     private Boolean supportsSqlServer;
-    private String supportsUefi;
     private String templateName;
 
     private GetInstallationTemplateResult() {}
@@ -97,17 +95,11 @@ public final class GetInstallationTemplateResult {
     public Boolean supportsDistributionKernel() {
         return this.supportsDistributionKernel;
     }
-    public Boolean supportsGptLabel() {
-        return this.supportsGptLabel;
-    }
     public Boolean supportsRtm() {
         return this.supportsRtm;
     }
     public Boolean supportsSqlServer() {
         return this.supportsSqlServer;
-    }
-    public String supportsUefi() {
-        return this.supportsUefi;
     }
     public String templateName() {
         return this.templateName;
@@ -139,10 +131,8 @@ public final class GetInstallationTemplateResult {
         private Boolean lvmReady;
         private List<GetInstallationTemplatePartitionScheme> partitionSchemes;
         private Boolean supportsDistributionKernel;
-        private Boolean supportsGptLabel;
         private Boolean supportsRtm;
         private Boolean supportsSqlServer;
-        private String supportsUefi;
         private String templateName;
         public Builder() {}
         public Builder(GetInstallationTemplateResult defaults) {
@@ -164,10 +154,8 @@ public final class GetInstallationTemplateResult {
     	      this.lvmReady = defaults.lvmReady;
     	      this.partitionSchemes = defaults.partitionSchemes;
     	      this.supportsDistributionKernel = defaults.supportsDistributionKernel;
-    	      this.supportsGptLabel = defaults.supportsGptLabel;
     	      this.supportsRtm = defaults.supportsRtm;
     	      this.supportsSqlServer = defaults.supportsSqlServer;
-    	      this.supportsUefi = defaults.supportsUefi;
     	      this.templateName = defaults.templateName;
         }
 
@@ -269,11 +257,6 @@ public final class GetInstallationTemplateResult {
             return this;
         }
         @CustomType.Setter
-        public Builder supportsGptLabel(Boolean supportsGptLabel) {
-            this.supportsGptLabel = Objects.requireNonNull(supportsGptLabel);
-            return this;
-        }
-        @CustomType.Setter
         public Builder supportsRtm(Boolean supportsRtm) {
             this.supportsRtm = Objects.requireNonNull(supportsRtm);
             return this;
@@ -281,11 +264,6 @@ public final class GetInstallationTemplateResult {
         @CustomType.Setter
         public Builder supportsSqlServer(Boolean supportsSqlServer) {
             this.supportsSqlServer = Objects.requireNonNull(supportsSqlServer);
-            return this;
-        }
-        @CustomType.Setter
-        public Builder supportsUefi(String supportsUefi) {
-            this.supportsUefi = Objects.requireNonNull(supportsUefi);
             return this;
         }
         @CustomType.Setter
@@ -312,10 +290,8 @@ public final class GetInstallationTemplateResult {
             o.lvmReady = lvmReady;
             o.partitionSchemes = partitionSchemes;
             o.supportsDistributionKernel = supportsDistributionKernel;
-            o.supportsGptLabel = supportsGptLabel;
             o.supportsRtm = supportsRtm;
             o.supportsSqlServer = supportsSqlServer;
-            o.supportsUefi = supportsUefi;
             o.templateName = templateName;
             return o;
         }

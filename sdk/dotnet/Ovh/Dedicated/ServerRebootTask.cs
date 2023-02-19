@@ -23,14 +23,14 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
     /// {
     ///     var rescue = Ovh.Dedicated.GetServerBoots.Invoke(new()
     ///     {
-    ///         ServiceName = "ns00000.ip-1-2-3.eu",
+    ///         ServiceName = "nsxxxxxxx.ip-xx-xx-xx.eu",
     ///         BootType = "rescue",
     ///         Kernel = "rescue64-pro",
     ///     });
     /// 
     ///     var serverOnRescue = new Ovh.Dedicated.ServerUpdate("serverOnRescue", new()
     ///     {
-    ///         ServiceName = "ns00000.ip-1-2-3.eu",
+    ///         ServiceName = "nsxxxxxxx.ip-xx-xx-xx.eu",
     ///         BootId = rescue.Apply(getServerBootsResult =&gt; getServerBootsResult.Results[0]),
     ///         Monitoring = true,
     ///         State = "ok",
@@ -70,7 +70,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
         public Output<string> Function { get; private set; } = null!;
 
         /// <summary>
-        /// List of values traccked to trigger reboot, used also to form implicit dependencies
+        /// List of values tracked to trigger reboot, used also to form implicit dependencies.
         /// </summary>
         [Output("keepers")]
         public Output<ImmutableArray<string>> Keepers { get; private set; } = null!;
@@ -150,7 +150,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
         private InputList<string>? _keepers;
 
         /// <summary>
-        /// List of values traccked to trigger reboot, used also to form implicit dependencies
+        /// List of values tracked to trigger reboot, used also to form implicit dependencies.
         /// </summary>
         public InputList<string> Keepers
         {
@@ -194,7 +194,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
         private InputList<string>? _keepers;
 
         /// <summary>
-        /// List of values traccked to trigger reboot, used also to form implicit dependencies
+        /// List of values tracked to trigger reboot, used also to form implicit dependencies.
         /// </summary>
         public InputList<string> Keepers
         {

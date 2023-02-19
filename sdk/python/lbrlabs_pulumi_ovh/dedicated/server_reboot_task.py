@@ -18,7 +18,7 @@ class ServerRebootTaskArgs:
                  service_name: pulumi.Input[str]):
         """
         The set of arguments for constructing a ServerRebootTask resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] keepers: List of values traccked to trigger reboot, used also to form implicit dependencies
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] keepers: List of values tracked to trigger reboot, used also to form implicit dependencies.
         :param pulumi.Input[str] service_name: The service_name of your dedicated server.
         """
         pulumi.set(__self__, "keepers", keepers)
@@ -28,7 +28,7 @@ class ServerRebootTaskArgs:
     @pulumi.getter
     def keepers(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        List of values traccked to trigger reboot, used also to form implicit dependencies
+        List of values tracked to trigger reboot, used also to form implicit dependencies.
         """
         return pulumi.get(self, "keepers")
 
@@ -65,7 +65,7 @@ class _ServerRebootTaskState:
         :param pulumi.Input[str] comment: Details of this task. (should be `Reboot asked`)
         :param pulumi.Input[str] done_date: Completion date in RFC3339 format.
         :param pulumi.Input[str] function: Function name (should be `hardReboot`).
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] keepers: List of values traccked to trigger reboot, used also to form implicit dependencies
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] keepers: List of values tracked to trigger reboot, used also to form implicit dependencies.
         :param pulumi.Input[str] last_update: Last update in RFC3339 format.
         :param pulumi.Input[str] service_name: The service_name of your dedicated server.
         :param pulumi.Input[str] start_date: Task creation date in RFC3339 format.
@@ -128,7 +128,7 @@ class _ServerRebootTaskState:
     @pulumi.getter
     def keepers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of values traccked to trigger reboot, used also to form implicit dependencies
+        List of values tracked to trigger reboot, used also to form implicit dependencies.
         """
         return pulumi.get(self, "keepers")
 
@@ -201,11 +201,11 @@ class ServerRebootTask(pulumi.CustomResource):
         import lbrlabs_pulumi_ovh as ovh
         import pulumi_ovh as ovh
 
-        rescue = ovh.Dedicated.get_server_boots(service_name="ns00000.ip-1-2-3.eu",
+        rescue = ovh.Dedicated.get_server_boots(service_name="nsxxxxxxx.ip-xx-xx-xx.eu",
             boot_type="rescue",
             kernel="rescue64-pro")
         server_on_rescue = ovh.dedicated.ServerUpdate("serverOnRescue",
-            service_name="ns00000.ip-1-2-3.eu",
+            service_name="nsxxxxxxx.ip-xx-xx-xx.eu",
             boot_id=rescue.results[0],
             monitoring=True,
             state="ok")
@@ -216,7 +216,7 @@ class ServerRebootTask(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] keepers: List of values traccked to trigger reboot, used also to form implicit dependencies
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] keepers: List of values tracked to trigger reboot, used also to form implicit dependencies.
         :param pulumi.Input[str] service_name: The service_name of your dedicated server.
         """
         ...
@@ -233,11 +233,11 @@ class ServerRebootTask(pulumi.CustomResource):
         import lbrlabs_pulumi_ovh as ovh
         import pulumi_ovh as ovh
 
-        rescue = ovh.Dedicated.get_server_boots(service_name="ns00000.ip-1-2-3.eu",
+        rescue = ovh.Dedicated.get_server_boots(service_name="nsxxxxxxx.ip-xx-xx-xx.eu",
             boot_type="rescue",
             kernel="rescue64-pro")
         server_on_rescue = ovh.dedicated.ServerUpdate("serverOnRescue",
-            service_name="ns00000.ip-1-2-3.eu",
+            service_name="nsxxxxxxx.ip-xx-xx-xx.eu",
             boot_id=rescue.results[0],
             monitoring=True,
             state="ok")
@@ -312,7 +312,7 @@ class ServerRebootTask(pulumi.CustomResource):
         :param pulumi.Input[str] comment: Details of this task. (should be `Reboot asked`)
         :param pulumi.Input[str] done_date: Completion date in RFC3339 format.
         :param pulumi.Input[str] function: Function name (should be `hardReboot`).
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] keepers: List of values traccked to trigger reboot, used also to form implicit dependencies
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] keepers: List of values tracked to trigger reboot, used also to form implicit dependencies.
         :param pulumi.Input[str] last_update: Last update in RFC3339 format.
         :param pulumi.Input[str] service_name: The service_name of your dedicated server.
         :param pulumi.Input[str] start_date: Task creation date in RFC3339 format.
@@ -360,7 +360,7 @@ class ServerRebootTask(pulumi.CustomResource):
     @pulumi.getter
     def keepers(self) -> pulumi.Output[Sequence[str]]:
         """
-        List of values traccked to trigger reboot, used also to form implicit dependencies
+        List of values tracked to trigger reboot, used also to form implicit dependencies.
         """
         return pulumi.get(self, "keepers")
 

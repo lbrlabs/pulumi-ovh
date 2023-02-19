@@ -155,6 +155,14 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// </summary>
         public readonly string Description;
         /// <summary>
+        /// The disk size (in GB) of the database service.
+        /// </summary>
+        public readonly int DiskSize;
+        /// <summary>
+        /// The disk type of the database service.
+        /// </summary>
+        public readonly string DiskType;
+        /// <summary>
         /// List of all endpoints objects of the service.
         /// </summary>
         public readonly ImmutableArray<Outputs.GetDatabaseEndpointResult> Endpoints;
@@ -212,6 +220,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
 
             string description,
 
+            int diskSize,
+
+            string diskType,
+
             ImmutableArray<Outputs.GetDatabaseEndpointResult> endpoints,
 
             string engine,
@@ -241,6 +253,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
             BackupTime = backupTime;
             CreatedAt = createdAt;
             Description = description;
+            DiskSize = diskSize;
+            DiskType = diskType;
             Endpoints = endpoints;
             Engine = engine;
             Flavor = flavor;

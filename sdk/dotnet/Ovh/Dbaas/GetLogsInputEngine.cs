@@ -30,6 +30,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
         ///     {
         ///         IsDeprecated = true,
         ///         Name = "logstash",
+        ///         ServiceName = "ldp-xx-xxxxx",
         ///         Version = "6.8",
         ///     });
         /// 
@@ -38,7 +39,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Task<GetLogsInputEngineResult> InvokeAsync(GetLogsInputEngineArgs? args = null, InvokeOptions? options = null)
+        public static Task<GetLogsInputEngineResult> InvokeAsync(GetLogsInputEngineArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetLogsInputEngineResult>("ovh:Dbaas/getLogsInputEngine:getLogsInputEngine", args ?? new GetLogsInputEngineArgs(), options.WithDefaults());
 
         /// <summary>
@@ -59,6 +60,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
         ///     {
         ///         IsDeprecated = true,
         ///         Name = "logstash",
+        ///         ServiceName = "ldp-xx-xxxxx",
         ///         Version = "6.8",
         ///     });
         /// 
@@ -67,7 +69,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
         /// {{% /example %}}
         /// {{% /examples %}}
         /// </summary>
-        public static Output<GetLogsInputEngineResult> Invoke(GetLogsInputEngineInvokeArgs? args = null, InvokeOptions? options = null)
+        public static Output<GetLogsInputEngineResult> Invoke(GetLogsInputEngineInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetLogsInputEngineResult>("ovh:Dbaas/getLogsInputEngine:getLogsInputEngine", args ?? new GetLogsInputEngineInvokeArgs(), options.WithDefaults());
     }
 
@@ -85,6 +87,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
         /// </summary>
         [Input("name")]
         public string? Name { get; set; }
+
+        /// <summary>
+        /// The service name. It's the ID of your Logs Data Platform instance.
+        /// </summary>
+        [Input("serviceName", required: true)]
+        public string ServiceName { get; set; } = null!;
 
         /// <summary>
         /// Software version
@@ -113,6 +121,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
         public Input<string>? Name { get; set; }
 
         /// <summary>
+        /// The service name. It's the ID of your Logs Data Platform instance.
+        /// </summary>
+        [Input("serviceName", required: true)]
+        public Input<string> ServiceName { get; set; } = null!;
+
+        /// <summary>
         /// Software version
         /// </summary>
         [Input("version")]
@@ -134,6 +148,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
         public readonly string Id;
         public readonly bool IsDeprecated;
         public readonly string Name;
+        public readonly string ServiceName;
         public readonly string Version;
 
         [OutputConstructor]
@@ -144,11 +159,14 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
 
             string name,
 
+            string serviceName,
+
             string version)
         {
             Id = id;
             IsDeprecated = isDeprecated;
             Name = name;
+            ServiceName = serviceName;
             Version = version;
         }
     }

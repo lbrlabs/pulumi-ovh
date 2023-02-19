@@ -60,15 +60,30 @@ export const getKube: typeof import("./getKube").getKube = null as any;
 export const getKubeOutput: typeof import("./getKube").getKubeOutput = null as any;
 utilities.lazyLoad(exports, ["getKube","getKubeOutput"], () => require("./getKube"));
 
-export { GetKubeIpNodePoolArgs, GetKubeIpNodePoolResult, GetKubeIpNodePoolOutputArgs } from "./getKubeIpNodePool";
-export const getKubeIpNodePool: typeof import("./getKubeIpNodePool").getKubeIpNodePool = null as any;
-export const getKubeIpNodePoolOutput: typeof import("./getKubeIpNodePool").getKubeIpNodePoolOutput = null as any;
-utilities.lazyLoad(exports, ["getKubeIpNodePool","getKubeIpNodePoolOutput"], () => require("./getKubeIpNodePool"));
-
 export { GetKubeIpRestrictionsArgs, GetKubeIpRestrictionsResult, GetKubeIpRestrictionsOutputArgs } from "./getKubeIpRestrictions";
 export const getKubeIpRestrictions: typeof import("./getKubeIpRestrictions").getKubeIpRestrictions = null as any;
 export const getKubeIpRestrictionsOutput: typeof import("./getKubeIpRestrictions").getKubeIpRestrictionsOutput = null as any;
 utilities.lazyLoad(exports, ["getKubeIpRestrictions","getKubeIpRestrictionsOutput"], () => require("./getKubeIpRestrictions"));
+
+export { GetKubeNodePoolArgs, GetKubeNodePoolResult, GetKubeNodePoolOutputArgs } from "./getKubeNodePool";
+export const getKubeNodePool: typeof import("./getKubeNodePool").getKubeNodePool = null as any;
+export const getKubeNodePoolOutput: typeof import("./getKubeNodePool").getKubeNodePoolOutput = null as any;
+utilities.lazyLoad(exports, ["getKubeNodePool","getKubeNodePoolOutput"], () => require("./getKubeNodePool"));
+
+export { GetKubeNodePoolNodesArgs, GetKubeNodePoolNodesResult, GetKubeNodePoolNodesOutputArgs } from "./getKubeNodePoolNodes";
+export const getKubeNodePoolNodes: typeof import("./getKubeNodePoolNodes").getKubeNodePoolNodes = null as any;
+export const getKubeNodePoolNodesOutput: typeof import("./getKubeNodePoolNodes").getKubeNodePoolNodesOutput = null as any;
+utilities.lazyLoad(exports, ["getKubeNodePoolNodes","getKubeNodePoolNodesOutput"], () => require("./getKubeNodePoolNodes"));
+
+export { GetKubeNodesArgs, GetKubeNodesResult, GetKubeNodesOutputArgs } from "./getKubeNodes";
+export const getKubeNodes: typeof import("./getKubeNodes").getKubeNodes = null as any;
+export const getKubeNodesOutput: typeof import("./getKubeNodes").getKubeNodesOutput = null as any;
+utilities.lazyLoad(exports, ["getKubeNodes","getKubeNodesOutput"], () => require("./getKubeNodes"));
+
+export { GetKubeOidcArgs, GetKubeOidcResult, GetKubeOidcOutputArgs } from "./getKubeOidc";
+export const getKubeOidc: typeof import("./getKubeOidc").getKubeOidc = null as any;
+export const getKubeOidcOutput: typeof import("./getKubeOidc").getKubeOidcOutput = null as any;
+utilities.lazyLoad(exports, ["getKubeOidc","getKubeOidcOutput"], () => require("./getKubeOidc"));
 
 export { GetM3dbNamespaceArgs, GetM3dbNamespaceResult, GetM3dbNamespaceOutputArgs } from "./getM3dbNamespace";
 export const getM3dbNamespace: typeof import("./getM3dbNamespace").getM3dbNamespace = null as any;
@@ -180,6 +195,11 @@ export type Project = import("./project").Project;
 export const Project: typeof import("./project").Project = null as any;
 utilities.lazyLoad(exports, ["Project"], () => require("./project"));
 
+export { RegionStoragePresignArgs, RegionStoragePresignState } from "./regionStoragePresign";
+export type RegionStoragePresign = import("./regionStoragePresign").RegionStoragePresign;
+export const RegionStoragePresign: typeof import("./regionStoragePresign").RegionStoragePresign = null as any;
+utilities.lazyLoad(exports, ["RegionStoragePresign"], () => require("./regionStoragePresign"));
+
 export { S3CredentialArgs, S3CredentialState } from "./s3credential";
 export type S3Credential = import("./s3credential").S3Credential;
 export const S3Credential: typeof import("./s3credential").S3Credential = null as any;
@@ -222,6 +242,8 @@ const _module = {
                 return new NetworkPrivateSubnet(name, <any>undefined, { urn })
             case "ovh:CloudProject/project:Project":
                 return new Project(name, <any>undefined, { urn })
+            case "ovh:CloudProject/regionStoragePresign:RegionStoragePresign":
+                return new RegionStoragePresign(name, <any>undefined, { urn })
             case "ovh:CloudProject/s3Credential:S3Credential":
                 return new S3Credential(name, <any>undefined, { urn })
             case "ovh:CloudProject/s3Policy:S3Policy":
@@ -244,6 +266,7 @@ pulumi.runtime.registerResourceModule("ovh", "CloudProject/kubeOidc", _module)
 pulumi.runtime.registerResourceModule("ovh", "CloudProject/networkPrivate", _module)
 pulumi.runtime.registerResourceModule("ovh", "CloudProject/networkPrivateSubnet", _module)
 pulumi.runtime.registerResourceModule("ovh", "CloudProject/project", _module)
+pulumi.runtime.registerResourceModule("ovh", "CloudProject/regionStoragePresign", _module)
 pulumi.runtime.registerResourceModule("ovh", "CloudProject/s3Credential", _module)
 pulumi.runtime.registerResourceModule("ovh", "CloudProject/s3Policy", _module)
 pulumi.runtime.registerResourceModule("ovh", "CloudProject/user", _module)

@@ -26,6 +26,8 @@ if typing.TYPE_CHECKING:
     dedicated = __dedicated
     import lbrlabs_pulumi_ovh.domain as __domain
     domain = __domain
+    import lbrlabs_pulumi_ovh.hosting as __hosting
+    hosting = __hosting
     import lbrlabs_pulumi_ovh.ip as __ip
     ip = __ip
     import lbrlabs_pulumi_ovh.iploadbalancing as __iploadbalancing
@@ -45,6 +47,7 @@ else:
     dbaas = _utilities.lazy_import('lbrlabs_pulumi_ovh.dbaas')
     dedicated = _utilities.lazy_import('lbrlabs_pulumi_ovh.dedicated')
     domain = _utilities.lazy_import('lbrlabs_pulumi_ovh.domain')
+    hosting = _utilities.lazy_import('lbrlabs_pulumi_ovh.hosting')
     ip = _utilities.lazy_import('lbrlabs_pulumi_ovh.ip')
     iploadbalancing = _utilities.lazy_import('lbrlabs_pulumi_ovh.iploadbalancing')
     me = _utilities.lazy_import('lbrlabs_pulumi_ovh.me')
@@ -141,6 +144,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_ovh.cloudproject",
   "classes": {
    "ovh:CloudProject/project:Project": "Project"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "CloudProject/regionStoragePresign",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
+  "classes": {
+   "ovh:CloudProject/regionStoragePresign:RegionStoragePresign": "RegionStoragePresign"
   }
  },
  {
@@ -297,6 +308,46 @@ _utilities.register(
  },
  {
   "pkg": "ovh",
+  "mod": "Dedicated/nasHAPartition",
+  "fqn": "lbrlabs_pulumi_ovh.dedicated",
+  "classes": {
+   "ovh:Dedicated/nasHAPartition:NasHAPartition": "NasHAPartition"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Dedicated/nasHAPartitionAccess",
+  "fqn": "lbrlabs_pulumi_ovh.dedicated",
+  "classes": {
+   "ovh:Dedicated/nasHAPartitionAccess:NasHAPartitionAccess": "NasHAPartitionAccess"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Dedicated/nasHAPartitionSnapshot",
+  "fqn": "lbrlabs_pulumi_ovh.dedicated",
+  "classes": {
+   "ovh:Dedicated/nasHAPartitionSnapshot:NasHAPartitionSnapshot": "NasHAPartitionSnapshot"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Dedicated/serverInstallTask",
+  "fqn": "lbrlabs_pulumi_ovh.dedicated",
+  "classes": {
+   "ovh:Dedicated/serverInstallTask:ServerInstallTask": "ServerInstallTask"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Dedicated/serverNetworking",
+  "fqn": "lbrlabs_pulumi_ovh.dedicated",
+  "classes": {
+   "ovh:Dedicated/serverNetworking:ServerNetworking": "ServerNetworking"
+  }
+ },
+ {
+  "pkg": "ovh",
   "mod": "Dedicated/serverRebootTask",
   "fqn": "lbrlabs_pulumi_ovh.dedicated",
   "classes": {
@@ -309,14 +360,6 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_ovh.dedicated",
   "classes": {
    "ovh:Dedicated/serverUpdate:ServerUpdate": "ServerUpdate"
-  }
- },
- {
-  "pkg": "ovh",
-  "mod": "Dedicated/serviceInstallTask",
-  "fqn": "lbrlabs_pulumi_ovh.dedicated",
-  "classes": {
-   "ovh:Dedicated/serviceInstallTask:ServiceInstallTask": "ServiceInstallTask"
   }
  },
  {
@@ -341,6 +384,46 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_ovh.domain",
   "classes": {
    "ovh:Domain/zoneRedirection:ZoneRedirection": "ZoneRedirection"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Hosting/privateDatabase",
+  "fqn": "lbrlabs_pulumi_ovh.hosting",
+  "classes": {
+   "ovh:Hosting/privateDatabase:PrivateDatabase": "PrivateDatabase"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Hosting/privateDatabaseAllowlist",
+  "fqn": "lbrlabs_pulumi_ovh.hosting",
+  "classes": {
+   "ovh:Hosting/privateDatabaseAllowlist:PrivateDatabaseAllowlist": "PrivateDatabaseAllowlist"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Hosting/privateDatabaseDb",
+  "fqn": "lbrlabs_pulumi_ovh.hosting",
+  "classes": {
+   "ovh:Hosting/privateDatabaseDb:PrivateDatabaseDb": "PrivateDatabaseDb"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Hosting/privateDatabaseUser",
+  "fqn": "lbrlabs_pulumi_ovh.hosting",
+  "classes": {
+   "ovh:Hosting/privateDatabaseUser:PrivateDatabaseUser": "PrivateDatabaseUser"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Hosting/privateDatabaseUserGrant",
+  "fqn": "lbrlabs_pulumi_ovh.hosting",
+  "classes": {
+   "ovh:Hosting/privateDatabaseUserGrant:PrivateDatabaseUserGrant": "PrivateDatabaseUserGrant"
   }
  },
  {

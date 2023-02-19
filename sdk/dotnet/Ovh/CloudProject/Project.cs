@@ -33,7 +33,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///         Description = "my cloud order cart",
     ///     });
     /// 
-    ///     var cloudCartProductPlan = Ovh.Order.GetCartProductPlan.Invoke(new()
+    ///     var cloud = Ovh.Order.GetCartProductPlan.Invoke(new()
     ///     {
     ///         CartId = mycart.Apply(getCartResult =&gt; getCartResult.Id),
     ///         PriceCapacity = "renew",
@@ -41,28 +41,35 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///         PlanCode = "project.2018",
     ///     });
     /// 
-    ///     var cloudProject = new Ovh.CloudProject.Project("cloudProject", new()
+    ///     var myCloudProject = new Ovh.CloudProject.Project("myCloudProject", new()
     ///     {
     ///         OvhSubsidiary = mycart.Apply(getCartResult =&gt; getCartResult.OvhSubsidiary),
     ///         Description = "my cloud project",
     ///         PaymentMean = "fidelity",
     ///         Plan = new Ovh.CloudProject.Inputs.ProjectPlanArgs
     ///         {
-    ///             Duration = cloudCartProductPlan.Apply(getCartProductPlanResult =&gt; getCartProductPlanResult.SelectedPrices[0]?.Duration),
-    ///             PlanCode = cloudCartProductPlan.Apply(getCartProductPlanResult =&gt; getCartProductPlanResult.PlanCode),
-    ///             PricingMode = cloudCartProductPlan.Apply(getCartProductPlanResult =&gt; getCartProductPlanResult.SelectedPrices[0]?.PricingMode),
+    ///             Duration = cloud.Apply(getCartProductPlanResult =&gt; getCartProductPlanResult.SelectedPrices[0]?.Duration),
+    ///             PlanCode = cloud.Apply(getCartProductPlanResult =&gt; getCartProductPlanResult.PlanCode),
+    ///             PricingMode = cloud.Apply(getCartProductPlanResult =&gt; getCartProductPlanResult.SelectedPrices[0]?.PricingMode),
     ///         },
     ///     });
     /// 
     /// });
     /// ```
+    /// 
+    /// ## Import
+    /// 
+    /// Cloud project can be imported using the `order_id` that can be retrieved in the [order page](https://www.ovh.com/manager/#/dedicated/billing/orders/orders) at the creation time of the Public Cloud project.
+    /// 
+    /// bash
+    /// 
+    /// ```sh
+    ///  $ pulumi import ovh:CloudProject/project:Project my_cloud_project order_id
+    /// ```
     /// </summary>
     [OvhResourceType("ovh:CloudProject/project:Project")]
     public partial class Project : global::Pulumi.CustomResource
     {
-        /// <summary>
-        /// project access
-        /// </summary>
         [Output("access")]
         public Output<string> Access { get; private set; } = null!;
 
@@ -73,7 +80,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// Details about an Order
+        /// Details about the order that was used to create the public cloud project
         /// </summary>
         [Output("orders")]
         public Output<ImmutableArray<Outputs.ProjectOrder>> Orders { get; private set; } = null!;
@@ -211,9 +218,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
 
     public sealed class ProjectState : global::Pulumi.ResourceArgs
     {
-        /// <summary>
-        /// project access
-        /// </summary>
         [Input("access")]
         public Input<string>? Access { get; set; }
 
@@ -227,7 +231,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         private InputList<Inputs.ProjectOrderGetArgs>? _orders;
 
         /// <summary>
-        /// Details about an Order
+        /// Details about the order that was used to create the public cloud project
         /// </summary>
         public InputList<Inputs.ProjectOrderGetArgs> Orders
         {

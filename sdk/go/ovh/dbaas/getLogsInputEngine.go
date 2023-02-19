@@ -29,6 +29,7 @@ import (
 //			_, err = Dbaas.GetLogsInputEngine(ctx, &dbaas.GetLogsInputEngineArgs{
 //				IsDeprecated: pulumi.BoolRef(true),
 //				Name:         pulumi.StringRef("logstash"),
+//				ServiceName:  "ldp-xx-xxxxx",
 //				Version:      pulumi.StringRef("6.8"),
 //			}, nil)
 //			if err != nil {
@@ -55,6 +56,8 @@ type GetLogsInputEngineArgs struct {
 	IsDeprecated *bool `pulumi:"isDeprecated"`
 	// The name of the logs input engine.
 	Name *string `pulumi:"name"`
+	// The service name. It's the ID of your Logs Data Platform instance.
+	ServiceName string `pulumi:"serviceName"`
 	// Software version
 	Version *string `pulumi:"version"`
 }
@@ -65,6 +68,7 @@ type GetLogsInputEngineResult struct {
 	Id           string `pulumi:"id"`
 	IsDeprecated bool   `pulumi:"isDeprecated"`
 	Name         string `pulumi:"name"`
+	ServiceName  string `pulumi:"serviceName"`
 	Version      string `pulumi:"version"`
 }
 
@@ -87,6 +91,8 @@ type GetLogsInputEngineOutputArgs struct {
 	IsDeprecated pulumi.BoolPtrInput `pulumi:"isDeprecated"`
 	// The name of the logs input engine.
 	Name pulumi.StringPtrInput `pulumi:"name"`
+	// The service name. It's the ID of your Logs Data Platform instance.
+	ServiceName pulumi.StringInput `pulumi:"serviceName"`
 	// Software version
 	Version pulumi.StringPtrInput `pulumi:"version"`
 }
@@ -121,6 +127,10 @@ func (o GetLogsInputEngineResultOutput) IsDeprecated() pulumi.BoolOutput {
 
 func (o GetLogsInputEngineResultOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetLogsInputEngineResult) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetLogsInputEngineResultOutput) ServiceName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetLogsInputEngineResult) string { return v.ServiceName }).(pulumi.StringOutput)
 }
 
 func (o GetLogsInputEngineResultOutput) Version() pulumi.StringOutput {

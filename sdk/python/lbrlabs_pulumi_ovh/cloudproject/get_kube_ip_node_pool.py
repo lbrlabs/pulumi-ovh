@@ -8,6 +8,8 @@ import pulumi
 import pulumi.runtime
 from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
+from . import outputs
+from ._inputs import *
 
 __all__ = [
     'GetKubeIpNodePoolResult',
@@ -21,7 +23,7 @@ class GetKubeIpNodePoolResult:
     """
     A collection of values returned by getKubeIpNodePool.
     """
-    def __init__(__self__, anti_affinity=None, autoscale=None, available_nodes=None, created_at=None, current_nodes=None, desired_nodes=None, flavor=None, flavor_name=None, id=None, kube_id=None, max_nodes=None, min_nodes=None, monthly_billed=None, name=None, project_id=None, service_name=None, size_status=None, status=None, up_to_date_nodes=None, updated_at=None):
+    def __init__(__self__, anti_affinity=None, autoscale=None, available_nodes=None, created_at=None, current_nodes=None, desired_nodes=None, flavor=None, flavor_name=None, id=None, kube_id=None, max_nodes=None, min_nodes=None, monthly_billed=None, name=None, project_id=None, service_name=None, size_status=None, status=None, template=None, up_to_date_nodes=None, updated_at=None):
         if anti_affinity and not isinstance(anti_affinity, bool):
             raise TypeError("Expected argument 'anti_affinity' to be a bool")
         pulumi.set(__self__, "anti_affinity", anti_affinity)
@@ -76,6 +78,9 @@ class GetKubeIpNodePoolResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if template and not isinstance(template, dict):
+            raise TypeError("Expected argument 'template' to be a dict")
+        pulumi.set(__self__, "template", template)
         if up_to_date_nodes and not isinstance(up_to_date_nodes, int):
             raise TypeError("Expected argument 'up_to_date_nodes' to be a int")
         pulumi.set(__self__, "up_to_date_nodes", up_to_date_nodes)
@@ -234,6 +239,11 @@ class GetKubeIpNodePoolResult:
         return pulumi.get(self, "status")
 
     @property
+    @pulumi.getter
+    def template(self) -> Optional['outputs.GetKubeIpNodePoolTemplateResult']:
+        return pulumi.get(self, "template")
+
+    @property
     @pulumi.getter(name="upToDateNodes")
     def up_to_date_nodes(self) -> int:
         """
@@ -274,15 +284,15 @@ class AwaitableGetKubeIpNodePoolResult(GetKubeIpNodePoolResult):
             service_name=self.service_name,
             size_status=self.size_status,
             status=self.status,
+            template=self.template,
             up_to_date_nodes=self.up_to_date_nodes,
             updated_at=self.updated_at)
 
 
 def get_kube_ip_node_pool(kube_id: Optional[str] = None,
-                          max_nodes: Optional[int] = None,
-                          min_nodes: Optional[int] = None,
                           name: Optional[str] = None,
                           service_name: Optional[str] = None,
+                          template: Optional[pulumi.InputType['GetKubeIpNodePoolTemplateArgs']] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetKubeIpNodePoolResult:
     """
     Use this data source to get a OVHcloud Managed Kubernetes node pool.
@@ -301,20 +311,15 @@ def get_kube_ip_node_pool(kube_id: Optional[str] = None,
 
 
     :param str kube_id: The id of the managed kubernetes cluster.
-    :param int max_nodes: maximum number of nodes allowed in the pool.
-           Setting `desired_nodes` over this value will raise an error.
-    :param int min_nodes: minimum number of nodes allowed in the pool.
-           Setting `desired_nodes` under this value will raise an error.
     :param str name: The name of the node pool.
     :param str service_name: The id of the public cloud project. If omitted,
            the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
     """
     __args__ = dict()
     __args__['kubeId'] = kube_id
-    __args__['maxNodes'] = max_nodes
-    __args__['minNodes'] = min_nodes
     __args__['name'] = name
     __args__['serviceName'] = service_name
+    __args__['template'] = template
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getKubeIpNodePool:getKubeIpNodePool', __args__, opts=opts, typ=GetKubeIpNodePoolResult).value
 
@@ -337,16 +342,16 @@ def get_kube_ip_node_pool(kube_id: Optional[str] = None,
         service_name=__ret__.service_name,
         size_status=__ret__.size_status,
         status=__ret__.status,
+        template=__ret__.template,
         up_to_date_nodes=__ret__.up_to_date_nodes,
         updated_at=__ret__.updated_at)
 
 
 @_utilities.lift_output_func(get_kube_ip_node_pool)
 def get_kube_ip_node_pool_output(kube_id: Optional[pulumi.Input[str]] = None,
-                                 max_nodes: Optional[pulumi.Input[Optional[int]]] = None,
-                                 min_nodes: Optional[pulumi.Input[Optional[int]]] = None,
                                  name: Optional[pulumi.Input[str]] = None,
                                  service_name: Optional[pulumi.Input[str]] = None,
+                                 template: Optional[pulumi.Input[Optional[pulumi.InputType['GetKubeIpNodePoolTemplateArgs']]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetKubeIpNodePoolResult]:
     """
     Use this data source to get a OVHcloud Managed Kubernetes node pool.
@@ -365,10 +370,6 @@ def get_kube_ip_node_pool_output(kube_id: Optional[pulumi.Input[str]] = None,
 
 
     :param str kube_id: The id of the managed kubernetes cluster.
-    :param int max_nodes: maximum number of nodes allowed in the pool.
-           Setting `desired_nodes` over this value will raise an error.
-    :param int min_nodes: minimum number of nodes allowed in the pool.
-           Setting `desired_nodes` under this value will raise an error.
     :param str name: The name of the node pool.
     :param str service_name: The id of the public cloud project. If omitted,
            the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.

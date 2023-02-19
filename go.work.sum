@@ -34,6 +34,10 @@ github.com/moby/moby v20.10.18+incompatible/go.mod h1:fDXVQ6+S340veQPv35CzDahGBm
 github.com/mxschmitt/golang-combinations v1.0.0/go.mod h1:RbMhWvfCelHR6WROvT2bVfxJvZHoEvBj71SKe+H0MYU=
 github.com/nbutton23/zxcvbn-go v0.0.0-20180912185939-ae427f1e4c1d/go.mod h1:o96djdrsSGy3AWPyBgZMAGfxZNfgntdJG+11KU4QvbU=
 github.com/nightlyone/lockfile v1.0.0/go.mod h1:rywoIealpdNse2r832aiD9jRk8ErCatROs6LzC841CI=
+github.com/ovh/go-ovh v1.3.0 h1:mvZaddk4E4kLcXhzb+cxBsMPYp2pHqiQpWYkInsuZPQ=
+github.com/ovh/go-ovh v1.3.0/go.mod h1:AxitLZ5HBRPyUd+Zl60Ajaag+rNTdVXWIkzfrVuTXWA=
+github.com/ovh/terraform-provider-ovh v0.27.0 h1:cOLADynijHzBoEKiY8C8Wizk/4XSNxM44yvTu6xvF2I=
+github.com/ovh/terraform-provider-ovh v0.27.0/go.mod h1:LJlJMtMffCGeqMv88Bzksm7q96L84uNUJnzLbaL+UWc=
 github.com/pelletier/go-buffruneio v0.2.0/go.mod h1:JkE26KsDizTr40EUHkXVtNPvgGtbSNq5BcowyYOWdKo=
 github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c/go.mod h1:OmDBASR4679mdNQnz2pUhc2G8CO2JrUAVFDRBDP/hJE=
 github.com/pulumi/pulumi-java/pkg v0.5.4 h1:hQH7BrEMWvwq/uzsi0XsULoQ8WPpBpqK/rosnggsdDI=

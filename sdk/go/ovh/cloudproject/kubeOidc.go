@@ -28,10 +28,23 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := CloudProject.NewKubeOidc(ctx, "my-oidc", &CloudProject.KubeOidcArgs{
-//				ServiceName: pulumi.Any(_var.Projectid),
-//				KubeId:      pulumi.Any(ovh_cloud_project_kube.Mykube.Id),
-//				ClientId:    pulumi.String("xxx"),
-//				IssuerUrl:   pulumi.String("https://ovh.com"),
+//				ServiceName:        pulumi.Any(_var.Projectid),
+//				KubeId:             pulumi.Any(ovh_cloud_project_kube.Mykube.Id),
+//				ClientId:           pulumi.String("xxx"),
+//				IssuerUrl:          pulumi.String("https://ovh.com"),
+//				OidcUsernameClaim:  pulumi.String("an-email"),
+//				OidcUsernamePrefix: pulumi.String("ovh:"),
+//				OidcGroupsClaims: pulumi.StringArray{
+//					pulumi.String("groups"),
+//				},
+//				OidcGroupsPrefix: pulumi.String("ovh:"),
+//				OidcRequiredClaims: pulumi.StringArray{
+//					pulumi.String("claim1=val1"),
+//				},
+//				OidcSigningAlgs: pulumi.StringArray{
+//					pulumi.String("RS512"),
+//				},
+//				OidcCaContent: pulumi.String("LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZhekNDQTFPZ0F3SUJBZ0lVYm9YRkZrL1hCQmdQUUI4UHlqbkttUGVWekNjd0RRWUpLb1pJaHZjTkFRRUwKQlFBd1JURUxNQWtHQTFVRUJoTUNRVlV4RXpBUkJnTlZCQWdNQ2xOdmJXVXRVM1JoZEdVeElUQWZCZ05WQkFvTQpHRWx1ZEdWeWJtVjBJRmRwWkdkcGRITWdVSFI1SUV4MFpEQWVGdzB5TWpFd01UUXdOalE0TlROYUZ3MHlNekV3Ck1UUXdOalE0TlROYU1FVXhDekFKQmdOVkJBWVRBa0ZWTVJNd0VRWURWUVFJREFwVGIyMWxMVk4wWVhSbE1TRXcKSHdZRFZRUUtEQmhKYm5SbGNtNWxkQ0JYYVdSbmFYUnpJRkIwZVNCTWRHUXdnZ0lpTUEwR0NTcUdTSWIzRFFFQgpBUVVBQTRJQ0R3QXdnZ0lLQW9JQ0FRQytPMk53bGx2QTQyT05SUHMyZWlqTUp2UHhpN21RblVSS3FrOHJEV1VkCkwzZU0yM1JXeVhtS1AydDQ5Zi9LVGsweEZNVStOSTUzTEhwWmh6N3NpK3dEUFUvWWZWSS9rQmZsRm8zeVZCMSsKZWdCSnpyNGIrQ3FoaWlCUkh0Vm5LblFKUmdvOVJjVkxhRm82UEY0N1V0UWJ2bWVuNGdERnExVkYwVHhUdnFMdwpIMzRZL0U2QUJsSlZnWFBzaWQzNm54eTErNnlKV05vRXNVekFiekpWMHhzTGhxc2hOazA0TWx4YnBhcG1XcEUxCmFFMHRIZGpjUlI3Y1dTRUUwMnRSQzNYL2tSNjBKb3MxR0N0Y0ZQTTVIN3NjOFBXNFRUem1EWWhOeDRiVjV4T28KU0xYRnI5ajBzZEgxbm1wSlI1dWxJT2dPTWV3MHA2d3JOYVV2MGpxc1hzdVdqMVpxdTRLRi81aEQ3azVhRlhKNQpjYWNTUi9mRWxreW1uZis0eHZFOG8wdkRWNFR5NHo3K3lSS1U0clZvZFNBZWZIN3lqeitLV1RRck96L0lHU2NwCmV1YTdqV0hRMDdMYWxyTjV2b0tFaU1JM3MrWjhzeUdVUGVyYXQwdzJMWlc3NnhxVGl4R002clZxUldxVlQ4L1oKQTJMMEc4WGRvNTZvV2lFYVF5RkJtRDFnMXU2UEsvTmFGVDI1L2tTNWJ1dnF5L1dLVGt0UVNhNHNZc1ZLbUlQTQp0Zys0NUZ2aFErNkRuQzd0TmVnaTZDTkdTb0w0R1dPOEE5UDZRNjE5RkJJZ1VjcGpFMTgvUHpQOEJmcTAxajhnCjZmdm1jNkVPMkxHVHhDcW1DbVp0TnI3OCtQaUxkMHZIY3pqY3E3NzhiNW5WRXRpUVNRQkUyb0ozTVlIZUFIUUkKYVFJREFRQUJvMU13VVRBZEJnTlZIUTRFRmdRVUpaMUhlVmx1U3pjY0U2NEZQYWtuNkRBWnhmSXdId1lEVlIwagpCQmd3Rm9BVUpaMUhlVmx1U3pjY0U2NEZQYWtuNkRBWnhmSXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txCmhraUc5dzBCQVFzRkFBT0NBZ0VBQlhNSlU2MjJZVFZVNnZ1K2svNnkwMGNaWlRmVnZtdVJMOXhTcWxVM0I1QmQKVWdyVWx1TmdjN2dhUUlrYzkvWmh2MnhNd0xxUldMWEhiTWx1NkNvdkNiVTVpeWt0NHVWMnl5UzlZYWhmVVRNVQo3TVE0WFRta2hoS0dGbWZBQ2QzTUVwRE55T3hmWXh0UVBwM1NZT2IxRGFKMmUwY01Gc081bytORGQ5aFVBVzFoCjFLMjMwQnZzYldYYVo4MStIdTU4U1BsYTM5R3FMTG85MzR6dEs4WkRWNFRGTVJxMnNVQ1cxcWFidDh5ejd2RzAKSGV3dXdxelRwR1lTSFI1U0ZvMm45R0xKVUN4SnhxcDlOWVJjMlhUdXRUdkJESzVPMXFZZEJaQzd6cmcxSnczawp2SjI4UGx2TzBQRE42ZVlUdElJdC9yU05ZbW56eVVNRTRYREt0di9KRitLZWZNSWxDTkpzZDRHYXVTdlo5M1NOClhINmcrNEZvRkp4UzNxRmZ0WEc4czNRNnppNzNLRzh5UHZVNHU0WmZNRGd2aG92L0V5YkNLWUpFdVVZSlJWNGEKbmc3cWh3NDBabXQ0eWNCRzU5a2tFSGhNYWtxTWpPaUNkV2x4MEVjZXIxcEFGT1pqN3o1NktURXIxa0ZwUHVaRApjVER5SnNwTjh6dm9CQ0l1ancvQjR6S3kyWStOQitRR1p3dXhyTk9mRGR6ek9yQUE1Ym9OS2gwUUh4c0RxNTExClFaU3hCR21EcGJzN2QzMUQvQll3WEhIUWdwb3FoVUU5dFBGSThpN0pkM2FyeXZCdHlnTWlxSmt1VlRFVk1Ta0UKNTZ0VnFsMjlXenFhRXNrbDN3VUlmczVKKzN3RzRPcWNxRDdXaGQxWUtnc0VUMjdFTWlqVXZIYzQ4TXE0bU1rPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg=="),
 //			})
 //			if err != nil {
 //				return err
@@ -39,6 +52,16 @@ import (
 //			return nil
 //		})
 //	}
+//
+// ```
+//
+// ## Import
+//
+// OVHcloud Managed Kubernetes Service cluster OIDC can be imported using the tenant `service_name` and cluster id `kube_id` separated by "/" E.g., bash
+//
+// ```sh
+//
+//	$ pulumi import ovh:CloudProject/kubeOidc:KubeOidc my-oidc service_name/kube_id
 //
 // ```
 type KubeOidc struct {
@@ -49,9 +72,15 @@ type KubeOidc struct {
 	// The OIDC issuer url.
 	IssuerUrl pulumi.StringOutput `pulumi:"issuerUrl"`
 	// The ID of the managed kubernetes cluster.
-	KubeId pulumi.StringOutput `pulumi:"kubeId"`
-	// The ID of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	KubeId             pulumi.StringOutput      `pulumi:"kubeId"`
+	OidcCaContent      pulumi.StringPtrOutput   `pulumi:"oidcCaContent"`
+	OidcGroupsClaims   pulumi.StringArrayOutput `pulumi:"oidcGroupsClaims"`
+	OidcGroupsPrefix   pulumi.StringPtrOutput   `pulumi:"oidcGroupsPrefix"`
+	OidcRequiredClaims pulumi.StringArrayOutput `pulumi:"oidcRequiredClaims"`
+	OidcSigningAlgs    pulumi.StringArrayOutput `pulumi:"oidcSigningAlgs"`
+	OidcUsernameClaim  pulumi.StringPtrOutput   `pulumi:"oidcUsernameClaim"`
+	OidcUsernamePrefix pulumi.StringPtrOutput   `pulumi:"oidcUsernamePrefix"`
+	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
 }
 
@@ -102,9 +131,15 @@ type kubeOidcState struct {
 	// The OIDC issuer url.
 	IssuerUrl *string `pulumi:"issuerUrl"`
 	// The ID of the managed kubernetes cluster.
-	KubeId *string `pulumi:"kubeId"`
-	// The ID of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	KubeId             *string  `pulumi:"kubeId"`
+	OidcCaContent      *string  `pulumi:"oidcCaContent"`
+	OidcGroupsClaims   []string `pulumi:"oidcGroupsClaims"`
+	OidcGroupsPrefix   *string  `pulumi:"oidcGroupsPrefix"`
+	OidcRequiredClaims []string `pulumi:"oidcRequiredClaims"`
+	OidcSigningAlgs    []string `pulumi:"oidcSigningAlgs"`
+	OidcUsernameClaim  *string  `pulumi:"oidcUsernameClaim"`
+	OidcUsernamePrefix *string  `pulumi:"oidcUsernamePrefix"`
+	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName *string `pulumi:"serviceName"`
 }
 
@@ -114,9 +149,15 @@ type KubeOidcState struct {
 	// The OIDC issuer url.
 	IssuerUrl pulumi.StringPtrInput
 	// The ID of the managed kubernetes cluster.
-	KubeId pulumi.StringPtrInput
-	// The ID of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	KubeId             pulumi.StringPtrInput
+	OidcCaContent      pulumi.StringPtrInput
+	OidcGroupsClaims   pulumi.StringArrayInput
+	OidcGroupsPrefix   pulumi.StringPtrInput
+	OidcRequiredClaims pulumi.StringArrayInput
+	OidcSigningAlgs    pulumi.StringArrayInput
+	OidcUsernameClaim  pulumi.StringPtrInput
+	OidcUsernamePrefix pulumi.StringPtrInput
+	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName pulumi.StringPtrInput
 }
 
@@ -130,9 +171,15 @@ type kubeOidcArgs struct {
 	// The OIDC issuer url.
 	IssuerUrl string `pulumi:"issuerUrl"`
 	// The ID of the managed kubernetes cluster.
-	KubeId string `pulumi:"kubeId"`
-	// The ID of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	KubeId             string   `pulumi:"kubeId"`
+	OidcCaContent      *string  `pulumi:"oidcCaContent"`
+	OidcGroupsClaims   []string `pulumi:"oidcGroupsClaims"`
+	OidcGroupsPrefix   *string  `pulumi:"oidcGroupsPrefix"`
+	OidcRequiredClaims []string `pulumi:"oidcRequiredClaims"`
+	OidcSigningAlgs    []string `pulumi:"oidcSigningAlgs"`
+	OidcUsernameClaim  *string  `pulumi:"oidcUsernameClaim"`
+	OidcUsernamePrefix *string  `pulumi:"oidcUsernamePrefix"`
+	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName string `pulumi:"serviceName"`
 }
 
@@ -143,9 +190,15 @@ type KubeOidcArgs struct {
 	// The OIDC issuer url.
 	IssuerUrl pulumi.StringInput
 	// The ID of the managed kubernetes cluster.
-	KubeId pulumi.StringInput
-	// The ID of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	KubeId             pulumi.StringInput
+	OidcCaContent      pulumi.StringPtrInput
+	OidcGroupsClaims   pulumi.StringArrayInput
+	OidcGroupsPrefix   pulumi.StringPtrInput
+	OidcRequiredClaims pulumi.StringArrayInput
+	OidcSigningAlgs    pulumi.StringArrayInput
+	OidcUsernameClaim  pulumi.StringPtrInput
+	OidcUsernamePrefix pulumi.StringPtrInput
+	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName pulumi.StringInput
 }
 
@@ -251,8 +304,35 @@ func (o KubeOidcOutput) KubeId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubeOidc) pulumi.StringOutput { return v.KubeId }).(pulumi.StringOutput)
 }
 
-// The ID of the public cloud project. If omitted,
-// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+func (o KubeOidcOutput) OidcCaContent() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeOidc) pulumi.StringPtrOutput { return v.OidcCaContent }).(pulumi.StringPtrOutput)
+}
+
+func (o KubeOidcOutput) OidcGroupsClaims() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *KubeOidc) pulumi.StringArrayOutput { return v.OidcGroupsClaims }).(pulumi.StringArrayOutput)
+}
+
+func (o KubeOidcOutput) OidcGroupsPrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeOidc) pulumi.StringPtrOutput { return v.OidcGroupsPrefix }).(pulumi.StringPtrOutput)
+}
+
+func (o KubeOidcOutput) OidcRequiredClaims() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *KubeOidc) pulumi.StringArrayOutput { return v.OidcRequiredClaims }).(pulumi.StringArrayOutput)
+}
+
+func (o KubeOidcOutput) OidcSigningAlgs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *KubeOidc) pulumi.StringArrayOutput { return v.OidcSigningAlgs }).(pulumi.StringArrayOutput)
+}
+
+func (o KubeOidcOutput) OidcUsernameClaim() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeOidc) pulumi.StringPtrOutput { return v.OidcUsernameClaim }).(pulumi.StringPtrOutput)
+}
+
+func (o KubeOidcOutput) OidcUsernamePrefix() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeOidc) pulumi.StringPtrOutput { return v.OidcUsernamePrefix }).(pulumi.StringPtrOutput)
+}
+
+// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 func (o KubeOidcOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubeOidc) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
 }

@@ -44,6 +44,11 @@ __all__ = [
     'GetKubeCustomizationResult',
     'GetKubeCustomizationApiserverResult',
     'GetKubeCustomizationApiserverAdmissionpluginsResult',
+    'GetKubeNodePoolNodesNodeResult',
+    'GetKubeNodePoolTemplateResult',
+    'GetKubeNodePoolTemplateMetadataResult',
+    'GetKubeNodePoolTemplateSpecResult',
+    'GetKubeNodesNodeResult',
     'GetOpenSearchUserAclResult',
     'GetRegionServiceResult',
     'GetUserRoleResult',
@@ -740,7 +745,7 @@ class ProjectOrder(dict):
         :param str date: date
         :param Sequence['ProjectOrderDetailArgs'] details: Information about a Bill entry
         :param str expiration_date: expiration date
-        :param int order_id: order id
+        :param int order_id: order id, the same as the `id`
         """
         if date is not None:
             pulumi.set(__self__, "date", date)
@@ -779,7 +784,7 @@ class ProjectOrder(dict):
     @pulumi.getter(name="orderId")
     def order_id(self) -> Optional[int]:
         """
-        order id
+        order id, the same as the `id`
         """
         return pulumi.get(self, "order_id")
 
@@ -1544,6 +1549,355 @@ class GetKubeCustomizationApiserverAdmissionpluginsResult(dict):
     @pulumi.getter
     def enableds(self) -> Sequence[str]:
         return pulumi.get(self, "enableds")
+
+
+@pulumi.output_type
+class GetKubeNodePoolNodesNodeResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 deployed_at: str,
+                 flavor: str,
+                 id: str,
+                 instance_id: str,
+                 is_up_to_date: bool,
+                 name: str,
+                 node_pool_id: str,
+                 project_id: str,
+                 status: str,
+                 updated_at: str,
+                 version: str):
+        """
+        :param str created_at: Creation date.
+        :param str deployed_at: (Optional) Date of the effective deployment.
+        :param str flavor: Flavor name.
+        :param str id: ID of the node.
+        :param str instance_id: Openstack ID of the underlying VM of the node.
+        :param bool is_up_to_date: Is the node in the target version of the cluster.
+        :param str name: Name of the node pool from which we want the nodes.
+        :param str node_pool_id: Managed kubernetes node pool ID.
+        :param str project_id: Public cloud project ID.
+        :param str status: Current status.
+        :param str updated_at: Last update date.
+        :param str version: Version in which the node is.
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "deployed_at", deployed_at)
+        pulumi.set(__self__, "flavor", flavor)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "is_up_to_date", is_up_to_date)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "node_pool_id", node_pool_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        Creation date.
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="deployedAt")
+    def deployed_at(self) -> str:
+        """
+        (Optional) Date of the effective deployment.
+        """
+        return pulumi.get(self, "deployed_at")
+
+    @property
+    @pulumi.getter
+    def flavor(self) -> str:
+        """
+        Flavor name.
+        """
+        return pulumi.get(self, "flavor")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the node.
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        Openstack ID of the underlying VM of the node.
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="isUpToDate")
+    def is_up_to_date(self) -> bool:
+        """
+        Is the node in the target version of the cluster.
+        """
+        return pulumi.get(self, "is_up_to_date")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the node pool from which we want the nodes.
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nodePoolId")
+    def node_pool_id(self) -> str:
+        """
+        Managed kubernetes node pool ID.
+        """
+        return pulumi.get(self, "node_pool_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Public cloud project ID.
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Current status.
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        Last update date.
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        Version in which the node is.
+        """
+        return pulumi.get(self, "version")
+
+
+@pulumi.output_type
+class GetKubeNodePoolTemplateResult(dict):
+    def __init__(__self__, *,
+                 metadata: Optional['outputs.GetKubeNodePoolTemplateMetadataResult'] = None,
+                 spec: Optional['outputs.GetKubeNodePoolTemplateSpecResult'] = None):
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional['outputs.GetKubeNodePoolTemplateMetadataResult']:
+        return pulumi.get(self, "metadata")
+
+    @property
+    @pulumi.getter
+    def spec(self) -> Optional['outputs.GetKubeNodePoolTemplateSpecResult']:
+        return pulumi.get(self, "spec")
+
+
+@pulumi.output_type
+class GetKubeNodePoolTemplateMetadataResult(dict):
+    def __init__(__self__, *,
+                 annotations: Optional[Mapping[str, str]] = None,
+                 finalizers: Optional[Sequence[str]] = None,
+                 labels: Optional[Mapping[str, str]] = None):
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if finalizers is not None:
+            pulumi.set(__self__, "finalizers", finalizers)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "annotations")
+
+    @property
+    @pulumi.getter
+    def finalizers(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "finalizers")
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "labels")
+
+
+@pulumi.output_type
+class GetKubeNodePoolTemplateSpecResult(dict):
+    def __init__(__self__, *,
+                 taints: Optional[Sequence[Mapping[str, Any]]] = None,
+                 unschedulable: Optional[bool] = None):
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
+        if unschedulable is not None:
+            pulumi.set(__self__, "unschedulable", unschedulable)
+
+    @property
+    @pulumi.getter
+    def taints(self) -> Optional[Sequence[Mapping[str, Any]]]:
+        return pulumi.get(self, "taints")
+
+    @property
+    @pulumi.getter
+    def unschedulable(self) -> Optional[bool]:
+        return pulumi.get(self, "unschedulable")
+
+
+@pulumi.output_type
+class GetKubeNodesNodeResult(dict):
+    def __init__(__self__, *,
+                 created_at: str,
+                 deployed_at: str,
+                 flavor: str,
+                 id: str,
+                 instance_id: str,
+                 is_up_to_date: bool,
+                 name: str,
+                 node_pool_id: str,
+                 project_id: str,
+                 status: str,
+                 updated_at: str,
+                 version: str):
+        """
+        :param str created_at: Creation date
+        :param str deployed_at: (Optional) Date of the effective deployment
+        :param str flavor: Flavor name
+        :param str id: ID of the node
+        :param str instance_id: Openstack ID of the underlying VM of the node
+        :param bool is_up_to_date: Is the node in the target version of the cluster
+        :param str name: Name of the node
+        :param str node_pool_id: Managed kubernetes node pool ID
+        :param str project_id: Public cloud project ID
+        :param str status: Current status
+        :param str updated_at: Last update date
+        :param str version: Version in which the node is
+        """
+        pulumi.set(__self__, "created_at", created_at)
+        pulumi.set(__self__, "deployed_at", deployed_at)
+        pulumi.set(__self__, "flavor", flavor)
+        pulumi.set(__self__, "id", id)
+        pulumi.set(__self__, "instance_id", instance_id)
+        pulumi.set(__self__, "is_up_to_date", is_up_to_date)
+        pulumi.set(__self__, "name", name)
+        pulumi.set(__self__, "node_pool_id", node_pool_id)
+        pulumi.set(__self__, "project_id", project_id)
+        pulumi.set(__self__, "status", status)
+        pulumi.set(__self__, "updated_at", updated_at)
+        pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="createdAt")
+    def created_at(self) -> str:
+        """
+        Creation date
+        """
+        return pulumi.get(self, "created_at")
+
+    @property
+    @pulumi.getter(name="deployedAt")
+    def deployed_at(self) -> str:
+        """
+        (Optional) Date of the effective deployment
+        """
+        return pulumi.get(self, "deployed_at")
+
+    @property
+    @pulumi.getter
+    def flavor(self) -> str:
+        """
+        Flavor name
+        """
+        return pulumi.get(self, "flavor")
+
+    @property
+    @pulumi.getter
+    def id(self) -> str:
+        """
+        ID of the node
+        """
+        return pulumi.get(self, "id")
+
+    @property
+    @pulumi.getter(name="instanceId")
+    def instance_id(self) -> str:
+        """
+        Openstack ID of the underlying VM of the node
+        """
+        return pulumi.get(self, "instance_id")
+
+    @property
+    @pulumi.getter(name="isUpToDate")
+    def is_up_to_date(self) -> bool:
+        """
+        Is the node in the target version of the cluster
+        """
+        return pulumi.get(self, "is_up_to_date")
+
+    @property
+    @pulumi.getter
+    def name(self) -> str:
+        """
+        Name of the node
+        """
+        return pulumi.get(self, "name")
+
+    @property
+    @pulumi.getter(name="nodePoolId")
+    def node_pool_id(self) -> str:
+        """
+        Managed kubernetes node pool ID
+        """
+        return pulumi.get(self, "node_pool_id")
+
+    @property
+    @pulumi.getter(name="projectId")
+    def project_id(self) -> str:
+        """
+        Public cloud project ID
+        """
+        return pulumi.get(self, "project_id")
+
+    @property
+    @pulumi.getter
+    def status(self) -> str:
+        """
+        Current status
+        """
+        return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter(name="updatedAt")
+    def updated_at(self) -> str:
+        """
+        Last update date
+        """
+        return pulumi.get(self, "updated_at")
+
+    @property
+    @pulumi.getter
+    def version(self) -> str:
+        """
+        Version in which the node is
+        """
+        return pulumi.get(self, "version")
 
 
 @pulumi.output_type

@@ -277,6 +277,10 @@ type Database struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Small description of the database service.
 	Description pulumi.StringPtrOutput `pulumi:"description"`
+	// The disk size (in GB) of the database service.
+	DiskSize pulumi.IntOutput `pulumi:"diskSize"`
+	// Defines the disk type of the database service.
+	DiskType pulumi.StringOutput `pulumi:"diskType"`
 	// List of all endpoints objects of the service.
 	Endpoints DatabaseEndpointArrayOutput `pulumi:"endpoints"`
 	// The database engine you want to deploy. To get a full list of available engine visit.
@@ -363,6 +367,10 @@ type databaseState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Small description of the database service.
 	Description *string `pulumi:"description"`
+	// The disk size (in GB) of the database service.
+	DiskSize *int `pulumi:"diskSize"`
+	// Defines the disk type of the database service.
+	DiskType *string `pulumi:"diskType"`
 	// List of all endpoints objects of the service.
 	Endpoints []DatabaseEndpoint `pulumi:"endpoints"`
 	// The database engine you want to deploy. To get a full list of available engine visit.
@@ -402,6 +410,10 @@ type DatabaseState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Small description of the database service.
 	Description pulumi.StringPtrInput
+	// The disk size (in GB) of the database service.
+	DiskSize pulumi.IntPtrInput
+	// Defines the disk type of the database service.
+	DiskType pulumi.StringPtrInput
 	// List of all endpoints objects of the service.
 	Endpoints DatabaseEndpointArrayInput
 	// The database engine you want to deploy. To get a full list of available engine visit.
@@ -441,6 +453,8 @@ func (DatabaseState) ElementType() reflect.Type {
 type databaseArgs struct {
 	// Small description of the database service.
 	Description *string `pulumi:"description"`
+	// The disk size (in GB) of the database service.
+	DiskSize *int `pulumi:"diskSize"`
 	// The database engine you want to deploy. To get a full list of available engine visit.
 	// [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	Engine string `pulumi:"engine"`
@@ -469,6 +483,8 @@ type databaseArgs struct {
 type DatabaseArgs struct {
 	// Small description of the database service.
 	Description pulumi.StringPtrInput
+	// The disk size (in GB) of the database service.
+	DiskSize pulumi.IntPtrInput
 	// The database engine you want to deploy. To get a full list of available engine visit.
 	// [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	Engine pulumi.StringInput
@@ -593,6 +609,16 @@ func (o DatabaseOutput) CreatedAt() pulumi.StringOutput {
 // Small description of the database service.
 func (o DatabaseOutput) Description() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Database) pulumi.StringPtrOutput { return v.Description }).(pulumi.StringPtrOutput)
+}
+
+// The disk size (in GB) of the database service.
+func (o DatabaseOutput) DiskSize() pulumi.IntOutput {
+	return o.ApplyT(func(v *Database) pulumi.IntOutput { return v.DiskSize }).(pulumi.IntOutput)
+}
+
+// Defines the disk type of the database service.
+func (o DatabaseOutput) DiskType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringOutput { return v.DiskType }).(pulumi.StringOutput)
 }
 
 // List of all endpoints objects of the service.

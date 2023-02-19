@@ -7,6 +7,7 @@ import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ovh.CloudProjectDatabase.outputs.GetDatabaseEndpoint;
 import com.pulumi.ovh.CloudProjectDatabase.outputs.GetDatabaseNode;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -28,6 +29,16 @@ public final class GetDatabaseResult {
      * 
      */
     private String description;
+    /**
+     * @return The disk size (in GB) of the database service.
+     * 
+     */
+    private Integer diskSize;
+    /**
+     * @return The disk type of the database service.
+     * 
+     */
+    private String diskType;
     /**
      * @return List of all endpoints objects of the service.
      * 
@@ -111,6 +122,20 @@ public final class GetDatabaseResult {
      */
     public String description() {
         return this.description;
+    }
+    /**
+     * @return The disk size (in GB) of the database service.
+     * 
+     */
+    public Integer diskSize() {
+        return this.diskSize;
+    }
+    /**
+     * @return The disk type of the database service.
+     * 
+     */
+    public String diskType() {
+        return this.diskType;
     }
     /**
      * @return List of all endpoints objects of the service.
@@ -212,6 +237,8 @@ public final class GetDatabaseResult {
         private String backupTime;
         private String createdAt;
         private String description;
+        private Integer diskSize;
+        private String diskType;
         private List<GetDatabaseEndpoint> endpoints;
         private String engine;
         private String flavor;
@@ -231,6 +258,8 @@ public final class GetDatabaseResult {
     	      this.backupTime = defaults.backupTime;
     	      this.createdAt = defaults.createdAt;
     	      this.description = defaults.description;
+    	      this.diskSize = defaults.diskSize;
+    	      this.diskType = defaults.diskType;
     	      this.endpoints = defaults.endpoints;
     	      this.engine = defaults.engine;
     	      this.flavor = defaults.flavor;
@@ -259,6 +288,16 @@ public final class GetDatabaseResult {
         @CustomType.Setter
         public Builder description(String description) {
             this.description = Objects.requireNonNull(description);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder diskSize(Integer diskSize) {
+            this.diskSize = Objects.requireNonNull(diskSize);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder diskType(String diskType) {
+            this.diskType = Objects.requireNonNull(diskType);
             return this;
         }
         @CustomType.Setter
@@ -337,6 +376,8 @@ public final class GetDatabaseResult {
             o.backupTime = backupTime;
             o.createdAt = createdAt;
             o.description = description;
+            o.diskSize = diskSize;
+            o.diskType = diskType;
             o.endpoints = endpoints;
             o.engine = engine;
             o.flavor = flavor;

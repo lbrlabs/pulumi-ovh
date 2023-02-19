@@ -11,30 +11,29 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@lbrlabs/pulumi-ovh";
  * import * as ovh from "@pulumi/ovh";
  *
- * const lb = ovh.IpLoadBalancing.getIpLoadBalancing({
+ * const lb = pulumi.output(ovh.IpLoadBalancing.getIpLoadBalancing({
  *     serviceName: "ip-1.2.3.4",
  *     state: "ok",
- * });
- * const farmname = new ovh.iploadbalancing.HttpFarm("farmname", {
- *     serviceName: lb.then(lb => lb.id),
+ * }));
+ * const farmname = new ovh.IpLoadBalancing.HttpFarm("farmname", {
  *     port: 8080,
+ *     serviceName: lb.id,
  *     zone: "all",
  * });
- * const backend = new ovh.iploadbalancing.HttpFarmServer("backend", {
- *     serviceName: lb.then(lb => lb.id),
- *     farmId: farmname.id,
- *     displayName: "mybackend",
+ * const backend = new ovh.IpLoadBalancing.HttpFarmServer("backend", {
  *     address: "4.5.6.7",
- *     status: "active",
- *     port: 80,
- *     proxyProtocolVersion: v2,
- *     weight: 2,
- *     probe: true,
- *     ssl: false,
  *     backup: true,
+ *     displayName: "mybackend",
+ *     farmId: farmname.id.apply(id => Number.parseFloat(id)),
+ *     port: 80,
+ *     probe: true,
+ *     proxyProtocolVersion: "v2",
+ *     serviceName: lb.id,
+ *     ssl: false,
+ *     status: "active",
+ *     weight: 2,
  * });
  * ```
  */
@@ -88,6 +87,10 @@ export class HttpFarmServer extends pulumi.CustomResource {
      */
     public readonly farmId!: pulumi.Output<number>;
     /**
+     * enable action when backend marked down. (`shutdown-sessions`)
+     */
+    public readonly onMarkedDown!: pulumi.Output<string | undefined>;
+    /**
      * Port that backend will respond on
      */
     public readonly port!: pulumi.Output<number | undefined>;
@@ -135,6 +138,7 @@ export class HttpFarmServer extends pulumi.CustomResource {
             resourceInputs["cookie"] = state ? state.cookie : undefined;
             resourceInputs["displayName"] = state ? state.displayName : undefined;
             resourceInputs["farmId"] = state ? state.farmId : undefined;
+            resourceInputs["onMarkedDown"] = state ? state.onMarkedDown : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
             resourceInputs["probe"] = state ? state.probe : undefined;
             resourceInputs["proxyProtocolVersion"] = state ? state.proxyProtocolVersion : undefined;
@@ -161,6 +165,7 @@ export class HttpFarmServer extends pulumi.CustomResource {
             resourceInputs["chain"] = args ? args.chain : undefined;
             resourceInputs["displayName"] = args ? args.displayName : undefined;
             resourceInputs["farmId"] = args ? args.farmId : undefined;
+            resourceInputs["onMarkedDown"] = args ? args.onMarkedDown : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["probe"] = args ? args.probe : undefined;
             resourceInputs["proxyProtocolVersion"] = args ? args.proxyProtocolVersion : undefined;
@@ -200,6 +205,10 @@ export interface HttpFarmServerState {
      * ID of the farm this server is attached to
      */
     farmId?: pulumi.Input<number>;
+    /**
+     * enable action when backend marked down. (`shutdown-sessions`)
+     */
+    onMarkedDown?: pulumi.Input<string>;
     /**
      * Port that backend will respond on
      */
@@ -251,6 +260,10 @@ export interface HttpFarmServerArgs {
      * ID of the farm this server is attached to
      */
     farmId: pulumi.Input<number>;
+    /**
+     * enable action when backend marked down. (`shutdown-sessions`)
+     */
+    onMarkedDown?: pulumi.Input<string>;
     /**
      * Port that backend will respond on
      */

@@ -32,29 +32,28 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
     /// 
     ///     var farmname = new Ovh.IpLoadBalancing.TcpFarm("farmname", new()
     ///     {
-    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
     ///         Port = 8080,
+    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
     ///         Zone = "all",
     ///     });
     /// 
     ///     var backend = new Ovh.IpLoadBalancing.TcpFarmServer("backend", new()
     ///     {
-    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
-    ///         FarmId = farmname.Id,
-    ///         DisplayName = "mybackend",
     ///         Address = "4.5.6.7",
-    ///         Status = "active",
-    ///         Port = 80,
-    ///         ProxyProtocolVersion = v2,
-    ///         Weight = 2,
-    ///         Probe = true,
-    ///         Ssl = false,
     ///         Backup = true,
+    ///         DisplayName = "mybackend",
+    ///         FarmId = farmname.Id,
+    ///         Port = 80,
+    ///         Probe = true,
+    ///         ProxyProtocolVersion = "v2",
+    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
+    ///         Ssl = false,
+    ///         Status = "active",
+    ///         Weight = 2,
     ///     });
     /// 
     ///     var mylb = new Ovh.IpLoadBalancing.Refresh("mylb", new()
     ///     {
-    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
     ///         Keepers = new[]
     ///         {
     ///             new[]
@@ -62,6 +61,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
     ///                 backend,
     ///             }.Select(__item =&gt; __item.Address).ToList(),
     ///         },
+    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
     ///     });
     /// 
     /// });

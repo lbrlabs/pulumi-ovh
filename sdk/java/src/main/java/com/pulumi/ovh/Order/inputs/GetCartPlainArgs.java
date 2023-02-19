@@ -4,6 +4,7 @@
 package com.pulumi.ovh.Order.inputs;
 
 import com.pulumi.core.annotations.Import;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.Optional;
@@ -13,6 +14,21 @@ import javax.annotation.Nullable;
 public final class GetCartPlainArgs extends com.pulumi.resources.InvokeArgs {
 
     public static final GetCartPlainArgs Empty = new GetCartPlainArgs();
+
+    /**
+     * Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+     * 
+     */
+    @Import(name="assign")
+    private @Nullable Boolean assign;
+
+    /**
+     * @return Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+     * 
+     */
+    public Optional<Boolean> assign() {
+        return Optional.ofNullable(this.assign);
+    }
 
     /**
      * Description of your cart
@@ -62,6 +78,7 @@ public final class GetCartPlainArgs extends com.pulumi.resources.InvokeArgs {
     private GetCartPlainArgs() {}
 
     private GetCartPlainArgs(GetCartPlainArgs $) {
+        this.assign = $.assign;
         this.description = $.description;
         this.expire = $.expire;
         this.ovhSubsidiary = $.ovhSubsidiary;
@@ -83,6 +100,17 @@ public final class GetCartPlainArgs extends com.pulumi.resources.InvokeArgs {
 
         public Builder(GetCartPlainArgs defaults) {
             $ = new GetCartPlainArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param assign Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder assign(@Nullable Boolean assign) {
+            $.assign = assign;
+            return this;
         }
 
         /**

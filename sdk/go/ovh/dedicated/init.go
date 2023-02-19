@@ -23,12 +23,20 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 	switch typ {
 	case "ovh:Dedicated/cephAcl:CephAcl":
 		r = &CephAcl{}
+	case "ovh:Dedicated/nasHAPartition:NasHAPartition":
+		r = &NasHAPartition{}
+	case "ovh:Dedicated/nasHAPartitionAccess:NasHAPartitionAccess":
+		r = &NasHAPartitionAccess{}
+	case "ovh:Dedicated/nasHAPartitionSnapshot:NasHAPartitionSnapshot":
+		r = &NasHAPartitionSnapshot{}
+	case "ovh:Dedicated/serverInstallTask:ServerInstallTask":
+		r = &ServerInstallTask{}
+	case "ovh:Dedicated/serverNetworking:ServerNetworking":
+		r = &ServerNetworking{}
 	case "ovh:Dedicated/serverRebootTask:ServerRebootTask":
 		r = &ServerRebootTask{}
 	case "ovh:Dedicated/serverUpdate:ServerUpdate":
 		r = &ServerUpdate{}
-	case "ovh:Dedicated/serviceInstallTask:ServiceInstallTask":
-		r = &ServiceInstallTask{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -49,17 +57,37 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"ovh",
+		"Dedicated/nasHAPartition",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ovh",
+		"Dedicated/nasHAPartitionAccess",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ovh",
+		"Dedicated/nasHAPartitionSnapshot",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ovh",
+		"Dedicated/serverInstallTask",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ovh",
+		"Dedicated/serverNetworking",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ovh",
 		"Dedicated/serverRebootTask",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"ovh",
 		"Dedicated/serverUpdate",
-		&module{version},
-	)
-	pulumi.RegisterResourceModule(
-		"ovh",
-		"Dedicated/serviceInstallTask",
 		&module{version},
 	)
 }

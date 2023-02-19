@@ -113,9 +113,8 @@ class _ProjectState:
                  status: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Project resources.
-        :param pulumi.Input[str] access: project access
         :param pulumi.Input[str] description: A description associated with the user.
-        :param pulumi.Input[Sequence[pulumi.Input['ProjectOrderArgs']]] orders: Details about an Order
+        :param pulumi.Input[Sequence[pulumi.Input['ProjectOrderArgs']]] orders: Details about the order that was used to create the public cloud project
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
         :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
         :param pulumi.Input['ProjectPlanArgs'] plan: Product Plan to order
@@ -148,9 +147,6 @@ class _ProjectState:
     @property
     @pulumi.getter
     def access(self) -> Optional[pulumi.Input[str]]:
-        """
-        project access
-        """
         return pulumi.get(self, "access")
 
     @access.setter
@@ -173,7 +169,7 @@ class _ProjectState:
     @pulumi.getter
     def orders(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['ProjectOrderArgs']]]]:
         """
-        Details about an Order
+        Details about the order that was used to create the public cloud project
         """
         return pulumi.get(self, "orders")
 
@@ -293,19 +289,29 @@ class Project(pulumi.CustomResource):
 
         mycart = ovh.Order.get_cart(ovh_subsidiary="fr",
             description="my cloud order cart")
-        cloud_cart_product_plan = ovh.Order.get_cart_product_plan(cart_id=mycart.id,
+        cloud = ovh.Order.get_cart_product_plan(cart_id=mycart.id,
             price_capacity="renew",
             product="cloud",
             plan_code="project.2018")
-        cloud_project = ovh.cloud_project.Project("cloudProject",
+        my_cloud_project = ovh.cloud_project.Project("myCloudProject",
             ovh_subsidiary=mycart.ovh_subsidiary,
             description="my cloud project",
             payment_mean="fidelity",
             plan=ovh.cloud_project.ProjectPlanArgs(
-                duration=cloud_cart_product_plan.selected_prices[0].duration,
-                plan_code=cloud_cart_product_plan.plan_code,
-                pricing_mode=cloud_cart_product_plan.selected_prices[0].pricing_mode,
+                duration=cloud.selected_prices[0].duration,
+                plan_code=cloud.plan_code,
+                pricing_mode=cloud.selected_prices[0].pricing_mode,
             ))
+        ```
+
+        ## Import
+
+        Cloud project can be imported using the `order_id` that can be retrieved in the [order page](https://www.ovh.com/manager/#/dedicated/billing/orders/orders) at the creation time of the Public Cloud project.
+
+        bash
+
+        ```sh
+         $ pulumi import ovh:CloudProject/project:Project my_cloud_project order_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -338,19 +344,29 @@ class Project(pulumi.CustomResource):
 
         mycart = ovh.Order.get_cart(ovh_subsidiary="fr",
             description="my cloud order cart")
-        cloud_cart_product_plan = ovh.Order.get_cart_product_plan(cart_id=mycart.id,
+        cloud = ovh.Order.get_cart_product_plan(cart_id=mycart.id,
             price_capacity="renew",
             product="cloud",
             plan_code="project.2018")
-        cloud_project = ovh.cloud_project.Project("cloudProject",
+        my_cloud_project = ovh.cloud_project.Project("myCloudProject",
             ovh_subsidiary=mycart.ovh_subsidiary,
             description="my cloud project",
             payment_mean="fidelity",
             plan=ovh.cloud_project.ProjectPlanArgs(
-                duration=cloud_cart_product_plan.selected_prices[0].duration,
-                plan_code=cloud_cart_product_plan.plan_code,
-                pricing_mode=cloud_cart_product_plan.selected_prices[0].pricing_mode,
+                duration=cloud.selected_prices[0].duration,
+                plan_code=cloud.plan_code,
+                pricing_mode=cloud.selected_prices[0].pricing_mode,
             ))
+        ```
+
+        ## Import
+
+        Cloud project can be imported using the `order_id` that can be retrieved in the [order page](https://www.ovh.com/manager/#/dedicated/billing/orders/orders) at the creation time of the Public Cloud project.
+
+        bash
+
+        ```sh
+         $ pulumi import ovh:CloudProject/project:Project my_cloud_project order_id
         ```
 
         :param str resource_name: The name of the resource.
@@ -425,9 +441,8 @@ class Project(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] access: project access
         :param pulumi.Input[str] description: A description associated with the user.
-        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectOrderArgs']]]] orders: Details about an Order
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectOrderArgs']]]] orders: Details about the order that was used to create the public cloud project
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
         :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
         :param pulumi.Input[pulumi.InputType['ProjectPlanArgs']] plan: Product Plan to order
@@ -455,9 +470,6 @@ class Project(pulumi.CustomResource):
     @property
     @pulumi.getter
     def access(self) -> pulumi.Output[str]:
-        """
-        project access
-        """
         return pulumi.get(self, "access")
 
     @property
@@ -472,7 +484,7 @@ class Project(pulumi.CustomResource):
     @pulumi.getter
     def orders(self) -> pulumi.Output[Sequence['outputs.ProjectOrder']]:
         """
-        Details about an Order
+        Details about the order that was used to create the public cloud project
         """
         return pulumi.get(self, "orders")
 

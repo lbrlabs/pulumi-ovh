@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var mytemplate = new InstallationTemplate(&#34;mytemplate&#34;, InstallationTemplateArgs.builder()        
  *             .baseTemplateName(&#34;centos7_64&#34;)
- *             .defaultLanguage(&#34;fr&#34;)
+ *             .defaultLanguage(&#34;en&#34;)
  *             .templateName(&#34;mytemplate&#34;)
  *             .build());
  * 
@@ -295,20 +295,6 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
         return this.supportsDistributionKernel;
     }
     /**
-     * This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-     * 
-     */
-    @Export(name="supportsGptLabel", type=Boolean.class, parameters={})
-    private Output<Boolean> supportsGptLabel;
-
-    /**
-     * @return This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-     * 
-     */
-    public Output<Boolean> supportsGptLabel() {
-        return this.supportsGptLabel;
-    }
-    /**
      * This distribution supports RTM software
      * 
      */
@@ -335,20 +321,6 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      */
     public Output<Boolean> supportsSqlServer() {
         return this.supportsSqlServer;
-    }
-    /**
-     * This distribution supports UEFI setup (no,only,yes)
-     * 
-     */
-    @Export(name="supportsUefi", type=String.class, parameters={})
-    private Output<String> supportsUefi;
-
-    /**
-     * @return This distribution supports UEFI setup (no,only,yes)
-     * 
-     */
-    public Output<String> supportsUefi() {
-        return this.supportsUefi;
     }
     /**
      * This template name

@@ -2035,7 +2035,7 @@ type ProjectOrder struct {
 	Details []ProjectOrderDetail `pulumi:"details"`
 	// expiration date
 	ExpirationDate *string `pulumi:"expirationDate"`
-	// order id
+	// order id, the same as the `id`
 	OrderId *int `pulumi:"orderId"`
 }
 
@@ -2057,7 +2057,7 @@ type ProjectOrderArgs struct {
 	Details ProjectOrderDetailArrayInput `pulumi:"details"`
 	// expiration date
 	ExpirationDate pulumi.StringPtrInput `pulumi:"expirationDate"`
-	// order id
+	// order id, the same as the `id`
 	OrderId pulumi.IntPtrInput `pulumi:"orderId"`
 }
 
@@ -2127,7 +2127,7 @@ func (o ProjectOrderOutput) ExpirationDate() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v ProjectOrder) *string { return v.ExpirationDate }).(pulumi.StringPtrOutput)
 }
 
-// order id
+// order id, the same as the `id`
 func (o ProjectOrderOutput) OrderId() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v ProjectOrder) *int { return v.OrderId }).(pulumi.IntPtrOutput)
 }
@@ -4336,6 +4336,857 @@ func (o GetKubeCustomizationApiserverAdmissionpluginsPtrOutput) Enableds() pulum
 	}).(pulumi.StringArrayOutput)
 }
 
+type GetKubeNodePoolNodesNode struct {
+	// Creation date.
+	CreatedAt string `pulumi:"createdAt"`
+	// (Optional) Date of the effective deployment.
+	DeployedAt string `pulumi:"deployedAt"`
+	// Flavor name.
+	Flavor string `pulumi:"flavor"`
+	// ID of the node.
+	Id string `pulumi:"id"`
+	// Openstack ID of the underlying VM of the node.
+	InstanceId string `pulumi:"instanceId"`
+	// Is the node in the target version of the cluster.
+	IsUpToDate bool `pulumi:"isUpToDate"`
+	// Name of the node pool from which we want the nodes.
+	Name string `pulumi:"name"`
+	// Managed kubernetes node pool ID.
+	NodePoolId string `pulumi:"nodePoolId"`
+	// Public cloud project ID.
+	ProjectId string `pulumi:"projectId"`
+	// Current status.
+	Status string `pulumi:"status"`
+	// Last update date.
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Version in which the node is.
+	Version string `pulumi:"version"`
+}
+
+// GetKubeNodePoolNodesNodeInput is an input type that accepts GetKubeNodePoolNodesNodeArgs and GetKubeNodePoolNodesNodeOutput values.
+// You can construct a concrete instance of `GetKubeNodePoolNodesNodeInput` via:
+//
+//	GetKubeNodePoolNodesNodeArgs{...}
+type GetKubeNodePoolNodesNodeInput interface {
+	pulumi.Input
+
+	ToGetKubeNodePoolNodesNodeOutput() GetKubeNodePoolNodesNodeOutput
+	ToGetKubeNodePoolNodesNodeOutputWithContext(context.Context) GetKubeNodePoolNodesNodeOutput
+}
+
+type GetKubeNodePoolNodesNodeArgs struct {
+	// Creation date.
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// (Optional) Date of the effective deployment.
+	DeployedAt pulumi.StringInput `pulumi:"deployedAt"`
+	// Flavor name.
+	Flavor pulumi.StringInput `pulumi:"flavor"`
+	// ID of the node.
+	Id pulumi.StringInput `pulumi:"id"`
+	// Openstack ID of the underlying VM of the node.
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// Is the node in the target version of the cluster.
+	IsUpToDate pulumi.BoolInput `pulumi:"isUpToDate"`
+	// Name of the node pool from which we want the nodes.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Managed kubernetes node pool ID.
+	NodePoolId pulumi.StringInput `pulumi:"nodePoolId"`
+	// Public cloud project ID.
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Current status.
+	Status pulumi.StringInput `pulumi:"status"`
+	// Last update date.
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Version in which the node is.
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetKubeNodePoolNodesNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeNodePoolNodesNode)(nil)).Elem()
+}
+
+func (i GetKubeNodePoolNodesNodeArgs) ToGetKubeNodePoolNodesNodeOutput() GetKubeNodePoolNodesNodeOutput {
+	return i.ToGetKubeNodePoolNodesNodeOutputWithContext(context.Background())
+}
+
+func (i GetKubeNodePoolNodesNodeArgs) ToGetKubeNodePoolNodesNodeOutputWithContext(ctx context.Context) GetKubeNodePoolNodesNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodePoolNodesNodeOutput)
+}
+
+// GetKubeNodePoolNodesNodeArrayInput is an input type that accepts GetKubeNodePoolNodesNodeArray and GetKubeNodePoolNodesNodeArrayOutput values.
+// You can construct a concrete instance of `GetKubeNodePoolNodesNodeArrayInput` via:
+//
+//	GetKubeNodePoolNodesNodeArray{ GetKubeNodePoolNodesNodeArgs{...} }
+type GetKubeNodePoolNodesNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetKubeNodePoolNodesNodeArrayOutput() GetKubeNodePoolNodesNodeArrayOutput
+	ToGetKubeNodePoolNodesNodeArrayOutputWithContext(context.Context) GetKubeNodePoolNodesNodeArrayOutput
+}
+
+type GetKubeNodePoolNodesNodeArray []GetKubeNodePoolNodesNodeInput
+
+func (GetKubeNodePoolNodesNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeNodePoolNodesNode)(nil)).Elem()
+}
+
+func (i GetKubeNodePoolNodesNodeArray) ToGetKubeNodePoolNodesNodeArrayOutput() GetKubeNodePoolNodesNodeArrayOutput {
+	return i.ToGetKubeNodePoolNodesNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubeNodePoolNodesNodeArray) ToGetKubeNodePoolNodesNodeArrayOutputWithContext(ctx context.Context) GetKubeNodePoolNodesNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodePoolNodesNodeArrayOutput)
+}
+
+type GetKubeNodePoolNodesNodeOutput struct{ *pulumi.OutputState }
+
+func (GetKubeNodePoolNodesNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeNodePoolNodesNode)(nil)).Elem()
+}
+
+func (o GetKubeNodePoolNodesNodeOutput) ToGetKubeNodePoolNodesNodeOutput() GetKubeNodePoolNodesNodeOutput {
+	return o
+}
+
+func (o GetKubeNodePoolNodesNodeOutput) ToGetKubeNodePoolNodesNodeOutputWithContext(ctx context.Context) GetKubeNodePoolNodesNodeOutput {
+	return o
+}
+
+// Creation date.
+func (o GetKubeNodePoolNodesNodeOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// (Optional) Date of the effective deployment.
+func (o GetKubeNodePoolNodesNodeOutput) DeployedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) string { return v.DeployedAt }).(pulumi.StringOutput)
+}
+
+// Flavor name.
+func (o GetKubeNodePoolNodesNodeOutput) Flavor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) string { return v.Flavor }).(pulumi.StringOutput)
+}
+
+// ID of the node.
+func (o GetKubeNodePoolNodesNodeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Openstack ID of the underlying VM of the node.
+func (o GetKubeNodePoolNodesNodeOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// Is the node in the target version of the cluster.
+func (o GetKubeNodePoolNodesNodeOutput) IsUpToDate() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) bool { return v.IsUpToDate }).(pulumi.BoolOutput)
+}
+
+// Name of the node pool from which we want the nodes.
+func (o GetKubeNodePoolNodesNodeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Managed kubernetes node pool ID.
+func (o GetKubeNodePoolNodesNodeOutput) NodePoolId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) string { return v.NodePoolId }).(pulumi.StringOutput)
+}
+
+// Public cloud project ID.
+func (o GetKubeNodePoolNodesNodeOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Current status.
+func (o GetKubeNodePoolNodesNodeOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Last update date.
+func (o GetKubeNodePoolNodesNodeOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Version in which the node is.
+func (o GetKubeNodePoolNodesNodeOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodePoolNodesNode) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetKubeNodePoolNodesNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKubeNodePoolNodesNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeNodePoolNodesNode)(nil)).Elem()
+}
+
+func (o GetKubeNodePoolNodesNodeArrayOutput) ToGetKubeNodePoolNodesNodeArrayOutput() GetKubeNodePoolNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetKubeNodePoolNodesNodeArrayOutput) ToGetKubeNodePoolNodesNodeArrayOutputWithContext(ctx context.Context) GetKubeNodePoolNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetKubeNodePoolNodesNodeArrayOutput) Index(i pulumi.IntInput) GetKubeNodePoolNodesNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubeNodePoolNodesNode {
+		return vs[0].([]GetKubeNodePoolNodesNode)[vs[1].(int)]
+	}).(GetKubeNodePoolNodesNodeOutput)
+}
+
+type GetKubeNodePoolTemplate struct {
+	Metadata *GetKubeNodePoolTemplateMetadata `pulumi:"metadata"`
+	Spec     *GetKubeNodePoolTemplateSpec     `pulumi:"spec"`
+}
+
+// GetKubeNodePoolTemplateInput is an input type that accepts GetKubeNodePoolTemplateArgs and GetKubeNodePoolTemplateOutput values.
+// You can construct a concrete instance of `GetKubeNodePoolTemplateInput` via:
+//
+//	GetKubeNodePoolTemplateArgs{...}
+type GetKubeNodePoolTemplateInput interface {
+	pulumi.Input
+
+	ToGetKubeNodePoolTemplateOutput() GetKubeNodePoolTemplateOutput
+	ToGetKubeNodePoolTemplateOutputWithContext(context.Context) GetKubeNodePoolTemplateOutput
+}
+
+type GetKubeNodePoolTemplateArgs struct {
+	Metadata GetKubeNodePoolTemplateMetadataPtrInput `pulumi:"metadata"`
+	Spec     GetKubeNodePoolTemplateSpecPtrInput     `pulumi:"spec"`
+}
+
+func (GetKubeNodePoolTemplateArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeNodePoolTemplate)(nil)).Elem()
+}
+
+func (i GetKubeNodePoolTemplateArgs) ToGetKubeNodePoolTemplateOutput() GetKubeNodePoolTemplateOutput {
+	return i.ToGetKubeNodePoolTemplateOutputWithContext(context.Background())
+}
+
+func (i GetKubeNodePoolTemplateArgs) ToGetKubeNodePoolTemplateOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodePoolTemplateOutput)
+}
+
+func (i GetKubeNodePoolTemplateArgs) ToGetKubeNodePoolTemplatePtrOutput() GetKubeNodePoolTemplatePtrOutput {
+	return i.ToGetKubeNodePoolTemplatePtrOutputWithContext(context.Background())
+}
+
+func (i GetKubeNodePoolTemplateArgs) ToGetKubeNodePoolTemplatePtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodePoolTemplateOutput).ToGetKubeNodePoolTemplatePtrOutputWithContext(ctx)
+}
+
+// GetKubeNodePoolTemplatePtrInput is an input type that accepts GetKubeNodePoolTemplateArgs, GetKubeNodePoolTemplatePtr and GetKubeNodePoolTemplatePtrOutput values.
+// You can construct a concrete instance of `GetKubeNodePoolTemplatePtrInput` via:
+//
+//	        GetKubeNodePoolTemplateArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetKubeNodePoolTemplatePtrInput interface {
+	pulumi.Input
+
+	ToGetKubeNodePoolTemplatePtrOutput() GetKubeNodePoolTemplatePtrOutput
+	ToGetKubeNodePoolTemplatePtrOutputWithContext(context.Context) GetKubeNodePoolTemplatePtrOutput
+}
+
+type getKubeNodePoolTemplatePtrType GetKubeNodePoolTemplateArgs
+
+func GetKubeNodePoolTemplatePtr(v *GetKubeNodePoolTemplateArgs) GetKubeNodePoolTemplatePtrInput {
+	return (*getKubeNodePoolTemplatePtrType)(v)
+}
+
+func (*getKubeNodePoolTemplatePtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeNodePoolTemplate)(nil)).Elem()
+}
+
+func (i *getKubeNodePoolTemplatePtrType) ToGetKubeNodePoolTemplatePtrOutput() GetKubeNodePoolTemplatePtrOutput {
+	return i.ToGetKubeNodePoolTemplatePtrOutputWithContext(context.Background())
+}
+
+func (i *getKubeNodePoolTemplatePtrType) ToGetKubeNodePoolTemplatePtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplatePtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodePoolTemplatePtrOutput)
+}
+
+type GetKubeNodePoolTemplateOutput struct{ *pulumi.OutputState }
+
+func (GetKubeNodePoolTemplateOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeNodePoolTemplate)(nil)).Elem()
+}
+
+func (o GetKubeNodePoolTemplateOutput) ToGetKubeNodePoolTemplateOutput() GetKubeNodePoolTemplateOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplateOutput) ToGetKubeNodePoolTemplateOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplateOutput) ToGetKubeNodePoolTemplatePtrOutput() GetKubeNodePoolTemplatePtrOutput {
+	return o.ToGetKubeNodePoolTemplatePtrOutputWithContext(context.Background())
+}
+
+func (o GetKubeNodePoolTemplateOutput) ToGetKubeNodePoolTemplatePtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplatePtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetKubeNodePoolTemplate) *GetKubeNodePoolTemplate {
+		return &v
+	}).(GetKubeNodePoolTemplatePtrOutput)
+}
+
+func (o GetKubeNodePoolTemplateOutput) Metadata() GetKubeNodePoolTemplateMetadataPtrOutput {
+	return o.ApplyT(func(v GetKubeNodePoolTemplate) *GetKubeNodePoolTemplateMetadata { return v.Metadata }).(GetKubeNodePoolTemplateMetadataPtrOutput)
+}
+
+func (o GetKubeNodePoolTemplateOutput) Spec() GetKubeNodePoolTemplateSpecPtrOutput {
+	return o.ApplyT(func(v GetKubeNodePoolTemplate) *GetKubeNodePoolTemplateSpec { return v.Spec }).(GetKubeNodePoolTemplateSpecPtrOutput)
+}
+
+type GetKubeNodePoolTemplatePtrOutput struct{ *pulumi.OutputState }
+
+func (GetKubeNodePoolTemplatePtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeNodePoolTemplate)(nil)).Elem()
+}
+
+func (o GetKubeNodePoolTemplatePtrOutput) ToGetKubeNodePoolTemplatePtrOutput() GetKubeNodePoolTemplatePtrOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplatePtrOutput) ToGetKubeNodePoolTemplatePtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplatePtrOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplatePtrOutput) Elem() GetKubeNodePoolTemplateOutput {
+	return o.ApplyT(func(v *GetKubeNodePoolTemplate) GetKubeNodePoolTemplate {
+		if v != nil {
+			return *v
+		}
+		var ret GetKubeNodePoolTemplate
+		return ret
+	}).(GetKubeNodePoolTemplateOutput)
+}
+
+func (o GetKubeNodePoolTemplatePtrOutput) Metadata() GetKubeNodePoolTemplateMetadataPtrOutput {
+	return o.ApplyT(func(v *GetKubeNodePoolTemplate) *GetKubeNodePoolTemplateMetadata {
+		if v == nil {
+			return nil
+		}
+		return v.Metadata
+	}).(GetKubeNodePoolTemplateMetadataPtrOutput)
+}
+
+func (o GetKubeNodePoolTemplatePtrOutput) Spec() GetKubeNodePoolTemplateSpecPtrOutput {
+	return o.ApplyT(func(v *GetKubeNodePoolTemplate) *GetKubeNodePoolTemplateSpec {
+		if v == nil {
+			return nil
+		}
+		return v.Spec
+	}).(GetKubeNodePoolTemplateSpecPtrOutput)
+}
+
+type GetKubeNodePoolTemplateMetadata struct {
+	Annotations map[string]string `pulumi:"annotations"`
+	Finalizers  []string          `pulumi:"finalizers"`
+	Labels      map[string]string `pulumi:"labels"`
+}
+
+// GetKubeNodePoolTemplateMetadataInput is an input type that accepts GetKubeNodePoolTemplateMetadataArgs and GetKubeNodePoolTemplateMetadataOutput values.
+// You can construct a concrete instance of `GetKubeNodePoolTemplateMetadataInput` via:
+//
+//	GetKubeNodePoolTemplateMetadataArgs{...}
+type GetKubeNodePoolTemplateMetadataInput interface {
+	pulumi.Input
+
+	ToGetKubeNodePoolTemplateMetadataOutput() GetKubeNodePoolTemplateMetadataOutput
+	ToGetKubeNodePoolTemplateMetadataOutputWithContext(context.Context) GetKubeNodePoolTemplateMetadataOutput
+}
+
+type GetKubeNodePoolTemplateMetadataArgs struct {
+	Annotations pulumi.StringMapInput   `pulumi:"annotations"`
+	Finalizers  pulumi.StringArrayInput `pulumi:"finalizers"`
+	Labels      pulumi.StringMapInput   `pulumi:"labels"`
+}
+
+func (GetKubeNodePoolTemplateMetadataArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeNodePoolTemplateMetadata)(nil)).Elem()
+}
+
+func (i GetKubeNodePoolTemplateMetadataArgs) ToGetKubeNodePoolTemplateMetadataOutput() GetKubeNodePoolTemplateMetadataOutput {
+	return i.ToGetKubeNodePoolTemplateMetadataOutputWithContext(context.Background())
+}
+
+func (i GetKubeNodePoolTemplateMetadataArgs) ToGetKubeNodePoolTemplateMetadataOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateMetadataOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodePoolTemplateMetadataOutput)
+}
+
+func (i GetKubeNodePoolTemplateMetadataArgs) ToGetKubeNodePoolTemplateMetadataPtrOutput() GetKubeNodePoolTemplateMetadataPtrOutput {
+	return i.ToGetKubeNodePoolTemplateMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i GetKubeNodePoolTemplateMetadataArgs) ToGetKubeNodePoolTemplateMetadataPtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodePoolTemplateMetadataOutput).ToGetKubeNodePoolTemplateMetadataPtrOutputWithContext(ctx)
+}
+
+// GetKubeNodePoolTemplateMetadataPtrInput is an input type that accepts GetKubeNodePoolTemplateMetadataArgs, GetKubeNodePoolTemplateMetadataPtr and GetKubeNodePoolTemplateMetadataPtrOutput values.
+// You can construct a concrete instance of `GetKubeNodePoolTemplateMetadataPtrInput` via:
+//
+//	        GetKubeNodePoolTemplateMetadataArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetKubeNodePoolTemplateMetadataPtrInput interface {
+	pulumi.Input
+
+	ToGetKubeNodePoolTemplateMetadataPtrOutput() GetKubeNodePoolTemplateMetadataPtrOutput
+	ToGetKubeNodePoolTemplateMetadataPtrOutputWithContext(context.Context) GetKubeNodePoolTemplateMetadataPtrOutput
+}
+
+type getKubeNodePoolTemplateMetadataPtrType GetKubeNodePoolTemplateMetadataArgs
+
+func GetKubeNodePoolTemplateMetadataPtr(v *GetKubeNodePoolTemplateMetadataArgs) GetKubeNodePoolTemplateMetadataPtrInput {
+	return (*getKubeNodePoolTemplateMetadataPtrType)(v)
+}
+
+func (*getKubeNodePoolTemplateMetadataPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeNodePoolTemplateMetadata)(nil)).Elem()
+}
+
+func (i *getKubeNodePoolTemplateMetadataPtrType) ToGetKubeNodePoolTemplateMetadataPtrOutput() GetKubeNodePoolTemplateMetadataPtrOutput {
+	return i.ToGetKubeNodePoolTemplateMetadataPtrOutputWithContext(context.Background())
+}
+
+func (i *getKubeNodePoolTemplateMetadataPtrType) ToGetKubeNodePoolTemplateMetadataPtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateMetadataPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodePoolTemplateMetadataPtrOutput)
+}
+
+type GetKubeNodePoolTemplateMetadataOutput struct{ *pulumi.OutputState }
+
+func (GetKubeNodePoolTemplateMetadataOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeNodePoolTemplateMetadata)(nil)).Elem()
+}
+
+func (o GetKubeNodePoolTemplateMetadataOutput) ToGetKubeNodePoolTemplateMetadataOutput() GetKubeNodePoolTemplateMetadataOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplateMetadataOutput) ToGetKubeNodePoolTemplateMetadataOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateMetadataOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplateMetadataOutput) ToGetKubeNodePoolTemplateMetadataPtrOutput() GetKubeNodePoolTemplateMetadataPtrOutput {
+	return o.ToGetKubeNodePoolTemplateMetadataPtrOutputWithContext(context.Background())
+}
+
+func (o GetKubeNodePoolTemplateMetadataOutput) ToGetKubeNodePoolTemplateMetadataPtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateMetadataPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetKubeNodePoolTemplateMetadata) *GetKubeNodePoolTemplateMetadata {
+		return &v
+	}).(GetKubeNodePoolTemplateMetadataPtrOutput)
+}
+
+func (o GetKubeNodePoolTemplateMetadataOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetKubeNodePoolTemplateMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
+}
+
+func (o GetKubeNodePoolTemplateMetadataOutput) Finalizers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetKubeNodePoolTemplateMetadata) []string { return v.Finalizers }).(pulumi.StringArrayOutput)
+}
+
+func (o GetKubeNodePoolTemplateMetadataOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetKubeNodePoolTemplateMetadata) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
+}
+
+type GetKubeNodePoolTemplateMetadataPtrOutput struct{ *pulumi.OutputState }
+
+func (GetKubeNodePoolTemplateMetadataPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeNodePoolTemplateMetadata)(nil)).Elem()
+}
+
+func (o GetKubeNodePoolTemplateMetadataPtrOutput) ToGetKubeNodePoolTemplateMetadataPtrOutput() GetKubeNodePoolTemplateMetadataPtrOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplateMetadataPtrOutput) ToGetKubeNodePoolTemplateMetadataPtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateMetadataPtrOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplateMetadataPtrOutput) Elem() GetKubeNodePoolTemplateMetadataOutput {
+	return o.ApplyT(func(v *GetKubeNodePoolTemplateMetadata) GetKubeNodePoolTemplateMetadata {
+		if v != nil {
+			return *v
+		}
+		var ret GetKubeNodePoolTemplateMetadata
+		return ret
+	}).(GetKubeNodePoolTemplateMetadataOutput)
+}
+
+func (o GetKubeNodePoolTemplateMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetKubeNodePoolTemplateMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Annotations
+	}).(pulumi.StringMapOutput)
+}
+
+func (o GetKubeNodePoolTemplateMetadataPtrOutput) Finalizers() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *GetKubeNodePoolTemplateMetadata) []string {
+		if v == nil {
+			return nil
+		}
+		return v.Finalizers
+	}).(pulumi.StringArrayOutput)
+}
+
+func (o GetKubeNodePoolTemplateMetadataPtrOutput) Labels() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *GetKubeNodePoolTemplateMetadata) map[string]string {
+		if v == nil {
+			return nil
+		}
+		return v.Labels
+	}).(pulumi.StringMapOutput)
+}
+
+type GetKubeNodePoolTemplateSpec struct {
+	Taints        []map[string]interface{} `pulumi:"taints"`
+	Unschedulable *bool                    `pulumi:"unschedulable"`
+}
+
+// GetKubeNodePoolTemplateSpecInput is an input type that accepts GetKubeNodePoolTemplateSpecArgs and GetKubeNodePoolTemplateSpecOutput values.
+// You can construct a concrete instance of `GetKubeNodePoolTemplateSpecInput` via:
+//
+//	GetKubeNodePoolTemplateSpecArgs{...}
+type GetKubeNodePoolTemplateSpecInput interface {
+	pulumi.Input
+
+	ToGetKubeNodePoolTemplateSpecOutput() GetKubeNodePoolTemplateSpecOutput
+	ToGetKubeNodePoolTemplateSpecOutputWithContext(context.Context) GetKubeNodePoolTemplateSpecOutput
+}
+
+type GetKubeNodePoolTemplateSpecArgs struct {
+	Taints        pulumi.MapArrayInput `pulumi:"taints"`
+	Unschedulable pulumi.BoolPtrInput  `pulumi:"unschedulable"`
+}
+
+func (GetKubeNodePoolTemplateSpecArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeNodePoolTemplateSpec)(nil)).Elem()
+}
+
+func (i GetKubeNodePoolTemplateSpecArgs) ToGetKubeNodePoolTemplateSpecOutput() GetKubeNodePoolTemplateSpecOutput {
+	return i.ToGetKubeNodePoolTemplateSpecOutputWithContext(context.Background())
+}
+
+func (i GetKubeNodePoolTemplateSpecArgs) ToGetKubeNodePoolTemplateSpecOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateSpecOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodePoolTemplateSpecOutput)
+}
+
+func (i GetKubeNodePoolTemplateSpecArgs) ToGetKubeNodePoolTemplateSpecPtrOutput() GetKubeNodePoolTemplateSpecPtrOutput {
+	return i.ToGetKubeNodePoolTemplateSpecPtrOutputWithContext(context.Background())
+}
+
+func (i GetKubeNodePoolTemplateSpecArgs) ToGetKubeNodePoolTemplateSpecPtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodePoolTemplateSpecOutput).ToGetKubeNodePoolTemplateSpecPtrOutputWithContext(ctx)
+}
+
+// GetKubeNodePoolTemplateSpecPtrInput is an input type that accepts GetKubeNodePoolTemplateSpecArgs, GetKubeNodePoolTemplateSpecPtr and GetKubeNodePoolTemplateSpecPtrOutput values.
+// You can construct a concrete instance of `GetKubeNodePoolTemplateSpecPtrInput` via:
+//
+//	        GetKubeNodePoolTemplateSpecArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetKubeNodePoolTemplateSpecPtrInput interface {
+	pulumi.Input
+
+	ToGetKubeNodePoolTemplateSpecPtrOutput() GetKubeNodePoolTemplateSpecPtrOutput
+	ToGetKubeNodePoolTemplateSpecPtrOutputWithContext(context.Context) GetKubeNodePoolTemplateSpecPtrOutput
+}
+
+type getKubeNodePoolTemplateSpecPtrType GetKubeNodePoolTemplateSpecArgs
+
+func GetKubeNodePoolTemplateSpecPtr(v *GetKubeNodePoolTemplateSpecArgs) GetKubeNodePoolTemplateSpecPtrInput {
+	return (*getKubeNodePoolTemplateSpecPtrType)(v)
+}
+
+func (*getKubeNodePoolTemplateSpecPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeNodePoolTemplateSpec)(nil)).Elem()
+}
+
+func (i *getKubeNodePoolTemplateSpecPtrType) ToGetKubeNodePoolTemplateSpecPtrOutput() GetKubeNodePoolTemplateSpecPtrOutput {
+	return i.ToGetKubeNodePoolTemplateSpecPtrOutputWithContext(context.Background())
+}
+
+func (i *getKubeNodePoolTemplateSpecPtrType) ToGetKubeNodePoolTemplateSpecPtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateSpecPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodePoolTemplateSpecPtrOutput)
+}
+
+type GetKubeNodePoolTemplateSpecOutput struct{ *pulumi.OutputState }
+
+func (GetKubeNodePoolTemplateSpecOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeNodePoolTemplateSpec)(nil)).Elem()
+}
+
+func (o GetKubeNodePoolTemplateSpecOutput) ToGetKubeNodePoolTemplateSpecOutput() GetKubeNodePoolTemplateSpecOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplateSpecOutput) ToGetKubeNodePoolTemplateSpecOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateSpecOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplateSpecOutput) ToGetKubeNodePoolTemplateSpecPtrOutput() GetKubeNodePoolTemplateSpecPtrOutput {
+	return o.ToGetKubeNodePoolTemplateSpecPtrOutputWithContext(context.Background())
+}
+
+func (o GetKubeNodePoolTemplateSpecOutput) ToGetKubeNodePoolTemplateSpecPtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateSpecPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetKubeNodePoolTemplateSpec) *GetKubeNodePoolTemplateSpec {
+		return &v
+	}).(GetKubeNodePoolTemplateSpecPtrOutput)
+}
+
+func (o GetKubeNodePoolTemplateSpecOutput) Taints() pulumi.MapArrayOutput {
+	return o.ApplyT(func(v GetKubeNodePoolTemplateSpec) []map[string]interface{} { return v.Taints }).(pulumi.MapArrayOutput)
+}
+
+func (o GetKubeNodePoolTemplateSpecOutput) Unschedulable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetKubeNodePoolTemplateSpec) *bool { return v.Unschedulable }).(pulumi.BoolPtrOutput)
+}
+
+type GetKubeNodePoolTemplateSpecPtrOutput struct{ *pulumi.OutputState }
+
+func (GetKubeNodePoolTemplateSpecPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeNodePoolTemplateSpec)(nil)).Elem()
+}
+
+func (o GetKubeNodePoolTemplateSpecPtrOutput) ToGetKubeNodePoolTemplateSpecPtrOutput() GetKubeNodePoolTemplateSpecPtrOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplateSpecPtrOutput) ToGetKubeNodePoolTemplateSpecPtrOutputWithContext(ctx context.Context) GetKubeNodePoolTemplateSpecPtrOutput {
+	return o
+}
+
+func (o GetKubeNodePoolTemplateSpecPtrOutput) Elem() GetKubeNodePoolTemplateSpecOutput {
+	return o.ApplyT(func(v *GetKubeNodePoolTemplateSpec) GetKubeNodePoolTemplateSpec {
+		if v != nil {
+			return *v
+		}
+		var ret GetKubeNodePoolTemplateSpec
+		return ret
+	}).(GetKubeNodePoolTemplateSpecOutput)
+}
+
+func (o GetKubeNodePoolTemplateSpecPtrOutput) Taints() pulumi.MapArrayOutput {
+	return o.ApplyT(func(v *GetKubeNodePoolTemplateSpec) []map[string]interface{} {
+		if v == nil {
+			return nil
+		}
+		return v.Taints
+	}).(pulumi.MapArrayOutput)
+}
+
+func (o GetKubeNodePoolTemplateSpecPtrOutput) Unschedulable() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *GetKubeNodePoolTemplateSpec) *bool {
+		if v == nil {
+			return nil
+		}
+		return v.Unschedulable
+	}).(pulumi.BoolPtrOutput)
+}
+
+type GetKubeNodesNode struct {
+	// Creation date
+	CreatedAt string `pulumi:"createdAt"`
+	// (Optional) Date of the effective deployment
+	DeployedAt string `pulumi:"deployedAt"`
+	// Flavor name
+	Flavor string `pulumi:"flavor"`
+	// ID of the node
+	Id string `pulumi:"id"`
+	// Openstack ID of the underlying VM of the node
+	InstanceId string `pulumi:"instanceId"`
+	// Is the node in the target version of the cluster
+	IsUpToDate bool `pulumi:"isUpToDate"`
+	// Name of the node
+	Name string `pulumi:"name"`
+	// Managed kubernetes node pool ID
+	NodePoolId string `pulumi:"nodePoolId"`
+	// Public cloud project ID
+	ProjectId string `pulumi:"projectId"`
+	// Current status
+	Status string `pulumi:"status"`
+	// Last update date
+	UpdatedAt string `pulumi:"updatedAt"`
+	// Version in which the node is
+	Version string `pulumi:"version"`
+}
+
+// GetKubeNodesNodeInput is an input type that accepts GetKubeNodesNodeArgs and GetKubeNodesNodeOutput values.
+// You can construct a concrete instance of `GetKubeNodesNodeInput` via:
+//
+//	GetKubeNodesNodeArgs{...}
+type GetKubeNodesNodeInput interface {
+	pulumi.Input
+
+	ToGetKubeNodesNodeOutput() GetKubeNodesNodeOutput
+	ToGetKubeNodesNodeOutputWithContext(context.Context) GetKubeNodesNodeOutput
+}
+
+type GetKubeNodesNodeArgs struct {
+	// Creation date
+	CreatedAt pulumi.StringInput `pulumi:"createdAt"`
+	// (Optional) Date of the effective deployment
+	DeployedAt pulumi.StringInput `pulumi:"deployedAt"`
+	// Flavor name
+	Flavor pulumi.StringInput `pulumi:"flavor"`
+	// ID of the node
+	Id pulumi.StringInput `pulumi:"id"`
+	// Openstack ID of the underlying VM of the node
+	InstanceId pulumi.StringInput `pulumi:"instanceId"`
+	// Is the node in the target version of the cluster
+	IsUpToDate pulumi.BoolInput `pulumi:"isUpToDate"`
+	// Name of the node
+	Name pulumi.StringInput `pulumi:"name"`
+	// Managed kubernetes node pool ID
+	NodePoolId pulumi.StringInput `pulumi:"nodePoolId"`
+	// Public cloud project ID
+	ProjectId pulumi.StringInput `pulumi:"projectId"`
+	// Current status
+	Status pulumi.StringInput `pulumi:"status"`
+	// Last update date
+	UpdatedAt pulumi.StringInput `pulumi:"updatedAt"`
+	// Version in which the node is
+	Version pulumi.StringInput `pulumi:"version"`
+}
+
+func (GetKubeNodesNodeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeNodesNode)(nil)).Elem()
+}
+
+func (i GetKubeNodesNodeArgs) ToGetKubeNodesNodeOutput() GetKubeNodesNodeOutput {
+	return i.ToGetKubeNodesNodeOutputWithContext(context.Background())
+}
+
+func (i GetKubeNodesNodeArgs) ToGetKubeNodesNodeOutputWithContext(ctx context.Context) GetKubeNodesNodeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodesNodeOutput)
+}
+
+// GetKubeNodesNodeArrayInput is an input type that accepts GetKubeNodesNodeArray and GetKubeNodesNodeArrayOutput values.
+// You can construct a concrete instance of `GetKubeNodesNodeArrayInput` via:
+//
+//	GetKubeNodesNodeArray{ GetKubeNodesNodeArgs{...} }
+type GetKubeNodesNodeArrayInput interface {
+	pulumi.Input
+
+	ToGetKubeNodesNodeArrayOutput() GetKubeNodesNodeArrayOutput
+	ToGetKubeNodesNodeArrayOutputWithContext(context.Context) GetKubeNodesNodeArrayOutput
+}
+
+type GetKubeNodesNodeArray []GetKubeNodesNodeInput
+
+func (GetKubeNodesNodeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeNodesNode)(nil)).Elem()
+}
+
+func (i GetKubeNodesNodeArray) ToGetKubeNodesNodeArrayOutput() GetKubeNodesNodeArrayOutput {
+	return i.ToGetKubeNodesNodeArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubeNodesNodeArray) ToGetKubeNodesNodeArrayOutputWithContext(ctx context.Context) GetKubeNodesNodeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeNodesNodeArrayOutput)
+}
+
+type GetKubeNodesNodeOutput struct{ *pulumi.OutputState }
+
+func (GetKubeNodesNodeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeNodesNode)(nil)).Elem()
+}
+
+func (o GetKubeNodesNodeOutput) ToGetKubeNodesNodeOutput() GetKubeNodesNodeOutput {
+	return o
+}
+
+func (o GetKubeNodesNodeOutput) ToGetKubeNodesNodeOutputWithContext(ctx context.Context) GetKubeNodesNodeOutput {
+	return o
+}
+
+// Creation date
+func (o GetKubeNodesNodeOutput) CreatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) string { return v.CreatedAt }).(pulumi.StringOutput)
+}
+
+// (Optional) Date of the effective deployment
+func (o GetKubeNodesNodeOutput) DeployedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) string { return v.DeployedAt }).(pulumi.StringOutput)
+}
+
+// Flavor name
+func (o GetKubeNodesNodeOutput) Flavor() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) string { return v.Flavor }).(pulumi.StringOutput)
+}
+
+// ID of the node
+func (o GetKubeNodesNodeOutput) Id() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) string { return v.Id }).(pulumi.StringOutput)
+}
+
+// Openstack ID of the underlying VM of the node
+func (o GetKubeNodesNodeOutput) InstanceId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) string { return v.InstanceId }).(pulumi.StringOutput)
+}
+
+// Is the node in the target version of the cluster
+func (o GetKubeNodesNodeOutput) IsUpToDate() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) bool { return v.IsUpToDate }).(pulumi.BoolOutput)
+}
+
+// Name of the node
+func (o GetKubeNodesNodeOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// Managed kubernetes node pool ID
+func (o GetKubeNodesNodeOutput) NodePoolId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) string { return v.NodePoolId }).(pulumi.StringOutput)
+}
+
+// Public cloud project ID
+func (o GetKubeNodesNodeOutput) ProjectId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) string { return v.ProjectId }).(pulumi.StringOutput)
+}
+
+// Current status
+func (o GetKubeNodesNodeOutput) Status() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// Last update date
+func (o GetKubeNodesNodeOutput) UpdatedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) string { return v.UpdatedAt }).(pulumi.StringOutput)
+}
+
+// Version in which the node is
+func (o GetKubeNodesNodeOutput) Version() pulumi.StringOutput {
+	return o.ApplyT(func(v GetKubeNodesNode) string { return v.Version }).(pulumi.StringOutput)
+}
+
+type GetKubeNodesNodeArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKubeNodesNodeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeNodesNode)(nil)).Elem()
+}
+
+func (o GetKubeNodesNodeArrayOutput) ToGetKubeNodesNodeArrayOutput() GetKubeNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetKubeNodesNodeArrayOutput) ToGetKubeNodesNodeArrayOutputWithContext(ctx context.Context) GetKubeNodesNodeArrayOutput {
+	return o
+}
+
+func (o GetKubeNodesNodeArrayOutput) Index(i pulumi.IntInput) GetKubeNodesNodeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubeNodesNode {
+		return vs[0].([]GetKubeNodesNode)[vs[1].(int)]
+	}).(GetKubeNodesNodeOutput)
+}
+
 type GetOpenSearchUserAcl struct {
 	// Pattern of the ACL.
 	Pattern string `pulumi:"pattern"`
@@ -5011,6 +5862,16 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationApiserverPtrInput)(nil)).Elem(), GetKubeCustomizationApiserverArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationApiserverAdmissionpluginsInput)(nil)).Elem(), GetKubeCustomizationApiserverAdmissionpluginsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationApiserverAdmissionpluginsPtrInput)(nil)).Elem(), GetKubeCustomizationApiserverAdmissionpluginsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodePoolNodesNodeInput)(nil)).Elem(), GetKubeNodePoolNodesNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodePoolNodesNodeArrayInput)(nil)).Elem(), GetKubeNodePoolNodesNodeArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodePoolTemplateInput)(nil)).Elem(), GetKubeNodePoolTemplateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodePoolTemplatePtrInput)(nil)).Elem(), GetKubeNodePoolTemplateArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodePoolTemplateMetadataInput)(nil)).Elem(), GetKubeNodePoolTemplateMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodePoolTemplateMetadataPtrInput)(nil)).Elem(), GetKubeNodePoolTemplateMetadataArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodePoolTemplateSpecInput)(nil)).Elem(), GetKubeNodePoolTemplateSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodePoolTemplateSpecPtrInput)(nil)).Elem(), GetKubeNodePoolTemplateSpecArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodesNodeInput)(nil)).Elem(), GetKubeNodesNodeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodesNodeArrayInput)(nil)).Elem(), GetKubeNodesNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOpenSearchUserAclInput)(nil)).Elem(), GetOpenSearchUserAclArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetOpenSearchUserAclArrayInput)(nil)).Elem(), GetOpenSearchUserAclArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetRegionServiceInput)(nil)).Elem(), GetRegionServiceArgs{})
@@ -5087,6 +5948,16 @@ func init() {
 	pulumi.RegisterOutputType(GetKubeCustomizationApiserverPtrOutput{})
 	pulumi.RegisterOutputType(GetKubeCustomizationApiserverAdmissionpluginsOutput{})
 	pulumi.RegisterOutputType(GetKubeCustomizationApiserverAdmissionpluginsPtrOutput{})
+	pulumi.RegisterOutputType(GetKubeNodePoolNodesNodeOutput{})
+	pulumi.RegisterOutputType(GetKubeNodePoolNodesNodeArrayOutput{})
+	pulumi.RegisterOutputType(GetKubeNodePoolTemplateOutput{})
+	pulumi.RegisterOutputType(GetKubeNodePoolTemplatePtrOutput{})
+	pulumi.RegisterOutputType(GetKubeNodePoolTemplateMetadataOutput{})
+	pulumi.RegisterOutputType(GetKubeNodePoolTemplateMetadataPtrOutput{})
+	pulumi.RegisterOutputType(GetKubeNodePoolTemplateSpecOutput{})
+	pulumi.RegisterOutputType(GetKubeNodePoolTemplateSpecPtrOutput{})
+	pulumi.RegisterOutputType(GetKubeNodesNodeOutput{})
+	pulumi.RegisterOutputType(GetKubeNodesNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetOpenSearchUserAclOutput{})
 	pulumi.RegisterOutputType(GetOpenSearchUserAclArrayOutput{})
 	pulumi.RegisterOutputType(GetRegionServiceOutput{})

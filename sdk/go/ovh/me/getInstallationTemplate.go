@@ -72,10 +72,8 @@ type LookupInstallationTemplateResult struct {
 	LvmReady                   bool                                         `pulumi:"lvmReady"`
 	PartitionSchemes           []GetInstallationTemplatePartitionSchemeType `pulumi:"partitionSchemes"`
 	SupportsDistributionKernel bool                                         `pulumi:"supportsDistributionKernel"`
-	SupportsGptLabel           bool                                         `pulumi:"supportsGptLabel"`
 	SupportsRtm                bool                                         `pulumi:"supportsRtm"`
 	SupportsSqlServer          bool                                         `pulumi:"supportsSqlServer"`
-	SupportsUefi               string                                       `pulumi:"supportsUefi"`
 	TemplateName               string                                       `pulumi:"templateName"`
 }
 
@@ -189,20 +187,12 @@ func (o LookupInstallationTemplateResultOutput) SupportsDistributionKernel() pul
 	return o.ApplyT(func(v LookupInstallationTemplateResult) bool { return v.SupportsDistributionKernel }).(pulumi.BoolOutput)
 }
 
-func (o LookupInstallationTemplateResultOutput) SupportsGptLabel() pulumi.BoolOutput {
-	return o.ApplyT(func(v LookupInstallationTemplateResult) bool { return v.SupportsGptLabel }).(pulumi.BoolOutput)
-}
-
 func (o LookupInstallationTemplateResultOutput) SupportsRtm() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupInstallationTemplateResult) bool { return v.SupportsRtm }).(pulumi.BoolOutput)
 }
 
 func (o LookupInstallationTemplateResultOutput) SupportsSqlServer() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupInstallationTemplateResult) bool { return v.SupportsSqlServer }).(pulumi.BoolOutput)
-}
-
-func (o LookupInstallationTemplateResultOutput) SupportsUefi() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupInstallationTemplateResult) string { return v.SupportsUefi }).(pulumi.StringOutput)
 }
 
 func (o LookupInstallationTemplateResultOutput) TemplateName() pulumi.StringOutput {

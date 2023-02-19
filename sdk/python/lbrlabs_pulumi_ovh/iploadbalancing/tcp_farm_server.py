@@ -21,6 +21,7 @@ class TcpFarmServerArgs:
                  backup: Optional[pulumi.Input[bool]] = None,
                  chain: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
+                 on_marked_down: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  probe: Optional[pulumi.Input[bool]] = None,
                  proxy_protocol_version: Optional[pulumi.Input[str]] = None,
@@ -34,6 +35,7 @@ class TcpFarmServerArgs:
         :param pulumi.Input[str] status: backend status - `active` or `inactive`
         :param pulumi.Input[bool] backup: is it a backup server used in case of failure of all the non-backup backends
         :param pulumi.Input[str] display_name: Label for the server
+        :param pulumi.Input[str] on_marked_down: enable action when backend marked down. (`shutdown-sessions`)
         :param pulumi.Input[int] port: Port that backend will respond on
         :param pulumi.Input[bool] probe: defines if backend will be probed to determine health and keep as active in farm if healthy
         :param pulumi.Input[str] proxy_protocol_version: version of the PROXY protocol used to pass origin connection information from loadbalancer to receiving service (`v1`, `v2`, `v2-ssl`, `v2-ssl-cn`)
@@ -50,6 +52,8 @@ class TcpFarmServerArgs:
             pulumi.set(__self__, "chain", chain)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
+        if on_marked_down is not None:
+            pulumi.set(__self__, "on_marked_down", on_marked_down)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if probe is not None:
@@ -143,6 +147,18 @@ class TcpFarmServerArgs:
         pulumi.set(self, "display_name", value)
 
     @property
+    @pulumi.getter(name="onMarkedDown")
+    def on_marked_down(self) -> Optional[pulumi.Input[str]]:
+        """
+        enable action when backend marked down. (`shutdown-sessions`)
+        """
+        return pulumi.get(self, "on_marked_down")
+
+    @on_marked_down.setter
+    def on_marked_down(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "on_marked_down", value)
+
+    @property
     @pulumi.getter
     def port(self) -> Optional[pulumi.Input[int]]:
         """
@@ -211,6 +227,7 @@ class _TcpFarmServerState:
                  chain: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  farm_id: Optional[pulumi.Input[int]] = None,
+                 on_marked_down: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  probe: Optional[pulumi.Input[bool]] = None,
                  proxy_protocol_version: Optional[pulumi.Input[str]] = None,
@@ -224,6 +241,7 @@ class _TcpFarmServerState:
         :param pulumi.Input[bool] backup: is it a backup server used in case of failure of all the non-backup backends
         :param pulumi.Input[str] display_name: Label for the server
         :param pulumi.Input[int] farm_id: ID of the farm this server is attached to
+        :param pulumi.Input[str] on_marked_down: enable action when backend marked down. (`shutdown-sessions`)
         :param pulumi.Input[int] port: Port that backend will respond on
         :param pulumi.Input[bool] probe: defines if backend will be probed to determine health and keep as active in farm if healthy
         :param pulumi.Input[str] proxy_protocol_version: version of the PROXY protocol used to pass origin connection information from loadbalancer to receiving service (`v1`, `v2`, `v2-ssl`, `v2-ssl-cn`)
@@ -242,6 +260,8 @@ class _TcpFarmServerState:
             pulumi.set(__self__, "display_name", display_name)
         if farm_id is not None:
             pulumi.set(__self__, "farm_id", farm_id)
+        if on_marked_down is not None:
+            pulumi.set(__self__, "on_marked_down", on_marked_down)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if probe is not None:
@@ -313,6 +333,18 @@ class _TcpFarmServerState:
     @farm_id.setter
     def farm_id(self, value: Optional[pulumi.Input[int]]):
         pulumi.set(self, "farm_id", value)
+
+    @property
+    @pulumi.getter(name="onMarkedDown")
+    def on_marked_down(self) -> Optional[pulumi.Input[str]]:
+        """
+        enable action when backend marked down. (`shutdown-sessions`)
+        """
+        return pulumi.get(self, "on_marked_down")
+
+    @on_marked_down.setter
+    def on_marked_down(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "on_marked_down", value)
 
     @property
     @pulumi.getter
@@ -409,6 +441,7 @@ class TcpFarmServer(pulumi.CustomResource):
                  chain: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  farm_id: Optional[pulumi.Input[int]] = None,
+                 on_marked_down: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  probe: Optional[pulumi.Input[bool]] = None,
                  proxy_protocol_version: Optional[pulumi.Input[str]] = None,
@@ -430,21 +463,21 @@ class TcpFarmServer(pulumi.CustomResource):
         lb = ovh.IpLoadBalancing.get_ip_load_balancing(service_name="ip-1.2.3.4",
             state="ok")
         farmname = ovh.ip_load_balancing.TcpFarm("farmname",
-            service_name=lb.id,
             port=8080,
+            service_name=lb.id,
             zone="all")
         backend = ovh.ip_load_balancing.TcpFarmServer("backend",
-            service_name=lb.id,
-            farm_id=farmname.id,
-            display_name="mybackend",
             address="4.5.6.7",
-            status="active",
+            backup=True,
+            display_name="mybackend",
+            farm_id=farmname.id,
             port=80,
-            proxy_protocol_version=v2,
-            weight=2,
             probe=True,
+            proxy_protocol_version="v2",
+            service_name=lb.id,
             ssl=False,
-            backup=True)
+            status="active",
+            weight=2)
         ```
 
         :param str resource_name: The name of the resource.
@@ -453,6 +486,7 @@ class TcpFarmServer(pulumi.CustomResource):
         :param pulumi.Input[bool] backup: is it a backup server used in case of failure of all the non-backup backends
         :param pulumi.Input[str] display_name: Label for the server
         :param pulumi.Input[int] farm_id: ID of the farm this server is attached to
+        :param pulumi.Input[str] on_marked_down: enable action when backend marked down. (`shutdown-sessions`)
         :param pulumi.Input[int] port: Port that backend will respond on
         :param pulumi.Input[bool] probe: defines if backend will be probed to determine health and keep as active in farm if healthy
         :param pulumi.Input[str] proxy_protocol_version: version of the PROXY protocol used to pass origin connection information from loadbalancer to receiving service (`v1`, `v2`, `v2-ssl`, `v2-ssl-cn`)
@@ -480,21 +514,21 @@ class TcpFarmServer(pulumi.CustomResource):
         lb = ovh.IpLoadBalancing.get_ip_load_balancing(service_name="ip-1.2.3.4",
             state="ok")
         farmname = ovh.ip_load_balancing.TcpFarm("farmname",
-            service_name=lb.id,
             port=8080,
+            service_name=lb.id,
             zone="all")
         backend = ovh.ip_load_balancing.TcpFarmServer("backend",
-            service_name=lb.id,
-            farm_id=farmname.id,
-            display_name="mybackend",
             address="4.5.6.7",
-            status="active",
+            backup=True,
+            display_name="mybackend",
+            farm_id=farmname.id,
             port=80,
-            proxy_protocol_version=v2,
-            weight=2,
             probe=True,
+            proxy_protocol_version="v2",
+            service_name=lb.id,
             ssl=False,
-            backup=True)
+            status="active",
+            weight=2)
         ```
 
         :param str resource_name: The name of the resource.
@@ -517,6 +551,7 @@ class TcpFarmServer(pulumi.CustomResource):
                  chain: Optional[pulumi.Input[str]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
                  farm_id: Optional[pulumi.Input[int]] = None,
+                 on_marked_down: Optional[pulumi.Input[str]] = None,
                  port: Optional[pulumi.Input[int]] = None,
                  probe: Optional[pulumi.Input[bool]] = None,
                  proxy_protocol_version: Optional[pulumi.Input[str]] = None,
@@ -542,6 +577,7 @@ class TcpFarmServer(pulumi.CustomResource):
             if farm_id is None and not opts.urn:
                 raise TypeError("Missing required property 'farm_id'")
             __props__.__dict__["farm_id"] = farm_id
+            __props__.__dict__["on_marked_down"] = on_marked_down
             __props__.__dict__["port"] = port
             __props__.__dict__["probe"] = probe
             __props__.__dict__["proxy_protocol_version"] = proxy_protocol_version
@@ -568,6 +604,7 @@ class TcpFarmServer(pulumi.CustomResource):
             chain: Optional[pulumi.Input[str]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
             farm_id: Optional[pulumi.Input[int]] = None,
+            on_marked_down: Optional[pulumi.Input[str]] = None,
             port: Optional[pulumi.Input[int]] = None,
             probe: Optional[pulumi.Input[bool]] = None,
             proxy_protocol_version: Optional[pulumi.Input[str]] = None,
@@ -586,6 +623,7 @@ class TcpFarmServer(pulumi.CustomResource):
         :param pulumi.Input[bool] backup: is it a backup server used in case of failure of all the non-backup backends
         :param pulumi.Input[str] display_name: Label for the server
         :param pulumi.Input[int] farm_id: ID of the farm this server is attached to
+        :param pulumi.Input[str] on_marked_down: enable action when backend marked down. (`shutdown-sessions`)
         :param pulumi.Input[int] port: Port that backend will respond on
         :param pulumi.Input[bool] probe: defines if backend will be probed to determine health and keep as active in farm if healthy
         :param pulumi.Input[str] proxy_protocol_version: version of the PROXY protocol used to pass origin connection information from loadbalancer to receiving service (`v1`, `v2`, `v2-ssl`, `v2-ssl-cn`)
@@ -603,6 +641,7 @@ class TcpFarmServer(pulumi.CustomResource):
         __props__.__dict__["chain"] = chain
         __props__.__dict__["display_name"] = display_name
         __props__.__dict__["farm_id"] = farm_id
+        __props__.__dict__["on_marked_down"] = on_marked_down
         __props__.__dict__["port"] = port
         __props__.__dict__["probe"] = probe
         __props__.__dict__["proxy_protocol_version"] = proxy_protocol_version
@@ -648,6 +687,14 @@ class TcpFarmServer(pulumi.CustomResource):
         ID of the farm this server is attached to
         """
         return pulumi.get(self, "farm_id")
+
+    @property
+    @pulumi.getter(name="onMarkedDown")
+    def on_marked_down(self) -> pulumi.Output[Optional[str]]:
+        """
+        enable action when backend marked down. (`shutdown-sessions`)
+        """
+        return pulumi.get(self, "on_marked_down")
 
     @property
     @pulumi.getter
