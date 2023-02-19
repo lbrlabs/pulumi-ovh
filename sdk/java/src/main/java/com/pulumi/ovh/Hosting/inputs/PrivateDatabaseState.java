@@ -291,9 +291,17 @@ public final class PrivateDatabaseState extends com.pulumi.resources.ResourceArg
         return Optional.ofNullable(this.server);
     }
 
+    /**
+     * Service name
+     * 
+     */
     @Import(name="serviceName")
     private @Nullable Output<String> serviceName;
 
+    /**
+     * @return Service name
+     * 
+     */
     public Optional<Output<String>> serviceName() {
         return Optional.ofNullable(this.serviceName);
     }
@@ -818,11 +826,23 @@ public final class PrivateDatabaseState extends com.pulumi.resources.ResourceArg
             return server(Output.of(server));
         }
 
+        /**
+         * @param serviceName Service name
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceName(@Nullable Output<String> serviceName) {
             $.serviceName = serviceName;
             return this;
         }
 
+        /**
+         * @param serviceName Service name
+         * 
+         * @return builder
+         * 
+         */
         public Builder serviceName(String serviceName) {
             return serviceName(Output.of(serviceName));
         }

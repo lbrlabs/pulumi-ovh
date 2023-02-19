@@ -29,6 +29,7 @@ class PrivateDatabaseArgs:
         :param pulumi.Input['PrivateDatabasePlanArgs'] plan: Product Plan to order
         :param pulumi.Input[str] display_name: Name displayed in customer panel for your private database
         :param pulumi.Input[Sequence[pulumi.Input['PrivateDatabasePlanOptionArgs']]] plan_options: Product Plan to order
+        :param pulumi.Input[str] service_name: Service name
         """
         pulumi.set(__self__, "ovh_subsidiary", ovh_subsidiary)
         pulumi.set(__self__, "payment_mean", payment_mean)
@@ -103,6 +104,9 @@ class PrivateDatabaseArgs:
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service name
+        """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
@@ -157,6 +161,7 @@ class _PrivateDatabaseState:
         :param pulumi.Input[int] quota_used: Sapce used (in MB) on your private database
         :param pulumi.Input[int] ram: Amount of ram (in MB) on your private database
         :param pulumi.Input[str] server: Private database server name
+        :param pulumi.Input[str] service_name: Service name
         :param pulumi.Input[str] state: Private database state
         :param pulumi.Input[str] type: Private database type
         :param pulumi.Input[str] version: Private database available versions
@@ -431,6 +436,9 @@ class _PrivateDatabaseState:
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
+        """
+        Service name
+        """
         return pulumi.get(self, "service_name")
 
     @service_name.setter
@@ -563,6 +571,7 @@ class PrivateDatabase(pulumi.CustomResource):
         :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
         :param pulumi.Input[pulumi.InputType['PrivateDatabasePlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateDatabasePlanOptionArgs']]]] plan_options: Product Plan to order
+        :param pulumi.Input[str] service_name: Service name
         """
         ...
     @overload
@@ -735,6 +744,7 @@ class PrivateDatabase(pulumi.CustomResource):
         :param pulumi.Input[int] quota_used: Sapce used (in MB) on your private database
         :param pulumi.Input[int] ram: Amount of ram (in MB) on your private database
         :param pulumi.Input[str] server: Private database server name
+        :param pulumi.Input[str] service_name: Service name
         :param pulumi.Input[str] state: Private database state
         :param pulumi.Input[str] type: Private database type
         :param pulumi.Input[str] version: Private database available versions
@@ -918,6 +928,9 @@ class PrivateDatabase(pulumi.CustomResource):
     @property
     @pulumi.getter(name="serviceName")
     def service_name(self) -> pulumi.Output[str]:
+        """
+        Service name
+        """
         return pulumi.get(self, "service_name")
 
     @property

@@ -15,17 +15,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const registries = pulumi.output(ovh.CloudProject.getContainerRegistries({
+ * const registries = ovh.CloudProject.getContainerRegistries({
  *     serviceName: "XXXXXX",
- * }));
+ * });
  * ```
  */
 export function getContainerRegistries(args: GetContainerRegistriesArgs, opts?: pulumi.InvokeOptions): Promise<GetContainerRegistriesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getContainerRegistries:getContainerRegistries", {
         "serviceName": args.serviceName,
     }, opts);
@@ -56,9 +53,22 @@ export interface GetContainerRegistriesResult {
     readonly results: outputs.CloudProject.GetContainerRegistriesResult[];
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get the container registries of a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const registries = ovh.CloudProject.getContainerRegistries({
+ *     serviceName: "XXXXXX",
+ * });
+ * ```
+ */
 export function getContainerRegistriesOutput(args: GetContainerRegistriesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerRegistriesResult> {
-    return pulumi.output(args).apply(a => getContainerRegistries(a, opts))
+    return pulumi.output(args).apply((a: any) => getContainerRegistries(a, opts))
 }
 
 /**

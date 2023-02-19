@@ -824,11 +824,6 @@ export namespace CloudProjectDatabase {
         /**
          * Permission of the ACL
          * Available permission:
-         * * `admin`
-         * * `read`
-         * * `write`
-         * * `readwrite`
-         * * `deny`
          */
         permission: string;
     }
@@ -1306,8 +1301,7 @@ export namespace Ip {
 
     export interface IpServiceRoutedTo {
         /**
-         * Service where ip is routed to
-         * * `serviceName`: service name
+         * service name
          */
         serviceName: string;
     }
@@ -1387,9 +1381,11 @@ export namespace IpLoadBalancing {
         field: string;
         /**
          * Matching operator. Not all operators are available for all fields. See "availableRules"
-         * * `negate`- Invert the matching operator effect
          */
         match: string;
+        /**
+         * Invert the matching operator effect
+         */
         negate: boolean;
         /**
          * Value to match against this match. Interpretation if this field depends on the match and field
@@ -1579,9 +1575,11 @@ export namespace IpLoadBalancing {
         field: string;
         /**
          * Matching operator. Not all operators are available for all fields. See "availableRules"
-         * * `negate`- Invert the matching operator effect
          */
         match: string;
+        /**
+         * Invert the matching operator effect
+         */
         negate: boolean;
         /**
          * Value to match against this match. Interpretation if this field depends on the match and field
@@ -1602,62 +1600,145 @@ export namespace IpLoadBalancing {
 export namespace Me {
     export interface GetInstallationTemplateCustomization {
         /**
+         * (DEPRECATED) Template change log details.
+         *
          * @deprecated field is not used anymore
          */
         changeLog: string;
+        /**
+         * Set up the server using the provided hostname instead of the default hostname.
+         */
         customHostname: string;
+        /**
+         * Indicate the URL where your postinstall customisation script is located.
+         */
         postInstallationScriptLink: string;
+        /**
+         * indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
+         */
         postInstallationScriptReturn: string;
         /**
+         * (DEPRECATED) Rating.
+         *
          * @deprecated field is not used anymore
          */
         rating: number;
+        /**
+         * Name of the ssh key that should be installed. Password login will be disabled.
+         */
         sshKeyName: string;
+        /**
+         * Use the distribution's native kernel instead of the recommended OVHcloud Kernel.
+         */
         useDistributionKernel: boolean;
     }
 
     export interface GetInstallationTemplatePartitionScheme {
         hardwareRaids: outputs.Me.GetInstallationTemplatePartitionSchemeHardwareRaid[];
+        /**
+         * Hardware RAID name.
+         */
         name: string;
         partitions: outputs.Me.GetInstallationTemplatePartitionSchemePartition[];
+        /**
+         * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+         */
         priority: number;
     }
 
     export interface GetInstallationTemplatePartitionSchemeHardwareRaid {
+        /**
+         * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
+         */
         disks: string[];
+        /**
+         * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+         */
         mode: string;
+        /**
+         * Hardware RAID name.
+         */
         name: string;
+        /**
+         * Specifies the creation order of the hardware RAID.
+         */
         step: number;
     }
 
     export interface GetInstallationTemplatePartitionSchemePartition {
+        /**
+         * Partition filesystem.
+         */
         filesystem: string;
+        /**
+         * partition mount point.
+         */
         mountpoint: string;
+        /**
+         * step or order. specifies the creation order of the partition on the disk
+         */
         order: number;
+        /**
+         * raid partition type.
+         */
         raid: string;
+        /**
+         * size of partition in MB, 0 => rest of the space.
+         */
         size: number;
+        /**
+         * partition type.
+         */
         type: string;
+        /**
+         * The volume name needed for proxmox distribution
+         */
         volumeName: string;
     }
 
     export interface GetMeCurrency {
+        /**
+         * Currency code used by this account (e.g EUR, USD, ...)
+         */
         code: string;
+        /**
+         * Currency symbol used by this account (e.g €, $, ...)
+         */
         symbol: string;
     }
 
     export interface InstallationTemplateCustomization {
         /**
+         * Template change log details.
+         *
          * @deprecated field is not used anymore
          */
         changeLog?: string;
+        /**
+         * Set up the server using the provided hostname instead of the default hostname.
+         */
         customHostname?: string;
+        /**
+         * Indicate the URL where your postinstall customisation script is located.
+         */
         postInstallationScriptLink?: string;
+        /**
+         * indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
+         */
         postInstallationScriptReturn?: string;
         /**
+         * Rating.
+         *
          * @deprecated field is not used anymore
          */
         rating?: number;
+        /**
+         * Name of the ssh key that should be installed. Password login will be disabled.
+         */
         sshKeyName?: string;
+        /**
+         * Use the distribution's native kernel instead of the recommended OV
+         */
         useDistributionKernel?: boolean;
     }
 

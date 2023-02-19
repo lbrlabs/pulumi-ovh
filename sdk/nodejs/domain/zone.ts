@@ -33,9 +33,9 @@ import * as utilities from "../utilities";
  *     ovhSubsidiary: mycart.then(mycart => mycart.ovhSubsidiary),
  *     paymentMean: "fidelity",
  *     plan: {
- *         duration: zoneCartProductPlan.then(zoneCartProductPlan => zoneCartProductPlan.selectedPrices?[0]?.duration),
+ *         duration: zoneCartProductPlan.then(zoneCartProductPlan => zoneCartProductPlan.selectedPrices?.[0]?.duration),
  *         planCode: zoneCartProductPlan.then(zoneCartProductPlan => zoneCartProductPlan.planCode),
- *         pricingMode: zoneCartProductPlan.then(zoneCartProductPlan => zoneCartProductPlan.selectedPrices?[0]?.pricingMode),
+ *         pricingMode: zoneCartProductPlan.then(zoneCartProductPlan => zoneCartProductPlan.selectedPrices?.[0]?.pricingMode),
  *         configurations: [
  *             {
  *                 label: "zone",

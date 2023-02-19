@@ -14,6 +14,24 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     {
         /// <summary>
         /// Use this data source to retrieve list of user logins of the account's identity users.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Ovh = Pulumi.Ovh;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var users = Ovh.Me.GetIdentityUsers.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetIdentityUsersResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIdentityUsersResult>("ovh:Me/getIdentityUsers:getIdentityUsers", InvokeArgs.Empty, options.WithDefaults());

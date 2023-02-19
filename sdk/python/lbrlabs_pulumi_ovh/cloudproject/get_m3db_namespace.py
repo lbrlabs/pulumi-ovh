@@ -139,13 +139,15 @@ class GetM3dbNamespaceResult:
     def service_name(self) -> str:
         """
         See Argument Reference above.
-        * `snapshot_enabled`- SDefines whether M3db will create snapshot files for this namespace.
         """
         return pulumi.get(self, "service_name")
 
     @property
     @pulumi.getter(name="snapshotEnabled")
     def snapshot_enabled(self) -> bool:
+        """
+        SDefines whether M3db will create snapshot files for this namespace.
+        """
         return pulumi.get(self, "snapshot_enabled")
 
     @property

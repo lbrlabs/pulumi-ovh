@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * });
  * const vdsi = new ovh.vrack.DedicatedServerInterface("vdsi", {
  *     serviceName: "pn-xxxxxxx",
- *     interfaceId: server.then(server => server.enabledVrackVnis?[0]),
+ *     interfaceId: server.then(server => server.enabledVrackVnis?.[0]),
  * });
  * ```
  */

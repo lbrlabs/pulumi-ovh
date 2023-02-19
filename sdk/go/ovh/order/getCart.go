@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Order.GetCart(ctx, &order.GetCartArgs{
+//			_, err := Order.GetCart(ctx, &order.GetCartArgs{
 //				Description:   pulumi.StringRef("my cart"),
 //				OvhSubsidiary: "fr",
 //			}, nil)

@@ -36,7 +36,7 @@ import (
 //			}
 //			_, err = IpLoadBalancing.NewHttpFarm(ctx, "farmname", &IpLoadBalancing.HttpFarmArgs{
 //				DisplayName: pulumi.String("ingress-8080-gra"),
-//				ServiceName: pulumi.String(lb.Id),
+//				ServiceName: *pulumi.String(lb.Id),
 //				Zone:        pulumi.String("GRA"),
 //			})
 //			if err != nil {

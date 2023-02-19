@@ -13,17 +13,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const my_ceph = pulumi.output(ovh.Dedicated.getCeph({
+ * const my-ceph = ovh.Dedicated.getCeph({
  *     serviceName: "XXXXXX",
- * }));
+ * });
  * ```
  */
 export function getCeph(args: GetCephArgs, opts?: pulumi.InvokeOptions): Promise<GetCephResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Dedicated/getCeph:getCeph", {
         "cephVersion": args.cephVersion,
         "serviceName": args.serviceName,
@@ -99,9 +96,22 @@ export interface GetCephResult {
      */
     readonly status: string;
 }
-
+/**
+ * Use this data source to retrieve information about a dedicated CEPH.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const my-ceph = ovh.Dedicated.getCeph({
+ *     serviceName: "XXXXXX",
+ * });
+ * ```
+ */
 export function getCephOutput(args: GetCephOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCephResult> {
-    return pulumi.output(args).apply(a => getCeph(a, opts))
+    return pulumi.output(args).apply((a: any) => getCeph(a, opts))
 }
 
 /**

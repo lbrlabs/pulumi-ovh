@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const my_partition = new ovh.Dedicated.NasHAPartition("my-partition", {
+ * const my_partition = new ovh.dedicated.NasHAPartition("my-partition", {
  *     protocol: "NFS",
  *     serviceName: "zpool-12345",
  *     size: 20,

@@ -24,10 +24,6 @@ class KafkaAclArgs:
         :param pulumi.Input[str] cluster_id: Cluster ID.
         :param pulumi.Input[str] permission: Permission to give to this username on this topic.
                Available permissions:
-               * `admin`
-               * `read`
-               * `write`
-               * `readwrite`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] topic: Topic affected by this ACL.
@@ -57,10 +53,6 @@ class KafkaAclArgs:
         """
         Permission to give to this username on this topic.
         Available permissions:
-        * `admin`
-        * `read`
-        * `write`
-        * `readwrite`
         """
         return pulumi.get(self, "permission")
 
@@ -119,10 +111,6 @@ class _KafkaAclState:
         :param pulumi.Input[str] cluster_id: Cluster ID.
         :param pulumi.Input[str] permission: Permission to give to this username on this topic.
                Available permissions:
-               * `admin`
-               * `read`
-               * `write`
-               * `readwrite`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] topic: Topic affected by this ACL.
@@ -157,10 +145,6 @@ class _KafkaAclState:
         """
         Permission to give to this username on this topic.
         Available permissions:
-        * `admin`
-        * `read`
-        * `write`
-        * `readwrite`
         """
         return pulumi.get(self, "permission")
 
@@ -251,10 +235,6 @@ class KafkaAcl(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: Cluster ID.
         :param pulumi.Input[str] permission: Permission to give to this username on this topic.
                Available permissions:
-               * `admin`
-               * `read`
-               * `write`
-               * `readwrite`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] topic: Topic affected by this ACL.
@@ -364,10 +344,6 @@ class KafkaAcl(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: Cluster ID.
         :param pulumi.Input[str] permission: Permission to give to this username on this topic.
                Available permissions:
-               * `admin`
-               * `read`
-               * `write`
-               * `readwrite`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] topic: Topic affected by this ACL.
@@ -398,10 +374,6 @@ class KafkaAcl(pulumi.CustomResource):
         """
         Permission to give to this username on this topic.
         Available permissions:
-        * `admin`
-        * `read`
-        * `write`
-        * `readwrite`
         """
         return pulumi.get(self, "permission")
 

@@ -16,16 +16,14 @@ public final class IpServiceRoutedToArgs extends com.pulumi.resources.ResourceAr
     public static final IpServiceRoutedToArgs Empty = new IpServiceRoutedToArgs();
 
     /**
-     * Service where ip is routed to
-     * * `service_name`: service name
+     * service name
      * 
      */
     @Import(name="serviceName")
     private @Nullable Output<String> serviceName;
 
     /**
-     * @return Service where ip is routed to
-     * * `service_name`: service name
+     * @return service name
      * 
      */
     public Optional<Output<String>> serviceName() {
@@ -57,8 +55,7 @@ public final class IpServiceRoutedToArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param serviceName Service where ip is routed to
-         * * `service_name`: service name
+         * @param serviceName service name
          * 
          * @return builder
          * 
@@ -69,8 +66,7 @@ public final class IpServiceRoutedToArgs extends com.pulumi.resources.ResourceAr
         }
 
         /**
-         * @param serviceName Service where ip is routed to
-         * * `service_name`: service name
+         * @param serviceName service name
          * 
          * @return builder
          * 

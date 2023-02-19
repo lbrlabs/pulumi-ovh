@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const vcp = new ovh.Vrack.CloudProject("vcp", {
+ * const vcp = new ovh.vrack.CloudProject("vcp", {
  *     projectId: "67890",
  *     serviceName: "12345",
  * });

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Dbaas.GetLogsInputEngine(ctx, &dbaas.GetLogsInputEngineArgs{
+//			_, err := Dbaas.GetLogsInputEngine(ctx, &dbaas.GetLogsInputEngineArgs{
 //				IsDeprecated: pulumi.BoolRef(true),
 //				Name:         pulumi.StringRef("logstash"),
 //				ServiceName:  "ldp-xx-xxxxx",

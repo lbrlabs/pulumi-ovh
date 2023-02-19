@@ -10,33 +10,89 @@ import java.util.Objects;
 
 @CustomType
 public final class GetInstallationTemplatePartitionSchemePartition {
+    /**
+     * @return Partition filesystem.
+     * 
+     */
     private String filesystem;
+    /**
+     * @return partition mount point.
+     * 
+     */
     private String mountpoint;
+    /**
+     * @return step or order. specifies the creation order of the partition on the disk
+     * 
+     */
     private Integer order;
+    /**
+     * @return raid partition type.
+     * 
+     */
     private String raid;
+    /**
+     * @return size of partition in MB, 0 =&gt; rest of the space.
+     * 
+     */
     private Integer size;
+    /**
+     * @return partition type.
+     * 
+     */
     private String type;
+    /**
+     * @return The volume name needed for proxmox distribution
+     * 
+     */
     private String volumeName;
 
     private GetInstallationTemplatePartitionSchemePartition() {}
+    /**
+     * @return Partition filesystem.
+     * 
+     */
     public String filesystem() {
         return this.filesystem;
     }
+    /**
+     * @return partition mount point.
+     * 
+     */
     public String mountpoint() {
         return this.mountpoint;
     }
+    /**
+     * @return step or order. specifies the creation order of the partition on the disk
+     * 
+     */
     public Integer order() {
         return this.order;
     }
+    /**
+     * @return raid partition type.
+     * 
+     */
     public String raid() {
         return this.raid;
     }
+    /**
+     * @return size of partition in MB, 0 =&gt; rest of the space.
+     * 
+     */
     public Integer size() {
         return this.size;
     }
+    /**
+     * @return partition type.
+     * 
+     */
     public String type() {
         return this.type;
     }
+    /**
+     * @return The volume name needed for proxmox distribution
+     * 
+     */
     public String volumeName() {
         return this.volumeName;
     }

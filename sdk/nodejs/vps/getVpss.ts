@@ -13,15 +13,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const servers = pulumi.output(ovh.Vps.getVpss());
+ * const servers = ovh.Vps.getVpss({});
  * ```
  */
 export function getVpss(opts?: pulumi.InvokeOptions): Promise<GetVpssResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Vps/getVpss:getVpss", {
     }, opts);
 }

@@ -29,9 +29,9 @@ import * as utilities from "../utilities";
  *     ovhSubsidiary: mycart.then(mycart => mycart.ovhSubsidiary),
  *     paymentMean: "fidelity",
  *     plan: {
- *         duration: vrackCartProductPlan.then(vrackCartProductPlan => vrackCartProductPlan.selectedPrices?[0]?.duration),
+ *         duration: vrackCartProductPlan.then(vrackCartProductPlan => vrackCartProductPlan.selectedPrices?.[0]?.duration),
  *         planCode: vrackCartProductPlan.then(vrackCartProductPlan => vrackCartProductPlan.planCode),
- *         pricingMode: vrackCartProductPlan.then(vrackCartProductPlan => vrackCartProductPlan.selectedPrices?[0]?.pricingMode),
+ *         pricingMode: vrackCartProductPlan.then(vrackCartProductPlan => vrackCartProductPlan.selectedPrices?.[0]?.pricingMode),
  *     },
  * });
  * const ipblockCartProductPlan = mycart.then(mycart => ovh.Order.getCartProductPlan({
@@ -45,9 +45,9 @@ import * as utilities from "../utilities";
  *     paymentMean: "ovh-account",
  *     description: mycart.then(mycart => mycart.description),
  *     plan: {
- *         duration: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.selectedPrices?[0]?.duration),
+ *         duration: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.selectedPrices?.[0]?.duration),
  *         planCode: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.planCode),
- *         pricingMode: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.selectedPrices?[0]?.pricingMode),
+ *         pricingMode: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.selectedPrices?.[0]?.pricingMode),
  *         configurations: [{
  *             label: "country",
  *             value: "FR",

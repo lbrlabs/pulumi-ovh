@@ -53,44 +53,44 @@ import (
 type InstallationTemplate struct {
 	pulumi.CustomResourceState
 
-	// List of all language available for this template
+	// List of all language available for this template.
 	AvailableLanguages pulumi.StringArrayOutput `pulumi:"availableLanguages"`
-	// OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+	// The name of an existing installation template, choose one among the list given by `getInstallationTemplates` datasource.
 	BaseTemplateName pulumi.StringOutput `pulumi:"baseTemplateName"`
-	// This distribution is new and, although tested and functional, may still display odd behaviour
+	// This distribution is new and, although tested and functional, may still display odd behaviour.
 	Beta pulumi.BoolOutput `pulumi:"beta"`
-	// This template bit format (32 or 64)
+	// This template bit format (32 or 64).
 	BitFormat pulumi.IntOutput `pulumi:"bitFormat"`
-	// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+	// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
 	Category      pulumi.StringOutput                        `pulumi:"category"`
 	Customization InstallationTemplateCustomizationPtrOutput `pulumi:"customization"`
-	// The default language of this template
+	// The default language of this template.
 	DefaultLanguage pulumi.StringOutput `pulumi:"defaultLanguage"`
-	// is this distribution deprecated
+	// is this distribution deprecated.
 	Deprecated pulumi.BoolOutput `pulumi:"deprecated"`
-	// information about this template
+	// information about this template.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// the distribution this template is based on
+	// the distribution this template is based on.
 	Distribution pulumi.StringOutput `pulumi:"distribution"`
-	// this template family type (bsd,linux,solaris,windows)
+	// this template family type (bsd,linux,solaris,windows).
 	Family pulumi.StringOutput `pulumi:"family"`
-	// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+	// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
 	Filesystems pulumi.StringArrayOutput `pulumi:"filesystems"`
-	// This distribution supports hardware raid configuration through the OVH API
+	// This distribution supports hardware raid configuration through the OVHcloud API.
 	HardRaidConfiguration pulumi.BoolOutput `pulumi:"hardRaidConfiguration"`
-	// Date of last modification of the base image
+	// Date of last modification of the base image.
 	LastModification pulumi.StringOutput `pulumi:"lastModification"`
 	// This distribution supports Logical Volumes (Linux LVM)
 	LvmReady pulumi.BoolOutput `pulumi:"lvmReady"`
-	// Remove default partition schemes at creation
+	// Remove default partition schemes at creation.
 	RemoveDefaultPartitionSchemes pulumi.BoolOutput `pulumi:"removeDefaultPartitionSchemes"`
-	// This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
+	// This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
 	SupportsDistributionKernel pulumi.BoolOutput `pulumi:"supportsDistributionKernel"`
-	// This distribution supports RTM software
+	// This distribution supports RTM software.
 	SupportsRtm pulumi.BoolOutput `pulumi:"supportsRtm"`
-	// This distribution supports the microsoft SQL server
+	// This distribution supports the microsoft SQL server.
 	SupportsSqlServer pulumi.BoolOutput `pulumi:"supportsSqlServer"`
-	// This template name
+	// This template name.
 	TemplateName pulumi.StringOutput `pulumi:"templateName"`
 }
 
@@ -133,86 +133,86 @@ func GetInstallationTemplate(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstallationTemplate resources.
 type installationTemplateState struct {
-	// List of all language available for this template
+	// List of all language available for this template.
 	AvailableLanguages []string `pulumi:"availableLanguages"`
-	// OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+	// The name of an existing installation template, choose one among the list given by `getInstallationTemplates` datasource.
 	BaseTemplateName *string `pulumi:"baseTemplateName"`
-	// This distribution is new and, although tested and functional, may still display odd behaviour
+	// This distribution is new and, although tested and functional, may still display odd behaviour.
 	Beta *bool `pulumi:"beta"`
-	// This template bit format (32 or 64)
+	// This template bit format (32 or 64).
 	BitFormat *int `pulumi:"bitFormat"`
-	// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+	// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
 	Category      *string                            `pulumi:"category"`
 	Customization *InstallationTemplateCustomization `pulumi:"customization"`
-	// The default language of this template
+	// The default language of this template.
 	DefaultLanguage *string `pulumi:"defaultLanguage"`
-	// is this distribution deprecated
+	// is this distribution deprecated.
 	Deprecated *bool `pulumi:"deprecated"`
-	// information about this template
+	// information about this template.
 	Description *string `pulumi:"description"`
-	// the distribution this template is based on
+	// the distribution this template is based on.
 	Distribution *string `pulumi:"distribution"`
-	// this template family type (bsd,linux,solaris,windows)
+	// this template family type (bsd,linux,solaris,windows).
 	Family *string `pulumi:"family"`
-	// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+	// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
 	Filesystems []string `pulumi:"filesystems"`
-	// This distribution supports hardware raid configuration through the OVH API
+	// This distribution supports hardware raid configuration through the OVHcloud API.
 	HardRaidConfiguration *bool `pulumi:"hardRaidConfiguration"`
-	// Date of last modification of the base image
+	// Date of last modification of the base image.
 	LastModification *string `pulumi:"lastModification"`
 	// This distribution supports Logical Volumes (Linux LVM)
 	LvmReady *bool `pulumi:"lvmReady"`
-	// Remove default partition schemes at creation
+	// Remove default partition schemes at creation.
 	RemoveDefaultPartitionSchemes *bool `pulumi:"removeDefaultPartitionSchemes"`
-	// This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
+	// This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
 	SupportsDistributionKernel *bool `pulumi:"supportsDistributionKernel"`
-	// This distribution supports RTM software
+	// This distribution supports RTM software.
 	SupportsRtm *bool `pulumi:"supportsRtm"`
-	// This distribution supports the microsoft SQL server
+	// This distribution supports the microsoft SQL server.
 	SupportsSqlServer *bool `pulumi:"supportsSqlServer"`
-	// This template name
+	// This template name.
 	TemplateName *string `pulumi:"templateName"`
 }
 
 type InstallationTemplateState struct {
-	// List of all language available for this template
+	// List of all language available for this template.
 	AvailableLanguages pulumi.StringArrayInput
-	// OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+	// The name of an existing installation template, choose one among the list given by `getInstallationTemplates` datasource.
 	BaseTemplateName pulumi.StringPtrInput
-	// This distribution is new and, although tested and functional, may still display odd behaviour
+	// This distribution is new and, although tested and functional, may still display odd behaviour.
 	Beta pulumi.BoolPtrInput
-	// This template bit format (32 or 64)
+	// This template bit format (32 or 64).
 	BitFormat pulumi.IntPtrInput
-	// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+	// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
 	Category      pulumi.StringPtrInput
 	Customization InstallationTemplateCustomizationPtrInput
-	// The default language of this template
+	// The default language of this template.
 	DefaultLanguage pulumi.StringPtrInput
-	// is this distribution deprecated
+	// is this distribution deprecated.
 	Deprecated pulumi.BoolPtrInput
-	// information about this template
+	// information about this template.
 	Description pulumi.StringPtrInput
-	// the distribution this template is based on
+	// the distribution this template is based on.
 	Distribution pulumi.StringPtrInput
-	// this template family type (bsd,linux,solaris,windows)
+	// this template family type (bsd,linux,solaris,windows).
 	Family pulumi.StringPtrInput
-	// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+	// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
 	Filesystems pulumi.StringArrayInput
-	// This distribution supports hardware raid configuration through the OVH API
+	// This distribution supports hardware raid configuration through the OVHcloud API.
 	HardRaidConfiguration pulumi.BoolPtrInput
-	// Date of last modification of the base image
+	// Date of last modification of the base image.
 	LastModification pulumi.StringPtrInput
 	// This distribution supports Logical Volumes (Linux LVM)
 	LvmReady pulumi.BoolPtrInput
-	// Remove default partition schemes at creation
+	// Remove default partition schemes at creation.
 	RemoveDefaultPartitionSchemes pulumi.BoolPtrInput
-	// This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
+	// This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
 	SupportsDistributionKernel pulumi.BoolPtrInput
-	// This distribution supports RTM software
+	// This distribution supports RTM software.
 	SupportsRtm pulumi.BoolPtrInput
-	// This distribution supports the microsoft SQL server
+	// This distribution supports the microsoft SQL server.
 	SupportsSqlServer pulumi.BoolPtrInput
-	// This template name
+	// This template name.
 	TemplateName pulumi.StringPtrInput
 }
 
@@ -221,27 +221,27 @@ func (InstallationTemplateState) ElementType() reflect.Type {
 }
 
 type installationTemplateArgs struct {
-	// OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+	// The name of an existing installation template, choose one among the list given by `getInstallationTemplates` datasource.
 	BaseTemplateName string                             `pulumi:"baseTemplateName"`
 	Customization    *InstallationTemplateCustomization `pulumi:"customization"`
-	// The default language of this template
+	// The default language of this template.
 	DefaultLanguage string `pulumi:"defaultLanguage"`
-	// Remove default partition schemes at creation
+	// Remove default partition schemes at creation.
 	RemoveDefaultPartitionSchemes *bool `pulumi:"removeDefaultPartitionSchemes"`
-	// This template name
+	// This template name.
 	TemplateName string `pulumi:"templateName"`
 }
 
 // The set of arguments for constructing a InstallationTemplate resource.
 type InstallationTemplateArgs struct {
-	// OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+	// The name of an existing installation template, choose one among the list given by `getInstallationTemplates` datasource.
 	BaseTemplateName pulumi.StringInput
 	Customization    InstallationTemplateCustomizationPtrInput
-	// The default language of this template
+	// The default language of this template.
 	DefaultLanguage pulumi.StringInput
-	// Remove default partition schemes at creation
+	// Remove default partition schemes at creation.
 	RemoveDefaultPartitionSchemes pulumi.BoolPtrInput
-	// This template name
+	// This template name.
 	TemplateName pulumi.StringInput
 }
 
@@ -332,27 +332,27 @@ func (o InstallationTemplateOutput) ToInstallationTemplateOutputWithContext(ctx 
 	return o
 }
 
-// List of all language available for this template
+// List of all language available for this template.
 func (o InstallationTemplateOutput) AvailableLanguages() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.StringArrayOutput { return v.AvailableLanguages }).(pulumi.StringArrayOutput)
 }
 
-// OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+// The name of an existing installation template, choose one among the list given by `getInstallationTemplates` datasource.
 func (o InstallationTemplateOutput) BaseTemplateName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.StringOutput { return v.BaseTemplateName }).(pulumi.StringOutput)
 }
 
-// This distribution is new and, although tested and functional, may still display odd behaviour
+// This distribution is new and, although tested and functional, may still display odd behaviour.
 func (o InstallationTemplateOutput) Beta() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.Beta }).(pulumi.BoolOutput)
 }
 
-// This template bit format (32 or 64)
+// This template bit format (32 or 64).
 func (o InstallationTemplateOutput) BitFormat() pulumi.IntOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.IntOutput { return v.BitFormat }).(pulumi.IntOutput)
 }
 
-// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
 func (o InstallationTemplateOutput) Category() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.StringOutput { return v.Category }).(pulumi.StringOutput)
 }
@@ -361,42 +361,42 @@ func (o InstallationTemplateOutput) Customization() InstallationTemplateCustomiz
 	return o.ApplyT(func(v *InstallationTemplate) InstallationTemplateCustomizationPtrOutput { return v.Customization }).(InstallationTemplateCustomizationPtrOutput)
 }
 
-// The default language of this template
+// The default language of this template.
 func (o InstallationTemplateOutput) DefaultLanguage() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.StringOutput { return v.DefaultLanguage }).(pulumi.StringOutput)
 }
 
-// is this distribution deprecated
+// is this distribution deprecated.
 func (o InstallationTemplateOutput) Deprecated() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.Deprecated }).(pulumi.BoolOutput)
 }
 
-// information about this template
+// information about this template.
 func (o InstallationTemplateOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// the distribution this template is based on
+// the distribution this template is based on.
 func (o InstallationTemplateOutput) Distribution() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.StringOutput { return v.Distribution }).(pulumi.StringOutput)
 }
 
-// this template family type (bsd,linux,solaris,windows)
+// this template family type (bsd,linux,solaris,windows).
 func (o InstallationTemplateOutput) Family() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.StringOutput { return v.Family }).(pulumi.StringOutput)
 }
 
-// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
 func (o InstallationTemplateOutput) Filesystems() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.StringArrayOutput { return v.Filesystems }).(pulumi.StringArrayOutput)
 }
 
-// This distribution supports hardware raid configuration through the OVH API
+// This distribution supports hardware raid configuration through the OVHcloud API.
 func (o InstallationTemplateOutput) HardRaidConfiguration() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.HardRaidConfiguration }).(pulumi.BoolOutput)
 }
 
-// Date of last modification of the base image
+// Date of last modification of the base image.
 func (o InstallationTemplateOutput) LastModification() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.StringOutput { return v.LastModification }).(pulumi.StringOutput)
 }
@@ -406,27 +406,27 @@ func (o InstallationTemplateOutput) LvmReady() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.LvmReady }).(pulumi.BoolOutput)
 }
 
-// Remove default partition schemes at creation
+// Remove default partition schemes at creation.
 func (o InstallationTemplateOutput) RemoveDefaultPartitionSchemes() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.RemoveDefaultPartitionSchemes }).(pulumi.BoolOutput)
 }
 
-// This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
+// This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
 func (o InstallationTemplateOutput) SupportsDistributionKernel() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.SupportsDistributionKernel }).(pulumi.BoolOutput)
 }
 
-// This distribution supports RTM software
+// This distribution supports RTM software.
 func (o InstallationTemplateOutput) SupportsRtm() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.SupportsRtm }).(pulumi.BoolOutput)
 }
 
-// This distribution supports the microsoft SQL server
+// This distribution supports the microsoft SQL server.
 func (o InstallationTemplateOutput) SupportsSqlServer() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.SupportsSqlServer }).(pulumi.BoolOutput)
 }
 
-// This template name
+// This template name.
 func (o InstallationTemplateOutput) TemplateName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.StringOutput { return v.TemplateName }).(pulumi.StringOutput)
 }

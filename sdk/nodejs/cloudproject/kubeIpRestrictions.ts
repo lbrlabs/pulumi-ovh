@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const vrackOnly = new ovh.CloudProject.KubeIpRestrictions("vrack_only", {
+ * const vrackOnly = new ovh.cloudproject.KubeIpRestrictions("vrackOnly", {
  *     ips: ["10.42.0.0/16"],
  *     kubeId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx",
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",

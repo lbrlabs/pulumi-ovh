@@ -168,6 +168,31 @@ public final class VpsFunctions {
      * Use this data source to get the list of VPS associated with your OVH Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Vps.VpsFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = VpsFunctions.getVpss();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetVpssResult> getVpss() {
@@ -177,6 +202,31 @@ public final class VpsFunctions {
      * Use this data source to get the list of VPS associated with your OVH Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Vps.VpsFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = VpsFunctions.getVpss();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetVpssResult> getVpssPlain() {
@@ -186,6 +236,31 @@ public final class VpsFunctions {
      * Use this data source to get the list of VPS associated with your OVH Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Vps.VpsFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = VpsFunctions.getVpss();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetVpssResult> getVpss(InvokeArgs args) {
@@ -195,6 +270,31 @@ public final class VpsFunctions {
      * Use this data source to get the list of VPS associated with your OVH Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Vps.VpsFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = VpsFunctions.getVpss();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetVpssResult> getVpssPlain(InvokeArgs args) {
@@ -204,6 +304,31 @@ public final class VpsFunctions {
      * Use this data source to get the list of VPS associated with your OVH Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Vps.VpsFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = VpsFunctions.getVpss();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetVpssResult> getVpss(InvokeArgs args, InvokeOptions options) {
@@ -213,6 +338,31 @@ public final class VpsFunctions {
      * Use this data source to get the list of VPS associated with your OVH Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Vps.VpsFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = VpsFunctions.getVpss();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetVpssResult> getVpssPlain(InvokeArgs args, InvokeOptions options) {

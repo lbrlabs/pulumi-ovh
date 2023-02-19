@@ -189,15 +189,6 @@ public class Integration extends com.pulumi.resources.CustomResource {
     /**
      * Type of the integration.
      * Available types:
-     * * `grafanaDashboard`
-     * * `grafanaDatasource`
-     * * `kafkaConnect`
-     * * `kafkaLogs`
-     * * `kafkaMirrorMaker`
-     * * `m3aggregator`
-     * * `m3dbMetrics`
-     * * `opensearchLogs`
-     * * `postgresqlMetrics`
      * 
      */
     @Export(name="type", type=String.class, parameters={})
@@ -206,15 +197,6 @@ public class Integration extends com.pulumi.resources.CustomResource {
     /**
      * @return Type of the integration.
      * Available types:
-     * * `grafanaDashboard`
-     * * `grafanaDatasource`
-     * * `kafkaConnect`
-     * * `kafkaLogs`
-     * * `kafkaMirrorMaker`
-     * * `m3aggregator`
-     * * `m3dbMetrics`
-     * * `opensearchLogs`
-     * * `postgresqlMetrics`
      * 
      */
     public Output<String> type() {

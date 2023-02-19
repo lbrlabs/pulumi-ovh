@@ -22,11 +22,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getM3dbNamespace(args: GetM3dbNamespaceArgs, opts?: pulumi.InvokeOptions): Promise<GetM3dbNamespaceResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getM3dbNamespace:getM3dbNamespace", {
         "clusterId": args.clusterId,
         "name": args.name,
@@ -95,9 +92,11 @@ export interface GetM3dbNamespaceResult {
     readonly retentionPeriodDuration: string;
     /**
      * See Argument Reference above.
-     * * `snapshotEnabled`- SDefines whether M3db will create snapshot files for this namespace.
      */
     readonly serviceName: string;
+    /**
+     * SDefines whether M3db will create snapshot files for this namespace.
+     */
     readonly snapshotEnabled: boolean;
     /**
      * Type of namespace.
@@ -108,9 +107,25 @@ export interface GetM3dbNamespaceResult {
      */
     readonly writesToCommitLogEnabled: boolean;
 }
-
+/**
+ * Use this data source to get information about a namespace of a M3DB cluster associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const m3dbnamespace = ovh.CloudProject.getM3dbNamespace({
+ *     serviceName: "XXX",
+ *     clusterId: "YYY",
+ *     name: "ZZZ",
+ * });
+ * export const m3dbnamespaceType = m3dbnamespace.then(m3dbnamespace => m3dbnamespace.type);
+ * ```
+ */
 export function getM3dbNamespaceOutput(args: GetM3dbNamespaceOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetM3dbNamespaceResult> {
-    return pulumi.output(args).apply(a => getM3dbNamespace(a, opts))
+    return pulumi.output(args).apply((a: any) => getM3dbNamespace(a, opts))
 }
 
 /**

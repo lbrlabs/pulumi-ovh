@@ -37,10 +37,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         /// Available engines:
-        /// * `cassandra`
-        /// * `kafka`
-        /// * `kafkaConnect`
-        /// * `mysql`
         /// </summary>
         [Output("engine")]
         public Output<string> Engine { get; private set; } = null!;
@@ -136,10 +132,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         /// Available engines:
-        /// * `cassandra`
-        /// * `kafka`
-        /// * `kafkaConnect`
-        /// * `mysql`
         /// </summary>
         [Input("engine", required: true)]
         public Input<string> Engine { get; set; } = null!;
@@ -186,10 +178,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         /// Available engines:
-        /// * `cassandra`
-        /// * `kafka`
-        /// * `kafkaConnect`
-        /// * `mysql`
         /// </summary>
         [Input("engine")]
         public Input<string>? Engine { get; set; }

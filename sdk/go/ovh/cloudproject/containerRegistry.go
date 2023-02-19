@@ -36,9 +36,9 @@ import (
 //				return err
 //			}
 //			_, err = CloudProject.NewContainerRegistry(ctx, "reg", &CloudProject.ContainerRegistryArgs{
-//				ServiceName: pulumi.String(regcap.ServiceName),
-//				PlanId:      pulumi.String(regcap.Id),
-//				Region:      pulumi.String(regcap.Region),
+//				ServiceName: *pulumi.String(regcap.ServiceName),
+//				PlanId:      *pulumi.String(regcap.Id),
+//				Region:      *pulumi.String(regcap.Region),
 //			})
 //			if err != nil {
 //				return err

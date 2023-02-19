@@ -35,7 +35,6 @@ type PostgresSqlUser struct {
 	PasswordReset pulumi.StringPtrOutput `pulumi:"passwordReset"`
 	// Roles the user belongs to.
 	// Available roles:
-	// * `replication`
 	Roles pulumi.StringArrayOutput `pulumi:"roles"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -96,7 +95,6 @@ type postgresSqlUserState struct {
 	PasswordReset *string `pulumi:"passwordReset"`
 	// Roles the user belongs to.
 	// Available roles:
-	// * `replication`
 	Roles []string `pulumi:"roles"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -118,7 +116,6 @@ type PostgresSqlUserState struct {
 	PasswordReset pulumi.StringPtrInput
 	// Roles the user belongs to.
 	// Available roles:
-	// * `replication`
 	Roles pulumi.StringArrayInput
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -140,7 +137,6 @@ type postgresSqlUserArgs struct {
 	PasswordReset *string `pulumi:"passwordReset"`
 	// Roles the user belongs to.
 	// Available roles:
-	// * `replication`
 	Roles []string `pulumi:"roles"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -157,7 +153,6 @@ type PostgresSqlUserArgs struct {
 	PasswordReset pulumi.StringPtrInput
 	// Roles the user belongs to.
 	// Available roles:
-	// * `replication`
 	Roles pulumi.StringArrayInput
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -278,7 +273,6 @@ func (o PostgresSqlUserOutput) PasswordReset() pulumi.StringPtrOutput {
 
 // Roles the user belongs to.
 // Available roles:
-// * `replication`
 func (o PostgresSqlUserOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *PostgresSqlUser) pulumi.StringArrayOutput { return v.Roles }).(pulumi.StringArrayOutput)
 }

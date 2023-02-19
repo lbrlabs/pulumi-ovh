@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  * const serverInstall = new ovh.dedicated.ServerInstallTask("serverInstall", {
  *     serviceName: "nsxxxxxxx.ip-xx-xx-xx.eu",
  *     templateName: debian.templateName,
- *     bootidOnDestroy: rescue.then(rescue => rescue.results?[0]),
+ *     bootidOnDestroy: rescue.then(rescue => rescue.results?.[0]),
  *     details: {
  *         customHostname: "mytest",
  *     },

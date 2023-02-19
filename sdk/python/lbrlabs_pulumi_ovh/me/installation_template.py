@@ -23,10 +23,10 @@ class InstallationTemplateArgs:
                  remove_default_partition_schemes: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a InstallationTemplate resource.
-        :param pulumi.Input[str] base_template_name: OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
-        :param pulumi.Input[str] default_language: The default language of this template
-        :param pulumi.Input[str] template_name: This template name
-        :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation
+        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
+        :param pulumi.Input[str] default_language: The default language of this template.
+        :param pulumi.Input[str] template_name: This template name.
+        :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation.
         """
         pulumi.set(__self__, "base_template_name", base_template_name)
         pulumi.set(__self__, "default_language", default_language)
@@ -40,7 +40,7 @@ class InstallationTemplateArgs:
     @pulumi.getter(name="baseTemplateName")
     def base_template_name(self) -> pulumi.Input[str]:
         """
-        OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+        The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
         """
         return pulumi.get(self, "base_template_name")
 
@@ -52,7 +52,7 @@ class InstallationTemplateArgs:
     @pulumi.getter(name="defaultLanguage")
     def default_language(self) -> pulumi.Input[str]:
         """
-        The default language of this template
+        The default language of this template.
         """
         return pulumi.get(self, "default_language")
 
@@ -64,7 +64,7 @@ class InstallationTemplateArgs:
     @pulumi.getter(name="templateName")
     def template_name(self) -> pulumi.Input[str]:
         """
-        This template name
+        This template name.
         """
         return pulumi.get(self, "template_name")
 
@@ -85,7 +85,7 @@ class InstallationTemplateArgs:
     @pulumi.getter(name="removeDefaultPartitionSchemes")
     def remove_default_partition_schemes(self) -> Optional[pulumi.Input[bool]]:
         """
-        Remove default partition schemes at creation
+        Remove default partition schemes at creation.
         """
         return pulumi.get(self, "remove_default_partition_schemes")
 
@@ -119,25 +119,25 @@ class _InstallationTemplateState:
                  template_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstallationTemplate resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] available_languages: List of all language available for this template
-        :param pulumi.Input[str] base_template_name: OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
-        :param pulumi.Input[bool] beta: This distribution is new and, although tested and functional, may still display odd behaviour
-        :param pulumi.Input[int] bit_format: This template bit format (32 or 64)
-        :param pulumi.Input[str] category: Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
-        :param pulumi.Input[str] default_language: The default language of this template
-        :param pulumi.Input[bool] deprecated: is this distribution deprecated
-        :param pulumi.Input[str] description: information about this template
-        :param pulumi.Input[str] distribution: the distribution this template is based on
-        :param pulumi.Input[str] family: this template family type (bsd,linux,solaris,windows)
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] filesystems: Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
-        :param pulumi.Input[bool] hard_raid_configuration: This distribution supports hardware raid configuration through the OVH API
-        :param pulumi.Input[str] last_modification: Date of last modification of the base image
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] available_languages: List of all language available for this template.
+        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
+        :param pulumi.Input[bool] beta: This distribution is new and, although tested and functional, may still display odd behaviour.
+        :param pulumi.Input[int] bit_format: This template bit format (32 or 64).
+        :param pulumi.Input[str] category: Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
+        :param pulumi.Input[str] default_language: The default language of this template.
+        :param pulumi.Input[bool] deprecated: is this distribution deprecated.
+        :param pulumi.Input[str] description: information about this template.
+        :param pulumi.Input[str] distribution: the distribution this template is based on.
+        :param pulumi.Input[str] family: this template family type (bsd,linux,solaris,windows).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] filesystems: Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
+        :param pulumi.Input[bool] hard_raid_configuration: This distribution supports hardware raid configuration through the OVHcloud API.
+        :param pulumi.Input[str] last_modification: Date of last modification of the base image.
         :param pulumi.Input[bool] lvm_ready: This distribution supports Logical Volumes (Linux LVM)
-        :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation
-        :param pulumi.Input[bool] supports_distribution_kernel: This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
-        :param pulumi.Input[bool] supports_rtm: This distribution supports RTM software
-        :param pulumi.Input[bool] supports_sql_server: This distribution supports the microsoft SQL server
-        :param pulumi.Input[str] template_name: This template name
+        :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation.
+        :param pulumi.Input[bool] supports_distribution_kernel: This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
+        :param pulumi.Input[bool] supports_rtm: This distribution supports RTM software.
+        :param pulumi.Input[bool] supports_sql_server: This distribution supports the microsoft SQL server.
+        :param pulumi.Input[str] template_name: This template name.
         """
         if available_languages is not None:
             pulumi.set(__self__, "available_languages", available_languages)
@@ -184,7 +184,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="availableLanguages")
     def available_languages(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        List of all language available for this template
+        List of all language available for this template.
         """
         return pulumi.get(self, "available_languages")
 
@@ -196,7 +196,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="baseTemplateName")
     def base_template_name(self) -> Optional[pulumi.Input[str]]:
         """
-        OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+        The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
         """
         return pulumi.get(self, "base_template_name")
 
@@ -208,7 +208,7 @@ class _InstallationTemplateState:
     @pulumi.getter
     def beta(self) -> Optional[pulumi.Input[bool]]:
         """
-        This distribution is new and, although tested and functional, may still display odd behaviour
+        This distribution is new and, although tested and functional, may still display odd behaviour.
         """
         return pulumi.get(self, "beta")
 
@@ -220,7 +220,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="bitFormat")
     def bit_format(self) -> Optional[pulumi.Input[int]]:
         """
-        This template bit format (32 or 64)
+        This template bit format (32 or 64).
         """
         return pulumi.get(self, "bit_format")
 
@@ -232,7 +232,7 @@ class _InstallationTemplateState:
     @pulumi.getter
     def category(self) -> Optional[pulumi.Input[str]]:
         """
-        Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+        Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
         """
         return pulumi.get(self, "category")
 
@@ -253,7 +253,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="defaultLanguage")
     def default_language(self) -> Optional[pulumi.Input[str]]:
         """
-        The default language of this template
+        The default language of this template.
         """
         return pulumi.get(self, "default_language")
 
@@ -265,7 +265,7 @@ class _InstallationTemplateState:
     @pulumi.getter
     def deprecated(self) -> Optional[pulumi.Input[bool]]:
         """
-        is this distribution deprecated
+        is this distribution deprecated.
         """
         return pulumi.get(self, "deprecated")
 
@@ -277,7 +277,7 @@ class _InstallationTemplateState:
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
-        information about this template
+        information about this template.
         """
         return pulumi.get(self, "description")
 
@@ -289,7 +289,7 @@ class _InstallationTemplateState:
     @pulumi.getter
     def distribution(self) -> Optional[pulumi.Input[str]]:
         """
-        the distribution this template is based on
+        the distribution this template is based on.
         """
         return pulumi.get(self, "distribution")
 
@@ -301,7 +301,7 @@ class _InstallationTemplateState:
     @pulumi.getter
     def family(self) -> Optional[pulumi.Input[str]]:
         """
-        this template family type (bsd,linux,solaris,windows)
+        this template family type (bsd,linux,solaris,windows).
         """
         return pulumi.get(self, "family")
 
@@ -313,7 +313,7 @@ class _InstallationTemplateState:
     @pulumi.getter
     def filesystems(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+        Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
         """
         return pulumi.get(self, "filesystems")
 
@@ -325,7 +325,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="hardRaidConfiguration")
     def hard_raid_configuration(self) -> Optional[pulumi.Input[bool]]:
         """
-        This distribution supports hardware raid configuration through the OVH API
+        This distribution supports hardware raid configuration through the OVHcloud API.
         """
         return pulumi.get(self, "hard_raid_configuration")
 
@@ -337,7 +337,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="lastModification")
     def last_modification(self) -> Optional[pulumi.Input[str]]:
         """
-        Date of last modification of the base image
+        Date of last modification of the base image.
         """
         return pulumi.get(self, "last_modification")
 
@@ -361,7 +361,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="removeDefaultPartitionSchemes")
     def remove_default_partition_schemes(self) -> Optional[pulumi.Input[bool]]:
         """
-        Remove default partition schemes at creation
+        Remove default partition schemes at creation.
         """
         return pulumi.get(self, "remove_default_partition_schemes")
 
@@ -373,7 +373,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="supportsDistributionKernel")
     def supports_distribution_kernel(self) -> Optional[pulumi.Input[bool]]:
         """
-        This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
+        This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
         """
         return pulumi.get(self, "supports_distribution_kernel")
 
@@ -385,7 +385,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="supportsRtm")
     def supports_rtm(self) -> Optional[pulumi.Input[bool]]:
         """
-        This distribution supports RTM software
+        This distribution supports RTM software.
         """
         return pulumi.get(self, "supports_rtm")
 
@@ -397,7 +397,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="supportsSqlServer")
     def supports_sql_server(self) -> Optional[pulumi.Input[bool]]:
         """
-        This distribution supports the microsoft SQL server
+        This distribution supports the microsoft SQL server.
         """
         return pulumi.get(self, "supports_sql_server")
 
@@ -409,7 +409,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="templateName")
     def template_name(self) -> Optional[pulumi.Input[str]]:
         """
-        This template name
+        This template name.
         """
         return pulumi.get(self, "template_name")
 
@@ -454,10 +454,10 @@ class InstallationTemplate(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] base_template_name: OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
-        :param pulumi.Input[str] default_language: The default language of this template
-        :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation
-        :param pulumi.Input[str] template_name: This template name
+        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
+        :param pulumi.Input[str] default_language: The default language of this template.
+        :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation.
+        :param pulumi.Input[str] template_name: This template name.
         """
         ...
     @overload
@@ -580,25 +580,25 @@ class InstallationTemplate(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] available_languages: List of all language available for this template
-        :param pulumi.Input[str] base_template_name: OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
-        :param pulumi.Input[bool] beta: This distribution is new and, although tested and functional, may still display odd behaviour
-        :param pulumi.Input[int] bit_format: This template bit format (32 or 64)
-        :param pulumi.Input[str] category: Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
-        :param pulumi.Input[str] default_language: The default language of this template
-        :param pulumi.Input[bool] deprecated: is this distribution deprecated
-        :param pulumi.Input[str] description: information about this template
-        :param pulumi.Input[str] distribution: the distribution this template is based on
-        :param pulumi.Input[str] family: this template family type (bsd,linux,solaris,windows)
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] filesystems: Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
-        :param pulumi.Input[bool] hard_raid_configuration: This distribution supports hardware raid configuration through the OVH API
-        :param pulumi.Input[str] last_modification: Date of last modification of the base image
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] available_languages: List of all language available for this template.
+        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
+        :param pulumi.Input[bool] beta: This distribution is new and, although tested and functional, may still display odd behaviour.
+        :param pulumi.Input[int] bit_format: This template bit format (32 or 64).
+        :param pulumi.Input[str] category: Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
+        :param pulumi.Input[str] default_language: The default language of this template.
+        :param pulumi.Input[bool] deprecated: is this distribution deprecated.
+        :param pulumi.Input[str] description: information about this template.
+        :param pulumi.Input[str] distribution: the distribution this template is based on.
+        :param pulumi.Input[str] family: this template family type (bsd,linux,solaris,windows).
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] filesystems: Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
+        :param pulumi.Input[bool] hard_raid_configuration: This distribution supports hardware raid configuration through the OVHcloud API.
+        :param pulumi.Input[str] last_modification: Date of last modification of the base image.
         :param pulumi.Input[bool] lvm_ready: This distribution supports Logical Volumes (Linux LVM)
-        :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation
-        :param pulumi.Input[bool] supports_distribution_kernel: This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
-        :param pulumi.Input[bool] supports_rtm: This distribution supports RTM software
-        :param pulumi.Input[bool] supports_sql_server: This distribution supports the microsoft SQL server
-        :param pulumi.Input[str] template_name: This template name
+        :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation.
+        :param pulumi.Input[bool] supports_distribution_kernel: This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
+        :param pulumi.Input[bool] supports_rtm: This distribution supports RTM software.
+        :param pulumi.Input[bool] supports_sql_server: This distribution supports the microsoft SQL server.
+        :param pulumi.Input[str] template_name: This template name.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -630,7 +630,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="availableLanguages")
     def available_languages(self) -> pulumi.Output[Sequence[str]]:
         """
-        List of all language available for this template
+        List of all language available for this template.
         """
         return pulumi.get(self, "available_languages")
 
@@ -638,7 +638,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="baseTemplateName")
     def base_template_name(self) -> pulumi.Output[str]:
         """
-        OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+        The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
         """
         return pulumi.get(self, "base_template_name")
 
@@ -646,7 +646,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter
     def beta(self) -> pulumi.Output[bool]:
         """
-        This distribution is new and, although tested and functional, may still display odd behaviour
+        This distribution is new and, although tested and functional, may still display odd behaviour.
         """
         return pulumi.get(self, "beta")
 
@@ -654,7 +654,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="bitFormat")
     def bit_format(self) -> pulumi.Output[int]:
         """
-        This template bit format (32 or 64)
+        This template bit format (32 or 64).
         """
         return pulumi.get(self, "bit_format")
 
@@ -662,7 +662,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter
     def category(self) -> pulumi.Output[str]:
         """
-        Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+        Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
         """
         return pulumi.get(self, "category")
 
@@ -675,7 +675,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="defaultLanguage")
     def default_language(self) -> pulumi.Output[str]:
         """
-        The default language of this template
+        The default language of this template.
         """
         return pulumi.get(self, "default_language")
 
@@ -683,7 +683,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter
     def deprecated(self) -> pulumi.Output[bool]:
         """
-        is this distribution deprecated
+        is this distribution deprecated.
         """
         return pulumi.get(self, "deprecated")
 
@@ -691,7 +691,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter
     def description(self) -> pulumi.Output[str]:
         """
-        information about this template
+        information about this template.
         """
         return pulumi.get(self, "description")
 
@@ -699,7 +699,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter
     def distribution(self) -> pulumi.Output[str]:
         """
-        the distribution this template is based on
+        the distribution this template is based on.
         """
         return pulumi.get(self, "distribution")
 
@@ -707,7 +707,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter
     def family(self) -> pulumi.Output[str]:
         """
-        this template family type (bsd,linux,solaris,windows)
+        this template family type (bsd,linux,solaris,windows).
         """
         return pulumi.get(self, "family")
 
@@ -715,7 +715,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter
     def filesystems(self) -> pulumi.Output[Sequence[str]]:
         """
-        Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+        Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
         """
         return pulumi.get(self, "filesystems")
 
@@ -723,7 +723,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="hardRaidConfiguration")
     def hard_raid_configuration(self) -> pulumi.Output[bool]:
         """
-        This distribution supports hardware raid configuration through the OVH API
+        This distribution supports hardware raid configuration through the OVHcloud API.
         """
         return pulumi.get(self, "hard_raid_configuration")
 
@@ -731,7 +731,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="lastModification")
     def last_modification(self) -> pulumi.Output[str]:
         """
-        Date of last modification of the base image
+        Date of last modification of the base image.
         """
         return pulumi.get(self, "last_modification")
 
@@ -747,7 +747,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="removeDefaultPartitionSchemes")
     def remove_default_partition_schemes(self) -> pulumi.Output[bool]:
         """
-        Remove default partition schemes at creation
+        Remove default partition schemes at creation.
         """
         return pulumi.get(self, "remove_default_partition_schemes")
 
@@ -755,7 +755,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="supportsDistributionKernel")
     def supports_distribution_kernel(self) -> pulumi.Output[bool]:
         """
-        This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
+        This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
         """
         return pulumi.get(self, "supports_distribution_kernel")
 
@@ -763,7 +763,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="supportsRtm")
     def supports_rtm(self) -> pulumi.Output[bool]:
         """
-        This distribution supports RTM software
+        This distribution supports RTM software.
         """
         return pulumi.get(self, "supports_rtm")
 
@@ -771,7 +771,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="supportsSqlServer")
     def supports_sql_server(self) -> pulumi.Output[bool]:
         """
-        This distribution supports the microsoft SQL server
+        This distribution supports the microsoft SQL server.
         """
         return pulumi.get(self, "supports_sql_server")
 
@@ -779,7 +779,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="templateName")
     def template_name(self) -> pulumi.Output[str]:
         """
-        This template name
+        This template name.
         """
         return pulumi.get(self, "template_name")
 

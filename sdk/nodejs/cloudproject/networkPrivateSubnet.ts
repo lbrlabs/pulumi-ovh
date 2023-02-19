@@ -13,9 +13,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const subnet = new ovh.CloudProject.NetworkPrivateSubnet("subnet", {
+ * const subnet = new ovh.cloudproject.NetworkPrivateSubnet("subnet", {
  *     dhcp: true,
  *     end: "192.168.168.200",
  *     network: "192.168.168.0/24",

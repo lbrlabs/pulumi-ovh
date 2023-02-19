@@ -21,11 +21,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing.Inputs
 
         /// <summary>
         /// Matching operator. Not all operators are available for all fields. See "availableRules"
-        /// * `negate`- Invert the matching operator effect
         /// </summary>
         [Input("match")]
         public Input<string>? Match { get; set; }
 
+        /// <summary>
+        /// Invert the matching operator effect
+        /// </summary>
         [Input("negate")]
         public Input<bool>? Negate { get; set; }
 

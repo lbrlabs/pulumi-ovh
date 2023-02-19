@@ -14,8 +14,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Ip.Inputs
     public sealed class IpServiceRoutedToGetArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Service where ip is routed to
-        /// * `service_name`: service name
+        /// service name
         /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }

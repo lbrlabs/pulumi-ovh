@@ -60,12 +60,11 @@ import (
 type InstallationTemplatePartitionScheme struct {
 	pulumi.CustomResourceState
 
-	// name of this partitioning scheme
+	// (Required) This partition scheme name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-	// among all the compatible partitioning schemes (given the underlying hardware specifications)
+	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
 	Priority pulumi.IntOutput `pulumi:"priority"`
-	// This template name
+	// The template name of the partition scheme.
 	TemplateName pulumi.StringOutput `pulumi:"templateName"`
 }
 
@@ -105,22 +104,20 @@ func GetInstallationTemplatePartitionScheme(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstallationTemplatePartitionScheme resources.
 type installationTemplatePartitionSchemeState struct {
-	// name of this partitioning scheme
+	// (Required) This partition scheme name.
 	Name *string `pulumi:"name"`
-	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-	// among all the compatible partitioning schemes (given the underlying hardware specifications)
+	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
 	Priority *int `pulumi:"priority"`
-	// This template name
+	// The template name of the partition scheme.
 	TemplateName *string `pulumi:"templateName"`
 }
 
 type InstallationTemplatePartitionSchemeState struct {
-	// name of this partitioning scheme
+	// (Required) This partition scheme name.
 	Name pulumi.StringPtrInput
-	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-	// among all the compatible partitioning schemes (given the underlying hardware specifications)
+	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
 	Priority pulumi.IntPtrInput
-	// This template name
+	// The template name of the partition scheme.
 	TemplateName pulumi.StringPtrInput
 }
 
@@ -129,23 +126,21 @@ func (InstallationTemplatePartitionSchemeState) ElementType() reflect.Type {
 }
 
 type installationTemplatePartitionSchemeArgs struct {
-	// name of this partitioning scheme
+	// (Required) This partition scheme name.
 	Name *string `pulumi:"name"`
-	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-	// among all the compatible partitioning schemes (given the underlying hardware specifications)
+	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
 	Priority int `pulumi:"priority"`
-	// This template name
+	// The template name of the partition scheme.
 	TemplateName string `pulumi:"templateName"`
 }
 
 // The set of arguments for constructing a InstallationTemplatePartitionScheme resource.
 type InstallationTemplatePartitionSchemeArgs struct {
-	// name of this partitioning scheme
+	// (Required) This partition scheme name.
 	Name pulumi.StringPtrInput
-	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-	// among all the compatible partitioning schemes (given the underlying hardware specifications)
+	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
 	Priority pulumi.IntInput
-	// This template name
+	// The template name of the partition scheme.
 	TemplateName pulumi.StringInput
 }
 
@@ -236,18 +231,17 @@ func (o InstallationTemplatePartitionSchemeOutput) ToInstallationTemplatePartiti
 	return o
 }
 
-// name of this partitioning scheme
+// (Required) This partition scheme name.
 func (o InstallationTemplatePartitionSchemeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionScheme) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-// among all the compatible partitioning schemes (given the underlying hardware specifications)
+// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
 func (o InstallationTemplatePartitionSchemeOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionScheme) pulumi.IntOutput { return v.Priority }).(pulumi.IntOutput)
 }
 
-// This template name
+// The template name of the partition scheme.
 func (o InstallationTemplatePartitionSchemeOutput) TemplateName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionScheme) pulumi.StringOutput { return v.TemplateName }).(pulumi.StringOutput)
 }

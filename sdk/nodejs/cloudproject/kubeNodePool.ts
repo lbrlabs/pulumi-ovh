@@ -15,9 +15,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const nodePool = new ovh.CloudProject.KubeNodePool("node_pool", {
+ * const nodePool = new ovh.cloudproject.KubeNodePool("nodePool", {
  *     desiredNodes: 3,
  *     flavorName: "b2-7",
  *     kubeId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
@@ -31,9 +31,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const pool = new ovh.CloudProject.KubeNodePool("pool", {
+ * const pool = new ovh.cloudproject.KubeNodePool("pool", {
  *     desiredNodes: 3,
  *     flavorName: "b2-7",
  *     kubeId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",

@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const ip = new ovh.Hosting.PrivateDatabaseAllowlist("ip", {
+ * const ip = new ovh.hosting.PrivateDatabaseAllowlist("ip", {
  *     ip: "1.2.3.4",
  *     service: true,
  *     serviceName: "XXXXXX",

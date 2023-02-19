@@ -15,19 +15,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const capability = pulumi.output(ovh.CloudProject.getCapabilitiesContainerFilter({
+ * const capability = ovh.CloudProject.getCapabilitiesContainerFilter({
  *     planName: "SMALL",
  *     region: "GRA",
  *     serviceName: "XXXXXX",
- * }));
+ * });
  * ```
  */
 export function getCapabilitiesContainerFilter(args: GetCapabilitiesContainerFilterArgs, opts?: pulumi.InvokeOptions): Promise<GetCapabilitiesContainerFilterResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getCapabilitiesContainerFilter:getCapabilitiesContainerFilter", {
         "planName": args.planName,
         "region": args.region,
@@ -90,9 +87,24 @@ export interface GetCapabilitiesContainerFilterResult {
      */
     readonly updatedAt: string;
 }
-
+/**
+ * Use this data source to filter the list of container registry capabilities associated with a public cloud project to match one and only one capability.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const capability = ovh.CloudProject.getCapabilitiesContainerFilter({
+ *     planName: "SMALL",
+ *     region: "GRA",
+ *     serviceName: "XXXXXX",
+ * });
+ * ```
+ */
 export function getCapabilitiesContainerFilterOutput(args: GetCapabilitiesContainerFilterOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCapabilitiesContainerFilterResult> {
-    return pulumi.output(args).apply(a => getCapabilitiesContainerFilter(a, opts))
+    return pulumi.output(args).apply((a: any) => getCapabilitiesContainerFilter(a, opts))
 }
 
 /**

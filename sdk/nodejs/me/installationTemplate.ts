@@ -13,9 +13,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const mytemplate = new ovh.Me.InstallationTemplate("mytemplate", {
+ * const mytemplate = new ovh.me.InstallationTemplate("mytemplate", {
  *     baseTemplateName: "centos7_64",
  *     defaultLanguage: "en",
  *     templateName: "mytemplate",
@@ -59,56 +59,56 @@ export class InstallationTemplate extends pulumi.CustomResource {
     }
 
     /**
-     * List of all language available for this template
+     * List of all language available for this template.
      */
     public /*out*/ readonly availableLanguages!: pulumi.Output<string[]>;
     /**
-     * OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+     * The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
      */
     public readonly baseTemplateName!: pulumi.Output<string>;
     /**
-     * This distribution is new and, although tested and functional, may still display odd behaviour
+     * This distribution is new and, although tested and functional, may still display odd behaviour.
      */
     public /*out*/ readonly beta!: pulumi.Output<boolean>;
     /**
-     * This template bit format (32 or 64)
+     * This template bit format (32 or 64).
      */
     public /*out*/ readonly bitFormat!: pulumi.Output<number>;
     /**
-     * Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+     * Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
      */
     public /*out*/ readonly category!: pulumi.Output<string>;
     public readonly customization!: pulumi.Output<outputs.Me.InstallationTemplateCustomization | undefined>;
     /**
-     * The default language of this template
+     * The default language of this template.
      */
     public readonly defaultLanguage!: pulumi.Output<string>;
     /**
-     * is this distribution deprecated
+     * is this distribution deprecated.
      */
     public /*out*/ readonly deprecated!: pulumi.Output<boolean>;
     /**
-     * information about this template
+     * information about this template.
      */
     public /*out*/ readonly description!: pulumi.Output<string>;
     /**
-     * the distribution this template is based on
+     * the distribution this template is based on.
      */
     public /*out*/ readonly distribution!: pulumi.Output<string>;
     /**
-     * this template family type (bsd,linux,solaris,windows)
+     * this template family type (bsd,linux,solaris,windows).
      */
     public /*out*/ readonly family!: pulumi.Output<string>;
     /**
-     * Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+     * Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
      */
     public /*out*/ readonly filesystems!: pulumi.Output<string[]>;
     /**
-     * This distribution supports hardware raid configuration through the OVH API
+     * This distribution supports hardware raid configuration through the OVHcloud API.
      */
     public /*out*/ readonly hardRaidConfiguration!: pulumi.Output<boolean>;
     /**
-     * Date of last modification of the base image
+     * Date of last modification of the base image.
      */
     public /*out*/ readonly lastModification!: pulumi.Output<string>;
     /**
@@ -116,23 +116,23 @@ export class InstallationTemplate extends pulumi.CustomResource {
      */
     public /*out*/ readonly lvmReady!: pulumi.Output<boolean>;
     /**
-     * Remove default partition schemes at creation
+     * Remove default partition schemes at creation.
      */
     public readonly removeDefaultPartitionSchemes!: pulumi.Output<boolean>;
     /**
-     * This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
+     * This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
      */
     public /*out*/ readonly supportsDistributionKernel!: pulumi.Output<boolean>;
     /**
-     * This distribution supports RTM software
+     * This distribution supports RTM software.
      */
     public /*out*/ readonly supportsRtm!: pulumi.Output<boolean>;
     /**
-     * This distribution supports the microsoft SQL server
+     * This distribution supports the microsoft SQL server.
      */
     public /*out*/ readonly supportsSqlServer!: pulumi.Output<boolean>;
     /**
-     * This template name
+     * This template name.
      */
     public readonly templateName!: pulumi.Output<string>;
 
@@ -211,56 +211,56 @@ export class InstallationTemplate extends pulumi.CustomResource {
  */
 export interface InstallationTemplateState {
     /**
-     * List of all language available for this template
+     * List of all language available for this template.
      */
     availableLanguages?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+     * The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
      */
     baseTemplateName?: pulumi.Input<string>;
     /**
-     * This distribution is new and, although tested and functional, may still display odd behaviour
+     * This distribution is new and, although tested and functional, may still display odd behaviour.
      */
     beta?: pulumi.Input<boolean>;
     /**
-     * This template bit format (32 or 64)
+     * This template bit format (32 or 64).
      */
     bitFormat?: pulumi.Input<number>;
     /**
-     * Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+     * Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
      */
     category?: pulumi.Input<string>;
     customization?: pulumi.Input<inputs.Me.InstallationTemplateCustomization>;
     /**
-     * The default language of this template
+     * The default language of this template.
      */
     defaultLanguage?: pulumi.Input<string>;
     /**
-     * is this distribution deprecated
+     * is this distribution deprecated.
      */
     deprecated?: pulumi.Input<boolean>;
     /**
-     * information about this template
+     * information about this template.
      */
     description?: pulumi.Input<string>;
     /**
-     * the distribution this template is based on
+     * the distribution this template is based on.
      */
     distribution?: pulumi.Input<string>;
     /**
-     * this template family type (bsd,linux,solaris,windows)
+     * this template family type (bsd,linux,solaris,windows).
      */
     family?: pulumi.Input<string>;
     /**
-     * Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+     * Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
      */
     filesystems?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * This distribution supports hardware raid configuration through the OVH API
+     * This distribution supports hardware raid configuration through the OVHcloud API.
      */
     hardRaidConfiguration?: pulumi.Input<boolean>;
     /**
-     * Date of last modification of the base image
+     * Date of last modification of the base image.
      */
     lastModification?: pulumi.Input<string>;
     /**
@@ -268,23 +268,23 @@ export interface InstallationTemplateState {
      */
     lvmReady?: pulumi.Input<boolean>;
     /**
-     * Remove default partition schemes at creation
+     * Remove default partition schemes at creation.
      */
     removeDefaultPartitionSchemes?: pulumi.Input<boolean>;
     /**
-     * This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
+     * This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
      */
     supportsDistributionKernel?: pulumi.Input<boolean>;
     /**
-     * This distribution supports RTM software
+     * This distribution supports RTM software.
      */
     supportsRtm?: pulumi.Input<boolean>;
     /**
-     * This distribution supports the microsoft SQL server
+     * This distribution supports the microsoft SQL server.
      */
     supportsSqlServer?: pulumi.Input<boolean>;
     /**
-     * This template name
+     * This template name.
      */
     templateName?: pulumi.Input<string>;
 }
@@ -294,20 +294,20 @@ export interface InstallationTemplateState {
  */
 export interface InstallationTemplateArgs {
     /**
-     * OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+     * The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
      */
     baseTemplateName: pulumi.Input<string>;
     customization?: pulumi.Input<inputs.Me.InstallationTemplateCustomization>;
     /**
-     * The default language of this template
+     * The default language of this template.
      */
     defaultLanguage: pulumi.Input<string>;
     /**
-     * Remove default partition schemes at creation
+     * Remove default partition schemes at creation.
      */
     removeDefaultPartitionSchemes?: pulumi.Input<boolean>;
     /**
-     * This template name
+     * This template name.
      */
     templateName: pulumi.Input<string>;
 }

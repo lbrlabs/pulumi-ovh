@@ -71,10 +71,6 @@ export class KafkaAcl extends pulumi.CustomResource {
     /**
      * Permission to give to this username on this topic.
      * Available permissions:
-     * * `admin`
-     * * `read`
-     * * `write`
-     * * `readwrite`
      */
     public readonly permission!: pulumi.Output<string>;
     /**
@@ -148,10 +144,6 @@ export interface KafkaAclState {
     /**
      * Permission to give to this username on this topic.
      * Available permissions:
-     * * `admin`
-     * * `read`
-     * * `write`
-     * * `readwrite`
      */
     permission?: pulumi.Input<string>;
     /**
@@ -180,10 +172,6 @@ export interface KafkaAclArgs {
     /**
      * Permission to give to this username on this topic.
      * Available permissions:
-     * * `admin`
-     * * `read`
-     * * `write`
-     * * `readwrite`
      */
     permission: pulumi.Input<string>;
     /**

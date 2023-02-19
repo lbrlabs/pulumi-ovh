@@ -12,9 +12,17 @@ public final class GetInstallationTemplatePlainArgs extends com.pulumi.resources
 
     public static final GetInstallationTemplatePlainArgs Empty = new GetInstallationTemplatePlainArgs();
 
+    /**
+     * This template name
+     * 
+     */
     @Import(name="templateName", required=true)
     private String templateName;
 
+    /**
+     * @return This template name
+     * 
+     */
     public String templateName() {
         return this.templateName;
     }
@@ -43,6 +51,12 @@ public final class GetInstallationTemplatePlainArgs extends com.pulumi.resources
             $ = new GetInstallationTemplatePlainArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param templateName This template name
+         * 
+         * @return builder
+         * 
+         */
         public Builder templateName(String templateName) {
             $.templateName = templateName;
             return this;

@@ -817,8 +817,7 @@ func (o IpServicePlanOptionConfigurationArrayOutput) Index(i pulumi.IntInput) Ip
 }
 
 type IpServiceRoutedTo struct {
-	// Service where ip is routed to
-	// * `serviceName`: service name
+	// service name
 	ServiceName *string `pulumi:"serviceName"`
 }
 
@@ -834,8 +833,7 @@ type IpServiceRoutedToInput interface {
 }
 
 type IpServiceRoutedToArgs struct {
-	// Service where ip is routed to
-	// * `serviceName`: service name
+	// service name
 	ServiceName pulumi.StringPtrInput `pulumi:"serviceName"`
 }
 
@@ -890,8 +888,7 @@ func (o IpServiceRoutedToOutput) ToIpServiceRoutedToOutputWithContext(ctx contex
 	return o
 }
 
-// Service where ip is routed to
-// * `serviceName`: service name
+// service name
 func (o IpServiceRoutedToOutput) ServiceName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v IpServiceRoutedTo) *string { return v.ServiceName }).(pulumi.StringPtrOutput)
 }

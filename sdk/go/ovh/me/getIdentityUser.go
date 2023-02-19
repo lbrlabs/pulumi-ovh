@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Me.GetIdentityUser(ctx, &me.GetIdentityUserArgs{
+//			_, err := Me.GetIdentityUser(ctx, &me.GetIdentityUserArgs{
 //				User: "my_user_login",
 //			}, nil)
 //			if err != nil {

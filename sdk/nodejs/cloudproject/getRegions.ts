@@ -13,18 +13,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const regions = pulumi.output(ovh.CloudProject.getRegions({
+ * const regions = ovh.CloudProject.getRegions({
  *     hasServicesUps: ["network"],
  *     serviceName: "XXXXXX",
- * }));
+ * });
  * ```
  */
 export function getRegions(args: GetRegionsArgs, opts?: pulumi.InvokeOptions): Promise<GetRegionsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getRegions:getRegions", {
         "hasServicesUps": args.hasServicesUps,
         "serviceName": args.serviceName,
@@ -63,9 +60,23 @@ export interface GetRegionsResult {
     readonly names: string[];
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get the regions of a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const regions = ovh.CloudProject.getRegions({
+ *     hasServicesUps: ["network"],
+ *     serviceName: "XXXXXX",
+ * });
+ * ```
+ */
 export function getRegionsOutput(args: GetRegionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRegionsResult> {
-    return pulumi.output(args).apply(a => getRegions(a, opts))
+    return pulumi.output(args).apply((a: any) => getRegions(a, opts))
 }
 
 /**

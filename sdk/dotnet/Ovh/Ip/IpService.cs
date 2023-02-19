@@ -140,8 +140,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Ip
         public Output<ImmutableArray<Outputs.IpServiceRoutedTo>> RoutedTos { get; private set; } = null!;
 
         /// <summary>
-        /// Service where ip is routed to
-        /// * `service_name`: service name
+        /// service name
         /// </summary>
         [Output("serviceName")]
         public Output<string> ServiceName { get; private set; } = null!;
@@ -328,8 +327,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Ip
         }
 
         /// <summary>
-        /// Service where ip is routed to
-        /// * `service_name`: service name
+        /// service name
         /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }

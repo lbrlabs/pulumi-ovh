@@ -94,8 +94,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// The engine of the database cluster you want database information. To get a full list of available engine visit:
         /// [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         /// Available engines:
-        /// * `mysql`
-        /// * `postgresql`
         /// </summary>
         [Input("engine", required: true)]
         public string Engine { get; set; } = null!;
@@ -131,8 +129,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// The engine of the database cluster you want database information. To get a full list of available engine visit:
         /// [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         /// Available engines:
-        /// * `mysql`
-        /// * `postgresql`
         /// </summary>
         [Input("engine", required: true)]
         public Input<string> Engine { get; set; } = null!;

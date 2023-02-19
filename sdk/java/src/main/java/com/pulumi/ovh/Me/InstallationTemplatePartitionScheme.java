@@ -68,44 +68,42 @@ import javax.annotation.Nullable;
 @ResourceType(type="ovh:Me/installationTemplatePartitionScheme:InstallationTemplatePartitionScheme")
 public class InstallationTemplatePartitionScheme extends com.pulumi.resources.CustomResource {
     /**
-     * name of this partitioning scheme
+     * (Required) This partition scheme name.
      * 
      */
     @Export(name="name", type=String.class, parameters={})
     private Output<String> name;
 
     /**
-     * @return name of this partitioning scheme
+     * @return (Required) This partition scheme name.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-     * among all the compatible partitioning schemes (given the underlying hardware specifications)
+     * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
      * 
      */
     @Export(name="priority", type=Integer.class, parameters={})
     private Output<Integer> priority;
 
     /**
-     * @return on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-     * among all the compatible partitioning schemes (given the underlying hardware specifications)
+     * @return on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
      * 
      */
     public Output<Integer> priority() {
         return this.priority;
     }
     /**
-     * This template name
+     * The template name of the partition scheme.
      * 
      */
     @Export(name="templateName", type=String.class, parameters={})
     private Output<String> templateName;
 
     /**
-     * @return This template name
+     * @return The template name of the partition scheme.
      * 
      */
     public Output<String> templateName() {

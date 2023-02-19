@@ -31,9 +31,9 @@ import * as utilities from "../utilities";
  *     paymentMean: "ovh-account",
  *     displayName: "Postgresql-12",
  *     plan: {
- *         duration: databaseCartProductPlan.then(databaseCartProductPlan => databaseCartProductPlan.prices?[3]?.duration),
+ *         duration: databaseCartProductPlan.then(databaseCartProductPlan => databaseCartProductPlan.prices?.[3]?.duration),
  *         planCode: databaseCartProductPlan.then(databaseCartProductPlan => databaseCartProductPlan.planCode),
- *         pricingMode: databaseCartProductPlan.then(databaseCartProductPlan => databaseCartProductPlan.selectedPrices?[0]?.pricingMode),
+ *         pricingMode: databaseCartProductPlan.then(databaseCartProductPlan => databaseCartProductPlan.selectedPrices?.[0]?.pricingMode),
  *         configurations: [
  *             {
  *                 label: "dc",
@@ -157,6 +157,9 @@ export class PrivateDatabase extends pulumi.CustomResource {
      * Private database server name
      */
     public /*out*/ readonly server!: pulumi.Output<string>;
+    /**
+     * Service name
+     */
     public readonly serviceName!: pulumi.Output<string>;
     /**
      * Private database state
@@ -333,6 +336,9 @@ export interface PrivateDatabaseState {
      * Private database server name
      */
     server?: pulumi.Input<string>;
+    /**
+     * Service name
+     */
     serviceName?: pulumi.Input<string>;
     /**
      * Private database state
@@ -380,5 +386,8 @@ export interface PrivateDatabaseArgs {
      * Product Plan to order
      */
     planOptions?: pulumi.Input<pulumi.Input<inputs.Hosting.PrivateDatabasePlanOption>[]>;
+    /**
+     * Service name
+     */
     serviceName?: pulumi.Input<string>;
 }

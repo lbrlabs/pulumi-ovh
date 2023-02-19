@@ -13,18 +13,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const stream = pulumi.output(ovh.Dbaas.getLogsOutputGraylogStream({
+ * const stream = ovh.Dbaas.getLogsOutputGraylogStream({
  *     serviceName: "ldp-xx-xxxxx",
  *     title: "my stream",
- * }));
+ * });
  * ```
  */
 export function getLogsOutputGraylogStream(args: GetLogsOutputGraylogStreamArgs, opts?: pulumi.InvokeOptions): Promise<GetLogsOutputGraylogStreamResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Dbaas/getLogsOutputGraylogStream:getLogsOutputGraylogStream", {
         "serviceName": args.serviceName,
         "title": args.title,
@@ -141,9 +138,23 @@ export interface GetLogsOutputGraylogStreamResult {
      */
     readonly webSocketEnabled: boolean;
 }
-
+/**
+ * Use this data source to retrieve information about a DBaas logs output graylog stream.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const stream = ovh.Dbaas.getLogsOutputGraylogStream({
+ *     serviceName: "ldp-xx-xxxxx",
+ *     title: "my stream",
+ * });
+ * ```
+ */
 export function getLogsOutputGraylogStreamOutput(args: GetLogsOutputGraylogStreamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLogsOutputGraylogStreamResult> {
-    return pulumi.output(args).apply(a => getLogsOutputGraylogStream(a, opts))
+    return pulumi.output(args).apply((a: any) => getLogsOutputGraylogStream(a, opts))
 }
 
 /**

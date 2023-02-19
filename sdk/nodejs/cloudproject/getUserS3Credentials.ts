@@ -21,11 +21,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getUserS3Credentials(args: GetUserS3CredentialsArgs, opts?: pulumi.InvokeOptions): Promise<GetUserS3CredentialsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getUserS3Credentials:getUserS3Credentials", {
         "serviceName": args.serviceName,
         "userId": args.userId,
@@ -62,9 +59,24 @@ export interface GetUserS3CredentialsResult {
     readonly serviceName: string;
     readonly userId: string;
 }
-
+/**
+ * Use this data source to retrieve the list of all the S3 accessKeyId associated with a public cloud project's user.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const myS3Credentials = ovh.CloudProject.getUserS3Credentials({
+ *     serviceName: "XXXXXX",
+ *     userId: "1234",
+ * });
+ * export const accessKeyIds = myS3Credentials.then(myS3Credentials => myS3Credentials.accessKeyIds);
+ * ```
+ */
 export function getUserS3CredentialsOutput(args: GetUserS3CredentialsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserS3CredentialsResult> {
-    return pulumi.output(args).apply(a => getUserS3Credentials(a, opts))
+    return pulumi.output(args).apply((a: any) => getUserS3Credentials(a, opts))
 }
 
 /**

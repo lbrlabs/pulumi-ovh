@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const myfailoverip = new ovh.CloudProject.FailoverIpAttach("myfailoverip", {
+ * const myfailoverip = new ovh.cloudproject.FailoverIpAttach("myfailoverip", {
  *     ip: "XXXXXX",
  *     routedTo: "XXXXXX",
  *     serviceName: "XXXXXX",

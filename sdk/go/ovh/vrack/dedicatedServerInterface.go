@@ -28,7 +28,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			server, err := ovh.GetServer(ctx, &GetServerArgs{
+//			server, err := ovh.GetServer(ctx, &ovh.GetServerArgs{
 //				ServiceName: "nsxxxxxxx.ip-xx-xx-xx.eu",
 //			}, nil)
 //			if err != nil {
@@ -36,7 +36,7 @@ import (
 //			}
 //			_, err = Vrack.NewDedicatedServerInterface(ctx, "vdsi", &Vrack.DedicatedServerInterfaceArgs{
 //				ServiceName: pulumi.String("pn-xxxxxxx"),
-//				InterfaceId: pulumi.String(server.EnabledVrackVnis[0]),
+//				InterfaceId: *pulumi.String(server.EnabledVrackVnis[0]),
 //			})
 //			if err != nil {
 //				return err

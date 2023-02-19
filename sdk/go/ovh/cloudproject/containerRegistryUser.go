@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = CloudProject.GetContainerRegistry(ctx, &cloudproject.GetContainerRegistryArgs{
+//			_, err := CloudProject.GetContainerRegistry(ctx, &cloudproject.GetContainerRegistryArgs{
 //				ServiceName: "XXXXXX",
 //				RegistryId:  "yyyy",
 //			}, nil)

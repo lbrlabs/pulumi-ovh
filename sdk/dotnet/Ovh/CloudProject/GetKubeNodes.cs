@@ -34,7 +34,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["nodes"] = nodesKubeNodes.Apply(getKubeNodesResult =&gt; getKubeNodesResult),
+        ///         ["nodes"] = nodesKubeNodes,
         ///     };
         /// });
         /// ```
@@ -66,7 +66,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         /// 
         ///     return new Dictionary&lt;string, object?&gt;
         ///     {
-        ///         ["nodes"] = nodesKubeNodes.Apply(getKubeNodesResult =&gt; getKubeNodesResult),
+        ///         ["nodes"] = nodesKubeNodes,
         ///     };
         /// });
         /// ```

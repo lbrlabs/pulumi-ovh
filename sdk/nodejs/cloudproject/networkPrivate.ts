@@ -13,9 +13,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const net = new ovh.CloudProject.NetworkPrivate("net", {
+ * const net = new ovh.cloudproject.NetworkPrivate("net", {
  *     regions: [
  *         "GRA1",
  *         "BHS1",

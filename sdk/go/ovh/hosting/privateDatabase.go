@@ -45,13 +45,13 @@ import (
 //				return err
 //			}
 //			databasePrivateDatabase, err := Hosting.NewPrivateDatabase(ctx, "databasePrivateDatabase", &Hosting.PrivateDatabaseArgs{
-//				OvhSubsidiary: pulumi.String(mycart.OvhSubsidiary),
+//				OvhSubsidiary: *pulumi.String(mycart.OvhSubsidiary),
 //				PaymentMean:   pulumi.String("ovh-account"),
 //				DisplayName:   pulumi.String("Postgresql-12"),
 //				Plan: &hosting.PrivateDatabasePlanArgs{
-//					Duration:    pulumi.String(databaseCartProductPlan.Prices[3].Duration),
-//					PlanCode:    pulumi.String(databaseCartProductPlan.PlanCode),
-//					PricingMode: pulumi.String(databaseCartProductPlan.SelectedPrices[0].PricingMode),
+//					Duration:    *pulumi.String(databaseCartProductPlan.Prices[3].Duration),
+//					PlanCode:    *pulumi.String(databaseCartProductPlan.PlanCode),
+//					PricingMode: *pulumi.String(databaseCartProductPlan.SelectedPrices[0].PricingMode),
 //					Configurations: hosting.PrivateDatabasePlanConfigurationArray{
 //						&hosting.PrivateDatabasePlanConfigurationArgs{
 //							Label: pulumi.String("dc"),
@@ -121,7 +121,8 @@ type PrivateDatabase struct {
 	// Amount of ram (in MB) on your private database
 	Ram pulumi.IntOutput `pulumi:"ram"`
 	// Private database server name
-	Server      pulumi.StringOutput `pulumi:"server"`
+	Server pulumi.StringOutput `pulumi:"server"`
+	// Service name
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
 	// Private database state
 	State pulumi.StringOutput `pulumi:"state"`
@@ -209,7 +210,8 @@ type privateDatabaseState struct {
 	// Amount of ram (in MB) on your private database
 	Ram *int `pulumi:"ram"`
 	// Private database server name
-	Server      *string `pulumi:"server"`
+	Server *string `pulumi:"server"`
+	// Service name
 	ServiceName *string `pulumi:"serviceName"`
 	// Private database state
 	State *string `pulumi:"state"`
@@ -259,7 +261,8 @@ type PrivateDatabaseState struct {
 	// Amount of ram (in MB) on your private database
 	Ram pulumi.IntPtrInput
 	// Private database server name
-	Server      pulumi.StringPtrInput
+	Server pulumi.StringPtrInput
+	// Service name
 	ServiceName pulumi.StringPtrInput
 	// Private database state
 	State pulumi.StringPtrInput
@@ -288,7 +291,8 @@ type privateDatabaseArgs struct {
 	Plan PrivateDatabasePlan `pulumi:"plan"`
 	// Product Plan to order
 	PlanOptions []PrivateDatabasePlanOption `pulumi:"planOptions"`
-	ServiceName *string                     `pulumi:"serviceName"`
+	// Service name
+	ServiceName *string `pulumi:"serviceName"`
 }
 
 // The set of arguments for constructing a PrivateDatabase resource.
@@ -303,6 +307,7 @@ type PrivateDatabaseArgs struct {
 	Plan PrivateDatabasePlanInput
 	// Product Plan to order
 	PlanOptions PrivateDatabasePlanOptionArrayInput
+	// Service name
 	ServiceName pulumi.StringPtrInput
 }
 
@@ -483,6 +488,7 @@ func (o PrivateDatabaseOutput) Server() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateDatabase) pulumi.StringOutput { return v.Server }).(pulumi.StringOutput)
 }
 
+// Service name
 func (o PrivateDatabaseOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateDatabase) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
 }

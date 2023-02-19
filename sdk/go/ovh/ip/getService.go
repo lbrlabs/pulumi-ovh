@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Ip.GetService(ctx, &ip.GetServiceArgs{
+//			_, err := Ip.GetService(ctx, &ip.GetServiceArgs{
 //				ServiceName: "XXXXXX",
 //			}, nil)
 //			if err != nil {

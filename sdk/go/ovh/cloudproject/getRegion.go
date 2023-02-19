@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = CloudProject.GetRegion(ctx, &cloudproject.GetRegionArgs{
+//			_, err := CloudProject.GetRegion(ctx, &cloudproject.GetRegionArgs{
 //				Name:        "GRA1",
 //				ServiceName: "XXXXXX",
 //			}, nil)

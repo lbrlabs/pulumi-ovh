@@ -61,13 +61,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public partial class InstallationTemplatePartitionSchemePartition : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Partition filesystem
+        /// Partition filesystem.
         /// </summary>
         [Output("filesystem")]
         public Output<string> Filesystem { get; private set; } = null!;
 
         /// <summary>
-        /// partition mount point
+        /// partition mount point.
         /// </summary>
         [Output("mountpoint")]
         public Output<string> Mountpoint { get; private set; } = null!;
@@ -79,31 +79,31 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Output<int> Order { get; private set; } = null!;
 
         /// <summary>
-        /// raid partition type
+        /// raid partition type.
         /// </summary>
         [Output("raid")]
         public Output<string> Raid { get; private set; } = null!;
 
         /// <summary>
-        /// name of this partitioning scheme
+        /// The partition scheme name.
         /// </summary>
         [Output("schemeName")]
         public Output<string> SchemeName { get; private set; } = null!;
 
         /// <summary>
-        /// size of partition in MB, 0 =&gt; rest of the space
+        /// size of partition in MB, 0 =&gt; rest of the space.
         /// </summary>
         [Output("size")]
         public Output<int> Size { get; private set; } = null!;
 
         /// <summary>
-        /// Template name
+        /// The template name of the partition scheme.
         /// </summary>
         [Output("templateName")]
         public Output<string> TemplateName { get; private set; } = null!;
 
         /// <summary>
-        /// partition type
+        /// partition type.
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -162,13 +162,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public sealed class InstallationTemplatePartitionSchemePartitionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Partition filesystem
+        /// Partition filesystem.
         /// </summary>
         [Input("filesystem", required: true)]
         public Input<string> Filesystem { get; set; } = null!;
 
         /// <summary>
-        /// partition mount point
+        /// partition mount point.
         /// </summary>
         [Input("mountpoint", required: true)]
         public Input<string> Mountpoint { get; set; } = null!;
@@ -180,31 +180,31 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Input<int> Order { get; set; } = null!;
 
         /// <summary>
-        /// raid partition type
+        /// raid partition type.
         /// </summary>
         [Input("raid")]
         public Input<string>? Raid { get; set; }
 
         /// <summary>
-        /// name of this partitioning scheme
+        /// The partition scheme name.
         /// </summary>
         [Input("schemeName", required: true)]
         public Input<string> SchemeName { get; set; } = null!;
 
         /// <summary>
-        /// size of partition in MB, 0 =&gt; rest of the space
+        /// size of partition in MB, 0 =&gt; rest of the space.
         /// </summary>
         [Input("size", required: true)]
         public Input<int> Size { get; set; } = null!;
 
         /// <summary>
-        /// Template name
+        /// The template name of the partition scheme.
         /// </summary>
         [Input("templateName", required: true)]
         public Input<string> TemplateName { get; set; } = null!;
 
         /// <summary>
-        /// partition type
+        /// partition type.
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -224,13 +224,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public sealed class InstallationTemplatePartitionSchemePartitionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Partition filesystem
+        /// Partition filesystem.
         /// </summary>
         [Input("filesystem")]
         public Input<string>? Filesystem { get; set; }
 
         /// <summary>
-        /// partition mount point
+        /// partition mount point.
         /// </summary>
         [Input("mountpoint")]
         public Input<string>? Mountpoint { get; set; }
@@ -242,31 +242,31 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Input<int>? Order { get; set; }
 
         /// <summary>
-        /// raid partition type
+        /// raid partition type.
         /// </summary>
         [Input("raid")]
         public Input<string>? Raid { get; set; }
 
         /// <summary>
-        /// name of this partitioning scheme
+        /// The partition scheme name.
         /// </summary>
         [Input("schemeName")]
         public Input<string>? SchemeName { get; set; }
 
         /// <summary>
-        /// size of partition in MB, 0 =&gt; rest of the space
+        /// size of partition in MB, 0 =&gt; rest of the space.
         /// </summary>
         [Input("size")]
         public Input<int>? Size { get; set; }
 
         /// <summary>
-        /// Template name
+        /// The template name of the partition scheme.
         /// </summary>
         [Input("templateName")]
         public Input<string>? TemplateName { get; set; }
 
         /// <summary>
-        /// partition type
+        /// partition type.
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

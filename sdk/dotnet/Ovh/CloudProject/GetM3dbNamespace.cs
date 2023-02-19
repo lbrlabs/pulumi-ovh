@@ -176,9 +176,11 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public readonly string RetentionPeriodDuration;
         /// <summary>
         /// See Argument Reference above.
-        /// * `snapshot_enabled`- SDefines whether M3db will create snapshot files for this namespace.
         /// </summary>
         public readonly string ServiceName;
+        /// <summary>
+        /// SDefines whether M3db will create snapshot files for this namespace.
+        /// </summary>
         public readonly bool SnapshotEnabled;
         /// <summary>
         /// Type of namespace.

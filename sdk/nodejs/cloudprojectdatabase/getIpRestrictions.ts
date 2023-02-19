@@ -23,11 +23,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getIpRestrictions(args: GetIpRestrictionsArgs, opts?: pulumi.InvokeOptions): Promise<GetIpRestrictionsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProjectDatabase/getIpRestrictions:getIpRestrictions", {
         "clusterId": args.clusterId,
         "engine": args.engine,
@@ -80,9 +77,26 @@ export interface GetIpRestrictionsResult {
      */
     readonly serviceName: string;
 }
-
+/**
+ * Use the list of IP restrictions associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * To get the list of IP restriction on a database cluster service:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const iprestrictions = ovh.CloudProjectDatabase.getIpRestrictions({
+ *     serviceName: "XXXXXX",
+ *     engine: "YYYY",
+ *     clusterId: "ZZZZ",
+ * });
+ * export const ips = iprestrictions.then(iprestrictions => iprestrictions.ips);
+ * ```
+ */
 export function getIpRestrictionsOutput(args: GetIpRestrictionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIpRestrictionsResult> {
-    return pulumi.output(args).apply(a => getIpRestrictions(a, opts))
+    return pulumi.output(args).apply((a: any) => getIpRestrictions(a, opts))
 }
 
 /**

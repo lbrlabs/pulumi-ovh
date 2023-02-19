@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const user = new ovh.Hosting.PrivateDatabaseUser("user", {
+ * const user = new ovh.hosting.PrivateDatabaseUser("user", {
  *     password: "XXXXXX",
  *     serviceName: "XXXXXX",
  *     userName: "XXXXXX",

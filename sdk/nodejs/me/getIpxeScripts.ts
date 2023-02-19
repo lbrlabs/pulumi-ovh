@@ -13,15 +13,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const scripts = pulumi.output(ovh.Me.getIpxeScripts());
+ * const scripts = ovh.Me.getIpxeScripts({});
  * ```
  */
 export function getIpxeScripts(opts?: pulumi.InvokeOptions): Promise<GetIpxeScriptsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Me/getIpxeScripts:getIpxeScripts", {
     }, opts);
 }

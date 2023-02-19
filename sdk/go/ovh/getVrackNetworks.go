@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = ovh.GetVrackNetworks(ctx, &GetVrackNetworksArgs{
+//			_, err := ovh.GetVrackNetworks(ctx, &ovh.GetVrackNetworksArgs{
 //				ServiceName: "XXXXXX",
 //				Subnet:      pulumi.StringRef("10.0.0.0/24"),
 //			}, nil)

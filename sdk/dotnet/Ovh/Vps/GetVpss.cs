@@ -14,6 +14,24 @@ namespace Lbrlabs.PulumiPackage.Ovh.Vps
     {
         /// <summary>
         /// Use this data source to get the list of VPS associated with your OVH Account.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Ovh = Pulumi.Ovh;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var servers = Ovh.Vps.GetVpss.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetVpssResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetVpssResult>("ovh:Vps/getVpss:getVpss", InvokeArgs.Empty, options.WithDefaults());

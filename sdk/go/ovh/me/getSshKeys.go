@@ -8,6 +8,30 @@ import (
 )
 
 // Use this data source to retrieve list of names of the account's SSH keys.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Me"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := Me.GetSshKeys(ctx, nil, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetSshKeys(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetSshKeysResult, error) {
 	opts = pkgInvokeDefaultOpts(opts)
 	var rv GetSshKeysResult

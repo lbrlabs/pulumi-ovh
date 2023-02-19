@@ -18,14 +18,14 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
     public static final InstallationTemplateArgs Empty = new InstallationTemplateArgs();
 
     /**
-     * OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+     * The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
      * 
      */
     @Import(name="baseTemplateName", required=true)
     private Output<String> baseTemplateName;
 
     /**
-     * @return OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+     * @return The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
      * 
      */
     public Output<String> baseTemplateName() {
@@ -40,14 +40,14 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * The default language of this template
+     * The default language of this template.
      * 
      */
     @Import(name="defaultLanguage", required=true)
     private Output<String> defaultLanguage;
 
     /**
-     * @return The default language of this template
+     * @return The default language of this template.
      * 
      */
     public Output<String> defaultLanguage() {
@@ -55,14 +55,14 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * Remove default partition schemes at creation
+     * Remove default partition schemes at creation.
      * 
      */
     @Import(name="removeDefaultPartitionSchemes")
     private @Nullable Output<Boolean> removeDefaultPartitionSchemes;
 
     /**
-     * @return Remove default partition schemes at creation
+     * @return Remove default partition schemes at creation.
      * 
      */
     public Optional<Output<Boolean>> removeDefaultPartitionSchemes() {
@@ -70,14 +70,14 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
     }
 
     /**
-     * This template name
+     * This template name.
      * 
      */
     @Import(name="templateName", required=true)
     private Output<String> templateName;
 
     /**
-     * @return This template name
+     * @return This template name.
      * 
      */
     public Output<String> templateName() {
@@ -113,7 +113,7 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param baseTemplateName OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+         * @param baseTemplateName The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
          * 
          * @return builder
          * 
@@ -124,7 +124,7 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param baseTemplateName OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+         * @param baseTemplateName The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
          * 
          * @return builder
          * 
@@ -143,7 +143,7 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param defaultLanguage The default language of this template
+         * @param defaultLanguage The default language of this template.
          * 
          * @return builder
          * 
@@ -154,7 +154,7 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param defaultLanguage The default language of this template
+         * @param defaultLanguage The default language of this template.
          * 
          * @return builder
          * 
@@ -164,7 +164,7 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param removeDefaultPartitionSchemes Remove default partition schemes at creation
+         * @param removeDefaultPartitionSchemes Remove default partition schemes at creation.
          * 
          * @return builder
          * 
@@ -175,7 +175,7 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param removeDefaultPartitionSchemes Remove default partition schemes at creation
+         * @param removeDefaultPartitionSchemes Remove default partition schemes at creation.
          * 
          * @return builder
          * 
@@ -185,7 +185,7 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param templateName This template name
+         * @param templateName This template name.
          * 
          * @return builder
          * 
@@ -196,7 +196,7 @@ public final class InstallationTemplateArgs extends com.pulumi.resources.Resourc
         }
 
         /**
-         * @param templateName This template name
+         * @param templateName This template name.
          * 
          * @return builder
          * 

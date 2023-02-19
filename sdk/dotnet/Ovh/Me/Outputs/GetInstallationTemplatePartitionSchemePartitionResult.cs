@@ -14,12 +14,33 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me.Outputs
     [OutputType]
     public sealed class GetInstallationTemplatePartitionSchemePartitionResult
     {
+        /// <summary>
+        /// Partition filesystem.
+        /// </summary>
         public readonly string Filesystem;
+        /// <summary>
+        /// partition mount point.
+        /// </summary>
         public readonly string Mountpoint;
+        /// <summary>
+        /// step or order. specifies the creation order of the partition on the disk
+        /// </summary>
         public readonly int Order;
+        /// <summary>
+        /// raid partition type.
+        /// </summary>
         public readonly string Raid;
+        /// <summary>
+        /// size of partition in MB, 0 =&gt; rest of the space.
+        /// </summary>
         public readonly int Size;
+        /// <summary>
+        /// partition type.
+        /// </summary>
         public readonly string Type;
+        /// <summary>
+        /// The volume name needed for proxmox distribution
+        /// </summary>
         public readonly string VolumeName;
 
         [OutputConstructor]

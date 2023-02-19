@@ -11,10 +11,10 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
  * // Add a redirection to a sub-domain
- * const test = new ovh.Domain.ZoneRedirection("test", {
+ * const test = new ovh.domain.ZoneRedirection("test", {
  *     subdomain: "test",
  *     target: "http://www.ovh",
  *     type: "visiblePermanent",

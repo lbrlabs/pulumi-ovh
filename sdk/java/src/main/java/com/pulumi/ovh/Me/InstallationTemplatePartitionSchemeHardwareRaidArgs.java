@@ -18,14 +18,14 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
     public static final InstallationTemplatePartitionSchemeHardwareRaidArgs Empty = new InstallationTemplatePartitionSchemeHardwareRaidArgs();
 
     /**
-     * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+     * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
      * 
      */
     @Import(name="disks", required=true)
     private Output<List<String>> disks;
 
     /**
-     * @return Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+     * @return Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
      * 
      */
     public Output<List<String>> disks() {
@@ -33,14 +33,14 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
     }
 
     /**
-     * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+     * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
      * 
      */
     @Import(name="mode", required=true)
     private Output<String> mode;
 
     /**
-     * @return RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+     * @return RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
      * 
      */
     public Output<String> mode() {
@@ -48,14 +48,14 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
     }
 
     /**
-     * Hardware RAID name
+     * Hardware RAID name.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return Hardware RAID name
+     * @return Hardware RAID name.
      * 
      */
     public Optional<Output<String>> name() {
@@ -63,14 +63,14 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
     }
 
     /**
-     * name of this partitioning scheme
+     * The partition scheme name.
      * 
      */
     @Import(name="schemeName", required=true)
     private Output<String> schemeName;
 
     /**
-     * @return name of this partitioning scheme
+     * @return The partition scheme name.
      * 
      */
     public Output<String> schemeName() {
@@ -78,14 +78,14 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
     }
 
     /**
-     * Specifies the creation order of the hardware RAID
+     * Specifies the creation order of the hardware RAID.
      * 
      */
     @Import(name="step", required=true)
     private Output<Integer> step;
 
     /**
-     * @return Specifies the creation order of the hardware RAID
+     * @return Specifies the creation order of the hardware RAID.
      * 
      */
     public Output<Integer> step() {
@@ -93,14 +93,14 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
     }
 
     /**
-     * Template name
+     * The template name of the partition scheme.
      * 
      */
     @Import(name="templateName", required=true)
     private Output<String> templateName;
 
     /**
-     * @return Template name
+     * @return The template name of the partition scheme.
      * 
      */
     public Output<String> templateName() {
@@ -137,7 +137,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param disks Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+         * @param disks Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
          * 
          * @return builder
          * 
@@ -148,7 +148,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param disks Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+         * @param disks Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
          * 
          * @return builder
          * 
@@ -158,7 +158,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param disks Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+         * @param disks Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
          * 
          * @return builder
          * 
@@ -168,7 +168,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param mode RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+         * @param mode RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
          * 
          * @return builder
          * 
@@ -179,7 +179,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param mode RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+         * @param mode RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
          * 
          * @return builder
          * 
@@ -189,7 +189,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param name Hardware RAID name
+         * @param name Hardware RAID name.
          * 
          * @return builder
          * 
@@ -200,7 +200,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param name Hardware RAID name
+         * @param name Hardware RAID name.
          * 
          * @return builder
          * 
@@ -210,7 +210,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param schemeName name of this partitioning scheme
+         * @param schemeName The partition scheme name.
          * 
          * @return builder
          * 
@@ -221,7 +221,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param schemeName name of this partitioning scheme
+         * @param schemeName The partition scheme name.
          * 
          * @return builder
          * 
@@ -231,7 +231,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param step Specifies the creation order of the hardware RAID
+         * @param step Specifies the creation order of the hardware RAID.
          * 
          * @return builder
          * 
@@ -242,7 +242,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param step Specifies the creation order of the hardware RAID
+         * @param step Specifies the creation order of the hardware RAID.
          * 
          * @return builder
          * 
@@ -252,7 +252,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param templateName Template name
+         * @param templateName The template name of the partition scheme.
          * 
          * @return builder
          * 
@@ -263,7 +263,7 @@ public final class InstallationTemplatePartitionSchemeHardwareRaidArgs extends c
         }
 
         /**
-         * @param templateName Template name
+         * @param templateName The template name of the partition scheme.
          * 
          * @return builder
          * 

@@ -36,7 +36,7 @@ import (
 //			}
 //			farmname, err := IpLoadBalancing.NewHttpFarm(ctx, "farmname", &IpLoadBalancing.HttpFarmArgs{
 //				Port:        pulumi.Int(8080),
-//				ServiceName: pulumi.String(lb.Id),
+//				ServiceName: *pulumi.String(lb.Id),
 //				Zone:        pulumi.String("all"),
 //			})
 //			if err != nil {
@@ -50,7 +50,7 @@ import (
 //				Port:                 pulumi.Int(80),
 //				Probe:                pulumi.Bool(true),
 //				ProxyProtocolVersion: pulumi.String("v2"),
-//				ServiceName:          pulumi.String(lb.Id),
+//				ServiceName:          *pulumi.String(lb.Id),
 //				Ssl:                  pulumi.Bool(false),
 //				Status:               pulumi.String("active"),
 //				Weight:               pulumi.Int(2),

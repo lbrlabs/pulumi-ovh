@@ -70,11 +70,11 @@ export class InstallationTemplatePartitionSchemePartition extends pulumi.CustomR
     }
 
     /**
-     * Partition filesystem
+     * Partition filesystem.
      */
     public readonly filesystem!: pulumi.Output<string>;
     /**
-     * partition mount point
+     * partition mount point.
      */
     public readonly mountpoint!: pulumi.Output<string>;
     /**
@@ -82,23 +82,23 @@ export class InstallationTemplatePartitionSchemePartition extends pulumi.CustomR
      */
     public readonly order!: pulumi.Output<number>;
     /**
-     * raid partition type
+     * raid partition type.
      */
     public readonly raid!: pulumi.Output<string>;
     /**
-     * name of this partitioning scheme
+     * The partition scheme name.
      */
     public readonly schemeName!: pulumi.Output<string>;
     /**
-     * size of partition in MB, 0 => rest of the space
+     * size of partition in MB, 0 => rest of the space.
      */
     public readonly size!: pulumi.Output<number>;
     /**
-     * Template name
+     * The template name of the partition scheme.
      */
     public readonly templateName!: pulumi.Output<string>;
     /**
-     * partition type
+     * partition type.
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -171,11 +171,11 @@ export class InstallationTemplatePartitionSchemePartition extends pulumi.CustomR
  */
 export interface InstallationTemplatePartitionSchemePartitionState {
     /**
-     * Partition filesystem
+     * Partition filesystem.
      */
     filesystem?: pulumi.Input<string>;
     /**
-     * partition mount point
+     * partition mount point.
      */
     mountpoint?: pulumi.Input<string>;
     /**
@@ -183,23 +183,23 @@ export interface InstallationTemplatePartitionSchemePartitionState {
      */
     order?: pulumi.Input<number>;
     /**
-     * raid partition type
+     * raid partition type.
      */
     raid?: pulumi.Input<string>;
     /**
-     * name of this partitioning scheme
+     * The partition scheme name.
      */
     schemeName?: pulumi.Input<string>;
     /**
-     * size of partition in MB, 0 => rest of the space
+     * size of partition in MB, 0 => rest of the space.
      */
     size?: pulumi.Input<number>;
     /**
-     * Template name
+     * The template name of the partition scheme.
      */
     templateName?: pulumi.Input<string>;
     /**
-     * partition type
+     * partition type.
      */
     type?: pulumi.Input<string>;
     /**
@@ -213,11 +213,11 @@ export interface InstallationTemplatePartitionSchemePartitionState {
  */
 export interface InstallationTemplatePartitionSchemePartitionArgs {
     /**
-     * Partition filesystem
+     * Partition filesystem.
      */
     filesystem: pulumi.Input<string>;
     /**
-     * partition mount point
+     * partition mount point.
      */
     mountpoint: pulumi.Input<string>;
     /**
@@ -225,23 +225,23 @@ export interface InstallationTemplatePartitionSchemePartitionArgs {
      */
     order: pulumi.Input<number>;
     /**
-     * raid partition type
+     * raid partition type.
      */
     raid?: pulumi.Input<string>;
     /**
-     * name of this partitioning scheme
+     * The partition scheme name.
      */
     schemeName: pulumi.Input<string>;
     /**
-     * size of partition in MB, 0 => rest of the space
+     * size of partition in MB, 0 => rest of the space.
      */
     size: pulumi.Input<number>;
     /**
-     * Template name
+     * The template name of the partition scheme.
      */
     templateName: pulumi.Input<string>;
     /**
-     * partition type
+     * partition type.
      */
     type: pulumi.Input<string>;
     /**

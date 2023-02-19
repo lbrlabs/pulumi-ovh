@@ -189,6 +189,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
         [Output("server")]
         public Output<string> Server { get; private set; } = null!;
 
+        /// <summary>
+        /// Service name
+        /// </summary>
         [Output("serviceName")]
         public Output<string> ServiceName { get; private set; } = null!;
 
@@ -305,6 +308,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
             set => _planOptions = value;
         }
 
+        /// <summary>
+        /// Service name
+        /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }
 
@@ -436,6 +442,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
         [Input("server")]
         public Input<string>? Server { get; set; }
 
+        /// <summary>
+        /// Service name
+        /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }
 

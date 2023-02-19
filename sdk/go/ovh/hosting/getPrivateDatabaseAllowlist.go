@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Hosting.GetPrivateDatabaseAllowlist(ctx, &hosting.GetPrivateDatabaseAllowlistArgs{
+//			_, err := Hosting.GetPrivateDatabaseAllowlist(ctx, &hosting.GetPrivateDatabaseAllowlistArgs{
 //				Ip:          pulumi.StringRef("XXXXXX"),
 //				ServiceName: "XXXXXX",
 //			}, nil)

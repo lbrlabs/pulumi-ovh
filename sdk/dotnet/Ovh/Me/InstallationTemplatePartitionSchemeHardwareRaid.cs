@@ -63,37 +63,37 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public partial class InstallationTemplatePartitionSchemeHardwareRaid : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+        /// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
         /// </summary>
         [Output("disks")]
         public Output<ImmutableArray<string>> Disks { get; private set; } = null!;
 
         /// <summary>
-        /// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+        /// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
         /// </summary>
         [Output("mode")]
         public Output<string> Mode { get; private set; } = null!;
 
         /// <summary>
-        /// Hardware RAID name
+        /// Hardware RAID name.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// name of this partitioning scheme
+        /// The partition scheme name.
         /// </summary>
         [Output("schemeName")]
         public Output<string> SchemeName { get; private set; } = null!;
 
         /// <summary>
-        /// Specifies the creation order of the hardware RAID
+        /// Specifies the creation order of the hardware RAID.
         /// </summary>
         [Output("step")]
         public Output<int> Step { get; private set; } = null!;
 
         /// <summary>
-        /// Template name
+        /// The template name of the partition scheme.
         /// </summary>
         [Output("templateName")]
         public Output<string> TemplateName { get; private set; } = null!;
@@ -149,7 +149,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         private InputList<string>? _disks;
 
         /// <summary>
-        /// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+        /// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
         /// </summary>
         public InputList<string> Disks
         {
@@ -158,31 +158,31 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         }
 
         /// <summary>
-        /// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+        /// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
         /// </summary>
         [Input("mode", required: true)]
         public Input<string> Mode { get; set; } = null!;
 
         /// <summary>
-        /// Hardware RAID name
+        /// Hardware RAID name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// name of this partitioning scheme
+        /// The partition scheme name.
         /// </summary>
         [Input("schemeName", required: true)]
         public Input<string> SchemeName { get; set; } = null!;
 
         /// <summary>
-        /// Specifies the creation order of the hardware RAID
+        /// Specifies the creation order of the hardware RAID.
         /// </summary>
         [Input("step", required: true)]
         public Input<int> Step { get; set; } = null!;
 
         /// <summary>
-        /// Template name
+        /// The template name of the partition scheme.
         /// </summary>
         [Input("templateName", required: true)]
         public Input<string> TemplateName { get; set; } = null!;
@@ -199,7 +199,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         private InputList<string>? _disks;
 
         /// <summary>
-        /// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+        /// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
         /// </summary>
         public InputList<string> Disks
         {
@@ -208,31 +208,31 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         }
 
         /// <summary>
-        /// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+        /// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
         /// </summary>
         [Input("mode")]
         public Input<string>? Mode { get; set; }
 
         /// <summary>
-        /// Hardware RAID name
+        /// Hardware RAID name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// name of this partitioning scheme
+        /// The partition scheme name.
         /// </summary>
         [Input("schemeName")]
         public Input<string>? SchemeName { get; set; }
 
         /// <summary>
-        /// Specifies the creation order of the hardware RAID
+        /// Specifies the creation order of the hardware RAID.
         /// </summary>
         [Input("step")]
         public Input<int>? Step { get; set; }
 
         /// <summary>
-        /// Template name
+        /// The template name of the partition scheme.
         /// </summary>
         [Input("templateName")]
         public Input<string>? TemplateName { get; set; }

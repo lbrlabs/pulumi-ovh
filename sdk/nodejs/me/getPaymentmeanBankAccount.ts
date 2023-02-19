@@ -14,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const ba = pulumi.output(ovh.Me.getPaymentmeanBankAccount({
+ * const ba = ovh.Me.getPaymentmeanBankAccount({
  *     useDefault: true,
- * }));
+ * });
  * ```
  */
 export function getPaymentmeanBankAccount(args?: GetPaymentmeanBankAccountArgs, opts?: pulumi.InvokeOptions): Promise<GetPaymentmeanBankAccountResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Me/getPaymentmeanBankAccount:getPaymentmeanBankAccount", {
         "descriptionRegexp": args.descriptionRegexp,
         "state": args.state,
@@ -81,9 +78,23 @@ export interface GetPaymentmeanBankAccountResult {
     readonly useDefault?: boolean;
     readonly useOldest?: boolean;
 }
-
+/**
+ * Use this data source to retrieve information about a bank account
+ * payment mean associated with an OVHcloud account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const ba = ovh.Me.getPaymentmeanBankAccount({
+ *     useDefault: true,
+ * });
+ * ```
+ */
 export function getPaymentmeanBankAccountOutput(args?: GetPaymentmeanBankAccountOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPaymentmeanBankAccountResult> {
-    return pulumi.output(args).apply(a => getPaymentmeanBankAccount(a, opts))
+    return pulumi.output(args).apply((a: any) => getPaymentmeanBankAccount(a, opts))
 }
 
 /**

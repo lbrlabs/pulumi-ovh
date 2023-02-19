@@ -87,21 +87,33 @@ class GetInstallationTemplateResult:
     @property
     @pulumi.getter(name="availableLanguages")
     def available_languages(self) -> Sequence[str]:
+        """
+        List of all language available for this template.
+        """
         return pulumi.get(self, "available_languages")
 
     @property
     @pulumi.getter
     def beta(self) -> bool:
+        """
+        This distribution is new and, although tested and functional, may still display odd behaviour.
+        """
         return pulumi.get(self, "beta")
 
     @property
     @pulumi.getter(name="bitFormat")
     def bit_format(self) -> int:
+        """
+        This template bit format (32 or 64).
+        """
         return pulumi.get(self, "bit_format")
 
     @property
     @pulumi.getter
     def category(self) -> str:
+        """
+        Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
+        """
         return pulumi.get(self, "category")
 
     @property
@@ -112,36 +124,57 @@ class GetInstallationTemplateResult:
     @property
     @pulumi.getter(name="defaultLanguage")
     def default_language(self) -> str:
+        """
+        The default language of this template.
+        """
         return pulumi.get(self, "default_language")
 
     @property
     @pulumi.getter
     def deprecated(self) -> bool:
+        """
+        is this distribution deprecated.
+        """
         return pulumi.get(self, "deprecated")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        information about this template.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def distribution(self) -> str:
+        """
+        the distribution this template is based on.
+        """
         return pulumi.get(self, "distribution")
 
     @property
     @pulumi.getter
     def family(self) -> str:
+        """
+        this template family type (bsd,linux,solaris,windows).
+        """
         return pulumi.get(self, "family")
 
     @property
     @pulumi.getter
     def filesystems(self) -> Sequence[str]:
+        """
+        Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
+        """
         return pulumi.get(self, "filesystems")
 
     @property
     @pulumi.getter(name="hardRaidConfiguration")
     def hard_raid_configuration(self) -> bool:
+        """
+        This distribution supports hardware raid configuration through the OVHcloud API.
+        """
         return pulumi.get(self, "hard_raid_configuration")
 
     @property
@@ -155,6 +188,9 @@ class GetInstallationTemplateResult:
     @property
     @pulumi.getter(name="lastModification")
     def last_modification(self) -> str:
+        """
+        Date of last modification of the base image.
+        """
         return pulumi.get(self, "last_modification")
 
     @property
@@ -170,16 +206,25 @@ class GetInstallationTemplateResult:
     @property
     @pulumi.getter(name="supportsDistributionKernel")
     def supports_distribution_kernel(self) -> bool:
+        """
+        This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
+        """
         return pulumi.get(self, "supports_distribution_kernel")
 
     @property
     @pulumi.getter(name="supportsRtm")
     def supports_rtm(self) -> bool:
+        """
+        This distribution supports RTM software.
+        """
         return pulumi.get(self, "supports_rtm")
 
     @property
     @pulumi.getter(name="supportsSqlServer")
     def supports_sql_server(self) -> bool:
+        """
+        This distribution supports the microsoft SQL server.
+        """
         return pulumi.get(self, "supports_sql_server")
 
     @property
@@ -229,6 +274,9 @@ def get_installation_template(template_name: Optional[str] = None,
 
     mytemplate = ovh.Me.get_installation_template(template_name="mytemplate")
     ```
+
+
+    :param str template_name: This template name
     """
     __args__ = dict()
     __args__['templateName'] = template_name
@@ -272,5 +320,8 @@ def get_installation_template_output(template_name: Optional[pulumi.Input[str]] 
 
     mytemplate = ovh.Me.get_installation_template(template_name="mytemplate")
     ```
+
+
+    :param str template_name: This template name
     """
     ...

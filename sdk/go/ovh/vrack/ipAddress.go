@@ -46,13 +46,13 @@ import (
 //				return err
 //			}
 //			vrackVrack, err := Vrack.NewVrack(ctx, "vrackVrack", &Vrack.VrackArgs{
-//				Description:   pulumi.String(mycart.Description),
-//				OvhSubsidiary: pulumi.String(mycart.OvhSubsidiary),
+//				Description:   *pulumi.String(mycart.Description),
+//				OvhSubsidiary: *pulumi.String(mycart.OvhSubsidiary),
 //				PaymentMean:   pulumi.String("fidelity"),
 //				Plan: &vrack.VrackPlanArgs{
-//					Duration:    pulumi.String(vrackCartProductPlan.SelectedPrices[0].Duration),
-//					PlanCode:    pulumi.String(vrackCartProductPlan.PlanCode),
-//					PricingMode: pulumi.String(vrackCartProductPlan.SelectedPrices[0].PricingMode),
+//					Duration:    *pulumi.String(vrackCartProductPlan.SelectedPrices[0].Duration),
+//					PlanCode:    *pulumi.String(vrackCartProductPlan.PlanCode),
+//					PricingMode: *pulumi.String(vrackCartProductPlan.SelectedPrices[0].PricingMode),
 //				},
 //			})
 //			if err != nil {
@@ -68,13 +68,13 @@ import (
 //				return err
 //			}
 //			ipblockIpService, err := Ip.NewIpService(ctx, "ipblockIpService", &Ip.IpServiceArgs{
-//				OvhSubsidiary: pulumi.String(mycart.OvhSubsidiary),
+//				OvhSubsidiary: *pulumi.String(mycart.OvhSubsidiary),
 //				PaymentMean:   pulumi.String("ovh-account"),
-//				Description:   pulumi.String(mycart.Description),
+//				Description:   *pulumi.String(mycart.Description),
 //				Plan: &ip.IpServicePlanArgs{
-//					Duration:    pulumi.String(ipblockCartProductPlan.SelectedPrices[0].Duration),
-//					PlanCode:    pulumi.String(ipblockCartProductPlan.PlanCode),
-//					PricingMode: pulumi.String(ipblockCartProductPlan.SelectedPrices[0].PricingMode),
+//					Duration:    *pulumi.String(ipblockCartProductPlan.SelectedPrices[0].Duration),
+//					PlanCode:    *pulumi.String(ipblockCartProductPlan.PlanCode),
+//					PricingMode: *pulumi.String(ipblockCartProductPlan.SelectedPrices[0].PricingMode),
 //					Configurations: ip.IpServicePlanConfigurationArray{
 //						&ip.IpServicePlanConfigurationArgs{
 //							Label: pulumi.String("country"),

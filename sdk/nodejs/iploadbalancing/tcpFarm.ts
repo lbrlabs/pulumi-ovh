@@ -13,15 +13,16 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  * import * as ovh from "@pulumi/ovh";
  *
- * const lb = pulumi.output(ovh.IpLoadBalancing.getIpLoadBalancing({
+ * const lb = ovh.IpLoadBalancing.getIpLoadBalancing({
  *     serviceName: "ip-1.2.3.4",
  *     state: "ok",
- * }));
- * const farmname = new ovh.IpLoadBalancing.TcpFarm("farmname", {
+ * });
+ * const farmname = new ovh.iploadbalancing.TcpFarm("farmname", {
  *     displayName: "ingress-8080-gra",
- *     serviceName: lb.id,
+ *     serviceName: lb.then(lb => lb.id),
  *     zone: "GRA",
  * });
  * ```

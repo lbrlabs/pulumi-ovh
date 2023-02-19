@@ -23,11 +23,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getUser(args: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<GetUserResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProjectDatabase/getUser:getUser", {
         "clusterId": args.clusterId,
         "engine": args.engine,
@@ -48,10 +45,6 @@ export interface GetUserArgs {
      * The engine of the database cluster you want user information. To get a full list of available engine visit :
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `kafkaConnect`
-     * * `mysql`
      */
     engine: string;
     /**
@@ -98,9 +91,26 @@ export interface GetUserResult {
      */
     readonly status: string;
 }
-
+/**
+ * Use this data source to get information about a user of a database cluster associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const user = ovh.CloudProjectDatabase.getUser({
+ *     serviceName: "XXX",
+ *     engine: "YYY",
+ *     clusterId: "ZZZ",
+ *     name: "UUU",
+ * });
+ * export const userName = user.then(user => user.name);
+ * ```
+ */
 export function getUserOutput(args: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserResult> {
-    return pulumi.output(args).apply(a => getUser(a, opts))
+    return pulumi.output(args).apply((a: any) => getUser(a, opts))
 }
 
 /**
@@ -115,10 +125,6 @@ export interface GetUserOutputArgs {
      * The engine of the database cluster you want user information. To get a full list of available engine visit :
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `kafkaConnect`
-     * * `mysql`
      */
     engine: pulumi.Input<string>;
     /**

@@ -37,7 +37,7 @@ import (
 //			farm80, err := IpLoadBalancing.NewHttpFarm(ctx, "farm80", &IpLoadBalancing.HttpFarmArgs{
 //				DisplayName: pulumi.String("ingress-8080-gra"),
 //				Port:        pulumi.Int(80),
-//				ServiceName: pulumi.String(lb.ServiceName),
+//				ServiceName: *pulumi.String(lb.ServiceName),
 //				Zone:        pulumi.String("all"),
 //			})
 //			if err != nil {
@@ -47,7 +47,7 @@ import (
 //				DefaultFarmId: farm80.ID(),
 //				DisplayName:   pulumi.String("ingress-8080-gra"),
 //				Port:          pulumi.String("80,443"),
-//				ServiceName:   pulumi.String(lb.ServiceName),
+//				ServiceName:   *pulumi.String(lb.ServiceName),
 //				Zone:          pulumi.String("all"),
 //			})
 //			if err != nil {
@@ -84,7 +84,7 @@ import (
 //			farm80, err := IpLoadBalancing.NewHttpFarm(ctx, "farm80", &IpLoadBalancing.HttpFarmArgs{
 //				DisplayName: pulumi.String("ingress-8080-gra"),
 //				Port:        pulumi.Int(80),
-//				ServiceName: pulumi.String(lb.ServiceName),
+//				ServiceName: *pulumi.String(lb.ServiceName),
 //				Zone:        pulumi.String("all"),
 //			})
 //			if err != nil {
@@ -98,7 +98,7 @@ import (
 //					pulumi.String(fmt.Sprintf("X-Port-Header %v%vcp", "%", "%")),
 //				},
 //				Port:        pulumi.String("80,443"),
-//				ServiceName: pulumi.String(lb.ServiceName),
+//				ServiceName: *pulumi.String(lb.ServiceName),
 //				Zone:        pulumi.String("all"),
 //			})
 //			if err != nil {

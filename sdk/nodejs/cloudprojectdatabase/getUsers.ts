@@ -22,11 +22,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getUsers(args: GetUsersArgs, opts?: pulumi.InvokeOptions): Promise<GetUsersResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProjectDatabase/getUsers:getUsers", {
         "clusterId": args.clusterId,
         "engine": args.engine,
@@ -46,10 +43,6 @@ export interface GetUsersArgs {
      * The engine of the database cluster you want to list users. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `kafkaConnect`
-     * * `mysql`
      */
     engine: string;
     /**
@@ -84,9 +77,25 @@ export interface GetUsersResult {
      */
     readonly userIds: string[];
 }
-
+/**
+ * Use this data source to get the list of users of a database cluster associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const users = ovh.CloudProjectDatabase.getUsers({
+ *     serviceName: "XXXX",
+ *     engine: "YYYY",
+ *     clusterId: "ZZZ",
+ * });
+ * export const userIds = users.then(users => users.userIds);
+ * ```
+ */
 export function getUsersOutput(args: GetUsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUsersResult> {
-    return pulumi.output(args).apply(a => getUsers(a, opts))
+    return pulumi.output(args).apply((a: any) => getUsers(a, opts))
 }
 
 /**
@@ -101,10 +110,6 @@ export interface GetUsersOutputArgs {
      * The engine of the database cluster you want to list users. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `kafkaConnect`
-     * * `mysql`
      */
     engine: pulumi.Input<string>;
     /**

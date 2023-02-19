@@ -24,10 +24,6 @@ class UserArgs:
         :param pulumi.Input[str] cluster_id: Cluster ID.
         :param pulumi.Input[str] engine: The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
                Available engines:
-               * `cassandra`
-               * `kafka`
-               * `kafkaConnect`
-               * `mysql`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] name: Name of the user.
@@ -59,10 +55,6 @@ class UserArgs:
         """
         The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         Available engines:
-        * `cassandra`
-        * `kafka`
-        * `kafkaConnect`
-        * `mysql`
         """
         return pulumi.get(self, "engine")
 
@@ -125,10 +117,6 @@ class _UserState:
         :param pulumi.Input[str] created_at: Date of the creation of the user.
         :param pulumi.Input[str] engine: The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
                Available engines:
-               * `cassandra`
-               * `kafka`
-               * `kafkaConnect`
-               * `mysql`
         :param pulumi.Input[str] name: Name of the user.
         :param pulumi.Input[str] password: (Sensitive) Password of the user.
         :param pulumi.Input[str] password_reset: Arbitrary string to change to trigger a password update.
@@ -183,10 +171,6 @@ class _UserState:
         """
         The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         Available engines:
-        * `cassandra`
-        * `kafka`
-        * `kafkaConnect`
-        * `mysql`
         """
         return pulumi.get(self, "engine")
 
@@ -281,10 +265,6 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: Cluster ID.
         :param pulumi.Input[str] engine: The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
                Available engines:
-               * `cassandra`
-               * `kafka`
-               * `kafkaConnect`
-               * `mysql`
         :param pulumi.Input[str] name: Name of the user.
         :param pulumi.Input[str] password_reset: Arbitrary string to change to trigger a password update.
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
@@ -379,10 +359,6 @@ class User(pulumi.CustomResource):
         :param pulumi.Input[str] created_at: Date of the creation of the user.
         :param pulumi.Input[str] engine: The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
                Available engines:
-               * `cassandra`
-               * `kafka`
-               * `kafkaConnect`
-               * `mysql`
         :param pulumi.Input[str] name: Name of the user.
         :param pulumi.Input[str] password: (Sensitive) Password of the user.
         :param pulumi.Input[str] password_reset: Arbitrary string to change to trigger a password update.
@@ -426,10 +402,6 @@ class User(pulumi.CustomResource):
         """
         The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         Available engines:
-        * `cassandra`
-        * `kafka`
-        * `kafkaConnect`
-        * `mysql`
         """
         return pulumi.get(self, "engine")
 

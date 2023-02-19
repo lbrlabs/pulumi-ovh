@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Hosting.GetPrivateDatabaseUser(ctx, &hosting.GetPrivateDatabaseUserArgs{
+//			_, err := Hosting.GetPrivateDatabaseUser(ctx, &hosting.GetPrivateDatabaseUserArgs{
 //				ServiceName: "XXXXXX",
 //				UserName:    "XXXXXX",
 //			}, nil)

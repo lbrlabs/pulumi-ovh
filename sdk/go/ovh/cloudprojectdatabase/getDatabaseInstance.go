@@ -58,8 +58,6 @@ type LookupDatabaseInstanceArgs struct {
 	// The engine of the database cluster you want database information. To get a full list of available engine visit:
 	// [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `mysql`
-	// * `postgresql`
 	Engine string `pulumi:"engine"`
 	// Name of the database.
 	Name string `pulumi:"name"`
@@ -104,8 +102,6 @@ type LookupDatabaseInstanceOutputArgs struct {
 	// The engine of the database cluster you want database information. To get a full list of available engine visit:
 	// [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `mysql`
-	// * `postgresql`
 	Engine pulumi.StringInput `pulumi:"engine"`
 	// Name of the database.
 	Name pulumi.StringInput `pulumi:"name"`

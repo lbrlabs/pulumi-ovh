@@ -40,9 +40,9 @@ import * as utilities from "../utilities";
  *     paymentMean: "ovh-account",
  *     description: "my ip block",
  *     plan: {
- *         duration: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.selectedPrices?[0]?.duration),
+ *         duration: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.selectedPrices?.[0]?.duration),
  *         planCode: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.planCode),
- *         pricingMode: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.selectedPrices?[0]?.pricingMode),
+ *         pricingMode: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.selectedPrices?.[0]?.pricingMode),
  *         configurations: [{
  *             label: "country",
  *             value: "FR",
@@ -124,8 +124,7 @@ export class IpService extends pulumi.CustomResource {
      */
     public /*out*/ readonly routedTos!: pulumi.Output<outputs.Ip.IpServiceRoutedTo[]>;
     /**
-     * Service where ip is routed to
-     * * `serviceName`: service name
+     * service name
      */
     public /*out*/ readonly serviceName!: pulumi.Output<string>;
     /**
@@ -238,8 +237,7 @@ export interface IpServiceState {
      */
     routedTos?: pulumi.Input<pulumi.Input<inputs.Ip.IpServiceRoutedTo>[]>;
     /**
-     * Service where ip is routed to
-     * * `serviceName`: service name
+     * service name
      */
     serviceName?: pulumi.Input<string>;
     /**

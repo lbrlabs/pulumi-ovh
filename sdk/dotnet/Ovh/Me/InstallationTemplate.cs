@@ -44,31 +44,31 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public partial class InstallationTemplate : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// List of all language available for this template
+        /// List of all language available for this template.
         /// </summary>
         [Output("availableLanguages")]
         public Output<ImmutableArray<string>> AvailableLanguages { get; private set; } = null!;
 
         /// <summary>
-        /// OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+        /// The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
         /// </summary>
         [Output("baseTemplateName")]
         public Output<string> BaseTemplateName { get; private set; } = null!;
 
         /// <summary>
-        /// This distribution is new and, although tested and functional, may still display odd behaviour
+        /// This distribution is new and, although tested and functional, may still display odd behaviour.
         /// </summary>
         [Output("beta")]
         public Output<bool> Beta { get; private set; } = null!;
 
         /// <summary>
-        /// This template bit format (32 or 64)
+        /// This template bit format (32 or 64).
         /// </summary>
         [Output("bitFormat")]
         public Output<int> BitFormat { get; private set; } = null!;
 
         /// <summary>
-        /// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+        /// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
         /// </summary>
         [Output("category")]
         public Output<string> Category { get; private set; } = null!;
@@ -77,49 +77,49 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Output<Outputs.InstallationTemplateCustomization?> Customization { get; private set; } = null!;
 
         /// <summary>
-        /// The default language of this template
+        /// The default language of this template.
         /// </summary>
         [Output("defaultLanguage")]
         public Output<string> DefaultLanguage { get; private set; } = null!;
 
         /// <summary>
-        /// is this distribution deprecated
+        /// is this distribution deprecated.
         /// </summary>
         [Output("deprecated")]
         public Output<bool> Deprecated { get; private set; } = null!;
 
         /// <summary>
-        /// information about this template
+        /// information about this template.
         /// </summary>
         [Output("description")]
         public Output<string> Description { get; private set; } = null!;
 
         /// <summary>
-        /// the distribution this template is based on
+        /// the distribution this template is based on.
         /// </summary>
         [Output("distribution")]
         public Output<string> Distribution { get; private set; } = null!;
 
         /// <summary>
-        /// this template family type (bsd,linux,solaris,windows)
+        /// this template family type (bsd,linux,solaris,windows).
         /// </summary>
         [Output("family")]
         public Output<string> Family { get; private set; } = null!;
 
         /// <summary>
-        /// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+        /// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
         /// </summary>
         [Output("filesystems")]
         public Output<ImmutableArray<string>> Filesystems { get; private set; } = null!;
 
         /// <summary>
-        /// This distribution supports hardware raid configuration through the OVH API
+        /// This distribution supports hardware raid configuration through the OVHcloud API.
         /// </summary>
         [Output("hardRaidConfiguration")]
         public Output<bool> HardRaidConfiguration { get; private set; } = null!;
 
         /// <summary>
-        /// Date of last modification of the base image
+        /// Date of last modification of the base image.
         /// </summary>
         [Output("lastModification")]
         public Output<string> LastModification { get; private set; } = null!;
@@ -131,31 +131,31 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Output<bool> LvmReady { get; private set; } = null!;
 
         /// <summary>
-        /// Remove default partition schemes at creation
+        /// Remove default partition schemes at creation.
         /// </summary>
         [Output("removeDefaultPartitionSchemes")]
         public Output<bool> RemoveDefaultPartitionSchemes { get; private set; } = null!;
 
         /// <summary>
-        /// This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
+        /// This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
         /// </summary>
         [Output("supportsDistributionKernel")]
         public Output<bool> SupportsDistributionKernel { get; private set; } = null!;
 
         /// <summary>
-        /// This distribution supports RTM software
+        /// This distribution supports RTM software.
         /// </summary>
         [Output("supportsRtm")]
         public Output<bool> SupportsRtm { get; private set; } = null!;
 
         /// <summary>
-        /// This distribution supports the microsoft SQL server
+        /// This distribution supports the microsoft SQL server.
         /// </summary>
         [Output("supportsSqlServer")]
         public Output<bool> SupportsSqlServer { get; private set; } = null!;
 
         /// <summary>
-        /// This template name
+        /// This template name.
         /// </summary>
         [Output("templateName")]
         public Output<string> TemplateName { get; private set; } = null!;
@@ -208,7 +208,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public sealed class InstallationTemplateArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+        /// The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
         /// </summary>
         [Input("baseTemplateName", required: true)]
         public Input<string> BaseTemplateName { get; set; } = null!;
@@ -217,19 +217,19 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Input<Inputs.InstallationTemplateCustomizationArgs>? Customization { get; set; }
 
         /// <summary>
-        /// The default language of this template
+        /// The default language of this template.
         /// </summary>
         [Input("defaultLanguage", required: true)]
         public Input<string> DefaultLanguage { get; set; } = null!;
 
         /// <summary>
-        /// Remove default partition schemes at creation
+        /// Remove default partition schemes at creation.
         /// </summary>
         [Input("removeDefaultPartitionSchemes")]
         public Input<bool>? RemoveDefaultPartitionSchemes { get; set; }
 
         /// <summary>
-        /// This template name
+        /// This template name.
         /// </summary>
         [Input("templateName", required: true)]
         public Input<string> TemplateName { get; set; } = null!;
@@ -246,7 +246,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         private InputList<string>? _availableLanguages;
 
         /// <summary>
-        /// List of all language available for this template
+        /// List of all language available for this template.
         /// </summary>
         public InputList<string> AvailableLanguages
         {
@@ -255,25 +255,25 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         }
 
         /// <summary>
-        /// OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+        /// The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
         /// </summary>
         [Input("baseTemplateName")]
         public Input<string>? BaseTemplateName { get; set; }
 
         /// <summary>
-        /// This distribution is new and, although tested and functional, may still display odd behaviour
+        /// This distribution is new and, although tested and functional, may still display odd behaviour.
         /// </summary>
         [Input("beta")]
         public Input<bool>? Beta { get; set; }
 
         /// <summary>
-        /// This template bit format (32 or 64)
+        /// This template bit format (32 or 64).
         /// </summary>
         [Input("bitFormat")]
         public Input<int>? BitFormat { get; set; }
 
         /// <summary>
-        /// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+        /// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
         /// </summary>
         [Input("category")]
         public Input<string>? Category { get; set; }
@@ -282,31 +282,31 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Input<Inputs.InstallationTemplateCustomizationGetArgs>? Customization { get; set; }
 
         /// <summary>
-        /// The default language of this template
+        /// The default language of this template.
         /// </summary>
         [Input("defaultLanguage")]
         public Input<string>? DefaultLanguage { get; set; }
 
         /// <summary>
-        /// is this distribution deprecated
+        /// is this distribution deprecated.
         /// </summary>
         [Input("deprecated")]
         public Input<bool>? Deprecated { get; set; }
 
         /// <summary>
-        /// information about this template
+        /// information about this template.
         /// </summary>
         [Input("description")]
         public Input<string>? Description { get; set; }
 
         /// <summary>
-        /// the distribution this template is based on
+        /// the distribution this template is based on.
         /// </summary>
         [Input("distribution")]
         public Input<string>? Distribution { get; set; }
 
         /// <summary>
-        /// this template family type (bsd,linux,solaris,windows)
+        /// this template family type (bsd,linux,solaris,windows).
         /// </summary>
         [Input("family")]
         public Input<string>? Family { get; set; }
@@ -315,7 +315,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         private InputList<string>? _filesystems;
 
         /// <summary>
-        /// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+        /// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
         /// </summary>
         public InputList<string> Filesystems
         {
@@ -324,13 +324,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         }
 
         /// <summary>
-        /// This distribution supports hardware raid configuration through the OVH API
+        /// This distribution supports hardware raid configuration through the OVHcloud API.
         /// </summary>
         [Input("hardRaidConfiguration")]
         public Input<bool>? HardRaidConfiguration { get; set; }
 
         /// <summary>
-        /// Date of last modification of the base image
+        /// Date of last modification of the base image.
         /// </summary>
         [Input("lastModification")]
         public Input<string>? LastModification { get; set; }
@@ -342,31 +342,31 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Input<bool>? LvmReady { get; set; }
 
         /// <summary>
-        /// Remove default partition schemes at creation
+        /// Remove default partition schemes at creation.
         /// </summary>
         [Input("removeDefaultPartitionSchemes")]
         public Input<bool>? RemoveDefaultPartitionSchemes { get; set; }
 
         /// <summary>
-        /// This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
+        /// This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
         /// </summary>
         [Input("supportsDistributionKernel")]
         public Input<bool>? SupportsDistributionKernel { get; set; }
 
         /// <summary>
-        /// This distribution supports RTM software
+        /// This distribution supports RTM software.
         /// </summary>
         [Input("supportsRtm")]
         public Input<bool>? SupportsRtm { get; set; }
 
         /// <summary>
-        /// This distribution supports the microsoft SQL server
+        /// This distribution supports the microsoft SQL server.
         /// </summary>
         [Input("supportsSqlServer")]
         public Input<bool>? SupportsSqlServer { get; set; }
 
         /// <summary>
-        /// This template name
+        /// This template name.
         /// </summary>
         [Input("templateName")]
         public Input<string>? TemplateName { get; set; }

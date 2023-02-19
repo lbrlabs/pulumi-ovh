@@ -54,13 +54,13 @@ import (
 //				return err
 //			}
 //			_, err = Ip.NewIpService(ctx, "ipblockIpService", &Ip.IpServiceArgs{
-//				OvhSubsidiary: pulumi.String(mycart.OvhSubsidiary),
+//				OvhSubsidiary: *pulumi.String(mycart.OvhSubsidiary),
 //				PaymentMean:   pulumi.String("ovh-account"),
 //				Description:   pulumi.String("my ip block"),
 //				Plan: &ip.IpServicePlanArgs{
-//					Duration:    pulumi.String(ipblockCartProductPlan.SelectedPrices[0].Duration),
-//					PlanCode:    pulumi.String(ipblockCartProductPlan.PlanCode),
-//					PricingMode: pulumi.String(ipblockCartProductPlan.SelectedPrices[0].PricingMode),
+//					Duration:    *pulumi.String(ipblockCartProductPlan.SelectedPrices[0].Duration),
+//					PlanCode:    *pulumi.String(ipblockCartProductPlan.PlanCode),
+//					PricingMode: *pulumi.String(ipblockCartProductPlan.SelectedPrices[0].PricingMode),
 //					Configurations: ip.IpServicePlanConfigurationArray{
 //						&ip.IpServicePlanConfigurationArgs{
 //							Label: pulumi.String("country"),
@@ -102,8 +102,7 @@ type IpService struct {
 	PlanOptions IpServicePlanOptionArrayOutput `pulumi:"planOptions"`
 	// Routage information
 	RoutedTos IpServiceRoutedToArrayOutput `pulumi:"routedTos"`
-	// Service where ip is routed to
-	// * `serviceName`: service name
+	// service name
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
 	// Possible values for ip type
 	Type pulumi.StringOutput `pulumi:"type"`
@@ -170,8 +169,7 @@ type ipServiceState struct {
 	PlanOptions []IpServicePlanOption `pulumi:"planOptions"`
 	// Routage information
 	RoutedTos []IpServiceRoutedTo `pulumi:"routedTos"`
-	// Service where ip is routed to
-	// * `serviceName`: service name
+	// service name
 	ServiceName *string `pulumi:"serviceName"`
 	// Possible values for ip type
 	Type *string `pulumi:"type"`
@@ -200,8 +198,7 @@ type IpServiceState struct {
 	PlanOptions IpServicePlanOptionArrayInput
 	// Routage information
 	RoutedTos IpServiceRoutedToArrayInput
-	// Service where ip is routed to
-	// * `serviceName`: service name
+	// service name
 	ServiceName pulumi.StringPtrInput
 	// Possible values for ip type
 	Type pulumi.StringPtrInput
@@ -380,8 +377,7 @@ func (o IpServiceOutput) RoutedTos() IpServiceRoutedToArrayOutput {
 	return o.ApplyT(func(v *IpService) IpServiceRoutedToArrayOutput { return v.RoutedTos }).(IpServiceRoutedToArrayOutput)
 }
 
-// Service where ip is routed to
-// * `serviceName`: service name
+// service name
 func (o IpServiceOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpService) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
 }

@@ -35,12 +35,6 @@ type MongoDbUser struct {
 	PasswordReset pulumi.StringPtrOutput `pulumi:"passwordReset"`
 	// Roles the user belongs to.
 	// Available roles:
-	// * `backup`
-	// * `dbAdminAnyDatabase`
-	// * `readAnyDatabase`
-	// * `readWriteAnyDatabase`
-	// * `restore`
-	// * `userAdminAnyDatabase`
 	Roles pulumi.StringArrayOutput `pulumi:"roles"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -101,12 +95,6 @@ type mongoDbUserState struct {
 	PasswordReset *string `pulumi:"passwordReset"`
 	// Roles the user belongs to.
 	// Available roles:
-	// * `backup`
-	// * `dbAdminAnyDatabase`
-	// * `readAnyDatabase`
-	// * `readWriteAnyDatabase`
-	// * `restore`
-	// * `userAdminAnyDatabase`
 	Roles []string `pulumi:"roles"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -128,12 +116,6 @@ type MongoDbUserState struct {
 	PasswordReset pulumi.StringPtrInput
 	// Roles the user belongs to.
 	// Available roles:
-	// * `backup`
-	// * `dbAdminAnyDatabase`
-	// * `readAnyDatabase`
-	// * `readWriteAnyDatabase`
-	// * `restore`
-	// * `userAdminAnyDatabase`
 	Roles pulumi.StringArrayInput
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -155,12 +137,6 @@ type mongoDbUserArgs struct {
 	PasswordReset *string `pulumi:"passwordReset"`
 	// Roles the user belongs to.
 	// Available roles:
-	// * `backup`
-	// * `dbAdminAnyDatabase`
-	// * `readAnyDatabase`
-	// * `readWriteAnyDatabase`
-	// * `restore`
-	// * `userAdminAnyDatabase`
 	Roles []string `pulumi:"roles"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -177,12 +153,6 @@ type MongoDbUserArgs struct {
 	PasswordReset pulumi.StringPtrInput
 	// Roles the user belongs to.
 	// Available roles:
-	// * `backup`
-	// * `dbAdminAnyDatabase`
-	// * `readAnyDatabase`
-	// * `readWriteAnyDatabase`
-	// * `restore`
-	// * `userAdminAnyDatabase`
 	Roles pulumi.StringArrayInput
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -303,12 +273,6 @@ func (o MongoDbUserOutput) PasswordReset() pulumi.StringPtrOutput {
 
 // Roles the user belongs to.
 // Available roles:
-// * `backup`
-// * `dbAdminAnyDatabase`
-// * `readAnyDatabase`
-// * `readWriteAnyDatabase`
-// * `restore`
-// * `userAdminAnyDatabase`
 func (o MongoDbUserOutput) Roles() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *MongoDbUser) pulumi.StringArrayOutput { return v.Roles }).(pulumi.StringArrayOutput)
 }

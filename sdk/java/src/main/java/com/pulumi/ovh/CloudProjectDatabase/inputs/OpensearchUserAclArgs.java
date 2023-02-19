@@ -31,11 +31,6 @@ public final class OpensearchUserAclArgs extends com.pulumi.resources.ResourceAr
     /**
      * Permission of the ACL
      * Available permission:
-     * * `admin`
-     * * `read`
-     * * `write`
-     * * `readwrite`
-     * * `deny`
      * 
      */
     @Import(name="permission", required=true)
@@ -44,11 +39,6 @@ public final class OpensearchUserAclArgs extends com.pulumi.resources.ResourceAr
     /**
      * @return Permission of the ACL
      * Available permission:
-     * * `admin`
-     * * `read`
-     * * `write`
-     * * `readwrite`
-     * * `deny`
      * 
      */
     public Output<String> permission() {
@@ -104,11 +94,6 @@ public final class OpensearchUserAclArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param permission Permission of the ACL
          * Available permission:
-         * * `admin`
-         * * `read`
-         * * `write`
-         * * `readwrite`
-         * * `deny`
          * 
          * @return builder
          * 
@@ -121,11 +106,6 @@ public final class OpensearchUserAclArgs extends com.pulumi.resources.ResourceAr
         /**
          * @param permission Permission of the ACL
          * Available permission:
-         * * `admin`
-         * * `read`
-         * * `write`
-         * * `readwrite`
-         * * `deny`
          * 
          * @return builder
          * 

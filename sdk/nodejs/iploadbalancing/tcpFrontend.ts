@@ -11,23 +11,24 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  * import * as ovh from "@pulumi/ovh";
  *
- * const lb = pulumi.output(ovh.IpLoadBalancing.getIpLoadBalancing({
+ * const lb = ovh.IpLoadBalancing.getIpLoadBalancing({
  *     serviceName: "ip-1.2.3.4",
  *     state: "ok",
- * }));
- * const farm80 = new ovh.IpLoadBalancing.TcpFarm("farm80", {
+ * });
+ * const farm80 = new ovh.iploadbalancing.TcpFarm("farm80", {
  *     displayName: "ingress-8080-gra",
  *     port: 80,
- *     serviceName: lb.serviceName!,
+ *     serviceName: lb.then(lb => lb.serviceName),
  *     zone: "all",
  * });
- * const testfrontend = new ovh.IpLoadBalancing.TcpFrontend("testfrontend", {
- *     defaultFarmId: farm80.id.apply(id => Number.parseFloat(id)),
+ * const testfrontend = new ovh.iploadbalancing.TcpFrontend("testfrontend", {
+ *     defaultFarmId: farm80.id,
  *     displayName: "ingress-8080-gra",
  *     port: "80,443",
- *     serviceName: lb.serviceName!,
+ *     serviceName: lb.then(lb => lb.serviceName),
  *     zone: "all",
  * });
  * ```

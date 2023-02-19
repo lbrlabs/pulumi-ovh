@@ -27,11 +27,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getCartProductOptions(args: GetCartProductOptionsArgs, opts?: pulumi.InvokeOptions): Promise<GetCartProductOptionsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Order/getCartProductOptions:getCartProductOptions", {
         "cartId": args.cartId,
         "catalogName": args.catalogName,
@@ -82,9 +79,28 @@ export interface GetCartProductOptionsResult {
      */
     readonly results: outputs.Order.GetCartProductOptionsResult[];
 }
-
+/**
+ * Use this data source to retrieve information of order cart product options.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const mycart = ovh.Order.getCart({
+ *     ovhSubsidiary: "fr",
+ *     description: "my cart",
+ * });
+ * const options = mycart.then(mycart => ovh.Order.getCartProductOptions({
+ *     cartId: mycart.id,
+ *     product: "cloud",
+ *     planCode: "project",
+ * }));
+ * ```
+ */
 export function getCartProductOptionsOutput(args: GetCartProductOptionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCartProductOptionsResult> {
-    return pulumi.output(args).apply(a => getCartProductOptions(a, opts))
+    return pulumi.output(args).apply((a: any) => getCartProductOptions(a, opts))
 }
 
 /**

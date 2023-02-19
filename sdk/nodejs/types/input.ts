@@ -379,11 +379,6 @@ export namespace CloudProjectDatabase {
         /**
          * Permission of the ACL
          * Available permission:
-         * * `admin`
-         * * `read`
-         * * `write`
-         * * `readwrite`
-         * * `deny`
          */
         permission: pulumi.Input<string>;
     }
@@ -827,8 +822,7 @@ export namespace Ip {
 
     export interface IpServiceRoutedTo {
         /**
-         * Service where ip is routed to
-         * * `serviceName`: service name
+         * service name
          */
         serviceName?: pulumi.Input<string>;
     }
@@ -896,9 +890,11 @@ export namespace IpLoadBalancing {
         field?: pulumi.Input<string>;
         /**
          * Matching operator. Not all operators are available for all fields. See "availableRules"
-         * * `negate`- Invert the matching operator effect
          */
         match?: pulumi.Input<string>;
+        /**
+         * Invert the matching operator effect
+         */
         negate?: pulumi.Input<boolean>;
         /**
          * Value to match against this match. Interpretation if this field depends on the match and field
@@ -1088,9 +1084,11 @@ export namespace IpLoadBalancing {
         field?: pulumi.Input<string>;
         /**
          * Matching operator. Not all operators are available for all fields. See "availableRules"
-         * * `negate`- Invert the matching operator effect
          */
         match?: pulumi.Input<string>;
+        /**
+         * Invert the matching operator effect
+         */
         negate?: pulumi.Input<boolean>;
         /**
          * Value to match against this match. Interpretation if this field depends on the match and field
@@ -1110,17 +1108,36 @@ export namespace IpLoadBalancing {
 export namespace Me {
     export interface InstallationTemplateCustomization {
         /**
+         * Template change log details.
+         *
          * @deprecated field is not used anymore
          */
         changeLog?: pulumi.Input<string>;
+        /**
+         * Set up the server using the provided hostname instead of the default hostname.
+         */
         customHostname?: pulumi.Input<string>;
+        /**
+         * Indicate the URL where your postinstall customisation script is located.
+         */
         postInstallationScriptLink?: pulumi.Input<string>;
+        /**
+         * indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
+         */
         postInstallationScriptReturn?: pulumi.Input<string>;
         /**
+         * Rating.
+         *
          * @deprecated field is not used anymore
          */
         rating?: pulumi.Input<number>;
+        /**
+         * Name of the ssh key that should be installed. Password login will be disabled.
+         */
         sshKeyName?: pulumi.Input<string>;
+        /**
+         * Use the distribution's native kernel instead of the recommended OV
+         */
         useDistributionKernel?: pulumi.Input<boolean>;
     }
 }

@@ -2361,7 +2361,7 @@ public final class CloudProjectDatabaseFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ovh.CloudProjectDatabase.CloudProjectDatabaseFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetUserArgs;
+     * import com.pulumi.ovh.CloudProjectDatabase.inputs.GetUserArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -2402,7 +2402,7 @@ public final class CloudProjectDatabaseFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ovh.CloudProjectDatabase.CloudProjectDatabaseFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetUserArgs;
+     * import com.pulumi.ovh.CloudProjectDatabase.inputs.GetUserArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -2443,7 +2443,7 @@ public final class CloudProjectDatabaseFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ovh.CloudProjectDatabase.CloudProjectDatabaseFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetUserArgs;
+     * import com.pulumi.ovh.CloudProjectDatabase.inputs.GetUserArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -2484,7 +2484,7 @@ public final class CloudProjectDatabaseFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ovh.CloudProjectDatabase.CloudProjectDatabaseFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetUserArgs;
+     * import com.pulumi.ovh.CloudProjectDatabase.inputs.GetUserArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -2525,7 +2525,7 @@ public final class CloudProjectDatabaseFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ovh.CloudProjectDatabase.CloudProjectDatabaseFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetUsersArgs;
+     * import com.pulumi.ovh.CloudProjectDatabase.inputs.GetUsersArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -2565,7 +2565,7 @@ public final class CloudProjectDatabaseFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ovh.CloudProjectDatabase.CloudProjectDatabaseFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetUsersArgs;
+     * import com.pulumi.ovh.CloudProjectDatabase.inputs.GetUsersArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -2605,7 +2605,7 @@ public final class CloudProjectDatabaseFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ovh.CloudProjectDatabase.CloudProjectDatabaseFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetUsersArgs;
+     * import com.pulumi.ovh.CloudProjectDatabase.inputs.GetUsersArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;
@@ -2645,7 +2645,7 @@ public final class CloudProjectDatabaseFunctions {
      * import com.pulumi.Pulumi;
      * import com.pulumi.core.Output;
      * import com.pulumi.ovh.CloudProjectDatabase.CloudProjectDatabaseFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetUsersArgs;
+     * import com.pulumi.ovh.CloudProjectDatabase.inputs.GetUsersArgs;
      * import java.util.List;
      * import java.util.ArrayList;
      * import java.util.Map;

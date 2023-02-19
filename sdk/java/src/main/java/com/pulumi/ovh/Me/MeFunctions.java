@@ -187,6 +187,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of user logins of the account&#39;s identity users.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var users = MeFunctions.getIdentityUsers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetIdentityUsersResult> getIdentityUsers() {
@@ -196,6 +221,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of user logins of the account&#39;s identity users.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var users = MeFunctions.getIdentityUsers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetIdentityUsersResult> getIdentityUsersPlain() {
@@ -205,6 +255,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of user logins of the account&#39;s identity users.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var users = MeFunctions.getIdentityUsers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetIdentityUsersResult> getIdentityUsers(InvokeArgs args) {
@@ -214,6 +289,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of user logins of the account&#39;s identity users.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var users = MeFunctions.getIdentityUsers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetIdentityUsersResult> getIdentityUsersPlain(InvokeArgs args) {
@@ -223,6 +323,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of user logins of the account&#39;s identity users.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var users = MeFunctions.getIdentityUsers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetIdentityUsersResult> getIdentityUsers(InvokeArgs args, InvokeOptions options) {
@@ -232,6 +357,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of user logins of the account&#39;s identity users.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var users = MeFunctions.getIdentityUsers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetIdentityUsersResult> getIdentityUsersPlain(InvokeArgs args, InvokeOptions options) {
@@ -389,6 +539,31 @@ public final class MeFunctions {
      * Use this data source to get the list of custom installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = MeFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetInstallationTemplatesResult> getInstallationTemplates() {
@@ -398,6 +573,31 @@ public final class MeFunctions {
      * Use this data source to get the list of custom installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = MeFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetInstallationTemplatesResult> getInstallationTemplatesPlain() {
@@ -407,6 +607,31 @@ public final class MeFunctions {
      * Use this data source to get the list of custom installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = MeFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetInstallationTemplatesResult> getInstallationTemplates(InvokeArgs args) {
@@ -416,6 +641,31 @@ public final class MeFunctions {
      * Use this data source to get the list of custom installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = MeFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetInstallationTemplatesResult> getInstallationTemplatesPlain(InvokeArgs args) {
@@ -425,6 +675,31 @@ public final class MeFunctions {
      * Use this data source to get the list of custom installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = MeFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetInstallationTemplatesResult> getInstallationTemplates(InvokeArgs args, InvokeOptions options) {
@@ -434,6 +709,31 @@ public final class MeFunctions {
      * Use this data source to get the list of custom installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = MeFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetInstallationTemplatesResult> getInstallationTemplatesPlain(InvokeArgs args, InvokeOptions options) {
@@ -591,6 +891,31 @@ public final class MeFunctions {
      * Use this data source to retrieve a list of the names of the account&#39;s IPXE Scripts.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var scripts = MeFunctions.getIpxeScripts();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetIpxeScriptsResult> getIpxeScripts() {
@@ -600,6 +925,31 @@ public final class MeFunctions {
      * Use this data source to retrieve a list of the names of the account&#39;s IPXE Scripts.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var scripts = MeFunctions.getIpxeScripts();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetIpxeScriptsResult> getIpxeScriptsPlain() {
@@ -609,6 +959,31 @@ public final class MeFunctions {
      * Use this data source to retrieve a list of the names of the account&#39;s IPXE Scripts.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var scripts = MeFunctions.getIpxeScripts();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetIpxeScriptsResult> getIpxeScripts(InvokeArgs args) {
@@ -618,6 +993,31 @@ public final class MeFunctions {
      * Use this data source to retrieve a list of the names of the account&#39;s IPXE Scripts.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var scripts = MeFunctions.getIpxeScripts();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetIpxeScriptsResult> getIpxeScriptsPlain(InvokeArgs args) {
@@ -627,6 +1027,31 @@ public final class MeFunctions {
      * Use this data source to retrieve a list of the names of the account&#39;s IPXE Scripts.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var scripts = MeFunctions.getIpxeScripts();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetIpxeScriptsResult> getIpxeScripts(InvokeArgs args, InvokeOptions options) {
@@ -636,6 +1061,31 @@ public final class MeFunctions {
      * Use this data source to retrieve a list of the names of the account&#39;s IPXE Scripts.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var scripts = MeFunctions.getIpxeScripts();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetIpxeScriptsResult> getIpxeScriptsPlain(InvokeArgs args, InvokeOptions options) {
@@ -645,6 +1095,31 @@ public final class MeFunctions {
      * Use this data source to get information about the current OVHcloud account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myaccount = MeFunctions.getMe();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetMeResult> getMe() {
@@ -654,6 +1129,31 @@ public final class MeFunctions {
      * Use this data source to get information about the current OVHcloud account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myaccount = MeFunctions.getMe();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetMeResult> getMePlain() {
@@ -663,6 +1163,31 @@ public final class MeFunctions {
      * Use this data source to get information about the current OVHcloud account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myaccount = MeFunctions.getMe();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetMeResult> getMe(InvokeArgs args) {
@@ -672,6 +1197,31 @@ public final class MeFunctions {
      * Use this data source to get information about the current OVHcloud account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myaccount = MeFunctions.getMe();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetMeResult> getMePlain(InvokeArgs args) {
@@ -681,6 +1231,31 @@ public final class MeFunctions {
      * Use this data source to get information about the current OVHcloud account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myaccount = MeFunctions.getMe();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetMeResult> getMe(InvokeArgs args, InvokeOptions options) {
@@ -690,6 +1265,31 @@ public final class MeFunctions {
      * Use this data source to get information about the current OVHcloud account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myaccount = MeFunctions.getMe();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetMeResult> getMePlain(InvokeArgs args, InvokeOptions options) {
@@ -1303,6 +1903,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of names of the account&#39;s SSH keys.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mykeys = MeFunctions.getSshKeys();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetSshKeysResult> getSshKeys() {
@@ -1312,6 +1937,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of names of the account&#39;s SSH keys.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mykeys = MeFunctions.getSshKeys();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetSshKeysResult> getSshKeysPlain() {
@@ -1321,6 +1971,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of names of the account&#39;s SSH keys.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mykeys = MeFunctions.getSshKeys();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetSshKeysResult> getSshKeys(InvokeArgs args) {
@@ -1330,6 +2005,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of names of the account&#39;s SSH keys.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mykeys = MeFunctions.getSshKeys();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetSshKeysResult> getSshKeysPlain(InvokeArgs args) {
@@ -1339,6 +2039,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of names of the account&#39;s SSH keys.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mykeys = MeFunctions.getSshKeys();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetSshKeysResult> getSshKeys(InvokeArgs args, InvokeOptions options) {
@@ -1348,6 +2073,31 @@ public final class MeFunctions {
      * Use this data source to retrieve list of names of the account&#39;s SSH keys.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Me.MeFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var mykeys = MeFunctions.getSshKeys();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetSshKeysResult> getSshKeysPlain(InvokeArgs args, InvokeOptions options) {

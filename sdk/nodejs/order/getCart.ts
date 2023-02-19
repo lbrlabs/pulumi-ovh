@@ -13,18 +13,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const mycart = pulumi.output(ovh.Order.getCart({
+ * const mycart = ovh.Order.getCart({
  *     description: "my cart",
  *     ovhSubsidiary: "fr",
- * }));
+ * });
  * ```
  */
 export function getCart(args: GetCartArgs, opts?: pulumi.InvokeOptions): Promise<GetCartResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Order/getCart:getCart", {
         "assign": args.assign,
         "description": args.description,
@@ -80,9 +77,23 @@ export interface GetCartResult {
      */
     readonly readOnly: boolean;
 }
-
+/**
+ * Use this data source to create a temporary order cart to retrieve information order cart products.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const mycart = ovh.Order.getCart({
+ *     description: "my cart",
+ *     ovhSubsidiary: "fr",
+ * });
+ * ```
+ */
 export function getCartOutput(args: GetCartOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCartResult> {
-    return pulumi.output(args).apply(a => getCart(a, opts))
+    return pulumi.output(args).apply((a: any) => getCart(a, opts))
 }
 
 /**

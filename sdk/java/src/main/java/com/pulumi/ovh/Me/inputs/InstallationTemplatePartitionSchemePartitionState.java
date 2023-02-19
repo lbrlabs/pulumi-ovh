@@ -17,14 +17,14 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
     public static final InstallationTemplatePartitionSchemePartitionState Empty = new InstallationTemplatePartitionSchemePartitionState();
 
     /**
-     * Partition filesystem
+     * Partition filesystem.
      * 
      */
     @Import(name="filesystem")
     private @Nullable Output<String> filesystem;
 
     /**
-     * @return Partition filesystem
+     * @return Partition filesystem.
      * 
      */
     public Optional<Output<String>> filesystem() {
@@ -32,14 +32,14 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
     }
 
     /**
-     * partition mount point
+     * partition mount point.
      * 
      */
     @Import(name="mountpoint")
     private @Nullable Output<String> mountpoint;
 
     /**
-     * @return partition mount point
+     * @return partition mount point.
      * 
      */
     public Optional<Output<String>> mountpoint() {
@@ -62,14 +62,14 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
     }
 
     /**
-     * raid partition type
+     * raid partition type.
      * 
      */
     @Import(name="raid")
     private @Nullable Output<String> raid;
 
     /**
-     * @return raid partition type
+     * @return raid partition type.
      * 
      */
     public Optional<Output<String>> raid() {
@@ -77,14 +77,14 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
     }
 
     /**
-     * name of this partitioning scheme
+     * The partition scheme name.
      * 
      */
     @Import(name="schemeName")
     private @Nullable Output<String> schemeName;
 
     /**
-     * @return name of this partitioning scheme
+     * @return The partition scheme name.
      * 
      */
     public Optional<Output<String>> schemeName() {
@@ -92,14 +92,14 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
     }
 
     /**
-     * size of partition in MB, 0 =&gt; rest of the space
+     * size of partition in MB, 0 =&gt; rest of the space.
      * 
      */
     @Import(name="size")
     private @Nullable Output<Integer> size;
 
     /**
-     * @return size of partition in MB, 0 =&gt; rest of the space
+     * @return size of partition in MB, 0 =&gt; rest of the space.
      * 
      */
     public Optional<Output<Integer>> size() {
@@ -107,14 +107,14 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
     }
 
     /**
-     * Template name
+     * The template name of the partition scheme.
      * 
      */
     @Import(name="templateName")
     private @Nullable Output<String> templateName;
 
     /**
-     * @return Template name
+     * @return The template name of the partition scheme.
      * 
      */
     public Optional<Output<String>> templateName() {
@@ -122,14 +122,14 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
     }
 
     /**
-     * partition type
+     * partition type.
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return partition type
+     * @return partition type.
      * 
      */
     public Optional<Output<String>> type() {
@@ -184,7 +184,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param filesystem Partition filesystem
+         * @param filesystem Partition filesystem.
          * 
          * @return builder
          * 
@@ -195,7 +195,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param filesystem Partition filesystem
+         * @param filesystem Partition filesystem.
          * 
          * @return builder
          * 
@@ -205,7 +205,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param mountpoint partition mount point
+         * @param mountpoint partition mount point.
          * 
          * @return builder
          * 
@@ -216,7 +216,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param mountpoint partition mount point
+         * @param mountpoint partition mount point.
          * 
          * @return builder
          * 
@@ -247,7 +247,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param raid raid partition type
+         * @param raid raid partition type.
          * 
          * @return builder
          * 
@@ -258,7 +258,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param raid raid partition type
+         * @param raid raid partition type.
          * 
          * @return builder
          * 
@@ -268,7 +268,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param schemeName name of this partitioning scheme
+         * @param schemeName The partition scheme name.
          * 
          * @return builder
          * 
@@ -279,7 +279,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param schemeName name of this partitioning scheme
+         * @param schemeName The partition scheme name.
          * 
          * @return builder
          * 
@@ -289,7 +289,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param size size of partition in MB, 0 =&gt; rest of the space
+         * @param size size of partition in MB, 0 =&gt; rest of the space.
          * 
          * @return builder
          * 
@@ -300,7 +300,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param size size of partition in MB, 0 =&gt; rest of the space
+         * @param size size of partition in MB, 0 =&gt; rest of the space.
          * 
          * @return builder
          * 
@@ -310,7 +310,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param templateName Template name
+         * @param templateName The template name of the partition scheme.
          * 
          * @return builder
          * 
@@ -321,7 +321,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param templateName Template name
+         * @param templateName The template name of the partition scheme.
          * 
          * @return builder
          * 
@@ -331,7 +331,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param type partition type
+         * @param type partition type.
          * 
          * @return builder
          * 
@@ -342,7 +342,7 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param type partition type
+         * @param type partition type.
          * 
          * @return builder
          * 

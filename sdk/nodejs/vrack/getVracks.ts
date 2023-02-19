@@ -13,15 +13,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const vracks = pulumi.output(ovh.Vrack.getVracks());
+ * const vracks = ovh.Vrack.getVracks({});
  * ```
  */
 export function getVracks(opts?: pulumi.InvokeOptions): Promise<GetVracksResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Vrack/getVracks:getVracks", {
     }, opts);
 }

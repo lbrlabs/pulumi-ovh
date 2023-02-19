@@ -11,78 +11,238 @@ import java.util.Objects;
 
 @CustomType
 public final class GetMeResult {
+    /**
+     * @return Postal address of the account
+     * 
+     */
     private String address;
+    /**
+     * @return Area of the account
+     * 
+     */
     private String area;
+    /**
+     * @return City of birth
+     * 
+     */
     private String birthCity;
+    /**
+     * @return Birth date
+     * 
+     */
     private String birthDay;
+    /**
+     * @return City of the account
+     * 
+     */
     private String city;
+    /**
+     * @return This is the national identification number of the company that possess this account
+     * 
+     */
     private String companyNationalIdentificationNumber;
+    /**
+     * @return Type of corporation
+     * 
+     */
     private String corporationType;
+    /**
+     * @return Country of the account
+     * 
+     */
     private String country;
     private List<GetMeCurrency> currencies;
+    /**
+     * @return The customer code of this account (a numerical value used for identification when contacting support via phone call)
+     * 
+     */
     private String customerCode;
+    /**
+     * @return Email address
+     * 
+     */
     private String email;
+    /**
+     * @return Fax number
+     * 
+     */
     private String fax;
+    /**
+     * @return First name
+     * 
+     */
     private String firstname;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return Italian SDI
+     * 
+     */
     private String italianSdi;
+    /**
+     * @return Preferred language for this account
+     * 
+     */
     private String language;
+    /**
+     * @return Legal form of the account
+     * 
+     */
     private String legalform;
+    /**
+     * @return Name of the account holder
+     * 
+     */
     private String name;
+    /**
+     * @return National Identification Number of this account
+     * 
+     */
     private String nationalIdentificationNumber;
+    /**
+     * @return Nic handle / customer identifier
+     * 
+     */
     private String nichandle;
+    /**
+     * @return Name of the organisation for this account
+     * 
+     */
     private String organisation;
+    /**
+     * @return OVHcloud subsidiary
+     * 
+     */
     private String ovhCompany;
+    /**
+     * @return OVHcloud subsidiary
+     * 
+     */
     private String ovhSubsidiary;
+    /**
+     * @return Phone number
+     * 
+     */
     private String phone;
+    /**
+     * @return Country code of the phone number
+     * 
+     */
     private String phoneCountry;
+    /**
+     * @return Gender of the account holder
+     * 
+     */
     private String sex;
+    /**
+     * @return Backup email address
+     * 
+     */
     private String spareEmail;
+    /**
+     * @return State of the postal address
+     * 
+     */
     private String state;
+    /**
+     * @return VAT number
+     * 
+     */
     private String vat;
+    /**
+     * @return Zipcode of the address
+     * 
+     */
     private String zip;
 
     private GetMeResult() {}
+    /**
+     * @return Postal address of the account
+     * 
+     */
     public String address() {
         return this.address;
     }
+    /**
+     * @return Area of the account
+     * 
+     */
     public String area() {
         return this.area;
     }
+    /**
+     * @return City of birth
+     * 
+     */
     public String birthCity() {
         return this.birthCity;
     }
+    /**
+     * @return Birth date
+     * 
+     */
     public String birthDay() {
         return this.birthDay;
     }
+    /**
+     * @return City of the account
+     * 
+     */
     public String city() {
         return this.city;
     }
+    /**
+     * @return This is the national identification number of the company that possess this account
+     * 
+     */
     public String companyNationalIdentificationNumber() {
         return this.companyNationalIdentificationNumber;
     }
+    /**
+     * @return Type of corporation
+     * 
+     */
     public String corporationType() {
         return this.corporationType;
     }
+    /**
+     * @return Country of the account
+     * 
+     */
     public String country() {
         return this.country;
     }
     public List<GetMeCurrency> currencies() {
         return this.currencies;
     }
+    /**
+     * @return The customer code of this account (a numerical value used for identification when contacting support via phone call)
+     * 
+     */
     public String customerCode() {
         return this.customerCode;
     }
+    /**
+     * @return Email address
+     * 
+     */
     public String email() {
         return this.email;
     }
+    /**
+     * @return Fax number
+     * 
+     */
     public String fax() {
         return this.fax;
     }
+    /**
+     * @return First name
+     * 
+     */
     public String firstname() {
         return this.firstname;
     }
@@ -93,51 +253,115 @@ public final class GetMeResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Italian SDI
+     * 
+     */
     public String italianSdi() {
         return this.italianSdi;
     }
+    /**
+     * @return Preferred language for this account
+     * 
+     */
     public String language() {
         return this.language;
     }
+    /**
+     * @return Legal form of the account
+     * 
+     */
     public String legalform() {
         return this.legalform;
     }
+    /**
+     * @return Name of the account holder
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return National Identification Number of this account
+     * 
+     */
     public String nationalIdentificationNumber() {
         return this.nationalIdentificationNumber;
     }
+    /**
+     * @return Nic handle / customer identifier
+     * 
+     */
     public String nichandle() {
         return this.nichandle;
     }
+    /**
+     * @return Name of the organisation for this account
+     * 
+     */
     public String organisation() {
         return this.organisation;
     }
+    /**
+     * @return OVHcloud subsidiary
+     * 
+     */
     public String ovhCompany() {
         return this.ovhCompany;
     }
+    /**
+     * @return OVHcloud subsidiary
+     * 
+     */
     public String ovhSubsidiary() {
         return this.ovhSubsidiary;
     }
+    /**
+     * @return Phone number
+     * 
+     */
     public String phone() {
         return this.phone;
     }
+    /**
+     * @return Country code of the phone number
+     * 
+     */
     public String phoneCountry() {
         return this.phoneCountry;
     }
+    /**
+     * @return Gender of the account holder
+     * 
+     */
     public String sex() {
         return this.sex;
     }
+    /**
+     * @return Backup email address
+     * 
+     */
     public String spareEmail() {
         return this.spareEmail;
     }
+    /**
+     * @return State of the postal address
+     * 
+     */
     public String state() {
         return this.state;
     }
+    /**
+     * @return VAT number
+     * 
+     */
     public String vat() {
         return this.vat;
     }
+    /**
+     * @return Zipcode of the address
+     * 
+     */
     public String zip() {
         return this.zip;
     }

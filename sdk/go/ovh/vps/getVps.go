@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Vps.GetVps(ctx, &vps.GetVpsArgs{
+//			_, err := Vps.GetVps(ctx, &vps.GetVpsArgs{
 //				ServiceName: "XXXXXX",
 //			}, nil)
 //			if err != nil {

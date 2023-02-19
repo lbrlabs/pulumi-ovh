@@ -35,9 +35,9 @@ import * as utilities from "../utilities";
  *     description: "my cloud project",
  *     paymentMean: "fidelity",
  *     plan: {
- *         duration: cloud.then(cloud => cloud.selectedPrices?[0]?.duration),
+ *         duration: cloud.then(cloud => cloud.selectedPrices?.[0]?.duration),
  *         planCode: cloud.then(cloud => cloud.planCode),
- *         pricingMode: cloud.then(cloud => cloud.selectedPrices?[0]?.pricingMode),
+ *         pricingMode: cloud.then(cloud => cloud.selectedPrices?.[0]?.pricingMode),
  *     },
  * });
  * ```

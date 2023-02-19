@@ -13,18 +13,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const netboots = pulumi.output(ovh.Dedicated.getServerBoots({
+ * const netboots = ovh.Dedicated.getServerBoots({
  *     bootType: "harddisk",
  *     serviceName: "myserver",
- * }));
+ * });
  * ```
  */
 export function getServerBoots(args: GetServerBootsArgs, opts?: pulumi.InvokeOptions): Promise<GetServerBootsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Dedicated/getServerBoots:getServerBoots", {
         "bootType": args.bootType,
         "kernel": args.kernel,
@@ -63,9 +60,23 @@ export interface GetServerBootsResult {
     readonly results: number[];
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get the list of compatible netboots for a dedicated server associated with your OVHcloud Account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const netboots = ovh.Dedicated.getServerBoots({
+ *     bootType: "harddisk",
+ *     serviceName: "myserver",
+ * });
+ * ```
+ */
 export function getServerBootsOutput(args: GetServerBootsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerBootsResult> {
-    return pulumi.output(args).apply(a => getServerBoots(a, opts))
+    return pulumi.output(args).apply((a: any) => getServerBoots(a, opts))
 }
 
 /**

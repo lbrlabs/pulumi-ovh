@@ -78,7 +78,7 @@ func NewPrivateDatabaseUser(ctx *pulumi.Context,
 		return nil, errors.New("invalid value for required argument 'UserName'")
 	}
 	if args.Password != nil {
-		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringOutput)
+		args.Password = pulumi.ToSecret(args.Password).(pulumi.StringInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"password",

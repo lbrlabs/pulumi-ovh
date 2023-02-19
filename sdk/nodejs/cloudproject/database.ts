@@ -12,9 +12,9 @@ import * as utilities from "../utilities";
  * Minimum settings for each engine (region choice is up to the user):
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const cassandradb = new ovh.CloudProject.Database("cassandradb", {
+ * const cassandradb = new ovh.cloudproject.Database("cassandradb", {
  *     description: "my-first-cassandra",
  *     engine: "cassandra",
  *     flavor: "db1-4",
@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "4.0",
  * });
- * const kafkadb = new ovh.CloudProject.Database("kafkadb", {
+ * const kafkadb = new ovh.cloudproject.Database("kafkadb", {
  *     description: "my-first-kafka",
  *     engine: "kafka",
  *     flavor: "db1-4",
@@ -53,7 +53,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "3.1",
  * });
- * const m3db = new ovh.CloudProject.Database("m3db", {
+ * const m3db = new ovh.cloudproject.Database("m3db", {
  *     description: "my-first-m3db",
  *     engine: "m3db",
  *     flavor: "db1-7",
@@ -64,7 +64,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "1.2",
  * });
- * const mongodb = new ovh.CloudProject.Database("mongodb", {
+ * const mongodb = new ovh.cloudproject.Database("mongodb", {
  *     description: "my-first-mongodb",
  *     engine: "mongodb",
  *     flavor: "db1-2",
@@ -75,7 +75,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "5.0",
  * });
- * const mysqldb = new ovh.CloudProject.Database("mysqldb", {
+ * const mysqldb = new ovh.cloudproject.Database("mysqldb", {
  *     description: "my-first-mysql",
  *     engine: "mysql",
  *     flavor: "db1-4",
@@ -86,7 +86,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "8",
  * });
- * const opensearchdb = new ovh.CloudProject.Database("opensearchdb", {
+ * const opensearchdb = new ovh.cloudproject.Database("opensearchdb", {
  *     description: "my-first-opensearch",
  *     engine: "opensearch",
  *     flavor: "db1-4",
@@ -98,7 +98,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "1",
  * });
- * const pgsqldb = new ovh.CloudProject.Database("pgsqldb", {
+ * const pgsqldb = new ovh.cloudproject.Database("pgsqldb", {
  *     description: "my-first-postgresql",
  *     engine: "postgresql",
  *     flavor: "db1-4",
@@ -109,7 +109,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "14",
  * });
- * const redisdb = new ovh.CloudProject.Database("redisdb", {
+ * const redisdb = new ovh.cloudproject.Database("redisdb", {
  *     description: "my-first-redis",
  *     engine: "redis",
  *     flavor: "db1-4",
@@ -125,9 +125,9 @@ import * as utilities from "../utilities";
  * To deploy a business PostgreSQL service with two nodes on public network:
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const postgresql = new ovh.CloudProject.Database("postgresql", {
+ * const postgresql = new ovh.cloudproject.Database("postgresql", {
  *     description: "my-first-postgresql",
  *     engine: "postgresql",
  *     flavor: "db1-15",
@@ -148,9 +148,9 @@ import * as utilities from "../utilities";
  * To deploy an enterprise MongoDB service with three nodes on private network:
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const mongodb = new ovh.CloudProject.Database("mongodb", {
+ * const mongodb = new ovh.cloudproject.Database("mongodb", {
  *     description: "my-first-mongodb",
  *     engine: "mongodb",
  *     flavor: "db1-30",

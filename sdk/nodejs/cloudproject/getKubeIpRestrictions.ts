@@ -21,11 +21,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getKubeIpRestrictions(args: GetKubeIpRestrictionsArgs, opts?: pulumi.InvokeOptions): Promise<GetKubeIpRestrictionsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getKubeIpRestrictions:getKubeIpRestrictions", {
         "kubeId": args.kubeId,
         "serviceName": args.serviceName,
@@ -68,9 +65,24 @@ export interface GetKubeIpRestrictionsResult {
      */
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get a OVHcloud Managed Kubernetes Service cluster IP restrictions.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const iprestrictions = ovh.CloudProject.getKubeIpRestrictions({
+ *     serviceName: "XXXXXX",
+ *     kubeId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx",
+ * });
+ * export const ips = iprestrictions.then(iprestrictions => iprestrictions.ips);
+ * ```
+ */
 export function getKubeIpRestrictionsOutput(args: GetKubeIpRestrictionsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubeIpRestrictionsResult> {
-    return pulumi.output(args).apply(a => getKubeIpRestrictions(a, opts))
+    return pulumi.output(args).apply((a: any) => getKubeIpRestrictions(a, opts))
 }
 
 /**

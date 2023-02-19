@@ -50,20 +50,19 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public partial class InstallationTemplatePartitionScheme : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// name of this partitioning scheme
+        /// (Required) This partition scheme name.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
 
         /// <summary>
-        /// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-        /// among all the compatible partitioning schemes (given the underlying hardware specifications)
+        /// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
         /// </summary>
         [Output("priority")]
         public Output<int> Priority { get; private set; } = null!;
 
         /// <summary>
-        /// This template name
+        /// The template name of the partition scheme.
         /// </summary>
         [Output("templateName")]
         public Output<string> TemplateName { get; private set; } = null!;
@@ -116,20 +115,19 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public sealed class InstallationTemplatePartitionSchemeArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// name of this partitioning scheme
+        /// (Required) This partition scheme name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-        /// among all the compatible partitioning schemes (given the underlying hardware specifications)
+        /// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
         /// </summary>
         [Input("priority", required: true)]
         public Input<int> Priority { get; set; } = null!;
 
         /// <summary>
-        /// This template name
+        /// The template name of the partition scheme.
         /// </summary>
         [Input("templateName", required: true)]
         public Input<string> TemplateName { get; set; } = null!;
@@ -143,20 +141,19 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public sealed class InstallationTemplatePartitionSchemeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// name of this partitioning scheme
+        /// (Required) This partition scheme name.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-        /// among all the compatible partitioning schemes (given the underlying hardware specifications)
+        /// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
         /// </summary>
         [Input("priority")]
         public Input<int>? Priority { get; set; }
 
         /// <summary>
-        /// This template name
+        /// The template name of the partition scheme.
         /// </summary>
         [Input("templateName")]
         public Input<string>? TemplateName { get; set; }

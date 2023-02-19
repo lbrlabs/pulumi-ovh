@@ -247,16 +247,14 @@ public class IpService extends com.pulumi.resources.CustomResource {
         return this.routedTos;
     }
     /**
-     * Service where ip is routed to
-     * * `service_name`: service name
+     * service name
      * 
      */
     @Export(name="serviceName", type=String.class, parameters={})
     private Output<String> serviceName;
 
     /**
-     * @return Service where ip is routed to
-     * * `service_name`: service name
+     * @return service name
      * 
      */
     public Output<String> serviceName() {

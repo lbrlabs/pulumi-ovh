@@ -349,9 +349,17 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
     public Output<String> server() {
         return this.server;
     }
+    /**
+     * Service name
+     * 
+     */
     @Export(name="serviceName", type=String.class, parameters={})
     private Output<String> serviceName;
 
+    /**
+     * @return Service name
+     * 
+     */
     public Output<String> serviceName() {
         return this.serviceName;
     }

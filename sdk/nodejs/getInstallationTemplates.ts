@@ -13,15 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const templates = pulumi.output(ovh.getInstallationTemplates());
+ * const templates = ovh.getInstallationTemplates({});
  * ```
  */
 export function getInstallationTemplates(opts?: pulumi.InvokeOptions): Promise<GetInstallationTemplatesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:index/getInstallationTemplates:getInstallationTemplates", {
     }, opts);
 }

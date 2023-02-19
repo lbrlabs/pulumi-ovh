@@ -14,65 +14,169 @@ import java.util.Objects;
 
 @CustomType
 public final class GetInstallationTemplateResult {
+    /**
+     * @return List of all language available for this template.
+     * 
+     */
     private List<String> availableLanguages;
+    /**
+     * @return This distribution is new and, although tested and functional, may still display odd behaviour.
+     * 
+     */
     private Boolean beta;
+    /**
+     * @return This template bit format (32 or 64).
+     * 
+     */
     private Integer bitFormat;
+    /**
+     * @return Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
+     * 
+     */
     private String category;
     private List<GetInstallationTemplateCustomization> customizations;
+    /**
+     * @return The default language of this template.
+     * 
+     */
     private String defaultLanguage;
+    /**
+     * @return is this distribution deprecated.
+     * 
+     */
     private Boolean deprecated;
+    /**
+     * @return information about this template.
+     * 
+     */
     private String description;
+    /**
+     * @return the distribution this template is based on.
+     * 
+     */
     private String distribution;
+    /**
+     * @return this template family type (bsd,linux,solaris,windows).
+     * 
+     */
     private String family;
+    /**
+     * @return Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
+     * 
+     */
     private List<String> filesystems;
+    /**
+     * @return This distribution supports hardware raid configuration through the OVHcloud API.
+     * 
+     */
     private Boolean hardRaidConfiguration;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
+    /**
+     * @return Date of last modification of the base image.
+     * 
+     */
     private String lastModification;
     private Boolean lvmReady;
     private List<GetInstallationTemplatePartitionScheme> partitionSchemes;
+    /**
+     * @return This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVHcloud kernel.
+     * 
+     */
     private Boolean supportsDistributionKernel;
+    /**
+     * @return This distribution supports RTM software.
+     * 
+     */
     private Boolean supportsRtm;
+    /**
+     * @return This distribution supports the microsoft SQL server.
+     * 
+     */
     private Boolean supportsSqlServer;
     private String templateName;
 
     private GetInstallationTemplateResult() {}
+    /**
+     * @return List of all language available for this template.
+     * 
+     */
     public List<String> availableLanguages() {
         return this.availableLanguages;
     }
+    /**
+     * @return This distribution is new and, although tested and functional, may still display odd behaviour.
+     * 
+     */
     public Boolean beta() {
         return this.beta;
     }
+    /**
+     * @return This template bit format (32 or 64).
+     * 
+     */
     public Integer bitFormat() {
         return this.bitFormat;
     }
+    /**
+     * @return Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
+     * 
+     */
     public String category() {
         return this.category;
     }
     public List<GetInstallationTemplateCustomization> customizations() {
         return this.customizations;
     }
+    /**
+     * @return The default language of this template.
+     * 
+     */
     public String defaultLanguage() {
         return this.defaultLanguage;
     }
+    /**
+     * @return is this distribution deprecated.
+     * 
+     */
     public Boolean deprecated() {
         return this.deprecated;
     }
+    /**
+     * @return information about this template.
+     * 
+     */
     public String description() {
         return this.description;
     }
+    /**
+     * @return the distribution this template is based on.
+     * 
+     */
     public String distribution() {
         return this.distribution;
     }
+    /**
+     * @return this template family type (bsd,linux,solaris,windows).
+     * 
+     */
     public String family() {
         return this.family;
     }
+    /**
+     * @return Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
+     * 
+     */
     public List<String> filesystems() {
         return this.filesystems;
     }
+    /**
+     * @return This distribution supports hardware raid configuration through the OVHcloud API.
+     * 
+     */
     public Boolean hardRaidConfiguration() {
         return this.hardRaidConfiguration;
     }
@@ -83,6 +187,10 @@ public final class GetInstallationTemplateResult {
     public String id() {
         return this.id;
     }
+    /**
+     * @return Date of last modification of the base image.
+     * 
+     */
     public String lastModification() {
         return this.lastModification;
     }
@@ -92,12 +200,24 @@ public final class GetInstallationTemplateResult {
     public List<GetInstallationTemplatePartitionScheme> partitionSchemes() {
         return this.partitionSchemes;
     }
+    /**
+     * @return This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVHcloud kernel.
+     * 
+     */
     public Boolean supportsDistributionKernel() {
         return this.supportsDistributionKernel;
     }
+    /**
+     * @return This distribution supports RTM software.
+     * 
+     */
     public Boolean supportsRtm() {
         return this.supportsRtm;
     }
+    /**
+     * @return This distribution supports the microsoft SQL server.
+     * 
+     */
     public Boolean supportsSqlServer() {
         return this.supportsSqlServer;
     }

@@ -14,9 +14,21 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me.Outputs
     [OutputType]
     public sealed class GetInstallationTemplatePartitionSchemeHardwareRaidResult
     {
+        /// <summary>
+        /// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
+        /// </summary>
         public readonly ImmutableArray<string> Disks;
+        /// <summary>
+        /// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+        /// </summary>
         public readonly string Mode;
+        /// <summary>
+        /// Hardware RAID name.
+        /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// Specifies the creation order of the hardware RAID.
+        /// </summary>
         public readonly int Step;
 
         [OutputConstructor]

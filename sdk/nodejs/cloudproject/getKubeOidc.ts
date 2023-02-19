@@ -26,11 +26,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getKubeOidc(args: GetKubeOidcArgs, opts?: pulumi.InvokeOptions): Promise<GetKubeOidcResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getKubeOidc:getKubeOidc", {
         "clientId": args.clientId,
         "issuerUrl": args.issuerUrl,
@@ -108,9 +105,29 @@ export interface GetKubeOidcResult {
      */
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get a OVHcloud Managed Kubernetes Service cluster OIDC.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * export = async () => {
+ *     const oidc = await ovh.CloudProject.getKubeOidc({
+ *         serviceName: "XXXXXX",
+ *         kubeId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx",
+ *     });
+ *     const oidc_val = oidc.clientId;
+ *     return {
+ *         "oidc-val": oidc_val,
+ *     };
+ * }
+ * ```
+ */
 export function getKubeOidcOutput(args: GetKubeOidcOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubeOidcResult> {
-    return pulumi.output(args).apply(a => getKubeOidc(a, opts))
+    return pulumi.output(args).apply((a: any) => getKubeOidc(a, opts))
 }
 
 /**

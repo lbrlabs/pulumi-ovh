@@ -14,6 +14,24 @@ namespace Lbrlabs.PulumiPackage.Ovh
     {
         /// <summary>
         /// Use this data source to get the list of dedicated servers associated with your OVHcloud Account.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Ovh = Pulumi.Ovh;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var servers = Ovh.GetServers.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetServersResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetServersResult>("ovh:index/getServers:getServers", InvokeArgs.Empty, options.WithDefaults());

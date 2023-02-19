@@ -49,13 +49,13 @@ import (
 //				return err
 //			}
 //			_, err = CloudProject.NewProject(ctx, "myCloudProject", &CloudProject.ProjectArgs{
-//				OvhSubsidiary: pulumi.String(mycart.OvhSubsidiary),
+//				OvhSubsidiary: *pulumi.String(mycart.OvhSubsidiary),
 //				Description:   pulumi.String("my cloud project"),
 //				PaymentMean:   pulumi.String("fidelity"),
 //				Plan: &cloudproject.ProjectPlanArgs{
-//					Duration:    pulumi.String(cloud.SelectedPrices[0].Duration),
-//					PlanCode:    pulumi.String(cloud.PlanCode),
-//					PricingMode: pulumi.String(cloud.SelectedPrices[0].PricingMode),
+//					Duration:    *pulumi.String(cloud.SelectedPrices[0].Duration),
+//					PlanCode:    *pulumi.String(cloud.PlanCode),
+//					PricingMode: *pulumi.String(cloud.SelectedPrices[0].PricingMode),
 //				},
 //			})
 //			if err != nil {

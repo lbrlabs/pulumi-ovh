@@ -94,12 +94,6 @@ public final class MongoDbUserState extends com.pulumi.resources.ResourceArgs {
     /**
      * Roles the user belongs to.
      * Available roles:
-     * * `backup`
-     * * `dbAdminAnyDatabase`
-     * * `readAnyDatabase`
-     * * `readWriteAnyDatabase`
-     * * `restore`
-     * * `userAdminAnyDatabase`
      * 
      */
     @Import(name="roles")
@@ -108,12 +102,6 @@ public final class MongoDbUserState extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Roles the user belongs to.
      * Available roles:
-     * * `backup`
-     * * `dbAdminAnyDatabase`
-     * * `readAnyDatabase`
-     * * `readWriteAnyDatabase`
-     * * `restore`
-     * * `userAdminAnyDatabase`
      * 
      */
     public Optional<Output<List<String>>> roles() {
@@ -291,12 +279,6 @@ public final class MongoDbUserState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param roles Roles the user belongs to.
          * Available roles:
-         * * `backup`
-         * * `dbAdminAnyDatabase`
-         * * `readAnyDatabase`
-         * * `readWriteAnyDatabase`
-         * * `restore`
-         * * `userAdminAnyDatabase`
          * 
          * @return builder
          * 
@@ -309,12 +291,6 @@ public final class MongoDbUserState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param roles Roles the user belongs to.
          * Available roles:
-         * * `backup`
-         * * `dbAdminAnyDatabase`
-         * * `readAnyDatabase`
-         * * `readWriteAnyDatabase`
-         * * `restore`
-         * * `userAdminAnyDatabase`
          * 
          * @return builder
          * 
@@ -326,12 +302,6 @@ public final class MongoDbUserState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param roles Roles the user belongs to.
          * Available roles:
-         * * `backup`
-         * * `dbAdminAnyDatabase`
-         * * `readAnyDatabase`
-         * * `readWriteAnyDatabase`
-         * * `restore`
-         * * `userAdminAnyDatabase`
          * 
          * @return builder
          * 

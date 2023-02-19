@@ -33,10 +33,6 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `kafkaConnect`
-     * * `mysql`
      * 
      */
     @Import(name="engine", required=true)
@@ -45,10 +41,6 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `kafkaConnect`
-     * * `mysql`
      * 
      */
     public Output<String> engine() {
@@ -154,10 +146,6 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param engine The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
          * Available engines:
-         * * `cassandra`
-         * * `kafka`
-         * * `kafkaConnect`
-         * * `mysql`
          * 
          * @return builder
          * 
@@ -170,10 +158,6 @@ public final class UserArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param engine The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
          * Available engines:
-         * * `cassandra`
-         * * `kafka`
-         * * `kafkaConnect`
-         * * `mysql`
          * 
          * @return builder
          * 

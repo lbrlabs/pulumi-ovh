@@ -11,10 +11,10 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
  * // Add a record to a sub-domain
- * const test = new ovh.Domain.ZoneRecord("test", {
+ * const test = new ovh.domain.ZoneRecord("test", {
  *     fieldtype: "A",
  *     subdomain: "test",
  *     target: "0.0.0.0",

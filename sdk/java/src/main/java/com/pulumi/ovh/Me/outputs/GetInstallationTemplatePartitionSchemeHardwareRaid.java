@@ -11,21 +11,53 @@ import java.util.Objects;
 
 @CustomType
 public final class GetInstallationTemplatePartitionSchemeHardwareRaid {
+    /**
+     * @return Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
+     * 
+     */
     private List<String> disks;
+    /**
+     * @return RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+     * 
+     */
     private String mode;
+    /**
+     * @return Hardware RAID name.
+     * 
+     */
     private String name;
+    /**
+     * @return Specifies the creation order of the hardware RAID.
+     * 
+     */
     private Integer step;
 
     private GetInstallationTemplatePartitionSchemeHardwareRaid() {}
+    /**
+     * @return Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
+     * 
+     */
     public List<String> disks() {
         return this.disks;
     }
+    /**
+     * @return RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+     * 
+     */
     public String mode() {
         return this.mode;
     }
+    /**
+     * @return Hardware RAID name.
+     * 
+     */
     public String name() {
         return this.name;
     }
+    /**
+     * @return Specifies the creation order of the hardware RAID.
+     * 
+     */
     public Integer step() {
         return this.step;
     }

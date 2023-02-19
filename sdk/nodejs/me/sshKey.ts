@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const mykey = new ovh.Me.SshKey("mykey", {
+ * const mykey = new ovh.me.SshKey("mykey", {
  *     key: "ssh-ed25519 AAAAC3...",
  *     keyName: "mykey",
  * });

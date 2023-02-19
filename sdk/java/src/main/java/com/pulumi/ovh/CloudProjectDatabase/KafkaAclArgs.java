@@ -31,10 +31,6 @@ public final class KafkaAclArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Permission to give to this username on this topic.
      * Available permissions:
-     * * `admin`
-     * * `read`
-     * * `write`
-     * * `readwrite`
      * 
      */
     @Import(name="permission", required=true)
@@ -43,10 +39,6 @@ public final class KafkaAclArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Permission to give to this username on this topic.
      * Available permissions:
-     * * `admin`
-     * * `read`
-     * * `write`
-     * * `readwrite`
      * 
      */
     public Output<String> permission() {
@@ -152,10 +144,6 @@ public final class KafkaAclArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param permission Permission to give to this username on this topic.
          * Available permissions:
-         * * `admin`
-         * * `read`
-         * * `write`
-         * * `readwrite`
          * 
          * @return builder
          * 
@@ -168,10 +156,6 @@ public final class KafkaAclArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param permission Permission to give to this username on this topic.
          * Available permissions:
-         * * `admin`
-         * * `read`
-         * * `write`
-         * * `readwrite`
          * 
          * @return builder
          * 

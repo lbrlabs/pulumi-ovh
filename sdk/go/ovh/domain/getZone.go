@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Domain.GetZone(ctx, &domain.GetZoneArgs{
+//			_, err := Domain.GetZone(ctx, &domain.GetZoneArgs{
 //				Name: "mysite.ovh",
 //			}, nil)
 //			if err != nil {

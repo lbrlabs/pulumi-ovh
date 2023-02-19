@@ -14,9 +14,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const vds = new ovh.Vrack.DedicatedServer("vds", {
+ * const vds = new ovh.vrack.DedicatedServer("vds", {
  *     serverId: "67890",
  *     serviceName: "XXXX",
  * });

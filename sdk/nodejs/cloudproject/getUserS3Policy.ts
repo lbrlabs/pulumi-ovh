@@ -8,11 +8,8 @@ import * as utilities from "../utilities";
  * Get the S3 Policy of a public cloud project user. The policy can be set by using the `ovh.CloudProject.S3Policy` resource.
  */
 export function getUserS3Policy(args: GetUserS3PolicyArgs, opts?: pulumi.InvokeOptions): Promise<GetUserS3PolicyResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getUserS3Policy:getUserS3Policy", {
         "serviceName": args.serviceName,
         "userId": args.userId,
@@ -49,9 +46,11 @@ export interface GetUserS3PolicyResult {
     readonly serviceName: string;
     readonly userId: string;
 }
-
+/**
+ * Get the S3 Policy of a public cloud project user. The policy can be set by using the `ovh.CloudProject.S3Policy` resource.
+ */
 export function getUserS3PolicyOutput(args: GetUserS3PolicyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserS3PolicyResult> {
-    return pulumi.output(args).apply(a => getUserS3Policy(a, opts))
+    return pulumi.output(args).apply((a: any) => getUserS3Policy(a, opts))
 }
 
 /**

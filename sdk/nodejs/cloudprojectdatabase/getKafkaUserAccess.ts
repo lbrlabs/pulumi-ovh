@@ -22,11 +22,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getKafkaUserAccess(args: GetKafkaUserAccessArgs, opts?: pulumi.InvokeOptions): Promise<GetKafkaUserAccessResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProjectDatabase/getKafkaUserAccess:getKafkaUserAccess", {
         "clusterId": args.clusterId,
         "serviceName": args.serviceName,
@@ -82,9 +79,25 @@ export interface GetKafkaUserAccessResult {
      */
     readonly userId: string;
 }
-
+/**
+ * Use this data source to get information about user acces of a kafka cluster associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const access = ovh.CloudProjectDatabase.getKafkaUserAccess({
+ *     serviceName: "XXX",
+ *     clusterId: "YYY",
+ *     userId: "ZZZ",
+ * });
+ * export const accessCert = access.then(access => access.cert);
+ * ```
+ */
 export function getKafkaUserAccessOutput(args: GetKafkaUserAccessOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKafkaUserAccessResult> {
-    return pulumi.output(args).apply(a => getKafkaUserAccess(a, opts))
+    return pulumi.output(args).apply((a: any) => getKafkaUserAccess(a, opts))
 }
 
 /**

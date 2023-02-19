@@ -13,18 +13,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const whitelist = pulumi.output(ovh.Hosting.getPrivateDatabaseAllowlist({
+ * const whitelist = ovh.Hosting.getPrivateDatabaseAllowlist({
  *     ip: "XXXXXX",
  *     serviceName: "XXXXXX",
- * }));
+ * });
  * ```
  */
 export function getPrivateDatabaseAllowlist(args: GetPrivateDatabaseAllowlistArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateDatabaseAllowlistResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Hosting/getPrivateDatabaseAllowlist:getPrivateDatabaseAllowlist", {
         "ip": args.ip,
         "serviceName": args.serviceName,
@@ -80,9 +77,23 @@ export interface GetPrivateDatabaseAllowlistResult {
      */
     readonly status: string;
 }
-
+/**
+ * Use this data source to retrieve information about an hosting privatedatabase whitelist.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const whitelist = ovh.Hosting.getPrivateDatabaseAllowlist({
+ *     ip: "XXXXXX",
+ *     serviceName: "XXXXXX",
+ * });
+ * ```
+ */
 export function getPrivateDatabaseAllowlistOutput(args: GetPrivateDatabaseAllowlistOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateDatabaseAllowlistResult> {
-    return pulumi.output(args).apply(a => getPrivateDatabaseAllowlist(a, opts))
+    return pulumi.output(args).apply((a: any) => getPrivateDatabaseAllowlist(a, opts))
 }
 
 /**

@@ -58,10 +58,6 @@ public class User extends com.pulumi.resources.CustomResource {
     /**
      * The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `kafkaConnect`
-     * * `mysql`
      * 
      */
     @Export(name="engine", type=String.class, parameters={})
@@ -70,10 +66,6 @@ public class User extends com.pulumi.resources.CustomResource {
     /**
      * @return The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `kafkaConnect`
-     * * `mysql`
      * 
      */
     public Output<String> engine() {

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = CloudProject.GetCapabilitiesContainerRegistry(ctx, &cloudproject.GetCapabilitiesContainerRegistryArgs{
+//			_, err := CloudProject.GetCapabilitiesContainerRegistry(ctx, &cloudproject.GetCapabilitiesContainerRegistryArgs{
 //				ServiceName: "XXXXXX",
 //			}, nil)
 //			if err != nil {

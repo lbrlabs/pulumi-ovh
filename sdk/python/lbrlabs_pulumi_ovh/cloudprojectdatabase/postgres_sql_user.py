@@ -28,7 +28,6 @@ class PostgresSqlUserArgs:
         :param pulumi.Input[str] password_reset: Arbitrary string to change to trigger a password update.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Roles the user belongs to.
                Available roles:
-               * `replication`
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "service_name", service_name)
@@ -94,7 +93,6 @@ class PostgresSqlUserArgs:
         """
         Roles the user belongs to.
         Available roles:
-        * `replication`
         """
         return pulumi.get(self, "roles")
 
@@ -123,7 +121,6 @@ class _PostgresSqlUserState:
         :param pulumi.Input[str] password_reset: Arbitrary string to change to trigger a password update.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Roles the user belongs to.
                Available roles:
-               * `replication`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] status: Current status of the user.
@@ -211,7 +208,6 @@ class _PostgresSqlUserState:
         """
         Roles the user belongs to.
         Available roles:
-        * `replication`
         """
         return pulumi.get(self, "roles")
 
@@ -272,7 +268,6 @@ class PostgresSqlUser(pulumi.CustomResource):
         :param pulumi.Input[str] password_reset: Arbitrary string to change to trigger a password update.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Roles the user belongs to.
                Available roles:
-               * `replication`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         """
@@ -366,7 +361,6 @@ class PostgresSqlUser(pulumi.CustomResource):
         :param pulumi.Input[str] password_reset: Arbitrary string to change to trigger a password update.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Roles the user belongs to.
                Available roles:
-               * `replication`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] status: Current status of the user.
@@ -431,7 +425,6 @@ class PostgresSqlUser(pulumi.CustomResource):
         """
         Roles the user belongs to.
         Available roles:
-        * `replication`
         """
         return pulumi.get(self, "roles")
 

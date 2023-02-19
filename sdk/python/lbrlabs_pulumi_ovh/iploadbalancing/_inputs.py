@@ -241,7 +241,7 @@ class HttpRouteRuleArgs:
         """
         :param pulumi.Input[str] field: Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
         :param pulumi.Input[str] match: Matching operator. Not all operators are available for all fields. See "availableRules"
-               * `negate`- Invert the matching operator effect
+        :param pulumi.Input[bool] negate: Invert the matching operator effect
         :param pulumi.Input[str] pattern: Value to match against this match. Interpretation if this field depends on the match and field
         :param pulumi.Input[int] rule_id: Id of your rule
         :param pulumi.Input[str] sub_field: Name of sub-field, if applicable. This may be a Cookie or Header name for instance
@@ -276,7 +276,6 @@ class HttpRouteRuleArgs:
     def match(self) -> Optional[pulumi.Input[str]]:
         """
         Matching operator. Not all operators are available for all fields. See "availableRules"
-        * `negate`- Invert the matching operator effect
         """
         return pulumi.get(self, "match")
 
@@ -287,6 +286,9 @@ class HttpRouteRuleArgs:
     @property
     @pulumi.getter
     def negate(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Invert the matching operator effect
+        """
         return pulumi.get(self, "negate")
 
     @negate.setter
@@ -953,7 +955,7 @@ class TcpRouteRuleArgs:
         """
         :param pulumi.Input[str] field: Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
         :param pulumi.Input[str] match: Matching operator. Not all operators are available for all fields. See "availableRules"
-               * `negate`- Invert the matching operator effect
+        :param pulumi.Input[bool] negate: Invert the matching operator effect
         :param pulumi.Input[str] pattern: Value to match against this match. Interpretation if this field depends on the match and field
         :param pulumi.Input[int] rule_id: Id of your rule
         :param pulumi.Input[str] sub_field: Name of sub-field, if applicable. This may be a Cookie or Header name for instance
@@ -988,7 +990,6 @@ class TcpRouteRuleArgs:
     def match(self) -> Optional[pulumi.Input[str]]:
         """
         Matching operator. Not all operators are available for all fields. See "availableRules"
-        * `negate`- Invert the matching operator effect
         """
         return pulumi.get(self, "match")
 
@@ -999,6 +1000,9 @@ class TcpRouteRuleArgs:
     @property
     @pulumi.getter
     def negate(self) -> Optional[pulumi.Input[bool]]:
+        """
+        Invert the matching operator effect
+        """
         return pulumi.get(self, "negate")
 
     @negate.setter

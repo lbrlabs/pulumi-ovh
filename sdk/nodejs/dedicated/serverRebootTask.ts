@@ -19,7 +19,7 @@ import * as utilities from "../utilities";
  * });
  * const serverOnRescue = new ovh.dedicated.ServerUpdate("serverOnRescue", {
  *     serviceName: "nsxxxxxxx.ip-xx-xx-xx.eu",
- *     bootId: rescue.then(rescue => rescue.results?[0]),
+ *     bootId: rescue.then(rescue => rescue.results?.[0]),
  *     monitoring: true,
  *     state: "ok",
  * });

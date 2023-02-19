@@ -142,10 +142,6 @@ def get_user(cluster_id: Optional[str] = None,
     :param str engine: The engine of the database cluster you want user information. To get a full list of available engine visit :
            [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
            Available engines:
-           * `cassandra`
-           * `kafka`
-           * `kafkaConnect`
-           * `mysql`
     :param str name: Name of the user.
     :param str service_name: The id of the public cloud project. If omitted,
            the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -195,10 +191,6 @@ def get_user_output(cluster_id: Optional[pulumi.Input[str]] = None,
     :param str engine: The engine of the database cluster you want user information. To get a full list of available engine visit :
            [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
            Available engines:
-           * `cassandra`
-           * `kafka`
-           * `kafkaConnect`
-           * `mysql`
     :param str name: Name of the user.
     :param str service_name: The id of the public cloud project. If omitted,
            the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.

@@ -14,20 +14,36 @@ import java.util.Objects;
 @CustomType
 public final class GetInstallationTemplatePartitionScheme {
     private List<GetInstallationTemplatePartitionSchemeHardwareRaid> hardwareRaids;
+    /**
+     * @return Hardware RAID name.
+     * 
+     */
     private String name;
     private List<GetInstallationTemplatePartitionSchemePartition> partitions;
+    /**
+     * @return on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+     * 
+     */
     private Integer priority;
 
     private GetInstallationTemplatePartitionScheme() {}
     public List<GetInstallationTemplatePartitionSchemeHardwareRaid> hardwareRaids() {
         return this.hardwareRaids;
     }
+    /**
+     * @return Hardware RAID name.
+     * 
+     */
     public String name() {
         return this.name;
     }
     public List<GetInstallationTemplatePartitionSchemePartition> partitions() {
         return this.partitions;
     }
+    /**
+     * @return on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+     * 
+     */
     public Integer priority() {
         return this.priority;
     }

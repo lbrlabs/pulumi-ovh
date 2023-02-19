@@ -23,11 +23,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getKubeNodes(args: GetKubeNodesArgs, opts?: pulumi.InvokeOptions): Promise<GetKubeNodesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getKubeNodes:getKubeNodes", {
         "kubeId": args.kubeId,
         "serviceName": args.serviceName,
@@ -70,9 +67,24 @@ export interface GetKubeNodesResult {
      */
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get a list of OVHcloud Managed Kubernetes nodes.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const nodesKubeNodes = ovh.CloudProject.getKubeNodes({
+ *     serviceName: "XXXXXX",
+ *     kubeId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx",
+ * });
+ * export const nodes = nodesKubeNodes;
+ * ```
+ */
 export function getKubeNodesOutput(args: GetKubeNodesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKubeNodesResult> {
-    return pulumi.output(args).apply(a => getKubeNodes(a, opts))
+    return pulumi.output(args).apply((a: any) => getKubeNodes(a, opts))
 }
 
 /**

@@ -14,6 +14,24 @@ namespace Lbrlabs.PulumiPackage.Ovh
     {
         /// <summary>
         /// Use this data source to get the list of installation templates available for dedicated servers.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Ovh = Pulumi.Ovh;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var templates = Ovh.GetInstallationTemplates.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetInstallationTemplatesResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetInstallationTemplatesResult>("ovh:index/getInstallationTemplates:getInstallationTemplates", InvokeArgs.Empty, options.WithDefaults());

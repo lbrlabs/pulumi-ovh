@@ -15,8 +15,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Ip.Outputs
     public sealed class IpServiceRoutedTo
     {
         /// <summary>
-        /// Service where ip is routed to
-        /// * `service_name`: service name
+        /// service name
         /// </summary>
         public readonly string? ServiceName;
 

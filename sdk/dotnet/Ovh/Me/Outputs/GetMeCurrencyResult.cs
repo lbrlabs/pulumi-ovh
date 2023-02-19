@@ -14,7 +14,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me.Outputs
     [OutputType]
     public sealed class GetMeCurrencyResult
     {
+        /// <summary>
+        /// Currency code used by this account (e.g EUR, USD, ...)
+        /// </summary>
         public readonly string Code;
+        /// <summary>
+        /// Currency symbol used by this account (e.g €, $, ...)
+        /// </summary>
         public readonly string Symbol;
 
         [OutputConstructor]

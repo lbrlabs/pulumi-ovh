@@ -13,15 +13,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const users = pulumi.output(ovh.Me.getIdentityUsers());
+ * const users = ovh.Me.getIdentityUsers({});
  * ```
  */
 export function getIdentityUsers(opts?: pulumi.InvokeOptions): Promise<GetIdentityUsersResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Me/getIdentityUsers:getIdentityUsers", {
     }, opts);
 }

@@ -15,18 +15,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const mydatabase = pulumi.output(ovh.Hosting.getPrivateDatabaseDb({
+ * const mydatabase = ovh.Hosting.getPrivateDatabaseDb({
  *     databaseName: "XXXXXX",
  *     serviceName: "XXXXXX",
- * }));
+ * });
  * ```
  */
 export function getPrivateDatabaseDb(args: GetPrivateDatabaseDbArgs, opts?: pulumi.InvokeOptions): Promise<GetPrivateDatabaseDbResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Hosting/getPrivateDatabaseDb:getPrivateDatabaseDb", {
         "databaseName": args.databaseName,
         "serviceName": args.serviceName,
@@ -74,9 +71,23 @@ export interface GetPrivateDatabaseDbResult {
      */
     readonly users: outputs.Hosting.GetPrivateDatabaseDbUser[];
 }
-
+/**
+ * Use this data source to retrieve information about an hosting privatedatabase.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const mydatabase = ovh.Hosting.getPrivateDatabaseDb({
+ *     databaseName: "XXXXXX",
+ *     serviceName: "XXXXXX",
+ * });
+ * ```
+ */
 export function getPrivateDatabaseDbOutput(args: GetPrivateDatabaseDbOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPrivateDatabaseDbResult> {
-    return pulumi.output(args).apply(a => getPrivateDatabaseDb(a, opts))
+    return pulumi.output(args).apply((a: any) => getPrivateDatabaseDb(a, opts))
 }
 
 /**

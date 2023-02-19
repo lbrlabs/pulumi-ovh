@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  *         var httpsredirect = new HttpRoute(&#34;httpsredirect&#34;, HttpRouteArgs.builder()        
  *             .action(HttpRouteActionArgs.builder()
  *                 .status(302)
- *                 .target(String.format(&#34;https://%s%s%s&#34;, host,path,arguments))
+ *                 .target(&#34;https://${host}${path}${arguments}&#34;)
  *                 .type(&#34;redirect&#34;)
  *                 .build())
  *             .displayName(&#34;Redirect to HTTPS&#34;)

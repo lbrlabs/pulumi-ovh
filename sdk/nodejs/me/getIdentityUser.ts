@@ -13,17 +13,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const myUser = pulumi.output(ovh.Me.getIdentityUser({
+ * const myUser = ovh.Me.getIdentityUser({
  *     user: "my_user_login",
- * }));
+ * });
  * ```
  */
 export function getIdentityUser(args: GetIdentityUserArgs, opts?: pulumi.InvokeOptions): Promise<GetIdentityUserResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Me/getIdentityUser:getIdentityUser", {
         "user": args.user,
     }, opts);
@@ -81,9 +78,22 @@ export interface GetIdentityUserResult {
     readonly status: string;
     readonly user: string;
 }
-
+/**
+ * Use this data source to retrieve information about an identity user.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const myUser = ovh.Me.getIdentityUser({
+ *     user: "my_user_login",
+ * });
+ * ```
+ */
 export function getIdentityUserOutput(args: GetIdentityUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIdentityUserResult> {
-    return pulumi.output(args).apply(a => getIdentityUser(a, opts))
+    return pulumi.output(args).apply((a: any) => getIdentityUser(a, opts))
 }
 
 /**

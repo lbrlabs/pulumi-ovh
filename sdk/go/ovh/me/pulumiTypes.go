@@ -11,15 +11,24 @@ import (
 )
 
 type InstallationTemplateCustomization struct {
+	// Template change log details.
+	//
 	// Deprecated: field is not used anymore
-	ChangeLog                    *string `pulumi:"changeLog"`
-	CustomHostname               *string `pulumi:"customHostname"`
-	PostInstallationScriptLink   *string `pulumi:"postInstallationScriptLink"`
+	ChangeLog *string `pulumi:"changeLog"`
+	// Set up the server using the provided hostname instead of the default hostname.
+	CustomHostname *string `pulumi:"customHostname"`
+	// Indicate the URL where your postinstall customisation script is located.
+	PostInstallationScriptLink *string `pulumi:"postInstallationScriptLink"`
+	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
 	PostInstallationScriptReturn *string `pulumi:"postInstallationScriptReturn"`
+	// Rating.
+	//
 	// Deprecated: field is not used anymore
-	Rating                *int    `pulumi:"rating"`
-	SshKeyName            *string `pulumi:"sshKeyName"`
-	UseDistributionKernel *bool   `pulumi:"useDistributionKernel"`
+	Rating *int `pulumi:"rating"`
+	// Name of the ssh key that should be installed. Password login will be disabled.
+	SshKeyName *string `pulumi:"sshKeyName"`
+	// Use the distribution's native kernel instead of the recommended OV
+	UseDistributionKernel *bool `pulumi:"useDistributionKernel"`
 }
 
 // InstallationTemplateCustomizationInput is an input type that accepts InstallationTemplateCustomizationArgs and InstallationTemplateCustomizationOutput values.
@@ -34,15 +43,24 @@ type InstallationTemplateCustomizationInput interface {
 }
 
 type InstallationTemplateCustomizationArgs struct {
+	// Template change log details.
+	//
 	// Deprecated: field is not used anymore
-	ChangeLog                    pulumi.StringPtrInput `pulumi:"changeLog"`
-	CustomHostname               pulumi.StringPtrInput `pulumi:"customHostname"`
-	PostInstallationScriptLink   pulumi.StringPtrInput `pulumi:"postInstallationScriptLink"`
+	ChangeLog pulumi.StringPtrInput `pulumi:"changeLog"`
+	// Set up the server using the provided hostname instead of the default hostname.
+	CustomHostname pulumi.StringPtrInput `pulumi:"customHostname"`
+	// Indicate the URL where your postinstall customisation script is located.
+	PostInstallationScriptLink pulumi.StringPtrInput `pulumi:"postInstallationScriptLink"`
+	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
 	PostInstallationScriptReturn pulumi.StringPtrInput `pulumi:"postInstallationScriptReturn"`
+	// Rating.
+	//
 	// Deprecated: field is not used anymore
-	Rating                pulumi.IntPtrInput    `pulumi:"rating"`
-	SshKeyName            pulumi.StringPtrInput `pulumi:"sshKeyName"`
-	UseDistributionKernel pulumi.BoolPtrInput   `pulumi:"useDistributionKernel"`
+	Rating pulumi.IntPtrInput `pulumi:"rating"`
+	// Name of the ssh key that should be installed. Password login will be disabled.
+	SshKeyName pulumi.StringPtrInput `pulumi:"sshKeyName"`
+	// Use the distribution's native kernel instead of the recommended OV
+	UseDistributionKernel pulumi.BoolPtrInput `pulumi:"useDistributionKernel"`
 }
 
 func (InstallationTemplateCustomizationArgs) ElementType() reflect.Type {
@@ -122,32 +140,41 @@ func (o InstallationTemplateCustomizationOutput) ToInstallationTemplateCustomiza
 	}).(InstallationTemplateCustomizationPtrOutput)
 }
 
+// Template change log details.
+//
 // Deprecated: field is not used anymore
 func (o InstallationTemplateCustomizationOutput) ChangeLog() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstallationTemplateCustomization) *string { return v.ChangeLog }).(pulumi.StringPtrOutput)
 }
 
+// Set up the server using the provided hostname instead of the default hostname.
 func (o InstallationTemplateCustomizationOutput) CustomHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstallationTemplateCustomization) *string { return v.CustomHostname }).(pulumi.StringPtrOutput)
 }
 
+// Indicate the URL where your postinstall customisation script is located.
 func (o InstallationTemplateCustomizationOutput) PostInstallationScriptLink() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstallationTemplateCustomization) *string { return v.PostInstallationScriptLink }).(pulumi.StringPtrOutput)
 }
 
+// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
 func (o InstallationTemplateCustomizationOutput) PostInstallationScriptReturn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstallationTemplateCustomization) *string { return v.PostInstallationScriptReturn }).(pulumi.StringPtrOutput)
 }
 
+// Rating.
+//
 // Deprecated: field is not used anymore
 func (o InstallationTemplateCustomizationOutput) Rating() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v InstallationTemplateCustomization) *int { return v.Rating }).(pulumi.IntPtrOutput)
 }
 
+// Name of the ssh key that should be installed. Password login will be disabled.
 func (o InstallationTemplateCustomizationOutput) SshKeyName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v InstallationTemplateCustomization) *string { return v.SshKeyName }).(pulumi.StringPtrOutput)
 }
 
+// Use the distribution's native kernel instead of the recommended OV
 func (o InstallationTemplateCustomizationOutput) UseDistributionKernel() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v InstallationTemplateCustomization) *bool { return v.UseDistributionKernel }).(pulumi.BoolPtrOutput)
 }
@@ -176,6 +203,8 @@ func (o InstallationTemplateCustomizationPtrOutput) Elem() InstallationTemplateC
 	}).(InstallationTemplateCustomizationOutput)
 }
 
+// Template change log details.
+//
 // Deprecated: field is not used anymore
 func (o InstallationTemplateCustomizationPtrOutput) ChangeLog() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstallationTemplateCustomization) *string {
@@ -186,6 +215,7 @@ func (o InstallationTemplateCustomizationPtrOutput) ChangeLog() pulumi.StringPtr
 	}).(pulumi.StringPtrOutput)
 }
 
+// Set up the server using the provided hostname instead of the default hostname.
 func (o InstallationTemplateCustomizationPtrOutput) CustomHostname() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstallationTemplateCustomization) *string {
 		if v == nil {
@@ -195,6 +225,7 @@ func (o InstallationTemplateCustomizationPtrOutput) CustomHostname() pulumi.Stri
 	}).(pulumi.StringPtrOutput)
 }
 
+// Indicate the URL where your postinstall customisation script is located.
 func (o InstallationTemplateCustomizationPtrOutput) PostInstallationScriptLink() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstallationTemplateCustomization) *string {
 		if v == nil {
@@ -204,6 +235,7 @@ func (o InstallationTemplateCustomizationPtrOutput) PostInstallationScriptLink()
 	}).(pulumi.StringPtrOutput)
 }
 
+// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
 func (o InstallationTemplateCustomizationPtrOutput) PostInstallationScriptReturn() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstallationTemplateCustomization) *string {
 		if v == nil {
@@ -213,6 +245,8 @@ func (o InstallationTemplateCustomizationPtrOutput) PostInstallationScriptReturn
 	}).(pulumi.StringPtrOutput)
 }
 
+// Rating.
+//
 // Deprecated: field is not used anymore
 func (o InstallationTemplateCustomizationPtrOutput) Rating() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *InstallationTemplateCustomization) *int {
@@ -223,6 +257,7 @@ func (o InstallationTemplateCustomizationPtrOutput) Rating() pulumi.IntPtrOutput
 	}).(pulumi.IntPtrOutput)
 }
 
+// Name of the ssh key that should be installed. Password login will be disabled.
 func (o InstallationTemplateCustomizationPtrOutput) SshKeyName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *InstallationTemplateCustomization) *string {
 		if v == nil {
@@ -232,6 +267,7 @@ func (o InstallationTemplateCustomizationPtrOutput) SshKeyName() pulumi.StringPt
 	}).(pulumi.StringPtrOutput)
 }
 
+// Use the distribution's native kernel instead of the recommended OV
 func (o InstallationTemplateCustomizationPtrOutput) UseDistributionKernel() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *InstallationTemplateCustomization) *bool {
 		if v == nil {
@@ -242,15 +278,24 @@ func (o InstallationTemplateCustomizationPtrOutput) UseDistributionKernel() pulu
 }
 
 type GetInstallationTemplateCustomization struct {
+	// (DEPRECATED) Template change log details.
+	//
 	// Deprecated: field is not used anymore
-	ChangeLog                    string `pulumi:"changeLog"`
-	CustomHostname               string `pulumi:"customHostname"`
-	PostInstallationScriptLink   string `pulumi:"postInstallationScriptLink"`
+	ChangeLog string `pulumi:"changeLog"`
+	// Set up the server using the provided hostname instead of the default hostname.
+	CustomHostname string `pulumi:"customHostname"`
+	// Indicate the URL where your postinstall customisation script is located.
+	PostInstallationScriptLink string `pulumi:"postInstallationScriptLink"`
+	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
 	PostInstallationScriptReturn string `pulumi:"postInstallationScriptReturn"`
+	// (DEPRECATED) Rating.
+	//
 	// Deprecated: field is not used anymore
-	Rating                int    `pulumi:"rating"`
-	SshKeyName            string `pulumi:"sshKeyName"`
-	UseDistributionKernel bool   `pulumi:"useDistributionKernel"`
+	Rating int `pulumi:"rating"`
+	// Name of the ssh key that should be installed. Password login will be disabled.
+	SshKeyName string `pulumi:"sshKeyName"`
+	// Use the distribution's native kernel instead of the recommended OVHcloud Kernel.
+	UseDistributionKernel bool `pulumi:"useDistributionKernel"`
 }
 
 // GetInstallationTemplateCustomizationInput is an input type that accepts GetInstallationTemplateCustomizationArgs and GetInstallationTemplateCustomizationOutput values.
@@ -265,15 +310,24 @@ type GetInstallationTemplateCustomizationInput interface {
 }
 
 type GetInstallationTemplateCustomizationArgs struct {
+	// (DEPRECATED) Template change log details.
+	//
 	// Deprecated: field is not used anymore
-	ChangeLog                    pulumi.StringInput `pulumi:"changeLog"`
-	CustomHostname               pulumi.StringInput `pulumi:"customHostname"`
-	PostInstallationScriptLink   pulumi.StringInput `pulumi:"postInstallationScriptLink"`
+	ChangeLog pulumi.StringInput `pulumi:"changeLog"`
+	// Set up the server using the provided hostname instead of the default hostname.
+	CustomHostname pulumi.StringInput `pulumi:"customHostname"`
+	// Indicate the URL where your postinstall customisation script is located.
+	PostInstallationScriptLink pulumi.StringInput `pulumi:"postInstallationScriptLink"`
+	// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
 	PostInstallationScriptReturn pulumi.StringInput `pulumi:"postInstallationScriptReturn"`
+	// (DEPRECATED) Rating.
+	//
 	// Deprecated: field is not used anymore
-	Rating                pulumi.IntInput    `pulumi:"rating"`
-	SshKeyName            pulumi.StringInput `pulumi:"sshKeyName"`
-	UseDistributionKernel pulumi.BoolInput   `pulumi:"useDistributionKernel"`
+	Rating pulumi.IntInput `pulumi:"rating"`
+	// Name of the ssh key that should be installed. Password login will be disabled.
+	SshKeyName pulumi.StringInput `pulumi:"sshKeyName"`
+	// Use the distribution's native kernel instead of the recommended OVHcloud Kernel.
+	UseDistributionKernel pulumi.BoolInput `pulumi:"useDistributionKernel"`
 }
 
 func (GetInstallationTemplateCustomizationArgs) ElementType() reflect.Type {
@@ -327,32 +381,41 @@ func (o GetInstallationTemplateCustomizationOutput) ToGetInstallationTemplateCus
 	return o
 }
 
+// (DEPRECATED) Template change log details.
+//
 // Deprecated: field is not used anymore
 func (o GetInstallationTemplateCustomizationOutput) ChangeLog() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplateCustomization) string { return v.ChangeLog }).(pulumi.StringOutput)
 }
 
+// Set up the server using the provided hostname instead of the default hostname.
 func (o GetInstallationTemplateCustomizationOutput) CustomHostname() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplateCustomization) string { return v.CustomHostname }).(pulumi.StringOutput)
 }
 
+// Indicate the URL where your postinstall customisation script is located.
 func (o GetInstallationTemplateCustomizationOutput) PostInstallationScriptLink() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplateCustomization) string { return v.PostInstallationScriptLink }).(pulumi.StringOutput)
 }
 
+// indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
 func (o GetInstallationTemplateCustomizationOutput) PostInstallationScriptReturn() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplateCustomization) string { return v.PostInstallationScriptReturn }).(pulumi.StringOutput)
 }
 
+// (DEPRECATED) Rating.
+//
 // Deprecated: field is not used anymore
 func (o GetInstallationTemplateCustomizationOutput) Rating() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstallationTemplateCustomization) int { return v.Rating }).(pulumi.IntOutput)
 }
 
+// Name of the ssh key that should be installed. Password login will be disabled.
 func (o GetInstallationTemplateCustomizationOutput) SshKeyName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplateCustomization) string { return v.SshKeyName }).(pulumi.StringOutput)
 }
 
+// Use the distribution's native kernel instead of the recommended OVHcloud Kernel.
 func (o GetInstallationTemplateCustomizationOutput) UseDistributionKernel() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetInstallationTemplateCustomization) bool { return v.UseDistributionKernel }).(pulumi.BoolOutput)
 }
@@ -379,9 +442,11 @@ func (o GetInstallationTemplateCustomizationArrayOutput) Index(i pulumi.IntInput
 
 type GetInstallationTemplatePartitionSchemeType struct {
 	HardwareRaids []GetInstallationTemplatePartitionSchemeHardwareRaidType `pulumi:"hardwareRaids"`
-	Name          string                                                   `pulumi:"name"`
-	Partitions    []GetInstallationTemplatePartitionSchemePartitionType    `pulumi:"partitions"`
-	Priority      int                                                      `pulumi:"priority"`
+	// Hardware RAID name.
+	Name       string                                                `pulumi:"name"`
+	Partitions []GetInstallationTemplatePartitionSchemePartitionType `pulumi:"partitions"`
+	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+	Priority int `pulumi:"priority"`
 }
 
 // GetInstallationTemplatePartitionSchemeTypeInput is an input type that accepts GetInstallationTemplatePartitionSchemeTypeArgs and GetInstallationTemplatePartitionSchemeTypeOutput values.
@@ -397,9 +462,11 @@ type GetInstallationTemplatePartitionSchemeTypeInput interface {
 
 type GetInstallationTemplatePartitionSchemeTypeArgs struct {
 	HardwareRaids GetInstallationTemplatePartitionSchemeHardwareRaidTypeArrayInput `pulumi:"hardwareRaids"`
-	Name          pulumi.StringInput                                               `pulumi:"name"`
-	Partitions    GetInstallationTemplatePartitionSchemePartitionTypeArrayInput    `pulumi:"partitions"`
-	Priority      pulumi.IntInput                                                  `pulumi:"priority"`
+	// Hardware RAID name.
+	Name       pulumi.StringInput                                            `pulumi:"name"`
+	Partitions GetInstallationTemplatePartitionSchemePartitionTypeArrayInput `pulumi:"partitions"`
+	// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+	Priority pulumi.IntInput `pulumi:"priority"`
 }
 
 func (GetInstallationTemplatePartitionSchemeTypeArgs) ElementType() reflect.Type {
@@ -459,6 +526,7 @@ func (o GetInstallationTemplatePartitionSchemeTypeOutput) HardwareRaids() GetIns
 	}).(GetInstallationTemplatePartitionSchemeHardwareRaidTypeArrayOutput)
 }
 
+// Hardware RAID name.
 func (o GetInstallationTemplatePartitionSchemeTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemeType) string { return v.Name }).(pulumi.StringOutput)
 }
@@ -469,6 +537,7 @@ func (o GetInstallationTemplatePartitionSchemeTypeOutput) Partitions() GetInstal
 	}).(GetInstallationTemplatePartitionSchemePartitionTypeArrayOutput)
 }
 
+// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
 func (o GetInstallationTemplatePartitionSchemeTypeOutput) Priority() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemeType) int { return v.Priority }).(pulumi.IntOutput)
 }
@@ -494,10 +563,14 @@ func (o GetInstallationTemplatePartitionSchemeTypeArrayOutput) Index(i pulumi.In
 }
 
 type GetInstallationTemplatePartitionSchemeHardwareRaidType struct {
+	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
 	Disks []string `pulumi:"disks"`
-	Mode  string   `pulumi:"mode"`
-	Name  string   `pulumi:"name"`
-	Step  int      `pulumi:"step"`
+	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+	Mode string `pulumi:"mode"`
+	// Hardware RAID name.
+	Name string `pulumi:"name"`
+	// Specifies the creation order of the hardware RAID.
+	Step int `pulumi:"step"`
 }
 
 // GetInstallationTemplatePartitionSchemeHardwareRaidTypeInput is an input type that accepts GetInstallationTemplatePartitionSchemeHardwareRaidTypeArgs and GetInstallationTemplatePartitionSchemeHardwareRaidTypeOutput values.
@@ -512,10 +585,14 @@ type GetInstallationTemplatePartitionSchemeHardwareRaidTypeInput interface {
 }
 
 type GetInstallationTemplatePartitionSchemeHardwareRaidTypeArgs struct {
+	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
 	Disks pulumi.StringArrayInput `pulumi:"disks"`
-	Mode  pulumi.StringInput      `pulumi:"mode"`
-	Name  pulumi.StringInput      `pulumi:"name"`
-	Step  pulumi.IntInput         `pulumi:"step"`
+	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+	Mode pulumi.StringInput `pulumi:"mode"`
+	// Hardware RAID name.
+	Name pulumi.StringInput `pulumi:"name"`
+	// Specifies the creation order of the hardware RAID.
+	Step pulumi.IntInput `pulumi:"step"`
 }
 
 func (GetInstallationTemplatePartitionSchemeHardwareRaidTypeArgs) ElementType() reflect.Type {
@@ -569,18 +646,22 @@ func (o GetInstallationTemplatePartitionSchemeHardwareRaidTypeOutput) ToGetInsta
 	return o
 }
 
+// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
 func (o GetInstallationTemplatePartitionSchemeHardwareRaidTypeOutput) Disks() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemeHardwareRaidType) []string { return v.Disks }).(pulumi.StringArrayOutput)
 }
 
+// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
 func (o GetInstallationTemplatePartitionSchemeHardwareRaidTypeOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemeHardwareRaidType) string { return v.Mode }).(pulumi.StringOutput)
 }
 
+// Hardware RAID name.
 func (o GetInstallationTemplatePartitionSchemeHardwareRaidTypeOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemeHardwareRaidType) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// Specifies the creation order of the hardware RAID.
 func (o GetInstallationTemplatePartitionSchemeHardwareRaidTypeOutput) Step() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemeHardwareRaidType) int { return v.Step }).(pulumi.IntOutput)
 }
@@ -606,12 +687,19 @@ func (o GetInstallationTemplatePartitionSchemeHardwareRaidTypeArrayOutput) Index
 }
 
 type GetInstallationTemplatePartitionSchemePartitionType struct {
+	// Partition filesystem.
 	Filesystem string `pulumi:"filesystem"`
+	// partition mount point.
 	Mountpoint string `pulumi:"mountpoint"`
-	Order      int    `pulumi:"order"`
-	Raid       string `pulumi:"raid"`
-	Size       int    `pulumi:"size"`
-	Type       string `pulumi:"type"`
+	// step or order. specifies the creation order of the partition on the disk
+	Order int `pulumi:"order"`
+	// raid partition type.
+	Raid string `pulumi:"raid"`
+	// size of partition in MB, 0 => rest of the space.
+	Size int `pulumi:"size"`
+	// partition type.
+	Type string `pulumi:"type"`
+	// The volume name needed for proxmox distribution
 	VolumeName string `pulumi:"volumeName"`
 }
 
@@ -627,12 +715,19 @@ type GetInstallationTemplatePartitionSchemePartitionTypeInput interface {
 }
 
 type GetInstallationTemplatePartitionSchemePartitionTypeArgs struct {
+	// Partition filesystem.
 	Filesystem pulumi.StringInput `pulumi:"filesystem"`
+	// partition mount point.
 	Mountpoint pulumi.StringInput `pulumi:"mountpoint"`
-	Order      pulumi.IntInput    `pulumi:"order"`
-	Raid       pulumi.StringInput `pulumi:"raid"`
-	Size       pulumi.IntInput    `pulumi:"size"`
-	Type       pulumi.StringInput `pulumi:"type"`
+	// step or order. specifies the creation order of the partition on the disk
+	Order pulumi.IntInput `pulumi:"order"`
+	// raid partition type.
+	Raid pulumi.StringInput `pulumi:"raid"`
+	// size of partition in MB, 0 => rest of the space.
+	Size pulumi.IntInput `pulumi:"size"`
+	// partition type.
+	Type pulumi.StringInput `pulumi:"type"`
+	// The volume name needed for proxmox distribution
 	VolumeName pulumi.StringInput `pulumi:"volumeName"`
 }
 
@@ -687,30 +782,37 @@ func (o GetInstallationTemplatePartitionSchemePartitionTypeOutput) ToGetInstalla
 	return o
 }
 
+// Partition filesystem.
 func (o GetInstallationTemplatePartitionSchemePartitionTypeOutput) Filesystem() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemePartitionType) string { return v.Filesystem }).(pulumi.StringOutput)
 }
 
+// partition mount point.
 func (o GetInstallationTemplatePartitionSchemePartitionTypeOutput) Mountpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemePartitionType) string { return v.Mountpoint }).(pulumi.StringOutput)
 }
 
+// step or order. specifies the creation order of the partition on the disk
 func (o GetInstallationTemplatePartitionSchemePartitionTypeOutput) Order() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemePartitionType) int { return v.Order }).(pulumi.IntOutput)
 }
 
+// raid partition type.
 func (o GetInstallationTemplatePartitionSchemePartitionTypeOutput) Raid() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemePartitionType) string { return v.Raid }).(pulumi.StringOutput)
 }
 
+// size of partition in MB, 0 => rest of the space.
 func (o GetInstallationTemplatePartitionSchemePartitionTypeOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemePartitionType) int { return v.Size }).(pulumi.IntOutput)
 }
 
+// partition type.
 func (o GetInstallationTemplatePartitionSchemePartitionTypeOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemePartitionType) string { return v.Type }).(pulumi.StringOutput)
 }
 
+// The volume name needed for proxmox distribution
 func (o GetInstallationTemplatePartitionSchemePartitionTypeOutput) VolumeName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetInstallationTemplatePartitionSchemePartitionType) string { return v.VolumeName }).(pulumi.StringOutput)
 }
@@ -736,7 +838,9 @@ func (o GetInstallationTemplatePartitionSchemePartitionTypeArrayOutput) Index(i 
 }
 
 type GetMeCurrency struct {
-	Code   string `pulumi:"code"`
+	// Currency code used by this account (e.g EUR, USD, ...)
+	Code string `pulumi:"code"`
+	// Currency symbol used by this account (e.g €, $, ...)
 	Symbol string `pulumi:"symbol"`
 }
 
@@ -752,7 +856,9 @@ type GetMeCurrencyInput interface {
 }
 
 type GetMeCurrencyArgs struct {
-	Code   pulumi.StringInput `pulumi:"code"`
+	// Currency code used by this account (e.g EUR, USD, ...)
+	Code pulumi.StringInput `pulumi:"code"`
+	// Currency symbol used by this account (e.g €, $, ...)
 	Symbol pulumi.StringInput `pulumi:"symbol"`
 }
 
@@ -807,10 +913,12 @@ func (o GetMeCurrencyOutput) ToGetMeCurrencyOutputWithContext(ctx context.Contex
 	return o
 }
 
+// Currency code used by this account (e.g EUR, USD, ...)
 func (o GetMeCurrencyOutput) Code() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMeCurrency) string { return v.Code }).(pulumi.StringOutput)
 }
 
+// Currency symbol used by this account (e.g €, $, ...)
 func (o GetMeCurrencyOutput) Symbol() pulumi.StringOutput {
 	return o.ApplyT(func(v GetMeCurrency) string { return v.Symbol }).(pulumi.StringOutput)
 }

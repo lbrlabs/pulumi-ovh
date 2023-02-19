@@ -86,10 +86,6 @@ public class KafkaAcl extends com.pulumi.resources.CustomResource {
     /**
      * Permission to give to this username on this topic.
      * Available permissions:
-     * * `admin`
-     * * `read`
-     * * `write`
-     * * `readwrite`
      * 
      */
     @Export(name="permission", type=String.class, parameters={})
@@ -98,10 +94,6 @@ public class KafkaAcl extends com.pulumi.resources.CustomResource {
     /**
      * @return Permission to give to this username on this topic.
      * Available permissions:
-     * * `admin`
-     * * `read`
-     * * `write`
-     * * `readwrite`
      * 
      */
     public Output<String> permission() {

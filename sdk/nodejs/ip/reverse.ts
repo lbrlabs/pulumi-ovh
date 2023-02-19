@@ -11,10 +11,10 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
  * // Set the reverse of an IP
- * const test = new ovh.Ip.Reverse("test", {
+ * const test = new ovh.ip.Reverse("test", {
  *     ip: "192.0.2.0/24",
  *     ReverseIp: "192.0.2.1",
  *     ReverseValue: "example.com",

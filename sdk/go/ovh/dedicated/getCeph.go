@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Dedicated.GetCeph(ctx, &dedicated.GetCephArgs{
+//			_, err := Dedicated.GetCeph(ctx, &dedicated.GetCephArgs{
 //				ServiceName: "XXXXXX",
 //			}, nil)
 //			if err != nil {
