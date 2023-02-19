@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as ovh from "@pulumi/ovh";
  *
  * const stream = pulumi.output(ovh.Dbaas.getLogsOutputGraylogStream({
- *     serviceName: "XXXXXX",
+ *     serviceName: "ldp-xx-xxxxx",
  *     title: "my stream",
  * }));
  * ```
@@ -36,7 +36,7 @@ export function getLogsOutputGraylogStream(args: GetLogsOutputGraylogStreamArgs,
  */
 export interface GetLogsOutputGraylogStreamArgs {
     /**
-     * The service name
+     * The service name. It's the ID of your Logs Data Platform instance.
      */
     serviceName: string;
     /**
@@ -139,7 +139,7 @@ export interface GetLogsOutputGraylogStreamResult {
     /**
      * Enable Websocket
      */
-    readonly webSocketEnabled: string;
+    readonly webSocketEnabled: boolean;
 }
 
 export function getLogsOutputGraylogStreamOutput(args: GetLogsOutputGraylogStreamOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLogsOutputGraylogStreamResult> {
@@ -151,7 +151,7 @@ export function getLogsOutputGraylogStreamOutput(args: GetLogsOutputGraylogStrea
  */
 export interface GetLogsOutputGraylogStreamOutputArgs {
     /**
-     * The service name
+     * The service name. It's the ID of your Logs Data Platform instance.
      */
     serviceName: pulumi.Input<string>;
     /**

@@ -62,10 +62,8 @@ export interface GetInstallationTemplateResult {
     readonly lvmReady: boolean;
     readonly partitionSchemes: outputs.Me.GetInstallationTemplatePartitionScheme[];
     readonly supportsDistributionKernel: boolean;
-    readonly supportsGptLabel: boolean;
     readonly supportsRtm: boolean;
     readonly supportsSqlServer: boolean;
-    readonly supportsUefi: string;
     readonly templateName: string;
 }
 

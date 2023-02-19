@@ -43,6 +43,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &NetworkPrivateSubnet{}
 	case "ovh:CloudProject/project:Project":
 		r = &Project{}
+	case "ovh:CloudProject/regionStoragePresign:RegionStoragePresign":
+		r = &RegionStoragePresign{}
 	case "ovh:CloudProject/s3Credential:S3Credential":
 		r = &S3Credential{}
 	case "ovh:CloudProject/s3Policy:S3Policy":
@@ -115,6 +117,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ovh",
 		"CloudProject/project",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ovh",
+		"CloudProject/regionStoragePresign",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(

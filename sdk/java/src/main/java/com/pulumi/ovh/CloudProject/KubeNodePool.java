@@ -21,6 +21,43 @@ import javax.annotation.Nullable;
  * Creates a nodepool in a OVHcloud Managed Kubernetes Service cluster.
  * 
  * ## Example Usage
+ * 
+ * Create a simple node pool in your Kubernetes cluster:
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ovh.CloudProject.KubeNodePool;
+ * import com.pulumi.ovh.CloudProject.KubeNodePoolArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         var nodePool = new KubeNodePool(&#34;nodePool&#34;, KubeNodePoolArgs.builder()        
+ *             .desiredNodes(3)
+ *             .flavorName(&#34;b2-7&#34;)
+ *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;)
+ *             .maxNodes(3)
+ *             .minNodes(3)
+ *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
+ * 
+ * Create an advanced node pool in your Kubernetes cluster:
  * ```java
  * package generated_program;
  * 
@@ -48,7 +85,7 @@ import javax.annotation.Nullable;
  *         var pool = new KubeNodePool(&#34;pool&#34;, KubeNodePoolArgs.builder()        
  *             .desiredNodes(3)
  *             .flavorName(&#34;b2-7&#34;)
- *             .kubeId(&#34;xxxxxxxx-2bf9-xxxx-xxxx-xxxxxxxxxxxx&#34;)
+ *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&#34;)
  *             .maxNodes(3)
  *             .minNodes(3)
  *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
@@ -86,7 +123,7 @@ import javax.annotation.Nullable;
  * OVHcloud Managed Kubernetes Service cluster node pool can be imported using the `service_name`, the `id` of the cluster, and the `id` of the nodepool separated by &#34;/&#34; E.g., bash
  * 
  * ```sh
- *  $ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool my_kube_cluster service_name/kube_id/poolid
+ *  $ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool pool service_name/kube_id/poolid
  * ```
  * 
  */
@@ -97,28 +134,28 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="antiAffinity", type=Boolean.class, parameters={})
-    private Output</* @Nullable */ Boolean> antiAffinity;
+    private Output<Boolean> antiAffinity;
 
     /**
      * @return should the pool use the anti-affinity feature. Default to `false`.
      * 
      */
-    public Output<Optional<Boolean>> antiAffinity() {
-        return Codegen.optional(this.antiAffinity);
+    public Output<Boolean> antiAffinity() {
+        return this.antiAffinity;
     }
     /**
      * Enable auto-scaling for the pool. Default to `false`.
      * 
      */
     @Export(name="autoscale", type=Boolean.class, parameters={})
-    private Output</* @Nullable */ Boolean> autoscale;
+    private Output<Boolean> autoscale;
 
     /**
      * @return Enable auto-scaling for the pool. Default to `false`.
      * 
      */
-    public Output<Optional<Boolean>> autoscale() {
-        return Codegen.optional(this.autoscale);
+    public Output<Boolean> autoscale() {
+        return this.autoscale;
     }
     /**
      * Number of nodes which are actually ready in the pool
@@ -259,14 +296,14 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="monthlyBilled", type=Boolean.class, parameters={})
-    private Output</* @Nullable */ Boolean> monthlyBilled;
+    private Output<Boolean> monthlyBilled;
 
     /**
      * @return should the nodes be billed on a monthly basis. Default to `false`.
      * 
      */
-    public Output<Optional<Boolean>> monthlyBilled() {
-        return Codegen.optional(this.monthlyBilled);
+    public Output<Boolean> monthlyBilled() {
+        return this.monthlyBilled;
     }
     /**
      * The name of the nodepool.

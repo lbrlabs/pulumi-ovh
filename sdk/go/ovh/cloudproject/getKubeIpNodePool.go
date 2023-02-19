@@ -54,17 +54,12 @@ func GetKubeIpNodePool(ctx *pulumi.Context, args *GetKubeIpNodePoolArgs, opts ..
 type GetKubeIpNodePoolArgs struct {
 	// The id of the managed kubernetes cluster.
 	KubeId string `pulumi:"kubeId"`
-	// maximum number of nodes allowed in the pool.
-	// Setting `desiredNodes` over this value will raise an error.
-	MaxNodes *int `pulumi:"maxNodes"`
-	// minimum number of nodes allowed in the pool.
-	// Setting `desiredNodes` under this value will raise an error.
-	MinNodes *int `pulumi:"minNodes"`
 	// The name of the node pool.
 	Name string `pulumi:"name"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
-	ServiceName string `pulumi:"serviceName"`
+	ServiceName string                     `pulumi:"serviceName"`
+	Template    *GetKubeIpNodePoolTemplate `pulumi:"template"`
 }
 
 // A collection of values returned by getKubeIpNodePool.
@@ -110,7 +105,8 @@ type GetKubeIpNodePoolResult struct {
 	// Status describing the state between number of nodes wanted and available ones
 	SizeStatus string `pulumi:"sizeStatus"`
 	// Current status
-	Status string `pulumi:"status"`
+	Status   string                     `pulumi:"status"`
+	Template *GetKubeIpNodePoolTemplate `pulumi:"template"`
 	// Number of nodes with the latest version installed in the pool
 	UpToDateNodes int `pulumi:"upToDateNodes"`
 	// Last update date
@@ -134,17 +130,12 @@ func GetKubeIpNodePoolOutput(ctx *pulumi.Context, args GetKubeIpNodePoolOutputAr
 type GetKubeIpNodePoolOutputArgs struct {
 	// The id of the managed kubernetes cluster.
 	KubeId pulumi.StringInput `pulumi:"kubeId"`
-	// maximum number of nodes allowed in the pool.
-	// Setting `desiredNodes` over this value will raise an error.
-	MaxNodes pulumi.IntPtrInput `pulumi:"maxNodes"`
-	// minimum number of nodes allowed in the pool.
-	// Setting `desiredNodes` under this value will raise an error.
-	MinNodes pulumi.IntPtrInput `pulumi:"minNodes"`
 	// The name of the node pool.
 	Name pulumi.StringInput `pulumi:"name"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
-	ServiceName pulumi.StringInput `pulumi:"serviceName"`
+	ServiceName pulumi.StringInput                `pulumi:"serviceName"`
+	Template    GetKubeIpNodePoolTemplatePtrInput `pulumi:"template"`
 }
 
 func (GetKubeIpNodePoolOutputArgs) ElementType() reflect.Type {
@@ -260,6 +251,10 @@ func (o GetKubeIpNodePoolResultOutput) SizeStatus() pulumi.StringOutput {
 // Current status
 func (o GetKubeIpNodePoolResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetKubeIpNodePoolResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+func (o GetKubeIpNodePoolResultOutput) Template() GetKubeIpNodePoolTemplatePtrOutput {
+	return o.ApplyT(func(v GetKubeIpNodePoolResult) *GetKubeIpNodePoolTemplate { return v.Template }).(GetKubeIpNodePoolTemplatePtrOutput)
 }
 
 // Number of nodes with the latest version installed in the pool

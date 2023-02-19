@@ -145,6 +145,14 @@ class Reverse(pulumi.CustomResource):
             reverse_value="example.com")
         ```
 
+        ## Import
+
+        The resource can be imported using the `ip`, `ip_reverse` of the address, separated by "|" E.g., bash
+
+        ```sh
+         $ pulumi import ovh:Ip/reverse:Reverse my_reverse '2001:0db8:c0ff:ee::/64|2001:0db8:c0ff:ee::42'
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] reverse_ip: The IP to set the reverse of
@@ -171,6 +179,14 @@ class Reverse(pulumi.CustomResource):
             ip="192.0.2.0/24",
             reverse_ip="192.0.2.1",
             reverse_value="example.com")
+        ```
+
+        ## Import
+
+        The resource can be imported using the `ip`, `ip_reverse` of the address, separated by "|" E.g., bash
+
+        ```sh
+         $ pulumi import ovh:Ip/reverse:Reverse my_reverse '2001:0db8:c0ff:ee::/64|2001:0db8:c0ff:ee::42'
         ```
 
         :param str resource_name: The name of the resource.

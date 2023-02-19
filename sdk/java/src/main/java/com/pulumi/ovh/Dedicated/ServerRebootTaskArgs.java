@@ -15,14 +15,14 @@ public final class ServerRebootTaskArgs extends com.pulumi.resources.ResourceArg
     public static final ServerRebootTaskArgs Empty = new ServerRebootTaskArgs();
 
     /**
-     * List of values traccked to trigger reboot, used also to form implicit dependencies
+     * List of values tracked to trigger reboot, used also to form implicit dependencies.
      * 
      */
     @Import(name="keepers", required=true)
     private Output<List<String>> keepers;
 
     /**
-     * @return List of values traccked to trigger reboot, used also to form implicit dependencies
+     * @return List of values tracked to trigger reboot, used also to form implicit dependencies.
      * 
      */
     public Output<List<String>> keepers() {
@@ -70,7 +70,7 @@ public final class ServerRebootTaskArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param keepers List of values traccked to trigger reboot, used also to form implicit dependencies
+         * @param keepers List of values tracked to trigger reboot, used also to form implicit dependencies.
          * 
          * @return builder
          * 
@@ -81,7 +81,7 @@ public final class ServerRebootTaskArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param keepers List of values traccked to trigger reboot, used also to form implicit dependencies
+         * @param keepers List of values tracked to trigger reboot, used also to form implicit dependencies.
          * 
          * @return builder
          * 
@@ -91,7 +91,7 @@ public final class ServerRebootTaskArgs extends com.pulumi.resources.ResourceArg
         }
 
         /**
-         * @param keepers List of values traccked to trigger reboot, used also to form implicit dependencies
+         * @param keepers List of values tracked to trigger reboot, used also to form implicit dependencies.
          * 
          * @return builder
          * 

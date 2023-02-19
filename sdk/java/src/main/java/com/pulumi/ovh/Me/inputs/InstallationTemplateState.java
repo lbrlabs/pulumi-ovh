@@ -267,21 +267,6 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-     * 
-     */
-    @Import(name="supportsGptLabel")
-    private @Nullable Output<Boolean> supportsGptLabel;
-
-    /**
-     * @return This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-     * 
-     */
-    public Optional<Output<Boolean>> supportsGptLabel() {
-        return Optional.ofNullable(this.supportsGptLabel);
-    }
-
-    /**
      * This distribution supports RTM software
      * 
      */
@@ -309,21 +294,6 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
      */
     public Optional<Output<Boolean>> supportsSqlServer() {
         return Optional.ofNullable(this.supportsSqlServer);
-    }
-
-    /**
-     * This distribution supports UEFI setup (no,only,yes)
-     * 
-     */
-    @Import(name="supportsUefi")
-    private @Nullable Output<String> supportsUefi;
-
-    /**
-     * @return This distribution supports UEFI setup (no,only,yes)
-     * 
-     */
-    public Optional<Output<String>> supportsUefi() {
-        return Optional.ofNullable(this.supportsUefi);
     }
 
     /**
@@ -361,10 +331,8 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         this.lvmReady = $.lvmReady;
         this.removeDefaultPartitionSchemes = $.removeDefaultPartitionSchemes;
         this.supportsDistributionKernel = $.supportsDistributionKernel;
-        this.supportsGptLabel = $.supportsGptLabel;
         this.supportsRtm = $.supportsRtm;
         this.supportsSqlServer = $.supportsSqlServer;
-        this.supportsUefi = $.supportsUefi;
         this.templateName = $.templateName;
     }
 
@@ -752,27 +720,6 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param supportsGptLabel This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-         * 
-         * @return builder
-         * 
-         */
-        public Builder supportsGptLabel(@Nullable Output<Boolean> supportsGptLabel) {
-            $.supportsGptLabel = supportsGptLabel;
-            return this;
-        }
-
-        /**
-         * @param supportsGptLabel This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-         * 
-         * @return builder
-         * 
-         */
-        public Builder supportsGptLabel(Boolean supportsGptLabel) {
-            return supportsGptLabel(Output.of(supportsGptLabel));
-        }
-
-        /**
          * @param supportsRtm This distribution supports RTM software
          * 
          * @return builder
@@ -812,27 +759,6 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
          */
         public Builder supportsSqlServer(Boolean supportsSqlServer) {
             return supportsSqlServer(Output.of(supportsSqlServer));
-        }
-
-        /**
-         * @param supportsUefi This distribution supports UEFI setup (no,only,yes)
-         * 
-         * @return builder
-         * 
-         */
-        public Builder supportsUefi(@Nullable Output<String> supportsUefi) {
-            $.supportsUefi = supportsUefi;
-            return this;
-        }
-
-        /**
-         * @param supportsUefi This distribution supports UEFI setup (no,only,yes)
-         * 
-         * @return builder
-         * 
-         */
-        public Builder supportsUefi(String supportsUefi) {
-            return supportsUefi(Output.of(supportsUefi));
         }
 
         /**

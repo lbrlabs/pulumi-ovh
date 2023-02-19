@@ -283,6 +283,124 @@ export namespace CloudProject {
         enableds: string[];
     }
 
+    export interface GetKubeNodePoolNodesNode {
+        /**
+         * Creation date.
+         */
+        createdAt: string;
+        /**
+         * (Optional) Date of the effective deployment.
+         */
+        deployedAt: string;
+        /**
+         * Flavor name.
+         */
+        flavor: string;
+        /**
+         * ID of the node.
+         */
+        id: string;
+        /**
+         * Openstack ID of the underlying VM of the node.
+         */
+        instanceId: string;
+        /**
+         * Is the node in the target version of the cluster.
+         */
+        isUpToDate: boolean;
+        /**
+         * Name of the node pool from which we want the nodes.
+         */
+        name: string;
+        /**
+         * Managed kubernetes node pool ID.
+         */
+        nodePoolId: string;
+        /**
+         * Public cloud project ID.
+         */
+        projectId: string;
+        /**
+         * Current status.
+         */
+        status: string;
+        /**
+         * Last update date.
+         */
+        updatedAt: string;
+        /**
+         * Version in which the node is.
+         */
+        version: string;
+    }
+
+    export interface GetKubeNodePoolTemplate {
+        metadata?: outputs.CloudProject.GetKubeNodePoolTemplateMetadata;
+        spec?: outputs.CloudProject.GetKubeNodePoolTemplateSpec;
+    }
+
+    export interface GetKubeNodePoolTemplateMetadata {
+        annotations?: {[key: string]: string};
+        finalizers?: string[];
+        labels?: {[key: string]: string};
+    }
+
+    export interface GetKubeNodePoolTemplateSpec {
+        taints?: {[key: string]: any}[];
+        unschedulable?: boolean;
+    }
+
+    export interface GetKubeNodesNode {
+        /**
+         * Creation date
+         */
+        createdAt: string;
+        /**
+         * (Optional) Date of the effective deployment
+         */
+        deployedAt: string;
+        /**
+         * Flavor name
+         */
+        flavor: string;
+        /**
+         * ID of the node
+         */
+        id: string;
+        /**
+         * Openstack ID of the underlying VM of the node
+         */
+        instanceId: string;
+        /**
+         * Is the node in the target version of the cluster
+         */
+        isUpToDate: boolean;
+        /**
+         * Name of the node
+         */
+        name: string;
+        /**
+         * Managed kubernetes node pool ID
+         */
+        nodePoolId: string;
+        /**
+         * Public cloud project ID
+         */
+        projectId: string;
+        /**
+         * Current status
+         */
+        status: string;
+        /**
+         * Last update date
+         */
+        updatedAt: string;
+        /**
+         * Version in which the node is
+         */
+        version: string;
+    }
+
     export interface GetOpenSearchUserAcl {
         /**
          * Pattern of the ACL.
@@ -466,7 +584,7 @@ export namespace CloudProject {
          */
         expirationDate: string;
         /**
-         * order id
+         * order id, the same as the `id`
          */
         orderId: number;
     }
@@ -758,7 +876,7 @@ export namespace Dbaas {
 }
 
 export namespace Dedicated {
-    export interface ServiceInstallTaskDetails {
+    export interface ServerInstallTaskDetails {
         /**
          * Template change log details.
          *
@@ -817,6 +935,17 @@ export namespace Dedicated {
          * set to true to use SPLA.
          */
         useSpla?: boolean;
+    }
+
+    export interface ServerNetworkingInterface {
+        /**
+         * List of mac addresses to bind together.
+         */
+        macs: string[];
+        /**
+         * Type of bonding to create.
+         */
+        type: string;
     }
 
 }
@@ -918,6 +1047,137 @@ export namespace Domain {
     }
 
     export interface ZonePlanOptionConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
+}
+
+export namespace Hosting {
+    export interface GetPrivateDatabaseDbUser {
+        /**
+         * Grant of this user for this database
+         */
+        grantType: string;
+        /**
+         * User's name granted on this database
+         */
+        userName: string;
+    }
+
+    export interface GetPrivateDatabaseUserDatabase {
+        /**
+         * Database's name linked to this user
+         */
+        databaseName: string;
+        /**
+         * Grant of this user for this database
+         */
+        grantType: string;
+    }
+
+    export interface PrivateDatabaseOrder {
+        /**
+         * date
+         */
+        date: string;
+        /**
+         * Information about a Bill entry
+         */
+        details: outputs.Hosting.PrivateDatabaseOrderDetail[];
+        /**
+         * expiration date
+         */
+        expirationDate: string;
+        /**
+         * order id
+         */
+        orderId: number;
+    }
+
+    export interface PrivateDatabaseOrderDetail {
+        /**
+         * Custom description on your privatedatabase order.
+         */
+        description: string;
+        /**
+         * expiration date
+         */
+        domain: string;
+        /**
+         * order detail id
+         */
+        orderDetailId: number;
+        /**
+         * quantity
+         */
+        quantity: string;
+    }
+
+    export interface PrivateDatabasePlan {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.Hosting.PrivateDatabasePlanConfiguration[];
+        /**
+         * duration.
+         */
+        duration: string;
+        /**
+         * Plan code.
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface PrivateDatabasePlanConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
+    export interface PrivateDatabasePlanOption {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.Hosting.PrivateDatabasePlanOptionConfiguration[];
+        /**
+         * duration.
+         */
+        duration: string;
+        /**
+         * Plan code.
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface PrivateDatabasePlanOptionConfiguration {
         /**
          * Identifier of the resource
          */

@@ -22,7 +22,7 @@ class GetInstallationTemplateResult:
     """
     A collection of values returned by getInstallationTemplate.
     """
-    def __init__(__self__, available_languages=None, beta=None, bit_format=None, category=None, customizations=None, default_language=None, deprecated=None, description=None, distribution=None, family=None, filesystems=None, hard_raid_configuration=None, id=None, last_modification=None, lvm_ready=None, partition_schemes=None, supports_distribution_kernel=None, supports_gpt_label=None, supports_rtm=None, supports_sql_server=None, supports_uefi=None, template_name=None):
+    def __init__(__self__, available_languages=None, beta=None, bit_format=None, category=None, customizations=None, default_language=None, deprecated=None, description=None, distribution=None, family=None, filesystems=None, hard_raid_configuration=None, id=None, last_modification=None, lvm_ready=None, partition_schemes=None, supports_distribution_kernel=None, supports_rtm=None, supports_sql_server=None, template_name=None):
         if available_languages and not isinstance(available_languages, list):
             raise TypeError("Expected argument 'available_languages' to be a list")
         pulumi.set(__self__, "available_languages", available_languages)
@@ -74,18 +74,12 @@ class GetInstallationTemplateResult:
         if supports_distribution_kernel and not isinstance(supports_distribution_kernel, bool):
             raise TypeError("Expected argument 'supports_distribution_kernel' to be a bool")
         pulumi.set(__self__, "supports_distribution_kernel", supports_distribution_kernel)
-        if supports_gpt_label and not isinstance(supports_gpt_label, bool):
-            raise TypeError("Expected argument 'supports_gpt_label' to be a bool")
-        pulumi.set(__self__, "supports_gpt_label", supports_gpt_label)
         if supports_rtm and not isinstance(supports_rtm, bool):
             raise TypeError("Expected argument 'supports_rtm' to be a bool")
         pulumi.set(__self__, "supports_rtm", supports_rtm)
         if supports_sql_server and not isinstance(supports_sql_server, bool):
             raise TypeError("Expected argument 'supports_sql_server' to be a bool")
         pulumi.set(__self__, "supports_sql_server", supports_sql_server)
-        if supports_uefi and not isinstance(supports_uefi, str):
-            raise TypeError("Expected argument 'supports_uefi' to be a str")
-        pulumi.set(__self__, "supports_uefi", supports_uefi)
         if template_name and not isinstance(template_name, str):
             raise TypeError("Expected argument 'template_name' to be a str")
         pulumi.set(__self__, "template_name", template_name)
@@ -179,11 +173,6 @@ class GetInstallationTemplateResult:
         return pulumi.get(self, "supports_distribution_kernel")
 
     @property
-    @pulumi.getter(name="supportsGptLabel")
-    def supports_gpt_label(self) -> bool:
-        return pulumi.get(self, "supports_gpt_label")
-
-    @property
     @pulumi.getter(name="supportsRtm")
     def supports_rtm(self) -> bool:
         return pulumi.get(self, "supports_rtm")
@@ -192,11 +181,6 @@ class GetInstallationTemplateResult:
     @pulumi.getter(name="supportsSqlServer")
     def supports_sql_server(self) -> bool:
         return pulumi.get(self, "supports_sql_server")
-
-    @property
-    @pulumi.getter(name="supportsUefi")
-    def supports_uefi(self) -> str:
-        return pulumi.get(self, "supports_uefi")
 
     @property
     @pulumi.getter(name="templateName")
@@ -227,10 +211,8 @@ class AwaitableGetInstallationTemplateResult(GetInstallationTemplateResult):
             lvm_ready=self.lvm_ready,
             partition_schemes=self.partition_schemes,
             supports_distribution_kernel=self.supports_distribution_kernel,
-            supports_gpt_label=self.supports_gpt_label,
             supports_rtm=self.supports_rtm,
             supports_sql_server=self.supports_sql_server,
-            supports_uefi=self.supports_uefi,
             template_name=self.template_name)
 
 
@@ -271,10 +253,8 @@ def get_installation_template(template_name: Optional[str] = None,
         lvm_ready=__ret__.lvm_ready,
         partition_schemes=__ret__.partition_schemes,
         supports_distribution_kernel=__ret__.supports_distribution_kernel,
-        supports_gpt_label=__ret__.supports_gpt_label,
         supports_rtm=__ret__.supports_rtm,
         supports_sql_server=__ret__.supports_sql_server,
-        supports_uefi=__ret__.supports_uefi,
         template_name=__ret__.template_name)
 
 

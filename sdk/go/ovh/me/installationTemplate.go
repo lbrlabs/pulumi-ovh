@@ -29,7 +29,7 @@ import (
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := Me.NewInstallationTemplate(ctx, "mytemplate", &Me.InstallationTemplateArgs{
 //				BaseTemplateName: pulumi.String("centos7_64"),
-//				DefaultLanguage:  pulumi.String("fr"),
+//				DefaultLanguage:  pulumi.String("en"),
 //				TemplateName:     pulumi.String("mytemplate"),
 //			})
 //			if err != nil {
@@ -86,14 +86,10 @@ type InstallationTemplate struct {
 	RemoveDefaultPartitionSchemes pulumi.BoolOutput `pulumi:"removeDefaultPartitionSchemes"`
 	// This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
 	SupportsDistributionKernel pulumi.BoolOutput `pulumi:"supportsDistributionKernel"`
-	// This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-	SupportsGptLabel pulumi.BoolOutput `pulumi:"supportsGptLabel"`
 	// This distribution supports RTM software
 	SupportsRtm pulumi.BoolOutput `pulumi:"supportsRtm"`
 	// This distribution supports the microsoft SQL server
 	SupportsSqlServer pulumi.BoolOutput `pulumi:"supportsSqlServer"`
-	// This distribution supports UEFI setup (no,only,yes)
-	SupportsUefi pulumi.StringOutput `pulumi:"supportsUefi"`
 	// This template name
 	TemplateName pulumi.StringOutput `pulumi:"templateName"`
 }
@@ -170,14 +166,10 @@ type installationTemplateState struct {
 	RemoveDefaultPartitionSchemes *bool `pulumi:"removeDefaultPartitionSchemes"`
 	// This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
 	SupportsDistributionKernel *bool `pulumi:"supportsDistributionKernel"`
-	// This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-	SupportsGptLabel *bool `pulumi:"supportsGptLabel"`
 	// This distribution supports RTM software
 	SupportsRtm *bool `pulumi:"supportsRtm"`
 	// This distribution supports the microsoft SQL server
 	SupportsSqlServer *bool `pulumi:"supportsSqlServer"`
-	// This distribution supports UEFI setup (no,only,yes)
-	SupportsUefi *string `pulumi:"supportsUefi"`
 	// This template name
 	TemplateName *string `pulumi:"templateName"`
 }
@@ -216,14 +208,10 @@ type InstallationTemplateState struct {
 	RemoveDefaultPartitionSchemes pulumi.BoolPtrInput
 	// This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
 	SupportsDistributionKernel pulumi.BoolPtrInput
-	// This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-	SupportsGptLabel pulumi.BoolPtrInput
 	// This distribution supports RTM software
 	SupportsRtm pulumi.BoolPtrInput
 	// This distribution supports the microsoft SQL server
 	SupportsSqlServer pulumi.BoolPtrInput
-	// This distribution supports UEFI setup (no,only,yes)
-	SupportsUefi pulumi.StringPtrInput
 	// This template name
 	TemplateName pulumi.StringPtrInput
 }
@@ -428,11 +416,6 @@ func (o InstallationTemplateOutput) SupportsDistributionKernel() pulumi.BoolOutp
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.SupportsDistributionKernel }).(pulumi.BoolOutput)
 }
 
-// This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-func (o InstallationTemplateOutput) SupportsGptLabel() pulumi.BoolOutput {
-	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.SupportsGptLabel }).(pulumi.BoolOutput)
-}
-
 // This distribution supports RTM software
 func (o InstallationTemplateOutput) SupportsRtm() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.SupportsRtm }).(pulumi.BoolOutput)
@@ -441,11 +424,6 @@ func (o InstallationTemplateOutput) SupportsRtm() pulumi.BoolOutput {
 // This distribution supports the microsoft SQL server
 func (o InstallationTemplateOutput) SupportsSqlServer() pulumi.BoolOutput {
 	return o.ApplyT(func(v *InstallationTemplate) pulumi.BoolOutput { return v.SupportsSqlServer }).(pulumi.BoolOutput)
-}
-
-// This distribution supports UEFI setup (no,only,yes)
-func (o InstallationTemplateOutput) SupportsUefi() pulumi.StringOutput {
-	return o.ApplyT(func(v *InstallationTemplate) pulumi.StringOutput { return v.SupportsUefi }).(pulumi.StringOutput)
 }
 
 // This template name

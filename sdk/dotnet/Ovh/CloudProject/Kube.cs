@@ -79,7 +79,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Output<Outputs.KubePrivateNetworkConfiguration?> PrivateNetworkConfiguration { get; private set; } = null!;
 
         /// <summary>
-        /// OpenStack private network ID to use.
+        /// OpenStack private network (or vrack) ID to use.
         /// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
         /// </summary>
         [Output("privateNetworkId")]
@@ -201,7 +201,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Input<Inputs.KubePrivateNetworkConfigurationArgs>? PrivateNetworkConfiguration { get; set; }
 
         /// <summary>
-        /// OpenStack private network ID to use.
+        /// OpenStack private network (or vrack) ID to use.
         /// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
         /// </summary>
         [Input("privateNetworkId")]
@@ -314,7 +314,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Input<Inputs.KubePrivateNetworkConfigurationGetArgs>? PrivateNetworkConfiguration { get; set; }
 
         /// <summary>
-        /// OpenStack private network ID to use.
+        /// OpenStack private network (or vrack) ID to use.
         /// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
         /// </summary>
         [Input("privateNetworkId")]

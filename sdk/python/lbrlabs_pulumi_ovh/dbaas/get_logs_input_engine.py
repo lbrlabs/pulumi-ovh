@@ -21,7 +21,7 @@ class GetLogsInputEngineResult:
     """
     A collection of values returned by getLogsInputEngine.
     """
-    def __init__(__self__, id=None, is_deprecated=None, name=None, version=None):
+    def __init__(__self__, id=None, is_deprecated=None, name=None, service_name=None, version=None):
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -31,6 +31,9 @@ class GetLogsInputEngineResult:
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
+        if service_name and not isinstance(service_name, str):
+            raise TypeError("Expected argument 'service_name' to be a str")
+        pulumi.set(__self__, "service_name", service_name)
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         pulumi.set(__self__, "version", version)
@@ -54,6 +57,11 @@ class GetLogsInputEngineResult:
         return pulumi.get(self, "name")
 
     @property
+    @pulumi.getter(name="serviceName")
+    def service_name(self) -> str:
+        return pulumi.get(self, "service_name")
+
+    @property
     @pulumi.getter
     def version(self) -> str:
         return pulumi.get(self, "version")
@@ -68,11 +76,13 @@ class AwaitableGetLogsInputEngineResult(GetLogsInputEngineResult):
             id=self.id,
             is_deprecated=self.is_deprecated,
             name=self.name,
+            service_name=self.service_name,
             version=self.version)
 
 
 def get_logs_input_engine(is_deprecated: Optional[bool] = None,
                           name: Optional[str] = None,
+                          service_name: Optional[str] = None,
                           version: Optional[str] = None,
                           opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetLogsInputEngineResult:
     """
@@ -86,17 +96,20 @@ def get_logs_input_engine(is_deprecated: Optional[bool] = None,
 
     logstash = ovh.Dbaas.get_logs_input_engine(is_deprecated=True,
         name="logstash",
+        service_name="ldp-xx-xxxxx",
         version="6.8")
     ```
 
 
     :param bool is_deprecated: Indicates if engine will soon not be supported.
     :param str name: The name of the logs input engine.
+    :param str service_name: The service name. It's the ID of your Logs Data Platform instance.
     :param str version: Software version
     """
     __args__ = dict()
     __args__['isDeprecated'] = is_deprecated
     __args__['name'] = name
+    __args__['serviceName'] = service_name
     __args__['version'] = version
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)
     __ret__ = pulumi.runtime.invoke('ovh:Dbaas/getLogsInputEngine:getLogsInputEngine', __args__, opts=opts, typ=GetLogsInputEngineResult).value
@@ -105,12 +118,14 @@ def get_logs_input_engine(is_deprecated: Optional[bool] = None,
         id=__ret__.id,
         is_deprecated=__ret__.is_deprecated,
         name=__ret__.name,
+        service_name=__ret__.service_name,
         version=__ret__.version)
 
 
 @_utilities.lift_output_func(get_logs_input_engine)
 def get_logs_input_engine_output(is_deprecated: Optional[pulumi.Input[Optional[bool]]] = None,
                                  name: Optional[pulumi.Input[Optional[str]]] = None,
+                                 service_name: Optional[pulumi.Input[str]] = None,
                                  version: Optional[pulumi.Input[Optional[str]]] = None,
                                  opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetLogsInputEngineResult]:
     """
@@ -124,12 +139,14 @@ def get_logs_input_engine_output(is_deprecated: Optional[pulumi.Input[Optional[b
 
     logstash = ovh.Dbaas.get_logs_input_engine(is_deprecated=True,
         name="logstash",
+        service_name="ldp-xx-xxxxx",
         version="6.8")
     ```
 
 
     :param bool is_deprecated: Indicates if engine will soon not be supported.
     :param str name: The name of the logs input engine.
+    :param str service_name: The service name. It's the ID of your Logs Data Platform instance.
     :param str version: Software version
     """
     ...

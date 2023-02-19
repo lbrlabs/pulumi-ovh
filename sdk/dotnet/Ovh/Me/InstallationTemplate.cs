@@ -25,7 +25,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     ///     var mytemplate = new Ovh.Me.InstallationTemplate("mytemplate", new()
     ///     {
     ///         BaseTemplateName = "centos7_64",
-    ///         DefaultLanguage = "fr",
+    ///         DefaultLanguage = "en",
     ///         TemplateName = "mytemplate",
     ///     });
     /// 
@@ -143,12 +143,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Output<bool> SupportsDistributionKernel { get; private set; } = null!;
 
         /// <summary>
-        /// This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-        /// </summary>
-        [Output("supportsGptLabel")]
-        public Output<bool> SupportsGptLabel { get; private set; } = null!;
-
-        /// <summary>
         /// This distribution supports RTM software
         /// </summary>
         [Output("supportsRtm")]
@@ -159,12 +153,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         /// </summary>
         [Output("supportsSqlServer")]
         public Output<bool> SupportsSqlServer { get; private set; } = null!;
-
-        /// <summary>
-        /// This distribution supports UEFI setup (no,only,yes)
-        /// </summary>
-        [Output("supportsUefi")]
-        public Output<string> SupportsUefi { get; private set; } = null!;
 
         /// <summary>
         /// This template name
@@ -366,12 +354,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Input<bool>? SupportsDistributionKernel { get; set; }
 
         /// <summary>
-        /// This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-        /// </summary>
-        [Input("supportsGptLabel")]
-        public Input<bool>? SupportsGptLabel { get; set; }
-
-        /// <summary>
         /// This distribution supports RTM software
         /// </summary>
         [Input("supportsRtm")]
@@ -382,12 +364,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         /// </summary>
         [Input("supportsSqlServer")]
         public Input<bool>? SupportsSqlServer { get; set; }
-
-        /// <summary>
-        /// This distribution supports UEFI setup (no,only,yes)
-        /// </summary>
-        [Input("supportsUefi")]
-        public Input<string>? SupportsUefi { get; set; }
 
         /// <summary>
         /// This template name

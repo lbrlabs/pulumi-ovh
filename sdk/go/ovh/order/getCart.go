@@ -27,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err = Order.GetCart(ctx, &order.GetCartArgs{
-//				Description:   pulumi.StringRef("..."),
+//				Description:   pulumi.StringRef("my cart"),
 //				OvhSubsidiary: "fr",
 //			}, nil)
 //			if err != nil {
@@ -50,6 +50,8 @@ func GetCart(ctx *pulumi.Context, args *GetCartArgs, opts ...pulumi.InvokeOption
 
 // A collection of arguments for invoking getCart.
 type GetCartArgs struct {
+	// Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+	Assign *bool `pulumi:"assign"`
 	// Description of your cart
 	Description *string `pulumi:"description"`
 	// Expiration time (format: 2006-01-02T15:04:05+00:00)
@@ -60,6 +62,7 @@ type GetCartArgs struct {
 
 // A collection of values returned by getCart.
 type GetCartResult struct {
+	Assign *bool `pulumi:"assign"`
 	// Cart identifier
 	CartId      string  `pulumi:"cartId"`
 	Description *string `pulumi:"description"`
@@ -88,6 +91,8 @@ func GetCartOutput(ctx *pulumi.Context, args GetCartOutputArgs, opts ...pulumi.I
 
 // A collection of arguments for invoking getCart.
 type GetCartOutputArgs struct {
+	// Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+	Assign pulumi.BoolPtrInput `pulumi:"assign"`
 	// Description of your cart
 	Description pulumi.StringPtrInput `pulumi:"description"`
 	// Expiration time (format: 2006-01-02T15:04:05+00:00)
@@ -113,6 +118,10 @@ func (o GetCartResultOutput) ToGetCartResultOutput() GetCartResultOutput {
 
 func (o GetCartResultOutput) ToGetCartResultOutputWithContext(ctx context.Context) GetCartResultOutput {
 	return o
+}
+
+func (o GetCartResultOutput) Assign() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v GetCartResult) *bool { return v.Assign }).(pulumi.BoolPtrOutput)
 }
 
 // Cart identifier

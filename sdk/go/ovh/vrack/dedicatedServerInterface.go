@@ -20,6 +20,7 @@ import (
 //
 // import (
 //
+//	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh"
 //	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Vrack"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -27,9 +28,15 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err := Vrack.NewDedicatedServerInterface(ctx, "vdsi", &Vrack.DedicatedServerInterfaceArgs{
-//				InterfaceId: pulumi.String("67890"),
-//				ServiceName: pulumi.String("12345"),
+//			server, err := ovh.GetServer(ctx, &GetServerArgs{
+//				ServiceName: "nsxxxxxxx.ip-xx-xx-xx.eu",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			_, err = Vrack.NewDedicatedServerInterface(ctx, "vdsi", &Vrack.DedicatedServerInterfaceArgs{
+//				ServiceName: pulumi.String("pn-xxxxxxx"),
+//				InterfaceId: pulumi.String(server.EnabledVrackVnis[0]),
 //			})
 //			if err != nil {
 //				return err

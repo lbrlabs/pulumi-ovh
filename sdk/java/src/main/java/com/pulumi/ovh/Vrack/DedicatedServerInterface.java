@@ -23,6 +23,8 @@ import javax.annotation.Nullable;
  * import com.pulumi.Context;
  * import com.pulumi.Pulumi;
  * import com.pulumi.core.Output;
+ * import com.pulumi.ovh.OvhFunctions;
+ * import com.pulumi.ovh.inputs.GetServerArgs;
  * import com.pulumi.ovh.Vrack.DedicatedServerInterface;
  * import com.pulumi.ovh.Vrack.DedicatedServerInterfaceArgs;
  * import java.util.List;
@@ -38,9 +40,13 @@ import javax.annotation.Nullable;
  *     }
  * 
  *     public static void stack(Context ctx) {
+ *         final var server = OvhFunctions.getServer(GetServerArgs.builder()
+ *             .serviceName(&#34;nsxxxxxxx.ip-xx-xx-xx.eu&#34;)
+ *             .build());
+ * 
  *         var vdsi = new DedicatedServerInterface(&#34;vdsi&#34;, DedicatedServerInterfaceArgs.builder()        
- *             .interfaceId(&#34;67890&#34;)
- *             .serviceName(&#34;12345&#34;)
+ *             .serviceName(&#34;pn-xxxxxxx&#34;)
+ *             .interfaceId(server.applyValue(getServerResult -&gt; getServerResult.enabledVrackVnis()[0]))
  *             .build());
  * 
  *     }

@@ -11,34 +11,33 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@lbrlabs/pulumi-ovh";
  * import * as ovh from "@pulumi/ovh";
  *
- * const lb = ovh.IpLoadBalancing.getIpLoadBalancing({
+ * const lb = pulumi.output(ovh.IpLoadBalancing.getIpLoadBalancing({
  *     serviceName: "ip-1.2.3.4",
  *     state: "ok",
- * });
- * const farmname = new ovh.iploadbalancing.TcpFarm("farmname", {
- *     serviceName: lb.then(lb => lb.id),
+ * }));
+ * const farmname = new ovh.IpLoadBalancing.TcpFarm("farmname", {
  *     port: 8080,
+ *     serviceName: lb.id,
  *     zone: "all",
  * });
- * const backend = new ovh.iploadbalancing.TcpFarmServer("backend", {
- *     serviceName: lb.then(lb => lb.id),
- *     farmId: farmname.id,
- *     displayName: "mybackend",
+ * const backend = new ovh.IpLoadBalancing.TcpFarmServer("backend", {
  *     address: "4.5.6.7",
- *     status: "active",
- *     port: 80,
- *     proxyProtocolVersion: v2,
- *     weight: 2,
- *     probe: true,
- *     ssl: false,
  *     backup: true,
+ *     displayName: "mybackend",
+ *     farmId: farmname.id.apply(id => Number.parseFloat(id)),
+ *     port: 80,
+ *     probe: true,
+ *     proxyProtocolVersion: "v2",
+ *     serviceName: lb.id,
+ *     ssl: false,
+ *     status: "active",
+ *     weight: 2,
  * });
- * const mylb = new ovh.iploadbalancing.Refresh("mylb", {
- *     serviceName: lb.then(lb => lb.id),
- *     keepers: [[backend].map(__item => __item.address)],
+ * const mylb = new ovh.IpLoadBalancing.Refresh("mylb", {
+ *     keepers: [backend.address],
+ *     serviceName: lb.id,
  * });
  * ```
  */

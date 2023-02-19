@@ -58,6 +58,57 @@ import (
 //	}
 //
 // ```
+// ### With HTTP Header
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"fmt"
+//
+//	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/IpLoadBalancing"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			lb, err := IpLoadBalancing.GetIpLoadBalancing(ctx, &iploadbalancing.GetIpLoadBalancingArgs{
+//				ServiceName: pulumi.StringRef("ip-1.2.3.4"),
+//				State:       pulumi.StringRef("ok"),
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			farm80, err := IpLoadBalancing.NewHttpFarm(ctx, "farm80", &IpLoadBalancing.HttpFarmArgs{
+//				DisplayName: pulumi.String("ingress-8080-gra"),
+//				Port:        pulumi.Int(80),
+//				ServiceName: pulumi.String(lb.ServiceName),
+//				Zone:        pulumi.String("all"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = IpLoadBalancing.NewHttpFrontend(ctx, "testfrontend", &IpLoadBalancing.HttpFrontendArgs{
+//				DefaultFarmId: farm80.ID(),
+//				DisplayName:   pulumi.String("ingress-8080-gra"),
+//				HttpHeaders: pulumi.StringArray{
+//					pulumi.String(fmt.Sprintf("X-Ip-Header %v%vci", "%", "%")),
+//					pulumi.String(fmt.Sprintf("X-Port-Header %v%vcp", "%", "%")),
+//				},
+//				Port:        pulumi.String("80,443"),
+//				ServiceName: pulumi.String(lb.ServiceName),
+//				Zone:        pulumi.String("all"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 type HttpFrontend struct {
 	pulumi.CustomResourceState
 
@@ -73,6 +124,10 @@ type HttpFrontend struct {
 	Disabled pulumi.BoolPtrOutput `pulumi:"disabled"`
 	// Human readable name for your frontend, this field is for you
 	DisplayName pulumi.StringPtrOutput `pulumi:"displayName"`
+	// HTTP Strict Transport Security. Default: 'false'
+	Hsts pulumi.BoolPtrOutput `pulumi:"hsts"`
+	// HTTP headers to add to the frontend. List of string.
+	HttpHeaders pulumi.StringArrayOutput `pulumi:"httpHeaders"`
 	// Port(s) attached to your frontend. Supports single port (numerical value),
 	// range (2 dash-delimited increasing ports) and comma-separated list of 'single port'
 	// and/or 'range'. Each port must be in the [1;49151] range
@@ -138,6 +193,10 @@ type httpFrontendState struct {
 	Disabled *bool `pulumi:"disabled"`
 	// Human readable name for your frontend, this field is for you
 	DisplayName *string `pulumi:"displayName"`
+	// HTTP Strict Transport Security. Default: 'false'
+	Hsts *bool `pulumi:"hsts"`
+	// HTTP headers to add to the frontend. List of string.
+	HttpHeaders []string `pulumi:"httpHeaders"`
 	// Port(s) attached to your frontend. Supports single port (numerical value),
 	// range (2 dash-delimited increasing ports) and comma-separated list of 'single port'
 	// and/or 'range'. Each port must be in the [1;49151] range
@@ -165,6 +224,10 @@ type HttpFrontendState struct {
 	Disabled pulumi.BoolPtrInput
 	// Human readable name for your frontend, this field is for you
 	DisplayName pulumi.StringPtrInput
+	// HTTP Strict Transport Security. Default: 'false'
+	Hsts pulumi.BoolPtrInput
+	// HTTP headers to add to the frontend. List of string.
+	HttpHeaders pulumi.StringArrayInput
 	// Port(s) attached to your frontend. Supports single port (numerical value),
 	// range (2 dash-delimited increasing ports) and comma-separated list of 'single port'
 	// and/or 'range'. Each port must be in the [1;49151] range
@@ -196,6 +259,10 @@ type httpFrontendArgs struct {
 	Disabled *bool `pulumi:"disabled"`
 	// Human readable name for your frontend, this field is for you
 	DisplayName *string `pulumi:"displayName"`
+	// HTTP Strict Transport Security. Default: 'false'
+	Hsts *bool `pulumi:"hsts"`
+	// HTTP headers to add to the frontend. List of string.
+	HttpHeaders []string `pulumi:"httpHeaders"`
 	// Port(s) attached to your frontend. Supports single port (numerical value),
 	// range (2 dash-delimited increasing ports) and comma-separated list of 'single port'
 	// and/or 'range'. Each port must be in the [1;49151] range
@@ -224,6 +291,10 @@ type HttpFrontendArgs struct {
 	Disabled pulumi.BoolPtrInput
 	// Human readable name for your frontend, this field is for you
 	DisplayName pulumi.StringPtrInput
+	// HTTP Strict Transport Security. Default: 'false'
+	Hsts pulumi.BoolPtrInput
+	// HTTP headers to add to the frontend. List of string.
+	HttpHeaders pulumi.StringArrayInput
 	// Port(s) attached to your frontend. Supports single port (numerical value),
 	// range (2 dash-delimited increasing ports) and comma-separated list of 'single port'
 	// and/or 'range'. Each port must be in the [1;49151] range
@@ -353,6 +424,16 @@ func (o HttpFrontendOutput) Disabled() pulumi.BoolPtrOutput {
 // Human readable name for your frontend, this field is for you
 func (o HttpFrontendOutput) DisplayName() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *HttpFrontend) pulumi.StringPtrOutput { return v.DisplayName }).(pulumi.StringPtrOutput)
+}
+
+// HTTP Strict Transport Security. Default: 'false'
+func (o HttpFrontendOutput) Hsts() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *HttpFrontend) pulumi.BoolPtrOutput { return v.Hsts }).(pulumi.BoolPtrOutput)
+}
+
+// HTTP headers to add to the frontend. List of string.
+func (o HttpFrontendOutput) HttpHeaders() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *HttpFrontend) pulumi.StringArrayOutput { return v.HttpHeaders }).(pulumi.StringArrayOutput)
 }
 
 // Port(s) attached to your frontend. Supports single port (numerical value),

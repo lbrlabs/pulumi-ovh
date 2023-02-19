@@ -75,7 +75,7 @@ public final class KubeArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * OpenStack private network ID to use.
+     * OpenStack private network (or vrack) ID to use.
      * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
      * 
      */
@@ -83,7 +83,7 @@ public final class KubeArgs extends com.pulumi.resources.ResourceArgs {
     private @Nullable Output<String> privateNetworkId;
 
     /**
-     * @return OpenStack private network ID to use.
+     * @return OpenStack private network (or vrack) ID to use.
      * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
      * 
      */
@@ -266,7 +266,7 @@ public final class KubeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param privateNetworkId OpenStack private network ID to use.
+         * @param privateNetworkId OpenStack private network (or vrack) ID to use.
          * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
          * 
          * @return builder
@@ -278,7 +278,7 @@ public final class KubeArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param privateNetworkId OpenStack private network ID to use.
+         * @param privateNetworkId OpenStack private network (or vrack) ID to use.
          * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
          * 
          * @return builder

@@ -28,7 +28,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
         /// {
         ///     var stream = Ovh.Dbaas.GetLogsOutputGraylogStream.Invoke(new()
         ///     {
-        ///         ServiceName = "XXXXXX",
+        ///         ServiceName = "ldp-xx-xxxxx",
         ///         Title = "my stream",
         ///     });
         /// 
@@ -56,7 +56,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
         /// {
         ///     var stream = Ovh.Dbaas.GetLogsOutputGraylogStream.Invoke(new()
         ///     {
-        ///         ServiceName = "XXXXXX",
+        ///         ServiceName = "ldp-xx-xxxxx",
         ///         Title = "my stream",
         ///     });
         /// 
@@ -73,7 +73,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
     public sealed class GetLogsOutputGraylogStreamArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The service name
+        /// The service name. It's the ID of your Logs Data Platform instance.
         /// </summary>
         [Input("serviceName", required: true)]
         public string ServiceName { get; set; } = null!;
@@ -93,7 +93,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
     public sealed class GetLogsOutputGraylogStreamInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// The service name
+        /// The service name. It's the ID of your Logs Data Platform instance.
         /// </summary>
         [Input("serviceName", required: true)]
         public Input<string> ServiceName { get; set; } = null!;
@@ -204,7 +204,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
         /// <summary>
         /// Enable Websocket
         /// </summary>
-        public readonly string WebSocketEnabled;
+        public readonly bool WebSocketEnabled;
 
         [OutputConstructor]
         private GetLogsOutputGraylogStreamResult(
@@ -256,7 +256,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
 
             string updatedAt,
 
-            string webSocketEnabled)
+            bool webSocketEnabled)
         {
             CanAlert = canAlert;
             ColdStorageCompression = coldStorageCompression;

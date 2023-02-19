@@ -45,11 +45,11 @@ import (
 //
 // ## Import
 //
-// # OVHcloud record can be imported using the `id` and the `zone`, egbash
+// OVHcloud domain zone record can be imported using the `id`, which can be retrieved by using [OVH API portal](https://api.ovh.com/console/#/domain/zone/%7BzoneName%7D/record~GET), and the `zone`, separated by "." E.g., bash
 //
 // ```sh
 //
-//	$ pulumi import ovh:Domain/zoneRecord:ZoneRecord test 1234OVH_ID.zone.tld
+//	$ pulumi import ovh:Domain/zoneRecord:ZoneRecord test id.zone
 //
 // ```
 type ZoneRecord struct {

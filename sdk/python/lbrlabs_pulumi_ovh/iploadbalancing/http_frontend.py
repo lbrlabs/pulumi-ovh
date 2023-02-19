@@ -23,6 +23,8 @@ class HttpFrontendArgs:
                  default_ssl_id: Optional[pulumi.Input[int]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
+                 hsts: Optional[pulumi.Input[bool]] = None,
+                 http_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  redirect_location: Optional[pulumi.Input[str]] = None,
                  ssl: Optional[pulumi.Input[bool]] = None):
         """
@@ -38,6 +40,8 @@ class HttpFrontendArgs:
         :param pulumi.Input[int] default_ssl_id: Default ssl served to your customer
         :param pulumi.Input[bool] disabled: Disable your frontend. Default: 'false'
         :param pulumi.Input[str] display_name: Human readable name for your frontend, this field is for you
+        :param pulumi.Input[bool] hsts: HTTP Strict Transport Security. Default: 'false'
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] http_headers: HTTP headers to add to the frontend. List of string.
         :param pulumi.Input[str] redirect_location: Redirection HTTP'
         :param pulumi.Input[bool] ssl: SSL deciphering. Default: 'false'
         """
@@ -56,6 +60,10 @@ class HttpFrontendArgs:
             pulumi.set(__self__, "disabled", disabled)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
+        if hsts is not None:
+            pulumi.set(__self__, "hsts", hsts)
+        if http_headers is not None:
+            pulumi.set(__self__, "http_headers", http_headers)
         if redirect_location is not None:
             pulumi.set(__self__, "redirect_location", redirect_location)
         if ssl is not None:
@@ -172,6 +180,30 @@ class HttpFrontendArgs:
         pulumi.set(self, "display_name", value)
 
     @property
+    @pulumi.getter
+    def hsts(self) -> Optional[pulumi.Input[bool]]:
+        """
+        HTTP Strict Transport Security. Default: 'false'
+        """
+        return pulumi.get(self, "hsts")
+
+    @hsts.setter
+    def hsts(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "hsts", value)
+
+    @property
+    @pulumi.getter(name="httpHeaders")
+    def http_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        HTTP headers to add to the frontend. List of string.
+        """
+        return pulumi.get(self, "http_headers")
+
+    @http_headers.setter
+    def http_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "http_headers", value)
+
+    @property
     @pulumi.getter(name="redirectLocation")
     def redirect_location(self) -> Optional[pulumi.Input[str]]:
         """
@@ -205,6 +237,8 @@ class _HttpFrontendState:
                  default_ssl_id: Optional[pulumi.Input[int]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
+                 hsts: Optional[pulumi.Input[bool]] = None,
+                 http_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  port: Optional[pulumi.Input[str]] = None,
                  redirect_location: Optional[pulumi.Input[str]] = None,
                  service_name: Optional[pulumi.Input[str]] = None,
@@ -218,6 +252,8 @@ class _HttpFrontendState:
         :param pulumi.Input[int] default_ssl_id: Default ssl served to your customer
         :param pulumi.Input[bool] disabled: Disable your frontend. Default: 'false'
         :param pulumi.Input[str] display_name: Human readable name for your frontend, this field is for you
+        :param pulumi.Input[bool] hsts: HTTP Strict Transport Security. Default: 'false'
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] http_headers: HTTP headers to add to the frontend. List of string.
         :param pulumi.Input[str] port: Port(s) attached to your frontend. Supports single port (numerical value),
                range (2 dash-delimited increasing ports) and comma-separated list of 'single port'
                and/or 'range'. Each port must be in the [1;49151] range
@@ -238,6 +274,10 @@ class _HttpFrontendState:
             pulumi.set(__self__, "disabled", disabled)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
+        if hsts is not None:
+            pulumi.set(__self__, "hsts", hsts)
+        if http_headers is not None:
+            pulumi.set(__self__, "http_headers", http_headers)
         if port is not None:
             pulumi.set(__self__, "port", port)
         if redirect_location is not None:
@@ -323,6 +363,30 @@ class _HttpFrontendState:
 
     @property
     @pulumi.getter
+    def hsts(self) -> Optional[pulumi.Input[bool]]:
+        """
+        HTTP Strict Transport Security. Default: 'false'
+        """
+        return pulumi.get(self, "hsts")
+
+    @hsts.setter
+    def hsts(self, value: Optional[pulumi.Input[bool]]):
+        pulumi.set(self, "hsts", value)
+
+    @property
+    @pulumi.getter(name="httpHeaders")
+    def http_headers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
+        """
+        HTTP headers to add to the frontend. List of string.
+        """
+        return pulumi.get(self, "http_headers")
+
+    @http_headers.setter
+    def http_headers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]):
+        pulumi.set(self, "http_headers", value)
+
+    @property
+    @pulumi.getter
     def port(self) -> Optional[pulumi.Input[str]]:
         """
         Port(s) attached to your frontend. Supports single port (numerical value),
@@ -395,6 +459,8 @@ class HttpFrontend(pulumi.CustomResource):
                  default_ssl_id: Optional[pulumi.Input[int]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
+                 hsts: Optional[pulumi.Input[bool]] = None,
+                 http_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  port: Optional[pulumi.Input[str]] = None,
                  redirect_location: Optional[pulumi.Input[str]] = None,
                  service_name: Optional[pulumi.Input[str]] = None,
@@ -425,6 +491,31 @@ class HttpFrontend(pulumi.CustomResource):
             service_name=lb.service_name,
             zone="all")
         ```
+        ### With HTTP Header
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_ovh as ovh
+        import pulumi_ovh as ovh
+
+        lb = ovh.IpLoadBalancing.get_ip_load_balancing(service_name="ip-1.2.3.4",
+            state="ok")
+        farm80 = ovh.ip_load_balancing.HttpFarm("farm80",
+            display_name="ingress-8080-gra",
+            port=80,
+            service_name=lb.service_name,
+            zone="all")
+        testfrontend = ovh.ip_load_balancing.HttpFrontend("testfrontend",
+            default_farm_id=farm80.id,
+            display_name="ingress-8080-gra",
+            http_headers=[
+                "X-Ip-Header %%ci",
+                "X-Port-Header %%cp",
+            ],
+            port="80,443",
+            service_name=lb.service_name,
+            zone="all")
+        ```
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
@@ -434,6 +525,8 @@ class HttpFrontend(pulumi.CustomResource):
         :param pulumi.Input[int] default_ssl_id: Default ssl served to your customer
         :param pulumi.Input[bool] disabled: Disable your frontend. Default: 'false'
         :param pulumi.Input[str] display_name: Human readable name for your frontend, this field is for you
+        :param pulumi.Input[bool] hsts: HTTP Strict Transport Security. Default: 'false'
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] http_headers: HTTP headers to add to the frontend. List of string.
         :param pulumi.Input[str] port: Port(s) attached to your frontend. Supports single port (numerical value),
                range (2 dash-delimited increasing ports) and comma-separated list of 'single port'
                and/or 'range'. Each port must be in the [1;49151] range
@@ -472,6 +565,31 @@ class HttpFrontend(pulumi.CustomResource):
             service_name=lb.service_name,
             zone="all")
         ```
+        ### With HTTP Header
+
+        ```python
+        import pulumi
+        import lbrlabs_pulumi_ovh as ovh
+        import pulumi_ovh as ovh
+
+        lb = ovh.IpLoadBalancing.get_ip_load_balancing(service_name="ip-1.2.3.4",
+            state="ok")
+        farm80 = ovh.ip_load_balancing.HttpFarm("farm80",
+            display_name="ingress-8080-gra",
+            port=80,
+            service_name=lb.service_name,
+            zone="all")
+        testfrontend = ovh.ip_load_balancing.HttpFrontend("testfrontend",
+            default_farm_id=farm80.id,
+            display_name="ingress-8080-gra",
+            http_headers=[
+                "X-Ip-Header %%ci",
+                "X-Port-Header %%cp",
+            ],
+            port="80,443",
+            service_name=lb.service_name,
+            zone="all")
+        ```
 
         :param str resource_name: The name of the resource.
         :param HttpFrontendArgs args: The arguments to use to populate this resource's properties.
@@ -494,6 +612,8 @@ class HttpFrontend(pulumi.CustomResource):
                  default_ssl_id: Optional[pulumi.Input[int]] = None,
                  disabled: Optional[pulumi.Input[bool]] = None,
                  display_name: Optional[pulumi.Input[str]] = None,
+                 hsts: Optional[pulumi.Input[bool]] = None,
+                 http_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  port: Optional[pulumi.Input[str]] = None,
                  redirect_location: Optional[pulumi.Input[str]] = None,
                  service_name: Optional[pulumi.Input[str]] = None,
@@ -514,6 +634,8 @@ class HttpFrontend(pulumi.CustomResource):
             __props__.__dict__["default_ssl_id"] = default_ssl_id
             __props__.__dict__["disabled"] = disabled
             __props__.__dict__["display_name"] = display_name
+            __props__.__dict__["hsts"] = hsts
+            __props__.__dict__["http_headers"] = http_headers
             if port is None and not opts.urn:
                 raise TypeError("Missing required property 'port'")
             __props__.__dict__["port"] = port
@@ -541,6 +663,8 @@ class HttpFrontend(pulumi.CustomResource):
             default_ssl_id: Optional[pulumi.Input[int]] = None,
             disabled: Optional[pulumi.Input[bool]] = None,
             display_name: Optional[pulumi.Input[str]] = None,
+            hsts: Optional[pulumi.Input[bool]] = None,
+            http_headers: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             port: Optional[pulumi.Input[str]] = None,
             redirect_location: Optional[pulumi.Input[str]] = None,
             service_name: Optional[pulumi.Input[str]] = None,
@@ -559,6 +683,8 @@ class HttpFrontend(pulumi.CustomResource):
         :param pulumi.Input[int] default_ssl_id: Default ssl served to your customer
         :param pulumi.Input[bool] disabled: Disable your frontend. Default: 'false'
         :param pulumi.Input[str] display_name: Human readable name for your frontend, this field is for you
+        :param pulumi.Input[bool] hsts: HTTP Strict Transport Security. Default: 'false'
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] http_headers: HTTP headers to add to the frontend. List of string.
         :param pulumi.Input[str] port: Port(s) attached to your frontend. Supports single port (numerical value),
                range (2 dash-delimited increasing ports) and comma-separated list of 'single port'
                and/or 'range'. Each port must be in the [1;49151] range
@@ -577,6 +703,8 @@ class HttpFrontend(pulumi.CustomResource):
         __props__.__dict__["default_ssl_id"] = default_ssl_id
         __props__.__dict__["disabled"] = disabled
         __props__.__dict__["display_name"] = display_name
+        __props__.__dict__["hsts"] = hsts
+        __props__.__dict__["http_headers"] = http_headers
         __props__.__dict__["port"] = port
         __props__.__dict__["redirect_location"] = redirect_location
         __props__.__dict__["service_name"] = service_name
@@ -631,6 +759,22 @@ class HttpFrontend(pulumi.CustomResource):
         Human readable name for your frontend, this field is for you
         """
         return pulumi.get(self, "display_name")
+
+    @property
+    @pulumi.getter
+    def hsts(self) -> pulumi.Output[Optional[bool]]:
+        """
+        HTTP Strict Transport Security. Default: 'false'
+        """
+        return pulumi.get(self, "hsts")
+
+    @property
+    @pulumi.getter(name="httpHeaders")
+    def http_headers(self) -> pulumi.Output[Optional[Sequence[str]]]:
+        """
+        HTTP headers to add to the frontend. List of string.
+        """
+        return pulumi.get(self, "http_headers")
 
     @property
     @pulumi.getter

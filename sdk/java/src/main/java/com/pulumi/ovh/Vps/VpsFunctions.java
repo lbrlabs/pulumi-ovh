@@ -11,6 +11,8 @@ import com.pulumi.ovh.Utilities;
 import com.pulumi.ovh.Vps.inputs.GetVpsArgs;
 import com.pulumi.ovh.Vps.inputs.GetVpsPlainArgs;
 import com.pulumi.ovh.Vps.outputs.GetVpsResult;
+import com.pulumi.ovh.Vps.outputs.GetVpssResult;
+import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
 public final class VpsFunctions {
@@ -161,5 +163,59 @@ public final class VpsFunctions {
      */
     public static CompletableFuture<GetVpsResult> getVpsPlain(GetVpsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ovh:Vps/getVps:getVps", TypeShape.of(GetVpsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of VPS associated with your OVH Account.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetVpssResult> getVpss() {
+        return getVpss(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of VPS associated with your OVH Account.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetVpssResult> getVpssPlain() {
+        return getVpssPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of VPS associated with your OVH Account.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetVpssResult> getVpss(InvokeArgs args) {
+        return getVpss(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of VPS associated with your OVH Account.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetVpssResult> getVpssPlain(InvokeArgs args) {
+        return getVpssPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get the list of VPS associated with your OVH Account.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static Output<GetVpssResult> getVpss(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:Vps/getVpss:getVpss", TypeShape.of(GetVpssResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get the list of VPS associated with your OVH Account.
+     * 
+     * ## Example Usage
+     * 
+     */
+    public static CompletableFuture<GetVpssResult> getVpssPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:Vps/getVpss:getVpss", TypeShape.of(GetVpssResult.class), args, Utilities.withVersion(options));
     }
 }

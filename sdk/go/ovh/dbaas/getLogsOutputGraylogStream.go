@@ -27,7 +27,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err = Dbaas.GetLogsOutputGraylogStream(ctx, &dbaas.GetLogsOutputGraylogStreamArgs{
-//				ServiceName: "XXXXXX",
+//				ServiceName: "ldp-xx-xxxxx",
 //				Title:       "my stream",
 //			}, nil)
 //			if err != nil {
@@ -50,7 +50,7 @@ func LookupLogsOutputGraylogStream(ctx *pulumi.Context, args *LookupLogsOutputGr
 
 // A collection of arguments for invoking getLogsOutputGraylogStream.
 type LookupLogsOutputGraylogStreamArgs struct {
-	// The service name
+	// The service name. It's the ID of your Logs Data Platform instance.
 	ServiceName string `pulumi:"serviceName"`
 	// Stream description
 	Title string `pulumi:"title"`
@@ -104,7 +104,7 @@ type LookupLogsOutputGraylogStreamResult struct {
 	// Stream last update
 	UpdatedAt string `pulumi:"updatedAt"`
 	// Enable Websocket
-	WebSocketEnabled string `pulumi:"webSocketEnabled"`
+	WebSocketEnabled bool `pulumi:"webSocketEnabled"`
 }
 
 func LookupLogsOutputGraylogStreamOutput(ctx *pulumi.Context, args LookupLogsOutputGraylogStreamOutputArgs, opts ...pulumi.InvokeOption) LookupLogsOutputGraylogStreamResultOutput {
@@ -122,7 +122,7 @@ func LookupLogsOutputGraylogStreamOutput(ctx *pulumi.Context, args LookupLogsOut
 
 // A collection of arguments for invoking getLogsOutputGraylogStream.
 type LookupLogsOutputGraylogStreamOutputArgs struct {
-	// The service name
+	// The service name. It's the ID of your Logs Data Platform instance.
 	ServiceName pulumi.StringInput `pulumi:"serviceName"`
 	// Stream description
 	Title pulumi.StringInput `pulumi:"title"`
@@ -265,8 +265,8 @@ func (o LookupLogsOutputGraylogStreamResultOutput) UpdatedAt() pulumi.StringOutp
 }
 
 // Enable Websocket
-func (o LookupLogsOutputGraylogStreamResultOutput) WebSocketEnabled() pulumi.StringOutput {
-	return o.ApplyT(func(v LookupLogsOutputGraylogStreamResult) string { return v.WebSocketEnabled }).(pulumi.StringOutput)
+func (o LookupLogsOutputGraylogStreamResultOutput) WebSocketEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupLogsOutputGraylogStreamResult) bool { return v.WebSocketEnabled }).(pulumi.BoolOutput)
 }
 
 func init() {

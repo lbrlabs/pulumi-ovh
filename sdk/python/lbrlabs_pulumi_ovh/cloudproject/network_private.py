@@ -272,6 +272,14 @@ class NetworkPrivate(pulumi.CustomResource):
             service_name="XXXXXX")
         ```
 
+        ## Import
+
+        Private network in a public cloud project can be imported using the `service_name` and the `network_id`, separated by "/" E.g., bash
+
+        ```sh
+         $ pulumi import ovh:CloudProject/networkPrivate:NetworkPrivate mynet ookie9mee8Shaeghaeleeju7Xeghohv6e/pn-12345678
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] name: The name of the network.
@@ -303,6 +311,14 @@ class NetworkPrivate(pulumi.CustomResource):
                 "BHS1",
             ],
             service_name="XXXXXX")
+        ```
+
+        ## Import
+
+        Private network in a public cloud project can be imported using the `service_name` and the `network_id`, separated by "/" E.g., bash
+
+        ```sh
+         $ pulumi import ovh:CloudProject/networkPrivate:NetworkPrivate mynet ookie9mee8Shaeghaeleeju7Xeghohv6e/pn-12345678
         ```
 
         :param str resource_name: The name of the resource.

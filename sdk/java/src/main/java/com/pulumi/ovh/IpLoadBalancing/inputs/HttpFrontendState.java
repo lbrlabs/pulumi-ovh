@@ -109,6 +109,36 @@ public final class HttpFrontendState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * HTTP Strict Transport Security. Default: &#39;false&#39;
+     * 
+     */
+    @Import(name="hsts")
+    private @Nullable Output<Boolean> hsts;
+
+    /**
+     * @return HTTP Strict Transport Security. Default: &#39;false&#39;
+     * 
+     */
+    public Optional<Output<Boolean>> hsts() {
+        return Optional.ofNullable(this.hsts);
+    }
+
+    /**
+     * HTTP headers to add to the frontend. List of string.
+     * 
+     */
+    @Import(name="httpHeaders")
+    private @Nullable Output<List<String>> httpHeaders;
+
+    /**
+     * @return HTTP headers to add to the frontend. List of string.
+     * 
+     */
+    public Optional<Output<List<String>>> httpHeaders() {
+        return Optional.ofNullable(this.httpHeaders);
+    }
+
+    /**
      * Port(s) attached to your frontend. Supports single port (numerical value),
      * range (2 dash-delimited increasing ports) and comma-separated list of &#39;single port&#39;
      * and/or &#39;range&#39;. Each port must be in the [1;49151] range
@@ -196,6 +226,8 @@ public final class HttpFrontendState extends com.pulumi.resources.ResourceArgs {
         this.defaultSslId = $.defaultSslId;
         this.disabled = $.disabled;
         this.displayName = $.displayName;
+        this.hsts = $.hsts;
+        this.httpHeaders = $.httpHeaders;
         this.port = $.port;
         this.redirectLocation = $.redirectLocation;
         this.serviceName = $.serviceName;
@@ -365,6 +397,58 @@ public final class HttpFrontendState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder displayName(String displayName) {
             return displayName(Output.of(displayName));
+        }
+
+        /**
+         * @param hsts HTTP Strict Transport Security. Default: &#39;false&#39;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hsts(@Nullable Output<Boolean> hsts) {
+            $.hsts = hsts;
+            return this;
+        }
+
+        /**
+         * @param hsts HTTP Strict Transport Security. Default: &#39;false&#39;
+         * 
+         * @return builder
+         * 
+         */
+        public Builder hsts(Boolean hsts) {
+            return hsts(Output.of(hsts));
+        }
+
+        /**
+         * @param httpHeaders HTTP headers to add to the frontend. List of string.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpHeaders(@Nullable Output<List<String>> httpHeaders) {
+            $.httpHeaders = httpHeaders;
+            return this;
+        }
+
+        /**
+         * @param httpHeaders HTTP headers to add to the frontend. List of string.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpHeaders(List<String> httpHeaders) {
+            return httpHeaders(Output.of(httpHeaders));
+        }
+
+        /**
+         * @param httpHeaders HTTP headers to add to the frontend. List of string.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder httpHeaders(String... httpHeaders) {
+            return httpHeaders(List.of(httpHeaders));
         }
 
         /**

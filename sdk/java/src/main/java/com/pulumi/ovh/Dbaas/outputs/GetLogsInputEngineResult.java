@@ -17,6 +17,7 @@ public final class GetLogsInputEngineResult {
     private String id;
     private Boolean isDeprecated;
     private String name;
+    private String serviceName;
     private String version;
 
     private GetLogsInputEngineResult() {}
@@ -32,6 +33,9 @@ public final class GetLogsInputEngineResult {
     }
     public String name() {
         return this.name;
+    }
+    public String serviceName() {
+        return this.serviceName;
     }
     public String version() {
         return this.version;
@@ -49,6 +53,7 @@ public final class GetLogsInputEngineResult {
         private String id;
         private Boolean isDeprecated;
         private String name;
+        private String serviceName;
         private String version;
         public Builder() {}
         public Builder(GetLogsInputEngineResult defaults) {
@@ -56,6 +61,7 @@ public final class GetLogsInputEngineResult {
     	      this.id = defaults.id;
     	      this.isDeprecated = defaults.isDeprecated;
     	      this.name = defaults.name;
+    	      this.serviceName = defaults.serviceName;
     	      this.version = defaults.version;
         }
 
@@ -75,6 +81,11 @@ public final class GetLogsInputEngineResult {
             return this;
         }
         @CustomType.Setter
+        public Builder serviceName(String serviceName) {
+            this.serviceName = Objects.requireNonNull(serviceName);
+            return this;
+        }
+        @CustomType.Setter
         public Builder version(String version) {
             this.version = Objects.requireNonNull(version);
             return this;
@@ -84,6 +95,7 @@ public final class GetLogsInputEngineResult {
             o.id = id;
             o.isDeprecated = isDeprecated;
             o.name = name;
+            o.serviceName = serviceName;
             o.version = version;
             return o;
         }

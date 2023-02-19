@@ -26,7 +26,7 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			rescue, err := Dedicated.GetServerBoots(ctx, &dedicated.GetServerBootsArgs{
-//				ServiceName: "ns00000.ip-1-2-3.eu",
+//				ServiceName: "nsxxxxxxx.ip-xx-xx-xx.eu",
 //				BootType:    pulumi.StringRef("rescue"),
 //				Kernel:      pulumi.StringRef("rescue64-pro"),
 //			}, nil)
@@ -34,7 +34,7 @@ import (
 //				return err
 //			}
 //			serverOnRescue, err := Dedicated.NewServerUpdate(ctx, "serverOnRescue", &Dedicated.ServerUpdateArgs{
-//				ServiceName: pulumi.String("ns00000.ip-1-2-3.eu"),
+//				ServiceName: pulumi.String("nsxxxxxxx.ip-xx-xx-xx.eu"),
 //				BootId:      pulumi.Int(rescue.Results[0]),
 //				Monitoring:  pulumi.Bool(true),
 //				State:       pulumi.String("ok"),
@@ -65,7 +65,7 @@ type ServerRebootTask struct {
 	DoneDate pulumi.StringOutput `pulumi:"doneDate"`
 	// Function name (should be `hardReboot`).
 	Function pulumi.StringOutput `pulumi:"function"`
-	// List of values traccked to trigger reboot, used also to form implicit dependencies
+	// List of values tracked to trigger reboot, used also to form implicit dependencies.
 	Keepers pulumi.StringArrayOutput `pulumi:"keepers"`
 	// Last update in RFC3339 format.
 	LastUpdate pulumi.StringOutput `pulumi:"lastUpdate"`
@@ -119,7 +119,7 @@ type serverRebootTaskState struct {
 	DoneDate *string `pulumi:"doneDate"`
 	// Function name (should be `hardReboot`).
 	Function *string `pulumi:"function"`
-	// List of values traccked to trigger reboot, used also to form implicit dependencies
+	// List of values tracked to trigger reboot, used also to form implicit dependencies.
 	Keepers []string `pulumi:"keepers"`
 	// Last update in RFC3339 format.
 	LastUpdate *string `pulumi:"lastUpdate"`
@@ -138,7 +138,7 @@ type ServerRebootTaskState struct {
 	DoneDate pulumi.StringPtrInput
 	// Function name (should be `hardReboot`).
 	Function pulumi.StringPtrInput
-	// List of values traccked to trigger reboot, used also to form implicit dependencies
+	// List of values tracked to trigger reboot, used also to form implicit dependencies.
 	Keepers pulumi.StringArrayInput
 	// Last update in RFC3339 format.
 	LastUpdate pulumi.StringPtrInput
@@ -155,7 +155,7 @@ func (ServerRebootTaskState) ElementType() reflect.Type {
 }
 
 type serverRebootTaskArgs struct {
-	// List of values traccked to trigger reboot, used also to form implicit dependencies
+	// List of values tracked to trigger reboot, used also to form implicit dependencies.
 	Keepers []string `pulumi:"keepers"`
 	// The serviceName of your dedicated server.
 	ServiceName string `pulumi:"serviceName"`
@@ -163,7 +163,7 @@ type serverRebootTaskArgs struct {
 
 // The set of arguments for constructing a ServerRebootTask resource.
 type ServerRebootTaskArgs struct {
-	// List of values traccked to trigger reboot, used also to form implicit dependencies
+	// List of values tracked to trigger reboot, used also to form implicit dependencies.
 	Keepers pulumi.StringArrayInput
 	// The serviceName of your dedicated server.
 	ServiceName pulumi.StringInput
@@ -271,7 +271,7 @@ func (o ServerRebootTaskOutput) Function() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerRebootTask) pulumi.StringOutput { return v.Function }).(pulumi.StringOutput)
 }
 
-// List of values traccked to trigger reboot, used also to form implicit dependencies
+// List of values tracked to trigger reboot, used also to form implicit dependencies.
 func (o ServerRebootTaskOutput) Keepers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *ServerRebootTask) pulumi.StringArrayOutput { return v.Keepers }).(pulumi.StringArrayOutput)
 }

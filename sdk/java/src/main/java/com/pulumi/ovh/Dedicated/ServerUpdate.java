@@ -41,13 +41,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var rescue = DedicatedFunctions.getServerBoots(GetServerBootsArgs.builder()
- *             .serviceName(&#34;ns00000.ip-1-2-3.eu&#34;)
+ *             .serviceName(&#34;nsxxxxxxx.ip-xx-xx-xx.eu&#34;)
  *             .bootType(&#34;rescue&#34;)
  *             .kernel(&#34;rescue64-pro&#34;)
  *             .build());
  * 
  *         var server = new ServerUpdate(&#34;server&#34;, ServerUpdateArgs.builder()        
- *             .serviceName(&#34;ns00000.ip-1-2-3.eu&#34;)
+ *             .serviceName(&#34;nsxxxxxxx.ip-xx-xx-xx.eu&#34;)
  *             .bootId(rescue.applyValue(getServerBootsResult -&gt; getServerBootsResult.results()[0]))
  *             .monitoring(true)
  *             .state(&#34;ok&#34;)

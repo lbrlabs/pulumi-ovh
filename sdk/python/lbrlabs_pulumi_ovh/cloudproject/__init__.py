@@ -16,8 +16,11 @@ from .get_container_registry import *
 from .get_container_registry_users import *
 from .get_failover_ip_attach import *
 from .get_kube import *
-from .get_kube_ip_node_pool import *
 from .get_kube_ip_restrictions import *
+from .get_kube_node_pool import *
+from .get_kube_node_pool_nodes import *
+from .get_kube_nodes import *
+from .get_kube_oidc import *
 from .get_m3db_namespace import *
 from .get_m3db_namespaces import *
 from .get_m3db_user import *
@@ -40,6 +43,7 @@ from .kube_oidc import *
 from .network_private import *
 from .network_private_subnet import *
 from .project import *
+from .region_storage_presign import *
 from .s3_credential import *
 from .s3_policy import *
 from .user import *

@@ -132,6 +132,38 @@ export namespace CloudProject {
         enableds?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
+    export interface GetKubeNodePoolTemplate {
+        metadata?: inputs.CloudProject.GetKubeNodePoolTemplateMetadata;
+        spec?: inputs.CloudProject.GetKubeNodePoolTemplateSpec;
+    }
+
+    export interface GetKubeNodePoolTemplateArgs {
+        metadata?: pulumi.Input<inputs.CloudProject.GetKubeNodePoolTemplateMetadataArgs>;
+        spec?: pulumi.Input<inputs.CloudProject.GetKubeNodePoolTemplateSpecArgs>;
+    }
+
+    export interface GetKubeNodePoolTemplateMetadata {
+        annotations?: {[key: string]: string};
+        finalizers?: string[];
+        labels?: {[key: string]: string};
+    }
+
+    export interface GetKubeNodePoolTemplateMetadataArgs {
+        annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        finalizers?: pulumi.Input<pulumi.Input<string>[]>;
+        labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+    }
+
+    export interface GetKubeNodePoolTemplateSpec {
+        taints?: {[key: string]: any}[];
+        unschedulable?: boolean;
+    }
+
+    export interface GetKubeNodePoolTemplateSpecArgs {
+        taints?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+        unschedulable?: pulumi.Input<boolean>;
+    }
+
     export interface KubeCustomization {
         apiserver?: pulumi.Input<inputs.CloudProject.KubeCustomizationApiserver>;
     }
@@ -226,7 +258,7 @@ export namespace CloudProject {
          */
         expirationDate?: pulumi.Input<string>;
         /**
-         * order id
+         * order id, the same as the `id`
          */
         orderId?: pulumi.Input<number>;
     }
@@ -397,7 +429,7 @@ export namespace Dbaas {
 }
 
 export namespace Dedicated {
-    export interface ServiceInstallTaskDetails {
+    export interface ServerInstallTaskDetails {
         /**
          * Template change log details.
          *
@@ -456,6 +488,17 @@ export namespace Dedicated {
          * set to true to use SPLA.
          */
         useSpla?: pulumi.Input<boolean>;
+    }
+
+    export interface ServerNetworkingInterface {
+        /**
+         * List of mac addresses to bind together.
+         */
+        macs: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Type of bonding to create.
+         */
+        type: pulumi.Input<string>;
     }
 }
 
@@ -556,6 +599,114 @@ export namespace Domain {
     }
 
     export interface ZonePlanOptionConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: pulumi.Input<string>;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: pulumi.Input<string>;
+    }
+}
+
+export namespace Hosting {
+    export interface PrivateDatabaseOrder {
+        /**
+         * date
+         */
+        date?: pulumi.Input<string>;
+        /**
+         * Information about a Bill entry
+         */
+        details?: pulumi.Input<pulumi.Input<inputs.Hosting.PrivateDatabaseOrderDetail>[]>;
+        /**
+         * expiration date
+         */
+        expirationDate?: pulumi.Input<string>;
+        /**
+         * order id
+         */
+        orderId?: pulumi.Input<number>;
+    }
+
+    export interface PrivateDatabaseOrderDetail {
+        /**
+         * Custom description on your privatedatabase order.
+         */
+        description?: pulumi.Input<string>;
+        /**
+         * expiration date
+         */
+        domain?: pulumi.Input<string>;
+        /**
+         * order detail id
+         */
+        orderDetailId?: pulumi.Input<number>;
+        /**
+         * quantity
+         */
+        quantity?: pulumi.Input<string>;
+    }
+
+    export interface PrivateDatabasePlan {
+        /**
+         * Catalog name
+         */
+        catalogName?: pulumi.Input<string>;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: pulumi.Input<pulumi.Input<inputs.Hosting.PrivateDatabasePlanConfiguration>[]>;
+        /**
+         * duration.
+         */
+        duration: pulumi.Input<string>;
+        /**
+         * Plan code.
+         */
+        planCode: pulumi.Input<string>;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: pulumi.Input<string>;
+    }
+
+    export interface PrivateDatabasePlanConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: pulumi.Input<string>;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: pulumi.Input<string>;
+    }
+
+    export interface PrivateDatabasePlanOption {
+        /**
+         * Catalog name
+         */
+        catalogName?: pulumi.Input<string>;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: pulumi.Input<pulumi.Input<inputs.Hosting.PrivateDatabasePlanOptionConfiguration>[]>;
+        /**
+         * duration.
+         */
+        duration: pulumi.Input<string>;
+        /**
+         * Plan code.
+         */
+        planCode: pulumi.Input<string>;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: pulumi.Input<string>;
+    }
+
+    export interface PrivateDatabasePlanOptionConfiguration {
         /**
          * Identifier of the resource
          */

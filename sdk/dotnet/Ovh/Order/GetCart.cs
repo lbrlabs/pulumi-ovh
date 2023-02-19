@@ -28,7 +28,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Order
         /// {
         ///     var mycart = Ovh.Order.GetCart.Invoke(new()
         ///     {
-        ///         Description = "...",
+        ///         Description = "my cart",
         ///         OvhSubsidiary = "fr",
         ///     });
         /// 
@@ -56,7 +56,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Order
         /// {
         ///     var mycart = Ovh.Order.GetCart.Invoke(new()
         ///     {
-        ///         Description = "...",
+        ///         Description = "my cart",
         ///         OvhSubsidiary = "fr",
         ///     });
         /// 
@@ -72,6 +72,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Order
 
     public sealed class GetCartArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+        /// </summary>
+        [Input("assign")]
+        public bool? Assign { get; set; }
+
         /// <summary>
         /// Description of your cart
         /// </summary>
@@ -98,6 +104,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Order
 
     public sealed class GetCartInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+        /// </summary>
+        [Input("assign")]
+        public Input<bool>? Assign { get; set; }
+
         /// <summary>
         /// Description of your cart
         /// </summary>
@@ -126,6 +138,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Order
     [OutputType]
     public sealed class GetCartResult
     {
+        public readonly bool? Assign;
         /// <summary>
         /// Cart identifier
         /// </summary>
@@ -148,6 +161,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.Order
 
         [OutputConstructor]
         private GetCartResult(
+            bool? assign,
+
             string cartId,
 
             string? description,
@@ -162,6 +177,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Order
 
             bool readOnly)
         {
+            Assign = assign;
             CartId = cartId;
             Description = description;
             Expire = expire;

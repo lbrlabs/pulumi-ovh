@@ -15,6 +15,30 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     /// 
     /// ## Example Usage
     /// 
+    /// Create a simple node pool in your Kubernetes cluster:
+    /// 
+    /// ```csharp
+    /// using System.Collections.Generic;
+    /// using Pulumi;
+    /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
+    /// 
+    /// return await Deployment.RunAsync(() =&gt; 
+    /// {
+    ///     var nodePool = new Ovh.CloudProject.KubeNodePool("nodePool", new()
+    ///     {
+    ///         DesiredNodes = 3,
+    ///         FlavorName = "b2-7",
+    ///         KubeId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    ///         MaxNodes = 3,
+    ///         MinNodes = 3,
+    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    ///     });
+    /// 
+    /// });
+    /// ```
+    /// 
+    /// Create an advanced node pool in your Kubernetes cluster:
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
     /// using Pulumi;
@@ -26,7 +50,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///     {
     ///         DesiredNodes = 3,
     ///         FlavorName = "b2-7",
-    ///         KubeId = "xxxxxxxx-2bf9-xxxx-xxxx-xxxxxxxxxxxx",
+    ///         KubeId = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
     ///         MaxNodes = 3,
     ///         MinNodes = 3,
     ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -74,7 +98,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     /// OVHcloud Managed Kubernetes Service cluster node pool can be imported using the `service_name`, the `id` of the cluster, and the `id` of the nodepool separated by "/" E.g., bash
     /// 
     /// ```sh
-    ///  $ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool my_kube_cluster service_name/kube_id/poolid
+    ///  $ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool pool service_name/kube_id/poolid
     /// ```
     /// </summary>
     [OvhResourceType("ovh:CloudProject/kubeNodePool:KubeNodePool")]
@@ -84,13 +108,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         /// should the pool use the anti-affinity feature. Default to `false`.
         /// </summary>
         [Output("antiAffinity")]
-        public Output<bool?> AntiAffinity { get; private set; } = null!;
+        public Output<bool> AntiAffinity { get; private set; } = null!;
 
         /// <summary>
         /// Enable auto-scaling for the pool. Default to `false`.
         /// </summary>
         [Output("autoscale")]
-        public Output<bool?> Autoscale { get; private set; } = null!;
+        public Output<bool> Autoscale { get; private set; } = null!;
 
         /// <summary>
         /// Number of nodes which are actually ready in the pool
@@ -154,7 +178,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         /// should the nodes be billed on a monthly basis. Default to `false`.
         /// </summary>
         [Output("monthlyBilled")]
-        public Output<bool?> MonthlyBilled { get; private set; } = null!;
+        public Output<bool> MonthlyBilled { get; private set; } = null!;
 
         /// <summary>
         /// The name of the nodepool.

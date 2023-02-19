@@ -11,6 +11,9 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Ovh.Vrack
 {
     /// <summary>
+    /// &gt; **NOTE:** The resource `ovh.Vrack.DedicatedServer` is DEPRECATED and will be removed in a future version.
+    /// Use the resource `ovh.Vrack.DedicatedServerInterface` instead.
+    /// 
     /// Attach a dedicated server to a VRack.
     /// 
     /// ## Example Usage

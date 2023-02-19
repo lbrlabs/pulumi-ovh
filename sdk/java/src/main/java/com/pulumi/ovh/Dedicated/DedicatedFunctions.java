@@ -9,9 +9,12 @@ import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
 import com.pulumi.ovh.Dedicated.inputs.GetCephArgs;
 import com.pulumi.ovh.Dedicated.inputs.GetCephPlainArgs;
+import com.pulumi.ovh.Dedicated.inputs.GetNasHAArgs;
+import com.pulumi.ovh.Dedicated.inputs.GetNasHAPlainArgs;
 import com.pulumi.ovh.Dedicated.inputs.GetServerBootsArgs;
 import com.pulumi.ovh.Dedicated.inputs.GetServerBootsPlainArgs;
 import com.pulumi.ovh.Dedicated.outputs.GetCephResult;
+import com.pulumi.ovh.Dedicated.outputs.GetNasHAResult;
 import com.pulumi.ovh.Dedicated.outputs.GetServerBootsResult;
 import com.pulumi.ovh.Utilities;
 import java.util.concurrent.CompletableFuture;
@@ -164,6 +167,154 @@ public final class DedicatedFunctions {
      */
     public static CompletableFuture<GetCephResult> getCephPlain(GetCephPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ovh:Dedicated/getCeph:getCeph", TypeShape.of(GetCephResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about a dedicated HA-NAS.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dedicated.DedicatedFunctions;
+     * import com.pulumi.ovh.Dedicated.inputs.GetNasHAArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var my-nas-ha = DedicatedFunctions.getNasHA(GetNasHAArgs.builder()
+     *             .serviceName(&#34;zpool-12345&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetNasHAResult> getNasHA(GetNasHAArgs args) {
+        return getNasHA(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve information about a dedicated HA-NAS.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dedicated.DedicatedFunctions;
+     * import com.pulumi.ovh.Dedicated.inputs.GetNasHAArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var my-nas-ha = DedicatedFunctions.getNasHA(GetNasHAArgs.builder()
+     *             .serviceName(&#34;zpool-12345&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetNasHAResult> getNasHAPlain(GetNasHAPlainArgs args) {
+        return getNasHAPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve information about a dedicated HA-NAS.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dedicated.DedicatedFunctions;
+     * import com.pulumi.ovh.Dedicated.inputs.GetNasHAArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var my-nas-ha = DedicatedFunctions.getNasHA(GetNasHAArgs.builder()
+     *             .serviceName(&#34;zpool-12345&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetNasHAResult> getNasHA(GetNasHAArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:Dedicated/getNasHA:getNasHA", TypeShape.of(GetNasHAResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about a dedicated HA-NAS.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dedicated.DedicatedFunctions;
+     * import com.pulumi.ovh.Dedicated.inputs.GetNasHAArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var my-nas-ha = DedicatedFunctions.getNasHA(GetNasHAArgs.builder()
+     *             .serviceName(&#34;zpool-12345&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetNasHAResult> getNasHAPlain(GetNasHAPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:Dedicated/getNasHA:getNasHA", TypeShape.of(GetNasHAResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get the list of compatible netboots for a dedicated server associated with your OVHcloud Account.

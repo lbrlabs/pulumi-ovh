@@ -23,14 +23,14 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
     /// {
     ///     var rescue = Ovh.Dedicated.GetServerBoots.Invoke(new()
     ///     {
-    ///         ServiceName = "ns00000.ip-1-2-3.eu",
+    ///         ServiceName = "nsxxxxxxx.ip-xx-xx-xx.eu",
     ///         BootType = "rescue",
     ///         Kernel = "rescue64-pro",
     ///     });
     /// 
     ///     var server = new Ovh.Dedicated.ServerUpdate("server", new()
     ///     {
-    ///         ServiceName = "ns00000.ip-1-2-3.eu",
+    ///         ServiceName = "nsxxxxxxx.ip-xx-xx-xx.eu",
     ///         BootId = rescue.Apply(getServerBootsResult =&gt; getServerBootsResult.Results[0]),
     ///         Monitoring = true,
     ///         State = "ok",

@@ -14,7 +14,7 @@ import * as utilities from "../utilities";
  * import * as ovh from "@pulumi/ovh";
  *
  * const mycart = pulumi.output(ovh.Order.getCart({
- *     description: "...",
+ *     description: "my cart",
  *     ovhSubsidiary: "fr",
  * }));
  * ```
@@ -26,6 +26,7 @@ export function getCart(args: GetCartArgs, opts?: pulumi.InvokeOptions): Promise
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
     return pulumi.runtime.invoke("ovh:Order/getCart:getCart", {
+        "assign": args.assign,
         "description": args.description,
         "expire": args.expire,
         "ovhSubsidiary": args.ovhSubsidiary,
@@ -36,6 +37,10 @@ export function getCart(args: GetCartArgs, opts?: pulumi.InvokeOptions): Promise
  * A collection of arguments for invoking getCart.
  */
 export interface GetCartArgs {
+    /**
+     * Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+     */
+    assign?: boolean;
     /**
      * Description of your cart
      */
@@ -54,6 +59,7 @@ export interface GetCartArgs {
  * A collection of values returned by getCart.
  */
 export interface GetCartResult {
+    readonly assign?: boolean;
     /**
      * Cart identifier
      */
@@ -83,6 +89,10 @@ export function getCartOutput(args: GetCartOutputArgs, opts?: pulumi.InvokeOptio
  * A collection of arguments for invoking getCart.
  */
 export interface GetCartOutputArgs {
+    /**
+     * Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+     */
+    assign?: pulumi.Input<boolean>;
     /**
      * Description of your cart
      */

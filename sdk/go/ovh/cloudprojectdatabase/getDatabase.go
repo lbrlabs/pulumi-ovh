@@ -71,6 +71,10 @@ type GetDatabaseResult struct {
 	CreatedAt string `pulumi:"createdAt"`
 	// Small description of the database service.
 	Description string `pulumi:"description"`
+	// The disk size (in GB) of the database service.
+	DiskSize int `pulumi:"diskSize"`
+	// The disk type of the database service.
+	DiskType string `pulumi:"diskType"`
 	// List of all endpoints objects of the service.
 	Endpoints []GetDatabaseEndpoint `pulumi:"endpoints"`
 	// See Argument Reference above.
@@ -155,6 +159,16 @@ func (o GetDatabaseResultOutput) CreatedAt() pulumi.StringOutput {
 // Small description of the database service.
 func (o GetDatabaseResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetDatabaseResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// The disk size (in GB) of the database service.
+func (o GetDatabaseResultOutput) DiskSize() pulumi.IntOutput {
+	return o.ApplyT(func(v GetDatabaseResult) int { return v.DiskSize }).(pulumi.IntOutput)
+}
+
+// The disk type of the database service.
+func (o GetDatabaseResultOutput) DiskType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetDatabaseResult) string { return v.DiskType }).(pulumi.StringOutput)
 }
 
 // List of all endpoints objects of the service.

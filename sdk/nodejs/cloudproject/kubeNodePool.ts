@@ -11,6 +11,24 @@ import * as utilities from "../utilities";
  *
  * ## Example Usage
  *
+ * Create a simple node pool in your Kubernetes cluster:
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const nodePool = new ovh.CloudProject.KubeNodePool("node_pool", {
+ *     desiredNodes: 3,
+ *     flavorName: "b2-7",
+ *     kubeId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+ *     maxNodes: 3,
+ *     minNodes: 3,
+ *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+ * });
+ * ```
+ *
+ * Create an advanced node pool in your Kubernetes cluster:
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
@@ -18,7 +36,7 @@ import * as utilities from "../utilities";
  * const pool = new ovh.CloudProject.KubeNodePool("pool", {
  *     desiredNodes: 3,
  *     flavorName: "b2-7",
- *     kubeId: "xxxxxxxx-2bf9-xxxx-xxxx-xxxxxxxxxxxx",
+ *     kubeId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
  *     maxNodes: 3,
  *     minNodes: 3,
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
@@ -54,7 +72,7 @@ import * as utilities from "../utilities";
  * OVHcloud Managed Kubernetes Service cluster node pool can be imported using the `service_name`, the `id` of the cluster, and the `id` of the nodepool separated by "/" E.g., bash
  *
  * ```sh
- *  $ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool my_kube_cluster service_name/kube_id/poolid
+ *  $ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool pool service_name/kube_id/poolid
  * ```
  */
 export class KubeNodePool extends pulumi.CustomResource {
@@ -88,11 +106,11 @@ export class KubeNodePool extends pulumi.CustomResource {
     /**
      * should the pool use the anti-affinity feature. Default to `false`.
      */
-    public readonly antiAffinity!: pulumi.Output<boolean | undefined>;
+    public readonly antiAffinity!: pulumi.Output<boolean>;
     /**
      * Enable auto-scaling for the pool. Default to `false`.
      */
-    public readonly autoscale!: pulumi.Output<boolean | undefined>;
+    public readonly autoscale!: pulumi.Output<boolean>;
     /**
      * Number of nodes which are actually ready in the pool
      */
@@ -136,7 +154,7 @@ export class KubeNodePool extends pulumi.CustomResource {
     /**
      * should the nodes be billed on a monthly basis. Default to `false`.
      */
-    public readonly monthlyBilled!: pulumi.Output<boolean | undefined>;
+    public readonly monthlyBilled!: pulumi.Output<boolean>;
     /**
      * The name of the nodepool.
      * Changing this value recreates the resource.

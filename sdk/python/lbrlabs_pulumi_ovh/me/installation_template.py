@@ -114,10 +114,8 @@ class _InstallationTemplateState:
                  lvm_ready: Optional[pulumi.Input[bool]] = None,
                  remove_default_partition_schemes: Optional[pulumi.Input[bool]] = None,
                  supports_distribution_kernel: Optional[pulumi.Input[bool]] = None,
-                 supports_gpt_label: Optional[pulumi.Input[bool]] = None,
                  supports_rtm: Optional[pulumi.Input[bool]] = None,
                  supports_sql_server: Optional[pulumi.Input[bool]] = None,
-                 supports_uefi: Optional[pulumi.Input[str]] = None,
                  template_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstallationTemplate resources.
@@ -137,10 +135,8 @@ class _InstallationTemplateState:
         :param pulumi.Input[bool] lvm_ready: This distribution supports Logical Volumes (Linux LVM)
         :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation
         :param pulumi.Input[bool] supports_distribution_kernel: This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
-        :param pulumi.Input[bool] supports_gpt_label: This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
         :param pulumi.Input[bool] supports_rtm: This distribution supports RTM software
         :param pulumi.Input[bool] supports_sql_server: This distribution supports the microsoft SQL server
-        :param pulumi.Input[str] supports_uefi: This distribution supports UEFI setup (no,only,yes)
         :param pulumi.Input[str] template_name: This template name
         """
         if available_languages is not None:
@@ -177,14 +173,10 @@ class _InstallationTemplateState:
             pulumi.set(__self__, "remove_default_partition_schemes", remove_default_partition_schemes)
         if supports_distribution_kernel is not None:
             pulumi.set(__self__, "supports_distribution_kernel", supports_distribution_kernel)
-        if supports_gpt_label is not None:
-            pulumi.set(__self__, "supports_gpt_label", supports_gpt_label)
         if supports_rtm is not None:
             pulumi.set(__self__, "supports_rtm", supports_rtm)
         if supports_sql_server is not None:
             pulumi.set(__self__, "supports_sql_server", supports_sql_server)
-        if supports_uefi is not None:
-            pulumi.set(__self__, "supports_uefi", supports_uefi)
         if template_name is not None:
             pulumi.set(__self__, "template_name", template_name)
 
@@ -390,18 +382,6 @@ class _InstallationTemplateState:
         pulumi.set(self, "supports_distribution_kernel", value)
 
     @property
-    @pulumi.getter(name="supportsGptLabel")
-    def supports_gpt_label(self) -> Optional[pulumi.Input[bool]]:
-        """
-        This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-        """
-        return pulumi.get(self, "supports_gpt_label")
-
-    @supports_gpt_label.setter
-    def supports_gpt_label(self, value: Optional[pulumi.Input[bool]]):
-        pulumi.set(self, "supports_gpt_label", value)
-
-    @property
     @pulumi.getter(name="supportsRtm")
     def supports_rtm(self) -> Optional[pulumi.Input[bool]]:
         """
@@ -424,18 +404,6 @@ class _InstallationTemplateState:
     @supports_sql_server.setter
     def supports_sql_server(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "supports_sql_server", value)
-
-    @property
-    @pulumi.getter(name="supportsUefi")
-    def supports_uefi(self) -> Optional[pulumi.Input[str]]:
-        """
-        This distribution supports UEFI setup (no,only,yes)
-        """
-        return pulumi.get(self, "supports_uefi")
-
-    @supports_uefi.setter
-    def supports_uefi(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "supports_uefi", value)
 
     @property
     @pulumi.getter(name="templateName")
@@ -472,7 +440,7 @@ class InstallationTemplate(pulumi.CustomResource):
 
         mytemplate = ovh.me.InstallationTemplate("mytemplate",
             base_template_name="centos7_64",
-            default_language="fr",
+            default_language="en",
             template_name="mytemplate")
         ```
 
@@ -508,7 +476,7 @@ class InstallationTemplate(pulumi.CustomResource):
 
         mytemplate = ovh.me.InstallationTemplate("mytemplate",
             base_template_name="centos7_64",
-            default_language="fr",
+            default_language="en",
             template_name="mytemplate")
         ```
 
@@ -573,10 +541,8 @@ class InstallationTemplate(pulumi.CustomResource):
             __props__.__dict__["last_modification"] = None
             __props__.__dict__["lvm_ready"] = None
             __props__.__dict__["supports_distribution_kernel"] = None
-            __props__.__dict__["supports_gpt_label"] = None
             __props__.__dict__["supports_rtm"] = None
             __props__.__dict__["supports_sql_server"] = None
-            __props__.__dict__["supports_uefi"] = None
         super(InstallationTemplate, __self__).__init__(
             'ovh:Me/installationTemplate:InstallationTemplate',
             resource_name,
@@ -604,10 +570,8 @@ class InstallationTemplate(pulumi.CustomResource):
             lvm_ready: Optional[pulumi.Input[bool]] = None,
             remove_default_partition_schemes: Optional[pulumi.Input[bool]] = None,
             supports_distribution_kernel: Optional[pulumi.Input[bool]] = None,
-            supports_gpt_label: Optional[pulumi.Input[bool]] = None,
             supports_rtm: Optional[pulumi.Input[bool]] = None,
             supports_sql_server: Optional[pulumi.Input[bool]] = None,
-            supports_uefi: Optional[pulumi.Input[str]] = None,
             template_name: Optional[pulumi.Input[str]] = None) -> 'InstallationTemplate':
         """
         Get an existing InstallationTemplate resource's state with the given name, id, and optional extra
@@ -632,10 +596,8 @@ class InstallationTemplate(pulumi.CustomResource):
         :param pulumi.Input[bool] lvm_ready: This distribution supports Logical Volumes (Linux LVM)
         :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation
         :param pulumi.Input[bool] supports_distribution_kernel: This distribution supports installation using the distribution's native kernel instead of the recommended OVH kernel
-        :param pulumi.Input[bool] supports_gpt_label: This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
         :param pulumi.Input[bool] supports_rtm: This distribution supports RTM software
         :param pulumi.Input[bool] supports_sql_server: This distribution supports the microsoft SQL server
-        :param pulumi.Input[str] supports_uefi: This distribution supports UEFI setup (no,only,yes)
         :param pulumi.Input[str] template_name: This template name
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -659,10 +621,8 @@ class InstallationTemplate(pulumi.CustomResource):
         __props__.__dict__["lvm_ready"] = lvm_ready
         __props__.__dict__["remove_default_partition_schemes"] = remove_default_partition_schemes
         __props__.__dict__["supports_distribution_kernel"] = supports_distribution_kernel
-        __props__.__dict__["supports_gpt_label"] = supports_gpt_label
         __props__.__dict__["supports_rtm"] = supports_rtm
         __props__.__dict__["supports_sql_server"] = supports_sql_server
-        __props__.__dict__["supports_uefi"] = supports_uefi
         __props__.__dict__["template_name"] = template_name
         return InstallationTemplate(resource_name, opts=opts, __props__=__props__)
 
@@ -800,14 +760,6 @@ class InstallationTemplate(pulumi.CustomResource):
         return pulumi.get(self, "supports_distribution_kernel")
 
     @property
-    @pulumi.getter(name="supportsGptLabel")
-    def supports_gpt_label(self) -> pulumi.Output[bool]:
-        """
-        This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-        """
-        return pulumi.get(self, "supports_gpt_label")
-
-    @property
     @pulumi.getter(name="supportsRtm")
     def supports_rtm(self) -> pulumi.Output[bool]:
         """
@@ -822,14 +774,6 @@ class InstallationTemplate(pulumi.CustomResource):
         This distribution supports the microsoft SQL server
         """
         return pulumi.get(self, "supports_sql_server")
-
-    @property
-    @pulumi.getter(name="supportsUefi")
-    def supports_uefi(self) -> pulumi.Output[str]:
-        """
-        This distribution supports UEFI setup (no,only,yes)
-        """
-        return pulumi.get(self, "supports_uefi")
 
     @property
     @pulumi.getter(name="templateName")

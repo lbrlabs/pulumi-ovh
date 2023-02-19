@@ -35,6 +35,9 @@ __all__ = [
     'GetKubeCustomizationArgs',
     'GetKubeCustomizationApiserverArgs',
     'GetKubeCustomizationApiserverAdmissionpluginsArgs',
+    'GetKubeNodePoolTemplateArgs',
+    'GetKubeNodePoolTemplateMetadataArgs',
+    'GetKubeNodePoolTemplateSpecArgs',
 ]
 
 @pulumi.input_type
@@ -788,7 +791,7 @@ class ProjectOrderArgs:
         :param pulumi.Input[str] date: date
         :param pulumi.Input[Sequence[pulumi.Input['ProjectOrderDetailArgs']]] details: Information about a Bill entry
         :param pulumi.Input[str] expiration_date: expiration date
-        :param pulumi.Input[int] order_id: order id
+        :param pulumi.Input[int] order_id: order id, the same as the `id`
         """
         if date is not None:
             pulumi.set(__self__, "date", date)
@@ -839,7 +842,7 @@ class ProjectOrderArgs:
     @pulumi.getter(name="orderId")
     def order_id(self) -> Optional[pulumi.Input[int]]:
         """
-        order id
+        order id, the same as the `id`
         """
         return pulumi.get(self, "order_id")
 
@@ -1289,5 +1292,104 @@ class GetKubeCustomizationApiserverAdmissionpluginsArgs:
     @enableds.setter
     def enableds(self, value: Sequence[str]):
         pulumi.set(self, "enableds", value)
+
+
+@pulumi.input_type
+class GetKubeNodePoolTemplateArgs:
+    def __init__(__self__, *,
+                 metadata: Optional['GetKubeNodePoolTemplateMetadataArgs'] = None,
+                 spec: Optional['GetKubeNodePoolTemplateSpecArgs'] = None):
+        if metadata is not None:
+            pulumi.set(__self__, "metadata", metadata)
+        if spec is not None:
+            pulumi.set(__self__, "spec", spec)
+
+    @property
+    @pulumi.getter
+    def metadata(self) -> Optional['GetKubeNodePoolTemplateMetadataArgs']:
+        return pulumi.get(self, "metadata")
+
+    @metadata.setter
+    def metadata(self, value: Optional['GetKubeNodePoolTemplateMetadataArgs']):
+        pulumi.set(self, "metadata", value)
+
+    @property
+    @pulumi.getter
+    def spec(self) -> Optional['GetKubeNodePoolTemplateSpecArgs']:
+        return pulumi.get(self, "spec")
+
+    @spec.setter
+    def spec(self, value: Optional['GetKubeNodePoolTemplateSpecArgs']):
+        pulumi.set(self, "spec", value)
+
+
+@pulumi.input_type
+class GetKubeNodePoolTemplateMetadataArgs:
+    def __init__(__self__, *,
+                 annotations: Optional[Mapping[str, str]] = None,
+                 finalizers: Optional[Sequence[str]] = None,
+                 labels: Optional[Mapping[str, str]] = None):
+        if annotations is not None:
+            pulumi.set(__self__, "annotations", annotations)
+        if finalizers is not None:
+            pulumi.set(__self__, "finalizers", finalizers)
+        if labels is not None:
+            pulumi.set(__self__, "labels", labels)
+
+    @property
+    @pulumi.getter
+    def annotations(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "annotations")
+
+    @annotations.setter
+    def annotations(self, value: Optional[Mapping[str, str]]):
+        pulumi.set(self, "annotations", value)
+
+    @property
+    @pulumi.getter
+    def finalizers(self) -> Optional[Sequence[str]]:
+        return pulumi.get(self, "finalizers")
+
+    @finalizers.setter
+    def finalizers(self, value: Optional[Sequence[str]]):
+        pulumi.set(self, "finalizers", value)
+
+    @property
+    @pulumi.getter
+    def labels(self) -> Optional[Mapping[str, str]]:
+        return pulumi.get(self, "labels")
+
+    @labels.setter
+    def labels(self, value: Optional[Mapping[str, str]]):
+        pulumi.set(self, "labels", value)
+
+
+@pulumi.input_type
+class GetKubeNodePoolTemplateSpecArgs:
+    def __init__(__self__, *,
+                 taints: Optional[Sequence[Mapping[str, Any]]] = None,
+                 unschedulable: Optional[bool] = None):
+        if taints is not None:
+            pulumi.set(__self__, "taints", taints)
+        if unschedulable is not None:
+            pulumi.set(__self__, "unschedulable", unschedulable)
+
+    @property
+    @pulumi.getter
+    def taints(self) -> Optional[Sequence[Mapping[str, Any]]]:
+        return pulumi.get(self, "taints")
+
+    @taints.setter
+    def taints(self, value: Optional[Sequence[Mapping[str, Any]]]):
+        pulumi.set(self, "taints", value)
+
+    @property
+    @pulumi.getter
+    def unschedulable(self) -> Optional[bool]:
+        return pulumi.get(self, "unschedulable")
+
+    @unschedulable.setter
+    def unschedulable(self, value: Optional[bool]):
+        pulumi.set(self, "unschedulable", value)
 
 

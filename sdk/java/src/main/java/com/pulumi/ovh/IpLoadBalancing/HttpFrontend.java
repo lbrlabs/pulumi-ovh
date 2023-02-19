@@ -69,6 +69,58 @@ import javax.annotation.Nullable;
  *     }
  * }
  * ```
+ * ### With HTTP Header
+ * ```java
+ * package generated_program;
+ * 
+ * import com.pulumi.Context;
+ * import com.pulumi.Pulumi;
+ * import com.pulumi.core.Output;
+ * import com.pulumi.ovh.IpLoadBalancing.IpLoadBalancingFunctions;
+ * import com.pulumi.ovh.IpLoadBalancing.inputs.GetIpLoadBalancingArgs;
+ * import com.pulumi.ovh.IpLoadBalancing.HttpFarm;
+ * import com.pulumi.ovh.IpLoadBalancing.HttpFarmArgs;
+ * import com.pulumi.ovh.IpLoadBalancing.HttpFrontend;
+ * import com.pulumi.ovh.IpLoadBalancing.HttpFrontendArgs;
+ * import java.util.List;
+ * import java.util.ArrayList;
+ * import java.util.Map;
+ * import java.io.File;
+ * import java.nio.file.Files;
+ * import java.nio.file.Paths;
+ * 
+ * public class App {
+ *     public static void main(String[] args) {
+ *         Pulumi.run(App::stack);
+ *     }
+ * 
+ *     public static void stack(Context ctx) {
+ *         final var lb = IpLoadBalancingFunctions.getIpLoadBalancing(GetIpLoadBalancingArgs.builder()
+ *             .serviceName(&#34;ip-1.2.3.4&#34;)
+ *             .state(&#34;ok&#34;)
+ *             .build());
+ * 
+ *         var farm80 = new HttpFarm(&#34;farm80&#34;, HttpFarmArgs.builder()        
+ *             .displayName(&#34;ingress-8080-gra&#34;)
+ *             .port(80)
+ *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.serviceName()))
+ *             .zone(&#34;all&#34;)
+ *             .build());
+ * 
+ *         var testfrontend = new HttpFrontend(&#34;testfrontend&#34;, HttpFrontendArgs.builder()        
+ *             .defaultFarmId(farm80.id())
+ *             .displayName(&#34;ingress-8080-gra&#34;)
+ *             .httpHeaders(            
+ *                 &#34;X-Ip-Header %%ci&#34;,
+ *                 &#34;X-Port-Header %%cp&#34;)
+ *             .port(&#34;80,443&#34;)
+ *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.serviceName()))
+ *             .zone(&#34;all&#34;)
+ *             .build());
+ * 
+ *     }
+ * }
+ * ```
  * 
  */
 @ResourceType(type="ovh:IpLoadBalancing/httpFrontend:HttpFrontend")
@@ -156,6 +208,34 @@ public class HttpFrontend extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> displayName() {
         return Codegen.optional(this.displayName);
+    }
+    /**
+     * HTTP Strict Transport Security. Default: &#39;false&#39;
+     * 
+     */
+    @Export(name="hsts", type=Boolean.class, parameters={})
+    private Output</* @Nullable */ Boolean> hsts;
+
+    /**
+     * @return HTTP Strict Transport Security. Default: &#39;false&#39;
+     * 
+     */
+    public Output<Optional<Boolean>> hsts() {
+        return Codegen.optional(this.hsts);
+    }
+    /**
+     * HTTP headers to add to the frontend. List of string.
+     * 
+     */
+    @Export(name="httpHeaders", type=List.class, parameters={String.class})
+    private Output</* @Nullable */ List<String>> httpHeaders;
+
+    /**
+     * @return HTTP headers to add to the frontend. List of string.
+     * 
+     */
+    public Output<Optional<List<String>>> httpHeaders() {
+        return Codegen.optional(this.httpHeaders);
     }
     /**
      * Port(s) attached to your frontend. Supports single port (numerical value),

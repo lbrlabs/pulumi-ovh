@@ -114,10 +114,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public readonly bool LvmReady;
         public readonly ImmutableArray<Outputs.GetInstallationTemplatePartitionSchemeResult> PartitionSchemes;
         public readonly bool SupportsDistributionKernel;
-        public readonly bool SupportsGptLabel;
         public readonly bool SupportsRtm;
         public readonly bool SupportsSqlServer;
-        public readonly string SupportsUefi;
         public readonly string TemplateName;
 
         [OutputConstructor]
@@ -156,13 +154,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
 
             bool supportsDistributionKernel,
 
-            bool supportsGptLabel,
-
             bool supportsRtm,
 
             bool supportsSqlServer,
-
-            string supportsUefi,
 
             string templateName)
         {
@@ -183,10 +177,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
             LvmReady = lvmReady;
             PartitionSchemes = partitionSchemes;
             SupportsDistributionKernel = supportsDistributionKernel;
-            SupportsGptLabel = supportsGptLabel;
             SupportsRtm = supportsRtm;
             SupportsSqlServer = supportsSqlServer;
-            SupportsUefi = supportsUefi;
             TemplateName = templateName;
         }
     }

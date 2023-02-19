@@ -19,13 +19,19 @@ namespace Lbrlabs.PulumiPackage.Ovh.Vrack
     /// using System.Collections.Generic;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
+    /// using Ovh = Pulumi.Ovh;
     /// 
     /// return await Deployment.RunAsync(() =&gt; 
     /// {
+    ///     var server = Ovh.GetServer.Invoke(new()
+    ///     {
+    ///         ServiceName = "nsxxxxxxx.ip-xx-xx-xx.eu",
+    ///     });
+    /// 
     ///     var vdsi = new Ovh.Vrack.DedicatedServerInterface("vdsi", new()
     ///     {
-    ///         InterfaceId = "67890",
-    ///         ServiceName = "12345",
+    ///         ServiceName = "pn-xxxxxxx",
+    ///         InterfaceId = server.Apply(getServerResult =&gt; getServerResult.EnabledVrackVnis[0]),
     ///     });
     /// 
     /// });

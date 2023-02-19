@@ -39,7 +39,7 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			cloudCartProductPlan, err := Order.GetCartProductPlan(ctx, &order.GetCartProductPlanArgs{
+//			cloud, err := Order.GetCartProductPlan(ctx, &order.GetCartProductPlanArgs{
 //				CartId:        mycart.Id,
 //				PriceCapacity: "renew",
 //				Product:       "cloud",
@@ -48,14 +48,14 @@ import (
 //			if err != nil {
 //				return err
 //			}
-//			_, err = CloudProject.NewProject(ctx, "cloudProject", &CloudProject.ProjectArgs{
+//			_, err = CloudProject.NewProject(ctx, "myCloudProject", &CloudProject.ProjectArgs{
 //				OvhSubsidiary: pulumi.String(mycart.OvhSubsidiary),
 //				Description:   pulumi.String("my cloud project"),
 //				PaymentMean:   pulumi.String("fidelity"),
 //				Plan: &cloudproject.ProjectPlanArgs{
-//					Duration:    pulumi.String(cloudCartProductPlan.SelectedPrices[0].Duration),
-//					PlanCode:    pulumi.String(cloudCartProductPlan.PlanCode),
-//					PricingMode: pulumi.String(cloudCartProductPlan.SelectedPrices[0].PricingMode),
+//					Duration:    pulumi.String(cloud.SelectedPrices[0].Duration),
+//					PlanCode:    pulumi.String(cloud.PlanCode),
+//					PricingMode: pulumi.String(cloud.SelectedPrices[0].PricingMode),
 //				},
 //			})
 //			if err != nil {
@@ -66,14 +66,25 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// Cloud project can be imported using the `order_id` that can be retrieved in the [order page](https://www.ovh.com/manager/#/dedicated/billing/orders/orders) at the creation time of the Public Cloud project.
+//
+// bash
+//
+// ```sh
+//
+//	$ pulumi import ovh:CloudProject/project:Project my_cloud_project order_id
+//
+// ```
 type Project struct {
 	pulumi.CustomResourceState
 
-	// project access
 	Access pulumi.StringOutput `pulumi:"access"`
 	// A description associated with the user.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// Details about an Order
+	// Details about the order that was used to create the public cloud project
 	Orders ProjectOrderArrayOutput `pulumi:"orders"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringOutput `pulumi:"ovhSubsidiary"`
@@ -130,11 +141,10 @@ func GetProject(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Project resources.
 type projectState struct {
-	// project access
 	Access *string `pulumi:"access"`
 	// A description associated with the user.
 	Description *string `pulumi:"description"`
-	// Details about an Order
+	// Details about the order that was used to create the public cloud project
 	Orders []ProjectOrder `pulumi:"orders"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary *string `pulumi:"ovhSubsidiary"`
@@ -153,11 +163,10 @@ type projectState struct {
 }
 
 type ProjectState struct {
-	// project access
 	Access pulumi.StringPtrInput
 	// A description associated with the user.
 	Description pulumi.StringPtrInput
-	// Details about an Order
+	// Details about the order that was used to create the public cloud project
 	Orders ProjectOrderArrayInput
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringPtrInput
@@ -293,7 +302,6 @@ func (o ProjectOutput) ToProjectOutputWithContext(ctx context.Context) ProjectOu
 	return o
 }
 
-// project access
 func (o ProjectOutput) Access() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Access }).(pulumi.StringOutput)
 }
@@ -303,7 +311,7 @@ func (o ProjectOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// Details about an Order
+// Details about the order that was used to create the public cloud project
 func (o ProjectOutput) Orders() ProjectOrderArrayOutput {
 	return o.ApplyT(func(v *Project) ProjectOrderArrayOutput { return v.Orders }).(ProjectOrderArrayOutput)
 }
