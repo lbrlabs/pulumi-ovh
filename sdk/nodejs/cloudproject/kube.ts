@@ -7,8 +7,6 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Creates a OVHcloud Managed Kubernetes Service cluster in a public cloud project.
- *
  * ## Import
  *
  * OVHcloud Managed Kubernetes Service clusters can be imported using the `service_name` and the `id` of the cluster, separated by "/" E.g., bash
@@ -46,25 +44,39 @@ export class Kube extends pulumi.CustomResource {
     }
 
     /**
-     * True if control-plane is up to date.
+     * True if control-plane is up-to-date.
      */
     public /*out*/ readonly controlPlaneIsUpToDate!: pulumi.Output<boolean>;
     /**
-     * Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-     * * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-     * * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * Kubernetes API server customization
      */
-    public readonly customization!: pulumi.Output<outputs.CloudProject.KubeCustomization>;
+    public readonly customizationApiservers!: pulumi.Output<outputs.CloudProject.KubeCustomizationApiserver[]>;
     /**
-     * True if all nodes and control-plane are up to date.
+     * Kubernetes kube-proxy customization
+     */
+    public readonly customizationKubeProxy!: pulumi.Output<outputs.CloudProject.KubeCustomizationKubeProxy | undefined>;
+    /**
+     * **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+     *
+     * @deprecated Use customization_apiserver instead
+     */
+    public readonly customizations!: pulumi.Output<outputs.CloudProject.KubeCustomization[]>;
+    /**
+     * True if all nodes and control-plane are up-to-date.
      */
     public /*out*/ readonly isUpToDate!: pulumi.Output<boolean>;
+    /**
+     * Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+     */
+    public readonly kubeProxyMode!: pulumi.Output<string>;
     /**
      * The kubeconfig file. Use this file to connect to your kubernetes cluster.
      */
     public /*out*/ readonly kubeconfig!: pulumi.Output<string>;
+    /**
+     * The kubeconfig file attributes.
+     */
+    public /*out*/ readonly kubeconfigAttributes!: pulumi.Output<outputs.CloudProject.KubeKubeconfigAttribute[]>;
     /**
      * The name of the kubernetes cluster.
      */
@@ -79,24 +91,18 @@ export class Kube extends pulumi.CustomResource {
     public /*out*/ readonly nodesUrl!: pulumi.Output<string>;
     /**
      * The private network configuration
-     * * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-     * * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
      */
     public readonly privateNetworkConfiguration!: pulumi.Output<outputs.CloudProject.KubePrivateNetworkConfiguration | undefined>;
     /**
-     * OpenStack private network (or vrack) ID to use.
-     * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+     * OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
      */
     public readonly privateNetworkId!: pulumi.Output<string | undefined>;
     /**
-     * a valid OVHcloud public cloud region ID in which the kubernetes
-     * cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-     * Changing this value recreates the resource.
+     * a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
      */
     public readonly region!: pulumi.Output<string>;
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      */
     public readonly serviceName!: pulumi.Output<string>;
     /**
@@ -112,8 +118,7 @@ export class Kube extends pulumi.CustomResource {
      */
     public /*out*/ readonly url!: pulumi.Output<string>;
     /**
-     * kubernetes version to use.
-     * Changing this value updates the resource. Defaults to latest available.
+     * kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
      */
     public readonly version!: pulumi.Output<string>;
 
@@ -131,9 +136,13 @@ export class Kube extends pulumi.CustomResource {
         if (opts.id) {
             const state = argsOrState as KubeState | undefined;
             resourceInputs["controlPlaneIsUpToDate"] = state ? state.controlPlaneIsUpToDate : undefined;
-            resourceInputs["customization"] = state ? state.customization : undefined;
+            resourceInputs["customizationApiservers"] = state ? state.customizationApiservers : undefined;
+            resourceInputs["customizationKubeProxy"] = state ? state.customizationKubeProxy : undefined;
+            resourceInputs["customizations"] = state ? state.customizations : undefined;
             resourceInputs["isUpToDate"] = state ? state.isUpToDate : undefined;
+            resourceInputs["kubeProxyMode"] = state ? state.kubeProxyMode : undefined;
             resourceInputs["kubeconfig"] = state ? state.kubeconfig : undefined;
+            resourceInputs["kubeconfigAttributes"] = state ? state.kubeconfigAttributes : undefined;
             resourceInputs["name"] = state ? state.name : undefined;
             resourceInputs["nextUpgradeVersions"] = state ? state.nextUpgradeVersions : undefined;
             resourceInputs["nodesUrl"] = state ? state.nodesUrl : undefined;
@@ -153,7 +162,10 @@ export class Kube extends pulumi.CustomResource {
             if ((!args || args.serviceName === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'serviceName'");
             }
-            resourceInputs["customization"] = args ? args.customization : undefined;
+            resourceInputs["customizationApiservers"] = args ? args.customizationApiservers : undefined;
+            resourceInputs["customizationKubeProxy"] = args ? args.customizationKubeProxy : undefined;
+            resourceInputs["customizations"] = args ? args.customizations : undefined;
+            resourceInputs["kubeProxyMode"] = args ? args.kubeProxyMode : undefined;
             resourceInputs["name"] = args ? args.name : undefined;
             resourceInputs["privateNetworkConfiguration"] = args ? args.privateNetworkConfiguration : undefined;
             resourceInputs["privateNetworkId"] = args ? args.privateNetworkId : undefined;
@@ -164,13 +176,14 @@ export class Kube extends pulumi.CustomResource {
             resourceInputs["controlPlaneIsUpToDate"] = undefined /*out*/;
             resourceInputs["isUpToDate"] = undefined /*out*/;
             resourceInputs["kubeconfig"] = undefined /*out*/;
+            resourceInputs["kubeconfigAttributes"] = undefined /*out*/;
             resourceInputs["nextUpgradeVersions"] = undefined /*out*/;
             resourceInputs["nodesUrl"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
             resourceInputs["url"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
-        const secretOpts = { additionalSecretOutputs: ["kubeconfig"] };
+        const secretOpts = { additionalSecretOutputs: ["kubeconfig", "kubeconfigAttributes"] };
         opts = pulumi.mergeOptions(opts, secretOpts);
         super(Kube.__pulumiType, name, resourceInputs, opts);
     }
@@ -181,25 +194,39 @@ export class Kube extends pulumi.CustomResource {
  */
 export interface KubeState {
     /**
-     * True if control-plane is up to date.
+     * True if control-plane is up-to-date.
      */
     controlPlaneIsUpToDate?: pulumi.Input<boolean>;
     /**
-     * Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-     * * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-     * * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * Kubernetes API server customization
      */
-    customization?: pulumi.Input<inputs.CloudProject.KubeCustomization>;
+    customizationApiservers?: pulumi.Input<pulumi.Input<inputs.CloudProject.KubeCustomizationApiserver>[]>;
     /**
-     * True if all nodes and control-plane are up to date.
+     * Kubernetes kube-proxy customization
+     */
+    customizationKubeProxy?: pulumi.Input<inputs.CloudProject.KubeCustomizationKubeProxy>;
+    /**
+     * **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+     *
+     * @deprecated Use customization_apiserver instead
+     */
+    customizations?: pulumi.Input<pulumi.Input<inputs.CloudProject.KubeCustomization>[]>;
+    /**
+     * True if all nodes and control-plane are up-to-date.
      */
     isUpToDate?: pulumi.Input<boolean>;
+    /**
+     * Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+     */
+    kubeProxyMode?: pulumi.Input<string>;
     /**
      * The kubeconfig file. Use this file to connect to your kubernetes cluster.
      */
     kubeconfig?: pulumi.Input<string>;
+    /**
+     * The kubeconfig file attributes.
+     */
+    kubeconfigAttributes?: pulumi.Input<pulumi.Input<inputs.CloudProject.KubeKubeconfigAttribute>[]>;
     /**
      * The name of the kubernetes cluster.
      */
@@ -214,24 +241,18 @@ export interface KubeState {
     nodesUrl?: pulumi.Input<string>;
     /**
      * The private network configuration
-     * * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-     * * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
      */
     privateNetworkConfiguration?: pulumi.Input<inputs.CloudProject.KubePrivateNetworkConfiguration>;
     /**
-     * OpenStack private network (or vrack) ID to use.
-     * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+     * OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
-     * a valid OVHcloud public cloud region ID in which the kubernetes
-     * cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-     * Changing this value recreates the resource.
+     * a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
      */
     region?: pulumi.Input<string>;
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      */
     serviceName?: pulumi.Input<string>;
     /**
@@ -247,8 +268,7 @@ export interface KubeState {
      */
     url?: pulumi.Input<string>;
     /**
-     * kubernetes version to use.
-     * Changing this value updates the resource. Defaults to latest available.
+     * kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
      */
     version?: pulumi.Input<string>;
 }
@@ -258,37 +278,41 @@ export interface KubeState {
  */
 export interface KubeArgs {
     /**
-     * Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-     * * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-     * * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * Kubernetes API server customization
      */
-    customization?: pulumi.Input<inputs.CloudProject.KubeCustomization>;
+    customizationApiservers?: pulumi.Input<pulumi.Input<inputs.CloudProject.KubeCustomizationApiserver>[]>;
+    /**
+     * Kubernetes kube-proxy customization
+     */
+    customizationKubeProxy?: pulumi.Input<inputs.CloudProject.KubeCustomizationKubeProxy>;
+    /**
+     * **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+     *
+     * @deprecated Use customization_apiserver instead
+     */
+    customizations?: pulumi.Input<pulumi.Input<inputs.CloudProject.KubeCustomization>[]>;
+    /**
+     * Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+     */
+    kubeProxyMode?: pulumi.Input<string>;
     /**
      * The name of the kubernetes cluster.
      */
     name?: pulumi.Input<string>;
     /**
      * The private network configuration
-     * * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-     * * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
      */
     privateNetworkConfiguration?: pulumi.Input<inputs.CloudProject.KubePrivateNetworkConfiguration>;
     /**
-     * OpenStack private network (or vrack) ID to use.
-     * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+     * OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
-     * a valid OVHcloud public cloud region ID in which the kubernetes
-     * cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-     * Changing this value recreates the resource.
+     * a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
      */
     region: pulumi.Input<string>;
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      */
     serviceName: pulumi.Input<string>;
     /**
@@ -296,8 +320,7 @@ export interface KubeArgs {
      */
     updatePolicy?: pulumi.Input<string>;
     /**
-     * kubernetes version to use.
-     * Changing this value updates the resource. Defaults to latest available.
+     * kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
      */
     version?: pulumi.Input<string>;
 }

@@ -643,7 +643,10 @@ func (o DatabaseNodeArrayOutput) Index(i pulumi.IntInput) DatabaseNodeOutput {
 }
 
 type KubeCustomization struct {
-	Apiserver *KubeCustomizationApiserver `pulumi:"apiserver"`
+	// Kubernetes API server customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Apiservers []KubeCustomizationApiserver `pulumi:"apiservers"`
 }
 
 // KubeCustomizationInput is an input type that accepts KubeCustomizationArgs and KubeCustomizationOutput values.
@@ -658,7 +661,10 @@ type KubeCustomizationInput interface {
 }
 
 type KubeCustomizationArgs struct {
-	Apiserver KubeCustomizationApiserverPtrInput `pulumi:"apiserver"`
+	// Kubernetes API server customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Apiservers KubeCustomizationApiserverArrayInput `pulumi:"apiservers"`
 }
 
 func (KubeCustomizationArgs) ElementType() reflect.Type {
@@ -673,45 +679,29 @@ func (i KubeCustomizationArgs) ToKubeCustomizationOutputWithContext(ctx context.
 	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationOutput)
 }
 
-func (i KubeCustomizationArgs) ToKubeCustomizationPtrOutput() KubeCustomizationPtrOutput {
-	return i.ToKubeCustomizationPtrOutputWithContext(context.Background())
-}
-
-func (i KubeCustomizationArgs) ToKubeCustomizationPtrOutputWithContext(ctx context.Context) KubeCustomizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationOutput).ToKubeCustomizationPtrOutputWithContext(ctx)
-}
-
-// KubeCustomizationPtrInput is an input type that accepts KubeCustomizationArgs, KubeCustomizationPtr and KubeCustomizationPtrOutput values.
-// You can construct a concrete instance of `KubeCustomizationPtrInput` via:
+// KubeCustomizationArrayInput is an input type that accepts KubeCustomizationArray and KubeCustomizationArrayOutput values.
+// You can construct a concrete instance of `KubeCustomizationArrayInput` via:
 //
-//	        KubeCustomizationArgs{...}
-//
-//	or:
-//
-//	        nil
-type KubeCustomizationPtrInput interface {
+//	KubeCustomizationArray{ KubeCustomizationArgs{...} }
+type KubeCustomizationArrayInput interface {
 	pulumi.Input
 
-	ToKubeCustomizationPtrOutput() KubeCustomizationPtrOutput
-	ToKubeCustomizationPtrOutputWithContext(context.Context) KubeCustomizationPtrOutput
+	ToKubeCustomizationArrayOutput() KubeCustomizationArrayOutput
+	ToKubeCustomizationArrayOutputWithContext(context.Context) KubeCustomizationArrayOutput
 }
 
-type kubeCustomizationPtrType KubeCustomizationArgs
+type KubeCustomizationArray []KubeCustomizationInput
 
-func KubeCustomizationPtr(v *KubeCustomizationArgs) KubeCustomizationPtrInput {
-	return (*kubeCustomizationPtrType)(v)
+func (KubeCustomizationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubeCustomization)(nil)).Elem()
 }
 
-func (*kubeCustomizationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubeCustomization)(nil)).Elem()
+func (i KubeCustomizationArray) ToKubeCustomizationArrayOutput() KubeCustomizationArrayOutput {
+	return i.ToKubeCustomizationArrayOutputWithContext(context.Background())
 }
 
-func (i *kubeCustomizationPtrType) ToKubeCustomizationPtrOutput() KubeCustomizationPtrOutput {
-	return i.ToKubeCustomizationPtrOutputWithContext(context.Background())
-}
-
-func (i *kubeCustomizationPtrType) ToKubeCustomizationPtrOutputWithContext(ctx context.Context) KubeCustomizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationPtrOutput)
+func (i KubeCustomizationArray) ToKubeCustomizationArrayOutputWithContext(ctx context.Context) KubeCustomizationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationArrayOutput)
 }
 
 type KubeCustomizationOutput struct{ *pulumi.OutputState }
@@ -728,55 +718,36 @@ func (o KubeCustomizationOutput) ToKubeCustomizationOutputWithContext(ctx contex
 	return o
 }
 
-func (o KubeCustomizationOutput) ToKubeCustomizationPtrOutput() KubeCustomizationPtrOutput {
-	return o.ToKubeCustomizationPtrOutputWithContext(context.Background())
+// Kubernetes API server customization
+//
+// Deprecated: Use customization_apiserver instead
+func (o KubeCustomizationOutput) Apiservers() KubeCustomizationApiserverArrayOutput {
+	return o.ApplyT(func(v KubeCustomization) []KubeCustomizationApiserver { return v.Apiservers }).(KubeCustomizationApiserverArrayOutput)
 }
 
-func (o KubeCustomizationOutput) ToKubeCustomizationPtrOutputWithContext(ctx context.Context) KubeCustomizationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v KubeCustomization) *KubeCustomization {
-		return &v
-	}).(KubeCustomizationPtrOutput)
+type KubeCustomizationArrayOutput struct{ *pulumi.OutputState }
+
+func (KubeCustomizationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubeCustomization)(nil)).Elem()
 }
 
-func (o KubeCustomizationOutput) Apiserver() KubeCustomizationApiserverPtrOutput {
-	return o.ApplyT(func(v KubeCustomization) *KubeCustomizationApiserver { return v.Apiserver }).(KubeCustomizationApiserverPtrOutput)
-}
-
-type KubeCustomizationPtrOutput struct{ *pulumi.OutputState }
-
-func (KubeCustomizationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubeCustomization)(nil)).Elem()
-}
-
-func (o KubeCustomizationPtrOutput) ToKubeCustomizationPtrOutput() KubeCustomizationPtrOutput {
+func (o KubeCustomizationArrayOutput) ToKubeCustomizationArrayOutput() KubeCustomizationArrayOutput {
 	return o
 }
 
-func (o KubeCustomizationPtrOutput) ToKubeCustomizationPtrOutputWithContext(ctx context.Context) KubeCustomizationPtrOutput {
+func (o KubeCustomizationArrayOutput) ToKubeCustomizationArrayOutputWithContext(ctx context.Context) KubeCustomizationArrayOutput {
 	return o
 }
 
-func (o KubeCustomizationPtrOutput) Elem() KubeCustomizationOutput {
-	return o.ApplyT(func(v *KubeCustomization) KubeCustomization {
-		if v != nil {
-			return *v
-		}
-		var ret KubeCustomization
-		return ret
+func (o KubeCustomizationArrayOutput) Index(i pulumi.IntInput) KubeCustomizationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubeCustomization {
+		return vs[0].([]KubeCustomization)[vs[1].(int)]
 	}).(KubeCustomizationOutput)
 }
 
-func (o KubeCustomizationPtrOutput) Apiserver() KubeCustomizationApiserverPtrOutput {
-	return o.ApplyT(func(v *KubeCustomization) *KubeCustomizationApiserver {
-		if v == nil {
-			return nil
-		}
-		return v.Apiserver
-	}).(KubeCustomizationApiserverPtrOutput)
-}
-
 type KubeCustomizationApiserver struct {
-	Admissionplugins *KubeCustomizationApiserverAdmissionplugins `pulumi:"admissionplugins"`
+	// Kubernetes API server admission plugins customization
+	Admissionplugins []KubeCustomizationApiserverAdmissionplugin `pulumi:"admissionplugins"`
 }
 
 // KubeCustomizationApiserverInput is an input type that accepts KubeCustomizationApiserverArgs and KubeCustomizationApiserverOutput values.
@@ -791,7 +762,8 @@ type KubeCustomizationApiserverInput interface {
 }
 
 type KubeCustomizationApiserverArgs struct {
-	Admissionplugins KubeCustomizationApiserverAdmissionpluginsPtrInput `pulumi:"admissionplugins"`
+	// Kubernetes API server admission plugins customization
+	Admissionplugins KubeCustomizationApiserverAdmissionpluginArrayInput `pulumi:"admissionplugins"`
 }
 
 func (KubeCustomizationApiserverArgs) ElementType() reflect.Type {
@@ -806,45 +778,29 @@ func (i KubeCustomizationApiserverArgs) ToKubeCustomizationApiserverOutputWithCo
 	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationApiserverOutput)
 }
 
-func (i KubeCustomizationApiserverArgs) ToKubeCustomizationApiserverPtrOutput() KubeCustomizationApiserverPtrOutput {
-	return i.ToKubeCustomizationApiserverPtrOutputWithContext(context.Background())
-}
-
-func (i KubeCustomizationApiserverArgs) ToKubeCustomizationApiserverPtrOutputWithContext(ctx context.Context) KubeCustomizationApiserverPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationApiserverOutput).ToKubeCustomizationApiserverPtrOutputWithContext(ctx)
-}
-
-// KubeCustomizationApiserverPtrInput is an input type that accepts KubeCustomizationApiserverArgs, KubeCustomizationApiserverPtr and KubeCustomizationApiserverPtrOutput values.
-// You can construct a concrete instance of `KubeCustomizationApiserverPtrInput` via:
+// KubeCustomizationApiserverArrayInput is an input type that accepts KubeCustomizationApiserverArray and KubeCustomizationApiserverArrayOutput values.
+// You can construct a concrete instance of `KubeCustomizationApiserverArrayInput` via:
 //
-//	        KubeCustomizationApiserverArgs{...}
-//
-//	or:
-//
-//	        nil
-type KubeCustomizationApiserverPtrInput interface {
+//	KubeCustomizationApiserverArray{ KubeCustomizationApiserverArgs{...} }
+type KubeCustomizationApiserverArrayInput interface {
 	pulumi.Input
 
-	ToKubeCustomizationApiserverPtrOutput() KubeCustomizationApiserverPtrOutput
-	ToKubeCustomizationApiserverPtrOutputWithContext(context.Context) KubeCustomizationApiserverPtrOutput
+	ToKubeCustomizationApiserverArrayOutput() KubeCustomizationApiserverArrayOutput
+	ToKubeCustomizationApiserverArrayOutputWithContext(context.Context) KubeCustomizationApiserverArrayOutput
 }
 
-type kubeCustomizationApiserverPtrType KubeCustomizationApiserverArgs
+type KubeCustomizationApiserverArray []KubeCustomizationApiserverInput
 
-func KubeCustomizationApiserverPtr(v *KubeCustomizationApiserverArgs) KubeCustomizationApiserverPtrInput {
-	return (*kubeCustomizationApiserverPtrType)(v)
+func (KubeCustomizationApiserverArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubeCustomizationApiserver)(nil)).Elem()
 }
 
-func (*kubeCustomizationApiserverPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubeCustomizationApiserver)(nil)).Elem()
+func (i KubeCustomizationApiserverArray) ToKubeCustomizationApiserverArrayOutput() KubeCustomizationApiserverArrayOutput {
+	return i.ToKubeCustomizationApiserverArrayOutputWithContext(context.Background())
 }
 
-func (i *kubeCustomizationApiserverPtrType) ToKubeCustomizationApiserverPtrOutput() KubeCustomizationApiserverPtrOutput {
-	return i.ToKubeCustomizationApiserverPtrOutputWithContext(context.Background())
-}
-
-func (i *kubeCustomizationApiserverPtrType) ToKubeCustomizationApiserverPtrOutputWithContext(ctx context.Context) KubeCustomizationApiserverPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationApiserverPtrOutput)
+func (i KubeCustomizationApiserverArray) ToKubeCustomizationApiserverArrayOutputWithContext(ctx context.Context) KubeCustomizationApiserverArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationApiserverArrayOutput)
 }
 
 type KubeCustomizationApiserverOutput struct{ *pulumi.OutputState }
@@ -861,206 +817,812 @@ func (o KubeCustomizationApiserverOutput) ToKubeCustomizationApiserverOutputWith
 	return o
 }
 
-func (o KubeCustomizationApiserverOutput) ToKubeCustomizationApiserverPtrOutput() KubeCustomizationApiserverPtrOutput {
-	return o.ToKubeCustomizationApiserverPtrOutputWithContext(context.Background())
-}
-
-func (o KubeCustomizationApiserverOutput) ToKubeCustomizationApiserverPtrOutputWithContext(ctx context.Context) KubeCustomizationApiserverPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v KubeCustomizationApiserver) *KubeCustomizationApiserver {
-		return &v
-	}).(KubeCustomizationApiserverPtrOutput)
-}
-
-func (o KubeCustomizationApiserverOutput) Admissionplugins() KubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return o.ApplyT(func(v KubeCustomizationApiserver) *KubeCustomizationApiserverAdmissionplugins {
+// Kubernetes API server admission plugins customization
+func (o KubeCustomizationApiserverOutput) Admissionplugins() KubeCustomizationApiserverAdmissionpluginArrayOutput {
+	return o.ApplyT(func(v KubeCustomizationApiserver) []KubeCustomizationApiserverAdmissionplugin {
 		return v.Admissionplugins
-	}).(KubeCustomizationApiserverAdmissionpluginsPtrOutput)
+	}).(KubeCustomizationApiserverAdmissionpluginArrayOutput)
 }
 
-type KubeCustomizationApiserverPtrOutput struct{ *pulumi.OutputState }
+type KubeCustomizationApiserverArrayOutput struct{ *pulumi.OutputState }
 
-func (KubeCustomizationApiserverPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubeCustomizationApiserver)(nil)).Elem()
+func (KubeCustomizationApiserverArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubeCustomizationApiserver)(nil)).Elem()
 }
 
-func (o KubeCustomizationApiserverPtrOutput) ToKubeCustomizationApiserverPtrOutput() KubeCustomizationApiserverPtrOutput {
+func (o KubeCustomizationApiserverArrayOutput) ToKubeCustomizationApiserverArrayOutput() KubeCustomizationApiserverArrayOutput {
 	return o
 }
 
-func (o KubeCustomizationApiserverPtrOutput) ToKubeCustomizationApiserverPtrOutputWithContext(ctx context.Context) KubeCustomizationApiserverPtrOutput {
+func (o KubeCustomizationApiserverArrayOutput) ToKubeCustomizationApiserverArrayOutputWithContext(ctx context.Context) KubeCustomizationApiserverArrayOutput {
 	return o
 }
 
-func (o KubeCustomizationApiserverPtrOutput) Elem() KubeCustomizationApiserverOutput {
-	return o.ApplyT(func(v *KubeCustomizationApiserver) KubeCustomizationApiserver {
-		if v != nil {
-			return *v
-		}
-		var ret KubeCustomizationApiserver
-		return ret
+func (o KubeCustomizationApiserverArrayOutput) Index(i pulumi.IntInput) KubeCustomizationApiserverOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubeCustomizationApiserver {
+		return vs[0].([]KubeCustomizationApiserver)[vs[1].(int)]
 	}).(KubeCustomizationApiserverOutput)
 }
 
-func (o KubeCustomizationApiserverPtrOutput) Admissionplugins() KubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return o.ApplyT(func(v *KubeCustomizationApiserver) *KubeCustomizationApiserverAdmissionplugins {
-		if v == nil {
-			return nil
-		}
-		return v.Admissionplugins
-	}).(KubeCustomizationApiserverAdmissionpluginsPtrOutput)
-}
-
-type KubeCustomizationApiserverAdmissionplugins struct {
+type KubeCustomizationApiserverAdmissionplugin struct {
+	// Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
 	Disableds []string `pulumi:"disableds"`
-	Enableds  []string `pulumi:"enableds"`
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	Enableds []string `pulumi:"enableds"`
 }
 
-// KubeCustomizationApiserverAdmissionpluginsInput is an input type that accepts KubeCustomizationApiserverAdmissionpluginsArgs and KubeCustomizationApiserverAdmissionpluginsOutput values.
-// You can construct a concrete instance of `KubeCustomizationApiserverAdmissionpluginsInput` via:
+// KubeCustomizationApiserverAdmissionpluginInput is an input type that accepts KubeCustomizationApiserverAdmissionpluginArgs and KubeCustomizationApiserverAdmissionpluginOutput values.
+// You can construct a concrete instance of `KubeCustomizationApiserverAdmissionpluginInput` via:
 //
-//	KubeCustomizationApiserverAdmissionpluginsArgs{...}
-type KubeCustomizationApiserverAdmissionpluginsInput interface {
+//	KubeCustomizationApiserverAdmissionpluginArgs{...}
+type KubeCustomizationApiserverAdmissionpluginInput interface {
 	pulumi.Input
 
-	ToKubeCustomizationApiserverAdmissionpluginsOutput() KubeCustomizationApiserverAdmissionpluginsOutput
-	ToKubeCustomizationApiserverAdmissionpluginsOutputWithContext(context.Context) KubeCustomizationApiserverAdmissionpluginsOutput
+	ToKubeCustomizationApiserverAdmissionpluginOutput() KubeCustomizationApiserverAdmissionpluginOutput
+	ToKubeCustomizationApiserverAdmissionpluginOutputWithContext(context.Context) KubeCustomizationApiserverAdmissionpluginOutput
 }
 
-type KubeCustomizationApiserverAdmissionpluginsArgs struct {
+type KubeCustomizationApiserverAdmissionpluginArgs struct {
+	// Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
 	Disableds pulumi.StringArrayInput `pulumi:"disableds"`
-	Enableds  pulumi.StringArrayInput `pulumi:"enableds"`
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	Enableds pulumi.StringArrayInput `pulumi:"enableds"`
 }
 
-func (KubeCustomizationApiserverAdmissionpluginsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*KubeCustomizationApiserverAdmissionplugins)(nil)).Elem()
+func (KubeCustomizationApiserverAdmissionpluginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeCustomizationApiserverAdmissionplugin)(nil)).Elem()
 }
 
-func (i KubeCustomizationApiserverAdmissionpluginsArgs) ToKubeCustomizationApiserverAdmissionpluginsOutput() KubeCustomizationApiserverAdmissionpluginsOutput {
-	return i.ToKubeCustomizationApiserverAdmissionpluginsOutputWithContext(context.Background())
+func (i KubeCustomizationApiserverAdmissionpluginArgs) ToKubeCustomizationApiserverAdmissionpluginOutput() KubeCustomizationApiserverAdmissionpluginOutput {
+	return i.ToKubeCustomizationApiserverAdmissionpluginOutputWithContext(context.Background())
 }
 
-func (i KubeCustomizationApiserverAdmissionpluginsArgs) ToKubeCustomizationApiserverAdmissionpluginsOutputWithContext(ctx context.Context) KubeCustomizationApiserverAdmissionpluginsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationApiserverAdmissionpluginsOutput)
+func (i KubeCustomizationApiserverAdmissionpluginArgs) ToKubeCustomizationApiserverAdmissionpluginOutputWithContext(ctx context.Context) KubeCustomizationApiserverAdmissionpluginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationApiserverAdmissionpluginOutput)
 }
 
-func (i KubeCustomizationApiserverAdmissionpluginsArgs) ToKubeCustomizationApiserverAdmissionpluginsPtrOutput() KubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return i.ToKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(context.Background())
-}
-
-func (i KubeCustomizationApiserverAdmissionpluginsArgs) ToKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(ctx context.Context) KubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationApiserverAdmissionpluginsOutput).ToKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(ctx)
-}
-
-// KubeCustomizationApiserverAdmissionpluginsPtrInput is an input type that accepts KubeCustomizationApiserverAdmissionpluginsArgs, KubeCustomizationApiserverAdmissionpluginsPtr and KubeCustomizationApiserverAdmissionpluginsPtrOutput values.
-// You can construct a concrete instance of `KubeCustomizationApiserverAdmissionpluginsPtrInput` via:
+// KubeCustomizationApiserverAdmissionpluginArrayInput is an input type that accepts KubeCustomizationApiserverAdmissionpluginArray and KubeCustomizationApiserverAdmissionpluginArrayOutput values.
+// You can construct a concrete instance of `KubeCustomizationApiserverAdmissionpluginArrayInput` via:
 //
-//	        KubeCustomizationApiserverAdmissionpluginsArgs{...}
+//	KubeCustomizationApiserverAdmissionpluginArray{ KubeCustomizationApiserverAdmissionpluginArgs{...} }
+type KubeCustomizationApiserverAdmissionpluginArrayInput interface {
+	pulumi.Input
+
+	ToKubeCustomizationApiserverAdmissionpluginArrayOutput() KubeCustomizationApiserverAdmissionpluginArrayOutput
+	ToKubeCustomizationApiserverAdmissionpluginArrayOutputWithContext(context.Context) KubeCustomizationApiserverAdmissionpluginArrayOutput
+}
+
+type KubeCustomizationApiserverAdmissionpluginArray []KubeCustomizationApiserverAdmissionpluginInput
+
+func (KubeCustomizationApiserverAdmissionpluginArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubeCustomizationApiserverAdmissionplugin)(nil)).Elem()
+}
+
+func (i KubeCustomizationApiserverAdmissionpluginArray) ToKubeCustomizationApiserverAdmissionpluginArrayOutput() KubeCustomizationApiserverAdmissionpluginArrayOutput {
+	return i.ToKubeCustomizationApiserverAdmissionpluginArrayOutputWithContext(context.Background())
+}
+
+func (i KubeCustomizationApiserverAdmissionpluginArray) ToKubeCustomizationApiserverAdmissionpluginArrayOutputWithContext(ctx context.Context) KubeCustomizationApiserverAdmissionpluginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationApiserverAdmissionpluginArrayOutput)
+}
+
+type KubeCustomizationApiserverAdmissionpluginOutput struct{ *pulumi.OutputState }
+
+func (KubeCustomizationApiserverAdmissionpluginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeCustomizationApiserverAdmissionplugin)(nil)).Elem()
+}
+
+func (o KubeCustomizationApiserverAdmissionpluginOutput) ToKubeCustomizationApiserverAdmissionpluginOutput() KubeCustomizationApiserverAdmissionpluginOutput {
+	return o
+}
+
+func (o KubeCustomizationApiserverAdmissionpluginOutput) ToKubeCustomizationApiserverAdmissionpluginOutputWithContext(ctx context.Context) KubeCustomizationApiserverAdmissionpluginOutput {
+	return o
+}
+
+// Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+func (o KubeCustomizationApiserverAdmissionpluginOutput) Disableds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v KubeCustomizationApiserverAdmissionplugin) []string { return v.Disableds }).(pulumi.StringArrayOutput)
+}
+
+// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+func (o KubeCustomizationApiserverAdmissionpluginOutput) Enableds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v KubeCustomizationApiserverAdmissionplugin) []string { return v.Enableds }).(pulumi.StringArrayOutput)
+}
+
+type KubeCustomizationApiserverAdmissionpluginArrayOutput struct{ *pulumi.OutputState }
+
+func (KubeCustomizationApiserverAdmissionpluginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubeCustomizationApiserverAdmissionplugin)(nil)).Elem()
+}
+
+func (o KubeCustomizationApiserverAdmissionpluginArrayOutput) ToKubeCustomizationApiserverAdmissionpluginArrayOutput() KubeCustomizationApiserverAdmissionpluginArrayOutput {
+	return o
+}
+
+func (o KubeCustomizationApiserverAdmissionpluginArrayOutput) ToKubeCustomizationApiserverAdmissionpluginArrayOutputWithContext(ctx context.Context) KubeCustomizationApiserverAdmissionpluginArrayOutput {
+	return o
+}
+
+func (o KubeCustomizationApiserverAdmissionpluginArrayOutput) Index(i pulumi.IntInput) KubeCustomizationApiserverAdmissionpluginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubeCustomizationApiserverAdmissionplugin {
+		return vs[0].([]KubeCustomizationApiserverAdmissionplugin)[vs[1].(int)]
+	}).(KubeCustomizationApiserverAdmissionpluginOutput)
+}
+
+type KubeCustomizationKubeProxy struct {
+	// Kubernetes cluster kube-proxy customization of iptables specific config (durations format is RFC3339 duration, e.g. `PT60S`)
+	Iptables *KubeCustomizationKubeProxyIptables `pulumi:"iptables"`
+	// Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration, e.g. `PT60S`)
+	Ipvs *KubeCustomizationKubeProxyIpvs `pulumi:"ipvs"`
+}
+
+// KubeCustomizationKubeProxyInput is an input type that accepts KubeCustomizationKubeProxyArgs and KubeCustomizationKubeProxyOutput values.
+// You can construct a concrete instance of `KubeCustomizationKubeProxyInput` via:
+//
+//	KubeCustomizationKubeProxyArgs{...}
+type KubeCustomizationKubeProxyInput interface {
+	pulumi.Input
+
+	ToKubeCustomizationKubeProxyOutput() KubeCustomizationKubeProxyOutput
+	ToKubeCustomizationKubeProxyOutputWithContext(context.Context) KubeCustomizationKubeProxyOutput
+}
+
+type KubeCustomizationKubeProxyArgs struct {
+	// Kubernetes cluster kube-proxy customization of iptables specific config (durations format is RFC3339 duration, e.g. `PT60S`)
+	Iptables KubeCustomizationKubeProxyIptablesPtrInput `pulumi:"iptables"`
+	// Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration, e.g. `PT60S`)
+	Ipvs KubeCustomizationKubeProxyIpvsPtrInput `pulumi:"ipvs"`
+}
+
+func (KubeCustomizationKubeProxyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeCustomizationKubeProxy)(nil)).Elem()
+}
+
+func (i KubeCustomizationKubeProxyArgs) ToKubeCustomizationKubeProxyOutput() KubeCustomizationKubeProxyOutput {
+	return i.ToKubeCustomizationKubeProxyOutputWithContext(context.Background())
+}
+
+func (i KubeCustomizationKubeProxyArgs) ToKubeCustomizationKubeProxyOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationKubeProxyOutput)
+}
+
+func (i KubeCustomizationKubeProxyArgs) ToKubeCustomizationKubeProxyPtrOutput() KubeCustomizationKubeProxyPtrOutput {
+	return i.ToKubeCustomizationKubeProxyPtrOutputWithContext(context.Background())
+}
+
+func (i KubeCustomizationKubeProxyArgs) ToKubeCustomizationKubeProxyPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationKubeProxyOutput).ToKubeCustomizationKubeProxyPtrOutputWithContext(ctx)
+}
+
+// KubeCustomizationKubeProxyPtrInput is an input type that accepts KubeCustomizationKubeProxyArgs, KubeCustomizationKubeProxyPtr and KubeCustomizationKubeProxyPtrOutput values.
+// You can construct a concrete instance of `KubeCustomizationKubeProxyPtrInput` via:
+//
+//	        KubeCustomizationKubeProxyArgs{...}
 //
 //	or:
 //
 //	        nil
-type KubeCustomizationApiserverAdmissionpluginsPtrInput interface {
+type KubeCustomizationKubeProxyPtrInput interface {
 	pulumi.Input
 
-	ToKubeCustomizationApiserverAdmissionpluginsPtrOutput() KubeCustomizationApiserverAdmissionpluginsPtrOutput
-	ToKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(context.Context) KubeCustomizationApiserverAdmissionpluginsPtrOutput
+	ToKubeCustomizationKubeProxyPtrOutput() KubeCustomizationKubeProxyPtrOutput
+	ToKubeCustomizationKubeProxyPtrOutputWithContext(context.Context) KubeCustomizationKubeProxyPtrOutput
 }
 
-type kubeCustomizationApiserverAdmissionpluginsPtrType KubeCustomizationApiserverAdmissionpluginsArgs
+type kubeCustomizationKubeProxyPtrType KubeCustomizationKubeProxyArgs
 
-func KubeCustomizationApiserverAdmissionpluginsPtr(v *KubeCustomizationApiserverAdmissionpluginsArgs) KubeCustomizationApiserverAdmissionpluginsPtrInput {
-	return (*kubeCustomizationApiserverAdmissionpluginsPtrType)(v)
+func KubeCustomizationKubeProxyPtr(v *KubeCustomizationKubeProxyArgs) KubeCustomizationKubeProxyPtrInput {
+	return (*kubeCustomizationKubeProxyPtrType)(v)
 }
 
-func (*kubeCustomizationApiserverAdmissionpluginsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubeCustomizationApiserverAdmissionplugins)(nil)).Elem()
+func (*kubeCustomizationKubeProxyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubeCustomizationKubeProxy)(nil)).Elem()
 }
 
-func (i *kubeCustomizationApiserverAdmissionpluginsPtrType) ToKubeCustomizationApiserverAdmissionpluginsPtrOutput() KubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return i.ToKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(context.Background())
+func (i *kubeCustomizationKubeProxyPtrType) ToKubeCustomizationKubeProxyPtrOutput() KubeCustomizationKubeProxyPtrOutput {
+	return i.ToKubeCustomizationKubeProxyPtrOutputWithContext(context.Background())
 }
 
-func (i *kubeCustomizationApiserverAdmissionpluginsPtrType) ToKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(ctx context.Context) KubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationApiserverAdmissionpluginsPtrOutput)
+func (i *kubeCustomizationKubeProxyPtrType) ToKubeCustomizationKubeProxyPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationKubeProxyPtrOutput)
 }
 
-type KubeCustomizationApiserverAdmissionpluginsOutput struct{ *pulumi.OutputState }
+type KubeCustomizationKubeProxyOutput struct{ *pulumi.OutputState }
 
-func (KubeCustomizationApiserverAdmissionpluginsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*KubeCustomizationApiserverAdmissionplugins)(nil)).Elem()
+func (KubeCustomizationKubeProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeCustomizationKubeProxy)(nil)).Elem()
 }
 
-func (o KubeCustomizationApiserverAdmissionpluginsOutput) ToKubeCustomizationApiserverAdmissionpluginsOutput() KubeCustomizationApiserverAdmissionpluginsOutput {
+func (o KubeCustomizationKubeProxyOutput) ToKubeCustomizationKubeProxyOutput() KubeCustomizationKubeProxyOutput {
 	return o
 }
 
-func (o KubeCustomizationApiserverAdmissionpluginsOutput) ToKubeCustomizationApiserverAdmissionpluginsOutputWithContext(ctx context.Context) KubeCustomizationApiserverAdmissionpluginsOutput {
+func (o KubeCustomizationKubeProxyOutput) ToKubeCustomizationKubeProxyOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyOutput {
 	return o
 }
 
-func (o KubeCustomizationApiserverAdmissionpluginsOutput) ToKubeCustomizationApiserverAdmissionpluginsPtrOutput() KubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return o.ToKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(context.Background())
+func (o KubeCustomizationKubeProxyOutput) ToKubeCustomizationKubeProxyPtrOutput() KubeCustomizationKubeProxyPtrOutput {
+	return o.ToKubeCustomizationKubeProxyPtrOutputWithContext(context.Background())
 }
 
-func (o KubeCustomizationApiserverAdmissionpluginsOutput) ToKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(ctx context.Context) KubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v KubeCustomizationApiserverAdmissionplugins) *KubeCustomizationApiserverAdmissionplugins {
+func (o KubeCustomizationKubeProxyOutput) ToKubeCustomizationKubeProxyPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KubeCustomizationKubeProxy) *KubeCustomizationKubeProxy {
 		return &v
-	}).(KubeCustomizationApiserverAdmissionpluginsPtrOutput)
+	}).(KubeCustomizationKubeProxyPtrOutput)
 }
 
-func (o KubeCustomizationApiserverAdmissionpluginsOutput) Disableds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v KubeCustomizationApiserverAdmissionplugins) []string { return v.Disableds }).(pulumi.StringArrayOutput)
+// Kubernetes cluster kube-proxy customization of iptables specific config (durations format is RFC3339 duration, e.g. `PT60S`)
+func (o KubeCustomizationKubeProxyOutput) Iptables() KubeCustomizationKubeProxyIptablesPtrOutput {
+	return o.ApplyT(func(v KubeCustomizationKubeProxy) *KubeCustomizationKubeProxyIptables { return v.Iptables }).(KubeCustomizationKubeProxyIptablesPtrOutput)
 }
 
-func (o KubeCustomizationApiserverAdmissionpluginsOutput) Enableds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v KubeCustomizationApiserverAdmissionplugins) []string { return v.Enableds }).(pulumi.StringArrayOutput)
+// Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration, e.g. `PT60S`)
+func (o KubeCustomizationKubeProxyOutput) Ipvs() KubeCustomizationKubeProxyIpvsPtrOutput {
+	return o.ApplyT(func(v KubeCustomizationKubeProxy) *KubeCustomizationKubeProxyIpvs { return v.Ipvs }).(KubeCustomizationKubeProxyIpvsPtrOutput)
 }
 
-type KubeCustomizationApiserverAdmissionpluginsPtrOutput struct{ *pulumi.OutputState }
+type KubeCustomizationKubeProxyPtrOutput struct{ *pulumi.OutputState }
 
-func (KubeCustomizationApiserverAdmissionpluginsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**KubeCustomizationApiserverAdmissionplugins)(nil)).Elem()
+func (KubeCustomizationKubeProxyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubeCustomizationKubeProxy)(nil)).Elem()
 }
 
-func (o KubeCustomizationApiserverAdmissionpluginsPtrOutput) ToKubeCustomizationApiserverAdmissionpluginsPtrOutput() KubeCustomizationApiserverAdmissionpluginsPtrOutput {
+func (o KubeCustomizationKubeProxyPtrOutput) ToKubeCustomizationKubeProxyPtrOutput() KubeCustomizationKubeProxyPtrOutput {
 	return o
 }
 
-func (o KubeCustomizationApiserverAdmissionpluginsPtrOutput) ToKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(ctx context.Context) KubeCustomizationApiserverAdmissionpluginsPtrOutput {
+func (o KubeCustomizationKubeProxyPtrOutput) ToKubeCustomizationKubeProxyPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyPtrOutput {
 	return o
 }
 
-func (o KubeCustomizationApiserverAdmissionpluginsPtrOutput) Elem() KubeCustomizationApiserverAdmissionpluginsOutput {
-	return o.ApplyT(func(v *KubeCustomizationApiserverAdmissionplugins) KubeCustomizationApiserverAdmissionplugins {
+func (o KubeCustomizationKubeProxyPtrOutput) Elem() KubeCustomizationKubeProxyOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxy) KubeCustomizationKubeProxy {
 		if v != nil {
 			return *v
 		}
-		var ret KubeCustomizationApiserverAdmissionplugins
+		var ret KubeCustomizationKubeProxy
 		return ret
-	}).(KubeCustomizationApiserverAdmissionpluginsOutput)
+	}).(KubeCustomizationKubeProxyOutput)
 }
 
-func (o KubeCustomizationApiserverAdmissionpluginsPtrOutput) Disableds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *KubeCustomizationApiserverAdmissionplugins) []string {
+// Kubernetes cluster kube-proxy customization of iptables specific config (durations format is RFC3339 duration, e.g. `PT60S`)
+func (o KubeCustomizationKubeProxyPtrOutput) Iptables() KubeCustomizationKubeProxyIptablesPtrOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxy) *KubeCustomizationKubeProxyIptables {
 		if v == nil {
 			return nil
 		}
-		return v.Disableds
-	}).(pulumi.StringArrayOutput)
+		return v.Iptables
+	}).(KubeCustomizationKubeProxyIptablesPtrOutput)
 }
 
-func (o KubeCustomizationApiserverAdmissionpluginsPtrOutput) Enableds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *KubeCustomizationApiserverAdmissionplugins) []string {
+// Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration, e.g. `PT60S`)
+func (o KubeCustomizationKubeProxyPtrOutput) Ipvs() KubeCustomizationKubeProxyIpvsPtrOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxy) *KubeCustomizationKubeProxyIpvs {
 		if v == nil {
 			return nil
 		}
-		return v.Enableds
-	}).(pulumi.StringArrayOutput)
+		return v.Ipvs
+	}).(KubeCustomizationKubeProxyIpvsPtrOutput)
+}
+
+type KubeCustomizationKubeProxyIptables struct {
+	// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+	MinSyncPeriod *string `pulumi:"minSyncPeriod"`
+	// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+	SyncPeriod *string `pulumi:"syncPeriod"`
+}
+
+// KubeCustomizationKubeProxyIptablesInput is an input type that accepts KubeCustomizationKubeProxyIptablesArgs and KubeCustomizationKubeProxyIptablesOutput values.
+// You can construct a concrete instance of `KubeCustomizationKubeProxyIptablesInput` via:
+//
+//	KubeCustomizationKubeProxyIptablesArgs{...}
+type KubeCustomizationKubeProxyIptablesInput interface {
+	pulumi.Input
+
+	ToKubeCustomizationKubeProxyIptablesOutput() KubeCustomizationKubeProxyIptablesOutput
+	ToKubeCustomizationKubeProxyIptablesOutputWithContext(context.Context) KubeCustomizationKubeProxyIptablesOutput
+}
+
+type KubeCustomizationKubeProxyIptablesArgs struct {
+	// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+	MinSyncPeriod pulumi.StringPtrInput `pulumi:"minSyncPeriod"`
+	// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+	SyncPeriod pulumi.StringPtrInput `pulumi:"syncPeriod"`
+}
+
+func (KubeCustomizationKubeProxyIptablesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeCustomizationKubeProxyIptables)(nil)).Elem()
+}
+
+func (i KubeCustomizationKubeProxyIptablesArgs) ToKubeCustomizationKubeProxyIptablesOutput() KubeCustomizationKubeProxyIptablesOutput {
+	return i.ToKubeCustomizationKubeProxyIptablesOutputWithContext(context.Background())
+}
+
+func (i KubeCustomizationKubeProxyIptablesArgs) ToKubeCustomizationKubeProxyIptablesOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIptablesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationKubeProxyIptablesOutput)
+}
+
+func (i KubeCustomizationKubeProxyIptablesArgs) ToKubeCustomizationKubeProxyIptablesPtrOutput() KubeCustomizationKubeProxyIptablesPtrOutput {
+	return i.ToKubeCustomizationKubeProxyIptablesPtrOutputWithContext(context.Background())
+}
+
+func (i KubeCustomizationKubeProxyIptablesArgs) ToKubeCustomizationKubeProxyIptablesPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIptablesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationKubeProxyIptablesOutput).ToKubeCustomizationKubeProxyIptablesPtrOutputWithContext(ctx)
+}
+
+// KubeCustomizationKubeProxyIptablesPtrInput is an input type that accepts KubeCustomizationKubeProxyIptablesArgs, KubeCustomizationKubeProxyIptablesPtr and KubeCustomizationKubeProxyIptablesPtrOutput values.
+// You can construct a concrete instance of `KubeCustomizationKubeProxyIptablesPtrInput` via:
+//
+//	        KubeCustomizationKubeProxyIptablesArgs{...}
+//
+//	or:
+//
+//	        nil
+type KubeCustomizationKubeProxyIptablesPtrInput interface {
+	pulumi.Input
+
+	ToKubeCustomizationKubeProxyIptablesPtrOutput() KubeCustomizationKubeProxyIptablesPtrOutput
+	ToKubeCustomizationKubeProxyIptablesPtrOutputWithContext(context.Context) KubeCustomizationKubeProxyIptablesPtrOutput
+}
+
+type kubeCustomizationKubeProxyIptablesPtrType KubeCustomizationKubeProxyIptablesArgs
+
+func KubeCustomizationKubeProxyIptablesPtr(v *KubeCustomizationKubeProxyIptablesArgs) KubeCustomizationKubeProxyIptablesPtrInput {
+	return (*kubeCustomizationKubeProxyIptablesPtrType)(v)
+}
+
+func (*kubeCustomizationKubeProxyIptablesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubeCustomizationKubeProxyIptables)(nil)).Elem()
+}
+
+func (i *kubeCustomizationKubeProxyIptablesPtrType) ToKubeCustomizationKubeProxyIptablesPtrOutput() KubeCustomizationKubeProxyIptablesPtrOutput {
+	return i.ToKubeCustomizationKubeProxyIptablesPtrOutputWithContext(context.Background())
+}
+
+func (i *kubeCustomizationKubeProxyIptablesPtrType) ToKubeCustomizationKubeProxyIptablesPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIptablesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationKubeProxyIptablesPtrOutput)
+}
+
+type KubeCustomizationKubeProxyIptablesOutput struct{ *pulumi.OutputState }
+
+func (KubeCustomizationKubeProxyIptablesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeCustomizationKubeProxyIptables)(nil)).Elem()
+}
+
+func (o KubeCustomizationKubeProxyIptablesOutput) ToKubeCustomizationKubeProxyIptablesOutput() KubeCustomizationKubeProxyIptablesOutput {
+	return o
+}
+
+func (o KubeCustomizationKubeProxyIptablesOutput) ToKubeCustomizationKubeProxyIptablesOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIptablesOutput {
+	return o
+}
+
+func (o KubeCustomizationKubeProxyIptablesOutput) ToKubeCustomizationKubeProxyIptablesPtrOutput() KubeCustomizationKubeProxyIptablesPtrOutput {
+	return o.ToKubeCustomizationKubeProxyIptablesPtrOutputWithContext(context.Background())
+}
+
+func (o KubeCustomizationKubeProxyIptablesOutput) ToKubeCustomizationKubeProxyIptablesPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIptablesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KubeCustomizationKubeProxyIptables) *KubeCustomizationKubeProxyIptables {
+		return &v
+	}).(KubeCustomizationKubeProxyIptablesPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+func (o KubeCustomizationKubeProxyIptablesOutput) MinSyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeCustomizationKubeProxyIptables) *string { return v.MinSyncPeriod }).(pulumi.StringPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+func (o KubeCustomizationKubeProxyIptablesOutput) SyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeCustomizationKubeProxyIptables) *string { return v.SyncPeriod }).(pulumi.StringPtrOutput)
+}
+
+type KubeCustomizationKubeProxyIptablesPtrOutput struct{ *pulumi.OutputState }
+
+func (KubeCustomizationKubeProxyIptablesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubeCustomizationKubeProxyIptables)(nil)).Elem()
+}
+
+func (o KubeCustomizationKubeProxyIptablesPtrOutput) ToKubeCustomizationKubeProxyIptablesPtrOutput() KubeCustomizationKubeProxyIptablesPtrOutput {
+	return o
+}
+
+func (o KubeCustomizationKubeProxyIptablesPtrOutput) ToKubeCustomizationKubeProxyIptablesPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIptablesPtrOutput {
+	return o
+}
+
+func (o KubeCustomizationKubeProxyIptablesPtrOutput) Elem() KubeCustomizationKubeProxyIptablesOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxyIptables) KubeCustomizationKubeProxyIptables {
+		if v != nil {
+			return *v
+		}
+		var ret KubeCustomizationKubeProxyIptables
+		return ret
+	}).(KubeCustomizationKubeProxyIptablesOutput)
+}
+
+// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+func (o KubeCustomizationKubeProxyIptablesPtrOutput) MinSyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxyIptables) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSyncPeriod
+	}).(pulumi.StringPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+func (o KubeCustomizationKubeProxyIptablesPtrOutput) SyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxyIptables) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SyncPeriod
+	}).(pulumi.StringPtrOutput)
+}
+
+type KubeCustomizationKubeProxyIpvs struct {
+	// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+	MinSyncPeriod *string `pulumi:"minSyncPeriod"`
+	// IPVS scheduler.
+	Scheduler *string `pulumi:"scheduler"`
+	// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+	SyncPeriod *string `pulumi:"syncPeriod"`
+	// Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+	TcpFinTimeout *string `pulumi:"tcpFinTimeout"`
+	// Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+	TcpTimeout *string `pulumi:"tcpTimeout"`
+	// timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+	UdpTimeout *string `pulumi:"udpTimeout"`
+}
+
+// KubeCustomizationKubeProxyIpvsInput is an input type that accepts KubeCustomizationKubeProxyIpvsArgs and KubeCustomizationKubeProxyIpvsOutput values.
+// You can construct a concrete instance of `KubeCustomizationKubeProxyIpvsInput` via:
+//
+//	KubeCustomizationKubeProxyIpvsArgs{...}
+type KubeCustomizationKubeProxyIpvsInput interface {
+	pulumi.Input
+
+	ToKubeCustomizationKubeProxyIpvsOutput() KubeCustomizationKubeProxyIpvsOutput
+	ToKubeCustomizationKubeProxyIpvsOutputWithContext(context.Context) KubeCustomizationKubeProxyIpvsOutput
+}
+
+type KubeCustomizationKubeProxyIpvsArgs struct {
+	// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+	MinSyncPeriod pulumi.StringPtrInput `pulumi:"minSyncPeriod"`
+	// IPVS scheduler.
+	Scheduler pulumi.StringPtrInput `pulumi:"scheduler"`
+	// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+	SyncPeriod pulumi.StringPtrInput `pulumi:"syncPeriod"`
+	// Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+	TcpFinTimeout pulumi.StringPtrInput `pulumi:"tcpFinTimeout"`
+	// Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+	TcpTimeout pulumi.StringPtrInput `pulumi:"tcpTimeout"`
+	// timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+	UdpTimeout pulumi.StringPtrInput `pulumi:"udpTimeout"`
+}
+
+func (KubeCustomizationKubeProxyIpvsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeCustomizationKubeProxyIpvs)(nil)).Elem()
+}
+
+func (i KubeCustomizationKubeProxyIpvsArgs) ToKubeCustomizationKubeProxyIpvsOutput() KubeCustomizationKubeProxyIpvsOutput {
+	return i.ToKubeCustomizationKubeProxyIpvsOutputWithContext(context.Background())
+}
+
+func (i KubeCustomizationKubeProxyIpvsArgs) ToKubeCustomizationKubeProxyIpvsOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIpvsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationKubeProxyIpvsOutput)
+}
+
+func (i KubeCustomizationKubeProxyIpvsArgs) ToKubeCustomizationKubeProxyIpvsPtrOutput() KubeCustomizationKubeProxyIpvsPtrOutput {
+	return i.ToKubeCustomizationKubeProxyIpvsPtrOutputWithContext(context.Background())
+}
+
+func (i KubeCustomizationKubeProxyIpvsArgs) ToKubeCustomizationKubeProxyIpvsPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIpvsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationKubeProxyIpvsOutput).ToKubeCustomizationKubeProxyIpvsPtrOutputWithContext(ctx)
+}
+
+// KubeCustomizationKubeProxyIpvsPtrInput is an input type that accepts KubeCustomizationKubeProxyIpvsArgs, KubeCustomizationKubeProxyIpvsPtr and KubeCustomizationKubeProxyIpvsPtrOutput values.
+// You can construct a concrete instance of `KubeCustomizationKubeProxyIpvsPtrInput` via:
+//
+//	        KubeCustomizationKubeProxyIpvsArgs{...}
+//
+//	or:
+//
+//	        nil
+type KubeCustomizationKubeProxyIpvsPtrInput interface {
+	pulumi.Input
+
+	ToKubeCustomizationKubeProxyIpvsPtrOutput() KubeCustomizationKubeProxyIpvsPtrOutput
+	ToKubeCustomizationKubeProxyIpvsPtrOutputWithContext(context.Context) KubeCustomizationKubeProxyIpvsPtrOutput
+}
+
+type kubeCustomizationKubeProxyIpvsPtrType KubeCustomizationKubeProxyIpvsArgs
+
+func KubeCustomizationKubeProxyIpvsPtr(v *KubeCustomizationKubeProxyIpvsArgs) KubeCustomizationKubeProxyIpvsPtrInput {
+	return (*kubeCustomizationKubeProxyIpvsPtrType)(v)
+}
+
+func (*kubeCustomizationKubeProxyIpvsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubeCustomizationKubeProxyIpvs)(nil)).Elem()
+}
+
+func (i *kubeCustomizationKubeProxyIpvsPtrType) ToKubeCustomizationKubeProxyIpvsPtrOutput() KubeCustomizationKubeProxyIpvsPtrOutput {
+	return i.ToKubeCustomizationKubeProxyIpvsPtrOutputWithContext(context.Background())
+}
+
+func (i *kubeCustomizationKubeProxyIpvsPtrType) ToKubeCustomizationKubeProxyIpvsPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIpvsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeCustomizationKubeProxyIpvsPtrOutput)
+}
+
+type KubeCustomizationKubeProxyIpvsOutput struct{ *pulumi.OutputState }
+
+func (KubeCustomizationKubeProxyIpvsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeCustomizationKubeProxyIpvs)(nil)).Elem()
+}
+
+func (o KubeCustomizationKubeProxyIpvsOutput) ToKubeCustomizationKubeProxyIpvsOutput() KubeCustomizationKubeProxyIpvsOutput {
+	return o
+}
+
+func (o KubeCustomizationKubeProxyIpvsOutput) ToKubeCustomizationKubeProxyIpvsOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIpvsOutput {
+	return o
+}
+
+func (o KubeCustomizationKubeProxyIpvsOutput) ToKubeCustomizationKubeProxyIpvsPtrOutput() KubeCustomizationKubeProxyIpvsPtrOutput {
+	return o.ToKubeCustomizationKubeProxyIpvsPtrOutputWithContext(context.Background())
+}
+
+func (o KubeCustomizationKubeProxyIpvsOutput) ToKubeCustomizationKubeProxyIpvsPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIpvsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v KubeCustomizationKubeProxyIpvs) *KubeCustomizationKubeProxyIpvs {
+		return &v
+	}).(KubeCustomizationKubeProxyIpvsPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+func (o KubeCustomizationKubeProxyIpvsOutput) MinSyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeCustomizationKubeProxyIpvs) *string { return v.MinSyncPeriod }).(pulumi.StringPtrOutput)
+}
+
+// IPVS scheduler.
+func (o KubeCustomizationKubeProxyIpvsOutput) Scheduler() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeCustomizationKubeProxyIpvs) *string { return v.Scheduler }).(pulumi.StringPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+func (o KubeCustomizationKubeProxyIpvsOutput) SyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeCustomizationKubeProxyIpvs) *string { return v.SyncPeriod }).(pulumi.StringPtrOutput)
+}
+
+// Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+func (o KubeCustomizationKubeProxyIpvsOutput) TcpFinTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeCustomizationKubeProxyIpvs) *string { return v.TcpFinTimeout }).(pulumi.StringPtrOutput)
+}
+
+// Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+func (o KubeCustomizationKubeProxyIpvsOutput) TcpTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeCustomizationKubeProxyIpvs) *string { return v.TcpTimeout }).(pulumi.StringPtrOutput)
+}
+
+// timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+func (o KubeCustomizationKubeProxyIpvsOutput) UdpTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeCustomizationKubeProxyIpvs) *string { return v.UdpTimeout }).(pulumi.StringPtrOutput)
+}
+
+type KubeCustomizationKubeProxyIpvsPtrOutput struct{ *pulumi.OutputState }
+
+func (KubeCustomizationKubeProxyIpvsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**KubeCustomizationKubeProxyIpvs)(nil)).Elem()
+}
+
+func (o KubeCustomizationKubeProxyIpvsPtrOutput) ToKubeCustomizationKubeProxyIpvsPtrOutput() KubeCustomizationKubeProxyIpvsPtrOutput {
+	return o
+}
+
+func (o KubeCustomizationKubeProxyIpvsPtrOutput) ToKubeCustomizationKubeProxyIpvsPtrOutputWithContext(ctx context.Context) KubeCustomizationKubeProxyIpvsPtrOutput {
+	return o
+}
+
+func (o KubeCustomizationKubeProxyIpvsPtrOutput) Elem() KubeCustomizationKubeProxyIpvsOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxyIpvs) KubeCustomizationKubeProxyIpvs {
+		if v != nil {
+			return *v
+		}
+		var ret KubeCustomizationKubeProxyIpvs
+		return ret
+	}).(KubeCustomizationKubeProxyIpvsOutput)
+}
+
+// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+func (o KubeCustomizationKubeProxyIpvsPtrOutput) MinSyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSyncPeriod
+	}).(pulumi.StringPtrOutput)
+}
+
+// IPVS scheduler.
+func (o KubeCustomizationKubeProxyIpvsPtrOutput) Scheduler() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Scheduler
+	}).(pulumi.StringPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+func (o KubeCustomizationKubeProxyIpvsPtrOutput) SyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SyncPeriod
+	}).(pulumi.StringPtrOutput)
+}
+
+// Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+func (o KubeCustomizationKubeProxyIpvsPtrOutput) TcpFinTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TcpFinTimeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+func (o KubeCustomizationKubeProxyIpvsPtrOutput) TcpTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TcpTimeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+func (o KubeCustomizationKubeProxyIpvsPtrOutput) UdpTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *KubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UdpTimeout
+	}).(pulumi.StringPtrOutput)
+}
+
+type KubeKubeconfigAttribute struct {
+	// The kubernetes API server client certificate.
+	ClientCertificate *string `pulumi:"clientCertificate"`
+	// The kubernetes API server client key.
+	ClientKey *string `pulumi:"clientKey"`
+	// The kubernetes API server CA certificate.
+	ClusterCaCertificate *string `pulumi:"clusterCaCertificate"`
+	// The kubernetes API server URL.
+	Host *string `pulumi:"host"`
+}
+
+// KubeKubeconfigAttributeInput is an input type that accepts KubeKubeconfigAttributeArgs and KubeKubeconfigAttributeOutput values.
+// You can construct a concrete instance of `KubeKubeconfigAttributeInput` via:
+//
+//	KubeKubeconfigAttributeArgs{...}
+type KubeKubeconfigAttributeInput interface {
+	pulumi.Input
+
+	ToKubeKubeconfigAttributeOutput() KubeKubeconfigAttributeOutput
+	ToKubeKubeconfigAttributeOutputWithContext(context.Context) KubeKubeconfigAttributeOutput
+}
+
+type KubeKubeconfigAttributeArgs struct {
+	// The kubernetes API server client certificate.
+	ClientCertificate pulumi.StringPtrInput `pulumi:"clientCertificate"`
+	// The kubernetes API server client key.
+	ClientKey pulumi.StringPtrInput `pulumi:"clientKey"`
+	// The kubernetes API server CA certificate.
+	ClusterCaCertificate pulumi.StringPtrInput `pulumi:"clusterCaCertificate"`
+	// The kubernetes API server URL.
+	Host pulumi.StringPtrInput `pulumi:"host"`
+}
+
+func (KubeKubeconfigAttributeArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeKubeconfigAttribute)(nil)).Elem()
+}
+
+func (i KubeKubeconfigAttributeArgs) ToKubeKubeconfigAttributeOutput() KubeKubeconfigAttributeOutput {
+	return i.ToKubeKubeconfigAttributeOutputWithContext(context.Background())
+}
+
+func (i KubeKubeconfigAttributeArgs) ToKubeKubeconfigAttributeOutputWithContext(ctx context.Context) KubeKubeconfigAttributeOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeKubeconfigAttributeOutput)
+}
+
+// KubeKubeconfigAttributeArrayInput is an input type that accepts KubeKubeconfigAttributeArray and KubeKubeconfigAttributeArrayOutput values.
+// You can construct a concrete instance of `KubeKubeconfigAttributeArrayInput` via:
+//
+//	KubeKubeconfigAttributeArray{ KubeKubeconfigAttributeArgs{...} }
+type KubeKubeconfigAttributeArrayInput interface {
+	pulumi.Input
+
+	ToKubeKubeconfigAttributeArrayOutput() KubeKubeconfigAttributeArrayOutput
+	ToKubeKubeconfigAttributeArrayOutputWithContext(context.Context) KubeKubeconfigAttributeArrayOutput
+}
+
+type KubeKubeconfigAttributeArray []KubeKubeconfigAttributeInput
+
+func (KubeKubeconfigAttributeArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubeKubeconfigAttribute)(nil)).Elem()
+}
+
+func (i KubeKubeconfigAttributeArray) ToKubeKubeconfigAttributeArrayOutput() KubeKubeconfigAttributeArrayOutput {
+	return i.ToKubeKubeconfigAttributeArrayOutputWithContext(context.Background())
+}
+
+func (i KubeKubeconfigAttributeArray) ToKubeKubeconfigAttributeArrayOutputWithContext(ctx context.Context) KubeKubeconfigAttributeArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(KubeKubeconfigAttributeArrayOutput)
+}
+
+type KubeKubeconfigAttributeOutput struct{ *pulumi.OutputState }
+
+func (KubeKubeconfigAttributeOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*KubeKubeconfigAttribute)(nil)).Elem()
+}
+
+func (o KubeKubeconfigAttributeOutput) ToKubeKubeconfigAttributeOutput() KubeKubeconfigAttributeOutput {
+	return o
+}
+
+func (o KubeKubeconfigAttributeOutput) ToKubeKubeconfigAttributeOutputWithContext(ctx context.Context) KubeKubeconfigAttributeOutput {
+	return o
+}
+
+// The kubernetes API server client certificate.
+func (o KubeKubeconfigAttributeOutput) ClientCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeKubeconfigAttribute) *string { return v.ClientCertificate }).(pulumi.StringPtrOutput)
+}
+
+// The kubernetes API server client key.
+func (o KubeKubeconfigAttributeOutput) ClientKey() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeKubeconfigAttribute) *string { return v.ClientKey }).(pulumi.StringPtrOutput)
+}
+
+// The kubernetes API server CA certificate.
+func (o KubeKubeconfigAttributeOutput) ClusterCaCertificate() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeKubeconfigAttribute) *string { return v.ClusterCaCertificate }).(pulumi.StringPtrOutput)
+}
+
+// The kubernetes API server URL.
+func (o KubeKubeconfigAttributeOutput) Host() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v KubeKubeconfigAttribute) *string { return v.Host }).(pulumi.StringPtrOutput)
+}
+
+type KubeKubeconfigAttributeArrayOutput struct{ *pulumi.OutputState }
+
+func (KubeKubeconfigAttributeArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]KubeKubeconfigAttribute)(nil)).Elem()
+}
+
+func (o KubeKubeconfigAttributeArrayOutput) ToKubeKubeconfigAttributeArrayOutput() KubeKubeconfigAttributeArrayOutput {
+	return o
+}
+
+func (o KubeKubeconfigAttributeArrayOutput) ToKubeKubeconfigAttributeArrayOutputWithContext(ctx context.Context) KubeKubeconfigAttributeArrayOutput {
+	return o
+}
+
+func (o KubeKubeconfigAttributeArrayOutput) Index(i pulumi.IntInput) KubeKubeconfigAttributeOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) KubeKubeconfigAttribute {
+		return vs[0].([]KubeKubeconfigAttribute)[vs[1].(int)]
+	}).(KubeKubeconfigAttributeOutput)
 }
 
 type KubeNodePoolTemplate struct {
+	// Metadata of each node in the pool
 	Metadata *KubeNodePoolTemplateMetadata `pulumi:"metadata"`
-	Spec     *KubeNodePoolTemplateSpec     `pulumi:"spec"`
+	// Spec of each node in the pool
+	Spec *KubeNodePoolTemplateSpec `pulumi:"spec"`
 }
 
 // KubeNodePoolTemplateInput is an input type that accepts KubeNodePoolTemplateArgs and KubeNodePoolTemplateOutput values.
@@ -1075,8 +1637,10 @@ type KubeNodePoolTemplateInput interface {
 }
 
 type KubeNodePoolTemplateArgs struct {
+	// Metadata of each node in the pool
 	Metadata KubeNodePoolTemplateMetadataPtrInput `pulumi:"metadata"`
-	Spec     KubeNodePoolTemplateSpecPtrInput     `pulumi:"spec"`
+	// Spec of each node in the pool
+	Spec KubeNodePoolTemplateSpecPtrInput `pulumi:"spec"`
 }
 
 func (KubeNodePoolTemplateArgs) ElementType() reflect.Type {
@@ -1156,10 +1720,12 @@ func (o KubeNodePoolTemplateOutput) ToKubeNodePoolTemplatePtrOutputWithContext(c
 	}).(KubeNodePoolTemplatePtrOutput)
 }
 
+// Metadata of each node in the pool
 func (o KubeNodePoolTemplateOutput) Metadata() KubeNodePoolTemplateMetadataPtrOutput {
 	return o.ApplyT(func(v KubeNodePoolTemplate) *KubeNodePoolTemplateMetadata { return v.Metadata }).(KubeNodePoolTemplateMetadataPtrOutput)
 }
 
+// Spec of each node in the pool
 func (o KubeNodePoolTemplateOutput) Spec() KubeNodePoolTemplateSpecPtrOutput {
 	return o.ApplyT(func(v KubeNodePoolTemplate) *KubeNodePoolTemplateSpec { return v.Spec }).(KubeNodePoolTemplateSpecPtrOutput)
 }
@@ -1188,6 +1754,7 @@ func (o KubeNodePoolTemplatePtrOutput) Elem() KubeNodePoolTemplateOutput {
 	}).(KubeNodePoolTemplateOutput)
 }
 
+// Metadata of each node in the pool
 func (o KubeNodePoolTemplatePtrOutput) Metadata() KubeNodePoolTemplateMetadataPtrOutput {
 	return o.ApplyT(func(v *KubeNodePoolTemplate) *KubeNodePoolTemplateMetadata {
 		if v == nil {
@@ -1197,6 +1764,7 @@ func (o KubeNodePoolTemplatePtrOutput) Metadata() KubeNodePoolTemplateMetadataPt
 	}).(KubeNodePoolTemplateMetadataPtrOutput)
 }
 
+// Spec of each node in the pool
 func (o KubeNodePoolTemplatePtrOutput) Spec() KubeNodePoolTemplateSpecPtrOutput {
 	return o.ApplyT(func(v *KubeNodePoolTemplate) *KubeNodePoolTemplateSpec {
 		if v == nil {
@@ -1207,9 +1775,12 @@ func (o KubeNodePoolTemplatePtrOutput) Spec() KubeNodePoolTemplateSpecPtrOutput 
 }
 
 type KubeNodePoolTemplateMetadata struct {
+	// Annotations to apply to each node
 	Annotations map[string]string `pulumi:"annotations"`
-	Finalizers  []string          `pulumi:"finalizers"`
-	Labels      map[string]string `pulumi:"labels"`
+	// Finalizers to apply to each node
+	Finalizers []string `pulumi:"finalizers"`
+	// Labels to apply to each node
+	Labels map[string]string `pulumi:"labels"`
 }
 
 // KubeNodePoolTemplateMetadataInput is an input type that accepts KubeNodePoolTemplateMetadataArgs and KubeNodePoolTemplateMetadataOutput values.
@@ -1224,9 +1795,12 @@ type KubeNodePoolTemplateMetadataInput interface {
 }
 
 type KubeNodePoolTemplateMetadataArgs struct {
-	Annotations pulumi.StringMapInput   `pulumi:"annotations"`
-	Finalizers  pulumi.StringArrayInput `pulumi:"finalizers"`
-	Labels      pulumi.StringMapInput   `pulumi:"labels"`
+	// Annotations to apply to each node
+	Annotations pulumi.StringMapInput `pulumi:"annotations"`
+	// Finalizers to apply to each node
+	Finalizers pulumi.StringArrayInput `pulumi:"finalizers"`
+	// Labels to apply to each node
+	Labels pulumi.StringMapInput `pulumi:"labels"`
 }
 
 func (KubeNodePoolTemplateMetadataArgs) ElementType() reflect.Type {
@@ -1306,14 +1880,17 @@ func (o KubeNodePoolTemplateMetadataOutput) ToKubeNodePoolTemplateMetadataPtrOut
 	}).(KubeNodePoolTemplateMetadataPtrOutput)
 }
 
+// Annotations to apply to each node
 func (o KubeNodePoolTemplateMetadataOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v KubeNodePoolTemplateMetadata) map[string]string { return v.Annotations }).(pulumi.StringMapOutput)
 }
 
+// Finalizers to apply to each node
 func (o KubeNodePoolTemplateMetadataOutput) Finalizers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v KubeNodePoolTemplateMetadata) []string { return v.Finalizers }).(pulumi.StringArrayOutput)
 }
 
+// Labels to apply to each node
 func (o KubeNodePoolTemplateMetadataOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v KubeNodePoolTemplateMetadata) map[string]string { return v.Labels }).(pulumi.StringMapOutput)
 }
@@ -1342,6 +1919,7 @@ func (o KubeNodePoolTemplateMetadataPtrOutput) Elem() KubeNodePoolTemplateMetada
 	}).(KubeNodePoolTemplateMetadataOutput)
 }
 
+// Annotations to apply to each node
 func (o KubeNodePoolTemplateMetadataPtrOutput) Annotations() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *KubeNodePoolTemplateMetadata) map[string]string {
 		if v == nil {
@@ -1351,6 +1929,7 @@ func (o KubeNodePoolTemplateMetadataPtrOutput) Annotations() pulumi.StringMapOut
 	}).(pulumi.StringMapOutput)
 }
 
+// Finalizers to apply to each node
 func (o KubeNodePoolTemplateMetadataPtrOutput) Finalizers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KubeNodePoolTemplateMetadata) []string {
 		if v == nil {
@@ -1360,6 +1939,7 @@ func (o KubeNodePoolTemplateMetadataPtrOutput) Finalizers() pulumi.StringArrayOu
 	}).(pulumi.StringArrayOutput)
 }
 
+// Labels to apply to each node
 func (o KubeNodePoolTemplateMetadataPtrOutput) Labels() pulumi.StringMapOutput {
 	return o.ApplyT(func(v *KubeNodePoolTemplateMetadata) map[string]string {
 		if v == nil {
@@ -1370,8 +1950,10 @@ func (o KubeNodePoolTemplateMetadataPtrOutput) Labels() pulumi.StringMapOutput {
 }
 
 type KubeNodePoolTemplateSpec struct {
-	Taints        []map[string]interface{} `pulumi:"taints"`
-	Unschedulable *bool                    `pulumi:"unschedulable"`
+	// Taints to apply to each node
+	Taints []map[string]interface{} `pulumi:"taints"`
+	// If true, set nodes as un-schedulable
+	Unschedulable *bool `pulumi:"unschedulable"`
 }
 
 // KubeNodePoolTemplateSpecInput is an input type that accepts KubeNodePoolTemplateSpecArgs and KubeNodePoolTemplateSpecOutput values.
@@ -1386,8 +1968,10 @@ type KubeNodePoolTemplateSpecInput interface {
 }
 
 type KubeNodePoolTemplateSpecArgs struct {
-	Taints        pulumi.MapArrayInput `pulumi:"taints"`
-	Unschedulable pulumi.BoolPtrInput  `pulumi:"unschedulable"`
+	// Taints to apply to each node
+	Taints pulumi.MapArrayInput `pulumi:"taints"`
+	// If true, set nodes as un-schedulable
+	Unschedulable pulumi.BoolPtrInput `pulumi:"unschedulable"`
 }
 
 func (KubeNodePoolTemplateSpecArgs) ElementType() reflect.Type {
@@ -1467,10 +2051,12 @@ func (o KubeNodePoolTemplateSpecOutput) ToKubeNodePoolTemplateSpecPtrOutputWithC
 	}).(KubeNodePoolTemplateSpecPtrOutput)
 }
 
+// Taints to apply to each node
 func (o KubeNodePoolTemplateSpecOutput) Taints() pulumi.MapArrayOutput {
 	return o.ApplyT(func(v KubeNodePoolTemplateSpec) []map[string]interface{} { return v.Taints }).(pulumi.MapArrayOutput)
 }
 
+// If true, set nodes as un-schedulable
 func (o KubeNodePoolTemplateSpecOutput) Unschedulable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v KubeNodePoolTemplateSpec) *bool { return v.Unschedulable }).(pulumi.BoolPtrOutput)
 }
@@ -1499,6 +2085,7 @@ func (o KubeNodePoolTemplateSpecPtrOutput) Elem() KubeNodePoolTemplateSpecOutput
 	}).(KubeNodePoolTemplateSpecOutput)
 }
 
+// Taints to apply to each node
 func (o KubeNodePoolTemplateSpecPtrOutput) Taints() pulumi.MapArrayOutput {
 	return o.ApplyT(func(v *KubeNodePoolTemplateSpec) []map[string]interface{} {
 		if v == nil {
@@ -1508,6 +2095,7 @@ func (o KubeNodePoolTemplateSpecPtrOutput) Taints() pulumi.MapArrayOutput {
 	}).(pulumi.MapArrayOutput)
 }
 
+// If true, set nodes as un-schedulable
 func (o KubeNodePoolTemplateSpecPtrOutput) Unschedulable() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *KubeNodePoolTemplateSpec) *bool {
 		if v == nil {
@@ -1518,8 +2106,10 @@ func (o KubeNodePoolTemplateSpecPtrOutput) Unschedulable() pulumi.BoolPtrOutput 
 }
 
 type KubePrivateNetworkConfiguration struct {
-	DefaultVrackGateway            string `pulumi:"defaultVrackGateway"`
-	PrivateNetworkRoutingAsDefault bool   `pulumi:"privateNetworkRoutingAsDefault"`
+	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+	DefaultVrackGateway string `pulumi:"defaultVrackGateway"`
+	// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+	PrivateNetworkRoutingAsDefault bool `pulumi:"privateNetworkRoutingAsDefault"`
 }
 
 // KubePrivateNetworkConfigurationInput is an input type that accepts KubePrivateNetworkConfigurationArgs and KubePrivateNetworkConfigurationOutput values.
@@ -1534,8 +2124,10 @@ type KubePrivateNetworkConfigurationInput interface {
 }
 
 type KubePrivateNetworkConfigurationArgs struct {
-	DefaultVrackGateway            pulumi.StringInput `pulumi:"defaultVrackGateway"`
-	PrivateNetworkRoutingAsDefault pulumi.BoolInput   `pulumi:"privateNetworkRoutingAsDefault"`
+	// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+	DefaultVrackGateway pulumi.StringInput `pulumi:"defaultVrackGateway"`
+	// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+	PrivateNetworkRoutingAsDefault pulumi.BoolInput `pulumi:"privateNetworkRoutingAsDefault"`
 }
 
 func (KubePrivateNetworkConfigurationArgs) ElementType() reflect.Type {
@@ -1615,10 +2207,12 @@ func (o KubePrivateNetworkConfigurationOutput) ToKubePrivateNetworkConfiguration
 	}).(KubePrivateNetworkConfigurationPtrOutput)
 }
 
+// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
 func (o KubePrivateNetworkConfigurationOutput) DefaultVrackGateway() pulumi.StringOutput {
 	return o.ApplyT(func(v KubePrivateNetworkConfiguration) string { return v.DefaultVrackGateway }).(pulumi.StringOutput)
 }
 
+// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 func (o KubePrivateNetworkConfigurationOutput) PrivateNetworkRoutingAsDefault() pulumi.BoolOutput {
 	return o.ApplyT(func(v KubePrivateNetworkConfiguration) bool { return v.PrivateNetworkRoutingAsDefault }).(pulumi.BoolOutput)
 }
@@ -1647,6 +2241,7 @@ func (o KubePrivateNetworkConfigurationPtrOutput) Elem() KubePrivateNetworkConfi
 	}).(KubePrivateNetworkConfigurationOutput)
 }
 
+// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
 func (o KubePrivateNetworkConfigurationPtrOutput) DefaultVrackGateway() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubePrivateNetworkConfiguration) *string {
 		if v == nil {
@@ -1656,6 +2251,7 @@ func (o KubePrivateNetworkConfigurationPtrOutput) DefaultVrackGateway() pulumi.S
 	}).(pulumi.StringPtrOutput)
 }
 
+// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 func (o KubePrivateNetworkConfigurationPtrOutput) PrivateNetworkRoutingAsDefault() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v *KubePrivateNetworkConfiguration) *bool {
 		if v == nil {
@@ -3921,7 +4517,10 @@ func (o GetContainerRegistryUsersResultArrayOutput) Index(i pulumi.IntInput) Get
 }
 
 type GetKubeCustomization struct {
-	Apiserver GetKubeCustomizationApiserver `pulumi:"apiserver"`
+	// Kubernetes API server customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Apiservers []GetKubeCustomizationApiserver `pulumi:"apiservers"`
 }
 
 // GetKubeCustomizationInput is an input type that accepts GetKubeCustomizationArgs and GetKubeCustomizationOutput values.
@@ -3936,7 +4535,10 @@ type GetKubeCustomizationInput interface {
 }
 
 type GetKubeCustomizationArgs struct {
-	Apiserver GetKubeCustomizationApiserverInput `pulumi:"apiserver"`
+	// Kubernetes API server customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Apiservers GetKubeCustomizationApiserverArrayInput `pulumi:"apiservers"`
 }
 
 func (GetKubeCustomizationArgs) ElementType() reflect.Type {
@@ -3951,45 +4553,29 @@ func (i GetKubeCustomizationArgs) ToGetKubeCustomizationOutputWithContext(ctx co
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationOutput)
 }
 
-func (i GetKubeCustomizationArgs) ToGetKubeCustomizationPtrOutput() GetKubeCustomizationPtrOutput {
-	return i.ToGetKubeCustomizationPtrOutputWithContext(context.Background())
-}
-
-func (i GetKubeCustomizationArgs) ToGetKubeCustomizationPtrOutputWithContext(ctx context.Context) GetKubeCustomizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationOutput).ToGetKubeCustomizationPtrOutputWithContext(ctx)
-}
-
-// GetKubeCustomizationPtrInput is an input type that accepts GetKubeCustomizationArgs, GetKubeCustomizationPtr and GetKubeCustomizationPtrOutput values.
-// You can construct a concrete instance of `GetKubeCustomizationPtrInput` via:
+// GetKubeCustomizationArrayInput is an input type that accepts GetKubeCustomizationArray and GetKubeCustomizationArrayOutput values.
+// You can construct a concrete instance of `GetKubeCustomizationArrayInput` via:
 //
-//	        GetKubeCustomizationArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetKubeCustomizationPtrInput interface {
+//	GetKubeCustomizationArray{ GetKubeCustomizationArgs{...} }
+type GetKubeCustomizationArrayInput interface {
 	pulumi.Input
 
-	ToGetKubeCustomizationPtrOutput() GetKubeCustomizationPtrOutput
-	ToGetKubeCustomizationPtrOutputWithContext(context.Context) GetKubeCustomizationPtrOutput
+	ToGetKubeCustomizationArrayOutput() GetKubeCustomizationArrayOutput
+	ToGetKubeCustomizationArrayOutputWithContext(context.Context) GetKubeCustomizationArrayOutput
 }
 
-type getKubeCustomizationPtrType GetKubeCustomizationArgs
+type GetKubeCustomizationArray []GetKubeCustomizationInput
 
-func GetKubeCustomizationPtr(v *GetKubeCustomizationArgs) GetKubeCustomizationPtrInput {
-	return (*getKubeCustomizationPtrType)(v)
+func (GetKubeCustomizationArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeCustomization)(nil)).Elem()
 }
 
-func (*getKubeCustomizationPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetKubeCustomization)(nil)).Elem()
+func (i GetKubeCustomizationArray) ToGetKubeCustomizationArrayOutput() GetKubeCustomizationArrayOutput {
+	return i.ToGetKubeCustomizationArrayOutputWithContext(context.Background())
 }
 
-func (i *getKubeCustomizationPtrType) ToGetKubeCustomizationPtrOutput() GetKubeCustomizationPtrOutput {
-	return i.ToGetKubeCustomizationPtrOutputWithContext(context.Background())
-}
-
-func (i *getKubeCustomizationPtrType) ToGetKubeCustomizationPtrOutputWithContext(ctx context.Context) GetKubeCustomizationPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationPtrOutput)
+func (i GetKubeCustomizationArray) ToGetKubeCustomizationArrayOutputWithContext(ctx context.Context) GetKubeCustomizationArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationArrayOutput)
 }
 
 type GetKubeCustomizationOutput struct{ *pulumi.OutputState }
@@ -4006,55 +4592,36 @@ func (o GetKubeCustomizationOutput) ToGetKubeCustomizationOutputWithContext(ctx 
 	return o
 }
 
-func (o GetKubeCustomizationOutput) ToGetKubeCustomizationPtrOutput() GetKubeCustomizationPtrOutput {
-	return o.ToGetKubeCustomizationPtrOutputWithContext(context.Background())
+// Kubernetes API server customization
+//
+// Deprecated: Use customization_apiserver instead
+func (o GetKubeCustomizationOutput) Apiservers() GetKubeCustomizationApiserverArrayOutput {
+	return o.ApplyT(func(v GetKubeCustomization) []GetKubeCustomizationApiserver { return v.Apiservers }).(GetKubeCustomizationApiserverArrayOutput)
 }
 
-func (o GetKubeCustomizationOutput) ToGetKubeCustomizationPtrOutputWithContext(ctx context.Context) GetKubeCustomizationPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetKubeCustomization) *GetKubeCustomization {
-		return &v
-	}).(GetKubeCustomizationPtrOutput)
+type GetKubeCustomizationArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKubeCustomizationArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeCustomization)(nil)).Elem()
 }
 
-func (o GetKubeCustomizationOutput) Apiserver() GetKubeCustomizationApiserverOutput {
-	return o.ApplyT(func(v GetKubeCustomization) GetKubeCustomizationApiserver { return v.Apiserver }).(GetKubeCustomizationApiserverOutput)
-}
-
-type GetKubeCustomizationPtrOutput struct{ *pulumi.OutputState }
-
-func (GetKubeCustomizationPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetKubeCustomization)(nil)).Elem()
-}
-
-func (o GetKubeCustomizationPtrOutput) ToGetKubeCustomizationPtrOutput() GetKubeCustomizationPtrOutput {
+func (o GetKubeCustomizationArrayOutput) ToGetKubeCustomizationArrayOutput() GetKubeCustomizationArrayOutput {
 	return o
 }
 
-func (o GetKubeCustomizationPtrOutput) ToGetKubeCustomizationPtrOutputWithContext(ctx context.Context) GetKubeCustomizationPtrOutput {
+func (o GetKubeCustomizationArrayOutput) ToGetKubeCustomizationArrayOutputWithContext(ctx context.Context) GetKubeCustomizationArrayOutput {
 	return o
 }
 
-func (o GetKubeCustomizationPtrOutput) Elem() GetKubeCustomizationOutput {
-	return o.ApplyT(func(v *GetKubeCustomization) GetKubeCustomization {
-		if v != nil {
-			return *v
-		}
-		var ret GetKubeCustomization
-		return ret
+func (o GetKubeCustomizationArrayOutput) Index(i pulumi.IntInput) GetKubeCustomizationOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubeCustomization {
+		return vs[0].([]GetKubeCustomization)[vs[1].(int)]
 	}).(GetKubeCustomizationOutput)
 }
 
-func (o GetKubeCustomizationPtrOutput) Apiserver() GetKubeCustomizationApiserverPtrOutput {
-	return o.ApplyT(func(v *GetKubeCustomization) *GetKubeCustomizationApiserver {
-		if v == nil {
-			return nil
-		}
-		return &v.Apiserver
-	}).(GetKubeCustomizationApiserverPtrOutput)
-}
-
 type GetKubeCustomizationApiserver struct {
-	Admissionplugins GetKubeCustomizationApiserverAdmissionplugins `pulumi:"admissionplugins"`
+	// Kubernetes API server admission plugins customization
+	Admissionplugins []GetKubeCustomizationApiserverAdmissionplugin `pulumi:"admissionplugins"`
 }
 
 // GetKubeCustomizationApiserverInput is an input type that accepts GetKubeCustomizationApiserverArgs and GetKubeCustomizationApiserverOutput values.
@@ -4069,7 +4636,8 @@ type GetKubeCustomizationApiserverInput interface {
 }
 
 type GetKubeCustomizationApiserverArgs struct {
-	Admissionplugins GetKubeCustomizationApiserverAdmissionpluginsInput `pulumi:"admissionplugins"`
+	// Kubernetes API server admission plugins customization
+	Admissionplugins GetKubeCustomizationApiserverAdmissionpluginArrayInput `pulumi:"admissionplugins"`
 }
 
 func (GetKubeCustomizationApiserverArgs) ElementType() reflect.Type {
@@ -4084,45 +4652,29 @@ func (i GetKubeCustomizationApiserverArgs) ToGetKubeCustomizationApiserverOutput
 	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationApiserverOutput)
 }
 
-func (i GetKubeCustomizationApiserverArgs) ToGetKubeCustomizationApiserverPtrOutput() GetKubeCustomizationApiserverPtrOutput {
-	return i.ToGetKubeCustomizationApiserverPtrOutputWithContext(context.Background())
-}
-
-func (i GetKubeCustomizationApiserverArgs) ToGetKubeCustomizationApiserverPtrOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationApiserverOutput).ToGetKubeCustomizationApiserverPtrOutputWithContext(ctx)
-}
-
-// GetKubeCustomizationApiserverPtrInput is an input type that accepts GetKubeCustomizationApiserverArgs, GetKubeCustomizationApiserverPtr and GetKubeCustomizationApiserverPtrOutput values.
-// You can construct a concrete instance of `GetKubeCustomizationApiserverPtrInput` via:
+// GetKubeCustomizationApiserverArrayInput is an input type that accepts GetKubeCustomizationApiserverArray and GetKubeCustomizationApiserverArrayOutput values.
+// You can construct a concrete instance of `GetKubeCustomizationApiserverArrayInput` via:
 //
-//	        GetKubeCustomizationApiserverArgs{...}
-//
-//	or:
-//
-//	        nil
-type GetKubeCustomizationApiserverPtrInput interface {
+//	GetKubeCustomizationApiserverArray{ GetKubeCustomizationApiserverArgs{...} }
+type GetKubeCustomizationApiserverArrayInput interface {
 	pulumi.Input
 
-	ToGetKubeCustomizationApiserverPtrOutput() GetKubeCustomizationApiserverPtrOutput
-	ToGetKubeCustomizationApiserverPtrOutputWithContext(context.Context) GetKubeCustomizationApiserverPtrOutput
+	ToGetKubeCustomizationApiserverArrayOutput() GetKubeCustomizationApiserverArrayOutput
+	ToGetKubeCustomizationApiserverArrayOutputWithContext(context.Context) GetKubeCustomizationApiserverArrayOutput
 }
 
-type getKubeCustomizationApiserverPtrType GetKubeCustomizationApiserverArgs
+type GetKubeCustomizationApiserverArray []GetKubeCustomizationApiserverInput
 
-func GetKubeCustomizationApiserverPtr(v *GetKubeCustomizationApiserverArgs) GetKubeCustomizationApiserverPtrInput {
-	return (*getKubeCustomizationApiserverPtrType)(v)
+func (GetKubeCustomizationApiserverArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeCustomizationApiserver)(nil)).Elem()
 }
 
-func (*getKubeCustomizationApiserverPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetKubeCustomizationApiserver)(nil)).Elem()
+func (i GetKubeCustomizationApiserverArray) ToGetKubeCustomizationApiserverArrayOutput() GetKubeCustomizationApiserverArrayOutput {
+	return i.ToGetKubeCustomizationApiserverArrayOutputWithContext(context.Background())
 }
 
-func (i *getKubeCustomizationApiserverPtrType) ToGetKubeCustomizationApiserverPtrOutput() GetKubeCustomizationApiserverPtrOutput {
-	return i.ToGetKubeCustomizationApiserverPtrOutputWithContext(context.Background())
-}
-
-func (i *getKubeCustomizationApiserverPtrType) ToGetKubeCustomizationApiserverPtrOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationApiserverPtrOutput)
+func (i GetKubeCustomizationApiserverArray) ToGetKubeCustomizationApiserverArrayOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationApiserverArrayOutput)
 }
 
 type GetKubeCustomizationApiserverOutput struct{ *pulumi.OutputState }
@@ -4139,201 +4691,681 @@ func (o GetKubeCustomizationApiserverOutput) ToGetKubeCustomizationApiserverOutp
 	return o
 }
 
-func (o GetKubeCustomizationApiserverOutput) ToGetKubeCustomizationApiserverPtrOutput() GetKubeCustomizationApiserverPtrOutput {
-	return o.ToGetKubeCustomizationApiserverPtrOutputWithContext(context.Background())
-}
-
-func (o GetKubeCustomizationApiserverOutput) ToGetKubeCustomizationApiserverPtrOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetKubeCustomizationApiserver) *GetKubeCustomizationApiserver {
-		return &v
-	}).(GetKubeCustomizationApiserverPtrOutput)
-}
-
-func (o GetKubeCustomizationApiserverOutput) Admissionplugins() GetKubeCustomizationApiserverAdmissionpluginsOutput {
-	return o.ApplyT(func(v GetKubeCustomizationApiserver) GetKubeCustomizationApiserverAdmissionplugins {
+// Kubernetes API server admission plugins customization
+func (o GetKubeCustomizationApiserverOutput) Admissionplugins() GetKubeCustomizationApiserverAdmissionpluginArrayOutput {
+	return o.ApplyT(func(v GetKubeCustomizationApiserver) []GetKubeCustomizationApiserverAdmissionplugin {
 		return v.Admissionplugins
-	}).(GetKubeCustomizationApiserverAdmissionpluginsOutput)
+	}).(GetKubeCustomizationApiserverAdmissionpluginArrayOutput)
 }
 
-type GetKubeCustomizationApiserverPtrOutput struct{ *pulumi.OutputState }
+type GetKubeCustomizationApiserverArrayOutput struct{ *pulumi.OutputState }
 
-func (GetKubeCustomizationApiserverPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetKubeCustomizationApiserver)(nil)).Elem()
+func (GetKubeCustomizationApiserverArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeCustomizationApiserver)(nil)).Elem()
 }
 
-func (o GetKubeCustomizationApiserverPtrOutput) ToGetKubeCustomizationApiserverPtrOutput() GetKubeCustomizationApiserverPtrOutput {
+func (o GetKubeCustomizationApiserverArrayOutput) ToGetKubeCustomizationApiserverArrayOutput() GetKubeCustomizationApiserverArrayOutput {
 	return o
 }
 
-func (o GetKubeCustomizationApiserverPtrOutput) ToGetKubeCustomizationApiserverPtrOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverPtrOutput {
+func (o GetKubeCustomizationApiserverArrayOutput) ToGetKubeCustomizationApiserverArrayOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverArrayOutput {
 	return o
 }
 
-func (o GetKubeCustomizationApiserverPtrOutput) Elem() GetKubeCustomizationApiserverOutput {
-	return o.ApplyT(func(v *GetKubeCustomizationApiserver) GetKubeCustomizationApiserver {
-		if v != nil {
-			return *v
-		}
-		var ret GetKubeCustomizationApiserver
-		return ret
+func (o GetKubeCustomizationApiserverArrayOutput) Index(i pulumi.IntInput) GetKubeCustomizationApiserverOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubeCustomizationApiserver {
+		return vs[0].([]GetKubeCustomizationApiserver)[vs[1].(int)]
 	}).(GetKubeCustomizationApiserverOutput)
 }
 
-func (o GetKubeCustomizationApiserverPtrOutput) Admissionplugins() GetKubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return o.ApplyT(func(v *GetKubeCustomizationApiserver) *GetKubeCustomizationApiserverAdmissionplugins {
-		if v == nil {
-			return nil
-		}
-		return &v.Admissionplugins
-	}).(GetKubeCustomizationApiserverAdmissionpluginsPtrOutput)
-}
-
-type GetKubeCustomizationApiserverAdmissionplugins struct {
+type GetKubeCustomizationApiserverAdmissionplugin struct {
+	// Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
 	Disableds []string `pulumi:"disableds"`
-	Enableds  []string `pulumi:"enableds"`
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	Enableds []string `pulumi:"enableds"`
 }
 
-// GetKubeCustomizationApiserverAdmissionpluginsInput is an input type that accepts GetKubeCustomizationApiserverAdmissionpluginsArgs and GetKubeCustomizationApiserverAdmissionpluginsOutput values.
-// You can construct a concrete instance of `GetKubeCustomizationApiserverAdmissionpluginsInput` via:
+// GetKubeCustomizationApiserverAdmissionpluginInput is an input type that accepts GetKubeCustomizationApiserverAdmissionpluginArgs and GetKubeCustomizationApiserverAdmissionpluginOutput values.
+// You can construct a concrete instance of `GetKubeCustomizationApiserverAdmissionpluginInput` via:
 //
-//	GetKubeCustomizationApiserverAdmissionpluginsArgs{...}
-type GetKubeCustomizationApiserverAdmissionpluginsInput interface {
+//	GetKubeCustomizationApiserverAdmissionpluginArgs{...}
+type GetKubeCustomizationApiserverAdmissionpluginInput interface {
 	pulumi.Input
 
-	ToGetKubeCustomizationApiserverAdmissionpluginsOutput() GetKubeCustomizationApiserverAdmissionpluginsOutput
-	ToGetKubeCustomizationApiserverAdmissionpluginsOutputWithContext(context.Context) GetKubeCustomizationApiserverAdmissionpluginsOutput
+	ToGetKubeCustomizationApiserverAdmissionpluginOutput() GetKubeCustomizationApiserverAdmissionpluginOutput
+	ToGetKubeCustomizationApiserverAdmissionpluginOutputWithContext(context.Context) GetKubeCustomizationApiserverAdmissionpluginOutput
 }
 
-type GetKubeCustomizationApiserverAdmissionpluginsArgs struct {
+type GetKubeCustomizationApiserverAdmissionpluginArgs struct {
+	// Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
 	Disableds pulumi.StringArrayInput `pulumi:"disableds"`
-	Enableds  pulumi.StringArrayInput `pulumi:"enableds"`
+	// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+	Enableds pulumi.StringArrayInput `pulumi:"enableds"`
 }
 
-func (GetKubeCustomizationApiserverAdmissionpluginsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetKubeCustomizationApiserverAdmissionplugins)(nil)).Elem()
+func (GetKubeCustomizationApiserverAdmissionpluginArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeCustomizationApiserverAdmissionplugin)(nil)).Elem()
 }
 
-func (i GetKubeCustomizationApiserverAdmissionpluginsArgs) ToGetKubeCustomizationApiserverAdmissionpluginsOutput() GetKubeCustomizationApiserverAdmissionpluginsOutput {
-	return i.ToGetKubeCustomizationApiserverAdmissionpluginsOutputWithContext(context.Background())
+func (i GetKubeCustomizationApiserverAdmissionpluginArgs) ToGetKubeCustomizationApiserverAdmissionpluginOutput() GetKubeCustomizationApiserverAdmissionpluginOutput {
+	return i.ToGetKubeCustomizationApiserverAdmissionpluginOutputWithContext(context.Background())
 }
 
-func (i GetKubeCustomizationApiserverAdmissionpluginsArgs) ToGetKubeCustomizationApiserverAdmissionpluginsOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverAdmissionpluginsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationApiserverAdmissionpluginsOutput)
+func (i GetKubeCustomizationApiserverAdmissionpluginArgs) ToGetKubeCustomizationApiserverAdmissionpluginOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverAdmissionpluginOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationApiserverAdmissionpluginOutput)
 }
 
-func (i GetKubeCustomizationApiserverAdmissionpluginsArgs) ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutput() GetKubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return i.ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(context.Background())
-}
-
-func (i GetKubeCustomizationApiserverAdmissionpluginsArgs) ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationApiserverAdmissionpluginsOutput).ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(ctx)
-}
-
-// GetKubeCustomizationApiserverAdmissionpluginsPtrInput is an input type that accepts GetKubeCustomizationApiserverAdmissionpluginsArgs, GetKubeCustomizationApiserverAdmissionpluginsPtr and GetKubeCustomizationApiserverAdmissionpluginsPtrOutput values.
-// You can construct a concrete instance of `GetKubeCustomizationApiserverAdmissionpluginsPtrInput` via:
+// GetKubeCustomizationApiserverAdmissionpluginArrayInput is an input type that accepts GetKubeCustomizationApiserverAdmissionpluginArray and GetKubeCustomizationApiserverAdmissionpluginArrayOutput values.
+// You can construct a concrete instance of `GetKubeCustomizationApiserverAdmissionpluginArrayInput` via:
 //
-//	        GetKubeCustomizationApiserverAdmissionpluginsArgs{...}
+//	GetKubeCustomizationApiserverAdmissionpluginArray{ GetKubeCustomizationApiserverAdmissionpluginArgs{...} }
+type GetKubeCustomizationApiserverAdmissionpluginArrayInput interface {
+	pulumi.Input
+
+	ToGetKubeCustomizationApiserverAdmissionpluginArrayOutput() GetKubeCustomizationApiserverAdmissionpluginArrayOutput
+	ToGetKubeCustomizationApiserverAdmissionpluginArrayOutputWithContext(context.Context) GetKubeCustomizationApiserverAdmissionpluginArrayOutput
+}
+
+type GetKubeCustomizationApiserverAdmissionpluginArray []GetKubeCustomizationApiserverAdmissionpluginInput
+
+func (GetKubeCustomizationApiserverAdmissionpluginArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeCustomizationApiserverAdmissionplugin)(nil)).Elem()
+}
+
+func (i GetKubeCustomizationApiserverAdmissionpluginArray) ToGetKubeCustomizationApiserverAdmissionpluginArrayOutput() GetKubeCustomizationApiserverAdmissionpluginArrayOutput {
+	return i.ToGetKubeCustomizationApiserverAdmissionpluginArrayOutputWithContext(context.Background())
+}
+
+func (i GetKubeCustomizationApiserverAdmissionpluginArray) ToGetKubeCustomizationApiserverAdmissionpluginArrayOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverAdmissionpluginArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationApiserverAdmissionpluginArrayOutput)
+}
+
+type GetKubeCustomizationApiserverAdmissionpluginOutput struct{ *pulumi.OutputState }
+
+func (GetKubeCustomizationApiserverAdmissionpluginOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeCustomizationApiserverAdmissionplugin)(nil)).Elem()
+}
+
+func (o GetKubeCustomizationApiserverAdmissionpluginOutput) ToGetKubeCustomizationApiserverAdmissionpluginOutput() GetKubeCustomizationApiserverAdmissionpluginOutput {
+	return o
+}
+
+func (o GetKubeCustomizationApiserverAdmissionpluginOutput) ToGetKubeCustomizationApiserverAdmissionpluginOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverAdmissionpluginOutput {
+	return o
+}
+
+// Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+func (o GetKubeCustomizationApiserverAdmissionpluginOutput) Disableds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetKubeCustomizationApiserverAdmissionplugin) []string { return v.Disableds }).(pulumi.StringArrayOutput)
+}
+
+// Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+func (o GetKubeCustomizationApiserverAdmissionpluginOutput) Enableds() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetKubeCustomizationApiserverAdmissionplugin) []string { return v.Enableds }).(pulumi.StringArrayOutput)
+}
+
+type GetKubeCustomizationApiserverAdmissionpluginArrayOutput struct{ *pulumi.OutputState }
+
+func (GetKubeCustomizationApiserverAdmissionpluginArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetKubeCustomizationApiserverAdmissionplugin)(nil)).Elem()
+}
+
+func (o GetKubeCustomizationApiserverAdmissionpluginArrayOutput) ToGetKubeCustomizationApiserverAdmissionpluginArrayOutput() GetKubeCustomizationApiserverAdmissionpluginArrayOutput {
+	return o
+}
+
+func (o GetKubeCustomizationApiserverAdmissionpluginArrayOutput) ToGetKubeCustomizationApiserverAdmissionpluginArrayOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverAdmissionpluginArrayOutput {
+	return o
+}
+
+func (o GetKubeCustomizationApiserverAdmissionpluginArrayOutput) Index(i pulumi.IntInput) GetKubeCustomizationApiserverAdmissionpluginOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetKubeCustomizationApiserverAdmissionplugin {
+		return vs[0].([]GetKubeCustomizationApiserverAdmissionplugin)[vs[1].(int)]
+	}).(GetKubeCustomizationApiserverAdmissionpluginOutput)
+}
+
+type GetKubeCustomizationKubeProxy struct {
+	// Kubernetes cluster kube-proxy customization of iptables specific config.
+	Iptables *GetKubeCustomizationKubeProxyIptables `pulumi:"iptables"`
+	// Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+	Ipvs *GetKubeCustomizationKubeProxyIpvs `pulumi:"ipvs"`
+}
+
+// GetKubeCustomizationKubeProxyInput is an input type that accepts GetKubeCustomizationKubeProxyArgs and GetKubeCustomizationKubeProxyOutput values.
+// You can construct a concrete instance of `GetKubeCustomizationKubeProxyInput` via:
+//
+//	GetKubeCustomizationKubeProxyArgs{...}
+type GetKubeCustomizationKubeProxyInput interface {
+	pulumi.Input
+
+	ToGetKubeCustomizationKubeProxyOutput() GetKubeCustomizationKubeProxyOutput
+	ToGetKubeCustomizationKubeProxyOutputWithContext(context.Context) GetKubeCustomizationKubeProxyOutput
+}
+
+type GetKubeCustomizationKubeProxyArgs struct {
+	// Kubernetes cluster kube-proxy customization of iptables specific config.
+	Iptables GetKubeCustomizationKubeProxyIptablesPtrInput `pulumi:"iptables"`
+	// Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+	Ipvs GetKubeCustomizationKubeProxyIpvsPtrInput `pulumi:"ipvs"`
+}
+
+func (GetKubeCustomizationKubeProxyArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeCustomizationKubeProxy)(nil)).Elem()
+}
+
+func (i GetKubeCustomizationKubeProxyArgs) ToGetKubeCustomizationKubeProxyOutput() GetKubeCustomizationKubeProxyOutput {
+	return i.ToGetKubeCustomizationKubeProxyOutputWithContext(context.Background())
+}
+
+func (i GetKubeCustomizationKubeProxyArgs) ToGetKubeCustomizationKubeProxyOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationKubeProxyOutput)
+}
+
+func (i GetKubeCustomizationKubeProxyArgs) ToGetKubeCustomizationKubeProxyPtrOutput() GetKubeCustomizationKubeProxyPtrOutput {
+	return i.ToGetKubeCustomizationKubeProxyPtrOutputWithContext(context.Background())
+}
+
+func (i GetKubeCustomizationKubeProxyArgs) ToGetKubeCustomizationKubeProxyPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationKubeProxyOutput).ToGetKubeCustomizationKubeProxyPtrOutputWithContext(ctx)
+}
+
+// GetKubeCustomizationKubeProxyPtrInput is an input type that accepts GetKubeCustomizationKubeProxyArgs, GetKubeCustomizationKubeProxyPtr and GetKubeCustomizationKubeProxyPtrOutput values.
+// You can construct a concrete instance of `GetKubeCustomizationKubeProxyPtrInput` via:
+//
+//	        GetKubeCustomizationKubeProxyArgs{...}
 //
 //	or:
 //
 //	        nil
-type GetKubeCustomizationApiserverAdmissionpluginsPtrInput interface {
+type GetKubeCustomizationKubeProxyPtrInput interface {
 	pulumi.Input
 
-	ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutput() GetKubeCustomizationApiserverAdmissionpluginsPtrOutput
-	ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(context.Context) GetKubeCustomizationApiserverAdmissionpluginsPtrOutput
+	ToGetKubeCustomizationKubeProxyPtrOutput() GetKubeCustomizationKubeProxyPtrOutput
+	ToGetKubeCustomizationKubeProxyPtrOutputWithContext(context.Context) GetKubeCustomizationKubeProxyPtrOutput
 }
 
-type getKubeCustomizationApiserverAdmissionpluginsPtrType GetKubeCustomizationApiserverAdmissionpluginsArgs
+type getKubeCustomizationKubeProxyPtrType GetKubeCustomizationKubeProxyArgs
 
-func GetKubeCustomizationApiserverAdmissionpluginsPtr(v *GetKubeCustomizationApiserverAdmissionpluginsArgs) GetKubeCustomizationApiserverAdmissionpluginsPtrInput {
-	return (*getKubeCustomizationApiserverAdmissionpluginsPtrType)(v)
+func GetKubeCustomizationKubeProxyPtr(v *GetKubeCustomizationKubeProxyArgs) GetKubeCustomizationKubeProxyPtrInput {
+	return (*getKubeCustomizationKubeProxyPtrType)(v)
 }
 
-func (*getKubeCustomizationApiserverAdmissionpluginsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetKubeCustomizationApiserverAdmissionplugins)(nil)).Elem()
+func (*getKubeCustomizationKubeProxyPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeCustomizationKubeProxy)(nil)).Elem()
 }
 
-func (i *getKubeCustomizationApiserverAdmissionpluginsPtrType) ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutput() GetKubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return i.ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(context.Background())
+func (i *getKubeCustomizationKubeProxyPtrType) ToGetKubeCustomizationKubeProxyPtrOutput() GetKubeCustomizationKubeProxyPtrOutput {
+	return i.ToGetKubeCustomizationKubeProxyPtrOutputWithContext(context.Background())
 }
 
-func (i *getKubeCustomizationApiserverAdmissionpluginsPtrType) ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationApiserverAdmissionpluginsPtrOutput)
+func (i *getKubeCustomizationKubeProxyPtrType) ToGetKubeCustomizationKubeProxyPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationKubeProxyPtrOutput)
 }
 
-type GetKubeCustomizationApiserverAdmissionpluginsOutput struct{ *pulumi.OutputState }
+type GetKubeCustomizationKubeProxyOutput struct{ *pulumi.OutputState }
 
-func (GetKubeCustomizationApiserverAdmissionpluginsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*GetKubeCustomizationApiserverAdmissionplugins)(nil)).Elem()
+func (GetKubeCustomizationKubeProxyOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeCustomizationKubeProxy)(nil)).Elem()
 }
 
-func (o GetKubeCustomizationApiserverAdmissionpluginsOutput) ToGetKubeCustomizationApiserverAdmissionpluginsOutput() GetKubeCustomizationApiserverAdmissionpluginsOutput {
+func (o GetKubeCustomizationKubeProxyOutput) ToGetKubeCustomizationKubeProxyOutput() GetKubeCustomizationKubeProxyOutput {
 	return o
 }
 
-func (o GetKubeCustomizationApiserverAdmissionpluginsOutput) ToGetKubeCustomizationApiserverAdmissionpluginsOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverAdmissionpluginsOutput {
+func (o GetKubeCustomizationKubeProxyOutput) ToGetKubeCustomizationKubeProxyOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyOutput {
 	return o
 }
 
-func (o GetKubeCustomizationApiserverAdmissionpluginsOutput) ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutput() GetKubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return o.ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(context.Background())
+func (o GetKubeCustomizationKubeProxyOutput) ToGetKubeCustomizationKubeProxyPtrOutput() GetKubeCustomizationKubeProxyPtrOutput {
+	return o.ToGetKubeCustomizationKubeProxyPtrOutputWithContext(context.Background())
 }
 
-func (o GetKubeCustomizationApiserverAdmissionpluginsOutput) ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverAdmissionpluginsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetKubeCustomizationApiserverAdmissionplugins) *GetKubeCustomizationApiserverAdmissionplugins {
+func (o GetKubeCustomizationKubeProxyOutput) ToGetKubeCustomizationKubeProxyPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetKubeCustomizationKubeProxy) *GetKubeCustomizationKubeProxy {
 		return &v
-	}).(GetKubeCustomizationApiserverAdmissionpluginsPtrOutput)
+	}).(GetKubeCustomizationKubeProxyPtrOutput)
 }
 
-func (o GetKubeCustomizationApiserverAdmissionpluginsOutput) Disableds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetKubeCustomizationApiserverAdmissionplugins) []string { return v.Disableds }).(pulumi.StringArrayOutput)
+// Kubernetes cluster kube-proxy customization of iptables specific config.
+func (o GetKubeCustomizationKubeProxyOutput) Iptables() GetKubeCustomizationKubeProxyIptablesPtrOutput {
+	return o.ApplyT(func(v GetKubeCustomizationKubeProxy) *GetKubeCustomizationKubeProxyIptables { return v.Iptables }).(GetKubeCustomizationKubeProxyIptablesPtrOutput)
 }
 
-func (o GetKubeCustomizationApiserverAdmissionpluginsOutput) Enableds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v GetKubeCustomizationApiserverAdmissionplugins) []string { return v.Enableds }).(pulumi.StringArrayOutput)
+// Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+func (o GetKubeCustomizationKubeProxyOutput) Ipvs() GetKubeCustomizationKubeProxyIpvsPtrOutput {
+	return o.ApplyT(func(v GetKubeCustomizationKubeProxy) *GetKubeCustomizationKubeProxyIpvs { return v.Ipvs }).(GetKubeCustomizationKubeProxyIpvsPtrOutput)
 }
 
-type GetKubeCustomizationApiserverAdmissionpluginsPtrOutput struct{ *pulumi.OutputState }
+type GetKubeCustomizationKubeProxyPtrOutput struct{ *pulumi.OutputState }
 
-func (GetKubeCustomizationApiserverAdmissionpluginsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**GetKubeCustomizationApiserverAdmissionplugins)(nil)).Elem()
+func (GetKubeCustomizationKubeProxyPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeCustomizationKubeProxy)(nil)).Elem()
 }
 
-func (o GetKubeCustomizationApiserverAdmissionpluginsPtrOutput) ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutput() GetKubeCustomizationApiserverAdmissionpluginsPtrOutput {
+func (o GetKubeCustomizationKubeProxyPtrOutput) ToGetKubeCustomizationKubeProxyPtrOutput() GetKubeCustomizationKubeProxyPtrOutput {
 	return o
 }
 
-func (o GetKubeCustomizationApiserverAdmissionpluginsPtrOutput) ToGetKubeCustomizationApiserverAdmissionpluginsPtrOutputWithContext(ctx context.Context) GetKubeCustomizationApiserverAdmissionpluginsPtrOutput {
+func (o GetKubeCustomizationKubeProxyPtrOutput) ToGetKubeCustomizationKubeProxyPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyPtrOutput {
 	return o
 }
 
-func (o GetKubeCustomizationApiserverAdmissionpluginsPtrOutput) Elem() GetKubeCustomizationApiserverAdmissionpluginsOutput {
-	return o.ApplyT(func(v *GetKubeCustomizationApiserverAdmissionplugins) GetKubeCustomizationApiserverAdmissionplugins {
+func (o GetKubeCustomizationKubeProxyPtrOutput) Elem() GetKubeCustomizationKubeProxyOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxy) GetKubeCustomizationKubeProxy {
 		if v != nil {
 			return *v
 		}
-		var ret GetKubeCustomizationApiserverAdmissionplugins
+		var ret GetKubeCustomizationKubeProxy
 		return ret
-	}).(GetKubeCustomizationApiserverAdmissionpluginsOutput)
+	}).(GetKubeCustomizationKubeProxyOutput)
 }
 
-func (o GetKubeCustomizationApiserverAdmissionpluginsPtrOutput) Disableds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *GetKubeCustomizationApiserverAdmissionplugins) []string {
+// Kubernetes cluster kube-proxy customization of iptables specific config.
+func (o GetKubeCustomizationKubeProxyPtrOutput) Iptables() GetKubeCustomizationKubeProxyIptablesPtrOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxy) *GetKubeCustomizationKubeProxyIptables {
 		if v == nil {
 			return nil
 		}
-		return v.Disableds
-	}).(pulumi.StringArrayOutput)
+		return v.Iptables
+	}).(GetKubeCustomizationKubeProxyIptablesPtrOutput)
 }
 
-func (o GetKubeCustomizationApiserverAdmissionpluginsPtrOutput) Enableds() pulumi.StringArrayOutput {
-	return o.ApplyT(func(v *GetKubeCustomizationApiserverAdmissionplugins) []string {
+// Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+func (o GetKubeCustomizationKubeProxyPtrOutput) Ipvs() GetKubeCustomizationKubeProxyIpvsPtrOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxy) *GetKubeCustomizationKubeProxyIpvs {
 		if v == nil {
 			return nil
 		}
-		return v.Enableds
-	}).(pulumi.StringArrayOutput)
+		return v.Ipvs
+	}).(GetKubeCustomizationKubeProxyIpvsPtrOutput)
+}
+
+type GetKubeCustomizationKubeProxyIptables struct {
+	// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+	MinSyncPeriod *string `pulumi:"minSyncPeriod"`
+	// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+	SyncPeriod *string `pulumi:"syncPeriod"`
+}
+
+// GetKubeCustomizationKubeProxyIptablesInput is an input type that accepts GetKubeCustomizationKubeProxyIptablesArgs and GetKubeCustomizationKubeProxyIptablesOutput values.
+// You can construct a concrete instance of `GetKubeCustomizationKubeProxyIptablesInput` via:
+//
+//	GetKubeCustomizationKubeProxyIptablesArgs{...}
+type GetKubeCustomizationKubeProxyIptablesInput interface {
+	pulumi.Input
+
+	ToGetKubeCustomizationKubeProxyIptablesOutput() GetKubeCustomizationKubeProxyIptablesOutput
+	ToGetKubeCustomizationKubeProxyIptablesOutputWithContext(context.Context) GetKubeCustomizationKubeProxyIptablesOutput
+}
+
+type GetKubeCustomizationKubeProxyIptablesArgs struct {
+	// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+	MinSyncPeriod pulumi.StringPtrInput `pulumi:"minSyncPeriod"`
+	// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+	SyncPeriod pulumi.StringPtrInput `pulumi:"syncPeriod"`
+}
+
+func (GetKubeCustomizationKubeProxyIptablesArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeCustomizationKubeProxyIptables)(nil)).Elem()
+}
+
+func (i GetKubeCustomizationKubeProxyIptablesArgs) ToGetKubeCustomizationKubeProxyIptablesOutput() GetKubeCustomizationKubeProxyIptablesOutput {
+	return i.ToGetKubeCustomizationKubeProxyIptablesOutputWithContext(context.Background())
+}
+
+func (i GetKubeCustomizationKubeProxyIptablesArgs) ToGetKubeCustomizationKubeProxyIptablesOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIptablesOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationKubeProxyIptablesOutput)
+}
+
+func (i GetKubeCustomizationKubeProxyIptablesArgs) ToGetKubeCustomizationKubeProxyIptablesPtrOutput() GetKubeCustomizationKubeProxyIptablesPtrOutput {
+	return i.ToGetKubeCustomizationKubeProxyIptablesPtrOutputWithContext(context.Background())
+}
+
+func (i GetKubeCustomizationKubeProxyIptablesArgs) ToGetKubeCustomizationKubeProxyIptablesPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIptablesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationKubeProxyIptablesOutput).ToGetKubeCustomizationKubeProxyIptablesPtrOutputWithContext(ctx)
+}
+
+// GetKubeCustomizationKubeProxyIptablesPtrInput is an input type that accepts GetKubeCustomizationKubeProxyIptablesArgs, GetKubeCustomizationKubeProxyIptablesPtr and GetKubeCustomizationKubeProxyIptablesPtrOutput values.
+// You can construct a concrete instance of `GetKubeCustomizationKubeProxyIptablesPtrInput` via:
+//
+//	        GetKubeCustomizationKubeProxyIptablesArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetKubeCustomizationKubeProxyIptablesPtrInput interface {
+	pulumi.Input
+
+	ToGetKubeCustomizationKubeProxyIptablesPtrOutput() GetKubeCustomizationKubeProxyIptablesPtrOutput
+	ToGetKubeCustomizationKubeProxyIptablesPtrOutputWithContext(context.Context) GetKubeCustomizationKubeProxyIptablesPtrOutput
+}
+
+type getKubeCustomizationKubeProxyIptablesPtrType GetKubeCustomizationKubeProxyIptablesArgs
+
+func GetKubeCustomizationKubeProxyIptablesPtr(v *GetKubeCustomizationKubeProxyIptablesArgs) GetKubeCustomizationKubeProxyIptablesPtrInput {
+	return (*getKubeCustomizationKubeProxyIptablesPtrType)(v)
+}
+
+func (*getKubeCustomizationKubeProxyIptablesPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeCustomizationKubeProxyIptables)(nil)).Elem()
+}
+
+func (i *getKubeCustomizationKubeProxyIptablesPtrType) ToGetKubeCustomizationKubeProxyIptablesPtrOutput() GetKubeCustomizationKubeProxyIptablesPtrOutput {
+	return i.ToGetKubeCustomizationKubeProxyIptablesPtrOutputWithContext(context.Background())
+}
+
+func (i *getKubeCustomizationKubeProxyIptablesPtrType) ToGetKubeCustomizationKubeProxyIptablesPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIptablesPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationKubeProxyIptablesPtrOutput)
+}
+
+type GetKubeCustomizationKubeProxyIptablesOutput struct{ *pulumi.OutputState }
+
+func (GetKubeCustomizationKubeProxyIptablesOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeCustomizationKubeProxyIptables)(nil)).Elem()
+}
+
+func (o GetKubeCustomizationKubeProxyIptablesOutput) ToGetKubeCustomizationKubeProxyIptablesOutput() GetKubeCustomizationKubeProxyIptablesOutput {
+	return o
+}
+
+func (o GetKubeCustomizationKubeProxyIptablesOutput) ToGetKubeCustomizationKubeProxyIptablesOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIptablesOutput {
+	return o
+}
+
+func (o GetKubeCustomizationKubeProxyIptablesOutput) ToGetKubeCustomizationKubeProxyIptablesPtrOutput() GetKubeCustomizationKubeProxyIptablesPtrOutput {
+	return o.ToGetKubeCustomizationKubeProxyIptablesPtrOutputWithContext(context.Background())
+}
+
+func (o GetKubeCustomizationKubeProxyIptablesOutput) ToGetKubeCustomizationKubeProxyIptablesPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIptablesPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetKubeCustomizationKubeProxyIptables) *GetKubeCustomizationKubeProxyIptables {
+		return &v
+	}).(GetKubeCustomizationKubeProxyIptablesPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+func (o GetKubeCustomizationKubeProxyIptablesOutput) MinSyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKubeCustomizationKubeProxyIptables) *string { return v.MinSyncPeriod }).(pulumi.StringPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+func (o GetKubeCustomizationKubeProxyIptablesOutput) SyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKubeCustomizationKubeProxyIptables) *string { return v.SyncPeriod }).(pulumi.StringPtrOutput)
+}
+
+type GetKubeCustomizationKubeProxyIptablesPtrOutput struct{ *pulumi.OutputState }
+
+func (GetKubeCustomizationKubeProxyIptablesPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeCustomizationKubeProxyIptables)(nil)).Elem()
+}
+
+func (o GetKubeCustomizationKubeProxyIptablesPtrOutput) ToGetKubeCustomizationKubeProxyIptablesPtrOutput() GetKubeCustomizationKubeProxyIptablesPtrOutput {
+	return o
+}
+
+func (o GetKubeCustomizationKubeProxyIptablesPtrOutput) ToGetKubeCustomizationKubeProxyIptablesPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIptablesPtrOutput {
+	return o
+}
+
+func (o GetKubeCustomizationKubeProxyIptablesPtrOutput) Elem() GetKubeCustomizationKubeProxyIptablesOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxyIptables) GetKubeCustomizationKubeProxyIptables {
+		if v != nil {
+			return *v
+		}
+		var ret GetKubeCustomizationKubeProxyIptables
+		return ret
+	}).(GetKubeCustomizationKubeProxyIptablesOutput)
+}
+
+// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+func (o GetKubeCustomizationKubeProxyIptablesPtrOutput) MinSyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxyIptables) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSyncPeriod
+	}).(pulumi.StringPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+func (o GetKubeCustomizationKubeProxyIptablesPtrOutput) SyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxyIptables) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SyncPeriod
+	}).(pulumi.StringPtrOutput)
+}
+
+type GetKubeCustomizationKubeProxyIpvs struct {
+	// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+	MinSyncPeriod *string `pulumi:"minSyncPeriod"`
+	// IPVS scheduler.
+	Scheduler *string `pulumi:"scheduler"`
+	// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+	SyncPeriod *string `pulumi:"syncPeriod"`
+	// Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration.
+	TcpFinTimeout *string `pulumi:"tcpFinTimeout"`
+	// Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+	TcpTimeout *string `pulumi:"tcpTimeout"`
+	// timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+	UdpTimeout *string `pulumi:"udpTimeout"`
+}
+
+// GetKubeCustomizationKubeProxyIpvsInput is an input type that accepts GetKubeCustomizationKubeProxyIpvsArgs and GetKubeCustomizationKubeProxyIpvsOutput values.
+// You can construct a concrete instance of `GetKubeCustomizationKubeProxyIpvsInput` via:
+//
+//	GetKubeCustomizationKubeProxyIpvsArgs{...}
+type GetKubeCustomizationKubeProxyIpvsInput interface {
+	pulumi.Input
+
+	ToGetKubeCustomizationKubeProxyIpvsOutput() GetKubeCustomizationKubeProxyIpvsOutput
+	ToGetKubeCustomizationKubeProxyIpvsOutputWithContext(context.Context) GetKubeCustomizationKubeProxyIpvsOutput
+}
+
+type GetKubeCustomizationKubeProxyIpvsArgs struct {
+	// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+	MinSyncPeriod pulumi.StringPtrInput `pulumi:"minSyncPeriod"`
+	// IPVS scheduler.
+	Scheduler pulumi.StringPtrInput `pulumi:"scheduler"`
+	// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+	SyncPeriod pulumi.StringPtrInput `pulumi:"syncPeriod"`
+	// Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration.
+	TcpFinTimeout pulumi.StringPtrInput `pulumi:"tcpFinTimeout"`
+	// Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+	TcpTimeout pulumi.StringPtrInput `pulumi:"tcpTimeout"`
+	// timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+	UdpTimeout pulumi.StringPtrInput `pulumi:"udpTimeout"`
+}
+
+func (GetKubeCustomizationKubeProxyIpvsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeCustomizationKubeProxyIpvs)(nil)).Elem()
+}
+
+func (i GetKubeCustomizationKubeProxyIpvsArgs) ToGetKubeCustomizationKubeProxyIpvsOutput() GetKubeCustomizationKubeProxyIpvsOutput {
+	return i.ToGetKubeCustomizationKubeProxyIpvsOutputWithContext(context.Background())
+}
+
+func (i GetKubeCustomizationKubeProxyIpvsArgs) ToGetKubeCustomizationKubeProxyIpvsOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIpvsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationKubeProxyIpvsOutput)
+}
+
+func (i GetKubeCustomizationKubeProxyIpvsArgs) ToGetKubeCustomizationKubeProxyIpvsPtrOutput() GetKubeCustomizationKubeProxyIpvsPtrOutput {
+	return i.ToGetKubeCustomizationKubeProxyIpvsPtrOutputWithContext(context.Background())
+}
+
+func (i GetKubeCustomizationKubeProxyIpvsArgs) ToGetKubeCustomizationKubeProxyIpvsPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIpvsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationKubeProxyIpvsOutput).ToGetKubeCustomizationKubeProxyIpvsPtrOutputWithContext(ctx)
+}
+
+// GetKubeCustomizationKubeProxyIpvsPtrInput is an input type that accepts GetKubeCustomizationKubeProxyIpvsArgs, GetKubeCustomizationKubeProxyIpvsPtr and GetKubeCustomizationKubeProxyIpvsPtrOutput values.
+// You can construct a concrete instance of `GetKubeCustomizationKubeProxyIpvsPtrInput` via:
+//
+//	        GetKubeCustomizationKubeProxyIpvsArgs{...}
+//
+//	or:
+//
+//	        nil
+type GetKubeCustomizationKubeProxyIpvsPtrInput interface {
+	pulumi.Input
+
+	ToGetKubeCustomizationKubeProxyIpvsPtrOutput() GetKubeCustomizationKubeProxyIpvsPtrOutput
+	ToGetKubeCustomizationKubeProxyIpvsPtrOutputWithContext(context.Context) GetKubeCustomizationKubeProxyIpvsPtrOutput
+}
+
+type getKubeCustomizationKubeProxyIpvsPtrType GetKubeCustomizationKubeProxyIpvsArgs
+
+func GetKubeCustomizationKubeProxyIpvsPtr(v *GetKubeCustomizationKubeProxyIpvsArgs) GetKubeCustomizationKubeProxyIpvsPtrInput {
+	return (*getKubeCustomizationKubeProxyIpvsPtrType)(v)
+}
+
+func (*getKubeCustomizationKubeProxyIpvsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeCustomizationKubeProxyIpvs)(nil)).Elem()
+}
+
+func (i *getKubeCustomizationKubeProxyIpvsPtrType) ToGetKubeCustomizationKubeProxyIpvsPtrOutput() GetKubeCustomizationKubeProxyIpvsPtrOutput {
+	return i.ToGetKubeCustomizationKubeProxyIpvsPtrOutputWithContext(context.Background())
+}
+
+func (i *getKubeCustomizationKubeProxyIpvsPtrType) ToGetKubeCustomizationKubeProxyIpvsPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIpvsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetKubeCustomizationKubeProxyIpvsPtrOutput)
+}
+
+type GetKubeCustomizationKubeProxyIpvsOutput struct{ *pulumi.OutputState }
+
+func (GetKubeCustomizationKubeProxyIpvsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetKubeCustomizationKubeProxyIpvs)(nil)).Elem()
+}
+
+func (o GetKubeCustomizationKubeProxyIpvsOutput) ToGetKubeCustomizationKubeProxyIpvsOutput() GetKubeCustomizationKubeProxyIpvsOutput {
+	return o
+}
+
+func (o GetKubeCustomizationKubeProxyIpvsOutput) ToGetKubeCustomizationKubeProxyIpvsOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIpvsOutput {
+	return o
+}
+
+func (o GetKubeCustomizationKubeProxyIpvsOutput) ToGetKubeCustomizationKubeProxyIpvsPtrOutput() GetKubeCustomizationKubeProxyIpvsPtrOutput {
+	return o.ToGetKubeCustomizationKubeProxyIpvsPtrOutputWithContext(context.Background())
+}
+
+func (o GetKubeCustomizationKubeProxyIpvsOutput) ToGetKubeCustomizationKubeProxyIpvsPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIpvsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v GetKubeCustomizationKubeProxyIpvs) *GetKubeCustomizationKubeProxyIpvs {
+		return &v
+	}).(GetKubeCustomizationKubeProxyIpvsPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+func (o GetKubeCustomizationKubeProxyIpvsOutput) MinSyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKubeCustomizationKubeProxyIpvs) *string { return v.MinSyncPeriod }).(pulumi.StringPtrOutput)
+}
+
+// IPVS scheduler.
+func (o GetKubeCustomizationKubeProxyIpvsOutput) Scheduler() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKubeCustomizationKubeProxyIpvs) *string { return v.Scheduler }).(pulumi.StringPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+func (o GetKubeCustomizationKubeProxyIpvsOutput) SyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKubeCustomizationKubeProxyIpvs) *string { return v.SyncPeriod }).(pulumi.StringPtrOutput)
+}
+
+// Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration.
+func (o GetKubeCustomizationKubeProxyIpvsOutput) TcpFinTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKubeCustomizationKubeProxyIpvs) *string { return v.TcpFinTimeout }).(pulumi.StringPtrOutput)
+}
+
+// Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+func (o GetKubeCustomizationKubeProxyIpvsOutput) TcpTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKubeCustomizationKubeProxyIpvs) *string { return v.TcpTimeout }).(pulumi.StringPtrOutput)
+}
+
+// timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+func (o GetKubeCustomizationKubeProxyIpvsOutput) UdpTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v GetKubeCustomizationKubeProxyIpvs) *string { return v.UdpTimeout }).(pulumi.StringPtrOutput)
+}
+
+type GetKubeCustomizationKubeProxyIpvsPtrOutput struct{ *pulumi.OutputState }
+
+func (GetKubeCustomizationKubeProxyIpvsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**GetKubeCustomizationKubeProxyIpvs)(nil)).Elem()
+}
+
+func (o GetKubeCustomizationKubeProxyIpvsPtrOutput) ToGetKubeCustomizationKubeProxyIpvsPtrOutput() GetKubeCustomizationKubeProxyIpvsPtrOutput {
+	return o
+}
+
+func (o GetKubeCustomizationKubeProxyIpvsPtrOutput) ToGetKubeCustomizationKubeProxyIpvsPtrOutputWithContext(ctx context.Context) GetKubeCustomizationKubeProxyIpvsPtrOutput {
+	return o
+}
+
+func (o GetKubeCustomizationKubeProxyIpvsPtrOutput) Elem() GetKubeCustomizationKubeProxyIpvsOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxyIpvs) GetKubeCustomizationKubeProxyIpvs {
+		if v != nil {
+			return *v
+		}
+		var ret GetKubeCustomizationKubeProxyIpvs
+		return ret
+	}).(GetKubeCustomizationKubeProxyIpvsOutput)
+}
+
+// Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+func (o GetKubeCustomizationKubeProxyIpvsPtrOutput) MinSyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.MinSyncPeriod
+	}).(pulumi.StringPtrOutput)
+}
+
+// IPVS scheduler.
+func (o GetKubeCustomizationKubeProxyIpvsPtrOutput) Scheduler() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.Scheduler
+	}).(pulumi.StringPtrOutput)
+}
+
+// Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+func (o GetKubeCustomizationKubeProxyIpvsPtrOutput) SyncPeriod() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.SyncPeriod
+	}).(pulumi.StringPtrOutput)
+}
+
+// Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration.
+func (o GetKubeCustomizationKubeProxyIpvsPtrOutput) TcpFinTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TcpFinTimeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+func (o GetKubeCustomizationKubeProxyIpvsPtrOutput) TcpTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.TcpTimeout
+	}).(pulumi.StringPtrOutput)
+}
+
+// timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+func (o GetKubeCustomizationKubeProxyIpvsPtrOutput) UdpTimeout() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *GetKubeCustomizationKubeProxyIpvs) *string {
+		if v == nil {
+			return nil
+		}
+		return v.UdpTimeout
+	}).(pulumi.StringPtrOutput)
 }
 
 type GetKubeNodePoolNodesNode struct {
@@ -5807,11 +6839,19 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseNodeInput)(nil)).Elem(), DatabaseNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*DatabaseNodeArrayInput)(nil)).Elem(), DatabaseNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationInput)(nil)).Elem(), KubeCustomizationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationPtrInput)(nil)).Elem(), KubeCustomizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationArrayInput)(nil)).Elem(), KubeCustomizationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationApiserverInput)(nil)).Elem(), KubeCustomizationApiserverArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationApiserverPtrInput)(nil)).Elem(), KubeCustomizationApiserverArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationApiserverAdmissionpluginsInput)(nil)).Elem(), KubeCustomizationApiserverAdmissionpluginsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationApiserverAdmissionpluginsPtrInput)(nil)).Elem(), KubeCustomizationApiserverAdmissionpluginsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationApiserverArrayInput)(nil)).Elem(), KubeCustomizationApiserverArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationApiserverAdmissionpluginInput)(nil)).Elem(), KubeCustomizationApiserverAdmissionpluginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationApiserverAdmissionpluginArrayInput)(nil)).Elem(), KubeCustomizationApiserverAdmissionpluginArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationKubeProxyInput)(nil)).Elem(), KubeCustomizationKubeProxyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationKubeProxyPtrInput)(nil)).Elem(), KubeCustomizationKubeProxyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationKubeProxyIptablesInput)(nil)).Elem(), KubeCustomizationKubeProxyIptablesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationKubeProxyIptablesPtrInput)(nil)).Elem(), KubeCustomizationKubeProxyIptablesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationKubeProxyIpvsInput)(nil)).Elem(), KubeCustomizationKubeProxyIpvsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeCustomizationKubeProxyIpvsPtrInput)(nil)).Elem(), KubeCustomizationKubeProxyIpvsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeKubeconfigAttributeInput)(nil)).Elem(), KubeKubeconfigAttributeArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*KubeKubeconfigAttributeArrayInput)(nil)).Elem(), KubeKubeconfigAttributeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubeNodePoolTemplateInput)(nil)).Elem(), KubeNodePoolTemplateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubeNodePoolTemplatePtrInput)(nil)).Elem(), KubeNodePoolTemplateArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*KubeNodePoolTemplateMetadataInput)(nil)).Elem(), KubeNodePoolTemplateMetadataArgs{})
@@ -5857,11 +6897,17 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryUsersResultInput)(nil)).Elem(), GetContainerRegistryUsersResultArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetContainerRegistryUsersResultArrayInput)(nil)).Elem(), GetContainerRegistryUsersResultArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationInput)(nil)).Elem(), GetKubeCustomizationArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationPtrInput)(nil)).Elem(), GetKubeCustomizationArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationArrayInput)(nil)).Elem(), GetKubeCustomizationArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationApiserverInput)(nil)).Elem(), GetKubeCustomizationApiserverArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationApiserverPtrInput)(nil)).Elem(), GetKubeCustomizationApiserverArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationApiserverAdmissionpluginsInput)(nil)).Elem(), GetKubeCustomizationApiserverAdmissionpluginsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationApiserverAdmissionpluginsPtrInput)(nil)).Elem(), GetKubeCustomizationApiserverAdmissionpluginsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationApiserverArrayInput)(nil)).Elem(), GetKubeCustomizationApiserverArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationApiserverAdmissionpluginInput)(nil)).Elem(), GetKubeCustomizationApiserverAdmissionpluginArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationApiserverAdmissionpluginArrayInput)(nil)).Elem(), GetKubeCustomizationApiserverAdmissionpluginArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationKubeProxyInput)(nil)).Elem(), GetKubeCustomizationKubeProxyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationKubeProxyPtrInput)(nil)).Elem(), GetKubeCustomizationKubeProxyArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationKubeProxyIptablesInput)(nil)).Elem(), GetKubeCustomizationKubeProxyIptablesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationKubeProxyIptablesPtrInput)(nil)).Elem(), GetKubeCustomizationKubeProxyIptablesArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationKubeProxyIpvsInput)(nil)).Elem(), GetKubeCustomizationKubeProxyIpvsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeCustomizationKubeProxyIpvsPtrInput)(nil)).Elem(), GetKubeCustomizationKubeProxyIpvsArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodePoolNodesNodeInput)(nil)).Elem(), GetKubeNodePoolNodesNodeArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodePoolNodesNodeArrayInput)(nil)).Elem(), GetKubeNodePoolNodesNodeArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetKubeNodePoolTemplateInput)(nil)).Elem(), GetKubeNodePoolTemplateArgs{})
@@ -5893,11 +6939,19 @@ func init() {
 	pulumi.RegisterOutputType(DatabaseNodeOutput{})
 	pulumi.RegisterOutputType(DatabaseNodeArrayOutput{})
 	pulumi.RegisterOutputType(KubeCustomizationOutput{})
-	pulumi.RegisterOutputType(KubeCustomizationPtrOutput{})
+	pulumi.RegisterOutputType(KubeCustomizationArrayOutput{})
 	pulumi.RegisterOutputType(KubeCustomizationApiserverOutput{})
-	pulumi.RegisterOutputType(KubeCustomizationApiserverPtrOutput{})
-	pulumi.RegisterOutputType(KubeCustomizationApiserverAdmissionpluginsOutput{})
-	pulumi.RegisterOutputType(KubeCustomizationApiserverAdmissionpluginsPtrOutput{})
+	pulumi.RegisterOutputType(KubeCustomizationApiserverArrayOutput{})
+	pulumi.RegisterOutputType(KubeCustomizationApiserverAdmissionpluginOutput{})
+	pulumi.RegisterOutputType(KubeCustomizationApiserverAdmissionpluginArrayOutput{})
+	pulumi.RegisterOutputType(KubeCustomizationKubeProxyOutput{})
+	pulumi.RegisterOutputType(KubeCustomizationKubeProxyPtrOutput{})
+	pulumi.RegisterOutputType(KubeCustomizationKubeProxyIptablesOutput{})
+	pulumi.RegisterOutputType(KubeCustomizationKubeProxyIptablesPtrOutput{})
+	pulumi.RegisterOutputType(KubeCustomizationKubeProxyIpvsOutput{})
+	pulumi.RegisterOutputType(KubeCustomizationKubeProxyIpvsPtrOutput{})
+	pulumi.RegisterOutputType(KubeKubeconfigAttributeOutput{})
+	pulumi.RegisterOutputType(KubeKubeconfigAttributeArrayOutput{})
 	pulumi.RegisterOutputType(KubeNodePoolTemplateOutput{})
 	pulumi.RegisterOutputType(KubeNodePoolTemplatePtrOutput{})
 	pulumi.RegisterOutputType(KubeNodePoolTemplateMetadataOutput{})
@@ -5943,11 +6997,17 @@ func init() {
 	pulumi.RegisterOutputType(GetContainerRegistryUsersResultOutput{})
 	pulumi.RegisterOutputType(GetContainerRegistryUsersResultArrayOutput{})
 	pulumi.RegisterOutputType(GetKubeCustomizationOutput{})
-	pulumi.RegisterOutputType(GetKubeCustomizationPtrOutput{})
+	pulumi.RegisterOutputType(GetKubeCustomizationArrayOutput{})
 	pulumi.RegisterOutputType(GetKubeCustomizationApiserverOutput{})
-	pulumi.RegisterOutputType(GetKubeCustomizationApiserverPtrOutput{})
-	pulumi.RegisterOutputType(GetKubeCustomizationApiserverAdmissionpluginsOutput{})
-	pulumi.RegisterOutputType(GetKubeCustomizationApiserverAdmissionpluginsPtrOutput{})
+	pulumi.RegisterOutputType(GetKubeCustomizationApiserverArrayOutput{})
+	pulumi.RegisterOutputType(GetKubeCustomizationApiserverAdmissionpluginOutput{})
+	pulumi.RegisterOutputType(GetKubeCustomizationApiserverAdmissionpluginArrayOutput{})
+	pulumi.RegisterOutputType(GetKubeCustomizationKubeProxyOutput{})
+	pulumi.RegisterOutputType(GetKubeCustomizationKubeProxyPtrOutput{})
+	pulumi.RegisterOutputType(GetKubeCustomizationKubeProxyIptablesOutput{})
+	pulumi.RegisterOutputType(GetKubeCustomizationKubeProxyIptablesPtrOutput{})
+	pulumi.RegisterOutputType(GetKubeCustomizationKubeProxyIpvsOutput{})
+	pulumi.RegisterOutputType(GetKubeCustomizationKubeProxyIpvsPtrOutput{})
 	pulumi.RegisterOutputType(GetKubeNodePoolNodesNodeOutput{})
 	pulumi.RegisterOutputType(GetKubeNodePoolNodesNodeArrayOutput{})
 	pulumi.RegisterOutputType(GetKubeNodePoolTemplateOutput{})

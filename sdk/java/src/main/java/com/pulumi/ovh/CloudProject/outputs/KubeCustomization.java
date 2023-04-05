@@ -5,17 +5,33 @@ package com.pulumi.ovh.CloudProject.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ovh.CloudProject.outputs.KubeCustomizationApiserver;
+import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class KubeCustomization {
-    private @Nullable KubeCustomizationApiserver apiserver;
+    /**
+     * @return Kubernetes API server customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    private @Nullable List<KubeCustomizationApiserver> apiservers;
 
     private KubeCustomization() {}
-    public Optional<KubeCustomizationApiserver> apiserver() {
-        return Optional.ofNullable(this.apiserver);
+    /**
+     * @return Kubernetes API server customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    public List<KubeCustomizationApiserver> apiservers() {
+        return this.apiservers == null ? List.of() : this.apiservers;
     }
 
     public static Builder builder() {
@@ -27,21 +43,24 @@ public final class KubeCustomization {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable KubeCustomizationApiserver apiserver;
+        private @Nullable List<KubeCustomizationApiserver> apiservers;
         public Builder() {}
         public Builder(KubeCustomization defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.apiserver = defaults.apiserver;
+    	      this.apiservers = defaults.apiservers;
         }
 
         @CustomType.Setter
-        public Builder apiserver(@Nullable KubeCustomizationApiserver apiserver) {
-            this.apiserver = apiserver;
+        public Builder apiservers(@Nullable List<KubeCustomizationApiserver> apiservers) {
+            this.apiservers = apiservers;
             return this;
+        }
+        public Builder apiservers(KubeCustomizationApiserver... apiservers) {
+            return apiservers(List.of(apiservers));
         }
         public KubeCustomization build() {
             final var o = new KubeCustomization();
-            o.apiserver = apiserver;
+            o.apiservers = apiservers;
             return o;
         }
     }

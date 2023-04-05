@@ -26,7 +26,7 @@ public class VrackNetwork extends com.pulumi.resources.CustomResource {
      * Human readable name for your vrack network
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -40,7 +40,7 @@ public class VrackNetwork extends com.pulumi.resources.CustomResource {
      * This attribute is there for documentation purpose only and isnt passed to the OVHcloud API as it may conflicts with http/tcp farms `vrack_network_id` attribute
      * 
      */
-    @Export(name="farmIds", type=List.class, parameters={Integer.class})
+    @Export(name="farmIds", refs={List.class,Integer.class}, tree="[0,1]")
     private Output</* @Nullable */ List<Integer>> farmIds;
 
     /**
@@ -54,7 +54,7 @@ public class VrackNetwork extends com.pulumi.resources.CustomResource {
      * An IP block used as a pool of IPs by this Load Balancer to connect to the servers in this private network. The blck must be in the private network and reserved for the Load Balancer
      * 
      */
-    @Export(name="natIp", type=String.class, parameters={})
+    @Export(name="natIp", refs={String.class}, tree="[0]")
     private Output<String> natIp;
 
     /**
@@ -68,7 +68,7 @@ public class VrackNetwork extends com.pulumi.resources.CustomResource {
      * The internal name of your IP load balancing
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -82,7 +82,7 @@ public class VrackNetwork extends com.pulumi.resources.CustomResource {
      * IP block of the private network in the vRack
      * 
      */
-    @Export(name="subnet", type=String.class, parameters={})
+    @Export(name="subnet", refs={String.class}, tree="[0]")
     private Output<String> subnet;
 
     /**
@@ -96,7 +96,7 @@ public class VrackNetwork extends com.pulumi.resources.CustomResource {
      * VLAN of the private network in the vRack. 0 if the private network is not in a VLAN
      * 
      */
-    @Export(name="vlan", type=Integer.class, parameters={})
+    @Export(name="vlan", refs={Integer.class}, tree="[0]")
     private Output<Integer> vlan;
 
     /**
@@ -110,7 +110,7 @@ public class VrackNetwork extends com.pulumi.resources.CustomResource {
      * (Required) Internal Load Balancer identifier of the vRack private network
      * 
      */
-    @Export(name="vrackNetworkId", type=Integer.class, parameters={})
+    @Export(name="vrackNetworkId", refs={Integer.class}, tree="[0]")
     private Output<Integer> vrackNetworkId;
 
     /**

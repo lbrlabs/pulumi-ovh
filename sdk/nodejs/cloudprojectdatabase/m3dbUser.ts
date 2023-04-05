@@ -54,7 +54,7 @@ export class M3DbUser extends pulumi.CustomResource {
      */
     public readonly group!: pulumi.Output<string | undefined>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user instead of create a new user.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -137,7 +137,7 @@ export interface M3DbUserState {
      */
     group?: pulumi.Input<string>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user instead of create a new user.
      */
     name?: pulumi.Input<string>;
     /**
@@ -172,7 +172,7 @@ export interface M3DbUserArgs {
      */
     group?: pulumi.Input<string>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user instead of create a new user.
      */
     name?: pulumi.Input<string>;
     /**

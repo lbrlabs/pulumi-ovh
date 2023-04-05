@@ -80,14 +80,32 @@ import javax.annotation.Nullable;
 @ResourceType(type="ovh:Me/installationTemplatePartitionSchemePartition:InstallationTemplatePartitionSchemePartition")
 public class InstallationTemplatePartitionSchemePartition extends com.pulumi.resources.CustomResource {
     /**
-     * Partition filesystem.
+     * Partition filesystem. Enum with possibles values:
+     * - btrfs
+     * - ext3
+     * - ext4
+     * - ntfs
+     * - reiserfs
+     * - swap
+     * - ufs
+     * - xfs
+     * - zfs
      * 
      */
-    @Export(name="filesystem", type=String.class, parameters={})
+    @Export(name="filesystem", refs={String.class}, tree="[0]")
     private Output<String> filesystem;
 
     /**
-     * @return Partition filesystem.
+     * @return Partition filesystem. Enum with possibles values:
+     * - btrfs
+     * - ext3
+     * - ext4
+     * - ntfs
+     * - reiserfs
+     * - swap
+     * - ufs
+     * - xfs
+     * - zfs
      * 
      */
     public Output<String> filesystem() {
@@ -97,7 +115,7 @@ public class InstallationTemplatePartitionSchemePartition extends com.pulumi.res
      * partition mount point.
      * 
      */
-    @Export(name="mountpoint", type=String.class, parameters={})
+    @Export(name="mountpoint", refs={String.class}, tree="[0]")
     private Output<String> mountpoint;
 
     /**
@@ -111,7 +129,7 @@ public class InstallationTemplatePartitionSchemePartition extends com.pulumi.res
      * step or order. specifies the creation order of the partition on the disk
      * 
      */
-    @Export(name="order", type=Integer.class, parameters={})
+    @Export(name="order", refs={Integer.class}, tree="[0]")
     private Output<Integer> order;
 
     /**
@@ -122,14 +140,24 @@ public class InstallationTemplatePartitionSchemePartition extends com.pulumi.res
         return this.order;
     }
     /**
-     * raid partition type.
+     * raid partition type. Enum with possible values:
+     * - raid0
+     * - raid1
+     * - raid10
+     * - raid5
+     * - raid6
      * 
      */
-    @Export(name="raid", type=String.class, parameters={})
+    @Export(name="raid", refs={String.class}, tree="[0]")
     private Output<String> raid;
 
     /**
-     * @return raid partition type.
+     * @return raid partition type. Enum with possible values:
+     * - raid0
+     * - raid1
+     * - raid10
+     * - raid5
+     * - raid6
      * 
      */
     public Output<String> raid() {
@@ -139,7 +167,7 @@ public class InstallationTemplatePartitionSchemePartition extends com.pulumi.res
      * The partition scheme name.
      * 
      */
-    @Export(name="schemeName", type=String.class, parameters={})
+    @Export(name="schemeName", refs={String.class}, tree="[0]")
     private Output<String> schemeName;
 
     /**
@@ -153,7 +181,7 @@ public class InstallationTemplatePartitionSchemePartition extends com.pulumi.res
      * size of partition in MB, 0 =&gt; rest of the space.
      * 
      */
-    @Export(name="size", type=Integer.class, parameters={})
+    @Export(name="size", refs={Integer.class}, tree="[0]")
     private Output<Integer> size;
 
     /**
@@ -167,7 +195,7 @@ public class InstallationTemplatePartitionSchemePartition extends com.pulumi.res
      * The template name of the partition scheme.
      * 
      */
-    @Export(name="templateName", type=String.class, parameters={})
+    @Export(name="templateName", refs={String.class}, tree="[0]")
     private Output<String> templateName;
 
     /**
@@ -178,14 +206,20 @@ public class InstallationTemplatePartitionSchemePartition extends com.pulumi.res
         return this.templateName;
     }
     /**
-     * partition type.
+     * partition type. Enum with possible values:
+     * - lv
+     * - primary
+     * - logical
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
-     * @return partition type.
+     * @return partition type. Enum with possible values:
+     * - lv
+     * - primary
+     * - logical
      * 
      */
     public Output<String> type() {
@@ -195,7 +229,7 @@ public class InstallationTemplatePartitionSchemePartition extends com.pulumi.res
      * The volume name needed for proxmox distribution
      * 
      */
-    @Export(name="volumeName", type=String.class, parameters={})
+    @Export(name="volumeName", refs={String.class}, tree="[0]")
     private Output<String> volumeName;
 
     /**

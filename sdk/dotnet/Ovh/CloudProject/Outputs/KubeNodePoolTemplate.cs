@@ -14,7 +14,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject.Outputs
     [OutputType]
     public sealed class KubeNodePoolTemplate
     {
+        /// <summary>
+        /// Metadata of each node in the pool
+        /// </summary>
         public readonly Outputs.KubeNodePoolTemplateMetadata? Metadata;
+        /// <summary>
+        /// Spec of each node in the pool
+        /// </summary>
         public readonly Outputs.KubeNodePoolTemplateSpec? Spec;
 
         [OutputConstructor]

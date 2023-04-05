@@ -31,7 +31,7 @@ public class RedisUser extends com.pulumi.resources.CustomResource {
      * Categories of the user.
      * 
      */
-    @Export(name="categories", type=List.class, parameters={String.class})
+    @Export(name="categories", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> categories;
 
     /**
@@ -45,7 +45,7 @@ public class RedisUser extends com.pulumi.resources.CustomResource {
      * Channels of the user.
      * 
      */
-    @Export(name="channels", type=List.class, parameters={String.class})
+    @Export(name="channels", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> channels;
 
     /**
@@ -59,7 +59,7 @@ public class RedisUser extends com.pulumi.resources.CustomResource {
      * Cluster ID.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -73,7 +73,7 @@ public class RedisUser extends com.pulumi.resources.CustomResource {
      * Commands of the user.
      * 
      */
-    @Export(name="commands", type=List.class, parameters={String.class})
+    @Export(name="commands", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> commands;
 
     /**
@@ -87,7 +87,7 @@ public class RedisUser extends com.pulumi.resources.CustomResource {
      * Date of the creation of the user.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -101,7 +101,7 @@ public class RedisUser extends com.pulumi.resources.CustomResource {
      * Keys of the user.
      * 
      */
-    @Export(name="keys", type=List.class, parameters={String.class})
+    @Export(name="keys", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> keys;
 
     /**
@@ -112,14 +112,14 @@ public class RedisUser extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.keys);
     }
     /**
-     * Name of the user.
+     * Name of the user. A user named &#34;avnadmin&#34; is map with already created admin user and reset his password instead of create a new user.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Name of the user.
+     * @return Name of the user. A user named &#34;avnadmin&#34; is map with already created admin user and reset his password instead of create a new user.
      * 
      */
     public Output<String> name() {
@@ -129,7 +129,7 @@ public class RedisUser extends com.pulumi.resources.CustomResource {
      * (Sensitive) Password of the user.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
@@ -143,7 +143,7 @@ public class RedisUser extends com.pulumi.resources.CustomResource {
      * Arbitrary string to change to trigger a password update.
      * 
      */
-    @Export(name="passwordReset", type=String.class, parameters={})
+    @Export(name="passwordReset", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> passwordReset;
 
     /**
@@ -158,7 +158,7 @@ public class RedisUser extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -173,7 +173,7 @@ public class RedisUser extends com.pulumi.resources.CustomResource {
      * Current status of the user.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

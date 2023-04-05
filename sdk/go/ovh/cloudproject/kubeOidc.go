@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -71,7 +71,7 @@ type KubeOidc struct {
 	ClientId pulumi.StringOutput `pulumi:"clientId"`
 	// The OIDC issuer url.
 	IssuerUrl pulumi.StringOutput `pulumi:"issuerUrl"`
-	// The ID of the managed kubernetes cluster.
+	// The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
 	KubeId             pulumi.StringOutput      `pulumi:"kubeId"`
 	OidcCaContent      pulumi.StringPtrOutput   `pulumi:"oidcCaContent"`
 	OidcGroupsClaims   pulumi.StringArrayOutput `pulumi:"oidcGroupsClaims"`
@@ -80,7 +80,7 @@ type KubeOidc struct {
 	OidcSigningAlgs    pulumi.StringArrayOutput `pulumi:"oidcSigningAlgs"`
 	OidcUsernameClaim  pulumi.StringPtrOutput   `pulumi:"oidcUsernameClaim"`
 	OidcUsernamePrefix pulumi.StringPtrOutput   `pulumi:"oidcUsernamePrefix"`
-	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
 }
 
@@ -130,7 +130,7 @@ type kubeOidcState struct {
 	ClientId *string `pulumi:"clientId"`
 	// The OIDC issuer url.
 	IssuerUrl *string `pulumi:"issuerUrl"`
-	// The ID of the managed kubernetes cluster.
+	// The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
 	KubeId             *string  `pulumi:"kubeId"`
 	OidcCaContent      *string  `pulumi:"oidcCaContent"`
 	OidcGroupsClaims   []string `pulumi:"oidcGroupsClaims"`
@@ -139,7 +139,7 @@ type kubeOidcState struct {
 	OidcSigningAlgs    []string `pulumi:"oidcSigningAlgs"`
 	OidcUsernameClaim  *string  `pulumi:"oidcUsernameClaim"`
 	OidcUsernamePrefix *string  `pulumi:"oidcUsernamePrefix"`
-	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName *string `pulumi:"serviceName"`
 }
 
@@ -148,7 +148,7 @@ type KubeOidcState struct {
 	ClientId pulumi.StringPtrInput
 	// The OIDC issuer url.
 	IssuerUrl pulumi.StringPtrInput
-	// The ID of the managed kubernetes cluster.
+	// The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
 	KubeId             pulumi.StringPtrInput
 	OidcCaContent      pulumi.StringPtrInput
 	OidcGroupsClaims   pulumi.StringArrayInput
@@ -157,7 +157,7 @@ type KubeOidcState struct {
 	OidcSigningAlgs    pulumi.StringArrayInput
 	OidcUsernameClaim  pulumi.StringPtrInput
 	OidcUsernamePrefix pulumi.StringPtrInput
-	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName pulumi.StringPtrInput
 }
 
@@ -170,7 +170,7 @@ type kubeOidcArgs struct {
 	ClientId string `pulumi:"clientId"`
 	// The OIDC issuer url.
 	IssuerUrl string `pulumi:"issuerUrl"`
-	// The ID of the managed kubernetes cluster.
+	// The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
 	KubeId             string   `pulumi:"kubeId"`
 	OidcCaContent      *string  `pulumi:"oidcCaContent"`
 	OidcGroupsClaims   []string `pulumi:"oidcGroupsClaims"`
@@ -179,7 +179,7 @@ type kubeOidcArgs struct {
 	OidcSigningAlgs    []string `pulumi:"oidcSigningAlgs"`
 	OidcUsernameClaim  *string  `pulumi:"oidcUsernameClaim"`
 	OidcUsernamePrefix *string  `pulumi:"oidcUsernamePrefix"`
-	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName string `pulumi:"serviceName"`
 }
 
@@ -189,7 +189,7 @@ type KubeOidcArgs struct {
 	ClientId pulumi.StringInput
 	// The OIDC issuer url.
 	IssuerUrl pulumi.StringInput
-	// The ID of the managed kubernetes cluster.
+	// The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
 	KubeId             pulumi.StringInput
 	OidcCaContent      pulumi.StringPtrInput
 	OidcGroupsClaims   pulumi.StringArrayInput
@@ -198,7 +198,7 @@ type KubeOidcArgs struct {
 	OidcSigningAlgs    pulumi.StringArrayInput
 	OidcUsernameClaim  pulumi.StringPtrInput
 	OidcUsernamePrefix pulumi.StringPtrInput
-	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName pulumi.StringInput
 }
 
@@ -299,7 +299,7 @@ func (o KubeOidcOutput) IssuerUrl() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubeOidc) pulumi.StringOutput { return v.IssuerUrl }).(pulumi.StringOutput)
 }
 
-// The ID of the managed kubernetes cluster.
+// The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
 func (o KubeOidcOutput) KubeId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubeOidc) pulumi.StringOutput { return v.KubeId }).(pulumi.StringOutput)
 }
@@ -332,7 +332,7 @@ func (o KubeOidcOutput) OidcUsernamePrefix() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *KubeOidc) pulumi.StringPtrOutput { return v.OidcUsernamePrefix }).(pulumi.StringPtrOutput)
 }
 
-// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+// The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 func (o KubeOidcOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubeOidc) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
 }

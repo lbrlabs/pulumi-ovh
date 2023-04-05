@@ -61,12 +61,11 @@ export class KubeIpRestrictions extends pulumi.CustomResource {
      */
     public readonly ips!: pulumi.Output<string[]>;
     /**
-     * The id of the managed Kubernetes cluster.
+     * The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
      */
     public readonly kubeId!: pulumi.Output<string>;
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      */
     public readonly serviceName!: pulumi.Output<string>;
 
@@ -115,12 +114,11 @@ export interface KubeIpRestrictionsState {
      */
     ips?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The id of the managed Kubernetes cluster.
+     * The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
      */
     kubeId?: pulumi.Input<string>;
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      */
     serviceName?: pulumi.Input<string>;
 }
@@ -134,12 +132,11 @@ export interface KubeIpRestrictionsArgs {
      */
     ips: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * The id of the managed Kubernetes cluster.
+     * The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
      */
     kubeId: pulumi.Input<string>;
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      */
     serviceName: pulumi.Input<string>;
 }

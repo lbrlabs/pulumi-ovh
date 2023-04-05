@@ -11,19 +11,11 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
 {
     /// <summary>
-    /// Orders an IP load balancing.
-    /// 
-    /// ## Important
-    /// 
-    /// &gt; __WARNING__ This resource orders an OVHcloud product for a long period of time and may generate heavy costs!
-    /// Use with caution.
-    /// 
-    /// &gt; __NOTE__ The "default-payment-mean" will scan your registered bank accounts, credit card and paypal payment means to find your default payment mean.
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// using Ovh = Pulumi.Ovh;
@@ -57,7 +49,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
     ///     {
     ///         OvhSubsidiary = mycart.Apply(getCartResult =&gt; getCartResult.OvhSubsidiary),
     ///         DisplayName = "my ip loadbalancing",
-    ///         PaymentMean = "ovh-account",
     ///         Plan = new Ovh.IpLoadBalancing.Inputs.LoadBalancerPlanArgs
     ///         {
     ///             Duration = iplb.Apply(getCartProductPlanResult =&gt; getCartProductPlanResult.SelectedPrices[0]?.Duration),
@@ -136,10 +127,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         public Output<string> OvhSubsidiary { get; private set; } = null!;
 
         /// <summary>
-        /// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        /// Ovh payment mode
         /// </summary>
         [Output("paymentMean")]
-        public Output<string> PaymentMean { get; private set; } = null!;
+        public Output<string?> PaymentMean { get; private set; } = null!;
 
         /// <summary>
         /// Product Plan to order
@@ -253,10 +244,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         public Input<string> OvhSubsidiary { get; set; } = null!;
 
         /// <summary>
-        /// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        /// Ovh payment mode
         /// </summary>
-        [Input("paymentMean", required: true)]
-        public Input<string> PaymentMean { get; set; } = null!;
+        [Input("paymentMean")]
+        public Input<string>? PaymentMean { get; set; }
 
         /// <summary>
         /// Product Plan to order
@@ -367,7 +358,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         public Input<string>? OvhSubsidiary { get; set; }
 
         /// <summary>
-        /// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        /// Ovh payment mode
         /// </summary>
         [Input("paymentMean")]
         public Input<string>? PaymentMean { get; set; }

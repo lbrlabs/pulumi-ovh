@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -61,7 +61,7 @@ type ZoneRecord struct {
 	Subdomain pulumi.StringPtrOutput `pulumi:"subdomain"`
 	// The value of the record
 	Target pulumi.StringOutput `pulumi:"target"`
-	// The TTL of the record
+	// The TTL of the record, it shall be >= to 60.
 	Ttl pulumi.IntPtrOutput `pulumi:"ttl"`
 	// The domain to add the record to
 	Zone pulumi.StringOutput `pulumi:"zone"`
@@ -112,7 +112,7 @@ type zoneRecordState struct {
 	Subdomain *string `pulumi:"subdomain"`
 	// The value of the record
 	Target *string `pulumi:"target"`
-	// The TTL of the record
+	// The TTL of the record, it shall be >= to 60.
 	Ttl *int `pulumi:"ttl"`
 	// The domain to add the record to
 	Zone *string `pulumi:"zone"`
@@ -125,7 +125,7 @@ type ZoneRecordState struct {
 	Subdomain pulumi.StringPtrInput
 	// The value of the record
 	Target pulumi.StringPtrInput
-	// The TTL of the record
+	// The TTL of the record, it shall be >= to 60.
 	Ttl pulumi.IntPtrInput
 	// The domain to add the record to
 	Zone pulumi.StringPtrInput
@@ -142,7 +142,7 @@ type zoneRecordArgs struct {
 	Subdomain *string `pulumi:"subdomain"`
 	// The value of the record
 	Target string `pulumi:"target"`
-	// The TTL of the record
+	// The TTL of the record, it shall be >= to 60.
 	Ttl *int `pulumi:"ttl"`
 	// The domain to add the record to
 	Zone string `pulumi:"zone"`
@@ -156,7 +156,7 @@ type ZoneRecordArgs struct {
 	Subdomain pulumi.StringPtrInput
 	// The value of the record
 	Target pulumi.StringInput
-	// The TTL of the record
+	// The TTL of the record, it shall be >= to 60.
 	Ttl pulumi.IntPtrInput
 	// The domain to add the record to
 	Zone pulumi.StringInput
@@ -264,7 +264,7 @@ func (o ZoneRecordOutput) Target() pulumi.StringOutput {
 	return o.ApplyT(func(v *ZoneRecord) pulumi.StringOutput { return v.Target }).(pulumi.StringOutput)
 }
 
-// The TTL of the record
+// The TTL of the record, it shall be >= to 60.
 func (o ZoneRecordOutput) Ttl() pulumi.IntPtrOutput {
 	return o.ApplyT(func(v *ZoneRecord) pulumi.IntPtrOutput { return v.Ttl }).(pulumi.IntPtrOutput)
 }

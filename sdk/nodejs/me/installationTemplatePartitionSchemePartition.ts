@@ -70,7 +70,16 @@ export class InstallationTemplatePartitionSchemePartition extends pulumi.CustomR
     }
 
     /**
-     * Partition filesystem.
+     * Partition filesystem. Enum with possibles values:
+     * - btrfs
+     * - ext3
+     * - ext4
+     * - ntfs
+     * - reiserfs
+     * - swap
+     * - ufs
+     * - xfs
+     * - zfs
      */
     public readonly filesystem!: pulumi.Output<string>;
     /**
@@ -82,7 +91,12 @@ export class InstallationTemplatePartitionSchemePartition extends pulumi.CustomR
      */
     public readonly order!: pulumi.Output<number>;
     /**
-     * raid partition type.
+     * raid partition type. Enum with possible values: 
+     * - raid0
+     * - raid1
+     * - raid10
+     * - raid5
+     * - raid6
      */
     public readonly raid!: pulumi.Output<string>;
     /**
@@ -98,7 +112,10 @@ export class InstallationTemplatePartitionSchemePartition extends pulumi.CustomR
      */
     public readonly templateName!: pulumi.Output<string>;
     /**
-     * partition type.
+     * partition type. Enum with possible values:
+     * - lv
+     * - primary
+     * - logical
      */
     public readonly type!: pulumi.Output<string>;
     /**
@@ -171,7 +188,16 @@ export class InstallationTemplatePartitionSchemePartition extends pulumi.CustomR
  */
 export interface InstallationTemplatePartitionSchemePartitionState {
     /**
-     * Partition filesystem.
+     * Partition filesystem. Enum with possibles values:
+     * - btrfs
+     * - ext3
+     * - ext4
+     * - ntfs
+     * - reiserfs
+     * - swap
+     * - ufs
+     * - xfs
+     * - zfs
      */
     filesystem?: pulumi.Input<string>;
     /**
@@ -183,7 +209,12 @@ export interface InstallationTemplatePartitionSchemePartitionState {
      */
     order?: pulumi.Input<number>;
     /**
-     * raid partition type.
+     * raid partition type. Enum with possible values: 
+     * - raid0
+     * - raid1
+     * - raid10
+     * - raid5
+     * - raid6
      */
     raid?: pulumi.Input<string>;
     /**
@@ -199,7 +230,10 @@ export interface InstallationTemplatePartitionSchemePartitionState {
      */
     templateName?: pulumi.Input<string>;
     /**
-     * partition type.
+     * partition type. Enum with possible values:
+     * - lv
+     * - primary
+     * - logical
      */
     type?: pulumi.Input<string>;
     /**
@@ -213,7 +247,16 @@ export interface InstallationTemplatePartitionSchemePartitionState {
  */
 export interface InstallationTemplatePartitionSchemePartitionArgs {
     /**
-     * Partition filesystem.
+     * Partition filesystem. Enum with possibles values:
+     * - btrfs
+     * - ext3
+     * - ext4
+     * - ntfs
+     * - reiserfs
+     * - swap
+     * - ufs
+     * - xfs
+     * - zfs
      */
     filesystem: pulumi.Input<string>;
     /**
@@ -225,7 +268,12 @@ export interface InstallationTemplatePartitionSchemePartitionArgs {
      */
     order: pulumi.Input<number>;
     /**
-     * raid partition type.
+     * raid partition type. Enum with possible values: 
+     * - raid0
+     * - raid1
+     * - raid10
+     * - raid5
+     * - raid6
      */
     raid?: pulumi.Input<string>;
     /**
@@ -241,7 +289,10 @@ export interface InstallationTemplatePartitionSchemePartitionArgs {
      */
     templateName: pulumi.Input<string>;
     /**
-     * partition type.
+     * partition type. Enum with possible values:
+     * - lv
+     * - primary
+     * - logical
      */
     type: pulumi.Input<string>;
     /**

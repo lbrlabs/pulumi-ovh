@@ -16,16 +16,32 @@ public final class KubeNodePoolTemplateArgs extends com.pulumi.resources.Resourc
 
     public static final KubeNodePoolTemplateArgs Empty = new KubeNodePoolTemplateArgs();
 
+    /**
+     * Metadata of each node in the pool
+     * 
+     */
     @Import(name="metadata")
     private @Nullable Output<KubeNodePoolTemplateMetadataArgs> metadata;
 
+    /**
+     * @return Metadata of each node in the pool
+     * 
+     */
     public Optional<Output<KubeNodePoolTemplateMetadataArgs>> metadata() {
         return Optional.ofNullable(this.metadata);
     }
 
+    /**
+     * Spec of each node in the pool
+     * 
+     */
     @Import(name="spec")
     private @Nullable Output<KubeNodePoolTemplateSpecArgs> spec;
 
+    /**
+     * @return Spec of each node in the pool
+     * 
+     */
     public Optional<Output<KubeNodePoolTemplateSpecArgs>> spec() {
         return Optional.ofNullable(this.spec);
     }
@@ -55,20 +71,44 @@ public final class KubeNodePoolTemplateArgs extends com.pulumi.resources.Resourc
             $ = new KubeNodePoolTemplateArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param metadata Metadata of each node in the pool
+         * 
+         * @return builder
+         * 
+         */
         public Builder metadata(@Nullable Output<KubeNodePoolTemplateMetadataArgs> metadata) {
             $.metadata = metadata;
             return this;
         }
 
+        /**
+         * @param metadata Metadata of each node in the pool
+         * 
+         * @return builder
+         * 
+         */
         public Builder metadata(KubeNodePoolTemplateMetadataArgs metadata) {
             return metadata(Output.of(metadata));
         }
 
+        /**
+         * @param spec Spec of each node in the pool
+         * 
+         * @return builder
+         * 
+         */
         public Builder spec(@Nullable Output<KubeNodePoolTemplateSpecArgs> spec) {
             $.spec = spec;
             return this;
         }
 
+        /**
+         * @param spec Spec of each node in the pool
+         * 
+         * @return builder
+         * 
+         */
         public Builder spec(KubeNodePoolTemplateSpecArgs spec) {
             return spec(Output.of(spec));
         }

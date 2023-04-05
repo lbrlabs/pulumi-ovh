@@ -77,7 +77,7 @@ public class TcpFrontend extends com.pulumi.resources.CustomResource {
      * Restrict IP Load Balancing access to these ip block. No restriction if null. List of IP blocks.
      * 
      */
-    @Export(name="allowedSources", type=List.class, parameters={String.class})
+    @Export(name="allowedSources", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> allowedSources;
 
     /**
@@ -91,7 +91,7 @@ public class TcpFrontend extends com.pulumi.resources.CustomResource {
      * Only attach frontend on these ip. No restriction if null. List of Ip blocks.
      * 
      */
-    @Export(name="dedicatedIpfos", type=List.class, parameters={String.class})
+    @Export(name="dedicatedIpfos", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> dedicatedIpfos;
 
     /**
@@ -105,7 +105,7 @@ public class TcpFrontend extends com.pulumi.resources.CustomResource {
      * Default TCP Farm of your frontend
      * 
      */
-    @Export(name="defaultFarmId", type=Integer.class, parameters={})
+    @Export(name="defaultFarmId", refs={Integer.class}, tree="[0]")
     private Output<Integer> defaultFarmId;
 
     /**
@@ -119,7 +119,7 @@ public class TcpFrontend extends com.pulumi.resources.CustomResource {
      * Default ssl served to your customer
      * 
      */
-    @Export(name="defaultSslId", type=Integer.class, parameters={})
+    @Export(name="defaultSslId", refs={Integer.class}, tree="[0]")
     private Output<Integer> defaultSslId;
 
     /**
@@ -133,7 +133,7 @@ public class TcpFrontend extends com.pulumi.resources.CustomResource {
      * Disable your frontend. Default: &#39;false&#39;
      * 
      */
-    @Export(name="disabled", type=Boolean.class, parameters={})
+    @Export(name="disabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> disabled;
 
     /**
@@ -147,7 +147,7 @@ public class TcpFrontend extends com.pulumi.resources.CustomResource {
      * Human readable name for your frontend, this field is for you
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -163,7 +163,7 @@ public class TcpFrontend extends com.pulumi.resources.CustomResource {
      * and/or &#39;range&#39;. Each port must be in the [1;49151] range
      * 
      */
-    @Export(name="port", type=String.class, parameters={})
+    @Export(name="port", refs={String.class}, tree="[0]")
     private Output<String> port;
 
     /**
@@ -179,7 +179,7 @@ public class TcpFrontend extends com.pulumi.resources.CustomResource {
      * The internal name of your IP load balancing
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -193,7 +193,7 @@ public class TcpFrontend extends com.pulumi.resources.CustomResource {
      * SSL deciphering. Default: &#39;false&#39;
      * 
      */
-    @Export(name="ssl", type=Boolean.class, parameters={})
+    @Export(name="ssl", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ssl;
 
     /**
@@ -207,7 +207,7 @@ public class TcpFrontend extends com.pulumi.resources.CustomResource {
      * Zone where the frontend will be defined (ie. `gra`, `bhs` also supports `all`)
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

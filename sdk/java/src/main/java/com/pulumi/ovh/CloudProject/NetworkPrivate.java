@@ -69,7 +69,7 @@ public class NetworkPrivate extends com.pulumi.resources.CustomResource {
      * The name of the network.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -84,7 +84,7 @@ public class NetworkPrivate extends com.pulumi.resources.CustomResource {
      * will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions.
      * 
      */
-    @Export(name="regions", type=List.class, parameters={String.class})
+    @Export(name="regions", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> regions;
 
     /**
@@ -102,7 +102,7 @@ public class NetworkPrivate extends com.pulumi.resources.CustomResource {
      * * `regions_attributes/openstackid` - The private network id in the region.
      * 
      */
-    @Export(name="regionsAttributes", type=List.class, parameters={NetworkPrivateRegionsAttribute.class})
+    @Export(name="regionsAttributes", refs={List.class,NetworkPrivateRegionsAttribute.class}, tree="[0,1]")
     private Output<List<NetworkPrivateRegionsAttribute>> regionsAttributes;
 
     /**
@@ -125,7 +125,7 @@ public class NetworkPrivate extends com.pulumi.resources.CustomResource {
      * 
      */
     @Deprecated /* use the regions_attributes field instead */
-    @Export(name="regionsStatuses", type=List.class, parameters={NetworkPrivateRegionsStatus.class})
+    @Export(name="regionsStatuses", refs={List.class,NetworkPrivateRegionsStatus.class}, tree="[0,1]")
     private Output<List<NetworkPrivateRegionsStatus>> regionsStatuses;
 
     /**
@@ -142,7 +142,7 @@ public class NetworkPrivate extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -157,7 +157,7 @@ public class NetworkPrivate extends com.pulumi.resources.CustomResource {
      * the status of the network. should be normally set to &#39;ACTIVE&#39;.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -171,7 +171,7 @@ public class NetworkPrivate extends com.pulumi.resources.CustomResource {
      * the type of the network. Either &#39;private&#39; or &#39;public&#39;.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -186,7 +186,7 @@ public class NetworkPrivate extends com.pulumi.resources.CustomResource {
      * Changing this value recreates the resource. Defaults to 0.
      * 
      */
-    @Export(name="vlanId", type=Integer.class, parameters={})
+    @Export(name="vlanId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> vlanId;
 
     /**

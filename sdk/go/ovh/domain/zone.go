@@ -7,16 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates a domain zone.
-//
-// ## Important
-//
-// > __WARNING__ This resource is in beta state. Use with caution.
-//
 // ## Example Usage
 //
 // ```go
@@ -49,7 +43,6 @@ import (
 //			}
 //			_, err = Domain.NewZone(ctx, "zoneZone", &Domain.ZoneArgs{
 //				OvhSubsidiary: *pulumi.String(mycart.OvhSubsidiary),
-//				PaymentMean:   pulumi.String("fidelity"),
 //				Plan: &domain.ZonePlanArgs{
 //					Duration:    *pulumi.String(zoneCartProductPlan.SelectedPrices[0].Duration),
 //					PlanCode:    *pulumi.String(zoneCartProductPlan.PlanCode),
@@ -91,8 +84,10 @@ type Zone struct {
 	Orders ZoneOrderArrayOutput `pulumi:"orders"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringOutput `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean pulumi.StringOutput `pulumi:"paymentMean"`
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean pulumi.StringPtrOutput `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan ZonePlanOutput `pulumi:"plan"`
 	// Product Plan to order
@@ -108,9 +103,6 @@ func NewZone(ctx *pulumi.Context,
 
 	if args.OvhSubsidiary == nil {
 		return nil, errors.New("invalid value for required argument 'OvhSubsidiary'")
-	}
-	if args.PaymentMean == nil {
-		return nil, errors.New("invalid value for required argument 'PaymentMean'")
 	}
 	if args.Plan == nil {
 		return nil, errors.New("invalid value for required argument 'Plan'")
@@ -152,7 +144,9 @@ type zoneState struct {
 	Orders []ZoneOrder `pulumi:"orders"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary *string `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
 	PaymentMean *string `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan *ZonePlan `pulumi:"plan"`
@@ -175,7 +169,9 @@ type ZoneState struct {
 	Orders ZoneOrderArrayInput
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringPtrInput
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
 	PaymentMean pulumi.StringPtrInput
 	// Product Plan to order
 	Plan ZonePlanPtrInput
@@ -190,8 +186,10 @@ func (ZoneState) ElementType() reflect.Type {
 type zoneArgs struct {
 	// OVHcloud Subsidiary
 	OvhSubsidiary string `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean string `pulumi:"paymentMean"`
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean *string `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan ZonePlan `pulumi:"plan"`
 	// Product Plan to order
@@ -202,8 +200,10 @@ type zoneArgs struct {
 type ZoneArgs struct {
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringInput
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean pulumi.StringInput
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean pulumi.StringPtrInput
 	// Product Plan to order
 	Plan ZonePlanInput
 	// Product Plan to order
@@ -332,9 +332,11 @@ func (o ZoneOutput) OvhSubsidiary() pulumi.StringOutput {
 	return o.ApplyT(func(v *Zone) pulumi.StringOutput { return v.OvhSubsidiary }).(pulumi.StringOutput)
 }
 
-// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-func (o ZoneOutput) PaymentMean() pulumi.StringOutput {
-	return o.ApplyT(func(v *Zone) pulumi.StringOutput { return v.PaymentMean }).(pulumi.StringOutput)
+// Ovh payment mode
+//
+// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+func (o ZoneOutput) PaymentMean() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Zone) pulumi.StringPtrOutput { return v.PaymentMean }).(pulumi.StringPtrOutput)
 }
 
 // Product Plan to order

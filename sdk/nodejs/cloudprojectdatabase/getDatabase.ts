@@ -12,6 +12,7 @@ import * as utilities from "../utilities";
  * ## Example Usage
  *
  * To get information of a database cluster service:
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
@@ -58,6 +59,10 @@ export interface GetDatabaseArgs {
  * A collection of values returned by getDatabase.
  */
 export interface GetDatabaseResult {
+    /**
+     * Advanced configuration key / value.
+     */
+    readonly advancedConfiguration: {[key: string]: string};
     /**
      * Time on which backups start every day.
      */
@@ -134,6 +139,7 @@ export interface GetDatabaseResult {
  * ## Example Usage
  *
  * To get information of a database cluster service:
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";

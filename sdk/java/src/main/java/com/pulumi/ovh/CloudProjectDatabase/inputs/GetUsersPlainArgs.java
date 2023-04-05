@@ -30,7 +30,6 @@ public final class GetUsersPlainArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * The engine of the database cluster you want to list users. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
-     * Available engines:
      * 
      */
     @Import(name="engine", required=true)
@@ -39,7 +38,6 @@ public final class GetUsersPlainArgs extends com.pulumi.resources.InvokeArgs {
     /**
      * @return The engine of the database cluster you want to list users. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
-     * Available engines:
      * 
      */
     public String engine() {
@@ -103,7 +101,6 @@ public final class GetUsersPlainArgs extends com.pulumi.resources.InvokeArgs {
         /**
          * @param engine The engine of the database cluster you want to list users. To get a full list of available engine visit:
          * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
-         * Available engines:
          * 
          * @return builder
          * 

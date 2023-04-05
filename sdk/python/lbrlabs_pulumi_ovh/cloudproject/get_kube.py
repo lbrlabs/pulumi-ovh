@@ -23,13 +23,23 @@ class GetKubeResult:
     """
     A collection of values returned by getKube.
     """
-    def __init__(__self__, control_plane_is_up_to_date=None, customization=None, id=None, is_up_to_date=None, kube_id=None, name=None, next_upgrade_versions=None, nodes_url=None, private_network_id=None, region=None, service_name=None, status=None, update_policy=None, url=None, version=None):
+    def __init__(__self__, control_plane_is_up_to_date=None, customization_apiservers=None, customization_kube_proxy=None, customizations=None, id=None, is_up_to_date=None, kube_id=None, kube_proxy_mode=None, name=None, next_upgrade_versions=None, nodes_url=None, private_network_id=None, region=None, service_name=None, status=None, update_policy=None, url=None, version=None):
         if control_plane_is_up_to_date and not isinstance(control_plane_is_up_to_date, bool):
             raise TypeError("Expected argument 'control_plane_is_up_to_date' to be a bool")
         pulumi.set(__self__, "control_plane_is_up_to_date", control_plane_is_up_to_date)
-        if customization and not isinstance(customization, dict):
-            raise TypeError("Expected argument 'customization' to be a dict")
-        pulumi.set(__self__, "customization", customization)
+        if customization_apiservers and not isinstance(customization_apiservers, list):
+            raise TypeError("Expected argument 'customization_apiservers' to be a list")
+        pulumi.set(__self__, "customization_apiservers", customization_apiservers)
+        if customization_kube_proxy and not isinstance(customization_kube_proxy, dict):
+            raise TypeError("Expected argument 'customization_kube_proxy' to be a dict")
+        pulumi.set(__self__, "customization_kube_proxy", customization_kube_proxy)
+        if customizations and not isinstance(customizations, list):
+            raise TypeError("Expected argument 'customizations' to be a list")
+        if customizations is not None:
+            warnings.warn("""Use customization_apiserver instead""", DeprecationWarning)
+            pulumi.log.warn("""customizations is deprecated: Use customization_apiserver instead""")
+
+        pulumi.set(__self__, "customizations", customizations)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
         pulumi.set(__self__, "id", id)
@@ -39,6 +49,9 @@ class GetKubeResult:
         if kube_id and not isinstance(kube_id, str):
             raise TypeError("Expected argument 'kube_id' to be a str")
         pulumi.set(__self__, "kube_id", kube_id)
+        if kube_proxy_mode and not isinstance(kube_proxy_mode, str):
+            raise TypeError("Expected argument 'kube_proxy_mode' to be a str")
+        pulumi.set(__self__, "kube_proxy_mode", kube_proxy_mode)
         if name and not isinstance(name, str):
             raise TypeError("Expected argument 'name' to be a str")
         pulumi.set(__self__, "name", name)
@@ -74,21 +87,33 @@ class GetKubeResult:
     @pulumi.getter(name="controlPlaneIsUpToDate")
     def control_plane_is_up_to_date(self) -> bool:
         """
-        True if control-plane is up to date.
+        True if control-plane is up-to-date.
         """
         return pulumi.get(self, "control_plane_is_up_to_date")
 
     @property
+    @pulumi.getter(name="customizationApiservers")
+    def customization_apiservers(self) -> Sequence['outputs.GetKubeCustomizationApiserverResult']:
+        """
+        Kubernetes API server customization
+        """
+        return pulumi.get(self, "customization_apiservers")
+
+    @property
+    @pulumi.getter(name="customizationKubeProxy")
+    def customization_kube_proxy(self) -> Optional['outputs.GetKubeCustomizationKubeProxyResult']:
+        """
+        Kubernetes kube-proxy customization
+        """
+        return pulumi.get(self, "customization_kube_proxy")
+
+    @property
     @pulumi.getter
-    def customization(self) -> 'outputs.GetKubeCustomizationResult':
+    def customizations(self) -> Sequence['outputs.GetKubeCustomizationResult']:
         """
-        Customer customization object
-        * apiserver - Kubernetes API server customization
-        * admissionplugins - Kubernetes API server admission plugins customization
-        * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-        * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
         """
-        return pulumi.get(self, "customization")
+        return pulumi.get(self, "customizations")
 
     @property
     @pulumi.getter
@@ -102,7 +127,7 @@ class GetKubeResult:
     @pulumi.getter(name="isUpToDate")
     def is_up_to_date(self) -> bool:
         """
-        True if all nodes and control-plane are up to date.
+        True if all nodes and control-plane are up-to-date.
         """
         return pulumi.get(self, "is_up_to_date")
 
@@ -113,6 +138,14 @@ class GetKubeResult:
         See Argument Reference above.
         """
         return pulumi.get(self, "kube_id")
+
+    @property
+    @pulumi.getter(name="kubeProxyMode")
+    def kube_proxy_mode(self) -> Optional[str]:
+        """
+        Selected mode for kube-proxy.
+        """
+        return pulumi.get(self, "kube_proxy_mode")
 
     @property
     @pulumi.getter
@@ -202,10 +235,13 @@ class AwaitableGetKubeResult(GetKubeResult):
             yield self
         return GetKubeResult(
             control_plane_is_up_to_date=self.control_plane_is_up_to_date,
-            customization=self.customization,
+            customization_apiservers=self.customization_apiservers,
+            customization_kube_proxy=self.customization_kube_proxy,
+            customizations=self.customizations,
             id=self.id,
             is_up_to_date=self.is_up_to_date,
             kube_id=self.kube_id,
+            kube_proxy_mode=self.kube_proxy_mode,
             name=self.name,
             next_upgrade_versions=self.next_upgrade_versions,
             nodes_url=self.nodes_url,
@@ -218,8 +254,11 @@ class AwaitableGetKubeResult(GetKubeResult):
             version=self.version)
 
 
-def get_kube(customization: Optional[pulumi.InputType['GetKubeCustomizationArgs']] = None,
+def get_kube(customization_apiservers: Optional[Sequence[pulumi.InputType['GetKubeCustomizationApiserverArgs']]] = None,
+             customization_kube_proxy: Optional[pulumi.InputType['GetKubeCustomizationKubeProxyArgs']] = None,
+             customizations: Optional[Sequence[pulumi.InputType['GetKubeCustomizationArgs']]] = None,
              kube_id: Optional[str] = None,
+             kube_proxy_mode: Optional[str] = None,
              name: Optional[str] = None,
              region: Optional[str] = None,
              service_name: Optional[str] = None,
@@ -241,22 +280,23 @@ def get_kube(customization: Optional[pulumi.InputType['GetKubeCustomizationArgs'
     ```
 
 
-    :param pulumi.InputType['GetKubeCustomizationArgs'] customization: Customer customization object
-           * apiserver - Kubernetes API server customization
-           * admissionplugins - Kubernetes API server admission plugins customization
-           * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-           * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+    :param Sequence[pulumi.InputType['GetKubeCustomizationApiserverArgs']] customization_apiservers: Kubernetes API server customization
+    :param pulumi.InputType['GetKubeCustomizationKubeProxyArgs'] customization_kube_proxy: Kubernetes kube-proxy customization
+    :param Sequence[pulumi.InputType['GetKubeCustomizationArgs']] customizations: **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
     :param str kube_id: The id of the managed kubernetes cluster.
+    :param str kube_proxy_mode: Selected mode for kube-proxy.
     :param str name: The name of the managed kubernetes cluster.
     :param str region: The OVHcloud public cloud region ID of the managed kubernetes cluster.
-    :param str service_name: The id of the public cloud project. If omitted,
-           the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+    :param str service_name: The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
     :param str update_policy: Cluster update policy. Choose between [ALWAYS_UPDATE,MINIMAL_DOWNTIME,NEVER_UPDATE]'.
     :param str version: Kubernetes version of the managed kubernetes cluster.
     """
     __args__ = dict()
-    __args__['customization'] = customization
+    __args__['customizationApiservers'] = customization_apiservers
+    __args__['customizationKubeProxy'] = customization_kube_proxy
+    __args__['customizations'] = customizations
     __args__['kubeId'] = kube_id
+    __args__['kubeProxyMode'] = kube_proxy_mode
     __args__['name'] = name
     __args__['region'] = region
     __args__['serviceName'] = service_name
@@ -267,10 +307,13 @@ def get_kube(customization: Optional[pulumi.InputType['GetKubeCustomizationArgs'
 
     return AwaitableGetKubeResult(
         control_plane_is_up_to_date=__ret__.control_plane_is_up_to_date,
-        customization=__ret__.customization,
+        customization_apiservers=__ret__.customization_apiservers,
+        customization_kube_proxy=__ret__.customization_kube_proxy,
+        customizations=__ret__.customizations,
         id=__ret__.id,
         is_up_to_date=__ret__.is_up_to_date,
         kube_id=__ret__.kube_id,
+        kube_proxy_mode=__ret__.kube_proxy_mode,
         name=__ret__.name,
         next_upgrade_versions=__ret__.next_upgrade_versions,
         nodes_url=__ret__.nodes_url,
@@ -284,8 +327,11 @@ def get_kube(customization: Optional[pulumi.InputType['GetKubeCustomizationArgs'
 
 
 @_utilities.lift_output_func(get_kube)
-def get_kube_output(customization: Optional[pulumi.Input[Optional[pulumi.InputType['GetKubeCustomizationArgs']]]] = None,
+def get_kube_output(customization_apiservers: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetKubeCustomizationApiserverArgs']]]]] = None,
+                    customization_kube_proxy: Optional[pulumi.Input[Optional[pulumi.InputType['GetKubeCustomizationKubeProxyArgs']]]] = None,
+                    customizations: Optional[pulumi.Input[Optional[Sequence[pulumi.InputType['GetKubeCustomizationArgs']]]]] = None,
                     kube_id: Optional[pulumi.Input[str]] = None,
+                    kube_proxy_mode: Optional[pulumi.Input[Optional[str]]] = None,
                     name: Optional[pulumi.Input[Optional[str]]] = None,
                     region: Optional[pulumi.Input[Optional[str]]] = None,
                     service_name: Optional[pulumi.Input[str]] = None,
@@ -307,16 +353,14 @@ def get_kube_output(customization: Optional[pulumi.Input[Optional[pulumi.InputTy
     ```
 
 
-    :param pulumi.InputType['GetKubeCustomizationArgs'] customization: Customer customization object
-           * apiserver - Kubernetes API server customization
-           * admissionplugins - Kubernetes API server admission plugins customization
-           * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-           * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+    :param Sequence[pulumi.InputType['GetKubeCustomizationApiserverArgs']] customization_apiservers: Kubernetes API server customization
+    :param pulumi.InputType['GetKubeCustomizationKubeProxyArgs'] customization_kube_proxy: Kubernetes kube-proxy customization
+    :param Sequence[pulumi.InputType['GetKubeCustomizationArgs']] customizations: **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
     :param str kube_id: The id of the managed kubernetes cluster.
+    :param str kube_proxy_mode: Selected mode for kube-proxy.
     :param str name: The name of the managed kubernetes cluster.
     :param str region: The OVHcloud public cloud region ID of the managed kubernetes cluster.
-    :param str service_name: The id of the public cloud project. If omitted,
-           the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+    :param str service_name: The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
     :param str update_policy: Cluster update policy. Choose between [ALWAYS_UPDATE,MINIMAL_DOWNTIME,NEVER_UPDATE]'.
     :param str version: Kubernetes version of the managed kubernetes cluster.
     """

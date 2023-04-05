@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -22,8 +22,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/IpLoadBalancing"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -34,7 +32,7 @@ import (
 //			_, err := IpLoadBalancing.NewHttpRoute(ctx, "httpsredirect", &IpLoadBalancing.HttpRouteArgs{
 //				Action: &iploadbalancing.HttpRouteActionArgs{
 //					Status: pulumi.Int(302),
-//					Target: pulumi.String(fmt.Sprintf("https://${host}${path}${arguments}")),
+//					Target: pulumi.String("https://${host}${path}${arguments}"),
 //					Type:   pulumi.String("redirect"),
 //				},
 //				DisplayName: pulumi.String("Redirect to HTTPS"),

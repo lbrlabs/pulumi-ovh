@@ -19,14 +19,14 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
     public static final KubeNodePoolState Empty = new KubeNodePoolState();
 
     /**
-     * should the pool use the anti-affinity feature. Default to `false`.
+     * should the pool use the anti-affinity feature. Default to `false`. **Changing this value recreates the resource.**
      * 
      */
     @Import(name="antiAffinity")
     private @Nullable Output<Boolean> antiAffinity;
 
     /**
-     * @return should the pool use the anti-affinity feature. Default to `false`.
+     * @return should the pool use the anti-affinity feature. Default to `false`. **Changing this value recreates the resource.**
      * 
      */
     public Optional<Output<Boolean>> antiAffinity() {
@@ -35,6 +35,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Enable auto-scaling for the pool. Default to `false`.
+     * * ` template  ` - (Optional) Managed Kubernetes nodepool template, which is a complex object constituted by two main nested objects:
      * 
      */
     @Import(name="autoscale")
@@ -42,6 +43,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Enable auto-scaling for the pool. Default to `false`.
+     * * ` template  ` - (Optional) Managed Kubernetes nodepool template, which is a complex object constituted by two main nested objects:
      * 
      */
     public Optional<Output<Boolean>> autoscale() {
@@ -124,18 +126,16 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * a valid OVHcloud public cloud flavor ID in which the nodes will be started.
-     * Ex: &#34;b2-7&#34;. Changing this value recreates the resource.
-     * You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/
+     * a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: &#34;b2-7&#34;. You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/.
+     * **Changing this value recreates the resource.**
      * 
      */
     @Import(name="flavorName")
     private @Nullable Output<String> flavorName;
 
     /**
-     * @return a valid OVHcloud public cloud flavor ID in which the nodes will be started.
-     * Ex: &#34;b2-7&#34;. Changing this value recreates the resource.
-     * You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/
+     * @return a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: &#34;b2-7&#34;. You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/.
+     * **Changing this value recreates the resource.**
      * 
      */
     public Optional<Output<String>> flavorName() {
@@ -143,14 +143,14 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The id of the managed kubernetes cluster.
+     * The id of the managed kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
     @Import(name="kubeId")
     private @Nullable Output<String> kubeId;
 
     /**
-     * @return The id of the managed kubernetes cluster.
+     * @return The id of the managed kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
     public Optional<Output<String>> kubeId() {
@@ -158,16 +158,14 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * maximum number of nodes allowed in the pool.
-     * Setting `desired_nodes` over this value will raise an error.
+     * maximum number of nodes allowed in the pool. Setting `desired_nodes` over this value will raise an error.
      * 
      */
     @Import(name="maxNodes")
     private @Nullable Output<Integer> maxNodes;
 
     /**
-     * @return maximum number of nodes allowed in the pool.
-     * Setting `desired_nodes` over this value will raise an error.
+     * @return maximum number of nodes allowed in the pool. Setting `desired_nodes` over this value will raise an error.
      * 
      */
     public Optional<Output<Integer>> maxNodes() {
@@ -175,16 +173,14 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * minimum number of nodes allowed in the pool.
-     * Setting `desired_nodes` under this value will raise an error.
+     * minimum number of nodes allowed in the pool. Setting `desired_nodes` under this value will raise an error.
      * 
      */
     @Import(name="minNodes")
     private @Nullable Output<Integer> minNodes;
 
     /**
-     * @return minimum number of nodes allowed in the pool.
-     * Setting `desired_nodes` under this value will raise an error.
+     * @return minimum number of nodes allowed in the pool. Setting `desired_nodes` under this value will raise an error.
      * 
      */
     public Optional<Output<Integer>> minNodes() {
@@ -192,14 +188,14 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * should the nodes be billed on a monthly basis. Default to `false`.
+     * should the nodes be billed on a monthly basis. Default to `false`. **Changing this value recreates the resource.**
      * 
      */
     @Import(name="monthlyBilled")
     private @Nullable Output<Boolean> monthlyBilled;
 
     /**
-     * @return should the nodes be billed on a monthly basis. Default to `false`.
+     * @return should the nodes be billed on a monthly basis. Default to `false`. **Changing this value recreates the resource.**
      * 
      */
     public Optional<Output<Boolean>> monthlyBilled() {
@@ -207,18 +203,14 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The name of the nodepool.
-     * Changing this value recreates the resource.
-     * Warning: &#34;_&#34; char is not allowed!
+     * The name of the nodepool. Warning: `_` char is not allowed! **Changing this value recreates the resource.**
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return The name of the nodepool.
-     * Changing this value recreates the resource.
-     * Warning: &#34;_&#34; char is not allowed!
+     * @return The name of the nodepool. Warning: `_` char is not allowed! **Changing this value recreates the resource.**
      * 
      */
     public Optional<Output<String>> name() {
@@ -241,16 +233,14 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     @Import(name="serviceName")
     private @Nullable Output<String> serviceName;
 
     /**
-     * @return The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * @return The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     public Optional<Output<String>> serviceName() {
@@ -303,14 +293,14 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Number of nodes with latest version installed in the pool
+     * Number of nodes with the latest version installed in the pool
      * 
      */
     @Import(name="upToDateNodes")
     private @Nullable Output<Integer> upToDateNodes;
 
     /**
-     * @return Number of nodes with latest version installed in the pool
+     * @return Number of nodes with the latest version installed in the pool
      * 
      */
     public Optional<Output<Integer>> upToDateNodes() {
@@ -376,7 +366,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param antiAffinity should the pool use the anti-affinity feature. Default to `false`.
+         * @param antiAffinity should the pool use the anti-affinity feature. Default to `false`. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -387,7 +377,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param antiAffinity should the pool use the anti-affinity feature. Default to `false`.
+         * @param antiAffinity should the pool use the anti-affinity feature. Default to `false`. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -398,6 +388,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param autoscale Enable auto-scaling for the pool. Default to `false`.
+         * * ` template  ` - (Optional) Managed Kubernetes nodepool template, which is a complex object constituted by two main nested objects:
          * 
          * @return builder
          * 
@@ -409,6 +400,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param autoscale Enable auto-scaling for the pool. Default to `false`.
+         * * ` template  ` - (Optional) Managed Kubernetes nodepool template, which is a complex object constituted by two main nested objects:
          * 
          * @return builder
          * 
@@ -523,9 +515,8 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param flavorName a valid OVHcloud public cloud flavor ID in which the nodes will be started.
-         * Ex: &#34;b2-7&#34;. Changing this value recreates the resource.
-         * You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/
+         * @param flavorName a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: &#34;b2-7&#34;. You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/.
+         * **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -536,9 +527,8 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param flavorName a valid OVHcloud public cloud flavor ID in which the nodes will be started.
-         * Ex: &#34;b2-7&#34;. Changing this value recreates the resource.
-         * You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/
+         * @param flavorName a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: &#34;b2-7&#34;. You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/.
+         * **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -548,7 +538,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kubeId The id of the managed kubernetes cluster.
+         * @param kubeId The id of the managed kubernetes cluster. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -559,7 +549,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kubeId The id of the managed kubernetes cluster.
+         * @param kubeId The id of the managed kubernetes cluster. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -569,8 +559,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param maxNodes maximum number of nodes allowed in the pool.
-         * Setting `desired_nodes` over this value will raise an error.
+         * @param maxNodes maximum number of nodes allowed in the pool. Setting `desired_nodes` over this value will raise an error.
          * 
          * @return builder
          * 
@@ -581,8 +570,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param maxNodes maximum number of nodes allowed in the pool.
-         * Setting `desired_nodes` over this value will raise an error.
+         * @param maxNodes maximum number of nodes allowed in the pool. Setting `desired_nodes` over this value will raise an error.
          * 
          * @return builder
          * 
@@ -592,8 +580,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param minNodes minimum number of nodes allowed in the pool.
-         * Setting `desired_nodes` under this value will raise an error.
+         * @param minNodes minimum number of nodes allowed in the pool. Setting `desired_nodes` under this value will raise an error.
          * 
          * @return builder
          * 
@@ -604,8 +591,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param minNodes minimum number of nodes allowed in the pool.
-         * Setting `desired_nodes` under this value will raise an error.
+         * @param minNodes minimum number of nodes allowed in the pool. Setting `desired_nodes` under this value will raise an error.
          * 
          * @return builder
          * 
@@ -615,7 +601,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param monthlyBilled should the nodes be billed on a monthly basis. Default to `false`.
+         * @param monthlyBilled should the nodes be billed on a monthly basis. Default to `false`. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -626,7 +612,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param monthlyBilled should the nodes be billed on a monthly basis. Default to `false`.
+         * @param monthlyBilled should the nodes be billed on a monthly basis. Default to `false`. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -636,9 +622,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the nodepool.
-         * Changing this value recreates the resource.
-         * Warning: &#34;_&#34; char is not allowed!
+         * @param name The name of the nodepool. Warning: `_` char is not allowed! **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -649,9 +633,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param name The name of the nodepool.
-         * Changing this value recreates the resource.
-         * Warning: &#34;_&#34; char is not allowed!
+         * @param name The name of the nodepool. Warning: `_` char is not allowed! **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -682,8 +664,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceName The id of the public cloud project. If omitted,
-         * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+         * @param serviceName The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -694,8 +675,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceName The id of the public cloud project. If omitted,
-         * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+         * @param serviceName The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -768,7 +748,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param upToDateNodes Number of nodes with latest version installed in the pool
+         * @param upToDateNodes Number of nodes with the latest version installed in the pool
          * 
          * @return builder
          * 
@@ -779,7 +759,7 @@ public final class KubeNodePoolState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param upToDateNodes Number of nodes with latest version installed in the pool
+         * @param upToDateNodes Number of nodes with the latest version installed in the pool
          * 
          * @return builder
          * 

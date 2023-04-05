@@ -21,8 +21,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Creates an OVHcloud managed private cloud database.
- * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -63,7 +61,6 @@ import javax.annotation.Nullable;
  * 
  *         var databasePrivateDatabase = new PrivateDatabase(&#34;databasePrivateDatabase&#34;, PrivateDatabaseArgs.builder()        
  *             .ovhSubsidiary(mycart.applyValue(getCartResult -&gt; getCartResult.ovhSubsidiary()))
- *             .paymentMean(&#34;ovh-account&#34;)
  *             .displayName(&#34;Postgresql-12&#34;)
  *             .plan(PrivateDatabasePlanArgs.builder()
  *                 .duration(databaseCartProductPlan.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.prices()[3].duration()))
@@ -101,7 +98,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Number of CPU on your private database
      * 
      */
-    @Export(name="cpu", type=Integer.class, parameters={})
+    @Export(name="cpu", refs={Integer.class}, tree="[0]")
     private Output<Integer> cpu;
 
     /**
@@ -115,7 +112,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Datacenter where this private database is located
      * 
      */
-    @Export(name="datacenter", type=String.class, parameters={})
+    @Export(name="datacenter", refs={String.class}, tree="[0]")
     private Output<String> datacenter;
 
     /**
@@ -129,7 +126,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Name displayed in customer panel for your private database
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output<String> displayName;
 
     /**
@@ -143,7 +140,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Private database hostname
      * 
      */
-    @Export(name="hostname", type=String.class, parameters={})
+    @Export(name="hostname", refs={String.class}, tree="[0]")
     private Output<String> hostname;
 
     /**
@@ -157,7 +154,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Private database FTP hostname
      * 
      */
-    @Export(name="hostnameFtp", type=String.class, parameters={})
+    @Export(name="hostnameFtp", refs={String.class}, tree="[0]")
     private Output<String> hostnameFtp;
 
     /**
@@ -171,7 +168,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Infrastructure where service was stored
      * 
      */
-    @Export(name="infrastructure", type=String.class, parameters={})
+    @Export(name="infrastructure", refs={String.class}, tree="[0]")
     private Output<String> infrastructure;
 
     /**
@@ -185,7 +182,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Type of the private database offer
      * 
      */
-    @Export(name="offer", type=String.class, parameters={})
+    @Export(name="offer", refs={String.class}, tree="[0]")
     private Output<String> offer;
 
     /**
@@ -199,7 +196,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Details about your Order
      * 
      */
-    @Export(name="orders", type=List.class, parameters={PrivateDatabaseOrder.class})
+    @Export(name="orders", refs={List.class,PrivateDatabaseOrder.class}, tree="[0,1]")
     private Output<List<PrivateDatabaseOrder>> orders;
 
     /**
@@ -213,7 +210,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * OVHcloud Subsidiary
      * 
      */
-    @Export(name="ovhSubsidiary", type=String.class, parameters={})
+    @Export(name="ovhSubsidiary", refs={String.class}, tree="[0]")
     private Output<String> ovhSubsidiary;
 
     /**
@@ -224,24 +221,28 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
         return this.ovhSubsidiary;
     }
     /**
-     * OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * Ovh payment mode
+     * 
+     * @deprecated
+     * This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      * 
      */
-    @Export(name="paymentMean", type=String.class, parameters={})
-    private Output<String> paymentMean;
+    @Deprecated /* This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used. */
+    @Export(name="paymentMean", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> paymentMean;
 
     /**
-     * @return OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * @return Ovh payment mode
      * 
      */
-    public Output<String> paymentMean() {
-        return this.paymentMean;
+    public Output<Optional<String>> paymentMean() {
+        return Codegen.optional(this.paymentMean);
     }
     /**
      * Product Plan to order
      * 
      */
-    @Export(name="plan", type=PrivateDatabasePlan.class, parameters={})
+    @Export(name="plan", refs={PrivateDatabasePlan.class}, tree="[0]")
     private Output<PrivateDatabasePlan> plan;
 
     /**
@@ -255,7 +256,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Product Plan to order
      * 
      */
-    @Export(name="planOptions", type=List.class, parameters={PrivateDatabasePlanOption.class})
+    @Export(name="planOptions", refs={List.class,PrivateDatabasePlanOption.class}, tree="[0,1]")
     private Output</* @Nullable */ List<PrivateDatabasePlanOption>> planOptions;
 
     /**
@@ -269,7 +270,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Private database service port
      * 
      */
-    @Export(name="port", type=Integer.class, parameters={})
+    @Export(name="port", refs={Integer.class}, tree="[0]")
     private Output<Integer> port;
 
     /**
@@ -283,7 +284,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Private database FTP port
      * 
      */
-    @Export(name="portFtp", type=Integer.class, parameters={})
+    @Export(name="portFtp", refs={Integer.class}, tree="[0]")
     private Output<Integer> portFtp;
 
     /**
@@ -297,7 +298,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Space allowed (in MB) on your private database
      * 
      */
-    @Export(name="quotaSize", type=Integer.class, parameters={})
+    @Export(name="quotaSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> quotaSize;
 
     /**
@@ -311,7 +312,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Sapce used (in MB) on your private database
      * 
      */
-    @Export(name="quotaUsed", type=Integer.class, parameters={})
+    @Export(name="quotaUsed", refs={Integer.class}, tree="[0]")
     private Output<Integer> quotaUsed;
 
     /**
@@ -325,7 +326,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Amount of ram (in MB) on your private database
      * 
      */
-    @Export(name="ram", type=Integer.class, parameters={})
+    @Export(name="ram", refs={Integer.class}, tree="[0]")
     private Output<Integer> ram;
 
     /**
@@ -339,7 +340,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Private database server name
      * 
      */
-    @Export(name="server", type=String.class, parameters={})
+    @Export(name="server", refs={String.class}, tree="[0]")
     private Output<String> server;
 
     /**
@@ -353,7 +354,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Service name
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -367,7 +368,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Private database state
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
@@ -381,7 +382,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Private database type
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -395,7 +396,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Private database available versions
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**
@@ -409,7 +410,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Private database version label
      * 
      */
-    @Export(name="versionLabel", type=String.class, parameters={})
+    @Export(name="versionLabel", refs={String.class}, tree="[0]")
     private Output<String> versionLabel;
 
     /**
@@ -423,7 +424,7 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
      * Private database version number
      * 
      */
-    @Export(name="versionNumber", type=Double.class, parameters={})
+    @Export(name="versionNumber", refs={Double.class}, tree="[0]")
     private Output<Double> versionNumber;
 
     /**

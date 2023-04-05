@@ -74,7 +74,7 @@ public class OpensearchPattern extends com.pulumi.resources.CustomResource {
      * Cluster ID.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -88,7 +88,7 @@ public class OpensearchPattern extends com.pulumi.resources.CustomResource {
      * Maximum number of index for this pattern.
      * 
      */
-    @Export(name="maxIndexCount", type=Integer.class, parameters={})
+    @Export(name="maxIndexCount", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> maxIndexCount;
 
     /**
@@ -102,7 +102,7 @@ public class OpensearchPattern extends com.pulumi.resources.CustomResource {
      * Pattern format.
      * 
      */
-    @Export(name="pattern", type=String.class, parameters={})
+    @Export(name="pattern", refs={String.class}, tree="[0]")
     private Output<String> pattern;
 
     /**
@@ -117,7 +117,7 @@ public class OpensearchPattern extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**

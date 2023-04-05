@@ -86,7 +86,7 @@ public class ServerInstallTask extends com.pulumi.resources.CustomResource {
      * If set, reboot the server on the specified boot id during destroy phase.
      * 
      */
-    @Export(name="bootidOnDestroy", type=Integer.class, parameters={})
+    @Export(name="bootidOnDestroy", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> bootidOnDestroy;
 
     /**
@@ -100,7 +100,7 @@ public class ServerInstallTask extends com.pulumi.resources.CustomResource {
      * Details of this task. (should be `Install asked`)
      * 
      */
-    @Export(name="comment", type=String.class, parameters={})
+    @Export(name="comment", refs={String.class}, tree="[0]")
     private Output<String> comment;
 
     /**
@@ -114,7 +114,7 @@ public class ServerInstallTask extends com.pulumi.resources.CustomResource {
      * see `details` block below.
      * 
      */
-    @Export(name="details", type=ServerInstallTaskDetails.class, parameters={})
+    @Export(name="details", refs={ServerInstallTaskDetails.class}, tree="[0]")
     private Output</* @Nullable */ ServerInstallTaskDetails> details;
 
     /**
@@ -128,7 +128,7 @@ public class ServerInstallTask extends com.pulumi.resources.CustomResource {
      * Completion date in RFC3339 format.
      * 
      */
-    @Export(name="doneDate", type=String.class, parameters={})
+    @Export(name="doneDate", refs={String.class}, tree="[0]")
     private Output<String> doneDate;
 
     /**
@@ -142,7 +142,7 @@ public class ServerInstallTask extends com.pulumi.resources.CustomResource {
      * Function name (should be `hardInstall`).
      * 
      */
-    @Export(name="function", type=String.class, parameters={})
+    @Export(name="function", refs={String.class}, tree="[0]")
     private Output<String> function;
 
     /**
@@ -156,7 +156,7 @@ public class ServerInstallTask extends com.pulumi.resources.CustomResource {
      * Last update in RFC3339 format.
      * 
      */
-    @Export(name="lastUpdate", type=String.class, parameters={})
+    @Export(name="lastUpdate", refs={String.class}, tree="[0]")
     private Output<String> lastUpdate;
 
     /**
@@ -170,7 +170,7 @@ public class ServerInstallTask extends com.pulumi.resources.CustomResource {
      * Partition scheme name.
      * 
      */
-    @Export(name="partitionSchemeName", type=String.class, parameters={})
+    @Export(name="partitionSchemeName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> partitionSchemeName;
 
     /**
@@ -184,7 +184,7 @@ public class ServerInstallTask extends com.pulumi.resources.CustomResource {
      * The service_name of your dedicated server.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -198,7 +198,7 @@ public class ServerInstallTask extends com.pulumi.resources.CustomResource {
      * Task creation date in RFC3339 format.
      * 
      */
-    @Export(name="startDate", type=String.class, parameters={})
+    @Export(name="startDate", refs={String.class}, tree="[0]")
     private Output<String> startDate;
 
     /**
@@ -212,7 +212,7 @@ public class ServerInstallTask extends com.pulumi.resources.CustomResource {
      * Task status (should be `done`)
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -226,7 +226,7 @@ public class ServerInstallTask extends com.pulumi.resources.CustomResource {
      * Template name.
      * 
      */
-    @Export(name="templateName", type=String.class, parameters={})
+    @Export(name="templateName", refs={String.class}, tree="[0]")
     private Output<String> templateName;
 
     /**

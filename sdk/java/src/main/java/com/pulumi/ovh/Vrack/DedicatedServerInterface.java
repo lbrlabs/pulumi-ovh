@@ -60,7 +60,7 @@ public class DedicatedServerInterface extends com.pulumi.resources.CustomResourc
      * The id of dedicated server network interface.
      * 
      */
-    @Export(name="interfaceId", type=String.class, parameters={})
+    @Export(name="interfaceId", refs={String.class}, tree="[0]")
     private Output<String> interfaceId;
 
     /**
@@ -75,7 +75,7 @@ public class DedicatedServerInterface extends com.pulumi.resources.CustomResourc
      * the `OVH_VRACK_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**

@@ -115,7 +115,7 @@ public class HttpRouteRule extends com.pulumi.resources.CustomResource {
      * Human readable name for your rule, this field is for you
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -129,7 +129,7 @@ public class HttpRouteRule extends com.pulumi.resources.CustomResource {
      * Name of the field to match like &#34;protocol&#34; or &#34;host&#34;. See &#34;/ipLoadbalancing/{serviceName}/availableRouteRules&#34; for a list of available rules
      * 
      */
-    @Export(name="field", type=String.class, parameters={})
+    @Export(name="field", refs={String.class}, tree="[0]")
     private Output<String> field;
 
     /**
@@ -143,7 +143,7 @@ public class HttpRouteRule extends com.pulumi.resources.CustomResource {
      * Matching operator. Not all operators are available for all fields. See &#34;/ipLoadbalancing/{serviceName}/availableRouteRules&#34;
      * 
      */
-    @Export(name="match", type=String.class, parameters={})
+    @Export(name="match", refs={String.class}, tree="[0]")
     private Output<String> match;
 
     /**
@@ -157,7 +157,7 @@ public class HttpRouteRule extends com.pulumi.resources.CustomResource {
      * Invert the matching operator effect
      * 
      */
-    @Export(name="negate", type=Boolean.class, parameters={})
+    @Export(name="negate", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> negate;
 
     /**
@@ -171,7 +171,7 @@ public class HttpRouteRule extends com.pulumi.resources.CustomResource {
      * Value to match against this match. Interpretation if this field depends on the match and field
      * 
      */
-    @Export(name="pattern", type=String.class, parameters={})
+    @Export(name="pattern", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> pattern;
 
     /**
@@ -185,7 +185,7 @@ public class HttpRouteRule extends com.pulumi.resources.CustomResource {
      * The route to apply this rule
      * 
      */
-    @Export(name="routeId", type=String.class, parameters={})
+    @Export(name="routeId", refs={String.class}, tree="[0]")
     private Output<String> routeId;
 
     /**
@@ -199,7 +199,7 @@ public class HttpRouteRule extends com.pulumi.resources.CustomResource {
      * The internal name of your IP load balancing
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -213,7 +213,7 @@ public class HttpRouteRule extends com.pulumi.resources.CustomResource {
      * Name of sub-field, if applicable. This may be a Cookie or Header name for instance
      * 
      */
-    @Export(name="subField", type=String.class, parameters={})
+    @Export(name="subField", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> subField;
 
     /**

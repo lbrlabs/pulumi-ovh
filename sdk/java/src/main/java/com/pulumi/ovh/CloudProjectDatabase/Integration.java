@@ -88,7 +88,7 @@ public class Integration extends com.pulumi.resources.CustomResource {
      * Cluster ID.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -102,7 +102,7 @@ public class Integration extends com.pulumi.resources.CustomResource {
      * ID of the destination service.
      * 
      */
-    @Export(name="destinationServiceId", type=String.class, parameters={})
+    @Export(name="destinationServiceId", refs={String.class}, tree="[0]")
     private Output<String> destinationServiceId;
 
     /**
@@ -117,7 +117,7 @@ public class Integration extends com.pulumi.resources.CustomResource {
      * All engines available exept `mongodb`.
      * 
      */
-    @Export(name="engine", type=String.class, parameters={})
+    @Export(name="engine", refs={String.class}, tree="[0]")
     private Output<String> engine;
 
     /**
@@ -132,7 +132,7 @@ public class Integration extends com.pulumi.resources.CustomResource {
      * Parameters for the integration.
      * 
      */
-    @Export(name="parameters", type=Map.class, parameters={String.class, String.class})
+    @Export(name="parameters", refs={Map.class,String.class}, tree="[0,1,1]")
     private Output</* @Nullable */ Map<String,String>> parameters;
 
     /**
@@ -147,7 +147,7 @@ public class Integration extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -162,7 +162,7 @@ public class Integration extends com.pulumi.resources.CustomResource {
      * ID of the source service.
      * 
      */
-    @Export(name="sourceServiceId", type=String.class, parameters={})
+    @Export(name="sourceServiceId", refs={String.class}, tree="[0]")
     private Output<String> sourceServiceId;
 
     /**
@@ -176,7 +176,7 @@ public class Integration extends com.pulumi.resources.CustomResource {
      * Current status of the integration.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -191,7 +191,7 @@ public class Integration extends com.pulumi.resources.CustomResource {
      * Available types:
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

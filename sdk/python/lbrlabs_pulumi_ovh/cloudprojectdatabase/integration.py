@@ -297,6 +297,7 @@ class Integration(pulumi.CustomResource):
         ## Example Usage
 
         Push PostgreSQL logs in an OpenSearch DB:
+
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh
@@ -354,6 +355,7 @@ class Integration(pulumi.CustomResource):
         ## Example Usage
 
         Push PostgreSQL logs in an OpenSearch DB:
+
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh

@@ -56,7 +56,7 @@ public class FailoverIpAttach extends com.pulumi.resources.CustomResource {
      * The IP block
      * 
      */
-    @Export(name="block", type=String.class, parameters={})
+    @Export(name="block", refs={String.class}, tree="[0]")
     private Output<String> block;
 
     /**
@@ -70,7 +70,7 @@ public class FailoverIpAttach extends com.pulumi.resources.CustomResource {
      * Ip continent
      * 
      */
-    @Export(name="continentCode", type=String.class, parameters={})
+    @Export(name="continentCode", refs={String.class}, tree="[0]")
     private Output<String> continentCode;
 
     /**
@@ -84,7 +84,7 @@ public class FailoverIpAttach extends com.pulumi.resources.CustomResource {
      * Ip location
      * 
      */
-    @Export(name="geoLoc", type=String.class, parameters={})
+    @Export(name="geoLoc", refs={String.class}, tree="[0]")
     private Output<String> geoLoc;
 
     /**
@@ -98,7 +98,7 @@ public class FailoverIpAttach extends com.pulumi.resources.CustomResource {
      * The failover ip address to attach
      * 
      */
-    @Export(name="ip", type=String.class, parameters={})
+    @Export(name="ip", refs={String.class}, tree="[0]")
     private Output<String> ip;
 
     /**
@@ -112,7 +112,7 @@ public class FailoverIpAttach extends com.pulumi.resources.CustomResource {
      * Current operation progress in percent
      * 
      */
-    @Export(name="progress", type=Integer.class, parameters={})
+    @Export(name="progress", refs={Integer.class}, tree="[0]")
     private Output<Integer> progress;
 
     /**
@@ -126,7 +126,7 @@ public class FailoverIpAttach extends com.pulumi.resources.CustomResource {
      * The GUID of an instance to which the failover IP address is be attached
      * 
      */
-    @Export(name="routedTo", type=String.class, parameters={})
+    @Export(name="routedTo", refs={String.class}, tree="[0]")
     private Output<String> routedTo;
 
     /**
@@ -141,7 +141,7 @@ public class FailoverIpAttach extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -156,7 +156,7 @@ public class FailoverIpAttach extends com.pulumi.resources.CustomResource {
      * Ip status, can be `ok` or `operationPending`
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -170,7 +170,7 @@ public class FailoverIpAttach extends com.pulumi.resources.CustomResource {
      * IP sub type
      * 
      */
-    @Export(name="subType", type=String.class, parameters={})
+    @Export(name="subType", refs={String.class}, tree="[0]")
     private Output<String> subType;
 
     /**

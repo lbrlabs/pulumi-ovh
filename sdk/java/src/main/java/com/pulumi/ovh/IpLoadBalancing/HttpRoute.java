@@ -68,7 +68,7 @@ public class HttpRoute extends com.pulumi.resources.CustomResource {
      * Action triggered when all rules match
      * 
      */
-    @Export(name="action", type=HttpRouteAction.class, parameters={})
+    @Export(name="action", refs={HttpRouteAction.class}, tree="[0]")
     private Output<HttpRouteAction> action;
 
     /**
@@ -82,7 +82,7 @@ public class HttpRoute extends com.pulumi.resources.CustomResource {
      * Human readable name for your route, this field is for you
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -96,7 +96,7 @@ public class HttpRoute extends com.pulumi.resources.CustomResource {
      * Route traffic for this frontend
      * 
      */
-    @Export(name="frontendId", type=Integer.class, parameters={})
+    @Export(name="frontendId", refs={Integer.class}, tree="[0]")
     private Output<Integer> frontendId;
 
     /**
@@ -110,7 +110,7 @@ public class HttpRoute extends com.pulumi.resources.CustomResource {
      * List of rules to match to trigger action
      * 
      */
-    @Export(name="rules", type=List.class, parameters={HttpRouteRule.class})
+    @Export(name="rules", refs={List.class,HttpRouteRule.class}, tree="[0,1]")
     private Output<List<HttpRouteRule>> rules;
 
     /**
@@ -124,7 +124,7 @@ public class HttpRoute extends com.pulumi.resources.CustomResource {
      * The internal name of your IP load balancing
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -138,7 +138,7 @@ public class HttpRoute extends com.pulumi.resources.CustomResource {
      * HTTP status code for &#34;redirect&#34; and &#34;reject&#34; actions
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -152,7 +152,7 @@ public class HttpRoute extends com.pulumi.resources.CustomResource {
      * Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
      * 
      */
-    @Export(name="weight", type=Integer.class, parameters={})
+    @Export(name="weight", refs={Integer.class}, tree="[0]")
     private Output<Integer> weight;
 
     /**

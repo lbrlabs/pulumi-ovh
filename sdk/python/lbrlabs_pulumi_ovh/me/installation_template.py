@@ -23,7 +23,7 @@ class InstallationTemplateArgs:
                  remove_default_partition_schemes: Optional[pulumi.Input[bool]] = None):
         """
         The set of arguments for constructing a InstallationTemplate resource.
-        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
+        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by `get_installation_templates` datasource.
         :param pulumi.Input[str] default_language: The default language of this template.
         :param pulumi.Input[str] template_name: This template name.
         :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation.
@@ -40,7 +40,7 @@ class InstallationTemplateArgs:
     @pulumi.getter(name="baseTemplateName")
     def base_template_name(self) -> pulumi.Input[str]:
         """
-        The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
+        The name of an existing installation template, choose one among the list given by `get_installation_templates` datasource.
         """
         return pulumi.get(self, "base_template_name")
 
@@ -120,7 +120,7 @@ class _InstallationTemplateState:
         """
         Input properties used for looking up and filtering InstallationTemplate resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] available_languages: List of all language available for this template.
-        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
+        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by `get_installation_templates` datasource.
         :param pulumi.Input[bool] beta: This distribution is new and, although tested and functional, may still display odd behaviour.
         :param pulumi.Input[int] bit_format: This template bit format (32 or 64).
         :param pulumi.Input[str] category: Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
@@ -196,7 +196,7 @@ class _InstallationTemplateState:
     @pulumi.getter(name="baseTemplateName")
     def base_template_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
+        The name of an existing installation template, choose one among the list given by `get_installation_templates` datasource.
         """
         return pulumi.get(self, "base_template_name")
 
@@ -454,7 +454,7 @@ class InstallationTemplate(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
+        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by `get_installation_templates` datasource.
         :param pulumi.Input[str] default_language: The default language of this template.
         :param pulumi.Input[bool] remove_default_partition_schemes: Remove default partition schemes at creation.
         :param pulumi.Input[str] template_name: This template name.
@@ -581,7 +581,7 @@ class InstallationTemplate(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] available_languages: List of all language available for this template.
-        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
+        :param pulumi.Input[str] base_template_name: The name of an existing installation template, choose one among the list given by `get_installation_templates` datasource.
         :param pulumi.Input[bool] beta: This distribution is new and, although tested and functional, may still display odd behaviour.
         :param pulumi.Input[int] bit_format: This template bit format (32 or 64).
         :param pulumi.Input[str] category: Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
@@ -638,7 +638,7 @@ class InstallationTemplate(pulumi.CustomResource):
     @pulumi.getter(name="baseTemplateName")
     def base_template_name(self) -> pulumi.Output[str]:
         """
-        The name of an existing installation template, choose one among the list given by _get_installation_templates_ datasource.
+        The name of an existing installation template, choose one among the list given by `get_installation_templates` datasource.
         """
         return pulumi.get(self, "base_template_name")
 

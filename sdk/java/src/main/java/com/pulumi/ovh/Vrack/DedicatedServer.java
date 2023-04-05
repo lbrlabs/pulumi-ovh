@@ -57,7 +57,7 @@ public class DedicatedServer extends com.pulumi.resources.CustomResource {
      * The id of the dedicated server.
      * 
      */
-    @Export(name="serverId", type=String.class, parameters={})
+    @Export(name="serverId", refs={String.class}, tree="[0]")
     private Output<String> serverId;
 
     /**
@@ -72,7 +72,7 @@ public class DedicatedServer extends com.pulumi.resources.CustomResource {
      * the `OVH_VRACK_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**

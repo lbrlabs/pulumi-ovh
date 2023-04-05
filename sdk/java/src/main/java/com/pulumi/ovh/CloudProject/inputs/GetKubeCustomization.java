@@ -5,6 +5,7 @@ package com.pulumi.ovh.CloudProject.inputs;
 
 import com.pulumi.core.annotations.Import;
 import com.pulumi.ovh.CloudProject.inputs.GetKubeCustomizationApiserver;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -12,17 +13,33 @@ public final class GetKubeCustomization extends com.pulumi.resources.InvokeArgs 
 
     public static final GetKubeCustomization Empty = new GetKubeCustomization();
 
-    @Import(name="apiserver", required=true)
-    private GetKubeCustomizationApiserver apiserver;
+    /**
+     * Kubernetes API server customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    @Import(name="apiservers", required=true)
+    private List<GetKubeCustomizationApiserver> apiservers;
 
-    public GetKubeCustomizationApiserver apiserver() {
-        return this.apiserver;
+    /**
+     * @return Kubernetes API server customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    public List<GetKubeCustomizationApiserver> apiservers() {
+        return this.apiservers;
     }
 
     private GetKubeCustomization() {}
 
     private GetKubeCustomization(GetKubeCustomization $) {
-        this.apiserver = $.apiserver;
+        this.apiservers = $.apiservers;
     }
 
     public static Builder builder() {
@@ -43,13 +60,37 @@ public final class GetKubeCustomization extends com.pulumi.resources.InvokeArgs 
             $ = new GetKubeCustomization(Objects.requireNonNull(defaults));
         }
 
-        public Builder apiserver(GetKubeCustomizationApiserver apiserver) {
-            $.apiserver = apiserver;
+        /**
+         * @param apiservers Kubernetes API server customization
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Use customization_apiserver instead
+         * 
+         */
+        @Deprecated /* Use customization_apiserver instead */
+        public Builder apiservers(List<GetKubeCustomizationApiserver> apiservers) {
+            $.apiservers = apiservers;
             return this;
         }
 
+        /**
+         * @param apiservers Kubernetes API server customization
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Use customization_apiserver instead
+         * 
+         */
+        @Deprecated /* Use customization_apiserver instead */
+        public Builder apiservers(GetKubeCustomizationApiserver... apiservers) {
+            return apiservers(List.of(apiservers));
+        }
+
         public GetKubeCustomization build() {
-            $.apiserver = Objects.requireNonNull($.apiserver, "expected parameter 'apiserver' to be non-null");
+            $.apiservers = Objects.requireNonNull($.apiservers, "expected parameter 'apiservers' to be non-null");
             return $;
         }
     }

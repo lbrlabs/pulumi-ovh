@@ -21,6 +21,8 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "ovh:Dbaas/logsCluster:LogsCluster":
+		r = &LogsCluster{}
 	case "ovh:Dbaas/logsInput:LogsInput":
 		r = &LogsInput{}
 	case "ovh:Dbaas/logsOutputGraylogStream:LogsOutputGraylogStream":
@@ -38,6 +40,11 @@ func init() {
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"ovh",
+		"Dbaas/logsCluster",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"ovh",
 		"Dbaas/logsInput",

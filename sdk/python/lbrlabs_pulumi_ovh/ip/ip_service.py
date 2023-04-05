@@ -17,23 +17,27 @@ __all__ = ['IpServiceArgs', 'IpService']
 class IpServiceArgs:
     def __init__(__self__, *,
                  ovh_subsidiary: pulumi.Input[str],
-                 payment_mean: pulumi.Input[str],
                  plan: pulumi.Input['IpServicePlanArgs'],
                  description: Optional[pulumi.Input[str]] = None,
+                 payment_mean: Optional[pulumi.Input[str]] = None,
                  plan_options: Optional[pulumi.Input[Sequence[pulumi.Input['IpServicePlanOptionArgs']]]] = None):
         """
         The set of arguments for constructing a IpService resource.
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
         :param pulumi.Input['IpServicePlanArgs'] plan: Product Plan to order
         :param pulumi.Input[str] description: Custom description on your ip.
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[Sequence[pulumi.Input['IpServicePlanOptionArgs']]] plan_options: Product Plan to order
         """
         pulumi.set(__self__, "ovh_subsidiary", ovh_subsidiary)
-        pulumi.set(__self__, "payment_mean", payment_mean)
         pulumi.set(__self__, "plan", plan)
         if description is not None:
             pulumi.set(__self__, "description", description)
+        if payment_mean is not None:
+            warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+            pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+        if payment_mean is not None:
+            pulumi.set(__self__, "payment_mean", payment_mean)
         if plan_options is not None:
             pulumi.set(__self__, "plan_options", plan_options)
 
@@ -48,18 +52,6 @@ class IpServiceArgs:
     @ovh_subsidiary.setter
     def ovh_subsidiary(self, value: pulumi.Input[str]):
         pulumi.set(self, "ovh_subsidiary", value)
-
-    @property
-    @pulumi.getter(name="paymentMean")
-    def payment_mean(self) -> pulumi.Input[str]:
-        """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-        """
-        return pulumi.get(self, "payment_mean")
-
-    @payment_mean.setter
-    def payment_mean(self, value: pulumi.Input[str]):
-        pulumi.set(self, "payment_mean", value)
 
     @property
     @pulumi.getter
@@ -84,6 +76,18 @@ class IpServiceArgs:
     @description.setter
     def description(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "description", value)
+
+    @property
+    @pulumi.getter(name="paymentMean")
+    def payment_mean(self) -> Optional[pulumi.Input[str]]:
+        """
+        Ovh payment mode
+        """
+        return pulumi.get(self, "payment_mean")
+
+    @payment_mean.setter
+    def payment_mean(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "payment_mean", value)
 
     @property
     @pulumi.getter(name="planOptions")
@@ -123,7 +127,7 @@ class _IpServiceState:
         :param pulumi.Input[Sequence[pulumi.Input['IpServiceOrderArgs']]] orders: Details about an Order
         :param pulumi.Input[str] organisation_id: IP block organisation Id
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input['IpServicePlanArgs'] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input['IpServicePlanOptionArgs']]] plan_options: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input['IpServiceRoutedToArgs']]] routed_tos: Routage information
@@ -144,6 +148,9 @@ class _IpServiceState:
             pulumi.set(__self__, "organisation_id", organisation_id)
         if ovh_subsidiary is not None:
             pulumi.set(__self__, "ovh_subsidiary", ovh_subsidiary)
+        if payment_mean is not None:
+            warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+            pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
         if payment_mean is not None:
             pulumi.set(__self__, "payment_mean", payment_mean)
         if plan is not None:
@@ -245,7 +252,7 @@ class _IpServiceState:
     @pulumi.getter(name="paymentMean")
     def payment_mean(self) -> Optional[pulumi.Input[str]]:
         """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        Ovh payment mode
         """
         return pulumi.get(self, "payment_mean")
 
@@ -326,17 +333,6 @@ class IpService(pulumi.CustomResource):
                  plan_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpServicePlanOptionArgs']]]]] = None,
                  __props__=None):
         """
-        Orders an ip service.
-
-        ## Important
-
-        This resource orders an OVHcloud product for a long period of time and may generate heavy costs !
-        Use with caution.
-
-        __NOTE__ 1: the "default-payment-mean" will scan your registered bank accounts, credit card and paypal payment means to find your default payment mean.
-
-        __NOTE__ 2: this resource is in beta state. Use with caution.
-
         ## Example Usage
 
         ```python
@@ -352,7 +348,6 @@ class IpService(pulumi.CustomResource):
             plan_code="ip-v4-s30-ripe")
         ipblock_ip_service = ovh.ip.IpService("ipblockIpService",
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="ovh-account",
             description="my ip block",
             plan=ovh.ip.IpServicePlanArgs(
                 duration=ipblock_cart_product_plan.selected_prices[0].duration,
@@ -369,7 +364,7 @@ class IpService(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] description: Custom description on your ip.
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[pulumi.InputType['IpServicePlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpServicePlanOptionArgs']]]] plan_options: Product Plan to order
         """
@@ -380,17 +375,6 @@ class IpService(pulumi.CustomResource):
                  args: IpServiceArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Orders an ip service.
-
-        ## Important
-
-        This resource orders an OVHcloud product for a long period of time and may generate heavy costs !
-        Use with caution.
-
-        __NOTE__ 1: the "default-payment-mean" will scan your registered bank accounts, credit card and paypal payment means to find your default payment mean.
-
-        __NOTE__ 2: this resource is in beta state. Use with caution.
-
         ## Example Usage
 
         ```python
@@ -406,7 +390,6 @@ class IpService(pulumi.CustomResource):
             plan_code="ip-v4-s30-ripe")
         ipblock_ip_service = ovh.ip.IpService("ipblockIpService",
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="ovh-account",
             description="my ip block",
             plan=ovh.ip.IpServicePlanArgs(
                 duration=ipblock_cart_product_plan.selected_prices[0].duration,
@@ -452,8 +435,9 @@ class IpService(pulumi.CustomResource):
             if ovh_subsidiary is None and not opts.urn:
                 raise TypeError("Missing required property 'ovh_subsidiary'")
             __props__.__dict__["ovh_subsidiary"] = ovh_subsidiary
-            if payment_mean is None and not opts.urn:
-                raise TypeError("Missing required property 'payment_mean'")
+            if payment_mean is not None and not opts.urn:
+                warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+                pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
             __props__.__dict__["payment_mean"] = payment_mean
             if plan is None and not opts.urn:
                 raise TypeError("Missing required property 'plan'")
@@ -504,7 +488,7 @@ class IpService(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpServiceOrderArgs']]]] orders: Details about an Order
         :param pulumi.Input[str] organisation_id: IP block organisation Id
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[pulumi.InputType['IpServicePlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpServicePlanOptionArgs']]]] plan_options: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpServiceRoutedToArgs']]]] routed_tos: Routage information
@@ -588,9 +572,9 @@ class IpService(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="paymentMean")
-    def payment_mean(self) -> pulumi.Output[str]:
+    def payment_mean(self) -> pulumi.Output[Optional[str]]:
         """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        Ovh payment mode
         """
         return pulumi.get(self, "payment_mean")
 

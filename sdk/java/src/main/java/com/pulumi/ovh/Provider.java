@@ -27,7 +27,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The OVH API Application Key.
      * 
      */
-    @Export(name="applicationKey", type=String.class, parameters={})
+    @Export(name="applicationKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> applicationKey;
 
     /**
@@ -41,7 +41,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The OVH API Application Secret.
      * 
      */
-    @Export(name="applicationSecret", type=String.class, parameters={})
+    @Export(name="applicationSecret", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> applicationSecret;
 
     /**
@@ -55,7 +55,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The OVH API Consumer key.
      * 
      */
-    @Export(name="consumerKey", type=String.class, parameters={})
+    @Export(name="consumerKey", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> consumerKey;
 
     /**
@@ -69,7 +69,7 @@ public class Provider extends com.pulumi.resources.ProviderResource {
      * The OVH API endpoint to target (ex: &#34;ovh-eu&#34;).
      * 
      */
-    @Export(name="endpoint", type=String.class, parameters={})
+    @Export(name="endpoint", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> endpoint;
 
     /**

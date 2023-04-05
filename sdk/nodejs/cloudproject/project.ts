@@ -7,12 +7,6 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Orders a public cloud project.
- *
- * ## Important
- *
- * This resource is in beta state. Use with caution.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -33,7 +27,6 @@ import * as utilities from "../utilities";
  * const myCloudProject = new ovh.cloudproject.Project("myCloudProject", {
  *     ovhSubsidiary: mycart.then(mycart => mycart.ovhSubsidiary),
  *     description: "my cloud project",
- *     paymentMean: "fidelity",
  *     plan: {
  *         duration: cloud.then(cloud => cloud.selectedPrices?.[0]?.duration),
  *         planCode: cloud.then(cloud => cloud.planCode),
@@ -94,9 +87,11 @@ export class Project extends pulumi.CustomResource {
      */
     public readonly ovhSubsidiary!: pulumi.Output<string>;
     /**
-     * OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+     * Ovh payment mode
+     *
+     * @deprecated This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      */
-    public readonly paymentMean!: pulumi.Output<string>;
+    public readonly paymentMean!: pulumi.Output<string | undefined>;
     /**
      * Product Plan to order
      */
@@ -146,9 +141,6 @@ export class Project extends pulumi.CustomResource {
             if ((!args || args.ovhSubsidiary === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ovhSubsidiary'");
             }
-            if ((!args || args.paymentMean === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'paymentMean'");
-            }
             if ((!args || args.plan === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'plan'");
             }
@@ -186,7 +178,9 @@ export interface ProjectState {
      */
     ovhSubsidiary?: pulumi.Input<string>;
     /**
-     * OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+     * Ovh payment mode
+     *
+     * @deprecated This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      */
     paymentMean?: pulumi.Input<string>;
     /**
@@ -224,9 +218,11 @@ export interface ProjectArgs {
      */
     ovhSubsidiary: pulumi.Input<string>;
     /**
-     * OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+     * Ovh payment mode
+     *
+     * @deprecated This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      */
-    paymentMean: pulumi.Input<string>;
+    paymentMean?: pulumi.Input<string>;
     /**
      * Product Plan to order
      */

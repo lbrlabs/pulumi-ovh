@@ -22,7 +22,7 @@ import * as utilities from "../utilities";
  * });
  * const farmname = new ovh.iploadbalancing.TcpFarm("farmname", {
  *     displayName: "ingress-8080-gra",
- *     serviceName: lb.then(lb => lb.id),
+ *     serviceName: lb.then(lb => lb.serviceName),
  *     zone: "GRA",
  * });
  * ```

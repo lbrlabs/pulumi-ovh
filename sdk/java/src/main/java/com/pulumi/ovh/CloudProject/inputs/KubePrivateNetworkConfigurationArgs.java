@@ -14,16 +14,32 @@ public final class KubePrivateNetworkConfigurationArgs extends com.pulumi.resour
 
     public static final KubePrivateNetworkConfigurationArgs Empty = new KubePrivateNetworkConfigurationArgs();
 
+    /**
+     * If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+     * 
+     */
     @Import(name="defaultVrackGateway", required=true)
     private Output<String> defaultVrackGateway;
 
+    /**
+     * @return If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+     * 
+     */
     public Output<String> defaultVrackGateway() {
         return this.defaultVrackGateway;
     }
 
+    /**
+     * Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
+     * 
+     */
     @Import(name="privateNetworkRoutingAsDefault", required=true)
     private Output<Boolean> privateNetworkRoutingAsDefault;
 
+    /**
+     * @return Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
+     * 
+     */
     public Output<Boolean> privateNetworkRoutingAsDefault() {
         return this.privateNetworkRoutingAsDefault;
     }
@@ -53,20 +69,44 @@ public final class KubePrivateNetworkConfigurationArgs extends com.pulumi.resour
             $ = new KubePrivateNetworkConfigurationArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param defaultVrackGateway If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultVrackGateway(Output<String> defaultVrackGateway) {
             $.defaultVrackGateway = defaultVrackGateway;
             return this;
         }
 
+        /**
+         * @param defaultVrackGateway If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+         * 
+         * @return builder
+         * 
+         */
         public Builder defaultVrackGateway(String defaultVrackGateway) {
             return defaultVrackGateway(Output.of(defaultVrackGateway));
         }
 
+        /**
+         * @param privateNetworkRoutingAsDefault Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder privateNetworkRoutingAsDefault(Output<Boolean> privateNetworkRoutingAsDefault) {
             $.privateNetworkRoutingAsDefault = privateNetworkRoutingAsDefault;
             return this;
         }
 
+        /**
+         * @param privateNetworkRoutingAsDefault Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
+         * 
+         * @return builder
+         * 
+         */
         public Builder privateNetworkRoutingAsDefault(Boolean privateNetworkRoutingAsDefault) {
             return privateNetworkRoutingAsDefault(Output.of(privateNetworkRoutingAsDefault));
         }

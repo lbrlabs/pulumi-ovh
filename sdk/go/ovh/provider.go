@@ -34,16 +34,16 @@ func NewProvider(ctx *pulumi.Context,
 		args = &ProviderArgs{}
 	}
 
-	if isZero(args.ApplicationKey) {
+	if args.ApplicationKey == nil {
 		args.ApplicationKey = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_APPLICATION_KEY").(string))
 	}
-	if isZero(args.ApplicationSecret) {
+	if args.ApplicationSecret == nil {
 		args.ApplicationSecret = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_APPLICATION_SECRET").(string))
 	}
-	if isZero(args.ConsumerKey) {
+	if args.ConsumerKey == nil {
 		args.ConsumerKey = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_CONSUMER_KEY").(string))
 	}
-	if isZero(args.Endpoint) {
+	if args.Endpoint == nil {
 		args.Endpoint = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_ENDPOINT").(string))
 	}
 	if args.ConsumerKey != nil {

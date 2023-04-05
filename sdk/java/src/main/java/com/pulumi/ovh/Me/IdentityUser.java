@@ -59,7 +59,7 @@ public class IdentityUser extends com.pulumi.resources.CustomResource {
      * Creation date of this user.
      * 
      */
-    @Export(name="creation", type=String.class, parameters={})
+    @Export(name="creation", refs={String.class}, tree="[0]")
     private Output<String> creation;
 
     /**
@@ -73,7 +73,7 @@ public class IdentityUser extends com.pulumi.resources.CustomResource {
      * User description.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -87,7 +87,7 @@ public class IdentityUser extends com.pulumi.resources.CustomResource {
      * User&#39;s email.
      * 
      */
-    @Export(name="email", type=String.class, parameters={})
+    @Export(name="email", refs={String.class}, tree="[0]")
     private Output<String> email;
 
     /**
@@ -101,7 +101,7 @@ public class IdentityUser extends com.pulumi.resources.CustomResource {
      * User&#39;s group.
      * 
      */
-    @Export(name="group", type=String.class, parameters={})
+    @Export(name="group", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> group;
 
     /**
@@ -115,7 +115,7 @@ public class IdentityUser extends com.pulumi.resources.CustomResource {
      * Last update of this user.
      * 
      */
-    @Export(name="lastUpdate", type=String.class, parameters={})
+    @Export(name="lastUpdate", refs={String.class}, tree="[0]")
     private Output<String> lastUpdate;
 
     /**
@@ -129,7 +129,7 @@ public class IdentityUser extends com.pulumi.resources.CustomResource {
      * User&#39;s login suffix.
      * 
      */
-    @Export(name="login", type=String.class, parameters={})
+    @Export(name="login", refs={String.class}, tree="[0]")
     private Output<String> login;
 
     /**
@@ -143,7 +143,7 @@ public class IdentityUser extends com.pulumi.resources.CustomResource {
      * User&#39;s password.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
@@ -157,7 +157,7 @@ public class IdentityUser extends com.pulumi.resources.CustomResource {
      * When the user changed his password for the last time.
      * 
      */
-    @Export(name="passwordLastUpdate", type=String.class, parameters={})
+    @Export(name="passwordLastUpdate", refs={String.class}, tree="[0]")
     private Output<String> passwordLastUpdate;
 
     /**
@@ -171,7 +171,7 @@ public class IdentityUser extends com.pulumi.resources.CustomResource {
      * Current user&#39;s status.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

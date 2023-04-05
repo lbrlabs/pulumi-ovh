@@ -64,7 +64,7 @@ public class ServerUpdate extends com.pulumi.resources.CustomResource {
      * boot id of the server
      * 
      */
-    @Export(name="bootId", type=Integer.class, parameters={})
+    @Export(name="bootId", refs={Integer.class}, tree="[0]")
     private Output<Integer> bootId;
 
     /**
@@ -78,7 +78,7 @@ public class ServerUpdate extends com.pulumi.resources.CustomResource {
      * Icmp monitoring state
      * 
      */
-    @Export(name="monitoring", type=Boolean.class, parameters={})
+    @Export(name="monitoring", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> monitoring;
 
     /**
@@ -92,7 +92,7 @@ public class ServerUpdate extends com.pulumi.resources.CustomResource {
      * The service_name of your dedicated server.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -106,7 +106,7 @@ public class ServerUpdate extends com.pulumi.resources.CustomResource {
      * error, hacked, hackedBlocked, ok
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**

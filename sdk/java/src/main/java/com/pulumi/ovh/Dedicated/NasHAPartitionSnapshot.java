@@ -63,7 +63,7 @@ public class NasHAPartitionSnapshot extends com.pulumi.resources.CustomResource 
      * name of the partition
      * 
      */
-    @Export(name="partitionName", type=String.class, parameters={})
+    @Export(name="partitionName", refs={String.class}, tree="[0]")
     private Output<String> partitionName;
 
     /**
@@ -77,7 +77,7 @@ public class NasHAPartitionSnapshot extends com.pulumi.resources.CustomResource 
      * The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -91,7 +91,7 @@ public class NasHAPartitionSnapshot extends com.pulumi.resources.CustomResource 
      * Snapshot interval, allowed : day-1, day-2, day-3, day-7, hour-1, hour-6
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

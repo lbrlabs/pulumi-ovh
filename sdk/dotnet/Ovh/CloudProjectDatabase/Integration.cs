@@ -20,8 +20,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
     /// ## Example Usage
     /// 
     /// Push PostgreSQL logs in an OpenSearch DB:
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// using Ovh = Pulumi.Ovh;

@@ -10,13 +10,29 @@ import java.util.Objects;
 
 @CustomType
 public final class KubePrivateNetworkConfiguration {
+    /**
+     * @return If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+     * 
+     */
     private String defaultVrackGateway;
+    /**
+     * @return Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
+     * 
+     */
     private Boolean privateNetworkRoutingAsDefault;
 
     private KubePrivateNetworkConfiguration() {}
+    /**
+     * @return If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+     * 
+     */
     public String defaultVrackGateway() {
         return this.defaultVrackGateway;
     }
+    /**
+     * @return Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
+     * 
+     */
     public Boolean privateNetworkRoutingAsDefault() {
         return this.privateNetworkRoutingAsDefault;
     }

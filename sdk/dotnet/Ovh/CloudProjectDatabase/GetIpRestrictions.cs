@@ -20,8 +20,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// {{% example %}}
         /// 
         /// To get the list of IP restriction on a database cluster service:
+        /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 
@@ -54,8 +56,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// {{% example %}}
         /// 
         /// To get the list of IP restriction on a database cluster service:
+        /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 

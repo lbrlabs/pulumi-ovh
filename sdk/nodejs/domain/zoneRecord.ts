@@ -72,7 +72,7 @@ export class ZoneRecord extends pulumi.CustomResource {
      */
     public readonly target!: pulumi.Output<string>;
     /**
-     * The TTL of the record
+     * The TTL of the record, it shall be >= to 60.
      */
     public readonly ttl!: pulumi.Output<number | undefined>;
     /**
@@ -137,7 +137,7 @@ export interface ZoneRecordState {
      */
     target?: pulumi.Input<string>;
     /**
-     * The TTL of the record
+     * The TTL of the record, it shall be >= to 60.
      */
     ttl?: pulumi.Input<number>;
     /**
@@ -163,7 +163,7 @@ export interface ZoneRecordArgs {
      */
     target: pulumi.Input<string>;
     /**
-     * The TTL of the record
+     * The TTL of the record, it shall be >= to 60.
      */
     ttl?: pulumi.Input<number>;
     /**

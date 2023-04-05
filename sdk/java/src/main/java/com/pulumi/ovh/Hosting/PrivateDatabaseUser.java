@@ -64,7 +64,7 @@ public class PrivateDatabaseUser extends com.pulumi.resources.CustomResource {
      * Password for the new user (alphanumeric, minimum one number and 8 characters minimum)
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
@@ -78,7 +78,7 @@ public class PrivateDatabaseUser extends com.pulumi.resources.CustomResource {
      * The internal name of your private database.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -92,7 +92,7 @@ public class PrivateDatabaseUser extends com.pulumi.resources.CustomResource {
      * User name used to connect on your databases
      * 
      */
-    @Export(name="userName", type=String.class, parameters={})
+    @Export(name="userName", refs={String.class}, tree="[0]")
     private Output<String> userName;
 
     /**

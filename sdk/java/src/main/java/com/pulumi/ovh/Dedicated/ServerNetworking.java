@@ -33,7 +33,7 @@ public class ServerNetworking extends com.pulumi.resources.CustomResource {
      * Operation description.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -47,7 +47,7 @@ public class ServerNetworking extends com.pulumi.resources.CustomResource {
      * Interface or interfaces aggregation.
      * 
      */
-    @Export(name="interfaces", type=List.class, parameters={ServerNetworkingInterface.class})
+    @Export(name="interfaces", refs={List.class,ServerNetworkingInterface.class}, tree="[0,1]")
     private Output<List<ServerNetworkingInterface>> interfaces;
 
     /**
@@ -61,7 +61,7 @@ public class ServerNetworking extends com.pulumi.resources.CustomResource {
      * The service_name of your dedicated server. The full list of available dedicated servers can be found using the `ovh.getServers` datasource.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -75,7 +75,7 @@ public class ServerNetworking extends com.pulumi.resources.CustomResource {
      * status of the networking configuration (should be `active`).
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -36,7 +36,7 @@ import (
 //			}
 //			_, err = IpLoadBalancing.NewHttpFarm(ctx, "farmname", &IpLoadBalancing.HttpFarmArgs{
 //				DisplayName: pulumi.String("ingress-8080-gra"),
-//				ServiceName: *pulumi.String(lb.Id),
+//				ServiceName: *pulumi.String(lb.ServiceName),
 //				Zone:        pulumi.String("GRA"),
 //			})
 //			if err != nil {

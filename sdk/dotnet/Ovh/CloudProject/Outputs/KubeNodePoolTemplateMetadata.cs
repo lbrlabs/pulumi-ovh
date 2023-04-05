@@ -14,8 +14,17 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject.Outputs
     [OutputType]
     public sealed class KubeNodePoolTemplateMetadata
     {
+        /// <summary>
+        /// Annotations to apply to each node
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Annotations;
+        /// <summary>
+        /// Finalizers to apply to each node
+        /// </summary>
         public readonly ImmutableArray<string> Finalizers;
+        /// <summary>
+        /// Labels to apply to each node
+        /// </summary>
         public readonly ImmutableDictionary<string, string>? Labels;
 
         [OutputConstructor]

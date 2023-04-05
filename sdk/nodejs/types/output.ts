@@ -271,16 +271,79 @@ export namespace CloudProject {
     }
 
     export interface GetKubeCustomization {
-        apiserver: outputs.CloudProject.GetKubeCustomizationApiserver;
+        /**
+         * Kubernetes API server customization
+         *
+         * @deprecated Use customization_apiserver instead
+         */
+        apiservers: outputs.CloudProject.GetKubeCustomizationApiserver[];
     }
 
     export interface GetKubeCustomizationApiserver {
-        admissionplugins: outputs.CloudProject.GetKubeCustomizationApiserverAdmissionplugins;
+        /**
+         * Kubernetes API server admission plugins customization
+         */
+        admissionplugins: outputs.CloudProject.GetKubeCustomizationApiserverAdmissionplugin[];
     }
 
-    export interface GetKubeCustomizationApiserverAdmissionplugins {
+    export interface GetKubeCustomizationApiserverAdmissionplugin {
+        /**
+         * Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+         */
         disableds: string[];
+        /**
+         * Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+         */
         enableds: string[];
+    }
+
+    export interface GetKubeCustomizationKubeProxy {
+        /**
+         * Kubernetes cluster kube-proxy customization of iptables specific config.
+         */
+        iptables?: outputs.CloudProject.GetKubeCustomizationKubeProxyIptables;
+        /**
+         * Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        ipvs?: outputs.CloudProject.GetKubeCustomizationKubeProxyIpvs;
+    }
+
+    export interface GetKubeCustomizationKubeProxyIptables {
+        /**
+         * Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        minSyncPeriod?: string;
+        /**
+         * Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+         */
+        syncPeriod?: string;
+    }
+
+    export interface GetKubeCustomizationKubeProxyIpvs {
+        /**
+         * Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        minSyncPeriod?: string;
+        /**
+         * IPVS scheduler.
+         */
+        scheduler?: string;
+        /**
+         * Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+         */
+        syncPeriod?: string;
+        /**
+         * Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration.
+         */
+        tcpFinTimeout?: string;
+        /**
+         * Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        tcpTimeout?: string;
+        /**
+         * timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        udpTimeout?: string;
     }
 
     export interface GetKubeNodePoolNodesNode {
@@ -491,36 +554,145 @@ export namespace CloudProject {
     }
 
     export interface KubeCustomization {
-        apiserver: outputs.CloudProject.KubeCustomizationApiserver;
+        /**
+         * Kubernetes API server customization
+         *
+         * @deprecated Use customization_apiserver instead
+         */
+        apiservers: outputs.CloudProject.KubeCustomizationApiserver[];
     }
 
     export interface KubeCustomizationApiserver {
-        admissionplugins: outputs.CloudProject.KubeCustomizationApiserverAdmissionplugins;
+        /**
+         * Kubernetes API server admission plugins customization
+         */
+        admissionplugins: outputs.CloudProject.KubeCustomizationApiserverAdmissionplugin[];
     }
 
-    export interface KubeCustomizationApiserverAdmissionplugins {
+    export interface KubeCustomizationApiserverAdmissionplugin {
+        /**
+         * Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+         */
         disableds: string[];
+        /**
+         * Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+         */
         enableds: string[];
     }
 
+    export interface KubeCustomizationKubeProxy {
+        /**
+         * Kubernetes cluster kube-proxy customization of iptables specific config (durations format is RFC3339 duration, e.g. `PT60S`)
+         */
+        iptables?: outputs.CloudProject.KubeCustomizationKubeProxyIptables;
+        /**
+         * Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration, e.g. `PT60S`)
+         */
+        ipvs?: outputs.CloudProject.KubeCustomizationKubeProxyIpvs;
+    }
+
+    export interface KubeCustomizationKubeProxyIptables {
+        /**
+         * Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+         */
+        minSyncPeriod?: string;
+        /**
+         * Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+         */
+        syncPeriod?: string;
+    }
+
+    export interface KubeCustomizationKubeProxyIpvs {
+        /**
+         * Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+         */
+        minSyncPeriod?: string;
+        /**
+         * IPVS scheduler.
+         */
+        scheduler?: string;
+        /**
+         * Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+         */
+        syncPeriod?: string;
+        /**
+         * Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+         */
+        tcpFinTimeout?: string;
+        /**
+         * Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+         */
+        tcpTimeout?: string;
+        /**
+         * timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+         */
+        udpTimeout?: string;
+    }
+
+    export interface KubeKubeconfigAttribute {
+        /**
+         * The kubernetes API server client certificate.
+         */
+        clientCertificate: string;
+        /**
+         * The kubernetes API server client key.
+         */
+        clientKey: string;
+        /**
+         * The kubernetes API server CA certificate.
+         */
+        clusterCaCertificate: string;
+        /**
+         * The kubernetes API server URL.
+         */
+        host: string;
+    }
+
     export interface KubeNodePoolTemplate {
+        /**
+         * Metadata of each node in the pool
+         */
         metadata?: outputs.CloudProject.KubeNodePoolTemplateMetadata;
+        /**
+         * Spec of each node in the pool
+         */
         spec?: outputs.CloudProject.KubeNodePoolTemplateSpec;
     }
 
     export interface KubeNodePoolTemplateMetadata {
+        /**
+         * Annotations to apply to each node
+         */
         annotations?: {[key: string]: string};
+        /**
+         * Finalizers to apply to each node
+         */
         finalizers?: string[];
+        /**
+         * Labels to apply to each node
+         */
         labels?: {[key: string]: string};
     }
 
     export interface KubeNodePoolTemplateSpec {
+        /**
+         * Taints to apply to each node
+         */
         taints?: {[key: string]: any}[];
+        /**
+         * If true, set nodes as un-schedulable
+         */
         unschedulable?: boolean;
     }
 
     export interface KubePrivateNetworkConfiguration {
+        /**
+         * If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+         */
         defaultVrackGateway: string;
+        /**
+         * Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+         */
         privateNetworkRoutingAsDefault: boolean;
     }
 

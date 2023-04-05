@@ -311,7 +311,7 @@ class HttpFarm(pulumi.CustomResource):
             state="ok")
         farmname = ovh.ip_load_balancing.HttpFarm("farmname",
             display_name="ingress-8080-gra",
-            service_name=lb.id,
+            service_name=lb.service_name,
             zone="GRA")
         ```
 
@@ -346,7 +346,7 @@ class HttpFarm(pulumi.CustomResource):
             state="ok")
         farmname = ovh.ip_load_balancing.HttpFarm("farmname",
             display_name="ingress-8080-gra",
-            service_name=lb.id,
+            service_name=lb.service_name,
             zone="GRA")
         ```
 

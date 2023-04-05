@@ -29,8 +29,8 @@ class KubeOidcArgs:
         The set of arguments for constructing a KubeOidc resource.
         :param pulumi.Input[str] client_id: The OIDC client ID.
         :param pulumi.Input[str] issuer_url: The OIDC issuer url.
-        :param pulumi.Input[str] kube_id: The ID of the managed kubernetes cluster.
-        :param pulumi.Input[str] service_name: The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        :param pulumi.Input[str] kube_id: The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         pulumi.set(__self__, "client_id", client_id)
         pulumi.set(__self__, "issuer_url", issuer_url)
@@ -79,7 +79,7 @@ class KubeOidcArgs:
     @pulumi.getter(name="kubeId")
     def kube_id(self) -> pulumi.Input[str]:
         """
-        The ID of the managed kubernetes cluster.
+        The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "kube_id")
 
@@ -91,7 +91,7 @@ class KubeOidcArgs:
     @pulumi.getter(name="serviceName")
     def service_name(self) -> pulumi.Input[str]:
         """
-        The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "service_name")
 
@@ -181,8 +181,8 @@ class _KubeOidcState:
         Input properties used for looking up and filtering KubeOidc resources.
         :param pulumi.Input[str] client_id: The OIDC client ID.
         :param pulumi.Input[str] issuer_url: The OIDC issuer url.
-        :param pulumi.Input[str] kube_id: The ID of the managed kubernetes cluster.
-        :param pulumi.Input[str] service_name: The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        :param pulumi.Input[str] kube_id: The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         if client_id is not None:
             pulumi.set(__self__, "client_id", client_id)
@@ -235,7 +235,7 @@ class _KubeOidcState:
     @pulumi.getter(name="kubeId")
     def kube_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the managed kubernetes cluster.
+        The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "kube_id")
 
@@ -310,7 +310,7 @@ class _KubeOidcState:
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "service_name")
 
@@ -371,8 +371,8 @@ class KubeOidc(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: The OIDC client ID.
         :param pulumi.Input[str] issuer_url: The OIDC issuer url.
-        :param pulumi.Input[str] kube_id: The ID of the managed kubernetes cluster.
-        :param pulumi.Input[str] service_name: The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        :param pulumi.Input[str] kube_id: The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         ...
     @overload
@@ -495,8 +495,8 @@ class KubeOidc(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] client_id: The OIDC client ID.
         :param pulumi.Input[str] issuer_url: The OIDC issuer url.
-        :param pulumi.Input[str] kube_id: The ID of the managed kubernetes cluster.
-        :param pulumi.Input[str] service_name: The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        :param pulumi.Input[str] kube_id: The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -535,7 +535,7 @@ class KubeOidc(pulumi.CustomResource):
     @pulumi.getter(name="kubeId")
     def kube_id(self) -> pulumi.Output[str]:
         """
-        The ID of the managed kubernetes cluster.
+        The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "kube_id")
 
@@ -578,7 +578,7 @@ class KubeOidc(pulumi.CustomResource):
     @pulumi.getter(name="serviceName")
     def service_name(self) -> pulumi.Output[str]:
         """
-        The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "service_name")
 

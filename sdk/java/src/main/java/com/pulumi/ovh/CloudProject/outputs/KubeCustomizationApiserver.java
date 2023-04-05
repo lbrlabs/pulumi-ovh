@@ -4,18 +4,26 @@
 package com.pulumi.ovh.CloudProject.outputs;
 
 import com.pulumi.core.annotations.CustomType;
-import com.pulumi.ovh.CloudProject.outputs.KubeCustomizationApiserverAdmissionplugins;
+import com.pulumi.ovh.CloudProject.outputs.KubeCustomizationApiserverAdmissionplugin;
+import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 import javax.annotation.Nullable;
 
 @CustomType
 public final class KubeCustomizationApiserver {
-    private @Nullable KubeCustomizationApiserverAdmissionplugins admissionplugins;
+    /**
+     * @return Kubernetes API server admission plugins customization
+     * 
+     */
+    private @Nullable List<KubeCustomizationApiserverAdmissionplugin> admissionplugins;
 
     private KubeCustomizationApiserver() {}
-    public Optional<KubeCustomizationApiserverAdmissionplugins> admissionplugins() {
-        return Optional.ofNullable(this.admissionplugins);
+    /**
+     * @return Kubernetes API server admission plugins customization
+     * 
+     */
+    public List<KubeCustomizationApiserverAdmissionplugin> admissionplugins() {
+        return this.admissionplugins == null ? List.of() : this.admissionplugins;
     }
 
     public static Builder builder() {
@@ -27,7 +35,7 @@ public final class KubeCustomizationApiserver {
     }
     @CustomType.Builder
     public static final class Builder {
-        private @Nullable KubeCustomizationApiserverAdmissionplugins admissionplugins;
+        private @Nullable List<KubeCustomizationApiserverAdmissionplugin> admissionplugins;
         public Builder() {}
         public Builder(KubeCustomizationApiserver defaults) {
     	      Objects.requireNonNull(defaults);
@@ -35,9 +43,12 @@ public final class KubeCustomizationApiserver {
         }
 
         @CustomType.Setter
-        public Builder admissionplugins(@Nullable KubeCustomizationApiserverAdmissionplugins admissionplugins) {
+        public Builder admissionplugins(@Nullable List<KubeCustomizationApiserverAdmissionplugin> admissionplugins) {
             this.admissionplugins = admissionplugins;
             return this;
+        }
+        public Builder admissionplugins(KubeCustomizationApiserverAdmissionplugin... admissionplugins) {
+            return admissionplugins(List.of(admissionplugins));
         }
         public KubeCustomizationApiserver build() {
             final var o = new KubeCustomizationApiserver();

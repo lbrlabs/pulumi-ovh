@@ -73,7 +73,7 @@ public class IpRestriction extends com.pulumi.resources.CustomResource {
      * Cluster ID.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -87,7 +87,7 @@ public class IpRestriction extends com.pulumi.resources.CustomResource {
      * Description of the IP restriction.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -102,7 +102,7 @@ public class IpRestriction extends com.pulumi.resources.CustomResource {
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * 
      */
-    @Export(name="engine", type=String.class, parameters={})
+    @Export(name="engine", refs={String.class}, tree="[0]")
     private Output<String> engine;
 
     /**
@@ -117,7 +117,7 @@ public class IpRestriction extends com.pulumi.resources.CustomResource {
      * Authorized IP.
      * 
      */
-    @Export(name="ip", type=String.class, parameters={})
+    @Export(name="ip", refs={String.class}, tree="[0]")
     private Output<String> ip;
 
     /**
@@ -132,7 +132,7 @@ public class IpRestriction extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -147,7 +147,7 @@ public class IpRestriction extends com.pulumi.resources.CustomResource {
      * Current status of the IP restriction.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

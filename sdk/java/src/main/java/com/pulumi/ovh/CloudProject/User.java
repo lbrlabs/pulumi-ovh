@@ -58,7 +58,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * the date the user was created.
      * 
      */
-    @Export(name="creationDate", type=String.class, parameters={})
+    @Export(name="creationDate", refs={String.class}, tree="[0]")
     private Output<String> creationDate;
 
     /**
@@ -72,7 +72,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * A description associated with the user.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -87,7 +87,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * Note: no password nor sensitive token is set in this map.
      * 
      */
-    @Export(name="openstackRc", type=Map.class, parameters={String.class, Object.class})
+    @Export(name="openstackRc", refs={Map.class,String.class,Object.class}, tree="[0,1,2]")
     private Output<Map<String,Object>> openstackRc;
 
     /**
@@ -104,7 +104,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * retrieve once during creation.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
@@ -120,7 +120,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * The name of a role. See `role_names`.
      * 
      */
-    @Export(name="roleName", type=String.class, parameters={})
+    @Export(name="roleName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> roleName;
 
     /**
@@ -145,7 +145,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * - volume_operator
      * 
      */
-    @Export(name="roleNames", type=List.class, parameters={String.class})
+    @Export(name="roleNames", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> roleNames;
 
     /**
@@ -170,7 +170,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * A list of roles associated with the user.
      * 
      */
-    @Export(name="roles", type=List.class, parameters={UserRole.class})
+    @Export(name="roles", refs={List.class,UserRole.class}, tree="[0,1]")
     private Output<List<UserRole>> roles;
 
     /**
@@ -185,7 +185,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -200,7 +200,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * the status of the user. should be normally set to &#39;ok&#39;.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -215,7 +215,7 @@ public class User extends com.pulumi.resources.CustomResource {
      * the Openstack API.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     /**

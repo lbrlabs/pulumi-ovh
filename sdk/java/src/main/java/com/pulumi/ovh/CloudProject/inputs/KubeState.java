@@ -5,7 +5,10 @@ package com.pulumi.ovh.CloudProject.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.ovh.CloudProject.inputs.KubeCustomizationApiserverArgs;
 import com.pulumi.ovh.CloudProject.inputs.KubeCustomizationArgs;
+import com.pulumi.ovh.CloudProject.inputs.KubeCustomizationKubeProxyArgs;
+import com.pulumi.ovh.CloudProject.inputs.KubeKubeconfigAttributeArgs;
 import com.pulumi.ovh.CloudProject.inputs.KubePrivateNetworkConfigurationArgs;
 import java.lang.Boolean;
 import java.lang.String;
@@ -20,14 +23,14 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
     public static final KubeState Empty = new KubeState();
 
     /**
-     * True if control-plane is up to date.
+     * True if control-plane is up-to-date.
      * 
      */
     @Import(name="controlPlaneIsUpToDate")
     private @Nullable Output<Boolean> controlPlaneIsUpToDate;
 
     /**
-     * @return True if control-plane is up to date.
+     * @return True if control-plane is up-to-date.
      * 
      */
     public Optional<Output<Boolean>> controlPlaneIsUpToDate() {
@@ -35,41 +38,86 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-     * * enabled - (Optional) Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-     * * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * Kubernetes API server customization
      * 
      */
-    @Import(name="customization")
-    private @Nullable Output<KubeCustomizationArgs> customization;
+    @Import(name="customizationApiservers")
+    private @Nullable Output<List<KubeCustomizationApiserverArgs>> customizationApiservers;
 
     /**
-     * @return Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-     * * enabled - (Optional) Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-     * * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * @return Kubernetes API server customization
      * 
      */
-    public Optional<Output<KubeCustomizationArgs>> customization() {
-        return Optional.ofNullable(this.customization);
+    public Optional<Output<List<KubeCustomizationApiserverArgs>>> customizationApiservers() {
+        return Optional.ofNullable(this.customizationApiservers);
     }
 
     /**
-     * True if all nodes and control-plane are up to date.
+     * Kubernetes kube-proxy customization
+     * 
+     */
+    @Import(name="customizationKubeProxy")
+    private @Nullable Output<KubeCustomizationKubeProxyArgs> customizationKubeProxy;
+
+    /**
+     * @return Kubernetes kube-proxy customization
+     * 
+     */
+    public Optional<Output<KubeCustomizationKubeProxyArgs>> customizationKubeProxy() {
+        return Optional.ofNullable(this.customizationKubeProxy);
+    }
+
+    /**
+     * **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    @Import(name="customizations")
+    private @Nullable Output<List<KubeCustomizationArgs>> customizations;
+
+    /**
+     * @return **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    public Optional<Output<List<KubeCustomizationArgs>>> customizations() {
+        return Optional.ofNullable(this.customizations);
+    }
+
+    /**
+     * True if all nodes and control-plane are up-to-date.
      * 
      */
     @Import(name="isUpToDate")
     private @Nullable Output<Boolean> isUpToDate;
 
     /**
-     * @return True if all nodes and control-plane are up to date.
+     * @return True if all nodes and control-plane are up-to-date.
      * 
      */
     public Optional<Output<Boolean>> isUpToDate() {
         return Optional.ofNullable(this.isUpToDate);
+    }
+
+    /**
+     * Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+     * 
+     */
+    @Import(name="kubeProxyMode")
+    private @Nullable Output<String> kubeProxyMode;
+
+    /**
+     * @return Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+     * 
+     */
+    public Optional<Output<String>> kubeProxyMode() {
+        return Optional.ofNullable(this.kubeProxyMode);
     }
 
     /**
@@ -85,6 +133,21 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> kubeconfig() {
         return Optional.ofNullable(this.kubeconfig);
+    }
+
+    /**
+     * The kubeconfig file attributes.
+     * 
+     */
+    @Import(name="kubeconfigAttributes")
+    private @Nullable Output<List<KubeKubeconfigAttributeArgs>> kubeconfigAttributes;
+
+    /**
+     * @return The kubeconfig file attributes.
+     * 
+     */
+    public Optional<Output<List<KubeKubeconfigAttributeArgs>>> kubeconfigAttributes() {
+        return Optional.ofNullable(this.kubeconfigAttributes);
     }
 
     /**
@@ -134,8 +197,6 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * The private network configuration
-     * * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-     * * private_network_routing_as_default - Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
      * 
      */
     @Import(name="privateNetworkConfiguration")
@@ -143,8 +204,6 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return The private network configuration
-     * * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-     * * private_network_routing_as_default - Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
      * 
      */
     public Optional<Output<KubePrivateNetworkConfigurationArgs>> privateNetworkConfiguration() {
@@ -152,16 +211,14 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * OpenStack private network (or vrack) ID to use.
-     * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+     * OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
      * 
      */
     @Import(name="privateNetworkId")
     private @Nullable Output<String> privateNetworkId;
 
     /**
-     * @return OpenStack private network (or vrack) ID to use.
-     * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+     * @return OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
      * 
      */
     public Optional<Output<String>> privateNetworkId() {
@@ -169,18 +226,14 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * a valid OVHcloud public cloud region ID in which the kubernetes
-     * cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions.
-     * Changing this value recreates the resource.
+     * a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions. **Changing this value recreates the resource.**
      * 
      */
     @Import(name="region")
     private @Nullable Output<String> region;
 
     /**
-     * @return a valid OVHcloud public cloud region ID in which the kubernetes
-     * cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions.
-     * Changing this value recreates the resource.
+     * @return a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions. **Changing this value recreates the resource.**
      * 
      */
     public Optional<Output<String>> region() {
@@ -188,16 +241,14 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     @Import(name="serviceName")
     private @Nullable Output<String> serviceName;
 
     /**
-     * @return The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * @return The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     public Optional<Output<String>> serviceName() {
@@ -250,16 +301,14 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * kubernetes version to use.
-     * Changing this value updates the resource. Defaults to latest available.
+     * kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
      * 
      */
     @Import(name="version")
     private @Nullable Output<String> version;
 
     /**
-     * @return kubernetes version to use.
-     * Changing this value updates the resource. Defaults to latest available.
+     * @return kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
      * 
      */
     public Optional<Output<String>> version() {
@@ -270,9 +319,13 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
 
     private KubeState(KubeState $) {
         this.controlPlaneIsUpToDate = $.controlPlaneIsUpToDate;
-        this.customization = $.customization;
+        this.customizationApiservers = $.customizationApiservers;
+        this.customizationKubeProxy = $.customizationKubeProxy;
+        this.customizations = $.customizations;
         this.isUpToDate = $.isUpToDate;
+        this.kubeProxyMode = $.kubeProxyMode;
         this.kubeconfig = $.kubeconfig;
+        this.kubeconfigAttributes = $.kubeconfigAttributes;
         this.name = $.name;
         this.nextUpgradeVersions = $.nextUpgradeVersions;
         this.nodesUrl = $.nodesUrl;
@@ -305,7 +358,7 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param controlPlaneIsUpToDate True if control-plane is up to date.
+         * @param controlPlaneIsUpToDate True if control-plane is up-to-date.
          * 
          * @return builder
          * 
@@ -316,7 +369,7 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param controlPlaneIsUpToDate True if control-plane is up to date.
+         * @param controlPlaneIsUpToDate True if control-plane is up-to-date.
          * 
          * @return builder
          * 
@@ -326,36 +379,102 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param customization Customer customization object
-         * * apiserver - Kubernetes API server customization
-         * * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-         * * enabled - (Optional) Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-         * * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+         * @param customizationApiservers Kubernetes API server customization
          * 
          * @return builder
          * 
          */
-        public Builder customization(@Nullable Output<KubeCustomizationArgs> customization) {
-            $.customization = customization;
+        public Builder customizationApiservers(@Nullable Output<List<KubeCustomizationApiserverArgs>> customizationApiservers) {
+            $.customizationApiservers = customizationApiservers;
             return this;
         }
 
         /**
-         * @param customization Customer customization object
-         * * apiserver - Kubernetes API server customization
-         * * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-         * * enabled - (Optional) Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-         * * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+         * @param customizationApiservers Kubernetes API server customization
          * 
          * @return builder
          * 
          */
-        public Builder customization(KubeCustomizationArgs customization) {
-            return customization(Output.of(customization));
+        public Builder customizationApiservers(List<KubeCustomizationApiserverArgs> customizationApiservers) {
+            return customizationApiservers(Output.of(customizationApiservers));
         }
 
         /**
-         * @param isUpToDate True if all nodes and control-plane are up to date.
+         * @param customizationApiservers Kubernetes API server customization
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customizationApiservers(KubeCustomizationApiserverArgs... customizationApiservers) {
+            return customizationApiservers(List.of(customizationApiservers));
+        }
+
+        /**
+         * @param customizationKubeProxy Kubernetes kube-proxy customization
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customizationKubeProxy(@Nullable Output<KubeCustomizationKubeProxyArgs> customizationKubeProxy) {
+            $.customizationKubeProxy = customizationKubeProxy;
+            return this;
+        }
+
+        /**
+         * @param customizationKubeProxy Kubernetes kube-proxy customization
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customizationKubeProxy(KubeCustomizationKubeProxyArgs customizationKubeProxy) {
+            return customizationKubeProxy(Output.of(customizationKubeProxy));
+        }
+
+        /**
+         * @param customizations **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Use customization_apiserver instead
+         * 
+         */
+        @Deprecated /* Use customization_apiserver instead */
+        public Builder customizations(@Nullable Output<List<KubeCustomizationArgs>> customizations) {
+            $.customizations = customizations;
+            return this;
+        }
+
+        /**
+         * @param customizations **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Use customization_apiserver instead
+         * 
+         */
+        @Deprecated /* Use customization_apiserver instead */
+        public Builder customizations(List<KubeCustomizationArgs> customizations) {
+            return customizations(Output.of(customizations));
+        }
+
+        /**
+         * @param customizations **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Use customization_apiserver instead
+         * 
+         */
+        @Deprecated /* Use customization_apiserver instead */
+        public Builder customizations(KubeCustomizationArgs... customizations) {
+            return customizations(List.of(customizations));
+        }
+
+        /**
+         * @param isUpToDate True if all nodes and control-plane are up-to-date.
          * 
          * @return builder
          * 
@@ -366,13 +485,34 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param isUpToDate True if all nodes and control-plane are up to date.
+         * @param isUpToDate True if all nodes and control-plane are up-to-date.
          * 
          * @return builder
          * 
          */
         public Builder isUpToDate(Boolean isUpToDate) {
             return isUpToDate(Output.of(isUpToDate));
+        }
+
+        /**
+         * @param kubeProxyMode Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kubeProxyMode(@Nullable Output<String> kubeProxyMode) {
+            $.kubeProxyMode = kubeProxyMode;
+            return this;
+        }
+
+        /**
+         * @param kubeProxyMode Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kubeProxyMode(String kubeProxyMode) {
+            return kubeProxyMode(Output.of(kubeProxyMode));
         }
 
         /**
@@ -394,6 +534,37 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder kubeconfig(String kubeconfig) {
             return kubeconfig(Output.of(kubeconfig));
+        }
+
+        /**
+         * @param kubeconfigAttributes The kubeconfig file attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kubeconfigAttributes(@Nullable Output<List<KubeKubeconfigAttributeArgs>> kubeconfigAttributes) {
+            $.kubeconfigAttributes = kubeconfigAttributes;
+            return this;
+        }
+
+        /**
+         * @param kubeconfigAttributes The kubeconfig file attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kubeconfigAttributes(List<KubeKubeconfigAttributeArgs> kubeconfigAttributes) {
+            return kubeconfigAttributes(Output.of(kubeconfigAttributes));
+        }
+
+        /**
+         * @param kubeconfigAttributes The kubeconfig file attributes.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kubeconfigAttributes(KubeKubeconfigAttributeArgs... kubeconfigAttributes) {
+            return kubeconfigAttributes(List.of(kubeconfigAttributes));
         }
 
         /**
@@ -471,8 +642,6 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param privateNetworkConfiguration The private network configuration
-         * * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-         * * private_network_routing_as_default - Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
          * 
          * @return builder
          * 
@@ -484,8 +653,6 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param privateNetworkConfiguration The private network configuration
-         * * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-         * * private_network_routing_as_default - Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
          * 
          * @return builder
          * 
@@ -495,8 +662,7 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param privateNetworkId OpenStack private network (or vrack) ID to use.
-         * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+         * @param privateNetworkId OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
          * 
          * @return builder
          * 
@@ -507,8 +673,7 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param privateNetworkId OpenStack private network (or vrack) ID to use.
-         * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+         * @param privateNetworkId OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
          * 
          * @return builder
          * 
@@ -518,9 +683,7 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region a valid OVHcloud public cloud region ID in which the kubernetes
-         * cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions.
-         * Changing this value recreates the resource.
+         * @param region a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -531,9 +694,7 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param region a valid OVHcloud public cloud region ID in which the kubernetes
-         * cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions.
-         * Changing this value recreates the resource.
+         * @param region a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -543,8 +704,7 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceName The id of the public cloud project. If omitted,
-         * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+         * @param serviceName The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -555,8 +715,7 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceName The id of the public cloud project. If omitted,
-         * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+         * @param serviceName The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -629,8 +788,7 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version kubernetes version to use.
-         * Changing this value updates the resource. Defaults to latest available.
+         * @param version kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
          * 
          * @return builder
          * 
@@ -641,8 +799,7 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param version kubernetes version to use.
-         * Changing this value updates the resource. Defaults to latest available.
+         * @param version kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
          * 
          * @return builder
          * 

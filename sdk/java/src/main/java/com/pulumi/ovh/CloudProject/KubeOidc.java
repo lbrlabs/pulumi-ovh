@@ -73,7 +73,7 @@ public class KubeOidc extends com.pulumi.resources.CustomResource {
      * The OIDC client ID.
      * 
      */
-    @Export(name="clientId", type=String.class, parameters={})
+    @Export(name="clientId", refs={String.class}, tree="[0]")
     private Output<String> clientId;
 
     /**
@@ -87,7 +87,7 @@ public class KubeOidc extends com.pulumi.resources.CustomResource {
      * The OIDC issuer url.
      * 
      */
-    @Export(name="issuerUrl", type=String.class, parameters={})
+    @Export(name="issuerUrl", refs={String.class}, tree="[0]")
     private Output<String> issuerUrl;
 
     /**
@@ -98,70 +98,70 @@ public class KubeOidc extends com.pulumi.resources.CustomResource {
         return this.issuerUrl;
     }
     /**
-     * The ID of the managed kubernetes cluster.
+     * The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="kubeId", type=String.class, parameters={})
+    @Export(name="kubeId", refs={String.class}, tree="[0]")
     private Output<String> kubeId;
 
     /**
-     * @return The ID of the managed kubernetes cluster.
+     * @return The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
     public Output<String> kubeId() {
         return this.kubeId;
     }
-    @Export(name="oidcCaContent", type=String.class, parameters={})
+    @Export(name="oidcCaContent", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcCaContent;
 
     public Output<Optional<String>> oidcCaContent() {
         return Codegen.optional(this.oidcCaContent);
     }
-    @Export(name="oidcGroupsClaims", type=List.class, parameters={String.class})
+    @Export(name="oidcGroupsClaims", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> oidcGroupsClaims;
 
     public Output<Optional<List<String>>> oidcGroupsClaims() {
         return Codegen.optional(this.oidcGroupsClaims);
     }
-    @Export(name="oidcGroupsPrefix", type=String.class, parameters={})
+    @Export(name="oidcGroupsPrefix", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcGroupsPrefix;
 
     public Output<Optional<String>> oidcGroupsPrefix() {
         return Codegen.optional(this.oidcGroupsPrefix);
     }
-    @Export(name="oidcRequiredClaims", type=List.class, parameters={String.class})
+    @Export(name="oidcRequiredClaims", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> oidcRequiredClaims;
 
     public Output<Optional<List<String>>> oidcRequiredClaims() {
         return Codegen.optional(this.oidcRequiredClaims);
     }
-    @Export(name="oidcSigningAlgs", type=List.class, parameters={String.class})
+    @Export(name="oidcSigningAlgs", refs={List.class,String.class}, tree="[0,1]")
     private Output</* @Nullable */ List<String>> oidcSigningAlgs;
 
     public Output<Optional<List<String>>> oidcSigningAlgs() {
         return Codegen.optional(this.oidcSigningAlgs);
     }
-    @Export(name="oidcUsernameClaim", type=String.class, parameters={})
+    @Export(name="oidcUsernameClaim", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcUsernameClaim;
 
     public Output<Optional<String>> oidcUsernameClaim() {
         return Codegen.optional(this.oidcUsernameClaim);
     }
-    @Export(name="oidcUsernamePrefix", type=String.class, parameters={})
+    @Export(name="oidcUsernamePrefix", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> oidcUsernamePrefix;
 
     public Output<Optional<String>> oidcUsernamePrefix() {
         return Codegen.optional(this.oidcUsernamePrefix);
     }
     /**
-     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
-     * @return The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * @return The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     public Output<String> serviceName() {

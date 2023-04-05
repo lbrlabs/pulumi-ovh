@@ -873,7 +873,7 @@ public final class CloudProjectFunctions {
         return Deployment.getInstance().invokeAsync("ovh:CloudProject/getContainerRegistryUsers:getContainerRegistryUsers", TypeShape.of(GetContainerRegistryUsersInvokeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to get the details of a failover ip address of a service in a public cloud project.
+     * Use this data source to get the details of a failover IP address of a service in a public cloud project.
      * 
      * ## Example Usage
      * ```java
@@ -911,7 +911,7 @@ public final class CloudProjectFunctions {
         return getFailoverIpAttach(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to get the details of a failover ip address of a service in a public cloud project.
+     * Use this data source to get the details of a failover IP address of a service in a public cloud project.
      * 
      * ## Example Usage
      * ```java
@@ -949,7 +949,7 @@ public final class CloudProjectFunctions {
         return getFailoverIpAttachPlain(args, InvokeOptions.Empty);
     }
     /**
-     * Use this data source to get the details of a failover ip address of a service in a public cloud project.
+     * Use this data source to get the details of a failover IP address of a service in a public cloud project.
      * 
      * ## Example Usage
      * ```java
@@ -987,7 +987,7 @@ public final class CloudProjectFunctions {
         return Deployment.getInstance().invoke("ovh:CloudProject/getFailoverIpAttach:getFailoverIpAttach", TypeShape.of(GetFailoverIpAttachResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to get the details of a failover ip address of a service in a public cloud project.
+     * Use this data source to get the details of a failover IP address of a service in a public cloud project.
      * 
      * ## Example Usage
      * ```java

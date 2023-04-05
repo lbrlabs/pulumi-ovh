@@ -14,8 +14,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     /// ## Example Usage
     /// 
     /// Minimum settings for each engine (region choice is up to the user):
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// 
@@ -23,9 +25,11 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     /// {
     ///     var cassandradb = new Ovh.CloudProject.Database("cassandradb", new()
     ///     {
+    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     ///         Description = "my-first-cassandra",
     ///         Engine = "cassandra",
-    ///         Flavor = "db1-4",
+    ///         Version = "4.0",
+    ///         Plan = "essential",
     ///         Nodes = new[]
     ///         {
     ///             new Ovh.CloudProject.Inputs.DatabaseNodeArgs
@@ -41,16 +45,16 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///                 Region = "BHS",
     ///             },
     ///         },
-    ///         Plan = "essential",
-    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    ///         Version = "4.0",
+    ///         Flavor = "db1-4",
     ///     });
     /// 
     ///     var kafkadb = new Ovh.CloudProject.Database("kafkadb", new()
     ///     {
+    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     ///         Description = "my-first-kafka",
     ///         Engine = "kafka",
-    ///         Flavor = "db1-4",
+    ///         Version = "3.1",
+    ///         Plan = "business",
     ///         KafkaRestApi = true,
     ///         Nodes = new[]
     ///         {
@@ -67,16 +71,16 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///                 Region = "DE",
     ///             },
     ///         },
-    ///         Plan = "business",
-    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    ///         Version = "3.1",
+    ///         Flavor = "db1-4",
     ///     });
     /// 
     ///     var m3db = new Ovh.CloudProject.Database("m3db", new()
     ///     {
+    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     ///         Description = "my-first-m3db",
     ///         Engine = "m3db",
-    ///         Flavor = "db1-7",
+    ///         Version = "1.2",
+    ///         Plan = "essential",
     ///         Nodes = new[]
     ///         {
     ///             new Ovh.CloudProject.Inputs.DatabaseNodeArgs
@@ -84,16 +88,16 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///                 Region = "BHS",
     ///             },
     ///         },
-    ///         Plan = "essential",
-    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    ///         Version = "1.2",
+    ///         Flavor = "db1-7",
     ///     });
     /// 
     ///     var mongodb = new Ovh.CloudProject.Database("mongodb", new()
     ///     {
+    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     ///         Description = "my-first-mongodb",
     ///         Engine = "mongodb",
-    ///         Flavor = "db1-2",
+    ///         Version = "5.0",
+    ///         Plan = "essential",
     ///         Nodes = new[]
     ///         {
     ///             new Ovh.CloudProject.Inputs.DatabaseNodeArgs
@@ -101,16 +105,16 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///                 Region = "GRA",
     ///             },
     ///         },
-    ///         Plan = "essential",
-    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    ///         Version = "5.0",
+    ///         Flavor = "db1-2",
     ///     });
     /// 
     ///     var mysqldb = new Ovh.CloudProject.Database("mysqldb", new()
     ///     {
+    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     ///         Description = "my-first-mysql",
     ///         Engine = "mysql",
-    ///         Flavor = "db1-4",
+    ///         Version = "8",
+    ///         Plan = "essential",
     ///         Nodes = new[]
     ///         {
     ///             new Ovh.CloudProject.Inputs.DatabaseNodeArgs
@@ -118,16 +122,22 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///                 Region = "SBG",
     ///             },
     ///         },
-    ///         Plan = "essential",
-    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    ///         Version = "8",
+    ///         Flavor = "db1-4",
+    ///         AdvancedConfiguration = 
+    ///         {
+    ///             { "mysql.sql_mode", "ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES" },
+    ///             { "mysql.sql_require_primary_key", "true" },
+    ///         },
     ///     });
     /// 
     ///     var opensearchdb = new Ovh.CloudProject.Database("opensearchdb", new()
     ///     {
+    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     ///         Description = "my-first-opensearch",
     ///         Engine = "opensearch",
-    ///         Flavor = "db1-4",
+    ///         Version = "1",
+    ///         Plan = "essential",
+    ///         OpensearchAclsEnabled = true,
     ///         Nodes = new[]
     ///         {
     ///             new Ovh.CloudProject.Inputs.DatabaseNodeArgs
@@ -135,17 +145,16 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///                 Region = "UK",
     ///             },
     ///         },
-    ///         OpensearchAclsEnabled = true,
-    ///         Plan = "essential",
-    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    ///         Version = "1",
+    ///         Flavor = "db1-4",
     ///     });
     /// 
     ///     var pgsqldb = new Ovh.CloudProject.Database("pgsqldb", new()
     ///     {
+    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     ///         Description = "my-first-postgresql",
     ///         Engine = "postgresql",
-    ///         Flavor = "db1-4",
+    ///         Version = "14",
+    ///         Plan = "essential",
     ///         Nodes = new[]
     ///         {
     ///             new Ovh.CloudProject.Inputs.DatabaseNodeArgs
@@ -153,16 +162,16 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///                 Region = "WAW",
     ///             },
     ///         },
-    ///         Plan = "essential",
-    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    ///         Version = "14",
+    ///         Flavor = "db1-4",
     ///     });
     /// 
     ///     var redisdb = new Ovh.CloudProject.Database("redisdb", new()
     ///     {
+    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     ///         Description = "my-first-redis",
     ///         Engine = "redis",
-    ///         Flavor = "db1-4",
+    ///         Version = "6.2",
+    ///         Plan = "essential",
     ///         Nodes = new[]
     ///         {
     ///             new Ovh.CloudProject.Inputs.DatabaseNodeArgs
@@ -170,17 +179,17 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///                 Region = "BHS",
     ///             },
     ///         },
-    ///         Plan = "essential",
-    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    ///         Version = "6.2",
+    ///         Flavor = "db1-4",
     ///     });
     /// 
     /// });
     /// ```
     /// 
     /// To deploy a business PostgreSQL service with two nodes on public network:
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// 
@@ -211,8 +220,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     /// ```
     /// 
     /// To deploy an enterprise MongoDB service with three nodes on private network:
+    /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// 
@@ -263,6 +274,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     [OvhResourceType("ovh:CloudProject/database:Database")]
     public partial class Database : global::Pulumi.CustomResource
     {
+        /// <summary>
+        /// Advanced configuration key / value.
+        /// </summary>
+        [Output("advancedConfiguration")]
+        public Output<ImmutableDictionary<string, string>> AdvancedConfiguration { get; private set; } = null!;
+
         /// <summary>
         /// Time on which backups start every day.
         /// </summary>
@@ -418,6 +435,18 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
 
     public sealed class DatabaseArgs : global::Pulumi.ResourceArgs
     {
+        [Input("advancedConfiguration")]
+        private InputMap<string>? _advancedConfiguration;
+
+        /// <summary>
+        /// Advanced configuration key / value.
+        /// </summary>
+        public InputMap<string> AdvancedConfiguration
+        {
+            get => _advancedConfiguration ?? (_advancedConfiguration = new InputMap<string>());
+            set => _advancedConfiguration = value;
+        }
+
         /// <summary>
         /// Small description of the database service.
         /// </summary>
@@ -498,6 +527,18 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
 
     public sealed class DatabaseState : global::Pulumi.ResourceArgs
     {
+        [Input("advancedConfiguration")]
+        private InputMap<string>? _advancedConfiguration;
+
+        /// <summary>
+        /// Advanced configuration key / value.
+        /// </summary>
+        public InputMap<string> AdvancedConfiguration
+        {
+            get => _advancedConfiguration ?? (_advancedConfiguration = new InputMap<string>());
+            set => _advancedConfiguration = value;
+        }
+
         /// <summary>
         /// Time on which backups start every day.
         /// </summary>

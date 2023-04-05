@@ -38,6 +38,7 @@ def readme():
 
 
 setup(name='lbrlabs_pulumi_ovh',
+      python_requires='>=3.7',
       version=VERSION,
       description="A Pulumi package for creating and managing OVH cloud resources.",
       long_description=readme(),

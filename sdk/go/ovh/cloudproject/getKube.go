@@ -51,20 +51,23 @@ func LookupKube(ctx *pulumi.Context, args *LookupKubeArgs, opts ...pulumi.Invoke
 
 // A collection of arguments for invoking getKube.
 type LookupKubeArgs struct {
-	// Customer customization object
-	// * apiserver - Kubernetes API server customization
-	// * admissionplugins - Kubernetes API server admission plugins customization
-	// * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-	// * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-	Customization *GetKubeCustomization `pulumi:"customization"`
+	// Kubernetes API server customization
+	CustomizationApiservers []GetKubeCustomizationApiserver `pulumi:"customizationApiservers"`
+	// Kubernetes kube-proxy customization
+	CustomizationKubeProxy *GetKubeCustomizationKubeProxy `pulumi:"customizationKubeProxy"`
+	// **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Customizations []GetKubeCustomization `pulumi:"customizations"`
 	// The id of the managed kubernetes cluster.
 	KubeId string `pulumi:"kubeId"`
+	// Selected mode for kube-proxy.
+	KubeProxyMode *string `pulumi:"kubeProxyMode"`
 	// The name of the managed kubernetes cluster.
 	Name *string `pulumi:"name"`
 	// The OVHcloud public cloud region ID of the managed kubernetes cluster.
 	Region *string `pulumi:"region"`
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName string `pulumi:"serviceName"`
 	// Cluster update policy. Choose between [ALWAYS_UPDATE,MINIMAL_DOWNTIME,NEVER_UPDATE]'.
 	UpdatePolicy *string `pulumi:"updatePolicy"`
@@ -74,20 +77,24 @@ type LookupKubeArgs struct {
 
 // A collection of values returned by getKube.
 type LookupKubeResult struct {
-	// True if control-plane is up to date.
+	// True if control-plane is up-to-date.
 	ControlPlaneIsUpToDate bool `pulumi:"controlPlaneIsUpToDate"`
-	// Customer customization object
-	// * apiserver - Kubernetes API server customization
-	// * admissionplugins - Kubernetes API server admission plugins customization
-	// * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-	// * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-	Customization GetKubeCustomization `pulumi:"customization"`
+	// Kubernetes API server customization
+	CustomizationApiservers []GetKubeCustomizationApiserver `pulumi:"customizationApiservers"`
+	// Kubernetes kube-proxy customization
+	CustomizationKubeProxy *GetKubeCustomizationKubeProxy `pulumi:"customizationKubeProxy"`
+	// **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Customizations []GetKubeCustomization `pulumi:"customizations"`
 	// The provider-assigned unique ID for this managed resource.
 	Id string `pulumi:"id"`
-	// True if all nodes and control-plane are up to date.
+	// True if all nodes and control-plane are up-to-date.
 	IsUpToDate bool `pulumi:"isUpToDate"`
 	// See Argument Reference above.
 	KubeId string `pulumi:"kubeId"`
+	// Selected mode for kube-proxy.
+	KubeProxyMode *string `pulumi:"kubeProxyMode"`
 	// The name of the managed kubernetes cluster.
 	Name *string `pulumi:"name"`
 	// Kubernetes versions available for upgrade.
@@ -125,20 +132,23 @@ func LookupKubeOutput(ctx *pulumi.Context, args LookupKubeOutputArgs, opts ...pu
 
 // A collection of arguments for invoking getKube.
 type LookupKubeOutputArgs struct {
-	// Customer customization object
-	// * apiserver - Kubernetes API server customization
-	// * admissionplugins - Kubernetes API server admission plugins customization
-	// * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-	// * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-	Customization GetKubeCustomizationPtrInput `pulumi:"customization"`
+	// Kubernetes API server customization
+	CustomizationApiservers GetKubeCustomizationApiserverArrayInput `pulumi:"customizationApiservers"`
+	// Kubernetes kube-proxy customization
+	CustomizationKubeProxy GetKubeCustomizationKubeProxyPtrInput `pulumi:"customizationKubeProxy"`
+	// **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Customizations GetKubeCustomizationArrayInput `pulumi:"customizations"`
 	// The id of the managed kubernetes cluster.
 	KubeId pulumi.StringInput `pulumi:"kubeId"`
+	// Selected mode for kube-proxy.
+	KubeProxyMode pulumi.StringPtrInput `pulumi:"kubeProxyMode"`
 	// The name of the managed kubernetes cluster.
 	Name pulumi.StringPtrInput `pulumi:"name"`
 	// The OVHcloud public cloud region ID of the managed kubernetes cluster.
 	Region pulumi.StringPtrInput `pulumi:"region"`
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
 	ServiceName pulumi.StringInput `pulumi:"serviceName"`
 	// Cluster update policy. Choose between [ALWAYS_UPDATE,MINIMAL_DOWNTIME,NEVER_UPDATE]'.
 	UpdatePolicy pulumi.StringPtrInput `pulumi:"updatePolicy"`
@@ -165,18 +175,26 @@ func (o LookupKubeResultOutput) ToLookupKubeResultOutputWithContext(ctx context.
 	return o
 }
 
-// True if control-plane is up to date.
+// True if control-plane is up-to-date.
 func (o LookupKubeResultOutput) ControlPlaneIsUpToDate() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupKubeResult) bool { return v.ControlPlaneIsUpToDate }).(pulumi.BoolOutput)
 }
 
-// Customer customization object
-// * apiserver - Kubernetes API server customization
-// * admissionplugins - Kubernetes API server admission plugins customization
-// * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-// * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-func (o LookupKubeResultOutput) Customization() GetKubeCustomizationOutput {
-	return o.ApplyT(func(v LookupKubeResult) GetKubeCustomization { return v.Customization }).(GetKubeCustomizationOutput)
+// Kubernetes API server customization
+func (o LookupKubeResultOutput) CustomizationApiservers() GetKubeCustomizationApiserverArrayOutput {
+	return o.ApplyT(func(v LookupKubeResult) []GetKubeCustomizationApiserver { return v.CustomizationApiservers }).(GetKubeCustomizationApiserverArrayOutput)
+}
+
+// Kubernetes kube-proxy customization
+func (o LookupKubeResultOutput) CustomizationKubeProxy() GetKubeCustomizationKubeProxyPtrOutput {
+	return o.ApplyT(func(v LookupKubeResult) *GetKubeCustomizationKubeProxy { return v.CustomizationKubeProxy }).(GetKubeCustomizationKubeProxyPtrOutput)
+}
+
+// **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+//
+// Deprecated: Use customization_apiserver instead
+func (o LookupKubeResultOutput) Customizations() GetKubeCustomizationArrayOutput {
+	return o.ApplyT(func(v LookupKubeResult) []GetKubeCustomization { return v.Customizations }).(GetKubeCustomizationArrayOutput)
 }
 
 // The provider-assigned unique ID for this managed resource.
@@ -184,7 +202,7 @@ func (o LookupKubeResultOutput) Id() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubeResult) string { return v.Id }).(pulumi.StringOutput)
 }
 
-// True if all nodes and control-plane are up to date.
+// True if all nodes and control-plane are up-to-date.
 func (o LookupKubeResultOutput) IsUpToDate() pulumi.BoolOutput {
 	return o.ApplyT(func(v LookupKubeResult) bool { return v.IsUpToDate }).(pulumi.BoolOutput)
 }
@@ -192,6 +210,11 @@ func (o LookupKubeResultOutput) IsUpToDate() pulumi.BoolOutput {
 // See Argument Reference above.
 func (o LookupKubeResultOutput) KubeId() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupKubeResult) string { return v.KubeId }).(pulumi.StringOutput)
+}
+
+// Selected mode for kube-proxy.
+func (o LookupKubeResultOutput) KubeProxyMode() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v LookupKubeResult) *string { return v.KubeProxyMode }).(pulumi.StringPtrOutput)
 }
 
 // The name of the managed kubernetes cluster.

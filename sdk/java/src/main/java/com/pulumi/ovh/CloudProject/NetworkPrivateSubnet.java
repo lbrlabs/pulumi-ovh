@@ -72,7 +72,7 @@ public class NetworkPrivateSubnet extends com.pulumi.resources.CustomResource {
      * Ip Block representing the subnet cidr.
      * 
      */
-    @Export(name="cidr", type=String.class, parameters={})
+    @Export(name="cidr", refs={String.class}, tree="[0]")
     private Output<String> cidr;
 
     /**
@@ -88,7 +88,7 @@ public class NetworkPrivateSubnet extends com.pulumi.resources.CustomResource {
      * _
      * 
      */
-    @Export(name="dhcp", type=Boolean.class, parameters={})
+    @Export(name="dhcp", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> dhcp;
 
     /**
@@ -105,7 +105,7 @@ public class NetworkPrivateSubnet extends com.pulumi.resources.CustomResource {
      * Changing this value recreates the subnet.
      * 
      */
-    @Export(name="end", type=String.class, parameters={})
+    @Export(name="end", refs={String.class}, tree="[0]")
     private Output<String> end;
 
     /**
@@ -120,7 +120,7 @@ public class NetworkPrivateSubnet extends com.pulumi.resources.CustomResource {
      * The IP of the gateway
      * 
      */
-    @Export(name="gatewayIp", type=String.class, parameters={})
+    @Export(name="gatewayIp", refs={String.class}, tree="[0]")
     private Output<String> gatewayIp;
 
     /**
@@ -139,7 +139,7 @@ public class NetworkPrivateSubnet extends com.pulumi.resources.CustomResource {
      * * `ip_pools/start` - First ip for this region.
      * 
      */
-    @Export(name="ipPools", type=List.class, parameters={NetworkPrivateSubnetIpPool.class})
+    @Export(name="ipPools", refs={List.class,NetworkPrivateSubnetIpPool.class}, tree="[0,1]")
     private Output<List<NetworkPrivateSubnetIpPool>> ipPools;
 
     /**
@@ -159,7 +159,7 @@ public class NetworkPrivateSubnet extends com.pulumi.resources.CustomResource {
      * Changing this value recreates the subnet
      * 
      */
-    @Export(name="network", type=String.class, parameters={})
+    @Export(name="network", refs={String.class}, tree="[0]")
     private Output<String> network;
 
     /**
@@ -175,7 +175,7 @@ public class NetworkPrivateSubnet extends com.pulumi.resources.CustomResource {
      * Changing this forces a new resource to be created.
      * 
      */
-    @Export(name="networkId", type=String.class, parameters={})
+    @Export(name="networkId", refs={String.class}, tree="[0]")
     private Output<String> networkId;
 
     /**
@@ -191,7 +191,7 @@ public class NetworkPrivateSubnet extends com.pulumi.resources.CustomResource {
      * Changing this value recreates the resource. Defaults to false.
      * 
      */
-    @Export(name="noGateway", type=Boolean.class, parameters={})
+    @Export(name="noGateway", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> noGateway;
 
     /**
@@ -207,7 +207,7 @@ public class NetworkPrivateSubnet extends com.pulumi.resources.CustomResource {
      * Ex.: &#34;GRA1&#34;. Changing this value recreates the resource.
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -223,7 +223,7 @@ public class NetworkPrivateSubnet extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -239,7 +239,7 @@ public class NetworkPrivateSubnet extends com.pulumi.resources.CustomResource {
      * Changing this value recreates the subnet.
      * 
      */
-    @Export(name="start", type=String.class, parameters={})
+    @Export(name="start", refs={String.class}, tree="[0]")
     private Output<String> start;
 
     /**

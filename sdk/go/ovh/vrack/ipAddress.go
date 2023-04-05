@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -48,7 +48,6 @@ import (
 //			vrackVrack, err := Vrack.NewVrack(ctx, "vrackVrack", &Vrack.VrackArgs{
 //				Description:   *pulumi.String(mycart.Description),
 //				OvhSubsidiary: *pulumi.String(mycart.OvhSubsidiary),
-//				PaymentMean:   pulumi.String("fidelity"),
 //				Plan: &vrack.VrackPlanArgs{
 //					Duration:    *pulumi.String(vrackCartProductPlan.SelectedPrices[0].Duration),
 //					PlanCode:    *pulumi.String(vrackCartProductPlan.PlanCode),
@@ -69,7 +68,6 @@ import (
 //			}
 //			ipblockIpService, err := Ip.NewIpService(ctx, "ipblockIpService", &Ip.IpServiceArgs{
 //				OvhSubsidiary: *pulumi.String(mycart.OvhSubsidiary),
-//				PaymentMean:   pulumi.String("ovh-account"),
 //				Description:   *pulumi.String(mycart.Description),
 //				Plan: &ip.IpServicePlanArgs{
 //					Duration:    *pulumi.String(ipblockCartProductPlan.SelectedPrices[0].Duration),

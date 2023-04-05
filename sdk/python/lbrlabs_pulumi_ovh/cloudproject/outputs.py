@@ -18,7 +18,11 @@ __all__ = [
     'DatabaseNode',
     'KubeCustomization',
     'KubeCustomizationApiserver',
-    'KubeCustomizationApiserverAdmissionplugins',
+    'KubeCustomizationApiserverAdmissionplugin',
+    'KubeCustomizationKubeProxy',
+    'KubeCustomizationKubeProxyIptables',
+    'KubeCustomizationKubeProxyIpvs',
+    'KubeKubeconfigAttribute',
     'KubeNodePoolTemplate',
     'KubeNodePoolTemplateMetadata',
     'KubeNodePoolTemplateSpec',
@@ -43,7 +47,10 @@ __all__ = [
     'GetContainerRegistryUsersResultResult',
     'GetKubeCustomizationResult',
     'GetKubeCustomizationApiserverResult',
-    'GetKubeCustomizationApiserverAdmissionpluginsResult',
+    'GetKubeCustomizationApiserverAdmissionpluginResult',
+    'GetKubeCustomizationKubeProxyResult',
+    'GetKubeCustomizationKubeProxyIptablesResult',
+    'GetKubeCustomizationKubeProxyIpvsResult',
     'GetKubeNodePoolNodesNodeResult',
     'GetKubeNodePoolTemplateResult',
     'GetKubeNodePoolTemplateMetadataResult',
@@ -423,34 +430,50 @@ class DatabaseNode(dict):
 @pulumi.output_type
 class KubeCustomization(dict):
     def __init__(__self__, *,
-                 apiserver: Optional['outputs.KubeCustomizationApiserver'] = None):
-        if apiserver is not None:
-            pulumi.set(__self__, "apiserver", apiserver)
+                 apiservers: Optional[Sequence['outputs.KubeCustomizationApiserver']] = None):
+        """
+        :param Sequence['KubeCustomizationApiserverArgs'] apiservers: Kubernetes API server customization
+        """
+        if apiservers is not None:
+            pulumi.set(__self__, "apiservers", apiservers)
 
     @property
     @pulumi.getter
-    def apiserver(self) -> Optional['outputs.KubeCustomizationApiserver']:
-        return pulumi.get(self, "apiserver")
+    def apiservers(self) -> Optional[Sequence['outputs.KubeCustomizationApiserver']]:
+        """
+        Kubernetes API server customization
+        """
+        return pulumi.get(self, "apiservers")
 
 
 @pulumi.output_type
 class KubeCustomizationApiserver(dict):
     def __init__(__self__, *,
-                 admissionplugins: Optional['outputs.KubeCustomizationApiserverAdmissionplugins'] = None):
+                 admissionplugins: Optional[Sequence['outputs.KubeCustomizationApiserverAdmissionplugin']] = None):
+        """
+        :param Sequence['KubeCustomizationApiserverAdmissionpluginArgs'] admissionplugins: Kubernetes API server admission plugins customization
+        """
         if admissionplugins is not None:
             pulumi.set(__self__, "admissionplugins", admissionplugins)
 
     @property
     @pulumi.getter
-    def admissionplugins(self) -> Optional['outputs.KubeCustomizationApiserverAdmissionplugins']:
+    def admissionplugins(self) -> Optional[Sequence['outputs.KubeCustomizationApiserverAdmissionplugin']]:
+        """
+        Kubernetes API server admission plugins customization
+        """
         return pulumi.get(self, "admissionplugins")
 
 
 @pulumi.output_type
-class KubeCustomizationApiserverAdmissionplugins(dict):
+class KubeCustomizationApiserverAdmissionplugin(dict):
     def __init__(__self__, *,
                  disableds: Optional[Sequence[str]] = None,
                  enableds: Optional[Sequence[str]] = None):
+        """
+        :param Sequence[str] disableds: Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        :param Sequence[str] enableds: Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+        """
         if disableds is not None:
             pulumi.set(__self__, "disableds", disableds)
         if enableds is not None:
@@ -459,12 +482,279 @@ class KubeCustomizationApiserverAdmissionplugins(dict):
     @property
     @pulumi.getter
     def disableds(self) -> Optional[Sequence[str]]:
+        """
+        Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        """
         return pulumi.get(self, "disableds")
 
     @property
     @pulumi.getter
     def enableds(self) -> Optional[Sequence[str]]:
+        """
+        Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+        """
         return pulumi.get(self, "enableds")
+
+
+@pulumi.output_type
+class KubeCustomizationKubeProxy(dict):
+    def __init__(__self__, *,
+                 iptables: Optional['outputs.KubeCustomizationKubeProxyIptables'] = None,
+                 ipvs: Optional['outputs.KubeCustomizationKubeProxyIpvs'] = None):
+        """
+        :param 'KubeCustomizationKubeProxyIptablesArgs' iptables: Kubernetes cluster kube-proxy customization of iptables specific config (durations format is RFC3339 duration, e.g. `PT60S`)
+        :param 'KubeCustomizationKubeProxyIpvsArgs' ipvs: Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration, e.g. `PT60S`)
+        """
+        if iptables is not None:
+            pulumi.set(__self__, "iptables", iptables)
+        if ipvs is not None:
+            pulumi.set(__self__, "ipvs", ipvs)
+
+    @property
+    @pulumi.getter
+    def iptables(self) -> Optional['outputs.KubeCustomizationKubeProxyIptables']:
+        """
+        Kubernetes cluster kube-proxy customization of iptables specific config (durations format is RFC3339 duration, e.g. `PT60S`)
+        """
+        return pulumi.get(self, "iptables")
+
+    @property
+    @pulumi.getter
+    def ipvs(self) -> Optional['outputs.KubeCustomizationKubeProxyIpvs']:
+        """
+        Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration, e.g. `PT60S`)
+        """
+        return pulumi.get(self, "ipvs")
+
+
+@pulumi.output_type
+class KubeCustomizationKubeProxyIptables(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "minSyncPeriod":
+            suggest = "min_sync_period"
+        elif key == "syncPeriod":
+            suggest = "sync_period"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubeCustomizationKubeProxyIptables. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubeCustomizationKubeProxyIptables.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubeCustomizationKubeProxyIptables.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 min_sync_period: Optional[str] = None,
+                 sync_period: Optional[str] = None):
+        """
+        :param str min_sync_period: Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+        :param str sync_period: Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+        """
+        if min_sync_period is not None:
+            pulumi.set(__self__, "min_sync_period", min_sync_period)
+        if sync_period is not None:
+            pulumi.set(__self__, "sync_period", sync_period)
+
+    @property
+    @pulumi.getter(name="minSyncPeriod")
+    def min_sync_period(self) -> Optional[str]:
+        """
+        Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+        """
+        return pulumi.get(self, "min_sync_period")
+
+    @property
+    @pulumi.getter(name="syncPeriod")
+    def sync_period(self) -> Optional[str]:
+        """
+        Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+        """
+        return pulumi.get(self, "sync_period")
+
+
+@pulumi.output_type
+class KubeCustomizationKubeProxyIpvs(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "minSyncPeriod":
+            suggest = "min_sync_period"
+        elif key == "syncPeriod":
+            suggest = "sync_period"
+        elif key == "tcpFinTimeout":
+            suggest = "tcp_fin_timeout"
+        elif key == "tcpTimeout":
+            suggest = "tcp_timeout"
+        elif key == "udpTimeout":
+            suggest = "udp_timeout"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubeCustomizationKubeProxyIpvs. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubeCustomizationKubeProxyIpvs.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubeCustomizationKubeProxyIpvs.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 min_sync_period: Optional[str] = None,
+                 scheduler: Optional[str] = None,
+                 sync_period: Optional[str] = None,
+                 tcp_fin_timeout: Optional[str] = None,
+                 tcp_timeout: Optional[str] = None,
+                 udp_timeout: Optional[str] = None):
+        """
+        :param str min_sync_period: Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+        :param str scheduler: IPVS scheduler.
+        :param str sync_period: Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+        :param str tcp_fin_timeout: Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+        :param str tcp_timeout: Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+        :param str udp_timeout: timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+        """
+        if min_sync_period is not None:
+            pulumi.set(__self__, "min_sync_period", min_sync_period)
+        if scheduler is not None:
+            pulumi.set(__self__, "scheduler", scheduler)
+        if sync_period is not None:
+            pulumi.set(__self__, "sync_period", sync_period)
+        if tcp_fin_timeout is not None:
+            pulumi.set(__self__, "tcp_fin_timeout", tcp_fin_timeout)
+        if tcp_timeout is not None:
+            pulumi.set(__self__, "tcp_timeout", tcp_timeout)
+        if udp_timeout is not None:
+            pulumi.set(__self__, "udp_timeout", udp_timeout)
+
+    @property
+    @pulumi.getter(name="minSyncPeriod")
+    def min_sync_period(self) -> Optional[str]:
+        """
+        Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+        """
+        return pulumi.get(self, "min_sync_period")
+
+    @property
+    @pulumi.getter
+    def scheduler(self) -> Optional[str]:
+        """
+        IPVS scheduler.
+        """
+        return pulumi.get(self, "scheduler")
+
+    @property
+    @pulumi.getter(name="syncPeriod")
+    def sync_period(self) -> Optional[str]:
+        """
+        Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+        """
+        return pulumi.get(self, "sync_period")
+
+    @property
+    @pulumi.getter(name="tcpFinTimeout")
+    def tcp_fin_timeout(self) -> Optional[str]:
+        """
+        Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+        """
+        return pulumi.get(self, "tcp_fin_timeout")
+
+    @property
+    @pulumi.getter(name="tcpTimeout")
+    def tcp_timeout(self) -> Optional[str]:
+        """
+        Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+        """
+        return pulumi.get(self, "tcp_timeout")
+
+    @property
+    @pulumi.getter(name="udpTimeout")
+    def udp_timeout(self) -> Optional[str]:
+        """
+        timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+        """
+        return pulumi.get(self, "udp_timeout")
+
+
+@pulumi.output_type
+class KubeKubeconfigAttribute(dict):
+    @staticmethod
+    def __key_warning(key: str):
+        suggest = None
+        if key == "clientCertificate":
+            suggest = "client_certificate"
+        elif key == "clientKey":
+            suggest = "client_key"
+        elif key == "clusterCaCertificate":
+            suggest = "cluster_ca_certificate"
+
+        if suggest:
+            pulumi.log.warn(f"Key '{key}' not found in KubeKubeconfigAttribute. Access the value via the '{suggest}' property getter instead.")
+
+    def __getitem__(self, key: str) -> Any:
+        KubeKubeconfigAttribute.__key_warning(key)
+        return super().__getitem__(key)
+
+    def get(self, key: str, default = None) -> Any:
+        KubeKubeconfigAttribute.__key_warning(key)
+        return super().get(key, default)
+
+    def __init__(__self__, *,
+                 client_certificate: Optional[str] = None,
+                 client_key: Optional[str] = None,
+                 cluster_ca_certificate: Optional[str] = None,
+                 host: Optional[str] = None):
+        """
+        :param str client_certificate: The kubernetes API server client certificate.
+        :param str client_key: The kubernetes API server client key.
+        :param str cluster_ca_certificate: The kubernetes API server CA certificate.
+        :param str host: The kubernetes API server URL.
+        """
+        if client_certificate is not None:
+            pulumi.set(__self__, "client_certificate", client_certificate)
+        if client_key is not None:
+            pulumi.set(__self__, "client_key", client_key)
+        if cluster_ca_certificate is not None:
+            pulumi.set(__self__, "cluster_ca_certificate", cluster_ca_certificate)
+        if host is not None:
+            pulumi.set(__self__, "host", host)
+
+    @property
+    @pulumi.getter(name="clientCertificate")
+    def client_certificate(self) -> Optional[str]:
+        """
+        The kubernetes API server client certificate.
+        """
+        return pulumi.get(self, "client_certificate")
+
+    @property
+    @pulumi.getter(name="clientKey")
+    def client_key(self) -> Optional[str]:
+        """
+        The kubernetes API server client key.
+        """
+        return pulumi.get(self, "client_key")
+
+    @property
+    @pulumi.getter(name="clusterCaCertificate")
+    def cluster_ca_certificate(self) -> Optional[str]:
+        """
+        The kubernetes API server CA certificate.
+        """
+        return pulumi.get(self, "cluster_ca_certificate")
+
+    @property
+    @pulumi.getter
+    def host(self) -> Optional[str]:
+        """
+        The kubernetes API server URL.
+        """
+        return pulumi.get(self, "host")
 
 
 @pulumi.output_type
@@ -472,6 +762,10 @@ class KubeNodePoolTemplate(dict):
     def __init__(__self__, *,
                  metadata: Optional['outputs.KubeNodePoolTemplateMetadata'] = None,
                  spec: Optional['outputs.KubeNodePoolTemplateSpec'] = None):
+        """
+        :param 'KubeNodePoolTemplateMetadataArgs' metadata: Metadata of each node in the pool
+        :param 'KubeNodePoolTemplateSpecArgs' spec: Spec of each node in the pool
+        """
         if metadata is not None:
             pulumi.set(__self__, "metadata", metadata)
         if spec is not None:
@@ -480,11 +774,17 @@ class KubeNodePoolTemplate(dict):
     @property
     @pulumi.getter
     def metadata(self) -> Optional['outputs.KubeNodePoolTemplateMetadata']:
+        """
+        Metadata of each node in the pool
+        """
         return pulumi.get(self, "metadata")
 
     @property
     @pulumi.getter
     def spec(self) -> Optional['outputs.KubeNodePoolTemplateSpec']:
+        """
+        Spec of each node in the pool
+        """
         return pulumi.get(self, "spec")
 
 
@@ -494,6 +794,11 @@ class KubeNodePoolTemplateMetadata(dict):
                  annotations: Optional[Mapping[str, str]] = None,
                  finalizers: Optional[Sequence[str]] = None,
                  labels: Optional[Mapping[str, str]] = None):
+        """
+        :param Mapping[str, str] annotations: Annotations to apply to each node
+        :param Sequence[str] finalizers: Finalizers to apply to each node
+        :param Mapping[str, str] labels: Labels to apply to each node
+        """
         if annotations is not None:
             pulumi.set(__self__, "annotations", annotations)
         if finalizers is not None:
@@ -504,16 +809,25 @@ class KubeNodePoolTemplateMetadata(dict):
     @property
     @pulumi.getter
     def annotations(self) -> Optional[Mapping[str, str]]:
+        """
+        Annotations to apply to each node
+        """
         return pulumi.get(self, "annotations")
 
     @property
     @pulumi.getter
     def finalizers(self) -> Optional[Sequence[str]]:
+        """
+        Finalizers to apply to each node
+        """
         return pulumi.get(self, "finalizers")
 
     @property
     @pulumi.getter
     def labels(self) -> Optional[Mapping[str, str]]:
+        """
+        Labels to apply to each node
+        """
         return pulumi.get(self, "labels")
 
 
@@ -522,6 +836,10 @@ class KubeNodePoolTemplateSpec(dict):
     def __init__(__self__, *,
                  taints: Optional[Sequence[Mapping[str, Any]]] = None,
                  unschedulable: Optional[bool] = None):
+        """
+        :param Sequence[Mapping[str, Any]] taints: Taints to apply to each node
+        :param bool unschedulable: If true, set nodes as un-schedulable
+        """
         if taints is not None:
             pulumi.set(__self__, "taints", taints)
         if unschedulable is not None:
@@ -530,11 +848,17 @@ class KubeNodePoolTemplateSpec(dict):
     @property
     @pulumi.getter
     def taints(self) -> Optional[Sequence[Mapping[str, Any]]]:
+        """
+        Taints to apply to each node
+        """
         return pulumi.get(self, "taints")
 
     @property
     @pulumi.getter
     def unschedulable(self) -> Optional[bool]:
+        """
+        If true, set nodes as un-schedulable
+        """
         return pulumi.get(self, "unschedulable")
 
 
@@ -562,17 +886,27 @@ class KubePrivateNetworkConfiguration(dict):
     def __init__(__self__, *,
                  default_vrack_gateway: str,
                  private_network_routing_as_default: bool):
+        """
+        :param str default_vrack_gateway: If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+        :param bool private_network_routing_as_default: Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+        """
         pulumi.set(__self__, "default_vrack_gateway", default_vrack_gateway)
         pulumi.set(__self__, "private_network_routing_as_default", private_network_routing_as_default)
 
     @property
     @pulumi.getter(name="defaultVrackGateway")
     def default_vrack_gateway(self) -> str:
+        """
+        If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+        """
         return pulumi.get(self, "default_vrack_gateway")
 
     @property
     @pulumi.getter(name="privateNetworkRoutingAsDefault")
     def private_network_routing_as_default(self) -> bool:
+        """
+        Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+        """
         return pulumi.get(self, "private_network_routing_as_default")
 
 
@@ -1511,44 +1845,207 @@ class GetContainerRegistryUsersResultResult(dict):
 @pulumi.output_type
 class GetKubeCustomizationResult(dict):
     def __init__(__self__, *,
-                 apiserver: 'outputs.GetKubeCustomizationApiserverResult'):
-        pulumi.set(__self__, "apiserver", apiserver)
+                 apiservers: Sequence['outputs.GetKubeCustomizationApiserverResult']):
+        """
+        :param Sequence['GetKubeCustomizationApiserverArgs'] apiservers: Kubernetes API server customization
+        """
+        pulumi.set(__self__, "apiservers", apiservers)
 
     @property
     @pulumi.getter
-    def apiserver(self) -> 'outputs.GetKubeCustomizationApiserverResult':
-        return pulumi.get(self, "apiserver")
+    def apiservers(self) -> Sequence['outputs.GetKubeCustomizationApiserverResult']:
+        """
+        Kubernetes API server customization
+        """
+        return pulumi.get(self, "apiservers")
 
 
 @pulumi.output_type
 class GetKubeCustomizationApiserverResult(dict):
     def __init__(__self__, *,
-                 admissionplugins: 'outputs.GetKubeCustomizationApiserverAdmissionpluginsResult'):
+                 admissionplugins: Sequence['outputs.GetKubeCustomizationApiserverAdmissionpluginResult']):
+        """
+        :param Sequence['GetKubeCustomizationApiserverAdmissionpluginArgs'] admissionplugins: Kubernetes API server admission plugins customization
+        """
         pulumi.set(__self__, "admissionplugins", admissionplugins)
 
     @property
     @pulumi.getter
-    def admissionplugins(self) -> 'outputs.GetKubeCustomizationApiserverAdmissionpluginsResult':
+    def admissionplugins(self) -> Sequence['outputs.GetKubeCustomizationApiserverAdmissionpluginResult']:
+        """
+        Kubernetes API server admission plugins customization
+        """
         return pulumi.get(self, "admissionplugins")
 
 
 @pulumi.output_type
-class GetKubeCustomizationApiserverAdmissionpluginsResult(dict):
+class GetKubeCustomizationApiserverAdmissionpluginResult(dict):
     def __init__(__self__, *,
                  disableds: Sequence[str],
                  enableds: Sequence[str]):
+        """
+        :param Sequence[str] disableds: Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        :param Sequence[str] enableds: Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+        """
         pulumi.set(__self__, "disableds", disableds)
         pulumi.set(__self__, "enableds", enableds)
 
     @property
     @pulumi.getter
     def disableds(self) -> Sequence[str]:
+        """
+        Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        """
         return pulumi.get(self, "disableds")
 
     @property
     @pulumi.getter
     def enableds(self) -> Sequence[str]:
+        """
+        Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+        """
         return pulumi.get(self, "enableds")
+
+
+@pulumi.output_type
+class GetKubeCustomizationKubeProxyResult(dict):
+    def __init__(__self__, *,
+                 iptables: Optional['outputs.GetKubeCustomizationKubeProxyIptablesResult'] = None,
+                 ipvs: Optional['outputs.GetKubeCustomizationKubeProxyIpvsResult'] = None):
+        """
+        :param 'GetKubeCustomizationKubeProxyIptablesArgs' iptables: Kubernetes cluster kube-proxy customization of iptables specific config.
+        :param 'GetKubeCustomizationKubeProxyIpvsArgs' ipvs: Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+        """
+        if iptables is not None:
+            pulumi.set(__self__, "iptables", iptables)
+        if ipvs is not None:
+            pulumi.set(__self__, "ipvs", ipvs)
+
+    @property
+    @pulumi.getter
+    def iptables(self) -> Optional['outputs.GetKubeCustomizationKubeProxyIptablesResult']:
+        """
+        Kubernetes cluster kube-proxy customization of iptables specific config.
+        """
+        return pulumi.get(self, "iptables")
+
+    @property
+    @pulumi.getter
+    def ipvs(self) -> Optional['outputs.GetKubeCustomizationKubeProxyIpvsResult']:
+        """
+        Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+        """
+        return pulumi.get(self, "ipvs")
+
+
+@pulumi.output_type
+class GetKubeCustomizationKubeProxyIptablesResult(dict):
+    def __init__(__self__, *,
+                 min_sync_period: Optional[str] = None,
+                 sync_period: Optional[str] = None):
+        """
+        :param str min_sync_period: Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+        :param str sync_period: Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+        """
+        if min_sync_period is not None:
+            pulumi.set(__self__, "min_sync_period", min_sync_period)
+        if sync_period is not None:
+            pulumi.set(__self__, "sync_period", sync_period)
+
+    @property
+    @pulumi.getter(name="minSyncPeriod")
+    def min_sync_period(self) -> Optional[str]:
+        """
+        Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+        """
+        return pulumi.get(self, "min_sync_period")
+
+    @property
+    @pulumi.getter(name="syncPeriod")
+    def sync_period(self) -> Optional[str]:
+        """
+        Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+        """
+        return pulumi.get(self, "sync_period")
+
+
+@pulumi.output_type
+class GetKubeCustomizationKubeProxyIpvsResult(dict):
+    def __init__(__self__, *,
+                 min_sync_period: Optional[str] = None,
+                 scheduler: Optional[str] = None,
+                 sync_period: Optional[str] = None,
+                 tcp_fin_timeout: Optional[str] = None,
+                 tcp_timeout: Optional[str] = None,
+                 udp_timeout: Optional[str] = None):
+        """
+        :param str min_sync_period: Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+        :param str scheduler: IPVS scheduler.
+        :param str sync_period: Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+        :param str tcp_fin_timeout: Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration.
+        :param str tcp_timeout: Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+        :param str udp_timeout: timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+        """
+        if min_sync_period is not None:
+            pulumi.set(__self__, "min_sync_period", min_sync_period)
+        if scheduler is not None:
+            pulumi.set(__self__, "scheduler", scheduler)
+        if sync_period is not None:
+            pulumi.set(__self__, "sync_period", sync_period)
+        if tcp_fin_timeout is not None:
+            pulumi.set(__self__, "tcp_fin_timeout", tcp_fin_timeout)
+        if tcp_timeout is not None:
+            pulumi.set(__self__, "tcp_timeout", tcp_timeout)
+        if udp_timeout is not None:
+            pulumi.set(__self__, "udp_timeout", udp_timeout)
+
+    @property
+    @pulumi.getter(name="minSyncPeriod")
+    def min_sync_period(self) -> Optional[str]:
+        """
+        Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+        """
+        return pulumi.get(self, "min_sync_period")
+
+    @property
+    @pulumi.getter
+    def scheduler(self) -> Optional[str]:
+        """
+        IPVS scheduler.
+        """
+        return pulumi.get(self, "scheduler")
+
+    @property
+    @pulumi.getter(name="syncPeriod")
+    def sync_period(self) -> Optional[str]:
+        """
+        Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+        """
+        return pulumi.get(self, "sync_period")
+
+    @property
+    @pulumi.getter(name="tcpFinTimeout")
+    def tcp_fin_timeout(self) -> Optional[str]:
+        """
+        Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration.
+        """
+        return pulumi.get(self, "tcp_fin_timeout")
+
+    @property
+    @pulumi.getter(name="tcpTimeout")
+    def tcp_timeout(self) -> Optional[str]:
+        """
+        Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+        """
+        return pulumi.get(self, "tcp_timeout")
+
+    @property
+    @pulumi.getter(name="udpTimeout")
+    def udp_timeout(self) -> Optional[str]:
+        """
+        timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+        """
+        return pulumi.get(self, "udp_timeout")
 
 
 @pulumi.output_type

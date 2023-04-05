@@ -5,6 +5,8 @@ package com.pulumi.ovh.CloudProject.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ovh.CloudProject.outputs.GetKubeCustomization;
+import com.pulumi.ovh.CloudProject.outputs.GetKubeCustomizationApiserver;
+import com.pulumi.ovh.CloudProject.outputs.GetKubeCustomizationKubeProxy;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
@@ -15,26 +17,36 @@ import javax.annotation.Nullable;
 @CustomType
 public final class GetKubeResult {
     /**
-     * @return True if control-plane is up to date.
+     * @return True if control-plane is up-to-date.
      * 
      */
     private Boolean controlPlaneIsUpToDate;
     /**
-     * @return Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - Kubernetes API server admission plugins customization
-     * * enabled - Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-     * * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * @return Kubernetes API server customization
      * 
      */
-    private GetKubeCustomization customization;
+    private List<GetKubeCustomizationApiserver> customizationApiservers;
+    /**
+     * @return Kubernetes kube-proxy customization
+     * 
+     */
+    private @Nullable GetKubeCustomizationKubeProxy customizationKubeProxy;
+    /**
+     * @return **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    private List<GetKubeCustomization> customizations;
     /**
      * @return The provider-assigned unique ID for this managed resource.
      * 
      */
     private String id;
     /**
-     * @return True if all nodes and control-plane are up to date.
+     * @return True if all nodes and control-plane are up-to-date.
      * 
      */
     private Boolean isUpToDate;
@@ -43,6 +55,11 @@ public final class GetKubeResult {
      * 
      */
     private String kubeId;
+    /**
+     * @return Selected mode for kube-proxy.
+     * 
+     */
+    private @Nullable String kubeProxyMode;
     /**
      * @return The name of the managed kubernetes cluster.
      * 
@@ -96,22 +113,36 @@ public final class GetKubeResult {
 
     private GetKubeResult() {}
     /**
-     * @return True if control-plane is up to date.
+     * @return True if control-plane is up-to-date.
      * 
      */
     public Boolean controlPlaneIsUpToDate() {
         return this.controlPlaneIsUpToDate;
     }
     /**
-     * @return Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - Kubernetes API server admission plugins customization
-     * * enabled - Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-     * * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * @return Kubernetes API server customization
      * 
      */
-    public GetKubeCustomization customization() {
-        return this.customization;
+    public List<GetKubeCustomizationApiserver> customizationApiservers() {
+        return this.customizationApiservers;
+    }
+    /**
+     * @return Kubernetes kube-proxy customization
+     * 
+     */
+    public Optional<GetKubeCustomizationKubeProxy> customizationKubeProxy() {
+        return Optional.ofNullable(this.customizationKubeProxy);
+    }
+    /**
+     * @return **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    public List<GetKubeCustomization> customizations() {
+        return this.customizations;
     }
     /**
      * @return The provider-assigned unique ID for this managed resource.
@@ -121,7 +152,7 @@ public final class GetKubeResult {
         return this.id;
     }
     /**
-     * @return True if all nodes and control-plane are up to date.
+     * @return True if all nodes and control-plane are up-to-date.
      * 
      */
     public Boolean isUpToDate() {
@@ -133,6 +164,13 @@ public final class GetKubeResult {
      */
     public String kubeId() {
         return this.kubeId;
+    }
+    /**
+     * @return Selected mode for kube-proxy.
+     * 
+     */
+    public Optional<String> kubeProxyMode() {
+        return Optional.ofNullable(this.kubeProxyMode);
     }
     /**
      * @return The name of the managed kubernetes cluster.
@@ -215,10 +253,13 @@ public final class GetKubeResult {
     @CustomType.Builder
     public static final class Builder {
         private Boolean controlPlaneIsUpToDate;
-        private GetKubeCustomization customization;
+        private List<GetKubeCustomizationApiserver> customizationApiservers;
+        private @Nullable GetKubeCustomizationKubeProxy customizationKubeProxy;
+        private List<GetKubeCustomization> customizations;
         private String id;
         private Boolean isUpToDate;
         private String kubeId;
+        private @Nullable String kubeProxyMode;
         private @Nullable String name;
         private List<String> nextUpgradeVersions;
         private String nodesUrl;
@@ -233,10 +274,13 @@ public final class GetKubeResult {
         public Builder(GetKubeResult defaults) {
     	      Objects.requireNonNull(defaults);
     	      this.controlPlaneIsUpToDate = defaults.controlPlaneIsUpToDate;
-    	      this.customization = defaults.customization;
+    	      this.customizationApiservers = defaults.customizationApiservers;
+    	      this.customizationKubeProxy = defaults.customizationKubeProxy;
+    	      this.customizations = defaults.customizations;
     	      this.id = defaults.id;
     	      this.isUpToDate = defaults.isUpToDate;
     	      this.kubeId = defaults.kubeId;
+    	      this.kubeProxyMode = defaults.kubeProxyMode;
     	      this.name = defaults.name;
     	      this.nextUpgradeVersions = defaults.nextUpgradeVersions;
     	      this.nodesUrl = defaults.nodesUrl;
@@ -255,9 +299,25 @@ public final class GetKubeResult {
             return this;
         }
         @CustomType.Setter
-        public Builder customization(GetKubeCustomization customization) {
-            this.customization = Objects.requireNonNull(customization);
+        public Builder customizationApiservers(List<GetKubeCustomizationApiserver> customizationApiservers) {
+            this.customizationApiservers = Objects.requireNonNull(customizationApiservers);
             return this;
+        }
+        public Builder customizationApiservers(GetKubeCustomizationApiserver... customizationApiservers) {
+            return customizationApiservers(List.of(customizationApiservers));
+        }
+        @CustomType.Setter
+        public Builder customizationKubeProxy(@Nullable GetKubeCustomizationKubeProxy customizationKubeProxy) {
+            this.customizationKubeProxy = customizationKubeProxy;
+            return this;
+        }
+        @CustomType.Setter
+        public Builder customizations(List<GetKubeCustomization> customizations) {
+            this.customizations = Objects.requireNonNull(customizations);
+            return this;
+        }
+        public Builder customizations(GetKubeCustomization... customizations) {
+            return customizations(List.of(customizations));
         }
         @CustomType.Setter
         public Builder id(String id) {
@@ -272,6 +332,11 @@ public final class GetKubeResult {
         @CustomType.Setter
         public Builder kubeId(String kubeId) {
             this.kubeId = Objects.requireNonNull(kubeId);
+            return this;
+        }
+        @CustomType.Setter
+        public Builder kubeProxyMode(@Nullable String kubeProxyMode) {
+            this.kubeProxyMode = kubeProxyMode;
             return this;
         }
         @CustomType.Setter
@@ -330,10 +395,13 @@ public final class GetKubeResult {
         public GetKubeResult build() {
             final var o = new GetKubeResult();
             o.controlPlaneIsUpToDate = controlPlaneIsUpToDate;
-            o.customization = customization;
+            o.customizationApiservers = customizationApiservers;
+            o.customizationKubeProxy = customizationKubeProxy;
+            o.customizations = customizations;
             o.id = id;
             o.isUpToDate = isUpToDate;
             o.kubeId = kubeId;
+            o.kubeProxyMode = kubeProxyMode;
             o.name = name;
             o.nextUpgradeVersions = nextUpgradeVersions;
             o.nodesUrl = nodesUrl;

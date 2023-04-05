@@ -11,12 +11,11 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Ovh.Hosting
 {
     /// <summary>
-    /// Creates an OVHcloud managed private cloud database.
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// using Ovh = Pulumi.Ovh;
@@ -40,7 +39,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
     ///     var databasePrivateDatabase = new Ovh.Hosting.PrivateDatabase("databasePrivateDatabase", new()
     ///     {
     ///         OvhSubsidiary = mycart.Apply(getCartResult =&gt; getCartResult.OvhSubsidiary),
-    ///         PaymentMean = "ovh-account",
     ///         DisplayName = "Postgresql-12",
     ///         Plan = new Ovh.Hosting.Inputs.PrivateDatabasePlanArgs
     ///         {
@@ -136,10 +134,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
         public Output<string> OvhSubsidiary { get; private set; } = null!;
 
         /// <summary>
-        /// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        /// Ovh payment mode
         /// </summary>
         [Output("paymentMean")]
-        public Output<string> PaymentMean { get; private set; } = null!;
+        public Output<string?> PaymentMean { get; private set; } = null!;
 
         /// <summary>
         /// Product Plan to order
@@ -285,10 +283,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
         public Input<string> OvhSubsidiary { get; set; } = null!;
 
         /// <summary>
-        /// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        /// Ovh payment mode
         /// </summary>
-        [Input("paymentMean", required: true)]
-        public Input<string> PaymentMean { get; set; } = null!;
+        [Input("paymentMean")]
+        public Input<string>? PaymentMean { get; set; }
 
         /// <summary>
         /// Product Plan to order
@@ -383,7 +381,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
         public Input<string>? OvhSubsidiary { get; set; }
 
         /// <summary>
-        /// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        /// Ovh payment mode
         /// </summary>
         [Input("paymentMean")]
         public Input<string>? PaymentMean { get; set; }

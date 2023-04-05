@@ -30,14 +30,14 @@ public final class KubeIpRestrictionsArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The id of the managed Kubernetes cluster.
+     * The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
     @Import(name="kubeId", required=true)
     private Output<String> kubeId;
 
     /**
-     * @return The id of the managed Kubernetes cluster.
+     * @return The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
     public Output<String> kubeId() {
@@ -45,16 +45,14 @@ public final class KubeIpRestrictionsArgs extends com.pulumi.resources.ResourceA
     }
 
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     @Import(name="serviceName", required=true)
     private Output<String> serviceName;
 
     /**
-     * @return The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * @return The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     public Output<String> serviceName() {
@@ -119,7 +117,7 @@ public final class KubeIpRestrictionsArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param kubeId The id of the managed Kubernetes cluster.
+         * @param kubeId The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -130,7 +128,7 @@ public final class KubeIpRestrictionsArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param kubeId The id of the managed Kubernetes cluster.
+         * @param kubeId The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -140,8 +138,7 @@ public final class KubeIpRestrictionsArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param serviceName The id of the public cloud project. If omitted,
-         * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+         * @param serviceName The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -152,8 +149,7 @@ public final class KubeIpRestrictionsArgs extends com.pulumi.resources.ResourceA
         }
 
         /**
-         * @param serviceName The id of the public cloud project. If omitted,
-         * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+         * @param serviceName The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 

@@ -15,6 +15,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject.Inputs
     {
         [Input("annotations")]
         private InputMap<string>? _annotations;
+
+        /// <summary>
+        /// Annotations to apply to each node
+        /// </summary>
         public InputMap<string> Annotations
         {
             get => _annotations ?? (_annotations = new InputMap<string>());
@@ -23,6 +27,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject.Inputs
 
         [Input("finalizers")]
         private InputList<string>? _finalizers;
+
+        /// <summary>
+        /// Finalizers to apply to each node
+        /// </summary>
         public InputList<string> Finalizers
         {
             get => _finalizers ?? (_finalizers = new InputList<string>());
@@ -31,6 +39,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject.Inputs
 
         [Input("labels")]
         private InputMap<string>? _labels;
+
+        /// <summary>
+        /// Labels to apply to each node
+        /// </summary>
         public InputMap<string> Labels
         {
             get => _labels ?? (_labels = new InputMap<string>());

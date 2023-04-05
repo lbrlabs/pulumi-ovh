@@ -19,6 +19,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// 
@@ -41,6 +42,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// 
@@ -105,13 +107,14 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     public partial class KubeNodePool : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// should the pool use the anti-affinity feature. Default to `false`.
+        /// should the pool use the anti-affinity feature. Default to `false`. **Changing this value recreates the resource.**
         /// </summary>
         [Output("antiAffinity")]
         public Output<bool> AntiAffinity { get; private set; } = null!;
 
         /// <summary>
         /// Enable auto-scaling for the pool. Default to `false`.
+        /// * `template ` - (Optional) Managed Kubernetes nodepool template, which is a complex object constituted by two main nested objects:
         /// </summary>
         [Output("autoscale")]
         public Output<bool> Autoscale { get; private set; } = null!;
@@ -147,43 +150,38 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Output<string> Flavor { get; private set; } = null!;
 
         /// <summary>
-        /// a valid OVHcloud public cloud flavor ID in which the nodes will be started.
-        /// Ex: "b2-7". Changing this value recreates the resource.
-        /// You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/
+        /// a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/.
+        /// **Changing this value recreates the resource.**
         /// </summary>
         [Output("flavorName")]
         public Output<string> FlavorName { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the managed kubernetes cluster.
+        /// The id of the managed kubernetes cluster. **Changing this value recreates the resource.**
         /// </summary>
         [Output("kubeId")]
         public Output<string> KubeId { get; private set; } = null!;
 
         /// <summary>
-        /// maximum number of nodes allowed in the pool.
-        /// Setting `desired_nodes` over this value will raise an error.
+        /// maximum number of nodes allowed in the pool. Setting `desired_nodes` over this value will raise an error.
         /// </summary>
         [Output("maxNodes")]
         public Output<int> MaxNodes { get; private set; } = null!;
 
         /// <summary>
-        /// minimum number of nodes allowed in the pool.
-        /// Setting `desired_nodes` under this value will raise an error.
+        /// minimum number of nodes allowed in the pool. Setting `desired_nodes` under this value will raise an error.
         /// </summary>
         [Output("minNodes")]
         public Output<int> MinNodes { get; private set; } = null!;
 
         /// <summary>
-        /// should the nodes be billed on a monthly basis. Default to `false`.
+        /// should the nodes be billed on a monthly basis. Default to `false`. **Changing this value recreates the resource.**
         /// </summary>
         [Output("monthlyBilled")]
         public Output<bool> MonthlyBilled { get; private set; } = null!;
 
         /// <summary>
-        /// The name of the nodepool.
-        /// Changing this value recreates the resource.
-        /// Warning: "_" char is not allowed!
+        /// The name of the nodepool. Warning: `_` char is not allowed! **Changing this value recreates the resource.**
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -195,8 +193,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Output<string> ProjectId { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the public cloud project. If omitted,
-        /// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        /// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         /// </summary>
         [Output("serviceName")]
         public Output<string> ServiceName { get; private set; } = null!;
@@ -220,7 +217,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Output<Outputs.KubeNodePoolTemplate?> Template { get; private set; } = null!;
 
         /// <summary>
-        /// Number of nodes with latest version installed in the pool
+        /// Number of nodes with the latest version installed in the pool
         /// </summary>
         [Output("upToDateNodes")]
         public Output<int> UpToDateNodes { get; private set; } = null!;
@@ -279,13 +276,14 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     public sealed class KubeNodePoolArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// should the pool use the anti-affinity feature. Default to `false`.
+        /// should the pool use the anti-affinity feature. Default to `false`. **Changing this value recreates the resource.**
         /// </summary>
         [Input("antiAffinity")]
         public Input<bool>? AntiAffinity { get; set; }
 
         /// <summary>
         /// Enable auto-scaling for the pool. Default to `false`.
+        /// * `template ` - (Optional) Managed Kubernetes nodepool template, which is a complex object constituted by two main nested objects:
         /// </summary>
         [Input("autoscale")]
         public Input<bool>? Autoscale { get; set; }
@@ -297,50 +295,44 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Input<int>? DesiredNodes { get; set; }
 
         /// <summary>
-        /// a valid OVHcloud public cloud flavor ID in which the nodes will be started.
-        /// Ex: "b2-7". Changing this value recreates the resource.
-        /// You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/
+        /// a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/.
+        /// **Changing this value recreates the resource.**
         /// </summary>
         [Input("flavorName", required: true)]
         public Input<string> FlavorName { get; set; } = null!;
 
         /// <summary>
-        /// The id of the managed kubernetes cluster.
+        /// The id of the managed kubernetes cluster. **Changing this value recreates the resource.**
         /// </summary>
         [Input("kubeId", required: true)]
         public Input<string> KubeId { get; set; } = null!;
 
         /// <summary>
-        /// maximum number of nodes allowed in the pool.
-        /// Setting `desired_nodes` over this value will raise an error.
+        /// maximum number of nodes allowed in the pool. Setting `desired_nodes` over this value will raise an error.
         /// </summary>
         [Input("maxNodes")]
         public Input<int>? MaxNodes { get; set; }
 
         /// <summary>
-        /// minimum number of nodes allowed in the pool.
-        /// Setting `desired_nodes` under this value will raise an error.
+        /// minimum number of nodes allowed in the pool. Setting `desired_nodes` under this value will raise an error.
         /// </summary>
         [Input("minNodes")]
         public Input<int>? MinNodes { get; set; }
 
         /// <summary>
-        /// should the nodes be billed on a monthly basis. Default to `false`.
+        /// should the nodes be billed on a monthly basis. Default to `false`. **Changing this value recreates the resource.**
         /// </summary>
         [Input("monthlyBilled")]
         public Input<bool>? MonthlyBilled { get; set; }
 
         /// <summary>
-        /// The name of the nodepool.
-        /// Changing this value recreates the resource.
-        /// Warning: "_" char is not allowed!
+        /// The name of the nodepool. Warning: `_` char is not allowed! **Changing this value recreates the resource.**
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
 
         /// <summary>
-        /// The id of the public cloud project. If omitted,
-        /// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        /// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         /// </summary>
         [Input("serviceName", required: true)]
         public Input<string> ServiceName { get; set; } = null!;
@@ -360,13 +352,14 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     public sealed class KubeNodePoolState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// should the pool use the anti-affinity feature. Default to `false`.
+        /// should the pool use the anti-affinity feature. Default to `false`. **Changing this value recreates the resource.**
         /// </summary>
         [Input("antiAffinity")]
         public Input<bool>? AntiAffinity { get; set; }
 
         /// <summary>
         /// Enable auto-scaling for the pool. Default to `false`.
+        /// * `template ` - (Optional) Managed Kubernetes nodepool template, which is a complex object constituted by two main nested objects:
         /// </summary>
         [Input("autoscale")]
         public Input<bool>? Autoscale { get; set; }
@@ -402,43 +395,38 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Input<string>? Flavor { get; set; }
 
         /// <summary>
-        /// a valid OVHcloud public cloud flavor ID in which the nodes will be started.
-        /// Ex: "b2-7". Changing this value recreates the resource.
-        /// You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/
+        /// a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: "b2-7". You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/.
+        /// **Changing this value recreates the resource.**
         /// </summary>
         [Input("flavorName")]
         public Input<string>? FlavorName { get; set; }
 
         /// <summary>
-        /// The id of the managed kubernetes cluster.
+        /// The id of the managed kubernetes cluster. **Changing this value recreates the resource.**
         /// </summary>
         [Input("kubeId")]
         public Input<string>? KubeId { get; set; }
 
         /// <summary>
-        /// maximum number of nodes allowed in the pool.
-        /// Setting `desired_nodes` over this value will raise an error.
+        /// maximum number of nodes allowed in the pool. Setting `desired_nodes` over this value will raise an error.
         /// </summary>
         [Input("maxNodes")]
         public Input<int>? MaxNodes { get; set; }
 
         /// <summary>
-        /// minimum number of nodes allowed in the pool.
-        /// Setting `desired_nodes` under this value will raise an error.
+        /// minimum number of nodes allowed in the pool. Setting `desired_nodes` under this value will raise an error.
         /// </summary>
         [Input("minNodes")]
         public Input<int>? MinNodes { get; set; }
 
         /// <summary>
-        /// should the nodes be billed on a monthly basis. Default to `false`.
+        /// should the nodes be billed on a monthly basis. Default to `false`. **Changing this value recreates the resource.**
         /// </summary>
         [Input("monthlyBilled")]
         public Input<bool>? MonthlyBilled { get; set; }
 
         /// <summary>
-        /// The name of the nodepool.
-        /// Changing this value recreates the resource.
-        /// Warning: "_" char is not allowed!
+        /// The name of the nodepool. Warning: `_` char is not allowed! **Changing this value recreates the resource.**
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -450,8 +438,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Input<string>? ProjectId { get; set; }
 
         /// <summary>
-        /// The id of the public cloud project. If omitted,
-        /// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        /// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }
@@ -475,7 +462,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Input<Inputs.KubeNodePoolTemplateGetArgs>? Template { get; set; }
 
         /// <summary>
-        /// Number of nodes with latest version installed in the pool
+        /// Number of nodes with the latest version installed in the pool
         /// </summary>
         [Input("upToDateNodes")]
         public Input<int>? UpToDateNodes { get; set; }

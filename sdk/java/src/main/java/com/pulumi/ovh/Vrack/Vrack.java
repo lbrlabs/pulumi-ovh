@@ -19,14 +19,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Orders a vrack.
- * 
- * ## Important
- * 
- * &gt; __WARNING__ This resource is in beta state. Use with caution.
- * 
- * &gt; __NOTE__ Currently, the OVHcloud API doesn&#39;t support Vrack termination. You have to open a support ticket to ask for vrack termination. Otherwise, you may hit vrack quota issues.
- * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -67,7 +59,6 @@ import javax.annotation.Nullable;
  * 
  *         var vrackVrack = new Vrack(&#34;vrackVrack&#34;, VrackArgs.builder()        
  *             .ovhSubsidiary(mycart.applyValue(getCartResult -&gt; getCartResult.ovhSubsidiary()))
- *             .paymentMean(&#34;fidelity&#34;)
  *             .description(&#34;my vrack&#34;)
  *             .plan(VrackPlanArgs.builder()
  *                 .duration(vrackCartProductPlan.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.selectedPrices()[0].duration()))
@@ -87,7 +78,7 @@ public class Vrack extends com.pulumi.resources.CustomResource {
      * yourvrackdescription
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -101,7 +92,7 @@ public class Vrack extends com.pulumi.resources.CustomResource {
      * yourvrackname
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -115,7 +106,7 @@ public class Vrack extends com.pulumi.resources.CustomResource {
      * Details about an Order
      * 
      */
-    @Export(name="orders", type=List.class, parameters={VrackOrder.class})
+    @Export(name="orders", refs={List.class,VrackOrder.class}, tree="[0,1]")
     private Output<List<VrackOrder>> orders;
 
     /**
@@ -129,7 +120,7 @@ public class Vrack extends com.pulumi.resources.CustomResource {
      * OVHcloud Subsidiary
      * 
      */
-    @Export(name="ovhSubsidiary", type=String.class, parameters={})
+    @Export(name="ovhSubsidiary", refs={String.class}, tree="[0]")
     private Output<String> ovhSubsidiary;
 
     /**
@@ -140,24 +131,28 @@ public class Vrack extends com.pulumi.resources.CustomResource {
         return this.ovhSubsidiary;
     }
     /**
-     * OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * Ovh payment mode
+     * 
+     * @deprecated
+     * This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      * 
      */
-    @Export(name="paymentMean", type=String.class, parameters={})
-    private Output<String> paymentMean;
+    @Deprecated /* This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used. */
+    @Export(name="paymentMean", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> paymentMean;
 
     /**
-     * @return OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * @return Ovh payment mode
      * 
      */
-    public Output<String> paymentMean() {
-        return this.paymentMean;
+    public Output<Optional<String>> paymentMean() {
+        return Codegen.optional(this.paymentMean);
     }
     /**
      * Product Plan to order
      * 
      */
-    @Export(name="plan", type=VrackPlan.class, parameters={})
+    @Export(name="plan", refs={VrackPlan.class}, tree="[0]")
     private Output<VrackPlan> plan;
 
     /**
@@ -171,7 +166,7 @@ public class Vrack extends com.pulumi.resources.CustomResource {
      * Product Plan to order
      * 
      */
-    @Export(name="planOptions", type=List.class, parameters={VrackPlanOption.class})
+    @Export(name="planOptions", refs={List.class,VrackPlanOption.class}, tree="[0,1]")
     private Output</* @Nullable */ List<VrackPlanOption>> planOptions;
 
     /**
@@ -185,7 +180,7 @@ public class Vrack extends com.pulumi.resources.CustomResource {
      * The internal name of your vrack
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**

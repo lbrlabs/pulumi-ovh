@@ -22,6 +22,7 @@ class DatabaseArgs:
                  plan: pulumi.Input[str],
                  service_name: pulumi.Input[str],
                  version: pulumi.Input[str],
+                 advanced_configuration: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disk_size: Optional[pulumi.Input[int]] = None,
                  kafka_rest_api: Optional[pulumi.Input[bool]] = None,
@@ -40,6 +41,7 @@ class DatabaseArgs:
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] version: The version of the engine in which the service should be deployed
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] advanced_configuration: Advanced configuration key / value.
         :param pulumi.Input[str] description: Small description of the database service.
         :param pulumi.Input[int] disk_size: The disk size (in GB) of the database service.
         :param pulumi.Input[bool] kafka_rest_api: Defines whether the REST API is enabled on a kafka cluster
@@ -51,6 +53,8 @@ class DatabaseArgs:
         pulumi.set(__self__, "plan", plan)
         pulumi.set(__self__, "service_name", service_name)
         pulumi.set(__self__, "version", version)
+        if advanced_configuration is not None:
+            pulumi.set(__self__, "advanced_configuration", advanced_configuration)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if disk_size is not None:
@@ -139,6 +143,18 @@ class DatabaseArgs:
         pulumi.set(self, "version", value)
 
     @property
+    @pulumi.getter(name="advancedConfiguration")
+    def advanced_configuration(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Advanced configuration key / value.
+        """
+        return pulumi.get(self, "advanced_configuration")
+
+    @advanced_configuration.setter
+    def advanced_configuration(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "advanced_configuration", value)
+
+    @property
     @pulumi.getter
     def description(self) -> Optional[pulumi.Input[str]]:
         """
@@ -190,6 +206,7 @@ class DatabaseArgs:
 @pulumi.input_type
 class _DatabaseState:
     def __init__(__self__, *,
+                 advanced_configuration: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  backup_time: Optional[pulumi.Input[str]] = None,
                  created_at: Optional[pulumi.Input[str]] = None,
                  description: Optional[pulumi.Input[str]] = None,
@@ -209,6 +226,7 @@ class _DatabaseState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Database resources.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] advanced_configuration: Advanced configuration key / value.
         :param pulumi.Input[str] backup_time: Time on which backups start every day.
         :param pulumi.Input[str] created_at: Date of the creation of the cluster.
         :param pulumi.Input[str] description: Small description of the database service.
@@ -233,6 +251,8 @@ class _DatabaseState:
         :param pulumi.Input[str] status: Current status of the cluster.
         :param pulumi.Input[str] version: The version of the engine in which the service should be deployed
         """
+        if advanced_configuration is not None:
+            pulumi.set(__self__, "advanced_configuration", advanced_configuration)
         if backup_time is not None:
             pulumi.set(__self__, "backup_time", backup_time)
         if created_at is not None:
@@ -267,6 +287,18 @@ class _DatabaseState:
             pulumi.set(__self__, "status", status)
         if version is not None:
             pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="advancedConfiguration")
+    def advanced_configuration(self) -> Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]:
+        """
+        Advanced configuration key / value.
+        """
+        return pulumi.get(self, "advanced_configuration")
+
+    @advanced_configuration.setter
+    def advanced_configuration(self, value: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]]):
+        pulumi.set(self, "advanced_configuration", value)
 
     @property
     @pulumi.getter(name="backupTime")
@@ -484,6 +516,7 @@ class Database(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 advanced_configuration: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disk_size: Optional[pulumi.Input[int]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
@@ -499,14 +532,17 @@ class Database(pulumi.CustomResource):
         ## Example Usage
 
         Minimum settings for each engine (region choice is up to the user):
+
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh
 
         cassandradb = ovh.cloud_project.Database("cassandradb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-cassandra",
             engine="cassandra",
-            flavor="db1-4",
+            version="4.0",
+            plan="essential",
             nodes=[
                 ovh.cloud_project.DatabaseNodeArgs(
                     region="BHS",
@@ -518,13 +554,13 @@ class Database(pulumi.CustomResource):
                     region="BHS",
                 ),
             ],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="4.0")
+            flavor="db1-4")
         kafkadb = ovh.cloud_project.Database("kafkadb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-kafka",
             engine="kafka",
-            flavor="db1-4",
+            version="3.1",
+            plan="business",
             kafka_rest_api=True,
             nodes=[
                 ovh.cloud_project.DatabaseNodeArgs(
@@ -537,73 +573,76 @@ class Database(pulumi.CustomResource):
                     region="DE",
                 ),
             ],
-            plan="business",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="3.1")
+            flavor="db1-4")
         m3db = ovh.cloud_project.Database("m3db",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-m3db",
             engine="m3db",
-            flavor="db1-7",
+            version="1.2",
+            plan="essential",
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="BHS",
             )],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="1.2")
+            flavor="db1-7")
         mongodb = ovh.cloud_project.Database("mongodb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-mongodb",
             engine="mongodb",
-            flavor="db1-2",
+            version="5.0",
+            plan="essential",
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="GRA",
             )],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="5.0")
+            flavor="db1-2")
         mysqldb = ovh.cloud_project.Database("mysqldb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-mysql",
             engine="mysql",
-            flavor="db1-4",
+            version="8",
+            plan="essential",
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="SBG",
             )],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="8")
+            flavor="db1-4",
+            advanced_configuration={
+                "mysql.sql_mode": "ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES",
+                "mysql.sql_require_primary_key": "true",
+            })
         opensearchdb = ovh.cloud_project.Database("opensearchdb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-opensearch",
             engine="opensearch",
-            flavor="db1-4",
+            version="1",
+            plan="essential",
+            opensearch_acls_enabled=True,
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="UK",
             )],
-            opensearch_acls_enabled=True,
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="1")
+            flavor="db1-4")
         pgsqldb = ovh.cloud_project.Database("pgsqldb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-postgresql",
             engine="postgresql",
-            flavor="db1-4",
+            version="14",
+            plan="essential",
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="WAW",
             )],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="14")
+            flavor="db1-4")
         redisdb = ovh.cloud_project.Database("redisdb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-redis",
             engine="redis",
-            flavor="db1-4",
+            version="6.2",
+            plan="essential",
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="BHS",
             )],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="6.2")
+            flavor="db1-4")
         ```
 
         To deploy a business PostgreSQL service with two nodes on public network:
+
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh
@@ -626,6 +665,7 @@ class Database(pulumi.CustomResource):
         ```
 
         To deploy an enterprise MongoDB service with three nodes on private network:
+
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh
@@ -666,6 +706,7 @@ class Database(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] advanced_configuration: Advanced configuration key / value.
         :param pulumi.Input[str] description: Small description of the database service.
         :param pulumi.Input[int] disk_size: The disk size (in GB) of the database service.
         :param pulumi.Input[str] engine: The database engine you want to deploy. To get a full list of available engine visit.
@@ -693,14 +734,17 @@ class Database(pulumi.CustomResource):
         ## Example Usage
 
         Minimum settings for each engine (region choice is up to the user):
+
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh
 
         cassandradb = ovh.cloud_project.Database("cassandradb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-cassandra",
             engine="cassandra",
-            flavor="db1-4",
+            version="4.0",
+            plan="essential",
             nodes=[
                 ovh.cloud_project.DatabaseNodeArgs(
                     region="BHS",
@@ -712,13 +756,13 @@ class Database(pulumi.CustomResource):
                     region="BHS",
                 ),
             ],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="4.0")
+            flavor="db1-4")
         kafkadb = ovh.cloud_project.Database("kafkadb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-kafka",
             engine="kafka",
-            flavor="db1-4",
+            version="3.1",
+            plan="business",
             kafka_rest_api=True,
             nodes=[
                 ovh.cloud_project.DatabaseNodeArgs(
@@ -731,73 +775,76 @@ class Database(pulumi.CustomResource):
                     region="DE",
                 ),
             ],
-            plan="business",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="3.1")
+            flavor="db1-4")
         m3db = ovh.cloud_project.Database("m3db",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-m3db",
             engine="m3db",
-            flavor="db1-7",
+            version="1.2",
+            plan="essential",
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="BHS",
             )],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="1.2")
+            flavor="db1-7")
         mongodb = ovh.cloud_project.Database("mongodb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-mongodb",
             engine="mongodb",
-            flavor="db1-2",
+            version="5.0",
+            plan="essential",
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="GRA",
             )],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="5.0")
+            flavor="db1-2")
         mysqldb = ovh.cloud_project.Database("mysqldb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-mysql",
             engine="mysql",
-            flavor="db1-4",
+            version="8",
+            plan="essential",
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="SBG",
             )],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="8")
+            flavor="db1-4",
+            advanced_configuration={
+                "mysql.sql_mode": "ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES",
+                "mysql.sql_require_primary_key": "true",
+            })
         opensearchdb = ovh.cloud_project.Database("opensearchdb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-opensearch",
             engine="opensearch",
-            flavor="db1-4",
+            version="1",
+            plan="essential",
+            opensearch_acls_enabled=True,
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="UK",
             )],
-            opensearch_acls_enabled=True,
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="1")
+            flavor="db1-4")
         pgsqldb = ovh.cloud_project.Database("pgsqldb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-postgresql",
             engine="postgresql",
-            flavor="db1-4",
+            version="14",
+            plan="essential",
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="WAW",
             )],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="14")
+            flavor="db1-4")
         redisdb = ovh.cloud_project.Database("redisdb",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
             description="my-first-redis",
             engine="redis",
-            flavor="db1-4",
+            version="6.2",
+            plan="essential",
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="BHS",
             )],
-            plan="essential",
-            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-            version="6.2")
+            flavor="db1-4")
         ```
 
         To deploy a business PostgreSQL service with two nodes on public network:
+
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh
@@ -820,6 +867,7 @@ class Database(pulumi.CustomResource):
         ```
 
         To deploy an enterprise MongoDB service with three nodes on private network:
+
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh
@@ -873,6 +921,7 @@ class Database(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
+                 advanced_configuration: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
                  description: Optional[pulumi.Input[str]] = None,
                  disk_size: Optional[pulumi.Input[int]] = None,
                  engine: Optional[pulumi.Input[str]] = None,
@@ -892,6 +941,7 @@ class Database(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = DatabaseArgs.__new__(DatabaseArgs)
 
+            __props__.__dict__["advanced_configuration"] = advanced_configuration
             __props__.__dict__["description"] = description
             __props__.__dict__["disk_size"] = disk_size
             if engine is None and not opts.urn:
@@ -931,6 +981,7 @@ class Database(pulumi.CustomResource):
     def get(resource_name: str,
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
+            advanced_configuration: Optional[pulumi.Input[Mapping[str, pulumi.Input[str]]]] = None,
             backup_time: Optional[pulumi.Input[str]] = None,
             created_at: Optional[pulumi.Input[str]] = None,
             description: Optional[pulumi.Input[str]] = None,
@@ -955,6 +1006,7 @@ class Database(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
+        :param pulumi.Input[Mapping[str, pulumi.Input[str]]] advanced_configuration: Advanced configuration key / value.
         :param pulumi.Input[str] backup_time: Time on which backups start every day.
         :param pulumi.Input[str] created_at: Date of the creation of the cluster.
         :param pulumi.Input[str] description: Small description of the database service.
@@ -983,6 +1035,7 @@ class Database(pulumi.CustomResource):
 
         __props__ = _DatabaseState.__new__(_DatabaseState)
 
+        __props__.__dict__["advanced_configuration"] = advanced_configuration
         __props__.__dict__["backup_time"] = backup_time
         __props__.__dict__["created_at"] = created_at
         __props__.__dict__["description"] = description
@@ -1001,6 +1054,14 @@ class Database(pulumi.CustomResource):
         __props__.__dict__["status"] = status
         __props__.__dict__["version"] = version
         return Database(resource_name, opts=opts, __props__=__props__)
+
+    @property
+    @pulumi.getter(name="advancedConfiguration")
+    def advanced_configuration(self) -> pulumi.Output[Mapping[str, str]]:
+        """
+        Advanced configuration key / value.
+        """
+        return pulumi.get(self, "advanced_configuration")
 
     @property
     @pulumi.getter(name="backupTime")

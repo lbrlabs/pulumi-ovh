@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * 
  *         var farmname = new TcpFarm(&#34;farmname&#34;, TcpFarmArgs.builder()        
  *             .displayName(&#34;ingress-8080-gra&#34;)
- *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
+ *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.serviceName()))
  *             .zone(&#34;GRA&#34;)
  *             .build());
  * 
@@ -65,7 +65,7 @@ public class TcpFarm extends com.pulumi.resources.CustomResource {
      * Load balancing algorithm. `roundrobin` if null (`first`, `leastconn`, `roundrobin`, `source`)
      * 
      */
-    @Export(name="balance", type=String.class, parameters={})
+    @Export(name="balance", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> balance;
 
     /**
@@ -79,7 +79,7 @@ public class TcpFarm extends com.pulumi.resources.CustomResource {
      * Readable label for loadbalancer farm
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -93,7 +93,7 @@ public class TcpFarm extends com.pulumi.resources.CustomResource {
      * Port for backends to receive traffic on.
      * 
      */
-    @Export(name="port", type=Integer.class, parameters={})
+    @Export(name="port", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> port;
 
     /**
@@ -107,7 +107,7 @@ public class TcpFarm extends com.pulumi.resources.CustomResource {
      * define a backend healthcheck probe
      * 
      */
-    @Export(name="probe", type=TcpFarmProbe.class, parameters={})
+    @Export(name="probe", refs={TcpFarmProbe.class}, tree="[0]")
     private Output</* @Nullable */ TcpFarmProbe> probe;
 
     /**
@@ -121,7 +121,7 @@ public class TcpFarm extends com.pulumi.resources.CustomResource {
      * The internal name of your IP load balancing
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -135,7 +135,7 @@ public class TcpFarm extends com.pulumi.resources.CustomResource {
      * Stickiness type. No stickiness if null (`sourceIp`)
      * 
      */
-    @Export(name="stickiness", type=String.class, parameters={})
+    @Export(name="stickiness", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> stickiness;
 
     /**
@@ -149,7 +149,7 @@ public class TcpFarm extends com.pulumi.resources.CustomResource {
      * Internal Load Balancer identifier of the vRack private network to attach to your farm, mandatory when your Load Balancer is attached to a vRack
      * 
      */
-    @Export(name="vrackNetworkId", type=Integer.class, parameters={})
+    @Export(name="vrackNetworkId", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> vrackNetworkId;
 
     /**
@@ -163,7 +163,7 @@ public class TcpFarm extends com.pulumi.resources.CustomResource {
      * Zone where the farm will be defined (ie. `GRA`, `BHS` also supports `ALL`)
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

@@ -22,7 +22,10 @@ class GetDatabaseResult:
     """
     A collection of values returned by getDatabase.
     """
-    def __init__(__self__, backup_time=None, created_at=None, description=None, disk_size=None, disk_type=None, endpoints=None, engine=None, flavor=None, id=None, kafka_rest_api=None, maintenance_time=None, network_type=None, nodes=None, opensearch_acls_enabled=None, plan=None, service_name=None, status=None, version=None):
+    def __init__(__self__, advanced_configuration=None, backup_time=None, created_at=None, description=None, disk_size=None, disk_type=None, endpoints=None, engine=None, flavor=None, id=None, kafka_rest_api=None, maintenance_time=None, network_type=None, nodes=None, opensearch_acls_enabled=None, plan=None, service_name=None, status=None, version=None):
+        if advanced_configuration and not isinstance(advanced_configuration, dict):
+            raise TypeError("Expected argument 'advanced_configuration' to be a dict")
+        pulumi.set(__self__, "advanced_configuration", advanced_configuration)
         if backup_time and not isinstance(backup_time, str):
             raise TypeError("Expected argument 'backup_time' to be a str")
         pulumi.set(__self__, "backup_time", backup_time)
@@ -77,6 +80,14 @@ class GetDatabaseResult:
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         pulumi.set(__self__, "version", version)
+
+    @property
+    @pulumi.getter(name="advancedConfiguration")
+    def advanced_configuration(self) -> Mapping[str, str]:
+        """
+        Advanced configuration key / value.
+        """
+        return pulumi.get(self, "advanced_configuration")
 
     @property
     @pulumi.getter(name="backupTime")
@@ -226,6 +237,7 @@ class AwaitableGetDatabaseResult(GetDatabaseResult):
         if False:
             yield self
         return GetDatabaseResult(
+            advanced_configuration=self.advanced_configuration,
             backup_time=self.backup_time,
             created_at=self.created_at,
             description=self.description,
@@ -256,6 +268,7 @@ def get_database(engine: Optional[str] = None,
     ## Example Usage
 
     To get information of a database cluster service:
+
     ```python
     import pulumi
     import pulumi_ovh as ovh
@@ -281,6 +294,7 @@ def get_database(engine: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProjectDatabase/getDatabase:getDatabase', __args__, opts=opts, typ=GetDatabaseResult).value
 
     return AwaitableGetDatabaseResult(
+        advanced_configuration=__ret__.advanced_configuration,
         backup_time=__ret__.backup_time,
         created_at=__ret__.created_at,
         description=__ret__.description,
@@ -312,6 +326,7 @@ def get_database_output(engine: Optional[pulumi.Input[str]] = None,
     ## Example Usage
 
     To get information of a database cluster service:
+
     ```python
     import pulumi
     import pulumi_ovh as ovh

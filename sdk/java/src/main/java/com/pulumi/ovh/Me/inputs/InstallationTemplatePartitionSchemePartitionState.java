@@ -17,14 +17,32 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
     public static final InstallationTemplatePartitionSchemePartitionState Empty = new InstallationTemplatePartitionSchemePartitionState();
 
     /**
-     * Partition filesystem.
+     * Partition filesystem. Enum with possibles values:
+     * - btrfs
+     * - ext3
+     * - ext4
+     * - ntfs
+     * - reiserfs
+     * - swap
+     * - ufs
+     * - xfs
+     * - zfs
      * 
      */
     @Import(name="filesystem")
     private @Nullable Output<String> filesystem;
 
     /**
-     * @return Partition filesystem.
+     * @return Partition filesystem. Enum with possibles values:
+     * - btrfs
+     * - ext3
+     * - ext4
+     * - ntfs
+     * - reiserfs
+     * - swap
+     * - ufs
+     * - xfs
+     * - zfs
      * 
      */
     public Optional<Output<String>> filesystem() {
@@ -62,14 +80,24 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
     }
 
     /**
-     * raid partition type.
+     * raid partition type. Enum with possible values:
+     * - raid0
+     * - raid1
+     * - raid10
+     * - raid5
+     * - raid6
      * 
      */
     @Import(name="raid")
     private @Nullable Output<String> raid;
 
     /**
-     * @return raid partition type.
+     * @return raid partition type. Enum with possible values:
+     * - raid0
+     * - raid1
+     * - raid10
+     * - raid5
+     * - raid6
      * 
      */
     public Optional<Output<String>> raid() {
@@ -122,14 +150,20 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
     }
 
     /**
-     * partition type.
+     * partition type. Enum with possible values:
+     * - lv
+     * - primary
+     * - logical
      * 
      */
     @Import(name="type")
     private @Nullable Output<String> type;
 
     /**
-     * @return partition type.
+     * @return partition type. Enum with possible values:
+     * - lv
+     * - primary
+     * - logical
      * 
      */
     public Optional<Output<String>> type() {
@@ -184,7 +218,16 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param filesystem Partition filesystem.
+         * @param filesystem Partition filesystem. Enum with possibles values:
+         * - btrfs
+         * - ext3
+         * - ext4
+         * - ntfs
+         * - reiserfs
+         * - swap
+         * - ufs
+         * - xfs
+         * - zfs
          * 
          * @return builder
          * 
@@ -195,7 +238,16 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param filesystem Partition filesystem.
+         * @param filesystem Partition filesystem. Enum with possibles values:
+         * - btrfs
+         * - ext3
+         * - ext4
+         * - ntfs
+         * - reiserfs
+         * - swap
+         * - ufs
+         * - xfs
+         * - zfs
          * 
          * @return builder
          * 
@@ -247,7 +299,12 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param raid raid partition type.
+         * @param raid raid partition type. Enum with possible values:
+         * - raid0
+         * - raid1
+         * - raid10
+         * - raid5
+         * - raid6
          * 
          * @return builder
          * 
@@ -258,7 +315,12 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param raid raid partition type.
+         * @param raid raid partition type. Enum with possible values:
+         * - raid0
+         * - raid1
+         * - raid10
+         * - raid5
+         * - raid6
          * 
          * @return builder
          * 
@@ -331,7 +393,10 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param type partition type.
+         * @param type partition type. Enum with possible values:
+         * - lv
+         * - primary
+         * - logical
          * 
          * @return builder
          * 
@@ -342,7 +407,10 @@ public final class InstallationTemplatePartitionSchemePartitionState extends com
         }
 
         /**
-         * @param type partition type.
+         * @param type partition type. Enum with possible values:
+         * - lv
+         * - primary
+         * - logical
          * 
          * @return builder
          * 

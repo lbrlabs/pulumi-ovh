@@ -17,25 +17,29 @@ __all__ = ['LoadBalancerArgs', 'LoadBalancer']
 class LoadBalancerArgs:
     def __init__(__self__, *,
                  ovh_subsidiary: pulumi.Input[str],
-                 payment_mean: pulumi.Input[str],
                  plan: pulumi.Input['LoadBalancerPlanArgs'],
                  display_name: Optional[pulumi.Input[str]] = None,
+                 payment_mean: Optional[pulumi.Input[str]] = None,
                  plan_options: Optional[pulumi.Input[Sequence[pulumi.Input['LoadBalancerPlanOptionArgs']]]] = None,
                  ssl_configuration: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a LoadBalancer resource.
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
         :param pulumi.Input['LoadBalancerPlanArgs'] plan: Product Plan to order
         :param pulumi.Input[str] display_name: Set the name displayed in ManagerV6 for your iplb (max 50 chars)
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[Sequence[pulumi.Input['LoadBalancerPlanOptionArgs']]] plan_options: Product Plan to order
         :param pulumi.Input[str] ssl_configuration: Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null. one of "intermediate", "modern".
         """
         pulumi.set(__self__, "ovh_subsidiary", ovh_subsidiary)
-        pulumi.set(__self__, "payment_mean", payment_mean)
         pulumi.set(__self__, "plan", plan)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
+        if payment_mean is not None:
+            warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+            pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+        if payment_mean is not None:
+            pulumi.set(__self__, "payment_mean", payment_mean)
         if plan_options is not None:
             pulumi.set(__self__, "plan_options", plan_options)
         if ssl_configuration is not None:
@@ -52,18 +56,6 @@ class LoadBalancerArgs:
     @ovh_subsidiary.setter
     def ovh_subsidiary(self, value: pulumi.Input[str]):
         pulumi.set(self, "ovh_subsidiary", value)
-
-    @property
-    @pulumi.getter(name="paymentMean")
-    def payment_mean(self) -> pulumi.Input[str]:
-        """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-        """
-        return pulumi.get(self, "payment_mean")
-
-    @payment_mean.setter
-    def payment_mean(self, value: pulumi.Input[str]):
-        pulumi.set(self, "payment_mean", value)
 
     @property
     @pulumi.getter
@@ -88,6 +80,18 @@ class LoadBalancerArgs:
     @display_name.setter
     def display_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter(name="paymentMean")
+    def payment_mean(self) -> Optional[pulumi.Input[str]]:
+        """
+        Ovh payment mode
+        """
+        return pulumi.get(self, "payment_mean")
+
+    @payment_mean.setter
+    def payment_mean(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "payment_mean", value)
 
     @property
     @pulumi.getter(name="planOptions")
@@ -146,7 +150,7 @@ class _LoadBalancerState:
         :param pulumi.Input[Sequence[pulumi.Input['LoadBalancerOrderableZoneArgs']]] orderable_zones: Available additional zone for your Load Balancer
         :param pulumi.Input[Sequence[pulumi.Input['LoadBalancerOrderArgs']]] orders: Details about an Order
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input['LoadBalancerPlanArgs'] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input['LoadBalancerPlanOptionArgs']]] plan_options: Product Plan to order
         :param pulumi.Input[str] service_name: The internal name of your IP load balancing
@@ -174,6 +178,9 @@ class _LoadBalancerState:
             pulumi.set(__self__, "orders", orders)
         if ovh_subsidiary is not None:
             pulumi.set(__self__, "ovh_subsidiary", ovh_subsidiary)
+        if payment_mean is not None:
+            warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+            pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
         if payment_mean is not None:
             pulumi.set(__self__, "payment_mean", payment_mean)
         if plan is not None:
@@ -305,7 +312,7 @@ class _LoadBalancerState:
     @pulumi.getter(name="paymentMean")
     def payment_mean(self) -> Optional[pulumi.Input[str]]:
         """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        Ovh payment mode
         """
         return pulumi.get(self, "payment_mean")
 
@@ -423,15 +430,6 @@ class LoadBalancer(pulumi.CustomResource):
                  ssl_configuration: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Orders an IP load balancing.
-
-        ## Important
-
-        > __WARNING__ This resource orders an OVHcloud product for a long period of time and may generate heavy costs!
-        Use with caution.
-
-        > __NOTE__ The "default-payment-mean" will scan your registered bank accounts, credit card and paypal payment means to find your default payment mean.
-
         ## Example Usage
 
         ```python
@@ -453,7 +451,6 @@ class LoadBalancer(pulumi.CustomResource):
         iplb_lb1 = ovh.ip_load_balancing.LoadBalancer("iplb-lb1",
             ovh_subsidiary=mycart.ovh_subsidiary,
             display_name="my ip loadbalancing",
-            payment_mean="ovh-account",
             plan=ovh.ip_load_balancing.LoadBalancerPlanArgs(
                 duration=iplb.selected_prices[0].duration,
                 plan_code=iplb.plan_code,
@@ -470,7 +467,7 @@ class LoadBalancer(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: Set the name displayed in ManagerV6 for your iplb (max 50 chars)
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[pulumi.InputType['LoadBalancerPlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadBalancerPlanOptionArgs']]]] plan_options: Product Plan to order
         :param pulumi.Input[str] ssl_configuration: Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null. one of "intermediate", "modern".
@@ -482,15 +479,6 @@ class LoadBalancer(pulumi.CustomResource):
                  args: LoadBalancerArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Orders an IP load balancing.
-
-        ## Important
-
-        > __WARNING__ This resource orders an OVHcloud product for a long period of time and may generate heavy costs!
-        Use with caution.
-
-        > __NOTE__ The "default-payment-mean" will scan your registered bank accounts, credit card and paypal payment means to find your default payment mean.
-
         ## Example Usage
 
         ```python
@@ -512,7 +500,6 @@ class LoadBalancer(pulumi.CustomResource):
         iplb_lb1 = ovh.ip_load_balancing.LoadBalancer("iplb-lb1",
             ovh_subsidiary=mycart.ovh_subsidiary,
             display_name="my ip loadbalancing",
-            payment_mean="ovh-account",
             plan=ovh.ip_load_balancing.LoadBalancerPlanArgs(
                 duration=iplb.selected_prices[0].duration,
                 plan_code=iplb.plan_code,
@@ -559,8 +546,9 @@ class LoadBalancer(pulumi.CustomResource):
             if ovh_subsidiary is None and not opts.urn:
                 raise TypeError("Missing required property 'ovh_subsidiary'")
             __props__.__dict__["ovh_subsidiary"] = ovh_subsidiary
-            if payment_mean is None and not opts.urn:
-                raise TypeError("Missing required property 'payment_mean'")
+            if payment_mean is not None and not opts.urn:
+                warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+                pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
             __props__.__dict__["payment_mean"] = payment_mean
             if plan is None and not opts.urn:
                 raise TypeError("Missing required property 'plan'")
@@ -625,7 +613,7 @@ class LoadBalancer(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadBalancerOrderableZoneArgs']]]] orderable_zones: Available additional zone for your Load Balancer
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadBalancerOrderArgs']]]] orders: Details about an Order
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[pulumi.InputType['LoadBalancerPlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['LoadBalancerPlanOptionArgs']]]] plan_options: Product Plan to order
         :param pulumi.Input[str] service_name: The internal name of your IP load balancing
@@ -733,9 +721,9 @@ class LoadBalancer(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="paymentMean")
-    def payment_mean(self) -> pulumi.Output[str]:
+    def payment_mean(self) -> pulumi.Output[Optional[str]]:
         """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        Ovh payment mode
         """
         return pulumi.get(self, "payment_mean")
 

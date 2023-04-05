@@ -27,7 +27,6 @@ import * as utilities from "../utilities";
  * const vrackVrack = new ovh.vrack.Vrack("vrackVrack", {
  *     description: mycart.then(mycart => mycart.description),
  *     ovhSubsidiary: mycart.then(mycart => mycart.ovhSubsidiary),
- *     paymentMean: "fidelity",
  *     plan: {
  *         duration: vrackCartProductPlan.then(vrackCartProductPlan => vrackCartProductPlan.selectedPrices?.[0]?.duration),
  *         planCode: vrackCartProductPlan.then(vrackCartProductPlan => vrackCartProductPlan.planCode),
@@ -42,7 +41,6 @@ import * as utilities from "../utilities";
  * }));
  * const ipblockIpService = new ovh.ip.IpService("ipblockIpService", {
  *     ovhSubsidiary: mycart.then(mycart => mycart.ovhSubsidiary),
- *     paymentMean: "ovh-account",
  *     description: mycart.then(mycart => mycart.description),
  *     plan: {
  *         duration: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.selectedPrices?.[0]?.duration),

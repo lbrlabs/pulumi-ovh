@@ -62,7 +62,7 @@ public class PrivateDatabaseDb extends com.pulumi.resources.CustomResource {
      * Name of your new database
      * 
      */
-    @Export(name="databaseName", type=String.class, parameters={})
+    @Export(name="databaseName", refs={String.class}, tree="[0]")
     private Output<String> databaseName;
 
     /**
@@ -76,7 +76,7 @@ public class PrivateDatabaseDb extends com.pulumi.resources.CustomResource {
      * The internal name of your private database.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**

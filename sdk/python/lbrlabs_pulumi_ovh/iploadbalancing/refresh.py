@@ -111,7 +111,7 @@ class Refresh(pulumi.CustomResource):
             state="ok")
         farmname = ovh.ip_load_balancing.TcpFarm("farmname",
             port=8080,
-            service_name=lb.id,
+            service_name=lb.service_name,
             zone="all")
         backend = ovh.ip_load_balancing.TcpFarmServer("backend",
             address="4.5.6.7",
@@ -121,13 +121,13 @@ class Refresh(pulumi.CustomResource):
             port=80,
             probe=True,
             proxy_protocol_version="v2",
-            service_name=lb.id,
+            service_name=lb.service_name,
             ssl=False,
             status="active",
             weight=2)
         mylb = ovh.ip_load_balancing.Refresh("mylb",
             keepers=[[__item.address for __item in [backend]]],
-            service_name=lb.id)
+            service_name=lb.service_name)
         ```
 
         :param str resource_name: The name of the resource.
@@ -155,7 +155,7 @@ class Refresh(pulumi.CustomResource):
             state="ok")
         farmname = ovh.ip_load_balancing.TcpFarm("farmname",
             port=8080,
-            service_name=lb.id,
+            service_name=lb.service_name,
             zone="all")
         backend = ovh.ip_load_balancing.TcpFarmServer("backend",
             address="4.5.6.7",
@@ -165,13 +165,13 @@ class Refresh(pulumi.CustomResource):
             port=80,
             probe=True,
             proxy_protocol_version="v2",
-            service_name=lb.id,
+            service_name=lb.service_name,
             ssl=False,
             status="active",
             weight=2)
         mylb = ovh.ip_load_balancing.Refresh("mylb",
             keepers=[[__item.address for __item in [backend]]],
-            service_name=lb.id)
+            service_name=lb.service_name)
         ```
 
         :param str resource_name: The name of the resource.

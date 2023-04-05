@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -57,10 +57,9 @@ type KubeIpRestrictions struct {
 
 	// List of CIDR authorized to interact with the managed Kubernetes cluster.
 	Ips pulumi.StringArrayOutput `pulumi:"ips"`
-	// The id of the managed Kubernetes cluster.
+	// The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
 	KubeId pulumi.StringOutput `pulumi:"kubeId"`
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
 }
 
@@ -105,20 +104,18 @@ func GetKubeIpRestrictions(ctx *pulumi.Context,
 type kubeIpRestrictionsState struct {
 	// List of CIDR authorized to interact with the managed Kubernetes cluster.
 	Ips []string `pulumi:"ips"`
-	// The id of the managed Kubernetes cluster.
+	// The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
 	KubeId *string `pulumi:"kubeId"`
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName *string `pulumi:"serviceName"`
 }
 
 type KubeIpRestrictionsState struct {
 	// List of CIDR authorized to interact with the managed Kubernetes cluster.
 	Ips pulumi.StringArrayInput
-	// The id of the managed Kubernetes cluster.
+	// The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
 	KubeId pulumi.StringPtrInput
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName pulumi.StringPtrInput
 }
 
@@ -129,10 +126,9 @@ func (KubeIpRestrictionsState) ElementType() reflect.Type {
 type kubeIpRestrictionsArgs struct {
 	// List of CIDR authorized to interact with the managed Kubernetes cluster.
 	Ips []string `pulumi:"ips"`
-	// The id of the managed Kubernetes cluster.
+	// The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
 	KubeId string `pulumi:"kubeId"`
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName string `pulumi:"serviceName"`
 }
 
@@ -140,10 +136,9 @@ type kubeIpRestrictionsArgs struct {
 type KubeIpRestrictionsArgs struct {
 	// List of CIDR authorized to interact with the managed Kubernetes cluster.
 	Ips pulumi.StringArrayInput
-	// The id of the managed Kubernetes cluster.
+	// The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
 	KubeId pulumi.StringInput
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName pulumi.StringInput
 }
 
@@ -239,13 +234,12 @@ func (o KubeIpRestrictionsOutput) Ips() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *KubeIpRestrictions) pulumi.StringArrayOutput { return v.Ips }).(pulumi.StringArrayOutput)
 }
 
-// The id of the managed Kubernetes cluster.
+// The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
 func (o KubeIpRestrictionsOutput) KubeId() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubeIpRestrictions) pulumi.StringOutput { return v.KubeId }).(pulumi.StringOutput)
 }
 
-// The id of the public cloud project. If omitted,
-// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 func (o KubeIpRestrictionsOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *KubeIpRestrictions) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
 }

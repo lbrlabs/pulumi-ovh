@@ -107,29 +107,155 @@ export namespace CloudProject {
     }
 
     export interface GetKubeCustomization {
-        apiserver?: inputs.CloudProject.GetKubeCustomizationApiserver;
+        /**
+         * Kubernetes API server customization
+         *
+         * @deprecated Use customization_apiserver instead
+         */
+        apiservers?: inputs.CloudProject.GetKubeCustomizationApiserver[];
     }
 
     export interface GetKubeCustomizationArgs {
-        apiserver?: pulumi.Input<inputs.CloudProject.GetKubeCustomizationApiserverArgs>;
+        /**
+         * Kubernetes API server customization
+         *
+         * @deprecated Use customization_apiserver instead
+         */
+        apiservers?: pulumi.Input<pulumi.Input<inputs.CloudProject.GetKubeCustomizationApiserverArgs>[]>;
     }
 
     export interface GetKubeCustomizationApiserver {
-        admissionplugins?: inputs.CloudProject.GetKubeCustomizationApiserverAdmissionplugins;
+        /**
+         * Kubernetes API server admission plugins customization
+         */
+        admissionplugins?: inputs.CloudProject.GetKubeCustomizationApiserverAdmissionplugin[];
     }
 
     export interface GetKubeCustomizationApiserverArgs {
-        admissionplugins?: pulumi.Input<inputs.CloudProject.GetKubeCustomizationApiserverAdmissionpluginsArgs>;
+        /**
+         * Kubernetes API server admission plugins customization
+         */
+        admissionplugins?: pulumi.Input<pulumi.Input<inputs.CloudProject.GetKubeCustomizationApiserverAdmissionpluginArgs>[]>;
     }
 
-    export interface GetKubeCustomizationApiserverAdmissionplugins {
+    export interface GetKubeCustomizationApiserverAdmissionplugin {
+        /**
+         * Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+         */
         disableds?: string[];
+        /**
+         * Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+         */
         enableds?: string[];
     }
 
-    export interface GetKubeCustomizationApiserverAdmissionpluginsArgs {
+    export interface GetKubeCustomizationApiserverAdmissionpluginArgs {
+        /**
+         * Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+         */
         disableds?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+         */
         enableds?: pulumi.Input<pulumi.Input<string>[]>;
+    }
+
+    export interface GetKubeCustomizationKubeProxy {
+        /**
+         * Kubernetes cluster kube-proxy customization of iptables specific config.
+         */
+        iptables?: inputs.CloudProject.GetKubeCustomizationKubeProxyIptables;
+        /**
+         * Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        ipvs?: inputs.CloudProject.GetKubeCustomizationKubeProxyIpvs;
+    }
+
+    export interface GetKubeCustomizationKubeProxyArgs {
+        /**
+         * Kubernetes cluster kube-proxy customization of iptables specific config.
+         */
+        iptables?: pulumi.Input<inputs.CloudProject.GetKubeCustomizationKubeProxyIptablesArgs>;
+        /**
+         * Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        ipvs?: pulumi.Input<inputs.CloudProject.GetKubeCustomizationKubeProxyIpvsArgs>;
+    }
+
+    export interface GetKubeCustomizationKubeProxyIptables {
+        /**
+         * Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        minSyncPeriod?: string;
+        /**
+         * Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+         */
+        syncPeriod?: string;
+    }
+
+    export interface GetKubeCustomizationKubeProxyIptablesArgs {
+        /**
+         * Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        minSyncPeriod?: pulumi.Input<string>;
+        /**
+         * Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+         */
+        syncPeriod?: pulumi.Input<string>;
+    }
+
+    export interface GetKubeCustomizationKubeProxyIpvs {
+        /**
+         * Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        minSyncPeriod?: string;
+        /**
+         * IPVS scheduler.
+         */
+        scheduler?: string;
+        /**
+         * Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+         */
+        syncPeriod?: string;
+        /**
+         * Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration.
+         */
+        tcpFinTimeout?: string;
+        /**
+         * Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        tcpTimeout?: string;
+        /**
+         * timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        udpTimeout?: string;
+    }
+
+    export interface GetKubeCustomizationKubeProxyIpvsArgs {
+        /**
+         * Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        minSyncPeriod?: pulumi.Input<string>;
+        /**
+         * IPVS scheduler.
+         */
+        scheduler?: pulumi.Input<string>;
+        /**
+         * Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format.
+         */
+        syncPeriod?: pulumi.Input<string>;
+        /**
+         * Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration.
+         */
+        tcpFinTimeout?: pulumi.Input<string>;
+        /**
+         * Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        tcpTimeout?: pulumi.Input<string>;
+        /**
+         * timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration.
+         */
+        udpTimeout?: pulumi.Input<string>;
     }
 
     export interface GetKubeNodePoolTemplate {
@@ -165,36 +291,145 @@ export namespace CloudProject {
     }
 
     export interface KubeCustomization {
-        apiserver?: pulumi.Input<inputs.CloudProject.KubeCustomizationApiserver>;
+        /**
+         * Kubernetes API server customization
+         *
+         * @deprecated Use customization_apiserver instead
+         */
+        apiservers?: pulumi.Input<pulumi.Input<inputs.CloudProject.KubeCustomizationApiserver>[]>;
     }
 
     export interface KubeCustomizationApiserver {
-        admissionplugins?: pulumi.Input<inputs.CloudProject.KubeCustomizationApiserverAdmissionplugins>;
+        /**
+         * Kubernetes API server admission plugins customization
+         */
+        admissionplugins?: pulumi.Input<pulumi.Input<inputs.CloudProject.KubeCustomizationApiserverAdmissionplugin>[]>;
     }
 
-    export interface KubeCustomizationApiserverAdmissionplugins {
+    export interface KubeCustomizationApiserverAdmissionplugin {
+        /**
+         * Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+         */
         disableds?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
+         */
         enableds?: pulumi.Input<pulumi.Input<string>[]>;
     }
 
+    export interface KubeCustomizationKubeProxy {
+        /**
+         * Kubernetes cluster kube-proxy customization of iptables specific config (durations format is RFC3339 duration, e.g. `PT60S`)
+         */
+        iptables?: pulumi.Input<inputs.CloudProject.KubeCustomizationKubeProxyIptables>;
+        /**
+         * Kubernetes cluster kube-proxy customization of IPVS specific config (durations format is [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration, e.g. `PT60S`)
+         */
+        ipvs?: pulumi.Input<inputs.CloudProject.KubeCustomizationKubeProxyIpvs>;
+    }
+
+    export interface KubeCustomizationKubeProxyIptables {
+        /**
+         * Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+         */
+        minSyncPeriod?: pulumi.Input<string>;
+        /**
+         * Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+         */
+        syncPeriod?: pulumi.Input<string>;
+    }
+
+    export interface KubeCustomizationKubeProxyIpvs {
+        /**
+         * Minimum period that IPVS rules are refreshed in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`).
+         */
+        minSyncPeriod?: pulumi.Input<string>;
+        /**
+         * IPVS scheduler.
+         */
+        scheduler?: pulumi.Input<string>;
+        /**
+         * Minimum period that IPVS rules are refreshed, in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration format (e.g. `PT60S`).
+         */
+        syncPeriod?: pulumi.Input<string>;
+        /**
+         * Timeout value used for IPVS TCP sessions after receiving a FIN in RFC3339 duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+         */
+        tcpFinTimeout?: pulumi.Input<string>;
+        /**
+         * Timeout value used for idle IPVS TCP sessions in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+         */
+        tcpTimeout?: pulumi.Input<string>;
+        /**
+         * timeout value used for IPVS UDP packets in [RFC3339](https://www.rfc-editor.org/rfc/rfc3339) duration (e.g. `PT60S`). The default value is `PT0S`, which preserves the current timeout value on the system.
+         */
+        udpTimeout?: pulumi.Input<string>;
+    }
+
+    export interface KubeKubeconfigAttribute {
+        /**
+         * The kubernetes API server client certificate.
+         */
+        clientCertificate?: pulumi.Input<string>;
+        /**
+         * The kubernetes API server client key.
+         */
+        clientKey?: pulumi.Input<string>;
+        /**
+         * The kubernetes API server CA certificate.
+         */
+        clusterCaCertificate?: pulumi.Input<string>;
+        /**
+         * The kubernetes API server URL.
+         */
+        host?: pulumi.Input<string>;
+    }
+
     export interface KubeNodePoolTemplate {
+        /**
+         * Metadata of each node in the pool
+         */
         metadata?: pulumi.Input<inputs.CloudProject.KubeNodePoolTemplateMetadata>;
+        /**
+         * Spec of each node in the pool
+         */
         spec?: pulumi.Input<inputs.CloudProject.KubeNodePoolTemplateSpec>;
     }
 
     export interface KubeNodePoolTemplateMetadata {
+        /**
+         * Annotations to apply to each node
+         */
         annotations?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
+        /**
+         * Finalizers to apply to each node
+         */
         finalizers?: pulumi.Input<pulumi.Input<string>[]>;
+        /**
+         * Labels to apply to each node
+         */
         labels?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     }
 
     export interface KubeNodePoolTemplateSpec {
+        /**
+         * Taints to apply to each node
+         */
         taints?: pulumi.Input<pulumi.Input<{[key: string]: any}>[]>;
+        /**
+         * If true, set nodes as un-schedulable
+         */
         unschedulable?: pulumi.Input<boolean>;
     }
 
     export interface KubePrivateNetworkConfiguration {
+        /**
+         * If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+         */
         defaultVrackGateway: pulumi.Input<string>;
+        /**
+         * Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+         */
         privateNetworkRoutingAsDefault: pulumi.Input<boolean>;
     }
 

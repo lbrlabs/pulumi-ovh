@@ -19,12 +19,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Orders a public cloud project.
- * 
- * ## Important
- * 
- * This resource is in beta state. Use with caution.
- * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -66,7 +60,6 @@ import javax.annotation.Nullable;
  *         var myCloudProject = new Project(&#34;myCloudProject&#34;, ProjectArgs.builder()        
  *             .ovhSubsidiary(mycart.applyValue(getCartResult -&gt; getCartResult.ovhSubsidiary()))
  *             .description(&#34;my cloud project&#34;)
- *             .paymentMean(&#34;fidelity&#34;)
  *             .plan(ProjectPlanArgs.builder()
  *                 .duration(cloud.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.selectedPrices()[0].duration()))
  *                 .planCode(cloud.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.planCode()))
@@ -91,7 +84,7 @@ import javax.annotation.Nullable;
  */
 @ResourceType(type="ovh:CloudProject/project:Project")
 public class Project extends com.pulumi.resources.CustomResource {
-    @Export(name="access", type=String.class, parameters={})
+    @Export(name="access", refs={String.class}, tree="[0]")
     private Output<String> access;
 
     public Output<String> access() {
@@ -101,7 +94,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * A description associated with the user.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -115,7 +108,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * Details about the order that was used to create the public cloud project
      * 
      */
-    @Export(name="orders", type=List.class, parameters={ProjectOrder.class})
+    @Export(name="orders", refs={List.class,ProjectOrder.class}, tree="[0,1]")
     private Output<List<ProjectOrder>> orders;
 
     /**
@@ -129,7 +122,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * OVHcloud Subsidiary
      * 
      */
-    @Export(name="ovhSubsidiary", type=String.class, parameters={})
+    @Export(name="ovhSubsidiary", refs={String.class}, tree="[0]")
     private Output<String> ovhSubsidiary;
 
     /**
@@ -140,24 +133,28 @@ public class Project extends com.pulumi.resources.CustomResource {
         return this.ovhSubsidiary;
     }
     /**
-     * OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * Ovh payment mode
+     * 
+     * @deprecated
+     * This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      * 
      */
-    @Export(name="paymentMean", type=String.class, parameters={})
-    private Output<String> paymentMean;
+    @Deprecated /* This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used. */
+    @Export(name="paymentMean", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> paymentMean;
 
     /**
-     * @return OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * @return Ovh payment mode
      * 
      */
-    public Output<String> paymentMean() {
-        return this.paymentMean;
+    public Output<Optional<String>> paymentMean() {
+        return Codegen.optional(this.paymentMean);
     }
     /**
      * Product Plan to order
      * 
      */
-    @Export(name="plan", type=ProjectPlan.class, parameters={})
+    @Export(name="plan", refs={ProjectPlan.class}, tree="[0]")
     private Output<ProjectPlan> plan;
 
     /**
@@ -171,7 +168,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * Product Plan to order
      * 
      */
-    @Export(name="planOptions", type=List.class, parameters={ProjectPlanOption.class})
+    @Export(name="planOptions", refs={List.class,ProjectPlanOption.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ProjectPlanOption>> planOptions;
 
     /**
@@ -185,7 +182,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * openstack project id
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -199,7 +196,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * openstack project name
      * 
      */
-    @Export(name="projectName", type=String.class, parameters={})
+    @Export(name="projectName", refs={String.class}, tree="[0]")
     private Output<String> projectName;
 
     /**
@@ -213,7 +210,7 @@ public class Project extends com.pulumi.resources.CustomResource {
      * project status
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

@@ -16,6 +16,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.annotation.Nullable;
 
@@ -46,9 +47,11 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         var cassandradb = new Database(&#34;cassandradb&#34;, DatabaseArgs.builder()        
+ *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
  *             .description(&#34;my-first-cassandra&#34;)
  *             .engine(&#34;cassandra&#34;)
- *             .flavor(&#34;db1-4&#34;)
+ *             .version(&#34;4.0&#34;)
+ *             .plan(&#34;essential&#34;)
  *             .nodes(            
  *                 DatabaseNodeArgs.builder()
  *                     .region(&#34;BHS&#34;)
@@ -59,15 +62,15 @@ import javax.annotation.Nullable;
  *                 DatabaseNodeArgs.builder()
  *                     .region(&#34;BHS&#34;)
  *                     .build())
- *             .plan(&#34;essential&#34;)
- *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
- *             .version(&#34;4.0&#34;)
+ *             .flavor(&#34;db1-4&#34;)
  *             .build());
  * 
  *         var kafkadb = new Database(&#34;kafkadb&#34;, DatabaseArgs.builder()        
+ *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
  *             .description(&#34;my-first-kafka&#34;)
  *             .engine(&#34;kafka&#34;)
- *             .flavor(&#34;db1-4&#34;)
+ *             .version(&#34;3.1&#34;)
+ *             .plan(&#34;business&#34;)
  *             .kafkaRestApi(true)
  *             .nodes(            
  *                 DatabaseNodeArgs.builder()
@@ -79,82 +82,84 @@ import javax.annotation.Nullable;
  *                 DatabaseNodeArgs.builder()
  *                     .region(&#34;DE&#34;)
  *                     .build())
- *             .plan(&#34;business&#34;)
- *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
- *             .version(&#34;3.1&#34;)
+ *             .flavor(&#34;db1-4&#34;)
  *             .build());
  * 
  *         var m3db = new Database(&#34;m3db&#34;, DatabaseArgs.builder()        
+ *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
  *             .description(&#34;my-first-m3db&#34;)
  *             .engine(&#34;m3db&#34;)
- *             .flavor(&#34;db1-7&#34;)
+ *             .version(&#34;1.2&#34;)
+ *             .plan(&#34;essential&#34;)
  *             .nodes(DatabaseNodeArgs.builder()
  *                 .region(&#34;BHS&#34;)
  *                 .build())
- *             .plan(&#34;essential&#34;)
- *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
- *             .version(&#34;1.2&#34;)
+ *             .flavor(&#34;db1-7&#34;)
  *             .build());
  * 
  *         var mongodb = new Database(&#34;mongodb&#34;, DatabaseArgs.builder()        
+ *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
  *             .description(&#34;my-first-mongodb&#34;)
  *             .engine(&#34;mongodb&#34;)
- *             .flavor(&#34;db1-2&#34;)
+ *             .version(&#34;5.0&#34;)
+ *             .plan(&#34;essential&#34;)
  *             .nodes(DatabaseNodeArgs.builder()
  *                 .region(&#34;GRA&#34;)
  *                 .build())
- *             .plan(&#34;essential&#34;)
- *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
- *             .version(&#34;5.0&#34;)
+ *             .flavor(&#34;db1-2&#34;)
  *             .build());
  * 
  *         var mysqldb = new Database(&#34;mysqldb&#34;, DatabaseArgs.builder()        
+ *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
  *             .description(&#34;my-first-mysql&#34;)
  *             .engine(&#34;mysql&#34;)
- *             .flavor(&#34;db1-4&#34;)
+ *             .version(&#34;8&#34;)
+ *             .plan(&#34;essential&#34;)
  *             .nodes(DatabaseNodeArgs.builder()
  *                 .region(&#34;SBG&#34;)
  *                 .build())
- *             .plan(&#34;essential&#34;)
- *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
- *             .version(&#34;8&#34;)
+ *             .flavor(&#34;db1-4&#34;)
+ *             .advancedConfiguration(Map.ofEntries(
+ *                 Map.entry(&#34;mysql.sql_mode&#34;, &#34;ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES&#34;),
+ *                 Map.entry(&#34;mysql.sql_require_primary_key&#34;, &#34;true&#34;)
+ *             ))
  *             .build());
  * 
  *         var opensearchdb = new Database(&#34;opensearchdb&#34;, DatabaseArgs.builder()        
+ *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
  *             .description(&#34;my-first-opensearch&#34;)
  *             .engine(&#34;opensearch&#34;)
- *             .flavor(&#34;db1-4&#34;)
+ *             .version(&#34;1&#34;)
+ *             .plan(&#34;essential&#34;)
+ *             .opensearchAclsEnabled(true)
  *             .nodes(DatabaseNodeArgs.builder()
  *                 .region(&#34;UK&#34;)
  *                 .build())
- *             .opensearchAclsEnabled(true)
- *             .plan(&#34;essential&#34;)
- *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
- *             .version(&#34;1&#34;)
+ *             .flavor(&#34;db1-4&#34;)
  *             .build());
  * 
  *         var pgsqldb = new Database(&#34;pgsqldb&#34;, DatabaseArgs.builder()        
+ *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
  *             .description(&#34;my-first-postgresql&#34;)
  *             .engine(&#34;postgresql&#34;)
- *             .flavor(&#34;db1-4&#34;)
+ *             .version(&#34;14&#34;)
+ *             .plan(&#34;essential&#34;)
  *             .nodes(DatabaseNodeArgs.builder()
  *                 .region(&#34;WAW&#34;)
  *                 .build())
- *             .plan(&#34;essential&#34;)
- *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
- *             .version(&#34;14&#34;)
+ *             .flavor(&#34;db1-4&#34;)
  *             .build());
  * 
  *         var redisdb = new Database(&#34;redisdb&#34;, DatabaseArgs.builder()        
+ *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
  *             .description(&#34;my-first-redis&#34;)
  *             .engine(&#34;redis&#34;)
- *             .flavor(&#34;db1-4&#34;)
+ *             .version(&#34;6.2&#34;)
+ *             .plan(&#34;essential&#34;)
  *             .nodes(DatabaseNodeArgs.builder()
  *                 .region(&#34;BHS&#34;)
  *                 .build())
- *             .plan(&#34;essential&#34;)
- *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
- *             .version(&#34;6.2&#34;)
+ *             .flavor(&#34;db1-4&#34;)
  *             .build());
  * 
  *     }
@@ -268,10 +273,24 @@ import javax.annotation.Nullable;
 @ResourceType(type="ovh:CloudProject/database:Database")
 public class Database extends com.pulumi.resources.CustomResource {
     /**
+     * Advanced configuration key / value.
+     * 
+     */
+    @Export(name="advancedConfiguration", refs={Map.class,String.class}, tree="[0,1,1]")
+    private Output<Map<String,String>> advancedConfiguration;
+
+    /**
+     * @return Advanced configuration key / value.
+     * 
+     */
+    public Output<Map<String,String>> advancedConfiguration() {
+        return this.advancedConfiguration;
+    }
+    /**
      * Time on which backups start every day.
      * 
      */
-    @Export(name="backupTime", type=String.class, parameters={})
+    @Export(name="backupTime", refs={String.class}, tree="[0]")
     private Output<String> backupTime;
 
     /**
@@ -285,7 +304,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Date of the creation of the cluster.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -299,7 +318,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Small description of the database service.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -313,7 +332,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The disk size (in GB) of the database service.
      * 
      */
-    @Export(name="diskSize", type=Integer.class, parameters={})
+    @Export(name="diskSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> diskSize;
 
     /**
@@ -327,7 +346,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Defines the disk type of the database service.
      * 
      */
-    @Export(name="diskType", type=String.class, parameters={})
+    @Export(name="diskType", refs={String.class}, tree="[0]")
     private Output<String> diskType;
 
     /**
@@ -341,7 +360,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * List of all endpoints objects of the service.
      * 
      */
-    @Export(name="endpoints", type=List.class, parameters={DatabaseEndpoint.class})
+    @Export(name="endpoints", refs={List.class,DatabaseEndpoint.class}, tree="[0,1]")
     private Output<List<DatabaseEndpoint>> endpoints;
 
     /**
@@ -356,7 +375,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * 
      */
-    @Export(name="engine", type=String.class, parameters={})
+    @Export(name="engine", refs={String.class}, tree="[0]")
     private Output<String> engine;
 
     /**
@@ -373,7 +392,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * You can find the list of flavor names: https://www.ovhcloud.com/fr/public-cloud/prices/
      * 
      */
-    @Export(name="flavor", type=String.class, parameters={})
+    @Export(name="flavor", refs={String.class}, tree="[0]")
     private Output<String> flavor;
 
     /**
@@ -389,7 +408,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Defines whether the REST API is enabled on a kafka cluster
      * 
      */
-    @Export(name="kafkaRestApi", type=Boolean.class, parameters={})
+    @Export(name="kafkaRestApi", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> kafkaRestApi;
 
     /**
@@ -403,7 +422,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Time on which maintenances can start every day.
      * 
      */
-    @Export(name="maintenanceTime", type=String.class, parameters={})
+    @Export(name="maintenanceTime", refs={String.class}, tree="[0]")
     private Output<String> maintenanceTime;
 
     /**
@@ -417,7 +436,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Type of network of the cluster.
      * 
      */
-    @Export(name="networkType", type=String.class, parameters={})
+    @Export(name="networkType", refs={String.class}, tree="[0]")
     private Output<String> networkType;
 
     /**
@@ -432,7 +451,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Multi region cluster are not yet available, all node should be identical.
      * 
      */
-    @Export(name="nodes", type=List.class, parameters={DatabaseNode.class})
+    @Export(name="nodes", refs={List.class,DatabaseNode.class}, tree="[0,1]")
     private Output<List<DatabaseNode>> nodes;
 
     /**
@@ -447,7 +466,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Defines whether the ACLs are enabled on an OpenSearch cluster
      * 
      */
-    @Export(name="opensearchAclsEnabled", type=Boolean.class, parameters={})
+    @Export(name="opensearchAclsEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> opensearchAclsEnabled;
 
     /**
@@ -462,7 +481,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Enum: &#34;essential&#34;, &#34;business&#34;, &#34;enterprise&#34;.
      * 
      */
-    @Export(name="plan", type=String.class, parameters={})
+    @Export(name="plan", refs={String.class}, tree="[0]")
     private Output<String> plan;
 
     /**
@@ -478,7 +497,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -493,7 +512,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * Current status of the cluster.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -507,7 +526,7 @@ public class Database extends com.pulumi.resources.CustomResource {
      * The version of the engine in which the service should be deployed
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**

@@ -11,8 +11,6 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
 {
     /// <summary>
-    /// Creates a OVHcloud Managed Kubernetes Service cluster in a public cloud project.
-    /// 
     /// ## Import
     /// 
     /// OVHcloud Managed Kubernetes Service clusters can be imported using the `service_name` and the `id` of the cluster, separated by "/" E.g., bash
@@ -25,32 +23,52 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     public partial class Kube : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// True if control-plane is up to date.
+        /// True if control-plane is up-to-date.
         /// </summary>
         [Output("controlPlaneIsUpToDate")]
         public Output<bool> ControlPlaneIsUpToDate { get; private set; } = null!;
 
         /// <summary>
-        /// Customer customization object
-        /// * apiserver - Kubernetes API server customization
-        /// * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-        /// * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-        /// * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        /// Kubernetes API server customization
         /// </summary>
-        [Output("customization")]
-        public Output<Outputs.KubeCustomization> Customization { get; private set; } = null!;
+        [Output("customizationApiservers")]
+        public Output<ImmutableArray<Outputs.KubeCustomizationApiserver>> CustomizationApiservers { get; private set; } = null!;
 
         /// <summary>
-        /// True if all nodes and control-plane are up to date.
+        /// Kubernetes kube-proxy customization
+        /// </summary>
+        [Output("customizationKubeProxy")]
+        public Output<Outputs.KubeCustomizationKubeProxy?> CustomizationKubeProxy { get; private set; } = null!;
+
+        /// <summary>
+        /// **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        /// </summary>
+        [Output("customizations")]
+        public Output<ImmutableArray<Outputs.KubeCustomization>> Customizations { get; private set; } = null!;
+
+        /// <summary>
+        /// True if all nodes and control-plane are up-to-date.
         /// </summary>
         [Output("isUpToDate")]
         public Output<bool> IsUpToDate { get; private set; } = null!;
+
+        /// <summary>
+        /// Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+        /// </summary>
+        [Output("kubeProxyMode")]
+        public Output<string> KubeProxyMode { get; private set; } = null!;
 
         /// <summary>
         /// The kubeconfig file. Use this file to connect to your kubernetes cluster.
         /// </summary>
         [Output("kubeconfig")]
         public Output<string> Kubeconfig { get; private set; } = null!;
+
+        /// <summary>
+        /// The kubeconfig file attributes.
+        /// </summary>
+        [Output("kubeconfigAttributes")]
+        public Output<ImmutableArray<Outputs.KubeKubeconfigAttribute>> KubeconfigAttributes { get; private set; } = null!;
 
         /// <summary>
         /// The name of the kubernetes cluster.
@@ -72,30 +90,24 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
 
         /// <summary>
         /// The private network configuration
-        /// * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-        /// * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
         /// </summary>
         [Output("privateNetworkConfiguration")]
         public Output<Outputs.KubePrivateNetworkConfiguration?> PrivateNetworkConfiguration { get; private set; } = null!;
 
         /// <summary>
-        /// OpenStack private network (or vrack) ID to use.
-        /// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+        /// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
         /// </summary>
         [Output("privateNetworkId")]
         public Output<string?> PrivateNetworkId { get; private set; } = null!;
 
         /// <summary>
-        /// a valid OVHcloud public cloud region ID in which the kubernetes
-        /// cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-        /// Changing this value recreates the resource.
+        /// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
         /// </summary>
         [Output("region")]
         public Output<string> Region { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the public cloud project. If omitted,
-        /// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        /// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         /// </summary>
         [Output("serviceName")]
         public Output<string> ServiceName { get; private set; } = null!;
@@ -119,8 +131,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Output<string> Url { get; private set; } = null!;
 
         /// <summary>
-        /// kubernetes version to use.
-        /// Changing this value updates the resource. Defaults to latest available.
+        /// kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
         /// </summary>
         [Output("version")]
         public Output<string> Version { get; private set; } = null!;
@@ -152,6 +163,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
                 AdditionalSecretOutputs =
                 {
                     "kubeconfig",
+                    "kubeconfigAttributes",
                 },
             };
             var merged = CustomResourceOptions.Merge(defaultOptions, options);
@@ -176,15 +188,42 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
 
     public sealed class KubeArgs : global::Pulumi.ResourceArgs
     {
+        [Input("customizationApiservers")]
+        private InputList<Inputs.KubeCustomizationApiserverArgs>? _customizationApiservers;
+
         /// <summary>
-        /// Customer customization object
-        /// * apiserver - Kubernetes API server customization
-        /// * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-        /// * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-        /// * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        /// Kubernetes API server customization
         /// </summary>
-        [Input("customization")]
-        public Input<Inputs.KubeCustomizationArgs>? Customization { get; set; }
+        public InputList<Inputs.KubeCustomizationApiserverArgs> CustomizationApiservers
+        {
+            get => _customizationApiservers ?? (_customizationApiservers = new InputList<Inputs.KubeCustomizationApiserverArgs>());
+            set => _customizationApiservers = value;
+        }
+
+        /// <summary>
+        /// Kubernetes kube-proxy customization
+        /// </summary>
+        [Input("customizationKubeProxy")]
+        public Input<Inputs.KubeCustomizationKubeProxyArgs>? CustomizationKubeProxy { get; set; }
+
+        [Input("customizations")]
+        private InputList<Inputs.KubeCustomizationArgs>? _customizations;
+
+        /// <summary>
+        /// **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        /// </summary>
+        [Obsolete(@"Use customization_apiserver instead")]
+        public InputList<Inputs.KubeCustomizationArgs> Customizations
+        {
+            get => _customizations ?? (_customizations = new InputList<Inputs.KubeCustomizationArgs>());
+            set => _customizations = value;
+        }
+
+        /// <summary>
+        /// Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+        /// </summary>
+        [Input("kubeProxyMode")]
+        public Input<string>? KubeProxyMode { get; set; }
 
         /// <summary>
         /// The name of the kubernetes cluster.
@@ -194,30 +233,24 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
 
         /// <summary>
         /// The private network configuration
-        /// * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-        /// * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
         /// </summary>
         [Input("privateNetworkConfiguration")]
         public Input<Inputs.KubePrivateNetworkConfigurationArgs>? PrivateNetworkConfiguration { get; set; }
 
         /// <summary>
-        /// OpenStack private network (or vrack) ID to use.
-        /// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+        /// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// a valid OVHcloud public cloud region ID in which the kubernetes
-        /// cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-        /// Changing this value recreates the resource.
+        /// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
         /// </summary>
         [Input("region", required: true)]
         public Input<string> Region { get; set; } = null!;
 
         /// <summary>
-        /// The id of the public cloud project. If omitted,
-        /// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        /// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         /// </summary>
         [Input("serviceName", required: true)]
         public Input<string> ServiceName { get; set; } = null!;
@@ -229,8 +262,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Input<string>? UpdatePolicy { get; set; }
 
         /// <summary>
-        /// kubernetes version to use.
-        /// Changing this value updates the resource. Defaults to latest available.
+        /// kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }
@@ -244,26 +276,53 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     public sealed class KubeState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// True if control-plane is up to date.
+        /// True if control-plane is up-to-date.
         /// </summary>
         [Input("controlPlaneIsUpToDate")]
         public Input<bool>? ControlPlaneIsUpToDate { get; set; }
 
-        /// <summary>
-        /// Customer customization object
-        /// * apiserver - Kubernetes API server customization
-        /// * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-        /// * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-        /// * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-        /// </summary>
-        [Input("customization")]
-        public Input<Inputs.KubeCustomizationGetArgs>? Customization { get; set; }
+        [Input("customizationApiservers")]
+        private InputList<Inputs.KubeCustomizationApiserverGetArgs>? _customizationApiservers;
 
         /// <summary>
-        /// True if all nodes and control-plane are up to date.
+        /// Kubernetes API server customization
+        /// </summary>
+        public InputList<Inputs.KubeCustomizationApiserverGetArgs> CustomizationApiservers
+        {
+            get => _customizationApiservers ?? (_customizationApiservers = new InputList<Inputs.KubeCustomizationApiserverGetArgs>());
+            set => _customizationApiservers = value;
+        }
+
+        /// <summary>
+        /// Kubernetes kube-proxy customization
+        /// </summary>
+        [Input("customizationKubeProxy")]
+        public Input<Inputs.KubeCustomizationKubeProxyGetArgs>? CustomizationKubeProxy { get; set; }
+
+        [Input("customizations")]
+        private InputList<Inputs.KubeCustomizationGetArgs>? _customizations;
+
+        /// <summary>
+        /// **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        /// </summary>
+        [Obsolete(@"Use customization_apiserver instead")]
+        public InputList<Inputs.KubeCustomizationGetArgs> Customizations
+        {
+            get => _customizations ?? (_customizations = new InputList<Inputs.KubeCustomizationGetArgs>());
+            set => _customizations = value;
+        }
+
+        /// <summary>
+        /// True if all nodes and control-plane are up-to-date.
         /// </summary>
         [Input("isUpToDate")]
         public Input<bool>? IsUpToDate { get; set; }
+
+        /// <summary>
+        /// Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+        /// </summary>
+        [Input("kubeProxyMode")]
+        public Input<string>? KubeProxyMode { get; set; }
 
         [Input("kubeconfig")]
         private Input<string>? _kubeconfig;
@@ -278,6 +337,22 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
             {
                 var emptySecret = Output.CreateSecret(0);
                 _kubeconfig = Output.Tuple<Input<string>?, int>(value, emptySecret).Apply(t => t.Item1);
+            }
+        }
+
+        [Input("kubeconfigAttributes")]
+        private InputList<Inputs.KubeKubeconfigAttributeGetArgs>? _kubeconfigAttributes;
+
+        /// <summary>
+        /// The kubeconfig file attributes.
+        /// </summary>
+        public InputList<Inputs.KubeKubeconfigAttributeGetArgs> KubeconfigAttributes
+        {
+            get => _kubeconfigAttributes ?? (_kubeconfigAttributes = new InputList<Inputs.KubeKubeconfigAttributeGetArgs>());
+            set
+            {
+                var emptySecret = Output.CreateSecret(ImmutableArray.Create<Inputs.KubeKubeconfigAttributeGetArgs>());
+                _kubeconfigAttributes = Output.All(value, emptySecret).Apply(v => v[0]);
             }
         }
 
@@ -307,30 +382,24 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
 
         /// <summary>
         /// The private network configuration
-        /// * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-        /// * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
         /// </summary>
         [Input("privateNetworkConfiguration")]
         public Input<Inputs.KubePrivateNetworkConfigurationGetArgs>? PrivateNetworkConfiguration { get; set; }
 
         /// <summary>
-        /// OpenStack private network (or vrack) ID to use.
-        /// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+        /// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
         /// </summary>
         [Input("privateNetworkId")]
         public Input<string>? PrivateNetworkId { get; set; }
 
         /// <summary>
-        /// a valid OVHcloud public cloud region ID in which the kubernetes
-        /// cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-        /// Changing this value recreates the resource.
+        /// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
         /// </summary>
         [Input("region")]
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The id of the public cloud project. If omitted,
-        /// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        /// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }
@@ -354,8 +423,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Input<string>? Url { get; set; }
 
         /// <summary>
-        /// kubernetes version to use.
-        /// Changing this value updates the resource. Defaults to latest available.
+        /// kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
         /// </summary>
         [Input("version")]
         public Input<string>? Version { get; set; }

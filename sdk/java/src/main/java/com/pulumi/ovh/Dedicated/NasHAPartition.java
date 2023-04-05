@@ -65,7 +65,7 @@ public class NasHAPartition extends com.pulumi.resources.CustomResource {
      * Percentage of partition space used in %
      * 
      */
-    @Export(name="capacity", type=Integer.class, parameters={})
+    @Export(name="capacity", refs={Integer.class}, tree="[0]")
     private Output<Integer> capacity;
 
     /**
@@ -79,7 +79,7 @@ public class NasHAPartition extends com.pulumi.resources.CustomResource {
      * A brief description of the partition
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -93,7 +93,7 @@ public class NasHAPartition extends com.pulumi.resources.CustomResource {
      * name of the partition
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -107,7 +107,7 @@ public class NasHAPartition extends com.pulumi.resources.CustomResource {
      * one of &#34;NFS&#34;, &#34;CIFS&#34; or &#34;NFS_CIFS&#34;
      * 
      */
-    @Export(name="protocol", type=String.class, parameters={})
+    @Export(name="protocol", refs={String.class}, tree="[0]")
     private Output<String> protocol;
 
     /**
@@ -121,7 +121,7 @@ public class NasHAPartition extends com.pulumi.resources.CustomResource {
      * The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -135,7 +135,7 @@ public class NasHAPartition extends com.pulumi.resources.CustomResource {
      * size of the partition in GB
      * 
      */
-    @Export(name="size", type=Integer.class, parameters={})
+    @Export(name="size", refs={Integer.class}, tree="[0]")
     private Output<Integer> size;
 
     /**
@@ -149,7 +149,7 @@ public class NasHAPartition extends com.pulumi.resources.CustomResource {
      * Percentage of partition space used by snapshots in %
      * 
      */
-    @Export(name="usedBySnapshots", type=Integer.class, parameters={})
+    @Export(name="usedBySnapshots", refs={Integer.class}, tree="[0]")
     private Output<Integer> usedBySnapshots;
 
     /**

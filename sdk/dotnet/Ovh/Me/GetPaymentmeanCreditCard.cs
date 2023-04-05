@@ -22,6 +22,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 
@@ -50,6 +51,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 

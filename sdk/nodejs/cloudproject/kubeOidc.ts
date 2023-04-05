@@ -73,7 +73,7 @@ export class KubeOidc extends pulumi.CustomResource {
      */
     public readonly issuerUrl!: pulumi.Output<string>;
     /**
-     * The ID of the managed kubernetes cluster.
+     * The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
      */
     public readonly kubeId!: pulumi.Output<string>;
     public readonly oidcCaContent!: pulumi.Output<string | undefined>;
@@ -84,7 +84,7 @@ export class KubeOidc extends pulumi.CustomResource {
     public readonly oidcUsernameClaim!: pulumi.Output<string | undefined>;
     public readonly oidcUsernamePrefix!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      */
     public readonly serviceName!: pulumi.Output<string>;
 
@@ -156,7 +156,7 @@ export interface KubeOidcState {
      */
     issuerUrl?: pulumi.Input<string>;
     /**
-     * The ID of the managed kubernetes cluster.
+     * The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
      */
     kubeId?: pulumi.Input<string>;
     oidcCaContent?: pulumi.Input<string>;
@@ -167,7 +167,7 @@ export interface KubeOidcState {
     oidcUsernameClaim?: pulumi.Input<string>;
     oidcUsernamePrefix?: pulumi.Input<string>;
     /**
-     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      */
     serviceName?: pulumi.Input<string>;
 }
@@ -185,7 +185,7 @@ export interface KubeOidcArgs {
      */
     issuerUrl: pulumi.Input<string>;
     /**
-     * The ID of the managed kubernetes cluster.
+     * The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
      */
     kubeId: pulumi.Input<string>;
     oidcCaContent?: pulumi.Input<string>;
@@ -196,7 +196,7 @@ export interface KubeOidcArgs {
     oidcUsernameClaim?: pulumi.Input<string>;
     oidcUsernamePrefix?: pulumi.Input<string>;
     /**
-     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      */
     serviceName: pulumi.Input<string>;
 }

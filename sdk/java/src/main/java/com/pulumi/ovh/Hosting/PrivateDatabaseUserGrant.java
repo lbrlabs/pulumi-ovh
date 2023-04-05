@@ -64,7 +64,7 @@ public class PrivateDatabaseUserGrant extends com.pulumi.resources.CustomResourc
      * Database name where add grant.
      * 
      */
-    @Export(name="databaseName", type=String.class, parameters={})
+    @Export(name="databaseName", refs={String.class}, tree="[0]")
     private Output<String> databaseName;
 
     /**
@@ -82,7 +82,7 @@ public class PrivateDatabaseUserGrant extends com.pulumi.resources.CustomResourc
      * - rw
      * 
      */
-    @Export(name="grant", type=String.class, parameters={})
+    @Export(name="grant", refs={String.class}, tree="[0]")
     private Output<String> grant;
 
     /**
@@ -100,7 +100,7 @@ public class PrivateDatabaseUserGrant extends com.pulumi.resources.CustomResourc
      * The internal name of your private database.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -114,7 +114,7 @@ public class PrivateDatabaseUserGrant extends com.pulumi.resources.CustomResourc
      * User name used to connect on your databases.
      * 
      */
-    @Export(name="userName", type=String.class, parameters={})
+    @Export(name="userName", refs={String.class}, tree="[0]")
     private Output<String> userName;
 
     /**

@@ -68,7 +68,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * Plan creation date
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -82,7 +82,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * Registry name
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -96,7 +96,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * Plan ID of the registry
      * 
      */
-    @Export(name="planId", type=String.class, parameters={})
+    @Export(name="planId", refs={String.class}, tree="[0]")
     private Output<String> planId;
 
     /**
@@ -110,7 +110,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * Plan of the registry
      * 
      */
-    @Export(name="plans", type=List.class, parameters={ContainerRegistryPlan.class})
+    @Export(name="plans", refs={List.class,ContainerRegistryPlan.class}, tree="[0,1]")
     private Output<List<ContainerRegistryPlan>> plans;
 
     /**
@@ -124,7 +124,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * Project ID of your registry
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -138,7 +138,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * Region of the registry
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
@@ -153,7 +153,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -168,7 +168,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * Current size of the registry (bytes)
      * 
      */
-    @Export(name="size", type=Integer.class, parameters={})
+    @Export(name="size", refs={Integer.class}, tree="[0]")
     private Output<Integer> size;
 
     /**
@@ -182,7 +182,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * Registry status
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -196,7 +196,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * Registry last update date
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -210,7 +210,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * Access url of the registry
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
@@ -224,7 +224,7 @@ public class ContainerRegistry extends com.pulumi.resources.CustomResource {
      * Version of your registry
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**

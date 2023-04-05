@@ -41,7 +41,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         public Output<string> CreatedAt { get; private set; } = null!;
 
         /// <summary>
-        /// Username affected by this acl.
+        /// Username affected by this acl. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -141,7 +141,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         public Input<string> ClusterId { get; set; } = null!;
 
         /// <summary>
-        /// Username affected by this acl.
+        /// Username affected by this acl. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -192,7 +192,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         public Input<string>? CreatedAt { get; set; }
 
         /// <summary>
-        /// Username affected by this acl.
+        /// Username affected by this acl. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

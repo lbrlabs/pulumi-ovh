@@ -66,7 +66,7 @@ export class RedisUser extends pulumi.CustomResource {
      */
     public readonly keys!: pulumi.Output<string[] | undefined>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -167,7 +167,7 @@ export interface RedisUserState {
      */
     keys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
      */
     name?: pulumi.Input<string>;
     /**
@@ -214,7 +214,7 @@ export interface RedisUserArgs {
      */
     keys?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
      */
     name?: pulumi.Input<string>;
     /**

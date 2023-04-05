@@ -10,14 +10,17 @@ import * as utilities from "../utilities";
  * ## Example Usage
  *
  * Minimum settings for each engine (region choice is up to the user):
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
  * const cassandradb = new ovh.cloudproject.Database("cassandradb", {
+ *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     description: "my-first-cassandra",
  *     engine: "cassandra",
- *     flavor: "db1-4",
+ *     version: "4.0",
+ *     plan: "essential",
  *     nodes: [
  *         {
  *             region: "BHS",
@@ -29,14 +32,14 @@ import * as utilities from "../utilities";
  *             region: "BHS",
  *         },
  *     ],
- *     plan: "essential",
- *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
- *     version: "4.0",
+ *     flavor: "db1-4",
  * });
  * const kafkadb = new ovh.cloudproject.Database("kafkadb", {
+ *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     description: "my-first-kafka",
  *     engine: "kafka",
- *     flavor: "db1-4",
+ *     version: "3.1",
+ *     plan: "business",
  *     kafkaRestApi: true,
  *     nodes: [
  *         {
@@ -49,80 +52,83 @@ import * as utilities from "../utilities";
  *             region: "DE",
  *         },
  *     ],
- *     plan: "business",
- *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
- *     version: "3.1",
+ *     flavor: "db1-4",
  * });
  * const m3db = new ovh.cloudproject.Database("m3db", {
+ *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     description: "my-first-m3db",
  *     engine: "m3db",
- *     flavor: "db1-7",
+ *     version: "1.2",
+ *     plan: "essential",
  *     nodes: [{
  *         region: "BHS",
  *     }],
- *     plan: "essential",
- *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
- *     version: "1.2",
+ *     flavor: "db1-7",
  * });
  * const mongodb = new ovh.cloudproject.Database("mongodb", {
+ *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     description: "my-first-mongodb",
  *     engine: "mongodb",
- *     flavor: "db1-2",
+ *     version: "5.0",
+ *     plan: "essential",
  *     nodes: [{
  *         region: "GRA",
  *     }],
- *     plan: "essential",
- *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
- *     version: "5.0",
+ *     flavor: "db1-2",
  * });
  * const mysqldb = new ovh.cloudproject.Database("mysqldb", {
+ *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     description: "my-first-mysql",
  *     engine: "mysql",
- *     flavor: "db1-4",
+ *     version: "8",
+ *     plan: "essential",
  *     nodes: [{
  *         region: "SBG",
  *     }],
- *     plan: "essential",
- *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
- *     version: "8",
+ *     flavor: "db1-4",
+ *     advancedConfiguration: {
+ *         "mysql.sql_mode": "ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES",
+ *         "mysql.sql_require_primary_key": "true",
+ *     },
  * });
  * const opensearchdb = new ovh.cloudproject.Database("opensearchdb", {
+ *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     description: "my-first-opensearch",
  *     engine: "opensearch",
- *     flavor: "db1-4",
+ *     version: "1",
+ *     plan: "essential",
+ *     opensearchAclsEnabled: true,
  *     nodes: [{
  *         region: "UK",
  *     }],
- *     opensearchAclsEnabled: true,
- *     plan: "essential",
- *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
- *     version: "1",
+ *     flavor: "db1-4",
  * });
  * const pgsqldb = new ovh.cloudproject.Database("pgsqldb", {
+ *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     description: "my-first-postgresql",
  *     engine: "postgresql",
- *     flavor: "db1-4",
+ *     version: "14",
+ *     plan: "essential",
  *     nodes: [{
  *         region: "WAW",
  *     }],
- *     plan: "essential",
- *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
- *     version: "14",
+ *     flavor: "db1-4",
  * });
  * const redisdb = new ovh.cloudproject.Database("redisdb", {
+ *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     description: "my-first-redis",
  *     engine: "redis",
- *     flavor: "db1-4",
+ *     version: "6.2",
+ *     plan: "essential",
  *     nodes: [{
  *         region: "BHS",
  *     }],
- *     plan: "essential",
- *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
- *     version: "6.2",
+ *     flavor: "db1-4",
  * });
  * ```
  *
  * To deploy a business PostgreSQL service with two nodes on public network:
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@lbrlabs/pulumi-ovh";
@@ -146,6 +152,7 @@ import * as utilities from "../utilities";
  * ```
  *
  * To deploy an enterprise MongoDB service with three nodes on private network:
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@lbrlabs/pulumi-ovh";
@@ -213,6 +220,10 @@ export class Database extends pulumi.CustomResource {
         return obj['__pulumiType'] === Database.__pulumiType;
     }
 
+    /**
+     * Advanced configuration key / value.
+     */
+    public readonly advancedConfiguration!: pulumi.Output<{[key: string]: string}>;
     /**
      * Time on which backups start every day.
      */
@@ -301,6 +312,7 @@ export class Database extends pulumi.CustomResource {
         opts = opts || {};
         if (opts.id) {
             const state = argsOrState as DatabaseState | undefined;
+            resourceInputs["advancedConfiguration"] = state ? state.advancedConfiguration : undefined;
             resourceInputs["backupTime"] = state ? state.backupTime : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
@@ -338,6 +350,7 @@ export class Database extends pulumi.CustomResource {
             if ((!args || args.version === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'version'");
             }
+            resourceInputs["advancedConfiguration"] = args ? args.advancedConfiguration : undefined;
             resourceInputs["description"] = args ? args.description : undefined;
             resourceInputs["diskSize"] = args ? args.diskSize : undefined;
             resourceInputs["engine"] = args ? args.engine : undefined;
@@ -365,6 +378,10 @@ export class Database extends pulumi.CustomResource {
  * Input properties used for looking up and filtering Database resources.
  */
 export interface DatabaseState {
+    /**
+     * Advanced configuration key / value.
+     */
+    advancedConfiguration?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Time on which backups start every day.
      */
@@ -445,6 +462,10 @@ export interface DatabaseState {
  * The set of arguments for constructing a Database resource.
  */
 export interface DatabaseArgs {
+    /**
+     * Advanced configuration key / value.
+     */
+    advancedConfiguration?: pulumi.Input<{[key: string]: pulumi.Input<string>}>;
     /**
      * Small description of the database service.
      */

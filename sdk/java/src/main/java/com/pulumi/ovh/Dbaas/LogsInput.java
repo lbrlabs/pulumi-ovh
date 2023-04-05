@@ -93,7 +93,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * List of IP blocks
      * 
      */
-    @Export(name="allowedNetworks", type=List.class, parameters={String.class})
+    @Export(name="allowedNetworks", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> allowedNetworks;
 
     /**
@@ -107,7 +107,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Input configuration
      * 
      */
-    @Export(name="configuration", type=LogsInputConfiguration.class, parameters={})
+    @Export(name="configuration", refs={LogsInputConfiguration.class}, tree="[0]")
     private Output<LogsInputConfiguration> configuration;
 
     /**
@@ -121,7 +121,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Input creation
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -135,7 +135,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Input description
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -149,7 +149,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Input engine ID
      * 
      */
-    @Export(name="engineId", type=String.class, parameters={})
+    @Export(name="engineId", refs={String.class}, tree="[0]")
     private Output<String> engineId;
 
     /**
@@ -163,7 +163,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Port
      * 
      */
-    @Export(name="exposedPort", type=String.class, parameters={})
+    @Export(name="exposedPort", refs={String.class}, tree="[0]")
     private Output<String> exposedPort;
 
     /**
@@ -177,7 +177,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Hostname
      * 
      */
-    @Export(name="hostname", type=String.class, parameters={})
+    @Export(name="hostname", refs={String.class}, tree="[0]")
     private Output<String> hostname;
 
     /**
@@ -191,7 +191,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Input ID
      * 
      */
-    @Export(name="inputId", type=String.class, parameters={})
+    @Export(name="inputId", refs={String.class}, tree="[0]")
     private Output<String> inputId;
 
     /**
@@ -205,7 +205,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Indicate if input need to be restarted
      * 
      */
-    @Export(name="isRestartRequired", type=Boolean.class, parameters={})
+    @Export(name="isRestartRequired", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isRestartRequired;
 
     /**
@@ -219,7 +219,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Number of instance running
      * 
      */
-    @Export(name="nbInstance", type=Integer.class, parameters={})
+    @Export(name="nbInstance", refs={Integer.class}, tree="[0]")
     private Output<Integer> nbInstance;
 
     /**
@@ -233,7 +233,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Input IP address
      * 
      */
-    @Export(name="publicAddress", type=String.class, parameters={})
+    @Export(name="publicAddress", refs={String.class}, tree="[0]")
     private Output<String> publicAddress;
 
     /**
@@ -247,7 +247,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * service name
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -261,7 +261,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Input SSL certificate
      * 
      */
-    @Export(name="sslCertificate", type=String.class, parameters={})
+    @Export(name="sslCertificate", refs={String.class}, tree="[0]")
     private Output<String> sslCertificate;
 
     /**
@@ -275,7 +275,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * init: configuration required, pending: ready to start, running: available
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -289,7 +289,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Associated Graylog stream
      * 
      */
-    @Export(name="streamId", type=String.class, parameters={})
+    @Export(name="streamId", refs={String.class}, tree="[0]")
     private Output<String> streamId;
 
     /**
@@ -303,7 +303,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Input title
      * 
      */
-    @Export(name="title", type=String.class, parameters={})
+    @Export(name="title", refs={String.class}, tree="[0]")
     private Output<String> title;
 
     /**
@@ -317,7 +317,7 @@ public class LogsInput extends com.pulumi.resources.CustomResource {
      * Input last update
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

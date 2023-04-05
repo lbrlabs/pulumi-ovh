@@ -61,7 +61,7 @@ public class RegionStoragePresign extends com.pulumi.resources.CustomResource {
      * Define, in seconds, for how long your URL will be valid.
      * 
      */
-    @Export(name="expire", type=Integer.class, parameters={})
+    @Export(name="expire", refs={Integer.class}, tree="[0]")
     private Output<Integer> expire;
 
     /**
@@ -75,7 +75,7 @@ public class RegionStoragePresign extends com.pulumi.resources.CustomResource {
      * The method you want to use to interact with your object. Can be either &#39;GET&#39; or &#39;PUT&#39;.
      * 
      */
-    @Export(name="method", type=String.class, parameters={})
+    @Export(name="method", refs={String.class}, tree="[0]")
     private Output<String> method;
 
     /**
@@ -89,7 +89,7 @@ public class RegionStoragePresign extends com.pulumi.resources.CustomResource {
      * The name of your S3 storage container/bucket.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -103,7 +103,7 @@ public class RegionStoragePresign extends com.pulumi.resources.CustomResource {
      * The name of the object in your S3 bucket.
      * 
      */
-    @Export(name="object", type=String.class, parameters={})
+    @Export(name="object", refs={String.class}, tree="[0]")
     private Output<String> object;
 
     /**
@@ -118,7 +118,7 @@ public class RegionStoragePresign extends com.pulumi.resources.CustomResource {
      * Ex.: &#34;GRA&#34;.
      * 
      */
-    @Export(name="regionName", type=String.class, parameters={})
+    @Export(name="regionName", refs={String.class}, tree="[0]")
     private Output<String> regionName;
 
     /**
@@ -134,7 +134,7 @@ public class RegionStoragePresign extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -149,7 +149,7 @@ public class RegionStoragePresign extends com.pulumi.resources.CustomResource {
      * Computed URL result.
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**

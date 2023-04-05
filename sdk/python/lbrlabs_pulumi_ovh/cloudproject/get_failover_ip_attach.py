@@ -145,7 +145,7 @@ def get_failover_ip_attach(block: Optional[str] = None,
                            service_name: Optional[str] = None,
                            opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetFailoverIpAttachResult:
     """
-    Use this data source to get the details of a failover ip address of a service in a public cloud project.
+    Use this data source to get the details of a failover IP address of a service in a public cloud project.
 
     ## Example Usage
 
@@ -195,7 +195,7 @@ def get_failover_ip_attach_output(block: Optional[pulumi.Input[Optional[str]]] =
                                   service_name: Optional[pulumi.Input[str]] = None,
                                   opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetFailoverIpAttachResult]:
     """
-    Use this data source to get the details of a failover ip address of a service in a public cloud project.
+    Use this data source to get the details of a failover IP address of a service in a public cloud project.
 
     ## Example Usage
 

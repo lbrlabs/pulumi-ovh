@@ -20,12 +20,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Creates a domain zone.
- * 
- * ## Important
- * 
- * &gt; __WARNING__ This resource is in beta state. Use with caution.
- * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -65,7 +59,6 @@ import javax.annotation.Nullable;
  * 
  *         var zoneZone = new Zone(&#34;zoneZone&#34;, ZoneArgs.builder()        
  *             .ovhSubsidiary(mycart.applyValue(getCartResult -&gt; getCartResult.ovhSubsidiary()))
- *             .paymentMean(&#34;fidelity&#34;)
  *             .plan(ZonePlanArgs.builder()
  *                 .duration(zoneCartProductPlan.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.selectedPrices()[0].duration()))
  *                 .planCode(zoneCartProductPlan.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.planCode()))
@@ -93,7 +86,7 @@ public class Zone extends com.pulumi.resources.CustomResource {
      * Is DNSSEC supported by this zone
      * 
      */
-    @Export(name="dnssecSupported", type=Boolean.class, parameters={})
+    @Export(name="dnssecSupported", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> dnssecSupported;
 
     /**
@@ -107,7 +100,7 @@ public class Zone extends com.pulumi.resources.CustomResource {
      * hasDnsAnycast flag of the DNS zone
      * 
      */
-    @Export(name="hasDnsAnycast", type=Boolean.class, parameters={})
+    @Export(name="hasDnsAnycast", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> hasDnsAnycast;
 
     /**
@@ -121,7 +114,7 @@ public class Zone extends com.pulumi.resources.CustomResource {
      * Last update date of the DNS zone
      * 
      */
-    @Export(name="lastUpdate", type=String.class, parameters={})
+    @Export(name="lastUpdate", refs={String.class}, tree="[0]")
     private Output<String> lastUpdate;
 
     /**
@@ -135,7 +128,7 @@ public class Zone extends com.pulumi.resources.CustomResource {
      * Zone name
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -149,7 +142,7 @@ public class Zone extends com.pulumi.resources.CustomResource {
      * Name servers that host the DNS zone
      * 
      */
-    @Export(name="nameServers", type=List.class, parameters={String.class})
+    @Export(name="nameServers", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> nameServers;
 
     /**
@@ -163,7 +156,7 @@ public class Zone extends com.pulumi.resources.CustomResource {
      * Details about an Order
      * 
      */
-    @Export(name="orders", type=List.class, parameters={ZoneOrder.class})
+    @Export(name="orders", refs={List.class,ZoneOrder.class}, tree="[0,1]")
     private Output<List<ZoneOrder>> orders;
 
     /**
@@ -177,7 +170,7 @@ public class Zone extends com.pulumi.resources.CustomResource {
      * OVHcloud Subsidiary
      * 
      */
-    @Export(name="ovhSubsidiary", type=String.class, parameters={})
+    @Export(name="ovhSubsidiary", refs={String.class}, tree="[0]")
     private Output<String> ovhSubsidiary;
 
     /**
@@ -188,24 +181,28 @@ public class Zone extends com.pulumi.resources.CustomResource {
         return this.ovhSubsidiary;
     }
     /**
-     * OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * Ovh payment mode
+     * 
+     * @deprecated
+     * This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      * 
      */
-    @Export(name="paymentMean", type=String.class, parameters={})
-    private Output<String> paymentMean;
+    @Deprecated /* This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used. */
+    @Export(name="paymentMean", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> paymentMean;
 
     /**
-     * @return OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * @return Ovh payment mode
      * 
      */
-    public Output<String> paymentMean() {
-        return this.paymentMean;
+    public Output<Optional<String>> paymentMean() {
+        return Codegen.optional(this.paymentMean);
     }
     /**
      * Product Plan to order
      * 
      */
-    @Export(name="plan", type=ZonePlan.class, parameters={})
+    @Export(name="plan", refs={ZonePlan.class}, tree="[0]")
     private Output<ZonePlan> plan;
 
     /**
@@ -219,7 +216,7 @@ public class Zone extends com.pulumi.resources.CustomResource {
      * Product Plan to order
      * 
      */
-    @Export(name="planOptions", type=List.class, parameters={ZonePlanOption.class})
+    @Export(name="planOptions", refs={List.class,ZonePlanOption.class}, tree="[0,1]")
     private Output</* @Nullable */ List<ZonePlanOption>> planOptions;
 
     /**

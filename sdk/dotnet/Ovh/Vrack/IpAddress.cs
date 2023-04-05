@@ -17,6 +17,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Vrack
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// using Ovh = Pulumi.Ovh;
@@ -41,7 +42,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.Vrack
     ///     {
     ///         Description = mycart.Apply(getCartResult =&gt; getCartResult.Description),
     ///         OvhSubsidiary = mycart.Apply(getCartResult =&gt; getCartResult.OvhSubsidiary),
-    ///         PaymentMean = "fidelity",
     ///         Plan = new Ovh.Vrack.Inputs.VrackPlanArgs
     ///         {
     ///             Duration = vrackCartProductPlan.Apply(getCartProductPlanResult =&gt; getCartProductPlanResult.SelectedPrices[0]?.Duration),
@@ -61,7 +61,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.Vrack
     ///     var ipblockIpService = new Ovh.Ip.IpService("ipblockIpService", new()
     ///     {
     ///         OvhSubsidiary = mycart.Apply(getCartResult =&gt; getCartResult.OvhSubsidiary),
-    ///         PaymentMean = "ovh-account",
     ///         Description = mycart.Apply(getCartResult =&gt; getCartResult.Description),
     ///         Plan = new Ovh.Ip.Inputs.IpServicePlanArgs
     ///         {

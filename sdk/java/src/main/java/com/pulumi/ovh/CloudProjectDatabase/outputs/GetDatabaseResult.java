@@ -10,10 +10,16 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 @CustomType
 public final class GetDatabaseResult {
+    /**
+     * @return Advanced configuration key / value.
+     * 
+     */
+    private Map<String,String> advancedConfiguration;
     /**
      * @return Time on which backups start every day.
      * 
@@ -102,6 +108,13 @@ public final class GetDatabaseResult {
     private String version;
 
     private GetDatabaseResult() {}
+    /**
+     * @return Advanced configuration key / value.
+     * 
+     */
+    public Map<String,String> advancedConfiguration() {
+        return this.advancedConfiguration;
+    }
     /**
      * @return Time on which backups start every day.
      * 
@@ -234,6 +247,7 @@ public final class GetDatabaseResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private Map<String,String> advancedConfiguration;
         private String backupTime;
         private String createdAt;
         private String description;
@@ -255,6 +269,7 @@ public final class GetDatabaseResult {
         public Builder() {}
         public Builder(GetDatabaseResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.advancedConfiguration = defaults.advancedConfiguration;
     	      this.backupTime = defaults.backupTime;
     	      this.createdAt = defaults.createdAt;
     	      this.description = defaults.description;
@@ -275,6 +290,11 @@ public final class GetDatabaseResult {
     	      this.version = defaults.version;
         }
 
+        @CustomType.Setter
+        public Builder advancedConfiguration(Map<String,String> advancedConfiguration) {
+            this.advancedConfiguration = Objects.requireNonNull(advancedConfiguration);
+            return this;
+        }
         @CustomType.Setter
         public Builder backupTime(String backupTime) {
             this.backupTime = Objects.requireNonNull(backupTime);
@@ -373,6 +393,7 @@ public final class GetDatabaseResult {
         }
         public GetDatabaseResult build() {
             final var o = new GetDatabaseResult();
+            o.advancedConfiguration = advancedConfiguration;
             o.backupTime = backupTime;
             o.createdAt = createdAt;
             o.description = description;

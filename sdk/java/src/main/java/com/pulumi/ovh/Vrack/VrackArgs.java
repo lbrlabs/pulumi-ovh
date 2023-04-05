@@ -64,18 +64,26 @@ public final class VrackArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * Ovh payment mode
+     * 
+     * @deprecated
+     * This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      * 
      */
-    @Import(name="paymentMean", required=true)
-    private Output<String> paymentMean;
+    @Deprecated /* This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used. */
+    @Import(name="paymentMean")
+    private @Nullable Output<String> paymentMean;
 
     /**
-     * @return OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * @return Ovh payment mode
+     * 
+     * @deprecated
+     * This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      * 
      */
-    public Output<String> paymentMean() {
-        return this.paymentMean;
+    @Deprecated /* This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used. */
+    public Optional<Output<String>> paymentMean() {
+        return Optional.ofNullable(this.paymentMean);
     }
 
     /**
@@ -201,22 +209,30 @@ public final class VrackArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param paymentMean OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+         * @param paymentMean Ovh payment mode
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+         * 
          */
-        public Builder paymentMean(Output<String> paymentMean) {
+        @Deprecated /* This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used. */
+        public Builder paymentMean(@Nullable Output<String> paymentMean) {
             $.paymentMean = paymentMean;
             return this;
         }
 
         /**
-         * @param paymentMean OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+         * @param paymentMean Ovh payment mode
          * 
          * @return builder
          * 
+         * @deprecated
+         * This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+         * 
          */
+        @Deprecated /* This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used. */
         public Builder paymentMean(String paymentMean) {
             return paymentMean(Output.of(paymentMean));
         }
@@ -275,7 +291,6 @@ public final class VrackArgs extends com.pulumi.resources.ResourceArgs {
 
         public VrackArgs build() {
             $.ovhSubsidiary = Objects.requireNonNull($.ovhSubsidiary, "expected parameter 'ovhSubsidiary' to be non-null");
-            $.paymentMean = Objects.requireNonNull($.paymentMean, "expected parameter 'paymentMean' to be non-null");
             $.plan = Objects.requireNonNull($.plan, "expected parameter 'plan' to be non-null");
             return $;
         }

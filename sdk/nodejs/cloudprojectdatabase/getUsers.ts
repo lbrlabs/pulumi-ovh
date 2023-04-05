@@ -42,7 +42,6 @@ export interface GetUsersArgs {
     /**
      * The engine of the database cluster you want to list users. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
-     * Available engines:
      */
     engine: string;
     /**
@@ -109,7 +108,6 @@ export interface GetUsersOutputArgs {
     /**
      * The engine of the database cluster you want to list users. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
-     * Available engines:
      */
     engine: pulumi.Input<string>;
     /**

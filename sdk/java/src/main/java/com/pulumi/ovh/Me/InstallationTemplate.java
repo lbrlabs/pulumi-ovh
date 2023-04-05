@@ -68,7 +68,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * List of all language available for this template.
      * 
      */
-    @Export(name="availableLanguages", type=List.class, parameters={String.class})
+    @Export(name="availableLanguages", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> availableLanguages;
 
     /**
@@ -82,7 +82,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
      * 
      */
-    @Export(name="baseTemplateName", type=String.class, parameters={})
+    @Export(name="baseTemplateName", refs={String.class}, tree="[0]")
     private Output<String> baseTemplateName;
 
     /**
@@ -96,7 +96,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * This distribution is new and, although tested and functional, may still display odd behaviour.
      * 
      */
-    @Export(name="beta", type=Boolean.class, parameters={})
+    @Export(name="beta", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> beta;
 
     /**
@@ -110,7 +110,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * This template bit format (32 or 64).
      * 
      */
-    @Export(name="bitFormat", type=Integer.class, parameters={})
+    @Export(name="bitFormat", refs={Integer.class}, tree="[0]")
     private Output<Integer> bitFormat;
 
     /**
@@ -124,7 +124,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
      * 
      */
-    @Export(name="category", type=String.class, parameters={})
+    @Export(name="category", refs={String.class}, tree="[0]")
     private Output<String> category;
 
     /**
@@ -134,7 +134,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
     public Output<String> category() {
         return this.category;
     }
-    @Export(name="customization", type=InstallationTemplateCustomization.class, parameters={})
+    @Export(name="customization", refs={InstallationTemplateCustomization.class}, tree="[0]")
     private Output</* @Nullable */ InstallationTemplateCustomization> customization;
 
     public Output<Optional<InstallationTemplateCustomization>> customization() {
@@ -144,7 +144,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * The default language of this template.
      * 
      */
-    @Export(name="defaultLanguage", type=String.class, parameters={})
+    @Export(name="defaultLanguage", refs={String.class}, tree="[0]")
     private Output<String> defaultLanguage;
 
     /**
@@ -158,7 +158,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * is this distribution deprecated.
      * 
      */
-    @Export(name="deprecated", type=Boolean.class, parameters={})
+    @Export(name="deprecated", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> deprecated;
 
     /**
@@ -172,7 +172,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * information about this template.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -186,7 +186,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * the distribution this template is based on.
      * 
      */
-    @Export(name="distribution", type=String.class, parameters={})
+    @Export(name="distribution", refs={String.class}, tree="[0]")
     private Output<String> distribution;
 
     /**
@@ -200,7 +200,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * this template family type (bsd,linux,solaris,windows).
      * 
      */
-    @Export(name="family", type=String.class, parameters={})
+    @Export(name="family", refs={String.class}, tree="[0]")
     private Output<String> family;
 
     /**
@@ -214,7 +214,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
      * 
      */
-    @Export(name="filesystems", type=List.class, parameters={String.class})
+    @Export(name="filesystems", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> filesystems;
 
     /**
@@ -228,7 +228,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * This distribution supports hardware raid configuration through the OVHcloud API.
      * 
      */
-    @Export(name="hardRaidConfiguration", type=Boolean.class, parameters={})
+    @Export(name="hardRaidConfiguration", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> hardRaidConfiguration;
 
     /**
@@ -242,7 +242,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * Date of last modification of the base image.
      * 
      */
-    @Export(name="lastModification", type=String.class, parameters={})
+    @Export(name="lastModification", refs={String.class}, tree="[0]")
     private Output<String> lastModification;
 
     /**
@@ -256,7 +256,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * This distribution supports Logical Volumes (Linux LVM)
      * 
      */
-    @Export(name="lvmReady", type=Boolean.class, parameters={})
+    @Export(name="lvmReady", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> lvmReady;
 
     /**
@@ -270,7 +270,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * Remove default partition schemes at creation.
      * 
      */
-    @Export(name="removeDefaultPartitionSchemes", type=Boolean.class, parameters={})
+    @Export(name="removeDefaultPartitionSchemes", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> removeDefaultPartitionSchemes;
 
     /**
@@ -284,7 +284,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVHcloud kernel.
      * 
      */
-    @Export(name="supportsDistributionKernel", type=Boolean.class, parameters={})
+    @Export(name="supportsDistributionKernel", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> supportsDistributionKernel;
 
     /**
@@ -298,7 +298,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * This distribution supports RTM software.
      * 
      */
-    @Export(name="supportsRtm", type=Boolean.class, parameters={})
+    @Export(name="supportsRtm", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> supportsRtm;
 
     /**
@@ -312,7 +312,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * This distribution supports the microsoft SQL server.
      * 
      */
-    @Export(name="supportsSqlServer", type=Boolean.class, parameters={})
+    @Export(name="supportsSqlServer", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> supportsSqlServer;
 
     /**
@@ -326,7 +326,7 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
      * This template name.
      * 
      */
-    @Export(name="templateName", type=String.class, parameters={})
+    @Export(name="templateName", refs={String.class}, tree="[0]")
     private Output<String> templateName;
 
     /**

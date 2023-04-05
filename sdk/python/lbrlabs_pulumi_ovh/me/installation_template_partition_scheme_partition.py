@@ -25,14 +25,31 @@ class InstallationTemplatePartitionSchemePartitionArgs:
                  volume_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstallationTemplatePartitionSchemePartition resource.
-        :param pulumi.Input[str] filesystem: Partition filesystem.
+        :param pulumi.Input[str] filesystem: Partition filesystem. Enum with possibles values:
+               - btrfs
+               - ext3
+               - ext4
+               - ntfs
+               - reiserfs
+               - swap
+               - ufs
+               - xfs
+               - zfs
         :param pulumi.Input[str] mountpoint: partition mount point.
         :param pulumi.Input[int] order: step or order. specifies the creation order of the partition on the disk
         :param pulumi.Input[str] scheme_name: The partition scheme name.
         :param pulumi.Input[int] size: size of partition in MB, 0 => rest of the space.
         :param pulumi.Input[str] template_name: The template name of the partition scheme.
-        :param pulumi.Input[str] type: partition type.
-        :param pulumi.Input[str] raid: raid partition type.
+        :param pulumi.Input[str] type: partition type. Enum with possible values:
+               - lv
+               - primary
+               - logical
+        :param pulumi.Input[str] raid: raid partition type. Enum with possible values: 
+               - raid0
+               - raid1
+               - raid10
+               - raid5
+               - raid6
         :param pulumi.Input[str] volume_name: The volume name needed for proxmox distribution
         """
         pulumi.set(__self__, "filesystem", filesystem)
@@ -51,7 +68,16 @@ class InstallationTemplatePartitionSchemePartitionArgs:
     @pulumi.getter
     def filesystem(self) -> pulumi.Input[str]:
         """
-        Partition filesystem.
+        Partition filesystem. Enum with possibles values:
+        - btrfs
+        - ext3
+        - ext4
+        - ntfs
+        - reiserfs
+        - swap
+        - ufs
+        - xfs
+        - zfs
         """
         return pulumi.get(self, "filesystem")
 
@@ -123,7 +149,10 @@ class InstallationTemplatePartitionSchemePartitionArgs:
     @pulumi.getter
     def type(self) -> pulumi.Input[str]:
         """
-        partition type.
+        partition type. Enum with possible values:
+        - lv
+        - primary
+        - logical
         """
         return pulumi.get(self, "type")
 
@@ -135,7 +164,12 @@ class InstallationTemplatePartitionSchemePartitionArgs:
     @pulumi.getter
     def raid(self) -> Optional[pulumi.Input[str]]:
         """
-        raid partition type.
+        raid partition type. Enum with possible values: 
+        - raid0
+        - raid1
+        - raid10
+        - raid5
+        - raid6
         """
         return pulumi.get(self, "raid")
 
@@ -170,14 +204,31 @@ class _InstallationTemplatePartitionSchemePartitionState:
                  volume_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstallationTemplatePartitionSchemePartition resources.
-        :param pulumi.Input[str] filesystem: Partition filesystem.
+        :param pulumi.Input[str] filesystem: Partition filesystem. Enum with possibles values:
+               - btrfs
+               - ext3
+               - ext4
+               - ntfs
+               - reiserfs
+               - swap
+               - ufs
+               - xfs
+               - zfs
         :param pulumi.Input[str] mountpoint: partition mount point.
         :param pulumi.Input[int] order: step or order. specifies the creation order of the partition on the disk
-        :param pulumi.Input[str] raid: raid partition type.
+        :param pulumi.Input[str] raid: raid partition type. Enum with possible values: 
+               - raid0
+               - raid1
+               - raid10
+               - raid5
+               - raid6
         :param pulumi.Input[str] scheme_name: The partition scheme name.
         :param pulumi.Input[int] size: size of partition in MB, 0 => rest of the space.
         :param pulumi.Input[str] template_name: The template name of the partition scheme.
-        :param pulumi.Input[str] type: partition type.
+        :param pulumi.Input[str] type: partition type. Enum with possible values:
+               - lv
+               - primary
+               - logical
         :param pulumi.Input[str] volume_name: The volume name needed for proxmox distribution
         """
         if filesystem is not None:
@@ -203,7 +254,16 @@ class _InstallationTemplatePartitionSchemePartitionState:
     @pulumi.getter
     def filesystem(self) -> Optional[pulumi.Input[str]]:
         """
-        Partition filesystem.
+        Partition filesystem. Enum with possibles values:
+        - btrfs
+        - ext3
+        - ext4
+        - ntfs
+        - reiserfs
+        - swap
+        - ufs
+        - xfs
+        - zfs
         """
         return pulumi.get(self, "filesystem")
 
@@ -239,7 +299,12 @@ class _InstallationTemplatePartitionSchemePartitionState:
     @pulumi.getter
     def raid(self) -> Optional[pulumi.Input[str]]:
         """
-        raid partition type.
+        raid partition type. Enum with possible values: 
+        - raid0
+        - raid1
+        - raid10
+        - raid5
+        - raid6
         """
         return pulumi.get(self, "raid")
 
@@ -287,7 +352,10 @@ class _InstallationTemplatePartitionSchemePartitionState:
     @pulumi.getter
     def type(self) -> Optional[pulumi.Input[str]]:
         """
-        partition type.
+        partition type. Enum with possible values:
+        - lv
+        - primary
+        - logical
         """
         return pulumi.get(self, "type")
 
@@ -359,14 +427,31 @@ class InstallationTemplatePartitionSchemePartition(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] filesystem: Partition filesystem.
+        :param pulumi.Input[str] filesystem: Partition filesystem. Enum with possibles values:
+               - btrfs
+               - ext3
+               - ext4
+               - ntfs
+               - reiserfs
+               - swap
+               - ufs
+               - xfs
+               - zfs
         :param pulumi.Input[str] mountpoint: partition mount point.
         :param pulumi.Input[int] order: step or order. specifies the creation order of the partition on the disk
-        :param pulumi.Input[str] raid: raid partition type.
+        :param pulumi.Input[str] raid: raid partition type. Enum with possible values: 
+               - raid0
+               - raid1
+               - raid10
+               - raid5
+               - raid6
         :param pulumi.Input[str] scheme_name: The partition scheme name.
         :param pulumi.Input[int] size: size of partition in MB, 0 => rest of the space.
         :param pulumi.Input[str] template_name: The template name of the partition scheme.
-        :param pulumi.Input[str] type: partition type.
+        :param pulumi.Input[str] type: partition type. Enum with possible values:
+               - lv
+               - primary
+               - logical
         :param pulumi.Input[str] volume_name: The volume name needed for proxmox distribution
         """
         ...
@@ -491,14 +576,31 @@ class InstallationTemplatePartitionSchemePartition(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] filesystem: Partition filesystem.
+        :param pulumi.Input[str] filesystem: Partition filesystem. Enum with possibles values:
+               - btrfs
+               - ext3
+               - ext4
+               - ntfs
+               - reiserfs
+               - swap
+               - ufs
+               - xfs
+               - zfs
         :param pulumi.Input[str] mountpoint: partition mount point.
         :param pulumi.Input[int] order: step or order. specifies the creation order of the partition on the disk
-        :param pulumi.Input[str] raid: raid partition type.
+        :param pulumi.Input[str] raid: raid partition type. Enum with possible values: 
+               - raid0
+               - raid1
+               - raid10
+               - raid5
+               - raid6
         :param pulumi.Input[str] scheme_name: The partition scheme name.
         :param pulumi.Input[int] size: size of partition in MB, 0 => rest of the space.
         :param pulumi.Input[str] template_name: The template name of the partition scheme.
-        :param pulumi.Input[str] type: partition type.
+        :param pulumi.Input[str] type: partition type. Enum with possible values:
+               - lv
+               - primary
+               - logical
         :param pulumi.Input[str] volume_name: The volume name needed for proxmox distribution
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -520,7 +622,16 @@ class InstallationTemplatePartitionSchemePartition(pulumi.CustomResource):
     @pulumi.getter
     def filesystem(self) -> pulumi.Output[str]:
         """
-        Partition filesystem.
+        Partition filesystem. Enum with possibles values:
+        - btrfs
+        - ext3
+        - ext4
+        - ntfs
+        - reiserfs
+        - swap
+        - ufs
+        - xfs
+        - zfs
         """
         return pulumi.get(self, "filesystem")
 
@@ -544,7 +655,12 @@ class InstallationTemplatePartitionSchemePartition(pulumi.CustomResource):
     @pulumi.getter
     def raid(self) -> pulumi.Output[str]:
         """
-        raid partition type.
+        raid partition type. Enum with possible values: 
+        - raid0
+        - raid1
+        - raid10
+        - raid5
+        - raid6
         """
         return pulumi.get(self, "raid")
 
@@ -576,7 +692,10 @@ class InstallationTemplatePartitionSchemePartition(pulumi.CustomResource):
     @pulumi.getter
     def type(self) -> pulumi.Output[str]:
         """
-        partition type.
+        partition type. Enum with possible values:
+        - lv
+        - primary
+        - logical
         """
         return pulumi.get(self, "type")
 

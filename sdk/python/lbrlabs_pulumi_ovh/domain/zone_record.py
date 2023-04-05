@@ -25,7 +25,7 @@ class ZoneRecordArgs:
         :param pulumi.Input[str] target: The value of the record
         :param pulumi.Input[str] zone: The domain to add the record to
         :param pulumi.Input[str] subdomain: The name of the record
-        :param pulumi.Input[int] ttl: The TTL of the record
+        :param pulumi.Input[int] ttl: The TTL of the record, it shall be >= to 60.
         """
         pulumi.set(__self__, "fieldtype", fieldtype)
         pulumi.set(__self__, "target", target)
@@ -87,7 +87,7 @@ class ZoneRecordArgs:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The TTL of the record
+        The TTL of the record, it shall be >= to 60.
         """
         return pulumi.get(self, "ttl")
 
@@ -109,7 +109,7 @@ class _ZoneRecordState:
         :param pulumi.Input[str] fieldtype: The type of the record
         :param pulumi.Input[str] subdomain: The name of the record
         :param pulumi.Input[str] target: The value of the record
-        :param pulumi.Input[int] ttl: The TTL of the record
+        :param pulumi.Input[int] ttl: The TTL of the record, it shall be >= to 60.
         :param pulumi.Input[str] zone: The domain to add the record to
         """
         if fieldtype is not None:
@@ -163,7 +163,7 @@ class _ZoneRecordState:
     @pulumi.getter
     def ttl(self) -> Optional[pulumi.Input[int]]:
         """
-        The TTL of the record
+        The TTL of the record, it shall be >= to 60.
         """
         return pulumi.get(self, "ttl")
 
@@ -226,7 +226,7 @@ class ZoneRecord(pulumi.CustomResource):
         :param pulumi.Input[str] fieldtype: The type of the record
         :param pulumi.Input[str] subdomain: The name of the record
         :param pulumi.Input[str] target: The value of the record
-        :param pulumi.Input[int] ttl: The TTL of the record
+        :param pulumi.Input[int] ttl: The TTL of the record, it shall be >= to 60.
         :param pulumi.Input[str] zone: The domain to add the record to
         """
         ...
@@ -326,7 +326,7 @@ class ZoneRecord(pulumi.CustomResource):
         :param pulumi.Input[str] fieldtype: The type of the record
         :param pulumi.Input[str] subdomain: The name of the record
         :param pulumi.Input[str] target: The value of the record
-        :param pulumi.Input[int] ttl: The TTL of the record
+        :param pulumi.Input[int] ttl: The TTL of the record, it shall be >= to 60.
         :param pulumi.Input[str] zone: The domain to add the record to
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -368,7 +368,7 @@ class ZoneRecord(pulumi.CustomResource):
     @pulumi.getter
     def ttl(self) -> pulumi.Output[Optional[int]]:
         """
-        The TTL of the record
+        The TTL of the record, it shall be >= to 60.
         """
         return pulumi.get(self, "ttl")
 

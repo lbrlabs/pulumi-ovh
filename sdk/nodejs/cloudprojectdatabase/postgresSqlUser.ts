@@ -50,7 +50,7 @@ export class PostgresSqlUser extends pulumi.CustomResource {
      */
     public /*out*/ readonly createdAt!: pulumi.Output<string>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -65,7 +65,7 @@ export class PostgresSqlUser extends pulumi.CustomResource {
      * Roles the user belongs to.
      * Available roles:
      */
-    public readonly roles!: pulumi.Output<string[] | undefined>;
+    public readonly roles!: pulumi.Output<string[]>;
     /**
      * The id of the public cloud project. If omitted,
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -134,7 +134,7 @@ export interface PostgresSqlUserState {
      */
     createdAt?: pulumi.Input<string>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
      */
     name?: pulumi.Input<string>;
     /**
@@ -170,7 +170,7 @@ export interface PostgresSqlUserArgs {
      */
     clusterId: pulumi.Input<string>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
      */
     name?: pulumi.Input<string>;
     /**
