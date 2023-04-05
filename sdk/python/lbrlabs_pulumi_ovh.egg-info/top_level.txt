@@ -1,0 +1,2 @@
+lbrlabs_ovh
+lbrlabs_pulumi_ovh
