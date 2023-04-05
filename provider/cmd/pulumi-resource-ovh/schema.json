@@ -11,7 +11,6 @@
     "license": "Apache-2.0",
     "attribution": "This Pulumi package is based on the [`ovh` Terraform Provider](https://github.com/ovh/terraform-provider-ovh).",
     "repository": "https://github.com/lbrlabs/pulumi-ovh",
-    "logoUrl": "https://raw.githubusercontent.com/lbrlabs/pulumi-ovh/main/assets/ovh.svg",
     "pluginDownloadURL": "github://api.github.com/lbrlabs",
     "publisher": "lbrlabs",
     "meta": {

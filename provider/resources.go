@@ -102,7 +102,7 @@ func Provider() tfbridge.ProviderInfo {
 		Description:       "A Pulumi package for creating and managing OVH cloud resources.",
 		Keywords:          []string{"pulumi", "ovh", "category/cloud"},
 		License:           "Apache-2.0",
-		LogoURL:           "https://raw.githubusercontent.com/lbrlabs/pulumi-ovh/main/assets/ovh.svg",
+		LogoURL:           "",
 		Homepage:          "https://www.pulumi.com",
 		Repository:        "https://github.com/lbrlabs/pulumi-ovh",
 		GitHubOrg:         "ovh",
