@@ -64,7 +64,6 @@ export class PostgresSqlUser extends pulumi.CustomResource {
     /**
      * Roles the user belongs to.
      * Available roles:
-     * * `replication`
      */
     public readonly roles!: pulumi.Output<string[] | undefined>;
     /**
@@ -149,7 +148,6 @@ export interface PostgresSqlUserState {
     /**
      * Roles the user belongs to.
      * Available roles:
-     * * `replication`
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -182,7 +180,6 @@ export interface PostgresSqlUserArgs {
     /**
      * Roles the user belongs to.
      * Available roles:
-     * * `replication`
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
     /**

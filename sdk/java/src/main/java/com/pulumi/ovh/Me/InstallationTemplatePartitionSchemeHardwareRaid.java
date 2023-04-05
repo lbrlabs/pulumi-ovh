@@ -81,84 +81,84 @@ import javax.annotation.Nullable;
 @ResourceType(type="ovh:Me/installationTemplatePartitionSchemeHardwareRaid:InstallationTemplatePartitionSchemeHardwareRaid")
 public class InstallationTemplatePartitionSchemeHardwareRaid extends com.pulumi.resources.CustomResource {
     /**
-     * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+     * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
      * 
      */
     @Export(name="disks", type=List.class, parameters={String.class})
     private Output<List<String>> disks;
 
     /**
-     * @return Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+     * @return Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
      * 
      */
     public Output<List<String>> disks() {
         return this.disks;
     }
     /**
-     * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+     * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
      * 
      */
     @Export(name="mode", type=String.class, parameters={})
     private Output<String> mode;
 
     /**
-     * @return RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+     * @return RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
      * 
      */
     public Output<String> mode() {
         return this.mode;
     }
     /**
-     * Hardware RAID name
+     * Hardware RAID name.
      * 
      */
     @Export(name="name", type=String.class, parameters={})
     private Output<String> name;
 
     /**
-     * @return Hardware RAID name
+     * @return Hardware RAID name.
      * 
      */
     public Output<String> name() {
         return this.name;
     }
     /**
-     * name of this partitioning scheme
+     * The partition scheme name.
      * 
      */
     @Export(name="schemeName", type=String.class, parameters={})
     private Output<String> schemeName;
 
     /**
-     * @return name of this partitioning scheme
+     * @return The partition scheme name.
      * 
      */
     public Output<String> schemeName() {
         return this.schemeName;
     }
     /**
-     * Specifies the creation order of the hardware RAID
+     * Specifies the creation order of the hardware RAID.
      * 
      */
     @Export(name="step", type=Integer.class, parameters={})
     private Output<Integer> step;
 
     /**
-     * @return Specifies the creation order of the hardware RAID
+     * @return Specifies the creation order of the hardware RAID.
      * 
      */
     public Output<Integer> step() {
         return this.step;
     }
     /**
-     * Template name
+     * The template name of the partition scheme.
      * 
      */
     @Export(name="templateName", type=String.class, parameters={})
     private Output<String> templateName;
 
     /**
-     * @return Template name
+     * @return The template name of the partition scheme.
      * 
      */
     public Output<String> templateName() {

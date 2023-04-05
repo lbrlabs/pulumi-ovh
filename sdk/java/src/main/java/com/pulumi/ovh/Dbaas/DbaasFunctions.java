@@ -45,84 +45,7 @@ public final class DbaasFunctions {
      *         final var logstash = DbaasFunctions.getLogsInputEngine(GetLogsInputEngineArgs.builder()
      *             .isDeprecated(true)
      *             .name(&#34;logstash&#34;)
-     *             .version(&#34;6.8&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static Output<GetLogsInputEngineResult> getLogsInputEngine() {
-        return getLogsInputEngine(GetLogsInputEngineArgs.Empty, InvokeOptions.Empty);
-    }
-    /**
-     * Use this data source to retrieve information about a DBaas logs input engine.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
-     * import com.pulumi.ovh.Dbaas.inputs.GetLogsInputEngineArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var logstash = DbaasFunctions.getLogsInputEngine(GetLogsInputEngineArgs.builder()
-     *             .isDeprecated(true)
-     *             .name(&#34;logstash&#34;)
-     *             .version(&#34;6.8&#34;)
-     *             .build());
-     * 
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static CompletableFuture<GetLogsInputEngineResult> getLogsInputEnginePlain() {
-        return getLogsInputEnginePlain(GetLogsInputEnginePlainArgs.Empty, InvokeOptions.Empty);
-    }
-    /**
-     * Use this data source to retrieve information about a DBaas logs input engine.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
-     * import com.pulumi.ovh.Dbaas.inputs.GetLogsInputEngineArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var logstash = DbaasFunctions.getLogsInputEngine(GetLogsInputEngineArgs.builder()
-     *             .isDeprecated(true)
-     *             .name(&#34;logstash&#34;)
+     *             .serviceName(&#34;ldp-xx-xxxxx&#34;)
      *             .version(&#34;6.8&#34;)
      *             .build());
      * 
@@ -162,6 +85,7 @@ public final class DbaasFunctions {
      *         final var logstash = DbaasFunctions.getLogsInputEngine(GetLogsInputEngineArgs.builder()
      *             .isDeprecated(true)
      *             .name(&#34;logstash&#34;)
+     *             .serviceName(&#34;ldp-xx-xxxxx&#34;)
      *             .version(&#34;6.8&#34;)
      *             .build());
      * 
@@ -201,6 +125,7 @@ public final class DbaasFunctions {
      *         final var logstash = DbaasFunctions.getLogsInputEngine(GetLogsInputEngineArgs.builder()
      *             .isDeprecated(true)
      *             .name(&#34;logstash&#34;)
+     *             .serviceName(&#34;ldp-xx-xxxxx&#34;)
      *             .version(&#34;6.8&#34;)
      *             .build());
      * 
@@ -240,6 +165,7 @@ public final class DbaasFunctions {
      *         final var logstash = DbaasFunctions.getLogsInputEngine(GetLogsInputEngineArgs.builder()
      *             .isDeprecated(true)
      *             .name(&#34;logstash&#34;)
+     *             .serviceName(&#34;ldp-xx-xxxxx&#34;)
      *             .version(&#34;6.8&#34;)
      *             .build());
      * 
@@ -277,7 +203,7 @@ public final class DbaasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var stream = DbaasFunctions.getLogsOutputGraylogStream(GetLogsOutputGraylogStreamArgs.builder()
-     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .serviceName(&#34;ldp-xx-xxxxx&#34;)
      *             .title(&#34;my stream&#34;)
      *             .build());
      * 
@@ -315,7 +241,7 @@ public final class DbaasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var stream = DbaasFunctions.getLogsOutputGraylogStream(GetLogsOutputGraylogStreamArgs.builder()
-     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .serviceName(&#34;ldp-xx-xxxxx&#34;)
      *             .title(&#34;my stream&#34;)
      *             .build());
      * 
@@ -353,7 +279,7 @@ public final class DbaasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var stream = DbaasFunctions.getLogsOutputGraylogStream(GetLogsOutputGraylogStreamArgs.builder()
-     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .serviceName(&#34;ldp-xx-xxxxx&#34;)
      *             .title(&#34;my stream&#34;)
      *             .build());
      * 
@@ -391,7 +317,7 @@ public final class DbaasFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var stream = DbaasFunctions.getLogsOutputGraylogStream(GetLogsOutputGraylogStreamArgs.builder()
-     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .serviceName(&#34;ldp-xx-xxxxx&#34;)
      *             .title(&#34;my stream&#34;)
      *             .build());
      * 

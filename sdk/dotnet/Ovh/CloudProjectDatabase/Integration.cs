@@ -113,15 +113,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// Type of the integration.
         /// Available types:
-        /// * `grafanaDashboard`
-        /// * `grafanaDatasource`
-        /// * `kafkaConnect`
-        /// * `kafkaLogs`
-        /// * `kafkaMirrorMaker`
-        /// * `m3aggregator`
-        /// * `m3dbMetrics`
-        /// * `opensearchLogs`
-        /// * `postgresqlMetrics`
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -220,15 +211,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// Type of the integration.
         /// Available types:
-        /// * `grafanaDashboard`
-        /// * `grafanaDatasource`
-        /// * `kafkaConnect`
-        /// * `kafkaLogs`
-        /// * `kafkaMirrorMaker`
-        /// * `m3aggregator`
-        /// * `m3dbMetrics`
-        /// * `opensearchLogs`
-        /// * `postgresqlMetrics`
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
@@ -294,15 +276,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// Type of the integration.
         /// Available types:
-        /// * `grafanaDashboard`
-        /// * `grafanaDatasource`
-        /// * `kafkaConnect`
-        /// * `kafkaLogs`
-        /// * `kafkaMirrorMaker`
-        /// * `m3aggregator`
-        /// * `m3dbMetrics`
-        /// * `opensearchLogs`
-        /// * `postgresqlMetrics`
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

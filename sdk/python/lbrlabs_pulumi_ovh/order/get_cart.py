@@ -21,7 +21,10 @@ class GetCartResult:
     """
     A collection of values returned by getCart.
     """
-    def __init__(__self__, cart_id=None, description=None, expire=None, id=None, items=None, ovh_subsidiary=None, read_only=None):
+    def __init__(__self__, assign=None, cart_id=None, description=None, expire=None, id=None, items=None, ovh_subsidiary=None, read_only=None):
+        if assign and not isinstance(assign, bool):
+            raise TypeError("Expected argument 'assign' to be a bool")
+        pulumi.set(__self__, "assign", assign)
         if cart_id and not isinstance(cart_id, str):
             raise TypeError("Expected argument 'cart_id' to be a str")
         pulumi.set(__self__, "cart_id", cart_id)
@@ -43,6 +46,11 @@ class GetCartResult:
         if read_only and not isinstance(read_only, bool):
             raise TypeError("Expected argument 'read_only' to be a bool")
         pulumi.set(__self__, "read_only", read_only)
+
+    @property
+    @pulumi.getter
+    def assign(self) -> Optional[bool]:
+        return pulumi.get(self, "assign")
 
     @property
     @pulumi.getter(name="cartId")
@@ -98,6 +106,7 @@ class AwaitableGetCartResult(GetCartResult):
         if False:
             yield self
         return GetCartResult(
+            assign=self.assign,
             cart_id=self.cart_id,
             description=self.description,
             expire=self.expire,
@@ -107,7 +116,8 @@ class AwaitableGetCartResult(GetCartResult):
             read_only=self.read_only)
 
 
-def get_cart(description: Optional[str] = None,
+def get_cart(assign: Optional[bool] = None,
+             description: Optional[str] = None,
              expire: Optional[str] = None,
              ovh_subsidiary: Optional[str] = None,
              opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetCartResult:
@@ -120,16 +130,18 @@ def get_cart(description: Optional[str] = None,
     import pulumi
     import pulumi_ovh as ovh
 
-    mycart = ovh.Order.get_cart(description="...",
+    mycart = ovh.Order.get_cart(description="my cart",
         ovh_subsidiary="fr")
     ```
 
 
+    :param bool assign: Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
     :param str description: Description of your cart
     :param str expire: Expiration time (format: 2006-01-02T15:04:05+00:00)
     :param str ovh_subsidiary: OVHcloud Subsidiary
     """
     __args__ = dict()
+    __args__['assign'] = assign
     __args__['description'] = description
     __args__['expire'] = expire
     __args__['ovhSubsidiary'] = ovh_subsidiary
@@ -137,6 +149,7 @@ def get_cart(description: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Order/getCart:getCart', __args__, opts=opts, typ=GetCartResult).value
 
     return AwaitableGetCartResult(
+        assign=__ret__.assign,
         cart_id=__ret__.cart_id,
         description=__ret__.description,
         expire=__ret__.expire,
@@ -147,7 +160,8 @@ def get_cart(description: Optional[str] = None,
 
 
 @_utilities.lift_output_func(get_cart)
-def get_cart_output(description: Optional[pulumi.Input[Optional[str]]] = None,
+def get_cart_output(assign: Optional[pulumi.Input[Optional[bool]]] = None,
+                    description: Optional[pulumi.Input[Optional[str]]] = None,
                     expire: Optional[pulumi.Input[Optional[str]]] = None,
                     ovh_subsidiary: Optional[pulumi.Input[str]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetCartResult]:
@@ -160,11 +174,12 @@ def get_cart_output(description: Optional[pulumi.Input[Optional[str]]] = None,
     import pulumi
     import pulumi_ovh as ovh
 
-    mycart = ovh.Order.get_cart(description="...",
+    mycart = ovh.Order.get_cart(description="my cart",
         ovh_subsidiary="fr")
     ```
 
 
+    :param bool assign: Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
     :param str description: Description of your cart
     :param str expire: Expiration time (format: 2006-01-02T15:04:05+00:00)
     :param str ovh_subsidiary: OVHcloud Subsidiary

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Me.GetSshKey(ctx, &me.GetSshKeyArgs{
+//			_, err := Me.GetSshKey(ctx, &me.GetSshKeyArgs{
 //				KeyName: "mykey",
 //			}, nil)
 //			if err != nil {

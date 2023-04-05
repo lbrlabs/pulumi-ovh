@@ -22,11 +22,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getDatabaseIntegrations(args: GetDatabaseIntegrationsArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseIntegrationsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProjectDatabase/getDatabaseIntegrations:getDatabaseIntegrations", {
         "clusterId": args.clusterId,
         "engine": args.engine,
@@ -80,9 +77,25 @@ export interface GetDatabaseIntegrationsResult {
      */
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get the list of integrations of a database cluster associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const integrations = ovh.CloudProjectDatabase.getDatabaseIntegrations({
+ *     serviceName: "XXX",
+ *     engine: "YYY",
+ *     clusterId: "ZZZ",
+ * });
+ * export const integrationIds = integrations.then(integrations => integrations.integrationIds);
+ * ```
+ */
 export function getDatabaseIntegrationsOutput(args: GetDatabaseIntegrationsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseIntegrationsResult> {
-    return pulumi.output(args).apply(a => getDatabaseIntegrations(a, opts))
+    return pulumi.output(args).apply((a: any) => getDatabaseIntegrations(a, opts))
 }
 
 /**

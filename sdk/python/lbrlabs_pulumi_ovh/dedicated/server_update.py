@@ -172,11 +172,11 @@ class ServerUpdate(pulumi.CustomResource):
         import lbrlabs_pulumi_ovh as ovh
         import pulumi_ovh as ovh
 
-        rescue = ovh.Dedicated.get_server_boots(service_name="ns00000.ip-1-2-3.eu",
+        rescue = ovh.Dedicated.get_server_boots(service_name="nsxxxxxxx.ip-xx-xx-xx.eu",
             boot_type="rescue",
             kernel="rescue64-pro")
         server = ovh.dedicated.ServerUpdate("server",
-            service_name="ns00000.ip-1-2-3.eu",
+            service_name="nsxxxxxxx.ip-xx-xx-xx.eu",
             boot_id=rescue.results[0],
             monitoring=True,
             state="ok")
@@ -203,11 +203,11 @@ class ServerUpdate(pulumi.CustomResource):
         import lbrlabs_pulumi_ovh as ovh
         import pulumi_ovh as ovh
 
-        rescue = ovh.Dedicated.get_server_boots(service_name="ns00000.ip-1-2-3.eu",
+        rescue = ovh.Dedicated.get_server_boots(service_name="nsxxxxxxx.ip-xx-xx-xx.eu",
             boot_type="rescue",
             kernel="rescue64-pro")
         server = ovh.dedicated.ServerUpdate("server",
-            service_name="ns00000.ip-1-2-3.eu",
+            service_name="nsxxxxxxx.ip-xx-xx-xx.eu",
             boot_id=rescue.results[0],
             monitoring=True,
             state="ok")

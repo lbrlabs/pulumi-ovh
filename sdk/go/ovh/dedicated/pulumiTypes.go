@@ -10,7 +10,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-type ServiceInstallTaskDetails struct {
+type ServerInstallTaskDetails struct {
 	// Template change log details.
 	//
 	// Deprecated: field is not used anymore
@@ -43,18 +43,18 @@ type ServiceInstallTaskDetails struct {
 	UseSpla *bool `pulumi:"useSpla"`
 }
 
-// ServiceInstallTaskDetailsInput is an input type that accepts ServiceInstallTaskDetailsArgs and ServiceInstallTaskDetailsOutput values.
-// You can construct a concrete instance of `ServiceInstallTaskDetailsInput` via:
+// ServerInstallTaskDetailsInput is an input type that accepts ServerInstallTaskDetailsArgs and ServerInstallTaskDetailsOutput values.
+// You can construct a concrete instance of `ServerInstallTaskDetailsInput` via:
 //
-//	ServiceInstallTaskDetailsArgs{...}
-type ServiceInstallTaskDetailsInput interface {
+//	ServerInstallTaskDetailsArgs{...}
+type ServerInstallTaskDetailsInput interface {
 	pulumi.Input
 
-	ToServiceInstallTaskDetailsOutput() ServiceInstallTaskDetailsOutput
-	ToServiceInstallTaskDetailsOutputWithContext(context.Context) ServiceInstallTaskDetailsOutput
+	ToServerInstallTaskDetailsOutput() ServerInstallTaskDetailsOutput
+	ToServerInstallTaskDetailsOutputWithContext(context.Context) ServerInstallTaskDetailsOutput
 }
 
-type ServiceInstallTaskDetailsArgs struct {
+type ServerInstallTaskDetailsArgs struct {
 	// Template change log details.
 	//
 	// Deprecated: field is not used anymore
@@ -87,184 +87,184 @@ type ServiceInstallTaskDetailsArgs struct {
 	UseSpla pulumi.BoolPtrInput `pulumi:"useSpla"`
 }
 
-func (ServiceInstallTaskDetailsArgs) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceInstallTaskDetails)(nil)).Elem()
+func (ServerInstallTaskDetailsArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerInstallTaskDetails)(nil)).Elem()
 }
 
-func (i ServiceInstallTaskDetailsArgs) ToServiceInstallTaskDetailsOutput() ServiceInstallTaskDetailsOutput {
-	return i.ToServiceInstallTaskDetailsOutputWithContext(context.Background())
+func (i ServerInstallTaskDetailsArgs) ToServerInstallTaskDetailsOutput() ServerInstallTaskDetailsOutput {
+	return i.ToServerInstallTaskDetailsOutputWithContext(context.Background())
 }
 
-func (i ServiceInstallTaskDetailsArgs) ToServiceInstallTaskDetailsOutputWithContext(ctx context.Context) ServiceInstallTaskDetailsOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceInstallTaskDetailsOutput)
+func (i ServerInstallTaskDetailsArgs) ToServerInstallTaskDetailsOutputWithContext(ctx context.Context) ServerInstallTaskDetailsOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerInstallTaskDetailsOutput)
 }
 
-func (i ServiceInstallTaskDetailsArgs) ToServiceInstallTaskDetailsPtrOutput() ServiceInstallTaskDetailsPtrOutput {
-	return i.ToServiceInstallTaskDetailsPtrOutputWithContext(context.Background())
+func (i ServerInstallTaskDetailsArgs) ToServerInstallTaskDetailsPtrOutput() ServerInstallTaskDetailsPtrOutput {
+	return i.ToServerInstallTaskDetailsPtrOutputWithContext(context.Background())
 }
 
-func (i ServiceInstallTaskDetailsArgs) ToServiceInstallTaskDetailsPtrOutputWithContext(ctx context.Context) ServiceInstallTaskDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceInstallTaskDetailsOutput).ToServiceInstallTaskDetailsPtrOutputWithContext(ctx)
+func (i ServerInstallTaskDetailsArgs) ToServerInstallTaskDetailsPtrOutputWithContext(ctx context.Context) ServerInstallTaskDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerInstallTaskDetailsOutput).ToServerInstallTaskDetailsPtrOutputWithContext(ctx)
 }
 
-// ServiceInstallTaskDetailsPtrInput is an input type that accepts ServiceInstallTaskDetailsArgs, ServiceInstallTaskDetailsPtr and ServiceInstallTaskDetailsPtrOutput values.
-// You can construct a concrete instance of `ServiceInstallTaskDetailsPtrInput` via:
+// ServerInstallTaskDetailsPtrInput is an input type that accepts ServerInstallTaskDetailsArgs, ServerInstallTaskDetailsPtr and ServerInstallTaskDetailsPtrOutput values.
+// You can construct a concrete instance of `ServerInstallTaskDetailsPtrInput` via:
 //
-//	        ServiceInstallTaskDetailsArgs{...}
+//	        ServerInstallTaskDetailsArgs{...}
 //
 //	or:
 //
 //	        nil
-type ServiceInstallTaskDetailsPtrInput interface {
+type ServerInstallTaskDetailsPtrInput interface {
 	pulumi.Input
 
-	ToServiceInstallTaskDetailsPtrOutput() ServiceInstallTaskDetailsPtrOutput
-	ToServiceInstallTaskDetailsPtrOutputWithContext(context.Context) ServiceInstallTaskDetailsPtrOutput
+	ToServerInstallTaskDetailsPtrOutput() ServerInstallTaskDetailsPtrOutput
+	ToServerInstallTaskDetailsPtrOutputWithContext(context.Context) ServerInstallTaskDetailsPtrOutput
 }
 
-type serviceInstallTaskDetailsPtrType ServiceInstallTaskDetailsArgs
+type serverInstallTaskDetailsPtrType ServerInstallTaskDetailsArgs
 
-func ServiceInstallTaskDetailsPtr(v *ServiceInstallTaskDetailsArgs) ServiceInstallTaskDetailsPtrInput {
-	return (*serviceInstallTaskDetailsPtrType)(v)
+func ServerInstallTaskDetailsPtr(v *ServerInstallTaskDetailsArgs) ServerInstallTaskDetailsPtrInput {
+	return (*serverInstallTaskDetailsPtrType)(v)
 }
 
-func (*serviceInstallTaskDetailsPtrType) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceInstallTaskDetails)(nil)).Elem()
+func (*serverInstallTaskDetailsPtrType) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServerInstallTaskDetails)(nil)).Elem()
 }
 
-func (i *serviceInstallTaskDetailsPtrType) ToServiceInstallTaskDetailsPtrOutput() ServiceInstallTaskDetailsPtrOutput {
-	return i.ToServiceInstallTaskDetailsPtrOutputWithContext(context.Background())
+func (i *serverInstallTaskDetailsPtrType) ToServerInstallTaskDetailsPtrOutput() ServerInstallTaskDetailsPtrOutput {
+	return i.ToServerInstallTaskDetailsPtrOutputWithContext(context.Background())
 }
 
-func (i *serviceInstallTaskDetailsPtrType) ToServiceInstallTaskDetailsPtrOutputWithContext(ctx context.Context) ServiceInstallTaskDetailsPtrOutput {
-	return pulumi.ToOutputWithContext(ctx, i).(ServiceInstallTaskDetailsPtrOutput)
+func (i *serverInstallTaskDetailsPtrType) ToServerInstallTaskDetailsPtrOutputWithContext(ctx context.Context) ServerInstallTaskDetailsPtrOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerInstallTaskDetailsPtrOutput)
 }
 
-type ServiceInstallTaskDetailsOutput struct{ *pulumi.OutputState }
+type ServerInstallTaskDetailsOutput struct{ *pulumi.OutputState }
 
-func (ServiceInstallTaskDetailsOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((*ServiceInstallTaskDetails)(nil)).Elem()
+func (ServerInstallTaskDetailsOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerInstallTaskDetails)(nil)).Elem()
 }
 
-func (o ServiceInstallTaskDetailsOutput) ToServiceInstallTaskDetailsOutput() ServiceInstallTaskDetailsOutput {
+func (o ServerInstallTaskDetailsOutput) ToServerInstallTaskDetailsOutput() ServerInstallTaskDetailsOutput {
 	return o
 }
 
-func (o ServiceInstallTaskDetailsOutput) ToServiceInstallTaskDetailsOutputWithContext(ctx context.Context) ServiceInstallTaskDetailsOutput {
+func (o ServerInstallTaskDetailsOutput) ToServerInstallTaskDetailsOutputWithContext(ctx context.Context) ServerInstallTaskDetailsOutput {
 	return o
 }
 
-func (o ServiceInstallTaskDetailsOutput) ToServiceInstallTaskDetailsPtrOutput() ServiceInstallTaskDetailsPtrOutput {
-	return o.ToServiceInstallTaskDetailsPtrOutputWithContext(context.Background())
+func (o ServerInstallTaskDetailsOutput) ToServerInstallTaskDetailsPtrOutput() ServerInstallTaskDetailsPtrOutput {
+	return o.ToServerInstallTaskDetailsPtrOutputWithContext(context.Background())
 }
 
-func (o ServiceInstallTaskDetailsOutput) ToServiceInstallTaskDetailsPtrOutputWithContext(ctx context.Context) ServiceInstallTaskDetailsPtrOutput {
-	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServiceInstallTaskDetails) *ServiceInstallTaskDetails {
+func (o ServerInstallTaskDetailsOutput) ToServerInstallTaskDetailsPtrOutputWithContext(ctx context.Context) ServerInstallTaskDetailsPtrOutput {
+	return o.ApplyTWithContext(ctx, func(_ context.Context, v ServerInstallTaskDetails) *ServerInstallTaskDetails {
 		return &v
-	}).(ServiceInstallTaskDetailsPtrOutput)
+	}).(ServerInstallTaskDetailsPtrOutput)
 }
 
 // Template change log details.
 //
 // Deprecated: field is not used anymore
-func (o ServiceInstallTaskDetailsOutput) ChangeLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *string { return v.ChangeLog }).(pulumi.StringPtrOutput)
+func (o ServerInstallTaskDetailsOutput) ChangeLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *string { return v.ChangeLog }).(pulumi.StringPtrOutput)
 }
 
 // Set up the server using the provided hostname instead of the default hostname.
-func (o ServiceInstallTaskDetailsOutput) CustomHostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *string { return v.CustomHostname }).(pulumi.StringPtrOutput)
+func (o ServerInstallTaskDetailsOutput) CustomHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *string { return v.CustomHostname }).(pulumi.StringPtrOutput)
 }
 
 // Disk group id.
-func (o ServiceInstallTaskDetailsOutput) DiskGroupId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *int { return v.DiskGroupId }).(pulumi.IntPtrOutput)
+func (o ServerInstallTaskDetailsOutput) DiskGroupId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *int { return v.DiskGroupId }).(pulumi.IntPtrOutput)
 }
 
 // set to true to install RTM.
-func (o ServiceInstallTaskDetailsOutput) InstallRtm() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *bool { return v.InstallRtm }).(pulumi.BoolPtrOutput)
+func (o ServerInstallTaskDetailsOutput) InstallRtm() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *bool { return v.InstallRtm }).(pulumi.BoolPtrOutput)
 }
 
 // set to true to install sql server (Windows template only).
-func (o ServiceInstallTaskDetailsOutput) InstallSqlServer() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *bool { return v.InstallSqlServer }).(pulumi.BoolPtrOutput)
+func (o ServerInstallTaskDetailsOutput) InstallSqlServer() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *bool { return v.InstallSqlServer }).(pulumi.BoolPtrOutput)
 }
 
 // language.
-func (o ServiceInstallTaskDetailsOutput) Language() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *string { return v.Language }).(pulumi.StringPtrOutput)
+func (o ServerInstallTaskDetailsOutput) Language() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *string { return v.Language }).(pulumi.StringPtrOutput)
 }
 
 // set to true to disable RAID.
-func (o ServiceInstallTaskDetailsOutput) NoRaid() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *bool { return v.NoRaid }).(pulumi.BoolPtrOutput)
+func (o ServerInstallTaskDetailsOutput) NoRaid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *bool { return v.NoRaid }).(pulumi.BoolPtrOutput)
 }
 
 // Indicate the URL where your postinstall customisation script is located.
-func (o ServiceInstallTaskDetailsOutput) PostInstallationScriptLink() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *string { return v.PostInstallationScriptLink }).(pulumi.StringPtrOutput)
+func (o ServerInstallTaskDetailsOutput) PostInstallationScriptLink() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *string { return v.PostInstallationScriptLink }).(pulumi.StringPtrOutput)
 }
 
 // Indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
-func (o ServiceInstallTaskDetailsOutput) PostInstallationScriptReturn() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *string { return v.PostInstallationScriptReturn }).(pulumi.StringPtrOutput)
+func (o ServerInstallTaskDetailsOutput) PostInstallationScriptReturn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *string { return v.PostInstallationScriptReturn }).(pulumi.StringPtrOutput)
 }
 
 // set to true to make a hardware raid reset.
-func (o ServiceInstallTaskDetailsOutput) ResetHwRaid() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *bool { return v.ResetHwRaid }).(pulumi.BoolPtrOutput)
+func (o ServerInstallTaskDetailsOutput) ResetHwRaid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *bool { return v.ResetHwRaid }).(pulumi.BoolPtrOutput)
 }
 
 // soft raid devices.
-func (o ServiceInstallTaskDetailsOutput) SoftRaidDevices() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *int { return v.SoftRaidDevices }).(pulumi.IntPtrOutput)
+func (o ServerInstallTaskDetailsOutput) SoftRaidDevices() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *int { return v.SoftRaidDevices }).(pulumi.IntPtrOutput)
 }
 
 // Name of the ssh key that should be installed. Password login will be disabled.
-func (o ServiceInstallTaskDetailsOutput) SshKeyName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *string { return v.SshKeyName }).(pulumi.StringPtrOutput)
+func (o ServerInstallTaskDetailsOutput) SshKeyName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *string { return v.SshKeyName }).(pulumi.StringPtrOutput)
 }
 
 // Use the distribution's native kernel instead of the recommended OVHcloud Kernel.
-func (o ServiceInstallTaskDetailsOutput) UseDistribKernel() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *bool { return v.UseDistribKernel }).(pulumi.BoolPtrOutput)
+func (o ServerInstallTaskDetailsOutput) UseDistribKernel() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *bool { return v.UseDistribKernel }).(pulumi.BoolPtrOutput)
 }
 
 // set to true to use SPLA.
-func (o ServiceInstallTaskDetailsOutput) UseSpla() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v ServiceInstallTaskDetails) *bool { return v.UseSpla }).(pulumi.BoolPtrOutput)
+func (o ServerInstallTaskDetailsOutput) UseSpla() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v ServerInstallTaskDetails) *bool { return v.UseSpla }).(pulumi.BoolPtrOutput)
 }
 
-type ServiceInstallTaskDetailsPtrOutput struct{ *pulumi.OutputState }
+type ServerInstallTaskDetailsPtrOutput struct{ *pulumi.OutputState }
 
-func (ServiceInstallTaskDetailsPtrOutput) ElementType() reflect.Type {
-	return reflect.TypeOf((**ServiceInstallTaskDetails)(nil)).Elem()
+func (ServerInstallTaskDetailsPtrOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((**ServerInstallTaskDetails)(nil)).Elem()
 }
 
-func (o ServiceInstallTaskDetailsPtrOutput) ToServiceInstallTaskDetailsPtrOutput() ServiceInstallTaskDetailsPtrOutput {
+func (o ServerInstallTaskDetailsPtrOutput) ToServerInstallTaskDetailsPtrOutput() ServerInstallTaskDetailsPtrOutput {
 	return o
 }
 
-func (o ServiceInstallTaskDetailsPtrOutput) ToServiceInstallTaskDetailsPtrOutputWithContext(ctx context.Context) ServiceInstallTaskDetailsPtrOutput {
+func (o ServerInstallTaskDetailsPtrOutput) ToServerInstallTaskDetailsPtrOutputWithContext(ctx context.Context) ServerInstallTaskDetailsPtrOutput {
 	return o
 }
 
-func (o ServiceInstallTaskDetailsPtrOutput) Elem() ServiceInstallTaskDetailsOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) ServiceInstallTaskDetails {
+func (o ServerInstallTaskDetailsPtrOutput) Elem() ServerInstallTaskDetailsOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) ServerInstallTaskDetails {
 		if v != nil {
 			return *v
 		}
-		var ret ServiceInstallTaskDetails
+		var ret ServerInstallTaskDetails
 		return ret
-	}).(ServiceInstallTaskDetailsOutput)
+	}).(ServerInstallTaskDetailsOutput)
 }
 
 // Template change log details.
 //
 // Deprecated: field is not used anymore
-func (o ServiceInstallTaskDetailsPtrOutput) ChangeLog() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *string {
+func (o ServerInstallTaskDetailsPtrOutput) ChangeLog() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *string {
 		if v == nil {
 			return nil
 		}
@@ -273,8 +273,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) ChangeLog() pulumi.StringPtrOutput {
 }
 
 // Set up the server using the provided hostname instead of the default hostname.
-func (o ServiceInstallTaskDetailsPtrOutput) CustomHostname() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *string {
+func (o ServerInstallTaskDetailsPtrOutput) CustomHostname() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *string {
 		if v == nil {
 			return nil
 		}
@@ -283,8 +283,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) CustomHostname() pulumi.StringPtrOut
 }
 
 // Disk group id.
-func (o ServiceInstallTaskDetailsPtrOutput) DiskGroupId() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *int {
+func (o ServerInstallTaskDetailsPtrOutput) DiskGroupId() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *int {
 		if v == nil {
 			return nil
 		}
@@ -293,8 +293,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) DiskGroupId() pulumi.IntPtrOutput {
 }
 
 // set to true to install RTM.
-func (o ServiceInstallTaskDetailsPtrOutput) InstallRtm() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *bool {
+func (o ServerInstallTaskDetailsPtrOutput) InstallRtm() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *bool {
 		if v == nil {
 			return nil
 		}
@@ -303,8 +303,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) InstallRtm() pulumi.BoolPtrOutput {
 }
 
 // set to true to install sql server (Windows template only).
-func (o ServiceInstallTaskDetailsPtrOutput) InstallSqlServer() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *bool {
+func (o ServerInstallTaskDetailsPtrOutput) InstallSqlServer() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *bool {
 		if v == nil {
 			return nil
 		}
@@ -313,8 +313,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) InstallSqlServer() pulumi.BoolPtrOut
 }
 
 // language.
-func (o ServiceInstallTaskDetailsPtrOutput) Language() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *string {
+func (o ServerInstallTaskDetailsPtrOutput) Language() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *string {
 		if v == nil {
 			return nil
 		}
@@ -323,8 +323,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) Language() pulumi.StringPtrOutput {
 }
 
 // set to true to disable RAID.
-func (o ServiceInstallTaskDetailsPtrOutput) NoRaid() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *bool {
+func (o ServerInstallTaskDetailsPtrOutput) NoRaid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *bool {
 		if v == nil {
 			return nil
 		}
@@ -333,8 +333,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) NoRaid() pulumi.BoolPtrOutput {
 }
 
 // Indicate the URL where your postinstall customisation script is located.
-func (o ServiceInstallTaskDetailsPtrOutput) PostInstallationScriptLink() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *string {
+func (o ServerInstallTaskDetailsPtrOutput) PostInstallationScriptLink() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *string {
 		if v == nil {
 			return nil
 		}
@@ -343,8 +343,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) PostInstallationScriptLink() pulumi.
 }
 
 // Indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
-func (o ServiceInstallTaskDetailsPtrOutput) PostInstallationScriptReturn() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *string {
+func (o ServerInstallTaskDetailsPtrOutput) PostInstallationScriptReturn() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *string {
 		if v == nil {
 			return nil
 		}
@@ -353,8 +353,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) PostInstallationScriptReturn() pulum
 }
 
 // set to true to make a hardware raid reset.
-func (o ServiceInstallTaskDetailsPtrOutput) ResetHwRaid() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *bool {
+func (o ServerInstallTaskDetailsPtrOutput) ResetHwRaid() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *bool {
 		if v == nil {
 			return nil
 		}
@@ -363,8 +363,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) ResetHwRaid() pulumi.BoolPtrOutput {
 }
 
 // soft raid devices.
-func (o ServiceInstallTaskDetailsPtrOutput) SoftRaidDevices() pulumi.IntPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *int {
+func (o ServerInstallTaskDetailsPtrOutput) SoftRaidDevices() pulumi.IntPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *int {
 		if v == nil {
 			return nil
 		}
@@ -373,8 +373,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) SoftRaidDevices() pulumi.IntPtrOutpu
 }
 
 // Name of the ssh key that should be installed. Password login will be disabled.
-func (o ServiceInstallTaskDetailsPtrOutput) SshKeyName() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *string {
+func (o ServerInstallTaskDetailsPtrOutput) SshKeyName() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *string {
 		if v == nil {
 			return nil
 		}
@@ -383,8 +383,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) SshKeyName() pulumi.StringPtrOutput 
 }
 
 // Use the distribution's native kernel instead of the recommended OVHcloud Kernel.
-func (o ServiceInstallTaskDetailsPtrOutput) UseDistribKernel() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *bool {
+func (o ServerInstallTaskDetailsPtrOutput) UseDistribKernel() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *bool {
 		if v == nil {
 			return nil
 		}
@@ -393,8 +393,8 @@ func (o ServiceInstallTaskDetailsPtrOutput) UseDistribKernel() pulumi.BoolPtrOut
 }
 
 // set to true to use SPLA.
-func (o ServiceInstallTaskDetailsPtrOutput) UseSpla() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *ServiceInstallTaskDetails) *bool {
+func (o ServerInstallTaskDetailsPtrOutput) UseSpla() pulumi.BoolPtrOutput {
+	return o.ApplyT(func(v *ServerInstallTaskDetails) *bool {
 		if v == nil {
 			return nil
 		}
@@ -402,9 +402,119 @@ func (o ServiceInstallTaskDetailsPtrOutput) UseSpla() pulumi.BoolPtrOutput {
 	}).(pulumi.BoolPtrOutput)
 }
 
+type ServerNetworkingInterface struct {
+	// List of mac addresses to bind together.
+	Macs []string `pulumi:"macs"`
+	// Type of bonding to create.
+	Type string `pulumi:"type"`
+}
+
+// ServerNetworkingInterfaceInput is an input type that accepts ServerNetworkingInterfaceArgs and ServerNetworkingInterfaceOutput values.
+// You can construct a concrete instance of `ServerNetworkingInterfaceInput` via:
+//
+//	ServerNetworkingInterfaceArgs{...}
+type ServerNetworkingInterfaceInput interface {
+	pulumi.Input
+
+	ToServerNetworkingInterfaceOutput() ServerNetworkingInterfaceOutput
+	ToServerNetworkingInterfaceOutputWithContext(context.Context) ServerNetworkingInterfaceOutput
+}
+
+type ServerNetworkingInterfaceArgs struct {
+	// List of mac addresses to bind together.
+	Macs pulumi.StringArrayInput `pulumi:"macs"`
+	// Type of bonding to create.
+	Type pulumi.StringInput `pulumi:"type"`
+}
+
+func (ServerNetworkingInterfaceArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerNetworkingInterface)(nil)).Elem()
+}
+
+func (i ServerNetworkingInterfaceArgs) ToServerNetworkingInterfaceOutput() ServerNetworkingInterfaceOutput {
+	return i.ToServerNetworkingInterfaceOutputWithContext(context.Background())
+}
+
+func (i ServerNetworkingInterfaceArgs) ToServerNetworkingInterfaceOutputWithContext(ctx context.Context) ServerNetworkingInterfaceOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerNetworkingInterfaceOutput)
+}
+
+// ServerNetworkingInterfaceArrayInput is an input type that accepts ServerNetworkingInterfaceArray and ServerNetworkingInterfaceArrayOutput values.
+// You can construct a concrete instance of `ServerNetworkingInterfaceArrayInput` via:
+//
+//	ServerNetworkingInterfaceArray{ ServerNetworkingInterfaceArgs{...} }
+type ServerNetworkingInterfaceArrayInput interface {
+	pulumi.Input
+
+	ToServerNetworkingInterfaceArrayOutput() ServerNetworkingInterfaceArrayOutput
+	ToServerNetworkingInterfaceArrayOutputWithContext(context.Context) ServerNetworkingInterfaceArrayOutput
+}
+
+type ServerNetworkingInterfaceArray []ServerNetworkingInterfaceInput
+
+func (ServerNetworkingInterfaceArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerNetworkingInterface)(nil)).Elem()
+}
+
+func (i ServerNetworkingInterfaceArray) ToServerNetworkingInterfaceArrayOutput() ServerNetworkingInterfaceArrayOutput {
+	return i.ToServerNetworkingInterfaceArrayOutputWithContext(context.Background())
+}
+
+func (i ServerNetworkingInterfaceArray) ToServerNetworkingInterfaceArrayOutputWithContext(ctx context.Context) ServerNetworkingInterfaceArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(ServerNetworkingInterfaceArrayOutput)
+}
+
+type ServerNetworkingInterfaceOutput struct{ *pulumi.OutputState }
+
+func (ServerNetworkingInterfaceOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*ServerNetworkingInterface)(nil)).Elem()
+}
+
+func (o ServerNetworkingInterfaceOutput) ToServerNetworkingInterfaceOutput() ServerNetworkingInterfaceOutput {
+	return o
+}
+
+func (o ServerNetworkingInterfaceOutput) ToServerNetworkingInterfaceOutputWithContext(ctx context.Context) ServerNetworkingInterfaceOutput {
+	return o
+}
+
+// List of mac addresses to bind together.
+func (o ServerNetworkingInterfaceOutput) Macs() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v ServerNetworkingInterface) []string { return v.Macs }).(pulumi.StringArrayOutput)
+}
+
+// Type of bonding to create.
+func (o ServerNetworkingInterfaceOutput) Type() pulumi.StringOutput {
+	return o.ApplyT(func(v ServerNetworkingInterface) string { return v.Type }).(pulumi.StringOutput)
+}
+
+type ServerNetworkingInterfaceArrayOutput struct{ *pulumi.OutputState }
+
+func (ServerNetworkingInterfaceArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]ServerNetworkingInterface)(nil)).Elem()
+}
+
+func (o ServerNetworkingInterfaceArrayOutput) ToServerNetworkingInterfaceArrayOutput() ServerNetworkingInterfaceArrayOutput {
+	return o
+}
+
+func (o ServerNetworkingInterfaceArrayOutput) ToServerNetworkingInterfaceArrayOutputWithContext(ctx context.Context) ServerNetworkingInterfaceArrayOutput {
+	return o
+}
+
+func (o ServerNetworkingInterfaceArrayOutput) Index(i pulumi.IntInput) ServerNetworkingInterfaceOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) ServerNetworkingInterface {
+		return vs[0].([]ServerNetworkingInterface)[vs[1].(int)]
+	}).(ServerNetworkingInterfaceOutput)
+}
+
 func init() {
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceInstallTaskDetailsInput)(nil)).Elem(), ServiceInstallTaskDetailsArgs{})
-	pulumi.RegisterInputType(reflect.TypeOf((*ServiceInstallTaskDetailsPtrInput)(nil)).Elem(), ServiceInstallTaskDetailsArgs{})
-	pulumi.RegisterOutputType(ServiceInstallTaskDetailsOutput{})
-	pulumi.RegisterOutputType(ServiceInstallTaskDetailsPtrOutput{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerInstallTaskDetailsInput)(nil)).Elem(), ServerInstallTaskDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerInstallTaskDetailsPtrInput)(nil)).Elem(), ServerInstallTaskDetailsArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerNetworkingInterfaceInput)(nil)).Elem(), ServerNetworkingInterfaceArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*ServerNetworkingInterfaceArrayInput)(nil)).Elem(), ServerNetworkingInterfaceArray{})
+	pulumi.RegisterOutputType(ServerInstallTaskDetailsOutput{})
+	pulumi.RegisterOutputType(ServerInstallTaskDetailsPtrOutput{})
+	pulumi.RegisterOutputType(ServerNetworkingInterfaceOutput{})
+	pulumi.RegisterOutputType(ServerNetworkingInterfaceArrayOutput{})
 }

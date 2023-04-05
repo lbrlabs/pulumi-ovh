@@ -10,11 +10,8 @@ import * as utilities from "../utilities";
  * Get the user details of a previously created public cloud project user.
  */
 export function getUser(args: GetUserArgs, opts?: pulumi.InvokeOptions): Promise<GetUserResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getUser:getUser", {
         "serviceName": args.serviceName,
         "userId": args.userId,
@@ -68,9 +65,11 @@ export interface GetUserResult {
      */
     readonly username: string;
 }
-
+/**
+ * Get the user details of a previously created public cloud project user.
+ */
 export function getUserOutput(args: GetUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserResult> {
-    return pulumi.output(args).apply(a => getUser(a, opts))
+    return pulumi.output(args).apply((a: any) => getUser(a, opts))
 }
 
 /**

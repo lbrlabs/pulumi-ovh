@@ -14,27 +14,53 @@ import javax.annotation.Nullable;
 @CustomType
 public final class InstallationTemplateCustomization {
     /**
+     * @return Template change log details.
+     * 
      * @deprecated
      * field is not used anymore
      * 
      */
     @Deprecated /* field is not used anymore */
     private @Nullable String changeLog;
+    /**
+     * @return Set up the server using the provided hostname instead of the default hostname.
+     * 
+     */
     private @Nullable String customHostname;
+    /**
+     * @return Indicate the URL where your postinstall customisation script is located.
+     * 
+     */
     private @Nullable String postInstallationScriptLink;
+    /**
+     * @return indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is &#39;loh1Xee7eo OK OK OK UGh8Ang1Gu&#39;.
+     * 
+     */
     private @Nullable String postInstallationScriptReturn;
     /**
+     * @return Rating.
+     * 
      * @deprecated
      * field is not used anymore
      * 
      */
     @Deprecated /* field is not used anymore */
     private @Nullable Integer rating;
+    /**
+     * @return Name of the ssh key that should be installed. Password login will be disabled.
+     * 
+     */
     private @Nullable String sshKeyName;
+    /**
+     * @return Use the distribution&#39;s native kernel instead of the recommended OV
+     * 
+     */
     private @Nullable Boolean useDistributionKernel;
 
     private InstallationTemplateCustomization() {}
     /**
+     * @return Template change log details.
+     * 
      * @deprecated
      * field is not used anymore
      * 
@@ -43,16 +69,30 @@ public final class InstallationTemplateCustomization {
     public Optional<String> changeLog() {
         return Optional.ofNullable(this.changeLog);
     }
+    /**
+     * @return Set up the server using the provided hostname instead of the default hostname.
+     * 
+     */
     public Optional<String> customHostname() {
         return Optional.ofNullable(this.customHostname);
     }
+    /**
+     * @return Indicate the URL where your postinstall customisation script is located.
+     * 
+     */
     public Optional<String> postInstallationScriptLink() {
         return Optional.ofNullable(this.postInstallationScriptLink);
     }
+    /**
+     * @return indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is &#39;loh1Xee7eo OK OK OK UGh8Ang1Gu&#39;.
+     * 
+     */
     public Optional<String> postInstallationScriptReturn() {
         return Optional.ofNullable(this.postInstallationScriptReturn);
     }
     /**
+     * @return Rating.
+     * 
      * @deprecated
      * field is not used anymore
      * 
@@ -61,9 +101,17 @@ public final class InstallationTemplateCustomization {
     public Optional<Integer> rating() {
         return Optional.ofNullable(this.rating);
     }
+    /**
+     * @return Name of the ssh key that should be installed. Password login will be disabled.
+     * 
+     */
     public Optional<String> sshKeyName() {
         return Optional.ofNullable(this.sshKeyName);
     }
+    /**
+     * @return Use the distribution&#39;s native kernel instead of the recommended OV
+     * 
+     */
     public Optional<Boolean> useDistributionKernel() {
         return Optional.ofNullable(this.useDistributionKernel);
     }

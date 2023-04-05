@@ -29,7 +29,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
     ///         Action = new Ovh.IpLoadBalancing.Inputs.HttpRouteActionArgs
     ///         {
     ///             Status = 302,
-    ///             Target = $"https://{host}{path}{arguments}",
+    ///             Target = "https://${host}${path}${arguments}",
     ///             Type = "redirect",
     ///         },
     ///         DisplayName = "Redirect to HTTPS",

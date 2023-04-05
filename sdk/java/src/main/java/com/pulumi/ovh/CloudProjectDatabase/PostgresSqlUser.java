@@ -100,7 +100,6 @@ public class PostgresSqlUser extends com.pulumi.resources.CustomResource {
     /**
      * Roles the user belongs to.
      * Available roles:
-     * * `replication`
      * 
      */
     @Export(name="roles", type=List.class, parameters={String.class})
@@ -109,7 +108,6 @@ public class PostgresSqlUser extends com.pulumi.resources.CustomResource {
     /**
      * @return Roles the user belongs to.
      * Available roles:
-     * * `replication`
      * 
      */
     public Output<Optional<List<String>>> roles() {

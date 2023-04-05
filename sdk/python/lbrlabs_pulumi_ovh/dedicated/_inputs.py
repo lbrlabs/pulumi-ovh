@@ -10,11 +10,12 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
-    'ServiceInstallTaskDetailsArgs',
+    'ServerInstallTaskDetailsArgs',
+    'ServerNetworkingInterfaceArgs',
 ]
 
 @pulumi.input_type
-class ServiceInstallTaskDetailsArgs:
+class ServerInstallTaskDetailsArgs:
     def __init__(__self__, *,
                  change_log: Optional[pulumi.Input[str]] = None,
                  custom_hostname: Optional[pulumi.Input[str]] = None,
@@ -245,5 +246,42 @@ class ServiceInstallTaskDetailsArgs:
     @use_spla.setter
     def use_spla(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "use_spla", value)
+
+
+@pulumi.input_type
+class ServerNetworkingInterfaceArgs:
+    def __init__(__self__, *,
+                 macs: pulumi.Input[Sequence[pulumi.Input[str]]],
+                 type: pulumi.Input[str]):
+        """
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] macs: List of mac addresses to bind together.
+        :param pulumi.Input[str] type: Type of bonding to create.
+        """
+        pulumi.set(__self__, "macs", macs)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def macs(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
+        """
+        List of mac addresses to bind together.
+        """
+        return pulumi.get(self, "macs")
+
+    @macs.setter
+    def macs(self, value: pulumi.Input[Sequence[pulumi.Input[str]]]):
+        pulumi.set(self, "macs", value)
+
+    @property
+    @pulumi.getter
+    def type(self) -> pulumi.Input[str]:
+        """
+        Type of bonding to create.
+        """
+        return pulumi.get(self, "type")
+
+    @type.setter
+    def type(self, value: pulumi.Input[str]):
+        pulumi.set(self, "type", value)
 
 

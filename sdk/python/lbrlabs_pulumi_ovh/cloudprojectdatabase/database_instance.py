@@ -23,8 +23,6 @@ class DatabaseInstanceArgs:
         :param pulumi.Input[str] cluster_id: Cluster ID.
         :param pulumi.Input[str] engine: The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
                Available engines:
-               * `mysql`
-               * `postgresql`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] name: Name of the database.
@@ -53,8 +51,6 @@ class DatabaseInstanceArgs:
         """
         The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         Available engines:
-        * `mysql`
-        * `postgresql`
         """
         return pulumi.get(self, "engine")
 
@@ -102,8 +98,6 @@ class _DatabaseInstanceState:
         :param pulumi.Input[bool] default: Defines if the database has been created by default.
         :param pulumi.Input[str] engine: The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
                Available engines:
-               * `mysql`
-               * `postgresql`
         :param pulumi.Input[str] name: Name of the database.
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -149,8 +143,6 @@ class _DatabaseInstanceState:
         """
         The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         Available engines:
-        * `mysql`
-        * `postgresql`
         """
         return pulumi.get(self, "engine")
 
@@ -231,8 +223,6 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[str] cluster_id: Cluster ID.
         :param pulumi.Input[str] engine: The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
                Available engines:
-               * `mysql`
-               * `postgresql`
         :param pulumi.Input[str] name: Name of the database.
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -340,8 +330,6 @@ class DatabaseInstance(pulumi.CustomResource):
         :param pulumi.Input[bool] default: Defines if the database has been created by default.
         :param pulumi.Input[str] engine: The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
                Available engines:
-               * `mysql`
-               * `postgresql`
         :param pulumi.Input[str] name: Name of the database.
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -379,8 +367,6 @@ class DatabaseInstance(pulumi.CustomResource):
         """
         The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
         Available engines:
-        * `mysql`
-        * `postgresql`
         """
         return pulumi.get(self, "engine")
 

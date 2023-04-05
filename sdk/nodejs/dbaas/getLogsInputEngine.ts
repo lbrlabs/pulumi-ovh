@@ -13,23 +13,21 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const logstash = pulumi.output(ovh.Dbaas.getLogsInputEngine({
+ * const logstash = ovh.Dbaas.getLogsInputEngine({
  *     isDeprecated: true,
  *     name: "logstash",
+ *     serviceName: "ldp-xx-xxxxx",
  *     version: "6.8",
- * }));
+ * });
  * ```
  */
-export function getLogsInputEngine(args?: GetLogsInputEngineArgs, opts?: pulumi.InvokeOptions): Promise<GetLogsInputEngineResult> {
-    args = args || {};
-    if (!opts) {
-        opts = {}
-    }
+export function getLogsInputEngine(args: GetLogsInputEngineArgs, opts?: pulumi.InvokeOptions): Promise<GetLogsInputEngineResult> {
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Dbaas/getLogsInputEngine:getLogsInputEngine", {
         "isDeprecated": args.isDeprecated,
         "name": args.name,
+        "serviceName": args.serviceName,
         "version": args.version,
     }, opts);
 }
@@ -47,6 +45,10 @@ export interface GetLogsInputEngineArgs {
      */
     name?: string;
     /**
+     * The service name. It's the ID of your Logs Data Platform instance.
+     */
+    serviceName: string;
+    /**
      * Software version
      */
     version?: string;
@@ -62,11 +64,28 @@ export interface GetLogsInputEngineResult {
     readonly id: string;
     readonly isDeprecated: boolean;
     readonly name: string;
+    readonly serviceName: string;
     readonly version: string;
 }
-
-export function getLogsInputEngineOutput(args?: GetLogsInputEngineOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLogsInputEngineResult> {
-    return pulumi.output(args).apply(a => getLogsInputEngine(a, opts))
+/**
+ * Use this data source to retrieve information about a DBaas logs input engine.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const logstash = ovh.Dbaas.getLogsInputEngine({
+ *     isDeprecated: true,
+ *     name: "logstash",
+ *     serviceName: "ldp-xx-xxxxx",
+ *     version: "6.8",
+ * });
+ * ```
+ */
+export function getLogsInputEngineOutput(args: GetLogsInputEngineOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetLogsInputEngineResult> {
+    return pulumi.output(args).apply((a: any) => getLogsInputEngine(a, opts))
 }
 
 /**
@@ -81,6 +100,10 @@ export interface GetLogsInputEngineOutputArgs {
      * The name of the logs input engine.
      */
     name?: pulumi.Input<string>;
+    /**
+     * The service name. It's the ID of your Logs Data Platform instance.
+     */
+    serviceName: pulumi.Input<string>;
     /**
      * Software version
      */

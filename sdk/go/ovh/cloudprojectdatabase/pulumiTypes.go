@@ -15,11 +15,6 @@ type OpensearchUserAcl struct {
 	Pattern string `pulumi:"pattern"`
 	// Permission of the ACL
 	// Available permission:
-	// * `admin`
-	// * `read`
-	// * `write`
-	// * `readwrite`
-	// * `deny`
 	Permission string `pulumi:"permission"`
 }
 
@@ -39,11 +34,6 @@ type OpensearchUserAclArgs struct {
 	Pattern pulumi.StringInput `pulumi:"pattern"`
 	// Permission of the ACL
 	// Available permission:
-	// * `admin`
-	// * `read`
-	// * `write`
-	// * `readwrite`
-	// * `deny`
 	Permission pulumi.StringInput `pulumi:"permission"`
 }
 
@@ -105,11 +95,6 @@ func (o OpensearchUserAclOutput) Pattern() pulumi.StringOutput {
 
 // Permission of the ACL
 // Available permission:
-// * `admin`
-// * `read`
-// * `write`
-// * `readwrite`
-// * `deny`
 func (o OpensearchUserAclOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v OpensearchUserAcl) string { return v.Permission }).(pulumi.StringOutput)
 }

@@ -15,12 +15,12 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const httpsredirect = new ovh.IpLoadBalancing.HttpRoute("httpsredirect", {
+ * const httpsredirect = new ovh.iploadbalancing.HttpRoute("httpsredirect", {
  *     action: {
  *         status: 302,
- *         target: "https://${host}${path}${arguments}",
+ *         target: `https://${host}${path}${arguments}`,
  *         type: "redirect",
  *     },
  *     displayName: "Redirect to HTTPS",

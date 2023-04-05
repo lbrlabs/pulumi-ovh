@@ -9,13 +9,29 @@ import java.util.Objects;
 
 @CustomType
 public final class GetMeCurrency {
+    /**
+     * @return Currency code used by this account (e.g EUR, USD, ...)
+     * 
+     */
     private String code;
+    /**
+     * @return Currency symbol used by this account (e.g €, $, ...)
+     * 
+     */
     private String symbol;
 
     private GetMeCurrency() {}
+    /**
+     * @return Currency code used by this account (e.g EUR, USD, ...)
+     * 
+     */
     public String code() {
         return this.code;
     }
+    /**
+     * @return Currency symbol used by this account (e.g €, $, ...)
+     * 
+     */
     public String symbol() {
         return this.symbol;
     }

@@ -11,12 +11,20 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const vcp = new ovh.Vrack.CloudProject("vcp", {
+ * const vcp = new ovh.vrack.CloudProject("vcp", {
  *     projectId: "67890",
  *     serviceName: "12345",
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * Attachment of a public cloud project and a VRack can be imported using the `project_id`, the `service_name` (vRackID) and the `attach_id`, separated by "/" E.g., bash
+ *
+ * ```sh
+ *  $ pulumi import ovh:Vrack/cloudProject:CloudProject myattach ookie9mee8Shaeghaeleeju7Xeghohv6e/pn-12345678/vrack_pn-12345678-cloudproject_ookie9mee8Shaeghaeleeju7Xeghohv6e-attach
  * ```
  */
 export class CloudProject extends pulumi.CustomResource {

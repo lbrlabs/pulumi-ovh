@@ -24,6 +24,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = OvhFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetInstallationTemplatesResult> getInstallationTemplates() {
@@ -33,6 +58,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = OvhFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetInstallationTemplatesResult> getInstallationTemplatesPlain() {
@@ -42,6 +92,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = OvhFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetInstallationTemplatesResult> getInstallationTemplates(InvokeArgs args) {
@@ -51,6 +126,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = OvhFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetInstallationTemplatesResult> getInstallationTemplatesPlain(InvokeArgs args) {
@@ -60,6 +160,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = OvhFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetInstallationTemplatesResult> getInstallationTemplates(InvokeArgs args, InvokeOptions options) {
@@ -69,6 +194,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of installation templates available for dedicated servers.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var templates = OvhFunctions.getInstallationTemplates();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetInstallationTemplatesResult> getInstallationTemplatesPlain(InvokeArgs args, InvokeOptions options) {
@@ -226,6 +376,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of dedicated servers associated with your OVHcloud Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = OvhFunctions.getServers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetServersResult> getServers() {
@@ -235,6 +410,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of dedicated servers associated with your OVHcloud Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = OvhFunctions.getServers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetServersResult> getServersPlain() {
@@ -244,6 +444,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of dedicated servers associated with your OVHcloud Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = OvhFunctions.getServers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetServersResult> getServers(InvokeArgs args) {
@@ -253,6 +478,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of dedicated servers associated with your OVHcloud Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = OvhFunctions.getServers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetServersResult> getServersPlain(InvokeArgs args) {
@@ -262,6 +512,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of dedicated servers associated with your OVHcloud Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = OvhFunctions.getServers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static Output<GetServersResult> getServers(InvokeArgs args, InvokeOptions options) {
@@ -271,6 +546,31 @@ public final class OvhFunctions {
      * Use this data source to get the list of dedicated servers associated with your OVHcloud Account.
      * 
      * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.OvhFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var servers = OvhFunctions.getServers();
+     * 
+     *     }
+     * }
+     * ```
      * 
      */
     public static CompletableFuture<GetServersResult> getServersPlain(InvokeArgs args, InvokeOptions options) {

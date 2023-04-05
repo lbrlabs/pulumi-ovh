@@ -58,6 +58,15 @@ class AwaitableGetInstallationTemplatesResult(GetInstallationTemplatesResult):
 def get_installation_templates(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetInstallationTemplatesResult:
     """
     Use this data source to get the list of custom installation templates available for dedicated servers.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ovh as ovh
+
+    templates = ovh.Me.get_installation_templates()
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

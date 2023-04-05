@@ -15,17 +15,14 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const server = pulumi.output(ovh.getServer({
+ * const server = ovh.getServer({
  *     serviceName: "XXXXXX",
- * }));
+ * });
  * ```
  */
 export function getServer(args: GetServerArgs, opts?: pulumi.InvokeOptions): Promise<GetServerResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:index/getServer:getServer", {
         "serviceName": args.serviceName,
     }, opts);
@@ -135,9 +132,22 @@ export interface GetServerResult {
      */
     readonly vnis: outputs.GetServerVni[];
 }
-
+/**
+ * Use this data source to retrieve information about a dedicated server associated with your OVHcloud Account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const server = ovh.getServer({
+ *     serviceName: "XXXXXX",
+ * });
+ * ```
+ */
 export function getServerOutput(args: GetServerOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetServerResult> {
-    return pulumi.output(args).apply(a => getServer(a, opts))
+    return pulumi.output(args).apply((a: any) => getServer(a, opts))
 }
 
 /**

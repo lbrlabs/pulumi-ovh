@@ -283,6 +283,124 @@ export namespace CloudProject {
         enableds: string[];
     }
 
+    export interface GetKubeNodePoolNodesNode {
+        /**
+         * Creation date.
+         */
+        createdAt: string;
+        /**
+         * (Optional) Date of the effective deployment.
+         */
+        deployedAt: string;
+        /**
+         * Flavor name.
+         */
+        flavor: string;
+        /**
+         * ID of the node.
+         */
+        id: string;
+        /**
+         * Openstack ID of the underlying VM of the node.
+         */
+        instanceId: string;
+        /**
+         * Is the node in the target version of the cluster.
+         */
+        isUpToDate: boolean;
+        /**
+         * Name of the node pool from which we want the nodes.
+         */
+        name: string;
+        /**
+         * Managed kubernetes node pool ID.
+         */
+        nodePoolId: string;
+        /**
+         * Public cloud project ID.
+         */
+        projectId: string;
+        /**
+         * Current status.
+         */
+        status: string;
+        /**
+         * Last update date.
+         */
+        updatedAt: string;
+        /**
+         * Version in which the node is.
+         */
+        version: string;
+    }
+
+    export interface GetKubeNodePoolTemplate {
+        metadata?: outputs.CloudProject.GetKubeNodePoolTemplateMetadata;
+        spec?: outputs.CloudProject.GetKubeNodePoolTemplateSpec;
+    }
+
+    export interface GetKubeNodePoolTemplateMetadata {
+        annotations?: {[key: string]: string};
+        finalizers?: string[];
+        labels?: {[key: string]: string};
+    }
+
+    export interface GetKubeNodePoolTemplateSpec {
+        taints?: {[key: string]: any}[];
+        unschedulable?: boolean;
+    }
+
+    export interface GetKubeNodesNode {
+        /**
+         * Creation date
+         */
+        createdAt: string;
+        /**
+         * (Optional) Date of the effective deployment
+         */
+        deployedAt: string;
+        /**
+         * Flavor name
+         */
+        flavor: string;
+        /**
+         * ID of the node
+         */
+        id: string;
+        /**
+         * Openstack ID of the underlying VM of the node
+         */
+        instanceId: string;
+        /**
+         * Is the node in the target version of the cluster
+         */
+        isUpToDate: boolean;
+        /**
+         * Name of the node
+         */
+        name: string;
+        /**
+         * Managed kubernetes node pool ID
+         */
+        nodePoolId: string;
+        /**
+         * Public cloud project ID
+         */
+        projectId: string;
+        /**
+         * Current status
+         */
+        status: string;
+        /**
+         * Last update date
+         */
+        updatedAt: string;
+        /**
+         * Version in which the node is
+         */
+        version: string;
+    }
+
     export interface GetOpenSearchUserAcl {
         /**
          * Pattern of the ACL.
@@ -466,7 +584,7 @@ export namespace CloudProject {
          */
         expirationDate: string;
         /**
-         * order id
+         * order id, the same as the `id`
          */
         orderId: number;
     }
@@ -706,11 +824,6 @@ export namespace CloudProjectDatabase {
         /**
          * Permission of the ACL
          * Available permission:
-         * * `admin`
-         * * `read`
-         * * `write`
-         * * `readwrite`
-         * * `deny`
          */
         permission: string;
     }
@@ -758,7 +871,7 @@ export namespace Dbaas {
 }
 
 export namespace Dedicated {
-    export interface ServiceInstallTaskDetails {
+    export interface ServerInstallTaskDetails {
         /**
          * Template change log details.
          *
@@ -817,6 +930,17 @@ export namespace Dedicated {
          * set to true to use SPLA.
          */
         useSpla?: boolean;
+    }
+
+    export interface ServerNetworkingInterface {
+        /**
+         * List of mac addresses to bind together.
+         */
+        macs: string[];
+        /**
+         * Type of bonding to create.
+         */
+        type: string;
     }
 
 }
@@ -918,6 +1042,137 @@ export namespace Domain {
     }
 
     export interface ZonePlanOptionConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
+}
+
+export namespace Hosting {
+    export interface GetPrivateDatabaseDbUser {
+        /**
+         * Grant of this user for this database
+         */
+        grantType: string;
+        /**
+         * User's name granted on this database
+         */
+        userName: string;
+    }
+
+    export interface GetPrivateDatabaseUserDatabase {
+        /**
+         * Database's name linked to this user
+         */
+        databaseName: string;
+        /**
+         * Grant of this user for this database
+         */
+        grantType: string;
+    }
+
+    export interface PrivateDatabaseOrder {
+        /**
+         * date
+         */
+        date: string;
+        /**
+         * Information about a Bill entry
+         */
+        details: outputs.Hosting.PrivateDatabaseOrderDetail[];
+        /**
+         * expiration date
+         */
+        expirationDate: string;
+        /**
+         * order id
+         */
+        orderId: number;
+    }
+
+    export interface PrivateDatabaseOrderDetail {
+        /**
+         * Custom description on your privatedatabase order.
+         */
+        description: string;
+        /**
+         * expiration date
+         */
+        domain: string;
+        /**
+         * order detail id
+         */
+        orderDetailId: number;
+        /**
+         * quantity
+         */
+        quantity: string;
+    }
+
+    export interface PrivateDatabasePlan {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.Hosting.PrivateDatabasePlanConfiguration[];
+        /**
+         * duration.
+         */
+        duration: string;
+        /**
+         * Plan code.
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface PrivateDatabasePlanConfiguration {
+        /**
+         * Identifier of the resource
+         */
+        label: string;
+        /**
+         * Path to the resource in API.OVH.COM
+         */
+        value: string;
+    }
+
+    export interface PrivateDatabasePlanOption {
+        /**
+         * Catalog name
+         */
+        catalogName?: string;
+        /**
+         * Representation of a configuration item for personalizing product
+         */
+        configurations?: outputs.Hosting.PrivateDatabasePlanOptionConfiguration[];
+        /**
+         * duration.
+         */
+        duration: string;
+        /**
+         * Plan code.
+         */
+        planCode: string;
+        /**
+         * Pricing model identifier
+         */
+        pricingMode: string;
+    }
+
+    export interface PrivateDatabasePlanOptionConfiguration {
         /**
          * Identifier of the resource
          */
@@ -1046,8 +1301,7 @@ export namespace Ip {
 
     export interface IpServiceRoutedTo {
         /**
-         * Service where ip is routed to
-         * * `serviceName`: service name
+         * service name
          */
         serviceName: string;
     }
@@ -1127,9 +1381,11 @@ export namespace IpLoadBalancing {
         field: string;
         /**
          * Matching operator. Not all operators are available for all fields. See "availableRules"
-         * * `negate`- Invert the matching operator effect
          */
         match: string;
+        /**
+         * Invert the matching operator effect
+         */
         negate: boolean;
         /**
          * Value to match against this match. Interpretation if this field depends on the match and field
@@ -1319,9 +1575,11 @@ export namespace IpLoadBalancing {
         field: string;
         /**
          * Matching operator. Not all operators are available for all fields. See "availableRules"
-         * * `negate`- Invert the matching operator effect
          */
         match: string;
+        /**
+         * Invert the matching operator effect
+         */
         negate: boolean;
         /**
          * Value to match against this match. Interpretation if this field depends on the match and field
@@ -1342,62 +1600,145 @@ export namespace IpLoadBalancing {
 export namespace Me {
     export interface GetInstallationTemplateCustomization {
         /**
+         * (DEPRECATED) Template change log details.
+         *
          * @deprecated field is not used anymore
          */
         changeLog: string;
+        /**
+         * Set up the server using the provided hostname instead of the default hostname.
+         */
         customHostname: string;
+        /**
+         * Indicate the URL where your postinstall customisation script is located.
+         */
         postInstallationScriptLink: string;
+        /**
+         * indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
+         */
         postInstallationScriptReturn: string;
         /**
+         * (DEPRECATED) Rating.
+         *
          * @deprecated field is not used anymore
          */
         rating: number;
+        /**
+         * Name of the ssh key that should be installed. Password login will be disabled.
+         */
         sshKeyName: string;
+        /**
+         * Use the distribution's native kernel instead of the recommended OVHcloud Kernel.
+         */
         useDistributionKernel: boolean;
     }
 
     export interface GetInstallationTemplatePartitionScheme {
         hardwareRaids: outputs.Me.GetInstallationTemplatePartitionSchemeHardwareRaid[];
+        /**
+         * Hardware RAID name.
+         */
         name: string;
         partitions: outputs.Me.GetInstallationTemplatePartitionSchemePartition[];
+        /**
+         * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+         */
         priority: number;
     }
 
     export interface GetInstallationTemplatePartitionSchemeHardwareRaid {
+        /**
+         * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
+         */
         disks: string[];
+        /**
+         * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+         */
         mode: string;
+        /**
+         * Hardware RAID name.
+         */
         name: string;
+        /**
+         * Specifies the creation order of the hardware RAID.
+         */
         step: number;
     }
 
     export interface GetInstallationTemplatePartitionSchemePartition {
+        /**
+         * Partition filesystem.
+         */
         filesystem: string;
+        /**
+         * partition mount point.
+         */
         mountpoint: string;
+        /**
+         * step or order. specifies the creation order of the partition on the disk
+         */
         order: number;
+        /**
+         * raid partition type.
+         */
         raid: string;
+        /**
+         * size of partition in MB, 0 => rest of the space.
+         */
         size: number;
+        /**
+         * partition type.
+         */
         type: string;
+        /**
+         * The volume name needed for proxmox distribution
+         */
         volumeName: string;
     }
 
     export interface GetMeCurrency {
+        /**
+         * Currency code used by this account (e.g EUR, USD, ...)
+         */
         code: string;
+        /**
+         * Currency symbol used by this account (e.g €, $, ...)
+         */
         symbol: string;
     }
 
     export interface InstallationTemplateCustomization {
         /**
+         * Template change log details.
+         *
          * @deprecated field is not used anymore
          */
         changeLog?: string;
+        /**
+         * Set up the server using the provided hostname instead of the default hostname.
+         */
         customHostname?: string;
+        /**
+         * Indicate the URL where your postinstall customisation script is located.
+         */
         postInstallationScriptLink?: string;
+        /**
+         * indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
+         */
         postInstallationScriptReturn?: string;
         /**
+         * Rating.
+         *
          * @deprecated field is not used anymore
          */
         rating?: number;
+        /**
+         * Name of the ssh key that should be installed. Password login will be disabled.
+         */
         sshKeyName?: string;
+        /**
+         * Use the distribution's native kernel instead of the recommended OV
+         */
         useDistributionKernel?: boolean;
     }
 

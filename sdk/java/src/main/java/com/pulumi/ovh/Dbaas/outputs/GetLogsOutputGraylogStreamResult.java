@@ -123,7 +123,7 @@ public final class GetLogsOutputGraylogStreamResult {
      * @return Enable Websocket
      * 
      */
-    private String webSocketEnabled;
+    private Boolean webSocketEnabled;
 
     private GetLogsOutputGraylogStreamResult() {}
     public Boolean canAlert() {
@@ -286,7 +286,7 @@ public final class GetLogsOutputGraylogStreamResult {
      * @return Enable Websocket
      * 
      */
-    public String webSocketEnabled() {
+    public Boolean webSocketEnabled() {
         return this.webSocketEnabled;
     }
 
@@ -323,7 +323,7 @@ public final class GetLogsOutputGraylogStreamResult {
         private String streamId;
         private String title;
         private String updatedAt;
-        private String webSocketEnabled;
+        private Boolean webSocketEnabled;
         public Builder() {}
         public Builder(GetLogsOutputGraylogStreamResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -475,7 +475,7 @@ public final class GetLogsOutputGraylogStreamResult {
             return this;
         }
         @CustomType.Setter
-        public Builder webSocketEnabled(String webSocketEnabled) {
+        public Builder webSocketEnabled(Boolean webSocketEnabled) {
             this.webSocketEnabled = Objects.requireNonNull(webSocketEnabled);
             return this;
         }

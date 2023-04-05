@@ -13,15 +13,23 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const net = new ovh.CloudProject.NetworkPrivate("net", {
+ * const net = new ovh.cloudproject.NetworkPrivate("net", {
  *     regions: [
  *         "GRA1",
  *         "BHS1",
  *     ],
  *     serviceName: "XXXXXX",
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * Private network in a public cloud project can be imported using the `service_name` and the `network_id`, separated by "/" E.g., bash
+ *
+ * ```sh
+ *  $ pulumi import ovh:CloudProject/networkPrivate:NetworkPrivate mynet ookie9mee8Shaeghaeleeju7Xeghohv6e/pn-12345678
  * ```
  */
 export class NetworkPrivate extends pulumi.CustomResource {

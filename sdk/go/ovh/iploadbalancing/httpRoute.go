@@ -34,7 +34,7 @@ import (
 //			_, err := IpLoadBalancing.NewHttpRoute(ctx, "httpsredirect", &IpLoadBalancing.HttpRouteArgs{
 //				Action: &iploadbalancing.HttpRouteActionArgs{
 //					Status: pulumi.Int(302),
-//					Target: pulumi.String(fmt.Sprintf("https://%v%v%v", host, path, arguments)),
+//					Target: pulumi.String(fmt.Sprintf("https://${host}${path}${arguments}")),
 //					Type:   pulumi.String("redirect"),
 //				},
 //				DisplayName: pulumi.String("Redirect to HTTPS"),

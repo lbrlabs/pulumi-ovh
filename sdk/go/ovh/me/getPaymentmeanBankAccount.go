@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Me.GetPaymentmeanBankAccount(ctx, &me.GetPaymentmeanBankAccountArgs{
+//			_, err := Me.GetPaymentmeanBankAccount(ctx, &me.GetPaymentmeanBankAccountArgs{
 //				UseDefault: pulumi.BoolRef(true),
 //			}, nil)
 //			if err != nil {

@@ -56,6 +56,15 @@ class InstallationTemplateCustomization(dict):
                  rating: Optional[int] = None,
                  ssh_key_name: Optional[str] = None,
                  use_distribution_kernel: Optional[bool] = None):
+        """
+        :param str change_log: Template change log details.
+        :param str custom_hostname: Set up the server using the provided hostname instead of the default hostname.
+        :param str post_installation_script_link: Indicate the URL where your postinstall customisation script is located.
+        :param str post_installation_script_return: indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
+        :param int rating: Rating.
+        :param str ssh_key_name: Name of the ssh key that should be installed. Password login will be disabled.
+        :param bool use_distribution_kernel: Use the distribution's native kernel instead of the recommended OV
+        """
         if change_log is not None:
             pulumi.set(__self__, "change_log", change_log)
         if custom_hostname is not None:
@@ -74,36 +83,57 @@ class InstallationTemplateCustomization(dict):
     @property
     @pulumi.getter(name="changeLog")
     def change_log(self) -> Optional[str]:
+        """
+        Template change log details.
+        """
         return pulumi.get(self, "change_log")
 
     @property
     @pulumi.getter(name="customHostname")
     def custom_hostname(self) -> Optional[str]:
+        """
+        Set up the server using the provided hostname instead of the default hostname.
+        """
         return pulumi.get(self, "custom_hostname")
 
     @property
     @pulumi.getter(name="postInstallationScriptLink")
     def post_installation_script_link(self) -> Optional[str]:
+        """
+        Indicate the URL where your postinstall customisation script is located.
+        """
         return pulumi.get(self, "post_installation_script_link")
 
     @property
     @pulumi.getter(name="postInstallationScriptReturn")
     def post_installation_script_return(self) -> Optional[str]:
+        """
+        indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
+        """
         return pulumi.get(self, "post_installation_script_return")
 
     @property
     @pulumi.getter
     def rating(self) -> Optional[int]:
+        """
+        Rating.
+        """
         return pulumi.get(self, "rating")
 
     @property
     @pulumi.getter(name="sshKeyName")
     def ssh_key_name(self) -> Optional[str]:
+        """
+        Name of the ssh key that should be installed. Password login will be disabled.
+        """
         return pulumi.get(self, "ssh_key_name")
 
     @property
     @pulumi.getter(name="useDistributionKernel")
     def use_distribution_kernel(self) -> Optional[bool]:
+        """
+        Use the distribution's native kernel instead of the recommended OV
+        """
         return pulumi.get(self, "use_distribution_kernel")
 
 
@@ -117,6 +147,15 @@ class GetInstallationTemplateCustomizationResult(dict):
                  rating: int,
                  ssh_key_name: str,
                  use_distribution_kernel: bool):
+        """
+        :param str change_log: (DEPRECATED) Template change log details.
+        :param str custom_hostname: Set up the server using the provided hostname instead of the default hostname.
+        :param str post_installation_script_link: Indicate the URL where your postinstall customisation script is located.
+        :param str post_installation_script_return: indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
+        :param int rating: (DEPRECATED) Rating.
+        :param str ssh_key_name: Name of the ssh key that should be installed. Password login will be disabled.
+        :param bool use_distribution_kernel: Use the distribution's native kernel instead of the recommended OVHcloud Kernel.
+        """
         pulumi.set(__self__, "change_log", change_log)
         pulumi.set(__self__, "custom_hostname", custom_hostname)
         pulumi.set(__self__, "post_installation_script_link", post_installation_script_link)
@@ -128,36 +167,57 @@ class GetInstallationTemplateCustomizationResult(dict):
     @property
     @pulumi.getter(name="changeLog")
     def change_log(self) -> str:
+        """
+        (DEPRECATED) Template change log details.
+        """
         return pulumi.get(self, "change_log")
 
     @property
     @pulumi.getter(name="customHostname")
     def custom_hostname(self) -> str:
+        """
+        Set up the server using the provided hostname instead of the default hostname.
+        """
         return pulumi.get(self, "custom_hostname")
 
     @property
     @pulumi.getter(name="postInstallationScriptLink")
     def post_installation_script_link(self) -> str:
+        """
+        Indicate the URL where your postinstall customisation script is located.
+        """
         return pulumi.get(self, "post_installation_script_link")
 
     @property
     @pulumi.getter(name="postInstallationScriptReturn")
     def post_installation_script_return(self) -> str:
+        """
+        indicate the string returned by your postinstall customisation script on successful execution. Advice: your script should return a unique validation string in case of succes. A good example is 'loh1Xee7eo OK OK OK UGh8Ang1Gu'.
+        """
         return pulumi.get(self, "post_installation_script_return")
 
     @property
     @pulumi.getter
     def rating(self) -> int:
+        """
+        (DEPRECATED) Rating.
+        """
         return pulumi.get(self, "rating")
 
     @property
     @pulumi.getter(name="sshKeyName")
     def ssh_key_name(self) -> str:
+        """
+        Name of the ssh key that should be installed. Password login will be disabled.
+        """
         return pulumi.get(self, "ssh_key_name")
 
     @property
     @pulumi.getter(name="useDistributionKernel")
     def use_distribution_kernel(self) -> bool:
+        """
+        Use the distribution's native kernel instead of the recommended OVHcloud Kernel.
+        """
         return pulumi.get(self, "use_distribution_kernel")
 
 
@@ -168,6 +228,10 @@ class GetInstallationTemplatePartitionSchemeResult(dict):
                  name: str,
                  partitions: Sequence['outputs.GetInstallationTemplatePartitionSchemePartitionResult'],
                  priority: int):
+        """
+        :param str name: Hardware RAID name.
+        :param int priority: on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+        """
         pulumi.set(__self__, "hardware_raids", hardware_raids)
         pulumi.set(__self__, "name", name)
         pulumi.set(__self__, "partitions", partitions)
@@ -181,6 +245,9 @@ class GetInstallationTemplatePartitionSchemeResult(dict):
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Hardware RAID name.
+        """
         return pulumi.get(self, "name")
 
     @property
@@ -191,6 +258,9 @@ class GetInstallationTemplatePartitionSchemeResult(dict):
     @property
     @pulumi.getter
     def priority(self) -> int:
+        """
+        on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+        """
         return pulumi.get(self, "priority")
 
 
@@ -201,6 +271,12 @@ class GetInstallationTemplatePartitionSchemeHardwareRaidResult(dict):
                  mode: str,
                  name: str,
                  step: int):
+        """
+        :param Sequence[str] disks: Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
+        :param str mode: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+        :param str name: Hardware RAID name.
+        :param int step: Specifies the creation order of the hardware RAID.
+        """
         pulumi.set(__self__, "disks", disks)
         pulumi.set(__self__, "mode", mode)
         pulumi.set(__self__, "name", name)
@@ -209,21 +285,33 @@ class GetInstallationTemplatePartitionSchemeHardwareRaidResult(dict):
     @property
     @pulumi.getter
     def disks(self) -> Sequence[str]:
+        """
+        Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
+        """
         return pulumi.get(self, "disks")
 
     @property
     @pulumi.getter
     def mode(self) -> str:
+        """
+        RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+        """
         return pulumi.get(self, "mode")
 
     @property
     @pulumi.getter
     def name(self) -> str:
+        """
+        Hardware RAID name.
+        """
         return pulumi.get(self, "name")
 
     @property
     @pulumi.getter
     def step(self) -> int:
+        """
+        Specifies the creation order of the hardware RAID.
+        """
         return pulumi.get(self, "step")
 
 
@@ -237,6 +325,15 @@ class GetInstallationTemplatePartitionSchemePartitionResult(dict):
                  size: int,
                  type: str,
                  volume_name: str):
+        """
+        :param str filesystem: Partition filesystem.
+        :param str mountpoint: partition mount point.
+        :param int order: step or order. specifies the creation order of the partition on the disk
+        :param str raid: raid partition type.
+        :param int size: size of partition in MB, 0 => rest of the space.
+        :param str type: partition type.
+        :param str volume_name: The volume name needed for proxmox distribution
+        """
         pulumi.set(__self__, "filesystem", filesystem)
         pulumi.set(__self__, "mountpoint", mountpoint)
         pulumi.set(__self__, "order", order)
@@ -248,36 +345,57 @@ class GetInstallationTemplatePartitionSchemePartitionResult(dict):
     @property
     @pulumi.getter
     def filesystem(self) -> str:
+        """
+        Partition filesystem.
+        """
         return pulumi.get(self, "filesystem")
 
     @property
     @pulumi.getter
     def mountpoint(self) -> str:
+        """
+        partition mount point.
+        """
         return pulumi.get(self, "mountpoint")
 
     @property
     @pulumi.getter
     def order(self) -> int:
+        """
+        step or order. specifies the creation order of the partition on the disk
+        """
         return pulumi.get(self, "order")
 
     @property
     @pulumi.getter
     def raid(self) -> str:
+        """
+        raid partition type.
+        """
         return pulumi.get(self, "raid")
 
     @property
     @pulumi.getter
     def size(self) -> int:
+        """
+        size of partition in MB, 0 => rest of the space.
+        """
         return pulumi.get(self, "size")
 
     @property
     @pulumi.getter
     def type(self) -> str:
+        """
+        partition type.
+        """
         return pulumi.get(self, "type")
 
     @property
     @pulumi.getter(name="volumeName")
     def volume_name(self) -> str:
+        """
+        The volume name needed for proxmox distribution
+        """
         return pulumi.get(self, "volume_name")
 
 
@@ -286,17 +404,27 @@ class GetMeCurrencyResult(dict):
     def __init__(__self__, *,
                  code: str,
                  symbol: str):
+        """
+        :param str code: Currency code used by this account (e.g EUR, USD, ...)
+        :param str symbol: Currency symbol used by this account (e.g €, $, ...)
+        """
         pulumi.set(__self__, "code", code)
         pulumi.set(__self__, "symbol", symbol)
 
     @property
     @pulumi.getter
     def code(self) -> str:
+        """
+        Currency code used by this account (e.g EUR, USD, ...)
+        """
         return pulumi.get(self, "code")
 
     @property
     @pulumi.getter
     def symbol(self) -> str:
+        """
+        Currency symbol used by this account (e.g €, $, ...)
+        """
         return pulumi.get(self, "symbol")
 
 

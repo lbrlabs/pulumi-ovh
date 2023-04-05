@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Me.GetIpxeScript(ctx, &me.GetIpxeScriptArgs{
+//			_, err := Me.GetIpxeScript(ctx, &me.GetIpxeScriptArgs{
 //				Name: "myscript",
 //			}, nil)
 //			if err != nil {

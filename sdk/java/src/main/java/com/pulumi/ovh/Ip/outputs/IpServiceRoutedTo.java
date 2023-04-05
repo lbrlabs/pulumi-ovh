@@ -12,16 +12,14 @@ import javax.annotation.Nullable;
 @CustomType
 public final class IpServiceRoutedTo {
     /**
-     * @return Service where ip is routed to
-     * * `service_name`: service name
+     * @return service name
      * 
      */
     private @Nullable String serviceName;
 
     private IpServiceRoutedTo() {}
     /**
-     * @return Service where ip is routed to
-     * * `service_name`: service name
+     * @return service name
      * 
      */
     public Optional<String> serviceName() {

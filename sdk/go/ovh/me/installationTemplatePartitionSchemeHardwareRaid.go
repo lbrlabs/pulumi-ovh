@@ -73,17 +73,17 @@ import (
 type InstallationTemplatePartitionSchemeHardwareRaid struct {
 	pulumi.CustomResourceState
 
-	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
 	Disks pulumi.StringArrayOutput `pulumi:"disks"`
-	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
 	Mode pulumi.StringOutput `pulumi:"mode"`
-	// Hardware RAID name
+	// Hardware RAID name.
 	Name pulumi.StringOutput `pulumi:"name"`
-	// name of this partitioning scheme
+	// The partition scheme name.
 	SchemeName pulumi.StringOutput `pulumi:"schemeName"`
-	// Specifies the creation order of the hardware RAID
+	// Specifies the creation order of the hardware RAID.
 	Step pulumi.IntOutput `pulumi:"step"`
-	// Template name
+	// The template name of the partition scheme.
 	TemplateName pulumi.StringOutput `pulumi:"templateName"`
 }
 
@@ -132,32 +132,32 @@ func GetInstallationTemplatePartitionSchemeHardwareRaid(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstallationTemplatePartitionSchemeHardwareRaid resources.
 type installationTemplatePartitionSchemeHardwareRaidState struct {
-	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
 	Disks []string `pulumi:"disks"`
-	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
 	Mode *string `pulumi:"mode"`
-	// Hardware RAID name
+	// Hardware RAID name.
 	Name *string `pulumi:"name"`
-	// name of this partitioning scheme
+	// The partition scheme name.
 	SchemeName *string `pulumi:"schemeName"`
-	// Specifies the creation order of the hardware RAID
+	// Specifies the creation order of the hardware RAID.
 	Step *int `pulumi:"step"`
-	// Template name
+	// The template name of the partition scheme.
 	TemplateName *string `pulumi:"templateName"`
 }
 
 type InstallationTemplatePartitionSchemeHardwareRaidState struct {
-	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
 	Disks pulumi.StringArrayInput
-	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
 	Mode pulumi.StringPtrInput
-	// Hardware RAID name
+	// Hardware RAID name.
 	Name pulumi.StringPtrInput
-	// name of this partitioning scheme
+	// The partition scheme name.
 	SchemeName pulumi.StringPtrInput
-	// Specifies the creation order of the hardware RAID
+	// Specifies the creation order of the hardware RAID.
 	Step pulumi.IntPtrInput
-	// Template name
+	// The template name of the partition scheme.
 	TemplateName pulumi.StringPtrInput
 }
 
@@ -166,33 +166,33 @@ func (InstallationTemplatePartitionSchemeHardwareRaidState) ElementType() reflec
 }
 
 type installationTemplatePartitionSchemeHardwareRaidArgs struct {
-	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
 	Disks []string `pulumi:"disks"`
-	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
 	Mode string `pulumi:"mode"`
-	// Hardware RAID name
+	// Hardware RAID name.
 	Name *string `pulumi:"name"`
-	// name of this partitioning scheme
+	// The partition scheme name.
 	SchemeName string `pulumi:"schemeName"`
-	// Specifies the creation order of the hardware RAID
+	// Specifies the creation order of the hardware RAID.
 	Step int `pulumi:"step"`
-	// Template name
+	// The template name of the partition scheme.
 	TemplateName string `pulumi:"templateName"`
 }
 
 // The set of arguments for constructing a InstallationTemplatePartitionSchemeHardwareRaid resource.
 type InstallationTemplatePartitionSchemeHardwareRaidArgs struct {
-	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+	// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
 	Disks pulumi.StringArrayInput
-	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+	// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
 	Mode pulumi.StringInput
-	// Hardware RAID name
+	// Hardware RAID name.
 	Name pulumi.StringPtrInput
-	// name of this partitioning scheme
+	// The partition scheme name.
 	SchemeName pulumi.StringInput
-	// Specifies the creation order of the hardware RAID
+	// Specifies the creation order of the hardware RAID.
 	Step pulumi.IntInput
-	// Template name
+	// The template name of the partition scheme.
 	TemplateName pulumi.StringInput
 }
 
@@ -283,32 +283,32 @@ func (o InstallationTemplatePartitionSchemeHardwareRaidOutput) ToInstallationTem
 	return o
 }
 
-// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+// Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
 func (o InstallationTemplatePartitionSchemeHardwareRaidOutput) Disks() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemeHardwareRaid) pulumi.StringArrayOutput { return v.Disks }).(pulumi.StringArrayOutput)
 }
 
-// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+// RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
 func (o InstallationTemplatePartitionSchemeHardwareRaidOutput) Mode() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemeHardwareRaid) pulumi.StringOutput { return v.Mode }).(pulumi.StringOutput)
 }
 
-// Hardware RAID name
+// Hardware RAID name.
 func (o InstallationTemplatePartitionSchemeHardwareRaidOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemeHardwareRaid) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }
 
-// name of this partitioning scheme
+// The partition scheme name.
 func (o InstallationTemplatePartitionSchemeHardwareRaidOutput) SchemeName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemeHardwareRaid) pulumi.StringOutput { return v.SchemeName }).(pulumi.StringOutput)
 }
 
-// Specifies the creation order of the hardware RAID
+// Specifies the creation order of the hardware RAID.
 func (o InstallationTemplatePartitionSchemeHardwareRaidOutput) Step() pulumi.IntOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemeHardwareRaid) pulumi.IntOutput { return v.Step }).(pulumi.IntOutput)
 }
 
-// Template name
+// The template name of the partition scheme.
 func (o InstallationTemplatePartitionSchemeHardwareRaidOutput) TemplateName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemeHardwareRaid) pulumi.StringOutput { return v.TemplateName }).(pulumi.StringOutput)
 }

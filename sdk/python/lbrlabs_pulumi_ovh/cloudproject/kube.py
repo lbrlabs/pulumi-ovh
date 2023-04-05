@@ -40,7 +40,7 @@ class KubeArgs:
         :param pulumi.Input['KubePrivateNetworkConfigurationArgs'] private_network_configuration: The private network configuration
                * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
                * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
-        :param pulumi.Input[str] private_network_id: OpenStack private network ID to use.
+        :param pulumi.Input[str] private_network_id: OpenStack private network (or vrack) ID to use.
                Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
         :param pulumi.Input[str] update_policy: Cluster update policy. Choose between [ALWAYS_UPDATE, MINIMAL_DOWNTIME, NEVER_UPDATE].
         :param pulumi.Input[str] version: kubernetes version to use.
@@ -134,7 +134,7 @@ class KubeArgs:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[pulumi.Input[str]]:
         """
-        OpenStack private network ID to use.
+        OpenStack private network (or vrack) ID to use.
         Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
         """
         return pulumi.get(self, "private_network_id")
@@ -203,7 +203,7 @@ class _KubeState:
         :param pulumi.Input['KubePrivateNetworkConfigurationArgs'] private_network_configuration: The private network configuration
                * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
                * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
-        :param pulumi.Input[str] private_network_id: OpenStack private network ID to use.
+        :param pulumi.Input[str] private_network_id: OpenStack private network (or vrack) ID to use.
                Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
         :param pulumi.Input[str] region: a valid OVHcloud public cloud region ID in which the kubernetes
                cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
@@ -353,7 +353,7 @@ class _KubeState:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[pulumi.Input[str]]:
         """
-        OpenStack private network ID to use.
+        OpenStack private network (or vrack) ID to use.
         Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
         """
         return pulumi.get(self, "private_network_id")
@@ -475,7 +475,7 @@ class Kube(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['KubePrivateNetworkConfigurationArgs']] private_network_configuration: The private network configuration
                * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
                * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
-        :param pulumi.Input[str] private_network_id: OpenStack private network ID to use.
+        :param pulumi.Input[str] private_network_id: OpenStack private network (or vrack) ID to use.
                Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
         :param pulumi.Input[str] region: a valid OVHcloud public cloud region ID in which the kubernetes
                cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
@@ -602,7 +602,7 @@ class Kube(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['KubePrivateNetworkConfigurationArgs']] private_network_configuration: The private network configuration
                * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
                * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
-        :param pulumi.Input[str] private_network_id: OpenStack private network ID to use.
+        :param pulumi.Input[str] private_network_id: OpenStack private network (or vrack) ID to use.
                Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
         :param pulumi.Input[str] region: a valid OVHcloud public cloud region ID in which the kubernetes
                cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
@@ -710,7 +710,7 @@ class Kube(pulumi.CustomResource):
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Output[Optional[str]]:
         """
-        OpenStack private network ID to use.
+        OpenStack private network (or vrack) ID to use.
         Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
         """
         return pulumi.get(self, "private_network_id")

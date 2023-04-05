@@ -28,12 +28,6 @@ class MongoDbUserArgs:
         :param pulumi.Input[str] password_reset: See Argument Reference above.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Roles the user belongs to.
                Available roles:
-               * `backup`
-               * `dbAdminAnyDatabase`
-               * `readAnyDatabase`
-               * `readWriteAnyDatabase`
-               * `restore`
-               * `userAdminAnyDatabase`
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
         pulumi.set(__self__, "service_name", service_name)
@@ -99,12 +93,6 @@ class MongoDbUserArgs:
         """
         Roles the user belongs to.
         Available roles:
-        * `backup`
-        * `dbAdminAnyDatabase`
-        * `readAnyDatabase`
-        * `readWriteAnyDatabase`
-        * `restore`
-        * `userAdminAnyDatabase`
         """
         return pulumi.get(self, "roles")
 
@@ -133,12 +121,6 @@ class _MongoDbUserState:
         :param pulumi.Input[str] password_reset: See Argument Reference above.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Roles the user belongs to.
                Available roles:
-               * `backup`
-               * `dbAdminAnyDatabase`
-               * `readAnyDatabase`
-               * `readWriteAnyDatabase`
-               * `restore`
-               * `userAdminAnyDatabase`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] status: Current status of the user.
@@ -226,12 +208,6 @@ class _MongoDbUserState:
         """
         Roles the user belongs to.
         Available roles:
-        * `backup`
-        * `dbAdminAnyDatabase`
-        * `readAnyDatabase`
-        * `readWriteAnyDatabase`
-        * `restore`
-        * `userAdminAnyDatabase`
         """
         return pulumi.get(self, "roles")
 
@@ -292,12 +268,6 @@ class MongoDbUser(pulumi.CustomResource):
         :param pulumi.Input[str] password_reset: See Argument Reference above.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Roles the user belongs to.
                Available roles:
-               * `backup`
-               * `dbAdminAnyDatabase`
-               * `readAnyDatabase`
-               * `readWriteAnyDatabase`
-               * `restore`
-               * `userAdminAnyDatabase`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         """
@@ -391,12 +361,6 @@ class MongoDbUser(pulumi.CustomResource):
         :param pulumi.Input[str] password_reset: See Argument Reference above.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] roles: Roles the user belongs to.
                Available roles:
-               * `backup`
-               * `dbAdminAnyDatabase`
-               * `readAnyDatabase`
-               * `readWriteAnyDatabase`
-               * `restore`
-               * `userAdminAnyDatabase`
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] status: Current status of the user.
@@ -461,12 +425,6 @@ class MongoDbUser(pulumi.CustomResource):
         """
         Roles the user belongs to.
         Available roles:
-        * `backup`
-        * `dbAdminAnyDatabase`
-        * `readAnyDatabase`
-        * `readWriteAnyDatabase`
-        * `restore`
-        * `userAdminAnyDatabase`
         """
         return pulumi.get(self, "roles")
 

@@ -13,18 +13,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const myfailoverip = pulumi.output(ovh.CloudProject.getFailoverIpAttach({
+ * const myfailoverip = ovh.CloudProject.getFailoverIpAttach({
  *     ip: "XXXXXX",
  *     serviceName: "XXXXXX",
- * }));
+ * });
  * ```
  */
 export function getFailoverIpAttach(args: GetFailoverIpAttachArgs, opts?: pulumi.InvokeOptions): Promise<GetFailoverIpAttachResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getFailoverIpAttach:getFailoverIpAttach", {
         "block": args.block,
         "continentCode": args.continentCode,
@@ -87,9 +84,23 @@ export interface GetFailoverIpAttachResult {
     readonly status: string;
     readonly subType: string;
 }
-
+/**
+ * Use this data source to get the details of a failover ip address of a service in a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const myfailoverip = ovh.CloudProject.getFailoverIpAttach({
+ *     ip: "XXXXXX",
+ *     serviceName: "XXXXXX",
+ * });
+ * ```
+ */
 export function getFailoverIpAttachOutput(args: GetFailoverIpAttachOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetFailoverIpAttachResult> {
-    return pulumi.output(args).apply(a => getFailoverIpAttach(a, opts))
+    return pulumi.output(args).apply((a: any) => getFailoverIpAttach(a, opts))
 }
 
 /**

@@ -14,6 +14,24 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     {
         /// <summary>
         /// Use this data source to retrieve list of names of the account's SSH keys.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Ovh = Pulumi.Ovh;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var mykeys = Ovh.Me.GetSshKeys.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetSshKeysResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetSshKeysResult>("ovh:Me/getSshKeys:getSshKeys", InvokeArgs.Empty, options.WithDefaults());

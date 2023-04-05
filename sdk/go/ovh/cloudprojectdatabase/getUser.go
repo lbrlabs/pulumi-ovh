@@ -58,10 +58,6 @@ type LookupUserArgs struct {
 	// The engine of the database cluster you want user information. To get a full list of available engine visit :
 	// [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `cassandra`
-	// * `kafka`
-	// * `kafkaConnect`
-	// * `mysql`
 	Engine string `pulumi:"engine"`
 	// Name of the user.
 	Name string `pulumi:"name"`
@@ -108,10 +104,6 @@ type LookupUserOutputArgs struct {
 	// The engine of the database cluster you want user information. To get a full list of available engine visit :
 	// [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `cassandra`
-	// * `kafka`
-	// * `kafkaConnect`
-	// * `mysql`
 	Engine pulumi.StringInput `pulumi:"engine"`
 	// Name of the user.
 	Name pulumi.StringInput `pulumi:"name"`

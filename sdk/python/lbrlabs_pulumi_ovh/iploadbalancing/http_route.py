@@ -244,7 +244,7 @@ class HttpRoute(pulumi.CustomResource):
         httpsredirect = ovh.ip_load_balancing.HttpRoute("httpsredirect",
             action=ovh.ip_load_balancing.HttpRouteActionArgs(
                 status=302,
-                target=f"https://{host}{path}{arguments}",
+                target="https://${host}${path}${arguments}",
                 type="redirect",
             ),
             display_name="Redirect to HTTPS",
@@ -280,7 +280,7 @@ class HttpRoute(pulumi.CustomResource):
         httpsredirect = ovh.ip_load_balancing.HttpRoute("httpsredirect",
             action=ovh.ip_load_balancing.HttpRouteActionArgs(
                 status=302,
-                target=f"https://{host}{path}{arguments}",
+                target="https://${host}${path}${arguments}",
                 type="redirect",
             ),
             display_name="Redirect to HTTPS",

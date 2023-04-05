@@ -22,11 +22,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getOpenSearchPattern(args: GetOpenSearchPatternArgs, opts?: pulumi.InvokeOptions): Promise<GetOpenSearchPatternResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getOpenSearchPattern:getOpenSearchPattern", {
         "clusterId": args.clusterId,
         "id": args.id,
@@ -78,9 +75,25 @@ export interface GetOpenSearchPatternResult {
      */
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get information about a pattern of a opensearch cluster associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const pattern = ovh.CloudProject.getOpenSearchPattern({
+ *     serviceName: "XXX",
+ *     clusterId: "YYY",
+ *     id: "ZZZ",
+ * });
+ * export const patternPattern = pattern.then(pattern => pattern.pattern);
+ * ```
+ */
 export function getOpenSearchPatternOutput(args: GetOpenSearchPatternOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetOpenSearchPatternResult> {
-    return pulumi.output(args).apply(a => getOpenSearchPattern(a, opts))
+    return pulumi.output(args).apply((a: any) => getOpenSearchPattern(a, opts))
 }
 
 /**

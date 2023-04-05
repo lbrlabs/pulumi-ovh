@@ -478,9 +478,9 @@ type HttpRouteRuleType struct {
 	// Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
 	Field *string `pulumi:"field"`
 	// Matching operator. Not all operators are available for all fields. See "availableRules"
-	// * `negate`- Invert the matching operator effect
-	Match  *string `pulumi:"match"`
-	Negate *bool   `pulumi:"negate"`
+	Match *string `pulumi:"match"`
+	// Invert the matching operator effect
+	Negate *bool `pulumi:"negate"`
 	// Value to match against this match. Interpretation if this field depends on the match and field
 	Pattern *string `pulumi:"pattern"`
 	// Id of your rule
@@ -504,9 +504,9 @@ type HttpRouteRuleTypeArgs struct {
 	// Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
 	Field pulumi.StringPtrInput `pulumi:"field"`
 	// Matching operator. Not all operators are available for all fields. See "availableRules"
-	// * `negate`- Invert the matching operator effect
-	Match  pulumi.StringPtrInput `pulumi:"match"`
-	Negate pulumi.BoolPtrInput   `pulumi:"negate"`
+	Match pulumi.StringPtrInput `pulumi:"match"`
+	// Invert the matching operator effect
+	Negate pulumi.BoolPtrInput `pulumi:"negate"`
 	// Value to match against this match. Interpretation if this field depends on the match and field
 	Pattern pulumi.StringPtrInput `pulumi:"pattern"`
 	// Id of your rule
@@ -572,11 +572,11 @@ func (o HttpRouteRuleTypeOutput) Field() pulumi.StringPtrOutput {
 }
 
 // Matching operator. Not all operators are available for all fields. See "availableRules"
-// * `negate`- Invert the matching operator effect
 func (o HttpRouteRuleTypeOutput) Match() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v HttpRouteRuleType) *string { return v.Match }).(pulumi.StringPtrOutput)
 }
 
+// Invert the matching operator effect
 func (o HttpRouteRuleTypeOutput) Negate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v HttpRouteRuleType) *bool { return v.Negate }).(pulumi.BoolPtrOutput)
 }
@@ -1977,9 +1977,9 @@ type TcpRouteRuleType struct {
 	// Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
 	Field *string `pulumi:"field"`
 	// Matching operator. Not all operators are available for all fields. See "availableRules"
-	// * `negate`- Invert the matching operator effect
-	Match  *string `pulumi:"match"`
-	Negate *bool   `pulumi:"negate"`
+	Match *string `pulumi:"match"`
+	// Invert the matching operator effect
+	Negate *bool `pulumi:"negate"`
 	// Value to match against this match. Interpretation if this field depends on the match and field
 	Pattern *string `pulumi:"pattern"`
 	// Id of your rule
@@ -2003,9 +2003,9 @@ type TcpRouteRuleTypeArgs struct {
 	// Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
 	Field pulumi.StringPtrInput `pulumi:"field"`
 	// Matching operator. Not all operators are available for all fields. See "availableRules"
-	// * `negate`- Invert the matching operator effect
-	Match  pulumi.StringPtrInput `pulumi:"match"`
-	Negate pulumi.BoolPtrInput   `pulumi:"negate"`
+	Match pulumi.StringPtrInput `pulumi:"match"`
+	// Invert the matching operator effect
+	Negate pulumi.BoolPtrInput `pulumi:"negate"`
 	// Value to match against this match. Interpretation if this field depends on the match and field
 	Pattern pulumi.StringPtrInput `pulumi:"pattern"`
 	// Id of your rule
@@ -2071,11 +2071,11 @@ func (o TcpRouteRuleTypeOutput) Field() pulumi.StringPtrOutput {
 }
 
 // Matching operator. Not all operators are available for all fields. See "availableRules"
-// * `negate`- Invert the matching operator effect
 func (o TcpRouteRuleTypeOutput) Match() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v TcpRouteRuleType) *string { return v.Match }).(pulumi.StringPtrOutput)
 }
 
+// Invert the matching operator effect
 func (o TcpRouteRuleTypeOutput) Negate() pulumi.BoolPtrOutput {
 	return o.ApplyT(func(v TcpRouteRuleType) *bool { return v.Negate }).(pulumi.BoolPtrOutput)
 }

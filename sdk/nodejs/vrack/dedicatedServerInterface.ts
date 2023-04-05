@@ -11,11 +11,15 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  * import * as ovh from "@pulumi/ovh";
  *
- * const vdsi = new ovh.Vrack.DedicatedServerInterface("vdsi", {
- *     interfaceId: "67890",
- *     serviceName: "12345",
+ * const server = ovh.getServer({
+ *     serviceName: "nsxxxxxxx.ip-xx-xx-xx.eu",
+ * });
+ * const vdsi = new ovh.vrack.DedicatedServerInterface("vdsi", {
+ *     serviceName: "pn-xxxxxxx",
+ *     interfaceId: server.then(server => server.enabledVrackVnis?.[0]),
  * });
  * ```
  */

@@ -109,10 +109,12 @@ class DedicatedServerInterface(pulumi.CustomResource):
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh
+        import pulumi_ovh as ovh
 
+        server = ovh.get_server(service_name="nsxxxxxxx.ip-xx-xx-xx.eu")
         vdsi = ovh.vrack.DedicatedServerInterface("vdsi",
-            interface_id="67890",
-            service_name="12345")
+            service_name="pn-xxxxxxx",
+            interface_id=server.enabled_vrack_vnis[0])
         ```
 
         :param str resource_name: The name of the resource.
@@ -135,10 +137,12 @@ class DedicatedServerInterface(pulumi.CustomResource):
         ```python
         import pulumi
         import lbrlabs_pulumi_ovh as ovh
+        import pulumi_ovh as ovh
 
+        server = ovh.get_server(service_name="nsxxxxxxx.ip-xx-xx-xx.eu")
         vdsi = ovh.vrack.DedicatedServerInterface("vdsi",
-            interface_id="67890",
-            service_name="12345")
+            service_name="pn-xxxxxxx",
+            interface_id=server.enabled_vrack_vnis[0])
         ```
 
         :param str resource_name: The name of the resource.

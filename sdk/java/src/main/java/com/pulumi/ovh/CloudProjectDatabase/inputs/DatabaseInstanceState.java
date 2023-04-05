@@ -49,8 +49,6 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
     /**
      * The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `mysql`
-     * * `postgresql`
      * 
      */
     @Import(name="engine")
@@ -59,8 +57,6 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
     /**
      * @return The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `mysql`
-     * * `postgresql`
      * 
      */
     public Optional<Output<String>> engine() {
@@ -172,8 +168,6 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         /**
          * @param engine The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
          * Available engines:
-         * * `mysql`
-         * * `postgresql`
          * 
          * @return builder
          * 
@@ -186,8 +180,6 @@ public final class DatabaseInstanceState extends com.pulumi.resources.ResourceAr
         /**
          * @param engine The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
          * Available engines:
-         * * `mysql`
-         * * `postgresql`
          * 
          * @return builder
          * 

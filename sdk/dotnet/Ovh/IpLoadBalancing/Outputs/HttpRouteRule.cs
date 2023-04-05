@@ -20,9 +20,11 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing.Outputs
         public readonly string? Field;
         /// <summary>
         /// Matching operator. Not all operators are available for all fields. See "availableRules"
-        /// * `negate`- Invert the matching operator effect
         /// </summary>
         public readonly string? Match;
+        /// <summary>
+        /// Invert the matching operator effect
+        /// </summary>
         public readonly bool? Negate;
         /// <summary>
         /// Value to match against this match. Interpretation if this field depends on the match and field

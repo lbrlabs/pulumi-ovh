@@ -14,6 +14,24 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     {
         /// <summary>
         /// Use this data source to retrieve a list of the names of the account's IPXE Scripts.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using Pulumi;
+        /// using Ovh = Pulumi.Ovh;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var scripts = Ovh.Me.GetIpxeScripts.Invoke();
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetIpxeScriptsResult> InvokeAsync(InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetIpxeScriptsResult>("ovh:Me/getIpxeScripts:getIpxeScripts", InvokeArgs.Empty, options.WithDefaults());

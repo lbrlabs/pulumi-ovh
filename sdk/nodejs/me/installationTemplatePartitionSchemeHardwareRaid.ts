@@ -71,27 +71,27 @@ export class InstallationTemplatePartitionSchemeHardwareRaid extends pulumi.Cust
     }
 
     /**
-     * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+     * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
      */
     public readonly disks!: pulumi.Output<string[]>;
     /**
-     * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+     * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
      */
     public readonly mode!: pulumi.Output<string>;
     /**
-     * Hardware RAID name
+     * Hardware RAID name.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * name of this partitioning scheme
+     * The partition scheme name.
      */
     public readonly schemeName!: pulumi.Output<string>;
     /**
-     * Specifies the creation order of the hardware RAID
+     * Specifies the creation order of the hardware RAID.
      */
     public readonly step!: pulumi.Output<number>;
     /**
-     * Template name
+     * The template name of the partition scheme.
      */
     public readonly templateName!: pulumi.Output<string>;
 
@@ -148,27 +148,27 @@ export class InstallationTemplatePartitionSchemeHardwareRaid extends pulumi.Cust
  */
 export interface InstallationTemplatePartitionSchemeHardwareRaidState {
     /**
-     * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+     * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
      */
     disks?: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+     * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
      */
     mode?: pulumi.Input<string>;
     /**
-     * Hardware RAID name
+     * Hardware RAID name.
      */
     name?: pulumi.Input<string>;
     /**
-     * name of this partitioning scheme
+     * The partition scheme name.
      */
     schemeName?: pulumi.Input<string>;
     /**
-     * Specifies the creation order of the hardware RAID
+     * Specifies the creation order of the hardware RAID.
      */
     step?: pulumi.Input<number>;
     /**
-     * Template name
+     * The template name of the partition scheme.
      */
     templateName?: pulumi.Input<string>;
 }
@@ -178,27 +178,27 @@ export interface InstallationTemplatePartitionSchemeHardwareRaidState {
  */
 export interface InstallationTemplatePartitionSchemeHardwareRaidArgs {
     /**
-     * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+     * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
      */
     disks: pulumi.Input<pulumi.Input<string>[]>;
     /**
-     * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+     * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
      */
     mode: pulumi.Input<string>;
     /**
-     * Hardware RAID name
+     * Hardware RAID name.
      */
     name?: pulumi.Input<string>;
     /**
-     * name of this partitioning scheme
+     * The partition scheme name.
      */
     schemeName: pulumi.Input<string>;
     /**
-     * Specifies the creation order of the hardware RAID
+     * Specifies the creation order of the hardware RAID.
      */
     step: pulumi.Input<number>;
     /**
-     * Template name
+     * The template name of the partition scheme.
      */
     templateName: pulumi.Input<string>;
 }

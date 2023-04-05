@@ -13,15 +13,12 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const mykeys = pulumi.output(ovh.Me.getSshKeys());
+ * const mykeys = ovh.Me.getSshKeys({});
  * ```
  */
 export function getSshKeys(opts?: pulumi.InvokeOptions): Promise<GetSshKeysResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Me/getSshKeys:getSshKeys", {
     }, opts);
 }

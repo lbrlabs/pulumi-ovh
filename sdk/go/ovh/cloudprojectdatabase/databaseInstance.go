@@ -41,9 +41,9 @@ import (
 //				return err
 //			}
 //			_, err = CloudProjectDatabase.NewDatabaseInstance(ctx, "database", &CloudProjectDatabase.DatabaseInstanceArgs{
-//				ServiceName: pulumi.String(db.ServiceName),
-//				Engine:      pulumi.String(db.Engine),
-//				ClusterId:   pulumi.String(db.Id),
+//				ServiceName: *pulumi.String(db.ServiceName),
+//				Engine:      *pulumi.String(db.Engine),
+//				ClusterId:   *pulumi.String(db.Id),
 //			})
 //			if err != nil {
 //				return err
@@ -72,8 +72,6 @@ type DatabaseInstance struct {
 	Default pulumi.BoolOutput `pulumi:"default"`
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `mysql`
-	// * `postgresql`
 	Engine pulumi.StringOutput `pulumi:"engine"`
 	// Name of the database.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -127,8 +125,6 @@ type databaseInstanceState struct {
 	Default *bool `pulumi:"default"`
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `mysql`
-	// * `postgresql`
 	Engine *string `pulumi:"engine"`
 	// Name of the database.
 	Name *string `pulumi:"name"`
@@ -144,8 +140,6 @@ type DatabaseInstanceState struct {
 	Default pulumi.BoolPtrInput
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `mysql`
-	// * `postgresql`
 	Engine pulumi.StringPtrInput
 	// Name of the database.
 	Name pulumi.StringPtrInput
@@ -163,8 +157,6 @@ type databaseInstanceArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `mysql`
-	// * `postgresql`
 	Engine string `pulumi:"engine"`
 	// Name of the database.
 	Name *string `pulumi:"name"`
@@ -179,8 +171,6 @@ type DatabaseInstanceArgs struct {
 	ClusterId pulumi.StringInput
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `mysql`
-	// * `postgresql`
 	Engine pulumi.StringInput
 	// Name of the database.
 	Name pulumi.StringPtrInput
@@ -288,8 +278,6 @@ func (o DatabaseInstanceOutput) Default() pulumi.BoolOutput {
 
 // The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 // Available engines:
-// * `mysql`
-// * `postgresql`
 func (o DatabaseInstanceOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v *DatabaseInstance) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
 }

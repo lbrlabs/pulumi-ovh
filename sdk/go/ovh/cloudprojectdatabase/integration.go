@@ -49,11 +49,11 @@ import (
 //				return err
 //			}
 //			_, err = CloudProjectDatabase.NewIntegration(ctx, "integration", &CloudProjectDatabase.IntegrationArgs{
-//				ServiceName:          pulumi.String(dbpostgresql.ServiceName),
-//				Engine:               pulumi.String(dbpostgresql.Engine),
-//				ClusterId:            pulumi.String(dbpostgresql.Id),
-//				SourceServiceId:      pulumi.String(dbpostgresql.Id),
-//				DestinationServiceId: pulumi.String(dbopensearch.Id),
+//				ServiceName:          *pulumi.String(dbpostgresql.ServiceName),
+//				Engine:               *pulumi.String(dbpostgresql.Engine),
+//				ClusterId:            *pulumi.String(dbpostgresql.Id),
+//				SourceServiceId:      *pulumi.String(dbpostgresql.Id),
+//				DestinationServiceId: *pulumi.String(dbopensearch.Id),
 //				Type:                 pulumi.String("opensearchLogs"),
 //			})
 //			if err != nil {
@@ -95,15 +95,6 @@ type Integration struct {
 	Status pulumi.StringOutput `pulumi:"status"`
 	// Type of the integration.
 	// Available types:
-	// * `grafanaDashboard`
-	// * `grafanaDatasource`
-	// * `kafkaConnect`
-	// * `kafkaLogs`
-	// * `kafkaMirrorMaker`
-	// * `m3aggregator`
-	// * `m3dbMetrics`
-	// * `opensearchLogs`
-	// * `postgresqlMetrics`
 	Type pulumi.StringOutput `pulumi:"type"`
 }
 
@@ -170,15 +161,6 @@ type integrationState struct {
 	Status *string `pulumi:"status"`
 	// Type of the integration.
 	// Available types:
-	// * `grafanaDashboard`
-	// * `grafanaDatasource`
-	// * `kafkaConnect`
-	// * `kafkaLogs`
-	// * `kafkaMirrorMaker`
-	// * `m3aggregator`
-	// * `m3dbMetrics`
-	// * `opensearchLogs`
-	// * `postgresqlMetrics`
 	Type *string `pulumi:"type"`
 }
 
@@ -201,15 +183,6 @@ type IntegrationState struct {
 	Status pulumi.StringPtrInput
 	// Type of the integration.
 	// Available types:
-	// * `grafanaDashboard`
-	// * `grafanaDatasource`
-	// * `kafkaConnect`
-	// * `kafkaLogs`
-	// * `kafkaMirrorMaker`
-	// * `m3aggregator`
-	// * `m3dbMetrics`
-	// * `opensearchLogs`
-	// * `postgresqlMetrics`
 	Type pulumi.StringPtrInput
 }
 
@@ -234,15 +207,6 @@ type integrationArgs struct {
 	SourceServiceId string `pulumi:"sourceServiceId"`
 	// Type of the integration.
 	// Available types:
-	// * `grafanaDashboard`
-	// * `grafanaDatasource`
-	// * `kafkaConnect`
-	// * `kafkaLogs`
-	// * `kafkaMirrorMaker`
-	// * `m3aggregator`
-	// * `m3dbMetrics`
-	// * `opensearchLogs`
-	// * `postgresqlMetrics`
 	Type *string `pulumi:"type"`
 }
 
@@ -264,15 +228,6 @@ type IntegrationArgs struct {
 	SourceServiceId pulumi.StringInput
 	// Type of the integration.
 	// Available types:
-	// * `grafanaDashboard`
-	// * `grafanaDatasource`
-	// * `kafkaConnect`
-	// * `kafkaLogs`
-	// * `kafkaMirrorMaker`
-	// * `m3aggregator`
-	// * `m3dbMetrics`
-	// * `opensearchLogs`
-	// * `postgresqlMetrics`
 	Type pulumi.StringPtrInput
 }
 
@@ -402,15 +357,6 @@ func (o IntegrationOutput) Status() pulumi.StringOutput {
 
 // Type of the integration.
 // Available types:
-// * `grafanaDashboard`
-// * `grafanaDatasource`
-// * `kafkaConnect`
-// * `kafkaLogs`
-// * `kafkaMirrorMaker`
-// * `m3aggregator`
-// * `m3dbMetrics`
-// * `opensearchLogs`
-// * `postgresqlMetrics`
 func (o IntegrationOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *Integration) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

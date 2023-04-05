@@ -417,8 +417,7 @@ class IpServiceRoutedTo(dict):
     def __init__(__self__, *,
                  service_name: Optional[str] = None):
         """
-        :param str service_name: Service where ip is routed to
-               * `service_name`: service name
+        :param str service_name: service name
         """
         if service_name is not None:
             pulumi.set(__self__, "service_name", service_name)
@@ -427,8 +426,7 @@ class IpServiceRoutedTo(dict):
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[str]:
         """
-        Service where ip is routed to
-        * `service_name`: service name
+        service name
         """
         return pulumi.get(self, "service_name")
 

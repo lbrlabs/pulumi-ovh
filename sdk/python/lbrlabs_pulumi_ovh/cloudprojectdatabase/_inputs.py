@@ -22,11 +22,6 @@ class OpensearchUserAclArgs:
         :param pulumi.Input[str] pattern: Pattern of the ACL.
         :param pulumi.Input[str] permission: Permission of the ACL
                Available permission:
-               * `admin`
-               * `read`
-               * `write`
-               * `readwrite`
-               * `deny`
         """
         pulumi.set(__self__, "pattern", pattern)
         pulumi.set(__self__, "permission", permission)
@@ -49,11 +44,6 @@ class OpensearchUserAclArgs:
         """
         Permission of the ACL
         Available permission:
-        * `admin`
-        * `read`
-        * `write`
-        * `readwrite`
-        * `deny`
         """
         return pulumi.get(self, "permission")
 

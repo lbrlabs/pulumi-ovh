@@ -58,6 +58,15 @@ class AwaitableGetIdentityUsersResult(GetIdentityUsersResult):
 def get_identity_users(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetIdentityUsersResult:
     """
     Use this data source to retrieve list of user logins of the account's identity users.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ovh as ovh
+
+    users = ovh.Me.get_identity_users()
+    ```
     """
     __args__ = dict()
     opts = pulumi.InvokeOptions.merge(_utilities.get_invoke_opts_defaults(), opts)

@@ -26,11 +26,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getContainerRegistryUsers(args: GetContainerRegistryUsersArgs, opts?: pulumi.InvokeOptions): Promise<GetContainerRegistryUsersResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getContainerRegistryUsers:getContainerRegistryUsers", {
         "registryId": args.registryId,
         "serviceName": args.serviceName,
@@ -67,9 +64,27 @@ export interface GetContainerRegistryUsersResult {
     readonly results: outputs.CloudProject.GetContainerRegistryUsersResult[];
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get the list of users of a container registry associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const registry = ovh.CloudProject.getContainerRegistry({
+ *     serviceName: "XXXXXX",
+ *     registryId: "yyyy",
+ * });
+ * const users = ovh.CloudProject.getContainerRegistryUsers({
+ *     serviceName: ovh_cloud_project_containerregistry.registry.service_name,
+ *     registryId: ovh_cloud_project_containerregistry.registry.id,
+ * });
+ * ```
+ */
 export function getContainerRegistryUsersOutput(args: GetContainerRegistryUsersOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetContainerRegistryUsersResult> {
-    return pulumi.output(args).apply(a => getContainerRegistryUsers(a, opts))
+    return pulumi.output(args).apply((a: any) => getContainerRegistryUsers(a, opts))
 }
 
 /**

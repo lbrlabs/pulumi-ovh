@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *     public static void stack(Context ctx) {
  *         var mytemplate = new InstallationTemplate(&#34;mytemplate&#34;, InstallationTemplateArgs.builder()        
  *             .baseTemplateName(&#34;centos7_64&#34;)
- *             .defaultLanguage(&#34;fr&#34;)
+ *             .defaultLanguage(&#34;en&#34;)
  *             .templateName(&#34;mytemplate&#34;)
  *             .build());
  * 
@@ -65,70 +65,70 @@ import javax.annotation.Nullable;
 @ResourceType(type="ovh:Me/installationTemplate:InstallationTemplate")
 public class InstallationTemplate extends com.pulumi.resources.CustomResource {
     /**
-     * List of all language available for this template
+     * List of all language available for this template.
      * 
      */
     @Export(name="availableLanguages", type=List.class, parameters={String.class})
     private Output<List<String>> availableLanguages;
 
     /**
-     * @return List of all language available for this template
+     * @return List of all language available for this template.
      * 
      */
     public Output<List<String>> availableLanguages() {
         return this.availableLanguages;
     }
     /**
-     * OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+     * The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
      * 
      */
     @Export(name="baseTemplateName", type=String.class, parameters={})
     private Output<String> baseTemplateName;
 
     /**
-     * @return OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+     * @return The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
      * 
      */
     public Output<String> baseTemplateName() {
         return this.baseTemplateName;
     }
     /**
-     * This distribution is new and, although tested and functional, may still display odd behaviour
+     * This distribution is new and, although tested and functional, may still display odd behaviour.
      * 
      */
     @Export(name="beta", type=Boolean.class, parameters={})
     private Output<Boolean> beta;
 
     /**
-     * @return This distribution is new and, although tested and functional, may still display odd behaviour
+     * @return This distribution is new and, although tested and functional, may still display odd behaviour.
      * 
      */
     public Output<Boolean> beta() {
         return this.beta;
     }
     /**
-     * This template bit format (32 or 64)
+     * This template bit format (32 or 64).
      * 
      */
     @Export(name="bitFormat", type=Integer.class, parameters={})
     private Output<Integer> bitFormat;
 
     /**
-     * @return This template bit format (32 or 64)
+     * @return This template bit format (32 or 64).
      * 
      */
     public Output<Integer> bitFormat() {
         return this.bitFormat;
     }
     /**
-     * Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+     * Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
      * 
      */
     @Export(name="category", type=String.class, parameters={})
     private Output<String> category;
 
     /**
-     * @return Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+     * @return Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
      * 
      */
     public Output<String> category() {
@@ -141,112 +141,112 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.customization);
     }
     /**
-     * The default language of this template
+     * The default language of this template.
      * 
      */
     @Export(name="defaultLanguage", type=String.class, parameters={})
     private Output<String> defaultLanguage;
 
     /**
-     * @return The default language of this template
+     * @return The default language of this template.
      * 
      */
     public Output<String> defaultLanguage() {
         return this.defaultLanguage;
     }
     /**
-     * is this distribution deprecated
+     * is this distribution deprecated.
      * 
      */
     @Export(name="deprecated", type=Boolean.class, parameters={})
     private Output<Boolean> deprecated;
 
     /**
-     * @return is this distribution deprecated
+     * @return is this distribution deprecated.
      * 
      */
     public Output<Boolean> deprecated() {
         return this.deprecated;
     }
     /**
-     * information about this template
+     * information about this template.
      * 
      */
     @Export(name="description", type=String.class, parameters={})
     private Output<String> description;
 
     /**
-     * @return information about this template
+     * @return information about this template.
      * 
      */
     public Output<String> description() {
         return this.description;
     }
     /**
-     * the distribution this template is based on
+     * the distribution this template is based on.
      * 
      */
     @Export(name="distribution", type=String.class, parameters={})
     private Output<String> distribution;
 
     /**
-     * @return the distribution this template is based on
+     * @return the distribution this template is based on.
      * 
      */
     public Output<String> distribution() {
         return this.distribution;
     }
     /**
-     * this template family type (bsd,linux,solaris,windows)
+     * this template family type (bsd,linux,solaris,windows).
      * 
      */
     @Export(name="family", type=String.class, parameters={})
     private Output<String> family;
 
     /**
-     * @return this template family type (bsd,linux,solaris,windows)
+     * @return this template family type (bsd,linux,solaris,windows).
      * 
      */
     public Output<String> family() {
         return this.family;
     }
     /**
-     * Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+     * Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
      * 
      */
     @Export(name="filesystems", type=List.class, parameters={String.class})
     private Output<List<String>> filesystems;
 
     /**
-     * @return Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+     * @return Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
      * 
      */
     public Output<List<String>> filesystems() {
         return this.filesystems;
     }
     /**
-     * This distribution supports hardware raid configuration through the OVH API
+     * This distribution supports hardware raid configuration through the OVHcloud API.
      * 
      */
     @Export(name="hardRaidConfiguration", type=Boolean.class, parameters={})
     private Output<Boolean> hardRaidConfiguration;
 
     /**
-     * @return This distribution supports hardware raid configuration through the OVH API
+     * @return This distribution supports hardware raid configuration through the OVHcloud API.
      * 
      */
     public Output<Boolean> hardRaidConfiguration() {
         return this.hardRaidConfiguration;
     }
     /**
-     * Date of last modification of the base image
+     * Date of last modification of the base image.
      * 
      */
     @Export(name="lastModification", type=String.class, parameters={})
     private Output<String> lastModification;
 
     /**
-     * @return Date of last modification of the base image
+     * @return Date of last modification of the base image.
      * 
      */
     public Output<String> lastModification() {
@@ -267,98 +267,70 @@ public class InstallationTemplate extends com.pulumi.resources.CustomResource {
         return this.lvmReady;
     }
     /**
-     * Remove default partition schemes at creation
+     * Remove default partition schemes at creation.
      * 
      */
     @Export(name="removeDefaultPartitionSchemes", type=Boolean.class, parameters={})
     private Output<Boolean> removeDefaultPartitionSchemes;
 
     /**
-     * @return Remove default partition schemes at creation
+     * @return Remove default partition schemes at creation.
      * 
      */
     public Output<Boolean> removeDefaultPartitionSchemes() {
         return this.removeDefaultPartitionSchemes;
     }
     /**
-     * This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVH kernel
+     * This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVHcloud kernel.
      * 
      */
     @Export(name="supportsDistributionKernel", type=Boolean.class, parameters={})
     private Output<Boolean> supportsDistributionKernel;
 
     /**
-     * @return This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVH kernel
+     * @return This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVHcloud kernel.
      * 
      */
     public Output<Boolean> supportsDistributionKernel() {
         return this.supportsDistributionKernel;
     }
     /**
-     * This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-     * 
-     */
-    @Export(name="supportsGptLabel", type=Boolean.class, parameters={})
-    private Output<Boolean> supportsGptLabel;
-
-    /**
-     * @return This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-     * 
-     */
-    public Output<Boolean> supportsGptLabel() {
-        return this.supportsGptLabel;
-    }
-    /**
-     * This distribution supports RTM software
+     * This distribution supports RTM software.
      * 
      */
     @Export(name="supportsRtm", type=Boolean.class, parameters={})
     private Output<Boolean> supportsRtm;
 
     /**
-     * @return This distribution supports RTM software
+     * @return This distribution supports RTM software.
      * 
      */
     public Output<Boolean> supportsRtm() {
         return this.supportsRtm;
     }
     /**
-     * This distribution supports the microsoft SQL server
+     * This distribution supports the microsoft SQL server.
      * 
      */
     @Export(name="supportsSqlServer", type=Boolean.class, parameters={})
     private Output<Boolean> supportsSqlServer;
 
     /**
-     * @return This distribution supports the microsoft SQL server
+     * @return This distribution supports the microsoft SQL server.
      * 
      */
     public Output<Boolean> supportsSqlServer() {
         return this.supportsSqlServer;
     }
     /**
-     * This distribution supports UEFI setup (no,only,yes)
-     * 
-     */
-    @Export(name="supportsUefi", type=String.class, parameters={})
-    private Output<String> supportsUefi;
-
-    /**
-     * @return This distribution supports UEFI setup (no,only,yes)
-     * 
-     */
-    public Output<String> supportsUefi() {
-        return this.supportsUefi;
-    }
-    /**
-     * This template name
+     * This template name.
      * 
      */
     @Export(name="templateName", type=String.class, parameters={})
     private Output<String> templateName;
 
     /**
-     * @return This template name
+     * @return This template name.
      * 
      */
     public Output<String> templateName() {

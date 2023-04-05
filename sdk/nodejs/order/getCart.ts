@@ -13,19 +13,17 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const mycart = pulumi.output(ovh.Order.getCart({
- *     description: "...",
+ * const mycart = ovh.Order.getCart({
+ *     description: "my cart",
  *     ovhSubsidiary: "fr",
- * }));
+ * });
  * ```
  */
 export function getCart(args: GetCartArgs, opts?: pulumi.InvokeOptions): Promise<GetCartResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Order/getCart:getCart", {
+        "assign": args.assign,
         "description": args.description,
         "expire": args.expire,
         "ovhSubsidiary": args.ovhSubsidiary,
@@ -36,6 +34,10 @@ export function getCart(args: GetCartArgs, opts?: pulumi.InvokeOptions): Promise
  * A collection of arguments for invoking getCart.
  */
 export interface GetCartArgs {
+    /**
+     * Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+     */
+    assign?: boolean;
     /**
      * Description of your cart
      */
@@ -54,6 +56,7 @@ export interface GetCartArgs {
  * A collection of values returned by getCart.
  */
 export interface GetCartResult {
+    readonly assign?: boolean;
     /**
      * Cart identifier
      */
@@ -74,15 +77,33 @@ export interface GetCartResult {
      */
     readonly readOnly: boolean;
 }
-
+/**
+ * Use this data source to create a temporary order cart to retrieve information order cart products.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const mycart = ovh.Order.getCart({
+ *     description: "my cart",
+ *     ovhSubsidiary: "fr",
+ * });
+ * ```
+ */
 export function getCartOutput(args: GetCartOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCartResult> {
-    return pulumi.output(args).apply(a => getCart(a, opts))
+    return pulumi.output(args).apply((a: any) => getCart(a, opts))
 }
 
 /**
  * A collection of arguments for invoking getCart.
  */
 export interface GetCartOutputArgs {
+    /**
+     * Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+     */
+    assign?: pulumi.Input<boolean>;
     /**
      * Description of your cart
      */

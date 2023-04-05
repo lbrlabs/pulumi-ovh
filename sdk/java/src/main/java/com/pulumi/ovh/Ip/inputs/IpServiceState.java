@@ -187,16 +187,14 @@ public final class IpServiceState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Service where ip is routed to
-     * * `service_name`: service name
+     * service name
      * 
      */
     @Import(name="serviceName")
     private @Nullable Output<String> serviceName;
 
     /**
-     * @return Service where ip is routed to
-     * * `service_name`: service name
+     * @return service name
      * 
      */
     public Optional<Output<String>> serviceName() {
@@ -516,8 +514,7 @@ public final class IpServiceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceName Service where ip is routed to
-         * * `service_name`: service name
+         * @param serviceName service name
          * 
          * @return builder
          * 
@@ -528,8 +525,7 @@ public final class IpServiceState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceName Service where ip is routed to
-         * * `service_name`: service name
+         * @param serviceName service name
          * 
          * @return builder
          * 

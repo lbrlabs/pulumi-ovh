@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const viplb = new ovh.Vrack.IpLoadbalancing("viplb", {
+ * const viplb = new ovh.vrack.IpLoadbalancing("viplb", {
  *     LoadbalancingId: "yyy",
  *     serviceName: "xxx",
  * });

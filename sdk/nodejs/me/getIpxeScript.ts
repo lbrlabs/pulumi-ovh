@@ -13,17 +13,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const script = pulumi.output(ovh.Me.getIpxeScript({
+ * const script = ovh.Me.getIpxeScript({
  *     name: "myscript",
- * }));
+ * });
  * ```
  */
 export function getIpxeScript(args: GetIpxeScriptArgs, opts?: pulumi.InvokeOptions): Promise<GetIpxeScriptResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Me/getIpxeScript:getIpxeScript", {
         "name": args.name,
     }, opts);
@@ -56,9 +53,22 @@ export interface GetIpxeScriptResult {
      */
     readonly script: string;
 }
-
+/**
+ * Use this data source to retrieve information about an IPXE Script.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const script = ovh.Me.getIpxeScript({
+ *     name: "myscript",
+ * });
+ * ```
+ */
 export function getIpxeScriptOutput(args: GetIpxeScriptOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIpxeScriptResult> {
-    return pulumi.output(args).apply(a => getIpxeScript(a, opts))
+    return pulumi.output(args).apply((a: any) => getIpxeScript(a, opts))
 }
 
 /**

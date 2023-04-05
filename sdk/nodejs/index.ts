@@ -36,6 +36,7 @@ import * as config from "./config";
 import * as dbaas from "./dbaas";
 import * as dedicated from "./dedicated";
 import * as domain from "./domain";
+import * as hosting from "./hosting";
 import * as ip from "./ip";
 import * as iploadbalancing from "./iploadbalancing";
 import * as me from "./me";
@@ -51,6 +52,7 @@ export {
     dbaas,
     dedicated,
     domain,
+    hosting,
     ip,
     iploadbalancing,
     me,

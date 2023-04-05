@@ -8,6 +8,7 @@ import com.pulumi.core.annotations.Import;
 import com.pulumi.ovh.CloudProject.inputs.DatabaseEndpointArgs;
 import com.pulumi.ovh.CloudProject.inputs.DatabaseNodeArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -62,6 +63,36 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
+    }
+
+    /**
+     * The disk size (in GB) of the database service.
+     * 
+     */
+    @Import(name="diskSize")
+    private @Nullable Output<Integer> diskSize;
+
+    /**
+     * @return The disk size (in GB) of the database service.
+     * 
+     */
+    public Optional<Output<Integer>> diskSize() {
+        return Optional.ofNullable(this.diskSize);
+    }
+
+    /**
+     * Defines the disk type of the database service.
+     * 
+     */
+    @Import(name="diskType")
+    private @Nullable Output<String> diskType;
+
+    /**
+     * @return Defines the disk type of the database service.
+     * 
+     */
+    public Optional<Output<String>> diskType() {
+        return Optional.ofNullable(this.diskType);
     }
 
     /**
@@ -262,6 +293,8 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
         this.backupTime = $.backupTime;
         this.createdAt = $.createdAt;
         this.description = $.description;
+        this.diskSize = $.diskSize;
+        this.diskType = $.diskType;
         this.endpoints = $.endpoints;
         this.engine = $.engine;
         this.flavor = $.flavor;
@@ -355,6 +388,48 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        /**
+         * @param diskSize The disk size (in GB) of the database service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder diskSize(@Nullable Output<Integer> diskSize) {
+            $.diskSize = diskSize;
+            return this;
+        }
+
+        /**
+         * @param diskSize The disk size (in GB) of the database service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder diskSize(Integer diskSize) {
+            return diskSize(Output.of(diskSize));
+        }
+
+        /**
+         * @param diskType Defines the disk type of the database service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder diskType(@Nullable Output<String> diskType) {
+            $.diskType = diskType;
+            return this;
+        }
+
+        /**
+         * @param diskType Defines the disk type of the database service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder diskType(String diskType) {
+            return diskType(Output.of(diskType));
         }
 
         /**

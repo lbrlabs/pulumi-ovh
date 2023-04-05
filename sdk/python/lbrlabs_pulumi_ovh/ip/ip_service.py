@@ -127,8 +127,7 @@ class _IpServiceState:
         :param pulumi.Input['IpServicePlanArgs'] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input['IpServicePlanOptionArgs']]] plan_options: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input['IpServiceRoutedToArgs']]] routed_tos: Routage information
-        :param pulumi.Input[str] service_name: Service where ip is routed to
-               * `service_name`: service name
+        :param pulumi.Input[str] service_name: service name
         :param pulumi.Input[str] type: Possible values for ip type
         """
         if can_be_terminated is not None:
@@ -294,8 +293,7 @@ class _IpServiceState:
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Service where ip is routed to
-        * `service_name`: service name
+        service name
         """
         return pulumi.get(self, "service_name")
 
@@ -510,8 +508,7 @@ class IpService(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['IpServicePlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpServicePlanOptionArgs']]]] plan_options: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['IpServiceRoutedToArgs']]]] routed_tos: Routage information
-        :param pulumi.Input[str] service_name: Service where ip is routed to
-               * `service_name`: service name
+        :param pulumi.Input[str] service_name: service name
         :param pulumi.Input[str] type: Possible values for ip type
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
@@ -625,8 +622,7 @@ class IpService(pulumi.CustomResource):
     @pulumi.getter(name="serviceName")
     def service_name(self) -> pulumi.Output[str]:
         """
-        Service where ip is routed to
-        * `service_name`: service name
+        service name
         """
         return pulumi.get(self, "service_name")
 

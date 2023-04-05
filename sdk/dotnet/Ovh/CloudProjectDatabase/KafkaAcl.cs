@@ -62,10 +62,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// Permission to give to this username on this topic.
         /// Available permissions:
-        /// * `admin`
-        /// * `read`
-        /// * `write`
-        /// * `readwrite`
         /// </summary>
         [Output("permission")]
         public Output<string> Permission { get; private set; } = null!;
@@ -145,10 +141,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// Permission to give to this username on this topic.
         /// Available permissions:
-        /// * `admin`
-        /// * `read`
-        /// * `write`
-        /// * `readwrite`
         /// </summary>
         [Input("permission", required: true)]
         public Input<string> Permission { get; set; } = null!;
@@ -189,10 +181,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// Permission to give to this username on this topic.
         /// Available permissions:
-        /// * `admin`
-        /// * `read`
-        /// * `write`
-        /// * `readwrite`
         /// </summary>
         [Input("permission")]
         public Input<string>? Permission { get; set; }

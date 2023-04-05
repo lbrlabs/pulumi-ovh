@@ -7,9 +7,14 @@ import typing
 # Export this package's modules as members:
 from .ceph_acl import *
 from .get_ceph import *
+from .get_nas_ha import *
 from .get_server_boots import *
+from .nas_ha_partition import *
+from .nas_ha_partition_access import *
+from .nas_ha_partition_snapshot import *
+from .server_install_task import *
+from .server_networking import *
 from .server_reboot_task import *
 from .server_update import *
-from .service_install_task import *
 from ._inputs import *
 from . import outputs

@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Dedicated.GetServerBoots(ctx, &dedicated.GetServerBootsArgs{
+//			_, err := Dedicated.GetServerBoots(ctx, &dedicated.GetServerBootsArgs{
 //				BootType:    pulumi.StringRef("harddisk"),
 //				ServiceName: "myserver",
 //			}, nil)

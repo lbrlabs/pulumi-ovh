@@ -15,19 +15,16 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const lb = pulumi.output(ovh.IpLoadBalancing.getIpLoadBalancing({
+ * const lb = ovh.IpLoadBalancing.getIpLoadBalancing({
  *     serviceName: "XXXXXX",
  *     state: "ok",
- * }));
+ * });
  * ```
  */
 export function getIpLoadBalancing(args?: GetIpLoadBalancingArgs, opts?: pulumi.InvokeOptions): Promise<GetIpLoadBalancingResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:IpLoadBalancing/getIpLoadBalancing:getIpLoadBalancing", {
         "displayName": args.displayName,
         "ipLoadbalancing": args.ipLoadbalancing,
@@ -128,9 +125,23 @@ export interface GetIpLoadBalancingResult {
     readonly vrackName: string;
     readonly zones: string[];
 }
-
+/**
+ * Use this data source to retrieve information about an IP Load Balancing product
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const lb = ovh.IpLoadBalancing.getIpLoadBalancing({
+ *     serviceName: "XXXXXX",
+ *     state: "ok",
+ * });
+ * ```
+ */
 export function getIpLoadBalancingOutput(args?: GetIpLoadBalancingOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetIpLoadBalancingResult> {
-    return pulumi.output(args).apply(a => getIpLoadBalancing(a, opts))
+    return pulumi.output(args).apply((a: any) => getIpLoadBalancing(a, opts))
 }
 
 /**

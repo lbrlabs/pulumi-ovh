@@ -11,23 +11,53 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  * import * as ovh from "@pulumi/ovh";
  *
- * const lb = pulumi.output(ovh.IpLoadBalancing.getIpLoadBalancing({
+ * const lb = ovh.IpLoadBalancing.getIpLoadBalancing({
  *     serviceName: "ip-1.2.3.4",
  *     state: "ok",
- * }));
- * const farm80 = new ovh.IpLoadBalancing.HttpFarm("farm80", {
+ * });
+ * const farm80 = new ovh.iploadbalancing.HttpFarm("farm80", {
  *     displayName: "ingress-8080-gra",
  *     port: 80,
- *     serviceName: lb.serviceName!,
+ *     serviceName: lb.then(lb => lb.serviceName),
  *     zone: "all",
  * });
- * const testfrontend = new ovh.IpLoadBalancing.HttpFrontend("testfrontend", {
- *     defaultFarmId: farm80.id.apply(id => Number.parseFloat(id)),
+ * const testfrontend = new ovh.iploadbalancing.HttpFrontend("testfrontend", {
+ *     defaultFarmId: farm80.id,
  *     displayName: "ingress-8080-gra",
  *     port: "80,443",
- *     serviceName: lb.serviceName!,
+ *     serviceName: lb.then(lb => lb.serviceName),
+ *     zone: "all",
+ * });
+ * ```
+ * ### With HTTP Header
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const lb = ovh.IpLoadBalancing.getIpLoadBalancing({
+ *     serviceName: "ip-1.2.3.4",
+ *     state: "ok",
+ * });
+ * const farm80 = new ovh.iploadbalancing.HttpFarm("farm80", {
+ *     displayName: "ingress-8080-gra",
+ *     port: 80,
+ *     serviceName: lb.then(lb => lb.serviceName),
+ *     zone: "all",
+ * });
+ * const testfrontend = new ovh.iploadbalancing.HttpFrontend("testfrontend", {
+ *     defaultFarmId: farm80.id,
+ *     displayName: "ingress-8080-gra",
+ *     httpHeaders: [
+ *         `X-Ip-Header %%ci`,
+ *         `X-Port-Header %%cp`,
+ *     ],
+ *     port: "80,443",
+ *     serviceName: lb.then(lb => lb.serviceName),
  *     zone: "all",
  * });
  * ```
@@ -85,6 +115,14 @@ export class HttpFrontend extends pulumi.CustomResource {
      */
     public readonly displayName!: pulumi.Output<string | undefined>;
     /**
+     * HTTP Strict Transport Security. Default: 'false'
+     */
+    public readonly hsts!: pulumi.Output<boolean | undefined>;
+    /**
+     * HTTP headers to add to the frontend. List of string.
+     */
+    public readonly httpHeaders!: pulumi.Output<string[] | undefined>;
+    /**
      * Port(s) attached to your frontend. Supports single port (numerical value),
      * range (2 dash-delimited increasing ports) and comma-separated list of 'single port'
      * and/or 'range'. Each port must be in the [1;49151] range
@@ -126,6 +164,8 @@ export class HttpFrontend extends pulumi.CustomResource {
             resourceInputs["defaultSslId"] = state ? state.defaultSslId : undefined;
             resourceInputs["disabled"] = state ? state.disabled : undefined;
             resourceInputs["displayName"] = state ? state.displayName : undefined;
+            resourceInputs["hsts"] = state ? state.hsts : undefined;
+            resourceInputs["httpHeaders"] = state ? state.httpHeaders : undefined;
             resourceInputs["port"] = state ? state.port : undefined;
             resourceInputs["redirectLocation"] = state ? state.redirectLocation : undefined;
             resourceInputs["serviceName"] = state ? state.serviceName : undefined;
@@ -148,6 +188,8 @@ export class HttpFrontend extends pulumi.CustomResource {
             resourceInputs["defaultSslId"] = args ? args.defaultSslId : undefined;
             resourceInputs["disabled"] = args ? args.disabled : undefined;
             resourceInputs["displayName"] = args ? args.displayName : undefined;
+            resourceInputs["hsts"] = args ? args.hsts : undefined;
+            resourceInputs["httpHeaders"] = args ? args.httpHeaders : undefined;
             resourceInputs["port"] = args ? args.port : undefined;
             resourceInputs["redirectLocation"] = args ? args.redirectLocation : undefined;
             resourceInputs["serviceName"] = args ? args.serviceName : undefined;
@@ -187,6 +229,14 @@ export interface HttpFrontendState {
      * Human readable name for your frontend, this field is for you
      */
     displayName?: pulumi.Input<string>;
+    /**
+     * HTTP Strict Transport Security. Default: 'false'
+     */
+    hsts?: pulumi.Input<boolean>;
+    /**
+     * HTTP headers to add to the frontend. List of string.
+     */
+    httpHeaders?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Port(s) attached to your frontend. Supports single port (numerical value),
      * range (2 dash-delimited increasing ports) and comma-separated list of 'single port'
@@ -239,6 +289,14 @@ export interface HttpFrontendArgs {
      * Human readable name for your frontend, this field is for you
      */
     displayName?: pulumi.Input<string>;
+    /**
+     * HTTP Strict Transport Security. Default: 'false'
+     */
+    hsts?: pulumi.Input<boolean>;
+    /**
+     * HTTP headers to add to the frontend. List of string.
+     */
+    httpHeaders?: pulumi.Input<pulumi.Input<string>[]>;
     /**
      * Port(s) attached to your frontend. Supports single port (numerical value),
      * range (2 dash-delimited increasing ports) and comma-separated list of 'single port'

@@ -15,10 +15,40 @@ export const getCeph: typeof import("./getCeph").getCeph = null as any;
 export const getCephOutput: typeof import("./getCeph").getCephOutput = null as any;
 utilities.lazyLoad(exports, ["getCeph","getCephOutput"], () => require("./getCeph"));
 
+export { GetNasHAArgs, GetNasHAResult, GetNasHAOutputArgs } from "./getNasHA";
+export const getNasHA: typeof import("./getNasHA").getNasHA = null as any;
+export const getNasHAOutput: typeof import("./getNasHA").getNasHAOutput = null as any;
+utilities.lazyLoad(exports, ["getNasHA","getNasHAOutput"], () => require("./getNasHA"));
+
 export { GetServerBootsArgs, GetServerBootsResult, GetServerBootsOutputArgs } from "./getServerBoots";
 export const getServerBoots: typeof import("./getServerBoots").getServerBoots = null as any;
 export const getServerBootsOutput: typeof import("./getServerBoots").getServerBootsOutput = null as any;
 utilities.lazyLoad(exports, ["getServerBoots","getServerBootsOutput"], () => require("./getServerBoots"));
+
+export { NasHAPartitionArgs, NasHAPartitionState } from "./nasHAPartition";
+export type NasHAPartition = import("./nasHAPartition").NasHAPartition;
+export const NasHAPartition: typeof import("./nasHAPartition").NasHAPartition = null as any;
+utilities.lazyLoad(exports, ["NasHAPartition"], () => require("./nasHAPartition"));
+
+export { NasHAPartitionAccessArgs, NasHAPartitionAccessState } from "./nasHAPartitionAccess";
+export type NasHAPartitionAccess = import("./nasHAPartitionAccess").NasHAPartitionAccess;
+export const NasHAPartitionAccess: typeof import("./nasHAPartitionAccess").NasHAPartitionAccess = null as any;
+utilities.lazyLoad(exports, ["NasHAPartitionAccess"], () => require("./nasHAPartitionAccess"));
+
+export { NasHAPartitionSnapshotArgs, NasHAPartitionSnapshotState } from "./nasHAPartitionSnapshot";
+export type NasHAPartitionSnapshot = import("./nasHAPartitionSnapshot").NasHAPartitionSnapshot;
+export const NasHAPartitionSnapshot: typeof import("./nasHAPartitionSnapshot").NasHAPartitionSnapshot = null as any;
+utilities.lazyLoad(exports, ["NasHAPartitionSnapshot"], () => require("./nasHAPartitionSnapshot"));
+
+export { ServerInstallTaskArgs, ServerInstallTaskState } from "./serverInstallTask";
+export type ServerInstallTask = import("./serverInstallTask").ServerInstallTask;
+export const ServerInstallTask: typeof import("./serverInstallTask").ServerInstallTask = null as any;
+utilities.lazyLoad(exports, ["ServerInstallTask"], () => require("./serverInstallTask"));
+
+export { ServerNetworkingArgs, ServerNetworkingState } from "./serverNetworking";
+export type ServerNetworking = import("./serverNetworking").ServerNetworking;
+export const ServerNetworking: typeof import("./serverNetworking").ServerNetworking = null as any;
+utilities.lazyLoad(exports, ["ServerNetworking"], () => require("./serverNetworking"));
 
 export { ServerRebootTaskArgs, ServerRebootTaskState } from "./serverRebootTask";
 export type ServerRebootTask = import("./serverRebootTask").ServerRebootTask;
@@ -30,11 +60,6 @@ export type ServerUpdate = import("./serverUpdate").ServerUpdate;
 export const ServerUpdate: typeof import("./serverUpdate").ServerUpdate = null as any;
 utilities.lazyLoad(exports, ["ServerUpdate"], () => require("./serverUpdate"));
 
-export { ServiceInstallTaskArgs, ServiceInstallTaskState } from "./serviceInstallTask";
-export type ServiceInstallTask = import("./serviceInstallTask").ServiceInstallTask;
-export const ServiceInstallTask: typeof import("./serviceInstallTask").ServiceInstallTask = null as any;
-utilities.lazyLoad(exports, ["ServiceInstallTask"], () => require("./serviceInstallTask"));
-
 
 const _module = {
     version: utilities.getVersion(),
@@ -42,18 +67,30 @@ const _module = {
         switch (type) {
             case "ovh:Dedicated/cephAcl:CephAcl":
                 return new CephAcl(name, <any>undefined, { urn })
+            case "ovh:Dedicated/nasHAPartition:NasHAPartition":
+                return new NasHAPartition(name, <any>undefined, { urn })
+            case "ovh:Dedicated/nasHAPartitionAccess:NasHAPartitionAccess":
+                return new NasHAPartitionAccess(name, <any>undefined, { urn })
+            case "ovh:Dedicated/nasHAPartitionSnapshot:NasHAPartitionSnapshot":
+                return new NasHAPartitionSnapshot(name, <any>undefined, { urn })
+            case "ovh:Dedicated/serverInstallTask:ServerInstallTask":
+                return new ServerInstallTask(name, <any>undefined, { urn })
+            case "ovh:Dedicated/serverNetworking:ServerNetworking":
+                return new ServerNetworking(name, <any>undefined, { urn })
             case "ovh:Dedicated/serverRebootTask:ServerRebootTask":
                 return new ServerRebootTask(name, <any>undefined, { urn })
             case "ovh:Dedicated/serverUpdate:ServerUpdate":
                 return new ServerUpdate(name, <any>undefined, { urn })
-            case "ovh:Dedicated/serviceInstallTask:ServiceInstallTask":
-                return new ServiceInstallTask(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
 pulumi.runtime.registerResourceModule("ovh", "Dedicated/cephAcl", _module)
+pulumi.runtime.registerResourceModule("ovh", "Dedicated/nasHAPartition", _module)
+pulumi.runtime.registerResourceModule("ovh", "Dedicated/nasHAPartitionAccess", _module)
+pulumi.runtime.registerResourceModule("ovh", "Dedicated/nasHAPartitionSnapshot", _module)
+pulumi.runtime.registerResourceModule("ovh", "Dedicated/serverInstallTask", _module)
+pulumi.runtime.registerResourceModule("ovh", "Dedicated/serverNetworking", _module)
 pulumi.runtime.registerResourceModule("ovh", "Dedicated/serverRebootTask", _module)
 pulumi.runtime.registerResourceModule("ovh", "Dedicated/serverUpdate", _module)
-pulumi.runtime.registerResourceModule("ovh", "Dedicated/serviceInstallTask", _module)

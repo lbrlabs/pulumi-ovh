@@ -13,17 +13,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const server = pulumi.output(ovh.Vps.getVps({
+ * const server = ovh.Vps.getVps({
  *     serviceName: "XXXXXX",
- * }));
+ * });
  * ```
  */
 export function getVps(args: GetVpsArgs, opts?: pulumi.InvokeOptions): Promise<GetVpsResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Vps/getVps:getVps", {
         "serviceName": args.serviceName,
     }, opts);
@@ -111,9 +108,22 @@ export interface GetVpsResult {
      */
     readonly zone: string;
 }
-
+/**
+ * Use this data source to retrieve information about a vps associated with your OVHcloud Account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const server = ovh.Vps.getVps({
+ *     serviceName: "XXXXXX",
+ * });
+ * ```
+ */
 export function getVpsOutput(args: GetVpsOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetVpsResult> {
-    return pulumi.output(args).apply(a => getVps(a, opts))
+    return pulumi.output(args).apply((a: any) => getVps(a, opts))
 }
 
 /**

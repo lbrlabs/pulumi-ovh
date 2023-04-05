@@ -94,7 +94,6 @@ public final class PostgresSqlUserState extends com.pulumi.resources.ResourceArg
     /**
      * Roles the user belongs to.
      * Available roles:
-     * * `replication`
      * 
      */
     @Import(name="roles")
@@ -103,7 +102,6 @@ public final class PostgresSqlUserState extends com.pulumi.resources.ResourceArg
     /**
      * @return Roles the user belongs to.
      * Available roles:
-     * * `replication`
      * 
      */
     public Optional<Output<List<String>>> roles() {
@@ -281,7 +279,6 @@ public final class PostgresSqlUserState extends com.pulumi.resources.ResourceArg
         /**
          * @param roles Roles the user belongs to.
          * Available roles:
-         * * `replication`
          * 
          * @return builder
          * 
@@ -294,7 +291,6 @@ public final class PostgresSqlUserState extends com.pulumi.resources.ResourceArg
         /**
          * @param roles Roles the user belongs to.
          * Available roles:
-         * * `replication`
          * 
          * @return builder
          * 
@@ -306,7 +302,6 @@ public final class PostgresSqlUserState extends com.pulumi.resources.ResourceArg
         /**
          * @param roles Roles the user belongs to.
          * Available roles:
-         * * `replication`
          * 
          * @return builder
          * 

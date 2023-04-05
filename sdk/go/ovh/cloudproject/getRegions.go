@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = CloudProject.GetRegions(ctx, &cloudproject.GetRegionsArgs{
+//			_, err := CloudProject.GetRegions(ctx, &cloudproject.GetRegionsArgs{
 //				HasServicesUps: []string{
 //					"network",
 //				},

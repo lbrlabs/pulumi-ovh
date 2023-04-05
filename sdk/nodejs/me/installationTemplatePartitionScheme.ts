@@ -61,16 +61,15 @@ export class InstallationTemplatePartitionScheme extends pulumi.CustomResource {
     }
 
     /**
-     * name of this partitioning scheme
+     * (Required) This partition scheme name.
      */
     public readonly name!: pulumi.Output<string>;
     /**
-     * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-     * among all the compatible partitioning schemes (given the underlying hardware specifications)
+     * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
      */
     public readonly priority!: pulumi.Output<number>;
     /**
-     * This template name
+     * The template name of the partition scheme.
      */
     public readonly templateName!: pulumi.Output<string>;
 
@@ -112,16 +111,15 @@ export class InstallationTemplatePartitionScheme extends pulumi.CustomResource {
  */
 export interface InstallationTemplatePartitionSchemeState {
     /**
-     * name of this partitioning scheme
+     * (Required) This partition scheme name.
      */
     name?: pulumi.Input<string>;
     /**
-     * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-     * among all the compatible partitioning schemes (given the underlying hardware specifications)
+     * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
      */
     priority?: pulumi.Input<number>;
     /**
-     * This template name
+     * The template name of the partition scheme.
      */
     templateName?: pulumi.Input<string>;
 }
@@ -131,16 +129,15 @@ export interface InstallationTemplatePartitionSchemeState {
  */
 export interface InstallationTemplatePartitionSchemeArgs {
     /**
-     * name of this partitioning scheme
+     * (Required) This partition scheme name.
      */
     name?: pulumi.Input<string>;
     /**
-     * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-     * among all the compatible partitioning schemes (given the underlying hardware specifications)
+     * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
      */
     priority: pulumi.Input<number>;
     /**
-     * This template name
+     * The template name of the partition scheme.
      */
     templateName: pulumi.Input<string>;
 }

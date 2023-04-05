@@ -51,28 +51,28 @@ import javax.annotation.Nullable;
  *             .build());
  * 
  *         var farmname = new TcpFarm(&#34;farmname&#34;, TcpFarmArgs.builder()        
- *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
  *             .port(8080)
+ *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
  *             .zone(&#34;all&#34;)
  *             .build());
  * 
  *         var backend = new TcpFarmServer(&#34;backend&#34;, TcpFarmServerArgs.builder()        
- *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
- *             .farmId(farmname.id())
- *             .displayName(&#34;mybackend&#34;)
  *             .address(&#34;4.5.6.7&#34;)
- *             .status(&#34;active&#34;)
- *             .port(80)
- *             .proxyProtocolVersion(v2)
- *             .weight(2)
- *             .probe(true)
- *             .ssl(false)
  *             .backup(true)
+ *             .displayName(&#34;mybackend&#34;)
+ *             .farmId(farmname.id())
+ *             .port(80)
+ *             .probe(true)
+ *             .proxyProtocolVersion(&#34;v2&#34;)
+ *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
+ *             .ssl(false)
+ *             .status(&#34;active&#34;)
+ *             .weight(2)
  *             .build());
  * 
  *         var mylb = new Refresh(&#34;mylb&#34;, RefreshArgs.builder()        
- *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
  *             .keepers(backend.stream().map(element -&gt; element.address()).collect(toList()))
+ *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
  *             .build());
  * 
  *     }

@@ -10,11 +10,8 @@ import * as utilities from "../utilities";
  * Use this data source to get information about capabilities of a public cloud project.
  */
 export function getCapabilities(args: GetCapabilitiesArgs, opts?: pulumi.InvokeOptions): Promise<GetCapabilitiesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProjectDatabase/getCapabilities:getCapabilities", {
         "serviceName": args.serviceName,
     }, opts);
@@ -60,9 +57,11 @@ export interface GetCapabilitiesResult {
      */
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get information about capabilities of a public cloud project.
+ */
 export function getCapabilitiesOutput(args: GetCapabilitiesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCapabilitiesResult> {
-    return pulumi.output(args).apply(a => getCapabilities(a, opts))
+    return pulumi.output(args).apply((a: any) => getCapabilities(a, opts))
 }
 
 /**

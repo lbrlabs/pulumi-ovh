@@ -30,7 +30,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
     /// 
     ///     var my_acl = new Ovh.Dedicated.CephAcl("my-acl", new()
     ///     {
-    ///         ServiceName = my_ceph.Apply(getCephResult =&gt; getCephResult).Apply(my_ceph =&gt; my_ceph.Apply(getCephResult =&gt; getCephResult.Id)),
+    ///         ServiceName = my_ceph.Apply(my_ceph =&gt; my_ceph.Apply(getCephResult =&gt; getCephResult.Id)),
     ///         Network = "1.2.3.4",
     ///         Netmask = "255.255.255.255",
     ///     });

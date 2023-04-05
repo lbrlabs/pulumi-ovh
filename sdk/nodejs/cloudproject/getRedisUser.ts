@@ -22,11 +22,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getRedisUser(args: GetRedisUserArgs, opts?: pulumi.InvokeOptions): Promise<GetRedisUserResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getRedisUser:getRedisUser", {
         "clusterId": args.clusterId,
         "name": args.name,
@@ -98,9 +95,25 @@ export interface GetRedisUserResult {
      */
     readonly status: string;
 }
-
+/**
+ * Use this data source to get information about a user of a redis cluster associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const redisuser = ovh.CloudProject.getRedisUser({
+ *     serviceName: "XXX",
+ *     clusterId: "YYY",
+ *     name: "ZZZ",
+ * });
+ * export const redisuserCommands = redisuser.then(redisuser => redisuser.commands);
+ * ```
+ */
 export function getRedisUserOutput(args: GetRedisUserOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetRedisUserResult> {
-    return pulumi.output(args).apply(a => getRedisUser(a, opts))
+    return pulumi.output(args).apply((a: any) => getRedisUser(a, opts))
 }
 
 /**

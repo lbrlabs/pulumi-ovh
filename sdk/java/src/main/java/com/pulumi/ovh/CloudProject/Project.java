@@ -56,21 +56,21 @@ import javax.annotation.Nullable;
  *             .description(&#34;my cloud order cart&#34;)
  *             .build());
  * 
- *         final var cloudCartProductPlan = OrderFunctions.getCartProductPlan(GetCartProductPlanArgs.builder()
+ *         final var cloud = OrderFunctions.getCartProductPlan(GetCartProductPlanArgs.builder()
  *             .cartId(mycart.applyValue(getCartResult -&gt; getCartResult.id()))
  *             .priceCapacity(&#34;renew&#34;)
  *             .product(&#34;cloud&#34;)
  *             .planCode(&#34;project.2018&#34;)
  *             .build());
  * 
- *         var cloudProject = new Project(&#34;cloudProject&#34;, ProjectArgs.builder()        
+ *         var myCloudProject = new Project(&#34;myCloudProject&#34;, ProjectArgs.builder()        
  *             .ovhSubsidiary(mycart.applyValue(getCartResult -&gt; getCartResult.ovhSubsidiary()))
  *             .description(&#34;my cloud project&#34;)
  *             .paymentMean(&#34;fidelity&#34;)
  *             .plan(ProjectPlanArgs.builder()
- *                 .duration(cloudCartProductPlan.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.selectedPrices()[0].duration()))
- *                 .planCode(cloudCartProductPlan.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.planCode()))
- *                 .pricingMode(cloudCartProductPlan.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.selectedPrices()[0].pricingMode()))
+ *                 .duration(cloud.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.selectedPrices()[0].duration()))
+ *                 .planCode(cloud.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.planCode()))
+ *                 .pricingMode(cloud.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.selectedPrices()[0].pricingMode()))
  *                 .build())
  *             .build());
  * 
@@ -78,20 +78,22 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import
+ * 
+ * Cloud project can be imported using the `order_id` that can be retrieved in the [order page](https://www.ovh.com/manager/#/dedicated/billing/orders/orders) at the creation time of the Public Cloud project.
+ * 
+ * bash
+ * 
+ * ```sh
+ *  $ pulumi import ovh:CloudProject/project:Project my_cloud_project order_id
+ * ```
+ * 
  */
 @ResourceType(type="ovh:CloudProject/project:Project")
 public class Project extends com.pulumi.resources.CustomResource {
-    /**
-     * project access
-     * 
-     */
     @Export(name="access", type=String.class, parameters={})
     private Output<String> access;
 
-    /**
-     * @return project access
-     * 
-     */
     public Output<String> access() {
         return this.access;
     }
@@ -110,14 +112,14 @@ public class Project extends com.pulumi.resources.CustomResource {
         return this.description;
     }
     /**
-     * Details about an Order
+     * Details about the order that was used to create the public cloud project
      * 
      */
     @Export(name="orders", type=List.class, parameters={ProjectOrder.class})
     private Output<List<ProjectOrder>> orders;
 
     /**
-     * @return Details about an Order
+     * @return Details about the order that was used to create the public cloud project
      * 
      */
     public Output<List<ProjectOrder>> orders() {

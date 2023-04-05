@@ -15,6 +15,39 @@ import (
 //
 // ## Example Usage
 //
+// Create a simple node pool in your Kubernetes cluster:
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/CloudProject"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			_, err := CloudProject.NewKubeNodePool(ctx, "nodePool", &CloudProject.KubeNodePoolArgs{
+//				DesiredNodes: pulumi.Int(3),
+//				FlavorName:   pulumi.String("b2-7"),
+//				KubeId:       pulumi.String("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+//				MaxNodes:     pulumi.Int(3),
+//				MinNodes:     pulumi.Int(3),
+//				ServiceName:  pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
+//
+// Create an advanced node pool in your Kubernetes cluster:
+//
 // ```go
 // package main
 //
@@ -30,7 +63,7 @@ import (
 //			_, err := CloudProject.NewKubeNodePool(ctx, "pool", &CloudProject.KubeNodePoolArgs{
 //				DesiredNodes: pulumi.Int(3),
 //				FlavorName:   pulumi.String("b2-7"),
-//				KubeId:       pulumi.String("xxxxxxxx-2bf9-xxxx-xxxx-xxxxxxxxxxxx"),
+//				KubeId:       pulumi.String("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
 //				MaxNodes:     pulumi.Int(3),
 //				MinNodes:     pulumi.Int(3),
 //				ServiceName:  pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
@@ -76,16 +109,16 @@ import (
 //
 // ```sh
 //
-//	$ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool my_kube_cluster service_name/kube_id/poolid
+//	$ pulumi import ovh:CloudProject/kubeNodePool:KubeNodePool pool service_name/kube_id/poolid
 //
 // ```
 type KubeNodePool struct {
 	pulumi.CustomResourceState
 
 	// should the pool use the anti-affinity feature. Default to `false`.
-	AntiAffinity pulumi.BoolPtrOutput `pulumi:"antiAffinity"`
+	AntiAffinity pulumi.BoolOutput `pulumi:"antiAffinity"`
 	// Enable auto-scaling for the pool. Default to `false`.
-	Autoscale pulumi.BoolPtrOutput `pulumi:"autoscale"`
+	Autoscale pulumi.BoolOutput `pulumi:"autoscale"`
 	// Number of nodes which are actually ready in the pool
 	AvailableNodes pulumi.IntOutput `pulumi:"availableNodes"`
 	// Creation date
@@ -109,7 +142,7 @@ type KubeNodePool struct {
 	// Setting `desiredNodes` under this value will raise an error.
 	MinNodes pulumi.IntOutput `pulumi:"minNodes"`
 	// should the nodes be billed on a monthly basis. Default to `false`.
-	MonthlyBilled pulumi.BoolPtrOutput `pulumi:"monthlyBilled"`
+	MonthlyBilled pulumi.BoolOutput `pulumi:"monthlyBilled"`
 	// The name of the nodepool.
 	// Changing this value recreates the resource.
 	// Warning: "_" char is not allowed!
@@ -426,13 +459,13 @@ func (o KubeNodePoolOutput) ToKubeNodePoolOutputWithContext(ctx context.Context)
 }
 
 // should the pool use the anti-affinity feature. Default to `false`.
-func (o KubeNodePoolOutput) AntiAffinity() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *KubeNodePool) pulumi.BoolPtrOutput { return v.AntiAffinity }).(pulumi.BoolPtrOutput)
+func (o KubeNodePoolOutput) AntiAffinity() pulumi.BoolOutput {
+	return o.ApplyT(func(v *KubeNodePool) pulumi.BoolOutput { return v.AntiAffinity }).(pulumi.BoolOutput)
 }
 
 // Enable auto-scaling for the pool. Default to `false`.
-func (o KubeNodePoolOutput) Autoscale() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *KubeNodePool) pulumi.BoolPtrOutput { return v.Autoscale }).(pulumi.BoolPtrOutput)
+func (o KubeNodePoolOutput) Autoscale() pulumi.BoolOutput {
+	return o.ApplyT(func(v *KubeNodePool) pulumi.BoolOutput { return v.Autoscale }).(pulumi.BoolOutput)
 }
 
 // Number of nodes which are actually ready in the pool
@@ -485,8 +518,8 @@ func (o KubeNodePoolOutput) MinNodes() pulumi.IntOutput {
 }
 
 // should the nodes be billed on a monthly basis. Default to `false`.
-func (o KubeNodePoolOutput) MonthlyBilled() pulumi.BoolPtrOutput {
-	return o.ApplyT(func(v *KubeNodePool) pulumi.BoolPtrOutput { return v.MonthlyBilled }).(pulumi.BoolPtrOutput)
+func (o KubeNodePoolOutput) MonthlyBilled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *KubeNodePool) pulumi.BoolOutput { return v.MonthlyBilled }).(pulumi.BoolOutput)
 }
 
 // The name of the nodepool.

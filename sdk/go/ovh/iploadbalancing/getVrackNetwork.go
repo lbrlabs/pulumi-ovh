@@ -26,7 +26,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = IpLoadBalancing.GetVrackNetwork(ctx, &iploadbalancing.GetVrackNetworkArgs{
+//			_, err := IpLoadBalancing.GetVrackNetwork(ctx, &iploadbalancing.GetVrackNetworkArgs{
 //				ServiceName:    "XXXXXX",
 //				VrackNetworkId: "yyy",
 //			}, nil)

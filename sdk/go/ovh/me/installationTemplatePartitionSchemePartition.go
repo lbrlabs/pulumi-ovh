@@ -72,21 +72,21 @@ import (
 type InstallationTemplatePartitionSchemePartition struct {
 	pulumi.CustomResourceState
 
-	// Partition filesystem
+	// Partition filesystem.
 	Filesystem pulumi.StringOutput `pulumi:"filesystem"`
-	// partition mount point
+	// partition mount point.
 	Mountpoint pulumi.StringOutput `pulumi:"mountpoint"`
 	// step or order. specifies the creation order of the partition on the disk
 	Order pulumi.IntOutput `pulumi:"order"`
-	// raid partition type
+	// raid partition type.
 	Raid pulumi.StringOutput `pulumi:"raid"`
-	// name of this partitioning scheme
+	// The partition scheme name.
 	SchemeName pulumi.StringOutput `pulumi:"schemeName"`
-	// size of partition in MB, 0 => rest of the space
+	// size of partition in MB, 0 => rest of the space.
 	Size pulumi.IntOutput `pulumi:"size"`
-	// Template name
+	// The template name of the partition scheme.
 	TemplateName pulumi.StringOutput `pulumi:"templateName"`
-	// partition type
+	// partition type.
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The volume name needed for proxmox distribution
 	VolumeName pulumi.StringOutput `pulumi:"volumeName"`
@@ -143,42 +143,42 @@ func GetInstallationTemplatePartitionSchemePartition(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstallationTemplatePartitionSchemePartition resources.
 type installationTemplatePartitionSchemePartitionState struct {
-	// Partition filesystem
+	// Partition filesystem.
 	Filesystem *string `pulumi:"filesystem"`
-	// partition mount point
+	// partition mount point.
 	Mountpoint *string `pulumi:"mountpoint"`
 	// step or order. specifies the creation order of the partition on the disk
 	Order *int `pulumi:"order"`
-	// raid partition type
+	// raid partition type.
 	Raid *string `pulumi:"raid"`
-	// name of this partitioning scheme
+	// The partition scheme name.
 	SchemeName *string `pulumi:"schemeName"`
-	// size of partition in MB, 0 => rest of the space
+	// size of partition in MB, 0 => rest of the space.
 	Size *int `pulumi:"size"`
-	// Template name
+	// The template name of the partition scheme.
 	TemplateName *string `pulumi:"templateName"`
-	// partition type
+	// partition type.
 	Type *string `pulumi:"type"`
 	// The volume name needed for proxmox distribution
 	VolumeName *string `pulumi:"volumeName"`
 }
 
 type InstallationTemplatePartitionSchemePartitionState struct {
-	// Partition filesystem
+	// Partition filesystem.
 	Filesystem pulumi.StringPtrInput
-	// partition mount point
+	// partition mount point.
 	Mountpoint pulumi.StringPtrInput
 	// step or order. specifies the creation order of the partition on the disk
 	Order pulumi.IntPtrInput
-	// raid partition type
+	// raid partition type.
 	Raid pulumi.StringPtrInput
-	// name of this partitioning scheme
+	// The partition scheme name.
 	SchemeName pulumi.StringPtrInput
-	// size of partition in MB, 0 => rest of the space
+	// size of partition in MB, 0 => rest of the space.
 	Size pulumi.IntPtrInput
-	// Template name
+	// The template name of the partition scheme.
 	TemplateName pulumi.StringPtrInput
-	// partition type
+	// partition type.
 	Type pulumi.StringPtrInput
 	// The volume name needed for proxmox distribution
 	VolumeName pulumi.StringPtrInput
@@ -189,21 +189,21 @@ func (InstallationTemplatePartitionSchemePartitionState) ElementType() reflect.T
 }
 
 type installationTemplatePartitionSchemePartitionArgs struct {
-	// Partition filesystem
+	// Partition filesystem.
 	Filesystem string `pulumi:"filesystem"`
-	// partition mount point
+	// partition mount point.
 	Mountpoint string `pulumi:"mountpoint"`
 	// step or order. specifies the creation order of the partition on the disk
 	Order int `pulumi:"order"`
-	// raid partition type
+	// raid partition type.
 	Raid *string `pulumi:"raid"`
-	// name of this partitioning scheme
+	// The partition scheme name.
 	SchemeName string `pulumi:"schemeName"`
-	// size of partition in MB, 0 => rest of the space
+	// size of partition in MB, 0 => rest of the space.
 	Size int `pulumi:"size"`
-	// Template name
+	// The template name of the partition scheme.
 	TemplateName string `pulumi:"templateName"`
-	// partition type
+	// partition type.
 	Type string `pulumi:"type"`
 	// The volume name needed for proxmox distribution
 	VolumeName *string `pulumi:"volumeName"`
@@ -211,21 +211,21 @@ type installationTemplatePartitionSchemePartitionArgs struct {
 
 // The set of arguments for constructing a InstallationTemplatePartitionSchemePartition resource.
 type InstallationTemplatePartitionSchemePartitionArgs struct {
-	// Partition filesystem
+	// Partition filesystem.
 	Filesystem pulumi.StringInput
-	// partition mount point
+	// partition mount point.
 	Mountpoint pulumi.StringInput
 	// step or order. specifies the creation order of the partition on the disk
 	Order pulumi.IntInput
-	// raid partition type
+	// raid partition type.
 	Raid pulumi.StringPtrInput
-	// name of this partitioning scheme
+	// The partition scheme name.
 	SchemeName pulumi.StringInput
-	// size of partition in MB, 0 => rest of the space
+	// size of partition in MB, 0 => rest of the space.
 	Size pulumi.IntInput
-	// Template name
+	// The template name of the partition scheme.
 	TemplateName pulumi.StringInput
-	// partition type
+	// partition type.
 	Type pulumi.StringInput
 	// The volume name needed for proxmox distribution
 	VolumeName pulumi.StringPtrInput
@@ -318,12 +318,12 @@ func (o InstallationTemplatePartitionSchemePartitionOutput) ToInstallationTempla
 	return o
 }
 
-// Partition filesystem
+// Partition filesystem.
 func (o InstallationTemplatePartitionSchemePartitionOutput) Filesystem() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.StringOutput { return v.Filesystem }).(pulumi.StringOutput)
 }
 
-// partition mount point
+// partition mount point.
 func (o InstallationTemplatePartitionSchemePartitionOutput) Mountpoint() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.StringOutput { return v.Mountpoint }).(pulumi.StringOutput)
 }
@@ -333,27 +333,27 @@ func (o InstallationTemplatePartitionSchemePartitionOutput) Order() pulumi.IntOu
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.IntOutput { return v.Order }).(pulumi.IntOutput)
 }
 
-// raid partition type
+// raid partition type.
 func (o InstallationTemplatePartitionSchemePartitionOutput) Raid() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.StringOutput { return v.Raid }).(pulumi.StringOutput)
 }
 
-// name of this partitioning scheme
+// The partition scheme name.
 func (o InstallationTemplatePartitionSchemePartitionOutput) SchemeName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.StringOutput { return v.SchemeName }).(pulumi.StringOutput)
 }
 
-// size of partition in MB, 0 => rest of the space
+// size of partition in MB, 0 => rest of the space.
 func (o InstallationTemplatePartitionSchemePartitionOutput) Size() pulumi.IntOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.IntOutput { return v.Size }).(pulumi.IntOutput)
 }
 
-// Template name
+// The template name of the partition scheme.
 func (o InstallationTemplatePartitionSchemePartitionOutput) TemplateName() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.StringOutput { return v.TemplateName }).(pulumi.StringOutput)
 }
 
-// partition type
+// partition type.
 func (o InstallationTemplatePartitionSchemePartitionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

@@ -45,14 +45,14 @@ import * as utilities from "../utilities";
  *     displayName: "my ip loadbalancing",
  *     paymentMean: "ovh-account",
  *     plan: {
- *         duration: iplb.then(iplb => iplb.selectedPrices?[0]?.duration),
+ *         duration: iplb.then(iplb => iplb.selectedPrices?.[0]?.duration),
  *         planCode: iplb.then(iplb => iplb.planCode),
- *         pricingMode: iplb.then(iplb => iplb.selectedPrices?[0]?.pricingMode),
+ *         pricingMode: iplb.then(iplb => iplb.selectedPrices?.[0]?.pricingMode),
  *     },
  *     planOptions: [{
- *         duration: bhs.then(bhs => bhs.selectedPrices?[0]?.duration),
+ *         duration: bhs.then(bhs => bhs.selectedPrices?.[0]?.duration),
  *         planCode: bhs.then(bhs => bhs.planCode),
- *         pricingMode: bhs.then(bhs => bhs.selectedPrices?[0]?.pricingMode),
+ *         pricingMode: bhs.then(bhs => bhs.selectedPrices?.[0]?.pricingMode),
  *     }],
  * });
  * ```

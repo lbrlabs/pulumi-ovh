@@ -19,26 +19,26 @@ import * as utilities from "../utilities";
  *     state: "ok",
  * });
  * const farmname = new ovh.iploadbalancing.TcpFarm("farmname", {
- *     serviceName: lb.then(lb => lb.id),
  *     port: 8080,
+ *     serviceName: lb.then(lb => lb.id),
  *     zone: "all",
  * });
  * const backend = new ovh.iploadbalancing.TcpFarmServer("backend", {
- *     serviceName: lb.then(lb => lb.id),
- *     farmId: farmname.id,
- *     displayName: "mybackend",
  *     address: "4.5.6.7",
- *     status: "active",
- *     port: 80,
- *     proxyProtocolVersion: v2,
- *     weight: 2,
- *     probe: true,
- *     ssl: false,
  *     backup: true,
+ *     displayName: "mybackend",
+ *     farmId: farmname.id,
+ *     port: 80,
+ *     probe: true,
+ *     proxyProtocolVersion: "v2",
+ *     serviceName: lb.then(lb => lb.id),
+ *     ssl: false,
+ *     status: "active",
+ *     weight: 2,
  * });
  * const mylb = new ovh.iploadbalancing.Refresh("mylb", {
- *     serviceName: lb.then(lb => lb.id),
  *     keepers: [[backend].map(__item => __item.address)],
+ *     serviceName: lb.then(lb => lb.id),
  * });
  * ```
  */

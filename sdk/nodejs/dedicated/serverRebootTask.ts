@@ -13,13 +13,13 @@ import * as utilities from "../utilities";
  * import * as ovh from "@pulumi/ovh";
  *
  * const rescue = ovh.Dedicated.getServerBoots({
- *     serviceName: "ns00000.ip-1-2-3.eu",
+ *     serviceName: "nsxxxxxxx.ip-xx-xx-xx.eu",
  *     bootType: "rescue",
  *     kernel: "rescue64-pro",
  * });
  * const serverOnRescue = new ovh.dedicated.ServerUpdate("serverOnRescue", {
- *     serviceName: "ns00000.ip-1-2-3.eu",
- *     bootId: rescue.then(rescue => rescue.results?[0]),
+ *     serviceName: "nsxxxxxxx.ip-xx-xx-xx.eu",
+ *     bootId: rescue.then(rescue => rescue.results?.[0]),
  *     monitoring: true,
  *     state: "ok",
  * });
@@ -70,7 +70,7 @@ export class ServerRebootTask extends pulumi.CustomResource {
      */
     public /*out*/ readonly function!: pulumi.Output<string>;
     /**
-     * List of values traccked to trigger reboot, used also to form implicit dependencies
+     * List of values tracked to trigger reboot, used also to form implicit dependencies.
      */
     public readonly keepers!: pulumi.Output<string[]>;
     /**
@@ -150,7 +150,7 @@ export interface ServerRebootTaskState {
      */
     function?: pulumi.Input<string>;
     /**
-     * List of values traccked to trigger reboot, used also to form implicit dependencies
+     * List of values tracked to trigger reboot, used also to form implicit dependencies.
      */
     keepers?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -176,7 +176,7 @@ export interface ServerRebootTaskState {
  */
 export interface ServerRebootTaskArgs {
     /**
-     * List of values traccked to trigger reboot, used also to form implicit dependencies
+     * List of values tracked to trigger reboot, used also to form implicit dependencies.
      */
     keepers: pulumi.Input<pulumi.Input<string>[]>;
     /**

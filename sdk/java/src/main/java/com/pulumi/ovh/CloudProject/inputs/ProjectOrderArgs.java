@@ -64,14 +64,14 @@ public final class ProjectOrderArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * order id
+     * order id, the same as the `id`
      * 
      */
     @Import(name="orderId")
     private @Nullable Output<Integer> orderId;
 
     /**
-     * @return order id
+     * @return order id, the same as the `id`
      * 
      */
     public Optional<Output<Integer>> orderId() {
@@ -179,7 +179,7 @@ public final class ProjectOrderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orderId order id
+         * @param orderId order id, the same as the `id`
          * 
          * @return builder
          * 
@@ -190,7 +190,7 @@ public final class ProjectOrderArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orderId order id
+         * @param orderId order id, the same as the `id`
          * 
          * @return builder
          * 

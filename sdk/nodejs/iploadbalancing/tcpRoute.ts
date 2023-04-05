@@ -13,9 +13,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const tcpreject = new ovh.IpLoadBalancing.TcpRoute("tcpreject", {
+ * const tcpreject = new ovh.iploadbalancing.TcpRoute("tcpreject", {
  *     action: {
  *         type: "reject",
  *     },

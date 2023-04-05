@@ -29,10 +29,6 @@ type User struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `cassandra`
-	// * `kafka`
-	// * `kafkaConnect`
-	// * `mysql`
 	Engine pulumi.StringOutput `pulumi:"engine"`
 	// Name of the user.
 	Name pulumi.StringOutput `pulumi:"name"`
@@ -96,10 +92,6 @@ type userState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `cassandra`
-	// * `kafka`
-	// * `kafkaConnect`
-	// * `mysql`
 	Engine *string `pulumi:"engine"`
 	// Name of the user.
 	Name *string `pulumi:"name"`
@@ -121,10 +113,6 @@ type UserState struct {
 	CreatedAt pulumi.StringPtrInput
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `cassandra`
-	// * `kafka`
-	// * `kafkaConnect`
-	// * `mysql`
 	Engine pulumi.StringPtrInput
 	// Name of the user.
 	Name pulumi.StringPtrInput
@@ -148,10 +136,6 @@ type userArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `cassandra`
-	// * `kafka`
-	// * `kafkaConnect`
-	// * `mysql`
 	Engine string `pulumi:"engine"`
 	// Name of the user.
 	Name *string `pulumi:"name"`
@@ -168,10 +152,6 @@ type UserArgs struct {
 	ClusterId pulumi.StringInput
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
-	// * `cassandra`
-	// * `kafka`
-	// * `kafkaConnect`
-	// * `mysql`
 	Engine pulumi.StringInput
 	// Name of the user.
 	Name pulumi.StringPtrInput
@@ -281,10 +261,6 @@ func (o UserOutput) CreatedAt() pulumi.StringOutput {
 
 // The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 // Available engines:
-// * `cassandra`
-// * `kafka`
-// * `kafkaConnect`
-// * `mysql`
 func (o UserOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
 }

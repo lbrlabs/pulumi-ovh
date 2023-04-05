@@ -52,7 +52,7 @@ public final class OrderFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var mycart = OrderFunctions.getCart(GetCartArgs.builder()
-     *             .description(&#34;...&#34;)
+     *             .description(&#34;my cart&#34;)
      *             .ovhSubsidiary(&#34;fr&#34;)
      *             .build());
      * 
@@ -90,7 +90,7 @@ public final class OrderFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var mycart = OrderFunctions.getCart(GetCartArgs.builder()
-     *             .description(&#34;...&#34;)
+     *             .description(&#34;my cart&#34;)
      *             .ovhSubsidiary(&#34;fr&#34;)
      *             .build());
      * 
@@ -128,7 +128,7 @@ public final class OrderFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var mycart = OrderFunctions.getCart(GetCartArgs.builder()
-     *             .description(&#34;...&#34;)
+     *             .description(&#34;my cart&#34;)
      *             .ovhSubsidiary(&#34;fr&#34;)
      *             .build());
      * 
@@ -166,7 +166,7 @@ public final class OrderFunctions {
      * 
      *     public static void stack(Context ctx) {
      *         final var mycart = OrderFunctions.getCart(GetCartArgs.builder()
-     *             .description(&#34;...&#34;)
+     *             .description(&#34;my cart&#34;)
      *             .ovhSubsidiary(&#34;fr&#34;)
      *             .build());
      * 

@@ -39,6 +39,7 @@ const (
 	dbaasMod           = "Dbaas"
 	dedicatedMod       = "Dedicated"
 	domainMod          = "Domain"
+	hostingMod         = "Hosting"
 	ipMod              = "Ip"
 	ipLoadBalancingMod = "IpLoadBalancing"
 	meMod              = "Me"
@@ -200,6 +201,9 @@ func Provider() tfbridge.ProviderInfo {
 			"ovh_cloud_project_network_private_subnet": {
 				Tok: ovhResource(cloudProjectMod, "NetworkPrivateSubnet"),
 			},
+			"ovh_cloud_project_region_storage_presign": {
+				Tok: ovhResource(cloudProjectMod, "RegionStoragePresign"),
+			},
 			"ovh_cloud_project_user": {
 				Tok: ovhResource(cloudProjectMod, "User"),
 			},
@@ -218,8 +222,20 @@ func Provider() tfbridge.ProviderInfo {
 			"ovh_dedicated_ceph_acl": {
 				Tok: ovhResource(dedicatedMod, "CephAcl"),
 			},
+			"ovh_dedicated_nasha_partition": {
+				Tok: ovhResource(dedicatedMod, "NasHAPartition"),
+			},
+			"ovh_dedicated_nasha_partition_access": {
+				Tok: ovhResource(dedicatedMod, "NasHAPartitionAccess"),
+			},
+			"ovh_dedicated_nasha_partition_snapshot": {
+				Tok: ovhResource(dedicatedMod, "NasHAPartitionSnapshot"),
+			},
 			"ovh_dedicated_server_install_task": {
-				Tok: ovhResource(dedicatedMod, "ServiceInstallTask"),
+				Tok: ovhResource(dedicatedMod, "ServerInstallTask"),
+			},
+			"ovh_dedicated_server_networking": {
+				Tok: ovhResource(dedicatedMod, "ServerNetworking"),
 			},
 			"ovh_dedicated_server_reboot_task": {
 				Tok: ovhResource(dedicatedMod, "ServerRebootTask"),
@@ -236,14 +252,29 @@ func Provider() tfbridge.ProviderInfo {
 			"ovh_domain_zone_redirection": {
 				Tok: ovhResource(domainMod, "ZoneRedirection"),
 			},
+			"ovh_hosting_privatedatabase": {
+				Tok: ovhResource(hostingMod, "PrivateDatabase"),
+			},
+			"ovh_hosting_privatedatabase_database": {
+				Tok: ovhResource(hostingMod, "PrivateDatabaseDb"),
+			},
+			"ovh_hosting_privatedatabase_user": {
+				Tok: ovhResource(hostingMod, "PrivateDatabaseUser"),
+			},
+			"ovh_hosting_privatedatabase_user_grant": {
+				Tok: ovhResource(hostingMod, "PrivateDatabaseUserGrant"),
+			},
+			"ovh_hosting_privatedatabase_whitelist": {
+				Tok: ovhResource(hostingMod, "PrivateDatabaseAllowlist"),
+			},
 			"ovh_ip_reverse": {
 				Tok: ovhResource(ipMod, "Reverse"),
 				Fields: map[string]*tfbridge.SchemaInfo{
 					"ip_reverse": {
-						Name:       "ReverseIp",
+						Name: "ReverseIp",
 					},
 					"reverse": {
-						Name:       "ReverseValue",
+						Name: "ReverseValue",
 					},
 				},
 			},
@@ -411,7 +442,16 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: ovhDataSource(cloudProjectMod, "getKubeIpRestrictions"),
 			},
 			"ovh_cloud_project_kube_nodepool": {
-				Tok: ovhDataSource(cloudProjectMod, "getKubeIpNodePool"),
+				Tok: ovhDataSource(cloudProjectMod, "getKubeNodePool"),
+			},
+			"ovh_cloud_project_kube_nodepool_nodes": {
+				Tok: ovhDataSource(cloudProjectMod, "getKubeNodePoolNodes"),
+			},
+			"ovh_cloud_project_kube_nodes": {
+				Tok: ovhDataSource(cloudProjectMod, "getKubeNodes"),
+			},
+			"ovh_cloud_project_kube_oidc": {
+				Tok: ovhDataSource(cloudProjectMod, "getKubeOidc"),
 			},
 			"ovh_cloud_project_database_m3db_namespace": {
 				Tok: ovhDataSource(cloudProjectMod, "getM3dbNamespace"),
@@ -467,8 +507,26 @@ func Provider() tfbridge.ProviderInfo {
 			"ovh_dedicated_ceph": {
 				Tok: ovhDataSource(dedicatedMod, "getCeph"),
 			},
+			"ovh_dedicated_nasha": {
+				Tok: ovhDataSource(dedicatedMod, "getNasHA"),
+			},
 			"ovh_dedicated_server_boots": {
 				Tok: ovhDataSource(dedicatedMod, "getServerBoots"),
+			},
+			"ovh_hosting_privatedatabase": {
+				Tok: ovhDataSource(hostingMod, "getPrivateDatabase"),
+			},
+			"ovh_hosting_privatedatabase_database": {
+				Tok: ovhDataSource(hostingMod, "getPrivateDatabaseDb"),
+			},
+			"ovh_hosting_privatedatabase_user": {
+				Tok: ovhDataSource(hostingMod, "getPrivateDatabaseUser"),
+			},
+			"ovh_hosting_privatedatabase_user_grant": {
+				Tok: ovhDataSource(hostingMod, "getPrivateDatabaseUserGrant"),
+			},
+			"ovh_hosting_privatedatabase_whitelist": {
+				Tok: ovhDataSource(hostingMod, "getPrivateDatabaseAllowlist"),
 			},
 			"ovh_dedicated_installation_templates": {
 				Tok: ovhDataSource(ovhMod, "getInstallationTemplates"),
@@ -544,6 +602,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ovh_vps": {
 				Tok: ovhDataSource(vpsMod, "getVps"),
+			},
+			"ovh_vpss": {
+				Tok: ovhDataSource(vpsMod, "getVpss"),
 			},
 			"ovh_vracks": {
 				Tok: ovhDataSource(vrackMod, "getVracks"),

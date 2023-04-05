@@ -57,10 +57,13 @@ public final class GetM3dbNamespaceResult {
     private String retentionPeriodDuration;
     /**
      * @return See Argument Reference above.
-     * * `snapshot_enabled`- SDefines whether M3db will create snapshot files for this namespace.
      * 
      */
     private String serviceName;
+    /**
+     * @return SDefines whether M3db will create snapshot files for this namespace.
+     * 
+     */
     private Boolean snapshotEnabled;
     /**
      * @return Type of namespace.
@@ -139,12 +142,15 @@ public final class GetM3dbNamespaceResult {
     }
     /**
      * @return See Argument Reference above.
-     * * `snapshot_enabled`- SDefines whether M3db will create snapshot files for this namespace.
      * 
      */
     public String serviceName() {
         return this.serviceName;
     }
+    /**
+     * @return SDefines whether M3db will create snapshot files for this namespace.
+     * 
+     */
     public Boolean snapshotEnabled() {
         return this.snapshotEnabled;
     }

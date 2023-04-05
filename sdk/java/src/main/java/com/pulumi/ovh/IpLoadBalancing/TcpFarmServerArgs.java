@@ -85,6 +85,21 @@ public final class TcpFarmServerArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * enable action when backend marked down. (`shutdown-sessions`)
+     * 
+     */
+    @Import(name="onMarkedDown")
+    private @Nullable Output<String> onMarkedDown;
+
+    /**
+     * @return enable action when backend marked down. (`shutdown-sessions`)
+     * 
+     */
+    public Optional<Output<String>> onMarkedDown() {
+        return Optional.ofNullable(this.onMarkedDown);
+    }
+
+    /**
      * Port that backend will respond on
      * 
      */
@@ -197,6 +212,7 @@ public final class TcpFarmServerArgs extends com.pulumi.resources.ResourceArgs {
         this.chain = $.chain;
         this.displayName = $.displayName;
         this.farmId = $.farmId;
+        this.onMarkedDown = $.onMarkedDown;
         this.port = $.port;
         this.probe = $.probe;
         this.proxyProtocolVersion = $.proxyProtocolVersion;
@@ -315,6 +331,27 @@ public final class TcpFarmServerArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder farmId(Integer farmId) {
             return farmId(Output.of(farmId));
+        }
+
+        /**
+         * @param onMarkedDown enable action when backend marked down. (`shutdown-sessions`)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder onMarkedDown(@Nullable Output<String> onMarkedDown) {
+            $.onMarkedDown = onMarkedDown;
+            return this;
+        }
+
+        /**
+         * @param onMarkedDown enable action when backend marked down. (`shutdown-sessions`)
+         * 
+         * @return builder
+         * 
+         */
+        public Builder onMarkedDown(String onMarkedDown) {
+            return onMarkedDown(Output.of(onMarkedDown));
         }
 
         /**

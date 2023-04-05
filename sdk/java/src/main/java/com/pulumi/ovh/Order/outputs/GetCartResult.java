@@ -14,6 +14,7 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class GetCartResult {
+    private @Nullable Boolean assign;
     /**
      * @return Cart identifier
      * 
@@ -39,6 +40,9 @@ public final class GetCartResult {
     private Boolean readOnly;
 
     private GetCartResult() {}
+    public Optional<Boolean> assign() {
+        return Optional.ofNullable(this.assign);
+    }
     /**
      * @return Cart identifier
      * 
@@ -86,6 +90,7 @@ public final class GetCartResult {
     }
     @CustomType.Builder
     public static final class Builder {
+        private @Nullable Boolean assign;
         private String cartId;
         private @Nullable String description;
         private String expire;
@@ -96,6 +101,7 @@ public final class GetCartResult {
         public Builder() {}
         public Builder(GetCartResult defaults) {
     	      Objects.requireNonNull(defaults);
+    	      this.assign = defaults.assign;
     	      this.cartId = defaults.cartId;
     	      this.description = defaults.description;
     	      this.expire = defaults.expire;
@@ -105,6 +111,11 @@ public final class GetCartResult {
     	      this.readOnly = defaults.readOnly;
         }
 
+        @CustomType.Setter
+        public Builder assign(@Nullable Boolean assign) {
+            this.assign = assign;
+            return this;
+        }
         @CustomType.Setter
         public Builder cartId(String cartId) {
             this.cartId = Objects.requireNonNull(cartId);
@@ -145,6 +156,7 @@ public final class GetCartResult {
         }
         public GetCartResult build() {
             final var o = new GetCartResult();
+            o.assign = assign;
             o.cartId = cartId;
             o.description = description;
             o.expire = expire;

@@ -18,7 +18,22 @@ import * as utilities from "../utilities";
  *     kubeId: ovh_cloud_project_kube.mykube.id,
  *     clientId: "xxx",
  *     issuerUrl: "https://ovh.com",
+ *     oidcUsernameClaim: "an-email",
+ *     oidcUsernamePrefix: "ovh:",
+ *     oidcGroupsClaims: ["groups"],
+ *     oidcGroupsPrefix: "ovh:",
+ *     oidcRequiredClaims: ["claim1=val1"],
+ *     oidcSigningAlgs: ["RS512"],
+ *     oidcCaContent: "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUZhekNDQTFPZ0F3SUJBZ0lVYm9YRkZrL1hCQmdQUUI4UHlqbkttUGVWekNjd0RRWUpLb1pJaHZjTkFRRUwKQlFBd1JURUxNQWtHQTFVRUJoTUNRVlV4RXpBUkJnTlZCQWdNQ2xOdmJXVXRVM1JoZEdVeElUQWZCZ05WQkFvTQpHRWx1ZEdWeWJtVjBJRmRwWkdkcGRITWdVSFI1SUV4MFpEQWVGdzB5TWpFd01UUXdOalE0TlROYUZ3MHlNekV3Ck1UUXdOalE0TlROYU1FVXhDekFKQmdOVkJBWVRBa0ZWTVJNd0VRWURWUVFJREFwVGIyMWxMVk4wWVhSbE1TRXcKSHdZRFZRUUtEQmhKYm5SbGNtNWxkQ0JYYVdSbmFYUnpJRkIwZVNCTWRHUXdnZ0lpTUEwR0NTcUdTSWIzRFFFQgpBUVVBQTRJQ0R3QXdnZ0lLQW9JQ0FRQytPMk53bGx2QTQyT05SUHMyZWlqTUp2UHhpN21RblVSS3FrOHJEV1VkCkwzZU0yM1JXeVhtS1AydDQ5Zi9LVGsweEZNVStOSTUzTEhwWmh6N3NpK3dEUFUvWWZWSS9rQmZsRm8zeVZCMSsKZWdCSnpyNGIrQ3FoaWlCUkh0Vm5LblFKUmdvOVJjVkxhRm82UEY0N1V0UWJ2bWVuNGdERnExVkYwVHhUdnFMdwpIMzRZL0U2QUJsSlZnWFBzaWQzNm54eTErNnlKV05vRXNVekFiekpWMHhzTGhxc2hOazA0TWx4YnBhcG1XcEUxCmFFMHRIZGpjUlI3Y1dTRUUwMnRSQzNYL2tSNjBKb3MxR0N0Y0ZQTTVIN3NjOFBXNFRUem1EWWhOeDRiVjV4T28KU0xYRnI5ajBzZEgxbm1wSlI1dWxJT2dPTWV3MHA2d3JOYVV2MGpxc1hzdVdqMVpxdTRLRi81aEQ3azVhRlhKNQpjYWNTUi9mRWxreW1uZis0eHZFOG8wdkRWNFR5NHo3K3lSS1U0clZvZFNBZWZIN3lqeitLV1RRck96L0lHU2NwCmV1YTdqV0hRMDdMYWxyTjV2b0tFaU1JM3MrWjhzeUdVUGVyYXQwdzJMWlc3NnhxVGl4R002clZxUldxVlQ4L1oKQTJMMEc4WGRvNTZvV2lFYVF5RkJtRDFnMXU2UEsvTmFGVDI1L2tTNWJ1dnF5L1dLVGt0UVNhNHNZc1ZLbUlQTQp0Zys0NUZ2aFErNkRuQzd0TmVnaTZDTkdTb0w0R1dPOEE5UDZRNjE5RkJJZ1VjcGpFMTgvUHpQOEJmcTAxajhnCjZmdm1jNkVPMkxHVHhDcW1DbVp0TnI3OCtQaUxkMHZIY3pqY3E3NzhiNW5WRXRpUVNRQkUyb0ozTVlIZUFIUUkKYVFJREFRQUJvMU13VVRBZEJnTlZIUTRFRmdRVUpaMUhlVmx1U3pjY0U2NEZQYWtuNkRBWnhmSXdId1lEVlIwagpCQmd3Rm9BVUpaMUhlVmx1U3pjY0U2NEZQYWtuNkRBWnhmSXdEd1lEVlIwVEFRSC9CQVV3QXdFQi96QU5CZ2txCmhraUc5dzBCQVFzRkFBT0NBZ0VBQlhNSlU2MjJZVFZVNnZ1K2svNnkwMGNaWlRmVnZtdVJMOXhTcWxVM0I1QmQKVWdyVWx1TmdjN2dhUUlrYzkvWmh2MnhNd0xxUldMWEhiTWx1NkNvdkNiVTVpeWt0NHVWMnl5UzlZYWhmVVRNVQo3TVE0WFRta2hoS0dGbWZBQ2QzTUVwRE55T3hmWXh0UVBwM1NZT2IxRGFKMmUwY01Gc081bytORGQ5aFVBVzFoCjFLMjMwQnZzYldYYVo4MStIdTU4U1BsYTM5R3FMTG85MzR6dEs4WkRWNFRGTVJxMnNVQ1cxcWFidDh5ejd2RzAKSGV3dXdxelRwR1lTSFI1U0ZvMm45R0xKVUN4SnhxcDlOWVJjMlhUdXRUdkJESzVPMXFZZEJaQzd6cmcxSnczawp2SjI4UGx2TzBQRE42ZVlUdElJdC9yU05ZbW56eVVNRTRYREt0di9KRitLZWZNSWxDTkpzZDRHYXVTdlo5M1NOClhINmcrNEZvRkp4UzNxRmZ0WEc4czNRNnppNzNLRzh5UHZVNHU0WmZNRGd2aG92L0V5YkNLWUpFdVVZSlJWNGEKbmc3cWh3NDBabXQ0eWNCRzU5a2tFSGhNYWtxTWpPaUNkV2x4MEVjZXIxcEFGT1pqN3o1NktURXIxa0ZwUHVaRApjVER5SnNwTjh6dm9CQ0l1ancvQjR6S3kyWStOQitRR1p3dXhyTk9mRGR6ek9yQUE1Ym9OS2gwUUh4c0RxNTExClFaU3hCR21EcGJzN2QzMUQvQll3WEhIUWdwb3FoVUU5dFBGSThpN0pkM2FyeXZCdHlnTWlxSmt1VlRFVk1Ta0UKNTZ0VnFsMjlXenFhRXNrbDN3VUlmczVKKzN3RzRPcWNxRDdXaGQxWUtnc0VUMjdFTWlqVXZIYzQ4TXE0bU1rPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==",
  * });
+ * ```
+ *
+ * ## Import
+ *
+ * OVHcloud Managed Kubernetes Service cluster OIDC can be imported using the tenant `service_name` and cluster id `kube_id` separated by "/" E.g., bash
+ *
+ * ```sh
+ *  $ pulumi import ovh:CloudProject/kubeOidc:KubeOidc my-oidc service_name/kube_id
  * ```
  */
 export class KubeOidc extends pulumi.CustomResource {
@@ -61,9 +76,15 @@ export class KubeOidc extends pulumi.CustomResource {
      * The ID of the managed kubernetes cluster.
      */
     public readonly kubeId!: pulumi.Output<string>;
+    public readonly oidcCaContent!: pulumi.Output<string | undefined>;
+    public readonly oidcGroupsClaims!: pulumi.Output<string[] | undefined>;
+    public readonly oidcGroupsPrefix!: pulumi.Output<string | undefined>;
+    public readonly oidcRequiredClaims!: pulumi.Output<string[] | undefined>;
+    public readonly oidcSigningAlgs!: pulumi.Output<string[] | undefined>;
+    public readonly oidcUsernameClaim!: pulumi.Output<string | undefined>;
+    public readonly oidcUsernamePrefix!: pulumi.Output<string | undefined>;
     /**
-     * The ID of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      */
     public readonly serviceName!: pulumi.Output<string>;
 
@@ -83,6 +104,13 @@ export class KubeOidc extends pulumi.CustomResource {
             resourceInputs["clientId"] = state ? state.clientId : undefined;
             resourceInputs["issuerUrl"] = state ? state.issuerUrl : undefined;
             resourceInputs["kubeId"] = state ? state.kubeId : undefined;
+            resourceInputs["oidcCaContent"] = state ? state.oidcCaContent : undefined;
+            resourceInputs["oidcGroupsClaims"] = state ? state.oidcGroupsClaims : undefined;
+            resourceInputs["oidcGroupsPrefix"] = state ? state.oidcGroupsPrefix : undefined;
+            resourceInputs["oidcRequiredClaims"] = state ? state.oidcRequiredClaims : undefined;
+            resourceInputs["oidcSigningAlgs"] = state ? state.oidcSigningAlgs : undefined;
+            resourceInputs["oidcUsernameClaim"] = state ? state.oidcUsernameClaim : undefined;
+            resourceInputs["oidcUsernamePrefix"] = state ? state.oidcUsernamePrefix : undefined;
             resourceInputs["serviceName"] = state ? state.serviceName : undefined;
         } else {
             const args = argsOrState as KubeOidcArgs | undefined;
@@ -101,6 +129,13 @@ export class KubeOidc extends pulumi.CustomResource {
             resourceInputs["clientId"] = args ? args.clientId : undefined;
             resourceInputs["issuerUrl"] = args ? args.issuerUrl : undefined;
             resourceInputs["kubeId"] = args ? args.kubeId : undefined;
+            resourceInputs["oidcCaContent"] = args ? args.oidcCaContent : undefined;
+            resourceInputs["oidcGroupsClaims"] = args ? args.oidcGroupsClaims : undefined;
+            resourceInputs["oidcGroupsPrefix"] = args ? args.oidcGroupsPrefix : undefined;
+            resourceInputs["oidcRequiredClaims"] = args ? args.oidcRequiredClaims : undefined;
+            resourceInputs["oidcSigningAlgs"] = args ? args.oidcSigningAlgs : undefined;
+            resourceInputs["oidcUsernameClaim"] = args ? args.oidcUsernameClaim : undefined;
+            resourceInputs["oidcUsernamePrefix"] = args ? args.oidcUsernamePrefix : undefined;
             resourceInputs["serviceName"] = args ? args.serviceName : undefined;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
@@ -124,9 +159,15 @@ export interface KubeOidcState {
      * The ID of the managed kubernetes cluster.
      */
     kubeId?: pulumi.Input<string>;
+    oidcCaContent?: pulumi.Input<string>;
+    oidcGroupsClaims?: pulumi.Input<pulumi.Input<string>[]>;
+    oidcGroupsPrefix?: pulumi.Input<string>;
+    oidcRequiredClaims?: pulumi.Input<pulumi.Input<string>[]>;
+    oidcSigningAlgs?: pulumi.Input<pulumi.Input<string>[]>;
+    oidcUsernameClaim?: pulumi.Input<string>;
+    oidcUsernamePrefix?: pulumi.Input<string>;
     /**
-     * The ID of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      */
     serviceName?: pulumi.Input<string>;
 }
@@ -147,9 +188,15 @@ export interface KubeOidcArgs {
      * The ID of the managed kubernetes cluster.
      */
     kubeId: pulumi.Input<string>;
+    oidcCaContent?: pulumi.Input<string>;
+    oidcGroupsClaims?: pulumi.Input<pulumi.Input<string>[]>;
+    oidcGroupsPrefix?: pulumi.Input<string>;
+    oidcRequiredClaims?: pulumi.Input<pulumi.Input<string>[]>;
+    oidcSigningAlgs?: pulumi.Input<pulumi.Input<string>[]>;
+    oidcUsernameClaim?: pulumi.Input<string>;
+    oidcUsernamePrefix?: pulumi.Input<string>;
     /**
-     * The ID of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      */
     serviceName: pulumi.Input<string>;
 }

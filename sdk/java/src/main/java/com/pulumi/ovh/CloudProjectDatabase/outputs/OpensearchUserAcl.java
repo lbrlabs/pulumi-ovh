@@ -17,11 +17,6 @@ public final class OpensearchUserAcl {
     /**
      * @return Permission of the ACL
      * Available permission:
-     * * `admin`
-     * * `read`
-     * * `write`
-     * * `readwrite`
-     * * `deny`
      * 
      */
     private String permission;
@@ -37,11 +32,6 @@ public final class OpensearchUserAcl {
     /**
      * @return Permission of the ACL
      * Available permission:
-     * * `admin`
-     * * `read`
-     * * `write`
-     * * `readwrite`
-     * * `deny`
      * 
      */
     public String permission() {

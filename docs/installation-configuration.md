@@ -1,5 +1,5 @@
 ---
-title: Ovh Setup
+title: OVHcloud Installation & Configuration
 meta_desc: Information on how to install the Pulumi Ovh provider.
 layout: installation
 ---

@@ -19,17 +19,9 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
 
     public static final ProjectState Empty = new ProjectState();
 
-    /**
-     * project access
-     * 
-     */
     @Import(name="access")
     private @Nullable Output<String> access;
 
-    /**
-     * @return project access
-     * 
-     */
     public Optional<Output<String>> access() {
         return Optional.ofNullable(this.access);
     }
@@ -50,14 +42,14 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * Details about an Order
+     * Details about the order that was used to create the public cloud project
      * 
      */
     @Import(name="orders")
     private @Nullable Output<List<ProjectOrderArgs>> orders;
 
     /**
-     * @return Details about an Order
+     * @return Details about the order that was used to create the public cloud project
      * 
      */
     public Optional<Output<List<ProjectOrderArgs>>> orders() {
@@ -202,23 +194,11 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
             $ = new ProjectState(Objects.requireNonNull(defaults));
         }
 
-        /**
-         * @param access project access
-         * 
-         * @return builder
-         * 
-         */
         public Builder access(@Nullable Output<String> access) {
             $.access = access;
             return this;
         }
 
-        /**
-         * @param access project access
-         * 
-         * @return builder
-         * 
-         */
         public Builder access(String access) {
             return access(Output.of(access));
         }
@@ -245,7 +225,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orders Details about an Order
+         * @param orders Details about the order that was used to create the public cloud project
          * 
          * @return builder
          * 
@@ -256,7 +236,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orders Details about an Order
+         * @param orders Details about the order that was used to create the public cloud project
          * 
          * @return builder
          * 
@@ -266,7 +246,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param orders Details about an Order
+         * @param orders Details about the order that was used to create the public cloud project
          * 
          * @return builder
          * 

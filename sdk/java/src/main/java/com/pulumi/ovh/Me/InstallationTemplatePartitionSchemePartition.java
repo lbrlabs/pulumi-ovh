@@ -80,28 +80,28 @@ import javax.annotation.Nullable;
 @ResourceType(type="ovh:Me/installationTemplatePartitionSchemePartition:InstallationTemplatePartitionSchemePartition")
 public class InstallationTemplatePartitionSchemePartition extends com.pulumi.resources.CustomResource {
     /**
-     * Partition filesystem
+     * Partition filesystem.
      * 
      */
     @Export(name="filesystem", type=String.class, parameters={})
     private Output<String> filesystem;
 
     /**
-     * @return Partition filesystem
+     * @return Partition filesystem.
      * 
      */
     public Output<String> filesystem() {
         return this.filesystem;
     }
     /**
-     * partition mount point
+     * partition mount point.
      * 
      */
     @Export(name="mountpoint", type=String.class, parameters={})
     private Output<String> mountpoint;
 
     /**
-     * @return partition mount point
+     * @return partition mount point.
      * 
      */
     public Output<String> mountpoint() {
@@ -122,70 +122,70 @@ public class InstallationTemplatePartitionSchemePartition extends com.pulumi.res
         return this.order;
     }
     /**
-     * raid partition type
+     * raid partition type.
      * 
      */
     @Export(name="raid", type=String.class, parameters={})
     private Output<String> raid;
 
     /**
-     * @return raid partition type
+     * @return raid partition type.
      * 
      */
     public Output<String> raid() {
         return this.raid;
     }
     /**
-     * name of this partitioning scheme
+     * The partition scheme name.
      * 
      */
     @Export(name="schemeName", type=String.class, parameters={})
     private Output<String> schemeName;
 
     /**
-     * @return name of this partitioning scheme
+     * @return The partition scheme name.
      * 
      */
     public Output<String> schemeName() {
         return this.schemeName;
     }
     /**
-     * size of partition in MB, 0 =&gt; rest of the space
+     * size of partition in MB, 0 =&gt; rest of the space.
      * 
      */
     @Export(name="size", type=Integer.class, parameters={})
     private Output<Integer> size;
 
     /**
-     * @return size of partition in MB, 0 =&gt; rest of the space
+     * @return size of partition in MB, 0 =&gt; rest of the space.
      * 
      */
     public Output<Integer> size() {
         return this.size;
     }
     /**
-     * Template name
+     * The template name of the partition scheme.
      * 
      */
     @Export(name="templateName", type=String.class, parameters={})
     private Output<String> templateName;
 
     /**
-     * @return Template name
+     * @return The template name of the partition scheme.
      * 
      */
     public Output<String> templateName() {
         return this.templateName;
     }
     /**
-     * partition type
+     * partition type.
      * 
      */
     @Export(name="type", type=String.class, parameters={})
     private Output<String> type;
 
     /**
-     * @return partition type
+     * @return partition type.
      * 
      */
     public Output<String> type() {

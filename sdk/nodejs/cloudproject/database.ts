@@ -12,9 +12,9 @@ import * as utilities from "../utilities";
  * Minimum settings for each engine (region choice is up to the user):
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const cassandradb = new ovh.CloudProject.Database("cassandradb", {
+ * const cassandradb = new ovh.cloudproject.Database("cassandradb", {
  *     description: "my-first-cassandra",
  *     engine: "cassandra",
  *     flavor: "db1-4",
@@ -33,7 +33,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "4.0",
  * });
- * const kafkadb = new ovh.CloudProject.Database("kafkadb", {
+ * const kafkadb = new ovh.cloudproject.Database("kafkadb", {
  *     description: "my-first-kafka",
  *     engine: "kafka",
  *     flavor: "db1-4",
@@ -53,7 +53,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "3.1",
  * });
- * const m3db = new ovh.CloudProject.Database("m3db", {
+ * const m3db = new ovh.cloudproject.Database("m3db", {
  *     description: "my-first-m3db",
  *     engine: "m3db",
  *     flavor: "db1-7",
@@ -64,7 +64,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "1.2",
  * });
- * const mongodb = new ovh.CloudProject.Database("mongodb", {
+ * const mongodb = new ovh.cloudproject.Database("mongodb", {
  *     description: "my-first-mongodb",
  *     engine: "mongodb",
  *     flavor: "db1-2",
@@ -75,7 +75,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "5.0",
  * });
- * const mysqldb = new ovh.CloudProject.Database("mysqldb", {
+ * const mysqldb = new ovh.cloudproject.Database("mysqldb", {
  *     description: "my-first-mysql",
  *     engine: "mysql",
  *     flavor: "db1-4",
@@ -86,7 +86,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "8",
  * });
- * const opensearchdb = new ovh.CloudProject.Database("opensearchdb", {
+ * const opensearchdb = new ovh.cloudproject.Database("opensearchdb", {
  *     description: "my-first-opensearch",
  *     engine: "opensearch",
  *     flavor: "db1-4",
@@ -98,7 +98,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "1",
  * });
- * const pgsqldb = new ovh.CloudProject.Database("pgsqldb", {
+ * const pgsqldb = new ovh.cloudproject.Database("pgsqldb", {
  *     description: "my-first-postgresql",
  *     engine: "postgresql",
  *     flavor: "db1-4",
@@ -109,7 +109,7 @@ import * as utilities from "../utilities";
  *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
  *     version: "14",
  * });
- * const redisdb = new ovh.CloudProject.Database("redisdb", {
+ * const redisdb = new ovh.cloudproject.Database("redisdb", {
  *     description: "my-first-redis",
  *     engine: "redis",
  *     flavor: "db1-4",
@@ -125,9 +125,9 @@ import * as utilities from "../utilities";
  * To deploy a business PostgreSQL service with two nodes on public network:
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const postgresql = new ovh.CloudProject.Database("postgresql", {
+ * const postgresql = new ovh.cloudproject.Database("postgresql", {
  *     description: "my-first-postgresql",
  *     engine: "postgresql",
  *     flavor: "db1-15",
@@ -148,9 +148,9 @@ import * as utilities from "../utilities";
  * To deploy an enterprise MongoDB service with three nodes on private network:
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const mongodb = new ovh.CloudProject.Database("mongodb", {
+ * const mongodb = new ovh.cloudproject.Database("mongodb", {
  *     description: "my-first-mongodb",
  *     engine: "mongodb",
  *     flavor: "db1-30",
@@ -226,6 +226,14 @@ export class Database extends pulumi.CustomResource {
      */
     public readonly description!: pulumi.Output<string | undefined>;
     /**
+     * The disk size (in GB) of the database service.
+     */
+    public readonly diskSize!: pulumi.Output<number>;
+    /**
+     * Defines the disk type of the database service.
+     */
+    public /*out*/ readonly diskType!: pulumi.Output<string>;
+    /**
      * List of all endpoints objects of the service.
      */
     public /*out*/ readonly endpoints!: pulumi.Output<outputs.CloudProject.DatabaseEndpoint[]>;
@@ -296,6 +304,8 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["backupTime"] = state ? state.backupTime : undefined;
             resourceInputs["createdAt"] = state ? state.createdAt : undefined;
             resourceInputs["description"] = state ? state.description : undefined;
+            resourceInputs["diskSize"] = state ? state.diskSize : undefined;
+            resourceInputs["diskType"] = state ? state.diskType : undefined;
             resourceInputs["endpoints"] = state ? state.endpoints : undefined;
             resourceInputs["engine"] = state ? state.engine : undefined;
             resourceInputs["flavor"] = state ? state.flavor : undefined;
@@ -329,6 +339,7 @@ export class Database extends pulumi.CustomResource {
                 throw new Error("Missing required property 'version'");
             }
             resourceInputs["description"] = args ? args.description : undefined;
+            resourceInputs["diskSize"] = args ? args.diskSize : undefined;
             resourceInputs["engine"] = args ? args.engine : undefined;
             resourceInputs["flavor"] = args ? args.flavor : undefined;
             resourceInputs["kafkaRestApi"] = args ? args.kafkaRestApi : undefined;
@@ -339,6 +350,7 @@ export class Database extends pulumi.CustomResource {
             resourceInputs["version"] = args ? args.version : undefined;
             resourceInputs["backupTime"] = undefined /*out*/;
             resourceInputs["createdAt"] = undefined /*out*/;
+            resourceInputs["diskType"] = undefined /*out*/;
             resourceInputs["endpoints"] = undefined /*out*/;
             resourceInputs["maintenanceTime"] = undefined /*out*/;
             resourceInputs["networkType"] = undefined /*out*/;
@@ -365,6 +377,14 @@ export interface DatabaseState {
      * Small description of the database service.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The disk size (in GB) of the database service.
+     */
+    diskSize?: pulumi.Input<number>;
+    /**
+     * Defines the disk type of the database service.
+     */
+    diskType?: pulumi.Input<string>;
     /**
      * List of all endpoints objects of the service.
      */
@@ -429,6 +449,10 @@ export interface DatabaseArgs {
      * Small description of the database service.
      */
     description?: pulumi.Input<string>;
+    /**
+     * The disk size (in GB) of the database service.
+     */
+    diskSize?: pulumi.Input<number>;
     /**
      * The database engine you want to deploy. To get a full list of available engine visit.
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).

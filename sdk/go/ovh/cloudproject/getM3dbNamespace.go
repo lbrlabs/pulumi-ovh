@@ -82,9 +82,9 @@ type GetM3dbNamespaceResult struct {
 	// Controls the duration of time that M3DB will retain data for the namespace.
 	RetentionPeriodDuration string `pulumi:"retentionPeriodDuration"`
 	// See Argument Reference above.
-	// * `snapshotEnabled`- SDefines whether M3db will create snapshot files for this namespace.
-	ServiceName     string `pulumi:"serviceName"`
-	SnapshotEnabled bool   `pulumi:"snapshotEnabled"`
+	ServiceName string `pulumi:"serviceName"`
+	// SDefines whether M3db will create snapshot files for this namespace.
+	SnapshotEnabled bool `pulumi:"snapshotEnabled"`
 	// Type of namespace.
 	Type string `pulumi:"type"`
 	// Defines whether M3DB will include writes to this namespace in the commit log.
@@ -180,11 +180,11 @@ func (o GetM3dbNamespaceResultOutput) RetentionPeriodDuration() pulumi.StringOut
 }
 
 // See Argument Reference above.
-// * `snapshotEnabled`- SDefines whether M3db will create snapshot files for this namespace.
 func (o GetM3dbNamespaceResultOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetM3dbNamespaceResult) string { return v.ServiceName }).(pulumi.StringOutput)
 }
 
+// SDefines whether M3db will create snapshot files for this namespace.
 func (o GetM3dbNamespaceResultOutput) SnapshotEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v GetM3dbNamespaceResult) bool { return v.SnapshotEnabled }).(pulumi.BoolOutput)
 }

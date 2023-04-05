@@ -64,12 +64,6 @@ export class MongoDbUser extends pulumi.CustomResource {
     /**
      * Roles the user belongs to.
      * Available roles:
-     * * `backup`
-     * * `dbAdminAnyDatabase`
-     * * `readAnyDatabase`
-     * * `readWriteAnyDatabase`
-     * * `restore`
-     * * `userAdminAnyDatabase`
      */
     public readonly roles!: pulumi.Output<string[] | undefined>;
     /**
@@ -154,12 +148,6 @@ export interface MongoDbUserState {
     /**
      * Roles the user belongs to.
      * Available roles:
-     * * `backup`
-     * * `dbAdminAnyDatabase`
-     * * `readAnyDatabase`
-     * * `readWriteAnyDatabase`
-     * * `restore`
-     * * `userAdminAnyDatabase`
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
     /**
@@ -192,12 +180,6 @@ export interface MongoDbUserArgs {
     /**
      * Roles the user belongs to.
      * Available roles:
-     * * `backup`
-     * * `dbAdminAnyDatabase`
-     * * `readAnyDatabase`
-     * * `readWriteAnyDatabase`
-     * * `restore`
-     * * `userAdminAnyDatabase`
      */
     roles?: pulumi.Input<pulumi.Input<string>[]>;
     /**

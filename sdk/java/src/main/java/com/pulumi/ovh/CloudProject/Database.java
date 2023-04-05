@@ -13,6 +13,7 @@ import com.pulumi.ovh.CloudProject.outputs.DatabaseEndpoint;
 import com.pulumi.ovh.CloudProject.outputs.DatabaseNode;
 import com.pulumi.ovh.Utilities;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Optional;
@@ -307,6 +308,34 @@ public class Database extends com.pulumi.resources.CustomResource {
      */
     public Output<Optional<String>> description() {
         return Codegen.optional(this.description);
+    }
+    /**
+     * The disk size (in GB) of the database service.
+     * 
+     */
+    @Export(name="diskSize", type=Integer.class, parameters={})
+    private Output<Integer> diskSize;
+
+    /**
+     * @return The disk size (in GB) of the database service.
+     * 
+     */
+    public Output<Integer> diskSize() {
+        return this.diskSize;
+    }
+    /**
+     * Defines the disk type of the database service.
+     * 
+     */
+    @Export(name="diskType", type=String.class, parameters={})
+    private Output<String> diskType;
+
+    /**
+     * @return Defines the disk type of the database service.
+     * 
+     */
+    public Output<String> diskType() {
+        return this.diskType;
     }
     /**
      * List of all endpoints objects of the service.

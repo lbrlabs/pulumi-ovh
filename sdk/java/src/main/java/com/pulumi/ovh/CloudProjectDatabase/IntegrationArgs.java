@@ -113,15 +113,6 @@ public final class IntegrationArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * Type of the integration.
      * Available types:
-     * * `grafanaDashboard`
-     * * `grafanaDatasource`
-     * * `kafkaConnect`
-     * * `kafkaLogs`
-     * * `kafkaMirrorMaker`
-     * * `m3aggregator`
-     * * `m3dbMetrics`
-     * * `opensearchLogs`
-     * * `postgresqlMetrics`
      * 
      */
     @Import(name="type")
@@ -130,15 +121,6 @@ public final class IntegrationArgs extends com.pulumi.resources.ResourceArgs {
     /**
      * @return Type of the integration.
      * Available types:
-     * * `grafanaDashboard`
-     * * `grafanaDatasource`
-     * * `kafkaConnect`
-     * * `kafkaLogs`
-     * * `kafkaMirrorMaker`
-     * * `m3aggregator`
-     * * `m3dbMetrics`
-     * * `opensearchLogs`
-     * * `postgresqlMetrics`
      * 
      */
     public Optional<Output<String>> type() {
@@ -308,15 +290,6 @@ public final class IntegrationArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param type Type of the integration.
          * Available types:
-         * * `grafanaDashboard`
-         * * `grafanaDatasource`
-         * * `kafkaConnect`
-         * * `kafkaLogs`
-         * * `kafkaMirrorMaker`
-         * * `m3aggregator`
-         * * `m3dbMetrics`
-         * * `opensearchLogs`
-         * * `postgresqlMetrics`
          * 
          * @return builder
          * 
@@ -329,15 +302,6 @@ public final class IntegrationArgs extends com.pulumi.resources.ResourceArgs {
         /**
          * @param type Type of the integration.
          * Available types:
-         * * `grafanaDashboard`
-         * * `grafanaDatasource`
-         * * `kafkaConnect`
-         * * `kafkaLogs`
-         * * `kafkaMirrorMaker`
-         * * `m3aggregator`
-         * * `m3dbMetrics`
-         * * `opensearchLogs`
-         * * `postgresqlMetrics`
          * 
          * @return builder
          * 

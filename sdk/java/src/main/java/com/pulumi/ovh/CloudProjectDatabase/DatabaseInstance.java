@@ -104,8 +104,6 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
     /**
      * The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `mysql`
-     * * `postgresql`
      * 
      */
     @Export(name="engine", type=String.class, parameters={})
@@ -114,8 +112,6 @@ public class DatabaseInstance extends com.pulumi.resources.CustomResource {
     /**
      * @return The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `mysql`
-     * * `postgresql`
      * 
      */
     public Output<String> engine() {

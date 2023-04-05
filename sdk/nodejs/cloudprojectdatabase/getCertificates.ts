@@ -22,11 +22,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getCertificates(args: GetCertificatesArgs, opts?: pulumi.InvokeOptions): Promise<GetCertificatesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProjectDatabase/getCertificates:getCertificates", {
         "clusterId": args.clusterId,
         "engine": args.engine,
@@ -46,10 +43,6 @@ export interface GetCertificatesArgs {
      * The engine of the database cluster you want database information. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `mysql`
-     * * `postgresql`
      */
     engine: string;
     /**
@@ -84,9 +77,25 @@ export interface GetCertificatesResult {
      */
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get information about certificates of a cluster associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const certificates = ovh.CloudProjectDatabase.getCertificates({
+ *     serviceName: "XXX",
+ *     engine: "YYY",
+ *     clusterId: "ZZZ",
+ * });
+ * export const certificatesCa = certificates.then(certificates => certificates.ca);
+ * ```
+ */
 export function getCertificatesOutput(args: GetCertificatesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetCertificatesResult> {
-    return pulumi.output(args).apply(a => getCertificates(a, opts))
+    return pulumi.output(args).apply((a: any) => getCertificates(a, opts))
 }
 
 /**
@@ -101,10 +110,6 @@ export interface GetCertificatesOutputArgs {
      * The engine of the database cluster you want database information. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `mysql`
-     * * `postgresql`
      */
     engine: pulumi.Input<string>;
     /**

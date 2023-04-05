@@ -22,11 +22,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getDatabaseInstances(args: GetDatabaseInstancesArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseInstancesResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProjectDatabase/getDatabaseInstances:getDatabaseInstances", {
         "clusterId": args.clusterId,
         "engine": args.engine,
@@ -46,8 +43,6 @@ export interface GetDatabaseInstancesArgs {
      * The engine of the database cluster you want to list databases. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `mysql`
-     * * `postgresql`
      */
     engine: string;
     /**
@@ -82,9 +77,25 @@ export interface GetDatabaseInstancesResult {
      */
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get the list of databases of a database cluster associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const databases = ovh.CloudProjectDatabase.getDatabaseInstances({
+ *     serviceName: "XXXX",
+ *     engine: "YYYY",
+ *     clusterId: "ZZZ",
+ * });
+ * export const databaseIds = databases.then(databases => databases.databaseIds);
+ * ```
+ */
 export function getDatabaseInstancesOutput(args: GetDatabaseInstancesOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseInstancesResult> {
-    return pulumi.output(args).apply(a => getDatabaseInstances(a, opts))
+    return pulumi.output(args).apply((a: any) => getDatabaseInstances(a, opts))
 }
 
 /**
@@ -99,8 +110,6 @@ export interface GetDatabaseInstancesOutputArgs {
      * The engine of the database cluster you want to list databases. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `mysql`
-     * * `postgresql`
      */
     engine: pulumi.Input<string>;
     /**

@@ -27,7 +27,7 @@ import (
 //
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
-//			_, err = Me.GetPaymentmeanCreditCard(ctx, &me.GetPaymentmeanCreditCardArgs{
+//			_, err := Me.GetPaymentmeanCreditCard(ctx, &me.GetPaymentmeanCreditCardArgs{
 //				UseDefault: pulumi.BoolRef(true),
 //			}, nil)
 //			if err != nil {

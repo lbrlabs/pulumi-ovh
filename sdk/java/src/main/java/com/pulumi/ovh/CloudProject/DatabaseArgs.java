@@ -7,6 +7,7 @@ import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
 import com.pulumi.ovh.CloudProject.inputs.DatabaseNodeArgs;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -31,6 +32,21 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
      */
     public Optional<Output<String>> description() {
         return Optional.ofNullable(this.description);
+    }
+
+    /**
+     * The disk size (in GB) of the database service.
+     * 
+     */
+    @Import(name="diskSize")
+    private @Nullable Output<Integer> diskSize;
+
+    /**
+     * @return The disk size (in GB) of the database service.
+     * 
+     */
+    public Optional<Output<Integer>> diskSize() {
+        return Optional.ofNullable(this.diskSize);
     }
 
     /**
@@ -169,6 +185,7 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
 
     private DatabaseArgs(DatabaseArgs $) {
         this.description = $.description;
+        this.diskSize = $.diskSize;
         this.engine = $.engine;
         this.flavor = $.flavor;
         this.kafkaRestApi = $.kafkaRestApi;
@@ -216,6 +233,27 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
          */
         public Builder description(String description) {
             return description(Output.of(description));
+        }
+
+        /**
+         * @param diskSize The disk size (in GB) of the database service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder diskSize(@Nullable Output<Integer> diskSize) {
+            $.diskSize = diskSize;
+            return this;
+        }
+
+        /**
+         * @param diskSize The disk size (in GB) of the database service.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder diskSize(Integer diskSize) {
+            return diskSize(Output.of(diskSize));
         }
 
         /**

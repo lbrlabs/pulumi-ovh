@@ -22,12 +22,12 @@ class InstallationTemplatePartitionSchemeHardwareRaidArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstallationTemplatePartitionSchemeHardwareRaid resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] disks: Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
-        :param pulumi.Input[str] mode: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
-        :param pulumi.Input[str] scheme_name: name of this partitioning scheme
-        :param pulumi.Input[int] step: Specifies the creation order of the hardware RAID
-        :param pulumi.Input[str] template_name: Template name
-        :param pulumi.Input[str] name: Hardware RAID name
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disks: Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
+        :param pulumi.Input[str] mode: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+        :param pulumi.Input[str] scheme_name: The partition scheme name.
+        :param pulumi.Input[int] step: Specifies the creation order of the hardware RAID.
+        :param pulumi.Input[str] template_name: The template name of the partition scheme.
+        :param pulumi.Input[str] name: Hardware RAID name.
         """
         pulumi.set(__self__, "disks", disks)
         pulumi.set(__self__, "mode", mode)
@@ -41,7 +41,7 @@ class InstallationTemplatePartitionSchemeHardwareRaidArgs:
     @pulumi.getter
     def disks(self) -> pulumi.Input[Sequence[pulumi.Input[str]]]:
         """
-        Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+        Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
         """
         return pulumi.get(self, "disks")
 
@@ -53,7 +53,7 @@ class InstallationTemplatePartitionSchemeHardwareRaidArgs:
     @pulumi.getter
     def mode(self) -> pulumi.Input[str]:
         """
-        RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+        RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
         """
         return pulumi.get(self, "mode")
 
@@ -65,7 +65,7 @@ class InstallationTemplatePartitionSchemeHardwareRaidArgs:
     @pulumi.getter(name="schemeName")
     def scheme_name(self) -> pulumi.Input[str]:
         """
-        name of this partitioning scheme
+        The partition scheme name.
         """
         return pulumi.get(self, "scheme_name")
 
@@ -77,7 +77,7 @@ class InstallationTemplatePartitionSchemeHardwareRaidArgs:
     @pulumi.getter
     def step(self) -> pulumi.Input[int]:
         """
-        Specifies the creation order of the hardware RAID
+        Specifies the creation order of the hardware RAID.
         """
         return pulumi.get(self, "step")
 
@@ -89,7 +89,7 @@ class InstallationTemplatePartitionSchemeHardwareRaidArgs:
     @pulumi.getter(name="templateName")
     def template_name(self) -> pulumi.Input[str]:
         """
-        Template name
+        The template name of the partition scheme.
         """
         return pulumi.get(self, "template_name")
 
@@ -101,7 +101,7 @@ class InstallationTemplatePartitionSchemeHardwareRaidArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Hardware RAID name
+        Hardware RAID name.
         """
         return pulumi.get(self, "name")
 
@@ -121,12 +121,12 @@ class _InstallationTemplatePartitionSchemeHardwareRaidState:
                  template_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstallationTemplatePartitionSchemeHardwareRaid resources.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] disks: Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
-        :param pulumi.Input[str] mode: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
-        :param pulumi.Input[str] name: Hardware RAID name
-        :param pulumi.Input[str] scheme_name: name of this partitioning scheme
-        :param pulumi.Input[int] step: Specifies the creation order of the hardware RAID
-        :param pulumi.Input[str] template_name: Template name
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disks: Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
+        :param pulumi.Input[str] mode: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+        :param pulumi.Input[str] name: Hardware RAID name.
+        :param pulumi.Input[str] scheme_name: The partition scheme name.
+        :param pulumi.Input[int] step: Specifies the creation order of the hardware RAID.
+        :param pulumi.Input[str] template_name: The template name of the partition scheme.
         """
         if disks is not None:
             pulumi.set(__self__, "disks", disks)
@@ -145,7 +145,7 @@ class _InstallationTemplatePartitionSchemeHardwareRaidState:
     @pulumi.getter
     def disks(self) -> Optional[pulumi.Input[Sequence[pulumi.Input[str]]]]:
         """
-        Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+        Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
         """
         return pulumi.get(self, "disks")
 
@@ -157,7 +157,7 @@ class _InstallationTemplatePartitionSchemeHardwareRaidState:
     @pulumi.getter
     def mode(self) -> Optional[pulumi.Input[str]]:
         """
-        RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+        RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
         """
         return pulumi.get(self, "mode")
 
@@ -169,7 +169,7 @@ class _InstallationTemplatePartitionSchemeHardwareRaidState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        Hardware RAID name
+        Hardware RAID name.
         """
         return pulumi.get(self, "name")
 
@@ -181,7 +181,7 @@ class _InstallationTemplatePartitionSchemeHardwareRaidState:
     @pulumi.getter(name="schemeName")
     def scheme_name(self) -> Optional[pulumi.Input[str]]:
         """
-        name of this partitioning scheme
+        The partition scheme name.
         """
         return pulumi.get(self, "scheme_name")
 
@@ -193,7 +193,7 @@ class _InstallationTemplatePartitionSchemeHardwareRaidState:
     @pulumi.getter
     def step(self) -> Optional[pulumi.Input[int]]:
         """
-        Specifies the creation order of the hardware RAID
+        Specifies the creation order of the hardware RAID.
         """
         return pulumi.get(self, "step")
 
@@ -205,7 +205,7 @@ class _InstallationTemplatePartitionSchemeHardwareRaidState:
     @pulumi.getter(name="templateName")
     def template_name(self) -> Optional[pulumi.Input[str]]:
         """
-        Template name
+        The template name of the partition scheme.
         """
         return pulumi.get(self, "template_name")
 
@@ -263,12 +263,12 @@ class InstallationTemplatePartitionSchemeHardwareRaid(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] disks: Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
-        :param pulumi.Input[str] mode: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
-        :param pulumi.Input[str] name: Hardware RAID name
-        :param pulumi.Input[str] scheme_name: name of this partitioning scheme
-        :param pulumi.Input[int] step: Specifies the creation order of the hardware RAID
-        :param pulumi.Input[str] template_name: Template name
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disks: Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
+        :param pulumi.Input[str] mode: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+        :param pulumi.Input[str] name: Hardware RAID name.
+        :param pulumi.Input[str] scheme_name: The partition scheme name.
+        :param pulumi.Input[int] step: Specifies the creation order of the hardware RAID.
+        :param pulumi.Input[str] template_name: The template name of the partition scheme.
         """
         ...
     @overload
@@ -380,12 +380,12 @@ class InstallationTemplatePartitionSchemeHardwareRaid(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[Sequence[pulumi.Input[str]]] disks: Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
-        :param pulumi.Input[str] mode: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
-        :param pulumi.Input[str] name: Hardware RAID name
-        :param pulumi.Input[str] scheme_name: name of this partitioning scheme
-        :param pulumi.Input[int] step: Specifies the creation order of the hardware RAID
-        :param pulumi.Input[str] template_name: Template name
+        :param pulumi.Input[Sequence[pulumi.Input[str]]] disks: Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
+        :param pulumi.Input[str] mode: RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
+        :param pulumi.Input[str] name: Hardware RAID name.
+        :param pulumi.Input[str] scheme_name: The partition scheme name.
+        :param pulumi.Input[int] step: Specifies the creation order of the hardware RAID.
+        :param pulumi.Input[str] template_name: The template name of the partition scheme.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -403,7 +403,7 @@ class InstallationTemplatePartitionSchemeHardwareRaid(pulumi.CustomResource):
     @pulumi.getter
     def disks(self) -> pulumi.Output[Sequence[str]]:
         """
-        Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id
+        Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
         """
         return pulumi.get(self, "disks")
 
@@ -411,7 +411,7 @@ class InstallationTemplatePartitionSchemeHardwareRaid(pulumi.CustomResource):
     @pulumi.getter
     def mode(self) -> pulumi.Output[str]:
         """
-        RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60)
+        RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
         """
         return pulumi.get(self, "mode")
 
@@ -419,7 +419,7 @@ class InstallationTemplatePartitionSchemeHardwareRaid(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        Hardware RAID name
+        Hardware RAID name.
         """
         return pulumi.get(self, "name")
 
@@ -427,7 +427,7 @@ class InstallationTemplatePartitionSchemeHardwareRaid(pulumi.CustomResource):
     @pulumi.getter(name="schemeName")
     def scheme_name(self) -> pulumi.Output[str]:
         """
-        name of this partitioning scheme
+        The partition scheme name.
         """
         return pulumi.get(self, "scheme_name")
 
@@ -435,7 +435,7 @@ class InstallationTemplatePartitionSchemeHardwareRaid(pulumi.CustomResource):
     @pulumi.getter
     def step(self) -> pulumi.Output[int]:
         """
-        Specifies the creation order of the hardware RAID
+        Specifies the creation order of the hardware RAID.
         """
         return pulumi.get(self, "step")
 
@@ -443,7 +443,7 @@ class InstallationTemplatePartitionSchemeHardwareRaid(pulumi.CustomResource):
     @pulumi.getter(name="templateName")
     def template_name(self) -> pulumi.Output[str]:
         """
-        Template name
+        The template name of the partition scheme.
         """
         return pulumi.get(self, "template_name")
 

@@ -22,7 +22,7 @@ class GetInstallationTemplateResult:
     """
     A collection of values returned by getInstallationTemplate.
     """
-    def __init__(__self__, available_languages=None, beta=None, bit_format=None, category=None, customizations=None, default_language=None, deprecated=None, description=None, distribution=None, family=None, filesystems=None, hard_raid_configuration=None, id=None, last_modification=None, lvm_ready=None, partition_schemes=None, supports_distribution_kernel=None, supports_gpt_label=None, supports_rtm=None, supports_sql_server=None, supports_uefi=None, template_name=None):
+    def __init__(__self__, available_languages=None, beta=None, bit_format=None, category=None, customizations=None, default_language=None, deprecated=None, description=None, distribution=None, family=None, filesystems=None, hard_raid_configuration=None, id=None, last_modification=None, lvm_ready=None, partition_schemes=None, supports_distribution_kernel=None, supports_rtm=None, supports_sql_server=None, template_name=None):
         if available_languages and not isinstance(available_languages, list):
             raise TypeError("Expected argument 'available_languages' to be a list")
         pulumi.set(__self__, "available_languages", available_languages)
@@ -74,18 +74,12 @@ class GetInstallationTemplateResult:
         if supports_distribution_kernel and not isinstance(supports_distribution_kernel, bool):
             raise TypeError("Expected argument 'supports_distribution_kernel' to be a bool")
         pulumi.set(__self__, "supports_distribution_kernel", supports_distribution_kernel)
-        if supports_gpt_label and not isinstance(supports_gpt_label, bool):
-            raise TypeError("Expected argument 'supports_gpt_label' to be a bool")
-        pulumi.set(__self__, "supports_gpt_label", supports_gpt_label)
         if supports_rtm and not isinstance(supports_rtm, bool):
             raise TypeError("Expected argument 'supports_rtm' to be a bool")
         pulumi.set(__self__, "supports_rtm", supports_rtm)
         if supports_sql_server and not isinstance(supports_sql_server, bool):
             raise TypeError("Expected argument 'supports_sql_server' to be a bool")
         pulumi.set(__self__, "supports_sql_server", supports_sql_server)
-        if supports_uefi and not isinstance(supports_uefi, str):
-            raise TypeError("Expected argument 'supports_uefi' to be a str")
-        pulumi.set(__self__, "supports_uefi", supports_uefi)
         if template_name and not isinstance(template_name, str):
             raise TypeError("Expected argument 'template_name' to be a str")
         pulumi.set(__self__, "template_name", template_name)
@@ -93,21 +87,33 @@ class GetInstallationTemplateResult:
     @property
     @pulumi.getter(name="availableLanguages")
     def available_languages(self) -> Sequence[str]:
+        """
+        List of all language available for this template.
+        """
         return pulumi.get(self, "available_languages")
 
     @property
     @pulumi.getter
     def beta(self) -> bool:
+        """
+        This distribution is new and, although tested and functional, may still display odd behaviour.
+        """
         return pulumi.get(self, "beta")
 
     @property
     @pulumi.getter(name="bitFormat")
     def bit_format(self) -> int:
+        """
+        This template bit format (32 or 64).
+        """
         return pulumi.get(self, "bit_format")
 
     @property
     @pulumi.getter
     def category(self) -> str:
+        """
+        Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
+        """
         return pulumi.get(self, "category")
 
     @property
@@ -118,36 +124,57 @@ class GetInstallationTemplateResult:
     @property
     @pulumi.getter(name="defaultLanguage")
     def default_language(self) -> str:
+        """
+        The default language of this template.
+        """
         return pulumi.get(self, "default_language")
 
     @property
     @pulumi.getter
     def deprecated(self) -> bool:
+        """
+        is this distribution deprecated.
+        """
         return pulumi.get(self, "deprecated")
 
     @property
     @pulumi.getter
     def description(self) -> str:
+        """
+        information about this template.
+        """
         return pulumi.get(self, "description")
 
     @property
     @pulumi.getter
     def distribution(self) -> str:
+        """
+        the distribution this template is based on.
+        """
         return pulumi.get(self, "distribution")
 
     @property
     @pulumi.getter
     def family(self) -> str:
+        """
+        this template family type (bsd,linux,solaris,windows).
+        """
         return pulumi.get(self, "family")
 
     @property
     @pulumi.getter
     def filesystems(self) -> Sequence[str]:
+        """
+        Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
+        """
         return pulumi.get(self, "filesystems")
 
     @property
     @pulumi.getter(name="hardRaidConfiguration")
     def hard_raid_configuration(self) -> bool:
+        """
+        This distribution supports hardware raid configuration through the OVHcloud API.
+        """
         return pulumi.get(self, "hard_raid_configuration")
 
     @property
@@ -161,6 +188,9 @@ class GetInstallationTemplateResult:
     @property
     @pulumi.getter(name="lastModification")
     def last_modification(self) -> str:
+        """
+        Date of last modification of the base image.
+        """
         return pulumi.get(self, "last_modification")
 
     @property
@@ -176,27 +206,26 @@ class GetInstallationTemplateResult:
     @property
     @pulumi.getter(name="supportsDistributionKernel")
     def supports_distribution_kernel(self) -> bool:
+        """
+        This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
+        """
         return pulumi.get(self, "supports_distribution_kernel")
-
-    @property
-    @pulumi.getter(name="supportsGptLabel")
-    def supports_gpt_label(self) -> bool:
-        return pulumi.get(self, "supports_gpt_label")
 
     @property
     @pulumi.getter(name="supportsRtm")
     def supports_rtm(self) -> bool:
+        """
+        This distribution supports RTM software.
+        """
         return pulumi.get(self, "supports_rtm")
 
     @property
     @pulumi.getter(name="supportsSqlServer")
     def supports_sql_server(self) -> bool:
+        """
+        This distribution supports the microsoft SQL server.
+        """
         return pulumi.get(self, "supports_sql_server")
-
-    @property
-    @pulumi.getter(name="supportsUefi")
-    def supports_uefi(self) -> str:
-        return pulumi.get(self, "supports_uefi")
 
     @property
     @pulumi.getter(name="templateName")
@@ -227,10 +256,8 @@ class AwaitableGetInstallationTemplateResult(GetInstallationTemplateResult):
             lvm_ready=self.lvm_ready,
             partition_schemes=self.partition_schemes,
             supports_distribution_kernel=self.supports_distribution_kernel,
-            supports_gpt_label=self.supports_gpt_label,
             supports_rtm=self.supports_rtm,
             supports_sql_server=self.supports_sql_server,
-            supports_uefi=self.supports_uefi,
             template_name=self.template_name)
 
 
@@ -247,6 +274,9 @@ def get_installation_template(template_name: Optional[str] = None,
 
     mytemplate = ovh.Me.get_installation_template(template_name="mytemplate")
     ```
+
+
+    :param str template_name: This template name
     """
     __args__ = dict()
     __args__['templateName'] = template_name
@@ -271,10 +301,8 @@ def get_installation_template(template_name: Optional[str] = None,
         lvm_ready=__ret__.lvm_ready,
         partition_schemes=__ret__.partition_schemes,
         supports_distribution_kernel=__ret__.supports_distribution_kernel,
-        supports_gpt_label=__ret__.supports_gpt_label,
         supports_rtm=__ret__.supports_rtm,
         supports_sql_server=__ret__.supports_sql_server,
-        supports_uefi=__ret__.supports_uefi,
         template_name=__ret__.template_name)
 
 
@@ -292,5 +320,8 @@ def get_installation_template_output(template_name: Optional[pulumi.Input[str]] 
 
     mytemplate = ovh.Me.get_installation_template(template_name="mytemplate")
     ```
+
+
+    :param str template_name: This template name
     """
     ...

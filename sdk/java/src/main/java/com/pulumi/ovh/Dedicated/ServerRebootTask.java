@@ -42,13 +42,13 @@ import javax.annotation.Nullable;
  * 
  *     public static void stack(Context ctx) {
  *         final var rescue = DedicatedFunctions.getServerBoots(GetServerBootsArgs.builder()
- *             .serviceName(&#34;ns00000.ip-1-2-3.eu&#34;)
+ *             .serviceName(&#34;nsxxxxxxx.ip-xx-xx-xx.eu&#34;)
  *             .bootType(&#34;rescue&#34;)
  *             .kernel(&#34;rescue64-pro&#34;)
  *             .build());
  * 
  *         var serverOnRescue = new ServerUpdate(&#34;serverOnRescue&#34;, ServerUpdateArgs.builder()        
- *             .serviceName(&#34;ns00000.ip-1-2-3.eu&#34;)
+ *             .serviceName(&#34;nsxxxxxxx.ip-xx-xx-xx.eu&#34;)
  *             .bootId(rescue.applyValue(getServerBootsResult -&gt; getServerBootsResult.results()[0]))
  *             .monitoring(true)
  *             .state(&#34;ok&#34;)
@@ -109,14 +109,14 @@ public class ServerRebootTask extends com.pulumi.resources.CustomResource {
         return this.function;
     }
     /**
-     * List of values traccked to trigger reboot, used also to form implicit dependencies
+     * List of values tracked to trigger reboot, used also to form implicit dependencies.
      * 
      */
     @Export(name="keepers", type=List.class, parameters={String.class})
     private Output<List<String>> keepers;
 
     /**
-     * @return List of values traccked to trigger reboot, used also to form implicit dependencies
+     * @return List of values tracked to trigger reboot, used also to form implicit dependencies.
      * 
      */
     public Output<List<String>> keepers() {

@@ -11,9 +11,9 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
- * const myUser = new ovh.Me.IdentityUser("my_user", {
+ * const myUser = new ovh.me.IdentityUser("myUser", {
  *     description: "Some custom description",
  *     email: "my_login@example.com",
  *     group: "DEFAULT",

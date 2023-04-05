@@ -36,8 +36,8 @@ import (
 //				return err
 //			}
 //			_, err = CloudProjectDatabase.NewKafkaAcl(ctx, "acl", &CloudProjectDatabase.KafkaAclArgs{
-//				ServiceName: pulumi.String(kafka.ServiceName),
-//				ClusterId:   pulumi.String(kafka.Id),
+//				ServiceName: *pulumi.String(kafka.ServiceName),
+//				ClusterId:   *pulumi.String(kafka.Id),
 //				Permission:  pulumi.String("read"),
 //				Topic:       pulumi.String("mytopic"),
 //				Username:    pulumi.String("johndoe"),
@@ -67,10 +67,6 @@ type KafkaAcl struct {
 	ClusterId pulumi.StringOutput `pulumi:"clusterId"`
 	// Permission to give to this username on this topic.
 	// Available permissions:
-	// * `admin`
-	// * `read`
-	// * `write`
-	// * `readwrite`
 	Permission pulumi.StringOutput `pulumi:"permission"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -130,10 +126,6 @@ type kafkaAclState struct {
 	ClusterId *string `pulumi:"clusterId"`
 	// Permission to give to this username on this topic.
 	// Available permissions:
-	// * `admin`
-	// * `read`
-	// * `write`
-	// * `readwrite`
 	Permission *string `pulumi:"permission"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -149,10 +141,6 @@ type KafkaAclState struct {
 	ClusterId pulumi.StringPtrInput
 	// Permission to give to this username on this topic.
 	// Available permissions:
-	// * `admin`
-	// * `read`
-	// * `write`
-	// * `readwrite`
 	Permission pulumi.StringPtrInput
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -172,10 +160,6 @@ type kafkaAclArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// Permission to give to this username on this topic.
 	// Available permissions:
-	// * `admin`
-	// * `read`
-	// * `write`
-	// * `readwrite`
 	Permission string `pulumi:"permission"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -192,10 +176,6 @@ type KafkaAclArgs struct {
 	ClusterId pulumi.StringInput
 	// Permission to give to this username on this topic.
 	// Available permissions:
-	// * `admin`
-	// * `read`
-	// * `write`
-	// * `readwrite`
 	Permission pulumi.StringInput
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -300,10 +280,6 @@ func (o KafkaAclOutput) ClusterId() pulumi.StringOutput {
 
 // Permission to give to this username on this topic.
 // Available permissions:
-// * `admin`
-// * `read`
-// * `write`
-// * `readwrite`
 func (o KafkaAclOutput) Permission() pulumi.StringOutput {
 	return o.ApplyT(func(v *KafkaAcl) pulumi.StringOutput { return v.Permission }).(pulumi.StringOutput)
 }

@@ -9,3 +9,7 @@ export const getVps: typeof import("./getVps").getVps = null as any;
 export const getVpsOutput: typeof import("./getVps").getVpsOutput = null as any;
 utilities.lazyLoad(exports, ["getVps","getVpsOutput"], () => require("./getVps"));
 
+export { GetVpssResult } from "./getVpss";
+export const getVpss: typeof import("./getVpss").getVpss = null as any;
+utilities.lazyLoad(exports, ["getVpss"], () => require("./getVpss"));
+

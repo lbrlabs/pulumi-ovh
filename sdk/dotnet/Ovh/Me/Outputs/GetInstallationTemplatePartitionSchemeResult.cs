@@ -15,8 +15,14 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me.Outputs
     public sealed class GetInstallationTemplatePartitionSchemeResult
     {
         public readonly ImmutableArray<Outputs.GetInstallationTemplatePartitionSchemeHardwareRaidResult> HardwareRaids;
+        /// <summary>
+        /// Hardware RAID name.
+        /// </summary>
         public readonly string Name;
         public readonly ImmutableArray<Outputs.GetInstallationTemplatePartitionSchemePartitionResult> Partitions;
+        /// <summary>
+        /// on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+        /// </summary>
         public readonly int Priority;
 
         [OutputConstructor]

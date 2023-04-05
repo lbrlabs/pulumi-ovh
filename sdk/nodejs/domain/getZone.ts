@@ -13,17 +13,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const rootzone = pulumi.output(ovh.Domain.getZone({
+ * const rootzone = ovh.Domain.getZone({
  *     name: "mysite.ovh",
- * }));
+ * });
  * ```
  */
 export function getZone(args: GetZoneArgs, opts?: pulumi.InvokeOptions): Promise<GetZoneResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Domain/getZone:getZone", {
         "name": args.name,
     }, opts);
@@ -65,9 +62,22 @@ export interface GetZoneResult {
      */
     readonly nameServers: string[];
 }
-
+/**
+ * Use this data source to retrieve information about a domain zone.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const rootzone = ovh.Domain.getZone({
+ *     name: "mysite.ovh",
+ * });
+ * ```
+ */
 export function getZoneOutput(args: GetZoneOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetZoneResult> {
-    return pulumi.output(args).apply(a => getZone(a, opts))
+    return pulumi.output(args).apply((a: any) => getZone(a, opts))
 }
 
 /**

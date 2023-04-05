@@ -94,8 +94,8 @@ class GetLogsOutputGraylogStreamResult:
         if updated_at and not isinstance(updated_at, str):
             raise TypeError("Expected argument 'updated_at' to be a str")
         pulumi.set(__self__, "updated_at", updated_at)
-        if web_socket_enabled and not isinstance(web_socket_enabled, str):
-            raise TypeError("Expected argument 'web_socket_enabled' to be a str")
+        if web_socket_enabled and not isinstance(web_socket_enabled, bool):
+            raise TypeError("Expected argument 'web_socket_enabled' to be a bool")
         pulumi.set(__self__, "web_socket_enabled", web_socket_enabled)
 
     @property
@@ -283,7 +283,7 @@ class GetLogsOutputGraylogStreamResult:
 
     @property
     @pulumi.getter(name="webSocketEnabled")
-    def web_socket_enabled(self) -> str:
+    def web_socket_enabled(self) -> bool:
         """
         Enable Websocket
         """
@@ -335,12 +335,12 @@ def get_logs_output_graylog_stream(service_name: Optional[str] = None,
     import pulumi
     import pulumi_ovh as ovh
 
-    stream = ovh.Dbaas.get_logs_output_graylog_stream(service_name="XXXXXX",
+    stream = ovh.Dbaas.get_logs_output_graylog_stream(service_name="ldp-xx-xxxxx",
         title="my stream")
     ```
 
 
-    :param str service_name: The service name
+    :param str service_name: The service name. It's the ID of your Logs Data Platform instance.
     :param str title: Stream description
     """
     __args__ = dict()
@@ -390,12 +390,12 @@ def get_logs_output_graylog_stream_output(service_name: Optional[pulumi.Input[st
     import pulumi
     import pulumi_ovh as ovh
 
-    stream = ovh.Dbaas.get_logs_output_graylog_stream(service_name="XXXXXX",
+    stream = ovh.Dbaas.get_logs_output_graylog_stream(service_name="ldp-xx-xxxxx",
         title="my stream")
     ```
 
 
-    :param str service_name: The service name
+    :param str service_name: The service name. It's the ID of your Logs Data Platform instance.
     :param str title: Stream description
     """
     ...

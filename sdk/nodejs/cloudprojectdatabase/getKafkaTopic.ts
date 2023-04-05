@@ -22,11 +22,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getKafkaTopic(args: GetKafkaTopicArgs, opts?: pulumi.InvokeOptions): Promise<GetKafkaTopicResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProjectDatabase/getKafkaTopic:getKafkaTopic", {
         "clusterId": args.clusterId,
         "id": args.id,
@@ -94,9 +91,25 @@ export interface GetKafkaTopicResult {
      */
     readonly serviceName: string;
 }
-
+/**
+ * Use this data source to get information about a topic of a kafka cluster associated with a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const topic = ovh.CloudProjectDatabase.getKafkaTopic({
+ *     serviceName: "XXX",
+ *     clusterId: "YYY",
+ *     id: "ZZZ",
+ * });
+ * export const topicName = topic.then(topic => topic.name);
+ * ```
+ */
 export function getKafkaTopicOutput(args: GetKafkaTopicOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetKafkaTopicResult> {
-    return pulumi.output(args).apply(a => getKafkaTopic(a, opts))
+    return pulumi.output(args).apply((a: any) => getKafkaTopic(a, opts))
 }
 
 /**

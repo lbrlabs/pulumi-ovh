@@ -31,8 +31,6 @@ public final class GetDatabaseInstancePlainArgs extends com.pulumi.resources.Inv
      * The engine of the database cluster you want database information. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `mysql`
-     * * `postgresql`
      * 
      */
     @Import(name="engine", required=true)
@@ -42,8 +40,6 @@ public final class GetDatabaseInstancePlainArgs extends com.pulumi.resources.Inv
      * @return The engine of the database cluster you want database information. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `mysql`
-     * * `postgresql`
      * 
      */
     public String engine() {
@@ -124,8 +120,6 @@ public final class GetDatabaseInstancePlainArgs extends com.pulumi.resources.Inv
          * @param engine The engine of the database cluster you want database information. To get a full list of available engine visit:
          * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
          * Available engines:
-         * * `mysql`
-         * * `postgresql`
          * 
          * @return builder
          * 

@@ -19,10 +19,9 @@ class InstallationTemplatePartitionSchemeArgs:
                  name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a InstallationTemplatePartitionScheme resource.
-        :param pulumi.Input[int] priority: on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-               among all the compatible partitioning schemes (given the underlying hardware specifications)
-        :param pulumi.Input[str] template_name: This template name
-        :param pulumi.Input[str] name: name of this partitioning scheme
+        :param pulumi.Input[int] priority: on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+        :param pulumi.Input[str] template_name: The template name of the partition scheme.
+        :param pulumi.Input[str] name: (Required) This partition scheme name.
         """
         pulumi.set(__self__, "priority", priority)
         pulumi.set(__self__, "template_name", template_name)
@@ -33,8 +32,7 @@ class InstallationTemplatePartitionSchemeArgs:
     @pulumi.getter
     def priority(self) -> pulumi.Input[int]:
         """
-        on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-        among all the compatible partitioning schemes (given the underlying hardware specifications)
+        on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
         """
         return pulumi.get(self, "priority")
 
@@ -46,7 +44,7 @@ class InstallationTemplatePartitionSchemeArgs:
     @pulumi.getter(name="templateName")
     def template_name(self) -> pulumi.Input[str]:
         """
-        This template name
+        The template name of the partition scheme.
         """
         return pulumi.get(self, "template_name")
 
@@ -58,7 +56,7 @@ class InstallationTemplatePartitionSchemeArgs:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        name of this partitioning scheme
+        (Required) This partition scheme name.
         """
         return pulumi.get(self, "name")
 
@@ -75,10 +73,9 @@ class _InstallationTemplatePartitionSchemeState:
                  template_name: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering InstallationTemplatePartitionScheme resources.
-        :param pulumi.Input[str] name: name of this partitioning scheme
-        :param pulumi.Input[int] priority: on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-               among all the compatible partitioning schemes (given the underlying hardware specifications)
-        :param pulumi.Input[str] template_name: This template name
+        :param pulumi.Input[str] name: (Required) This partition scheme name.
+        :param pulumi.Input[int] priority: on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+        :param pulumi.Input[str] template_name: The template name of the partition scheme.
         """
         if name is not None:
             pulumi.set(__self__, "name", name)
@@ -91,7 +88,7 @@ class _InstallationTemplatePartitionSchemeState:
     @pulumi.getter
     def name(self) -> Optional[pulumi.Input[str]]:
         """
-        name of this partitioning scheme
+        (Required) This partition scheme name.
         """
         return pulumi.get(self, "name")
 
@@ -103,8 +100,7 @@ class _InstallationTemplatePartitionSchemeState:
     @pulumi.getter
     def priority(self) -> Optional[pulumi.Input[int]]:
         """
-        on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-        among all the compatible partitioning schemes (given the underlying hardware specifications)
+        on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
         """
         return pulumi.get(self, "priority")
 
@@ -116,7 +112,7 @@ class _InstallationTemplatePartitionSchemeState:
     @pulumi.getter(name="templateName")
     def template_name(self) -> Optional[pulumi.Input[str]]:
         """
-        This template name
+        The template name of the partition scheme.
         """
         return pulumi.get(self, "template_name")
 
@@ -162,10 +158,9 @@ class InstallationTemplatePartitionScheme(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: name of this partitioning scheme
-        :param pulumi.Input[int] priority: on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-               among all the compatible partitioning schemes (given the underlying hardware specifications)
-        :param pulumi.Input[str] template_name: This template name
+        :param pulumi.Input[str] name: (Required) This partition scheme name.
+        :param pulumi.Input[int] priority: on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+        :param pulumi.Input[str] template_name: The template name of the partition scheme.
         """
         ...
     @overload
@@ -253,10 +248,9 @@ class InstallationTemplatePartitionScheme(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[str] name: name of this partitioning scheme
-        :param pulumi.Input[int] priority: on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-               among all the compatible partitioning schemes (given the underlying hardware specifications)
-        :param pulumi.Input[str] template_name: This template name
+        :param pulumi.Input[str] name: (Required) This partition scheme name.
+        :param pulumi.Input[int] priority: on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
+        :param pulumi.Input[str] template_name: The template name of the partition scheme.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -271,7 +265,7 @@ class InstallationTemplatePartitionScheme(pulumi.CustomResource):
     @pulumi.getter
     def name(self) -> pulumi.Output[str]:
         """
-        name of this partitioning scheme
+        (Required) This partition scheme name.
         """
         return pulumi.get(self, "name")
 
@@ -279,8 +273,7 @@ class InstallationTemplatePartitionScheme(pulumi.CustomResource):
     @pulumi.getter
     def priority(self) -> pulumi.Output[int]:
         """
-        on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-        among all the compatible partitioning schemes (given the underlying hardware specifications)
+        on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
         """
         return pulumi.get(self, "priority")
 
@@ -288,7 +281,7 @@ class InstallationTemplatePartitionScheme(pulumi.CustomResource):
     @pulumi.getter(name="templateName")
     def template_name(self) -> pulumi.Output[str]:
         """
-        This template name
+        The template name of the partition scheme.
         """
         return pulumi.get(self, "template_name")
 

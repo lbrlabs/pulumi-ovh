@@ -10,11 +10,12 @@ from typing import Any, Mapping, Optional, Sequence, Union, overload
 from .. import _utilities
 
 __all__ = [
-    'ServiceInstallTaskDetails',
+    'ServerInstallTaskDetails',
+    'ServerNetworkingInterface',
 ]
 
 @pulumi.output_type
-class ServiceInstallTaskDetails(dict):
+class ServerInstallTaskDetails(dict):
     @staticmethod
     def __key_warning(key: str):
         suggest = None
@@ -46,14 +47,14 @@ class ServiceInstallTaskDetails(dict):
             suggest = "use_spla"
 
         if suggest:
-            pulumi.log.warn(f"Key '{key}' not found in ServiceInstallTaskDetails. Access the value via the '{suggest}' property getter instead.")
+            pulumi.log.warn(f"Key '{key}' not found in ServerInstallTaskDetails. Access the value via the '{suggest}' property getter instead.")
 
     def __getitem__(self, key: str) -> Any:
-        ServiceInstallTaskDetails.__key_warning(key)
+        ServerInstallTaskDetails.__key_warning(key)
         return super().__getitem__(key)
 
     def get(self, key: str, default = None) -> Any:
-        ServiceInstallTaskDetails.__key_warning(key)
+        ServerInstallTaskDetails.__key_warning(key)
         return super().get(key, default)
 
     def __init__(__self__, *,
@@ -227,5 +228,34 @@ class ServiceInstallTaskDetails(dict):
         set to true to use SPLA.
         """
         return pulumi.get(self, "use_spla")
+
+
+@pulumi.output_type
+class ServerNetworkingInterface(dict):
+    def __init__(__self__, *,
+                 macs: Sequence[str],
+                 type: str):
+        """
+        :param Sequence[str] macs: List of mac addresses to bind together.
+        :param str type: Type of bonding to create.
+        """
+        pulumi.set(__self__, "macs", macs)
+        pulumi.set(__self__, "type", type)
+
+    @property
+    @pulumi.getter
+    def macs(self) -> Sequence[str]:
+        """
+        List of mac addresses to bind together.
+        """
+        return pulumi.get(self, "macs")
+
+    @property
+    @pulumi.getter
+    def type(self) -> str:
+        """
+        Type of bonding to create.
+        """
+        return pulumi.get(self, "type")
 
 

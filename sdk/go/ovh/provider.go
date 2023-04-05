@@ -47,7 +47,7 @@ func NewProvider(ctx *pulumi.Context,
 		args.Endpoint = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_ENDPOINT").(string))
 	}
 	if args.ConsumerKey != nil {
-		args.ConsumerKey = pulumi.ToSecret(args.ConsumerKey).(pulumi.StringPtrOutput)
+		args.ConsumerKey = pulumi.ToSecret(args.ConsumerKey).(pulumi.StringPtrInput)
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"consumerKey",

@@ -20,10 +20,13 @@ public final class HttpRouteRule {
     private @Nullable String field;
     /**
      * @return Matching operator. Not all operators are available for all fields. See &#34;availableRules&#34;
-     * * `negate`- Invert the matching operator effect
      * 
      */
     private @Nullable String match;
+    /**
+     * @return Invert the matching operator effect
+     * 
+     */
     private @Nullable Boolean negate;
     /**
      * @return Value to match against this match. Interpretation if this field depends on the match and field
@@ -51,12 +54,15 @@ public final class HttpRouteRule {
     }
     /**
      * @return Matching operator. Not all operators are available for all fields. See &#34;availableRules&#34;
-     * * `negate`- Invert the matching operator effect
      * 
      */
     public Optional<String> match() {
         return Optional.ofNullable(this.match);
     }
+    /**
+     * @return Invert the matching operator effect
+     * 
+     */
     public Optional<Boolean> negate() {
         return Optional.ofNullable(this.negate);
     }

@@ -11,10 +11,10 @@ import * as utilities from "../utilities";
  *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
- * import * as ovh from "@pulumi/ovh";
+ * import * as ovh from "@lbrlabs/pulumi-ovh";
  *
  * // Add a record to a sub-domain
- * const test = new ovh.Domain.ZoneRecord("test", {
+ * const test = new ovh.domain.ZoneRecord("test", {
  *     fieldtype: "A",
  *     subdomain: "test",
  *     target: "0.0.0.0",
@@ -25,10 +25,10 @@ import * as utilities from "../utilities";
  *
  * ## Import
  *
- * OVHcloud record can be imported using the `id` and the `zone`, egbash
+ * OVHcloud domain zone record can be imported using the `id`, which can be retrieved by using [OVH API portal](https://api.ovh.com/console/#/domain/zone/%7BzoneName%7D/record~GET), and the `zone`, separated by "." E.g., bash
  *
  * ```sh
- *  $ pulumi import ovh:Domain/zoneRecord:ZoneRecord test 1234OVH_ID.zone.tld
+ *  $ pulumi import ovh:Domain/zoneRecord:ZoneRecord test id.zone
  * ```
  */
 export class ZoneRecord extends pulumi.CustomResource {

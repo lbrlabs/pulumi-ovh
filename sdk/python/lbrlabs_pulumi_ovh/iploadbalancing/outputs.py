@@ -231,7 +231,7 @@ class HttpRouteRule(dict):
         """
         :param str field: Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
         :param str match: Matching operator. Not all operators are available for all fields. See "availableRules"
-               * `negate`- Invert the matching operator effect
+        :param bool negate: Invert the matching operator effect
         :param str pattern: Value to match against this match. Interpretation if this field depends on the match and field
         :param int rule_id: Id of your rule
         :param str sub_field: Name of sub-field, if applicable. This may be a Cookie or Header name for instance
@@ -262,13 +262,15 @@ class HttpRouteRule(dict):
     def match(self) -> Optional[str]:
         """
         Matching operator. Not all operators are available for all fields. See "availableRules"
-        * `negate`- Invert the matching operator effect
         """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def negate(self) -> Optional[bool]:
+        """
+        Invert the matching operator effect
+        """
         return pulumi.get(self, "negate")
 
     @property
@@ -910,7 +912,7 @@ class TcpRouteRule(dict):
         """
         :param str field: Name of the field to match like "protocol" or "host" "/ipLoadbalancing/{serviceName}/route/availableRules" for a list of available rules
         :param str match: Matching operator. Not all operators are available for all fields. See "availableRules"
-               * `negate`- Invert the matching operator effect
+        :param bool negate: Invert the matching operator effect
         :param str pattern: Value to match against this match. Interpretation if this field depends on the match and field
         :param int rule_id: Id of your rule
         :param str sub_field: Name of sub-field, if applicable. This may be a Cookie or Header name for instance
@@ -941,13 +943,15 @@ class TcpRouteRule(dict):
     def match(self) -> Optional[str]:
         """
         Matching operator. Not all operators are available for all fields. See "availableRules"
-        * `negate`- Invert the matching operator effect
         """
         return pulumi.get(self, "match")
 
     @property
     @pulumi.getter
     def negate(self) -> Optional[bool]:
+        """
+        Invert the matching operator effect
+        """
         return pulumi.get(self, "negate")
 
     @property

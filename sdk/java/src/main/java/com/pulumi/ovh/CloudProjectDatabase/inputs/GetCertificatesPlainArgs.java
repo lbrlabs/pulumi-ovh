@@ -31,10 +31,6 @@ public final class GetCertificatesPlainArgs extends com.pulumi.resources.InvokeA
      * The engine of the database cluster you want database information. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `mysql`
-     * * `postgresql`
      * 
      */
     @Import(name="engine", required=true)
@@ -44,10 +40,6 @@ public final class GetCertificatesPlainArgs extends com.pulumi.resources.InvokeA
      * @return The engine of the database cluster you want database information. To get a full list of available engine visit:
      * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `mysql`
-     * * `postgresql`
      * 
      */
     public String engine() {
@@ -112,10 +104,6 @@ public final class GetCertificatesPlainArgs extends com.pulumi.resources.InvokeA
          * @param engine The engine of the database cluster you want database information. To get a full list of available engine visit:
          * [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
          * Available engines:
-         * * `cassandra`
-         * * `kafka`
-         * * `mysql`
-         * * `postgresql`
          * 
          * @return builder
          * 

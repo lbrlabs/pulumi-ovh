@@ -17,14 +17,14 @@ public final class InstallationTemplatePartitionSchemeState extends com.pulumi.r
     public static final InstallationTemplatePartitionSchemeState Empty = new InstallationTemplatePartitionSchemeState();
 
     /**
-     * name of this partitioning scheme
+     * (Required) This partition scheme name.
      * 
      */
     @Import(name="name")
     private @Nullable Output<String> name;
 
     /**
-     * @return name of this partitioning scheme
+     * @return (Required) This partition scheme name.
      * 
      */
     public Optional<Output<String>> name() {
@@ -32,16 +32,14 @@ public final class InstallationTemplatePartitionSchemeState extends com.pulumi.r
     }
 
     /**
-     * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-     * among all the compatible partitioning schemes (given the underlying hardware specifications)
+     * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
      * 
      */
     @Import(name="priority")
     private @Nullable Output<Integer> priority;
 
     /**
-     * @return on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-     * among all the compatible partitioning schemes (given the underlying hardware specifications)
+     * @return on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
      * 
      */
     public Optional<Output<Integer>> priority() {
@@ -49,14 +47,14 @@ public final class InstallationTemplatePartitionSchemeState extends com.pulumi.r
     }
 
     /**
-     * This template name
+     * The template name of the partition scheme.
      * 
      */
     @Import(name="templateName")
     private @Nullable Output<String> templateName;
 
     /**
-     * @return This template name
+     * @return The template name of the partition scheme.
      * 
      */
     public Optional<Output<String>> templateName() {
@@ -90,7 +88,7 @@ public final class InstallationTemplatePartitionSchemeState extends com.pulumi.r
         }
 
         /**
-         * @param name name of this partitioning scheme
+         * @param name (Required) This partition scheme name.
          * 
          * @return builder
          * 
@@ -101,7 +99,7 @@ public final class InstallationTemplatePartitionSchemeState extends com.pulumi.r
         }
 
         /**
-         * @param name name of this partitioning scheme
+         * @param name (Required) This partition scheme name.
          * 
          * @return builder
          * 
@@ -111,8 +109,7 @@ public final class InstallationTemplatePartitionSchemeState extends com.pulumi.r
         }
 
         /**
-         * @param priority on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-         * among all the compatible partitioning schemes (given the underlying hardware specifications)
+         * @param priority on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
          * 
          * @return builder
          * 
@@ -123,8 +120,7 @@ public final class InstallationTemplatePartitionSchemeState extends com.pulumi.r
         }
 
         /**
-         * @param priority on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default,
-         * among all the compatible partitioning schemes (given the underlying hardware specifications)
+         * @param priority on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
          * 
          * @return builder
          * 
@@ -134,7 +130,7 @@ public final class InstallationTemplatePartitionSchemeState extends com.pulumi.r
         }
 
         /**
-         * @param templateName This template name
+         * @param templateName The template name of the partition scheme.
          * 
          * @return builder
          * 
@@ -145,7 +141,7 @@ public final class InstallationTemplatePartitionSchemeState extends com.pulumi.r
         }
 
         /**
-         * @param templateName This template name
+         * @param templateName The template name of the partition scheme.
          * 
          * @return builder
          * 

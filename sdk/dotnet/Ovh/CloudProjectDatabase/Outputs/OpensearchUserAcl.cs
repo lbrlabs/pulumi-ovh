@@ -21,11 +21,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase.Outputs
         /// <summary>
         /// Permission of the ACL
         /// Available permission:
-        /// * `admin`
-        /// * `read`
-        /// * `write`
-        /// * `readwrite`
-        /// * `deny`
         /// </summary>
         public readonly string Permission;
 

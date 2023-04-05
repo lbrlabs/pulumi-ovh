@@ -20,10 +20,16 @@ import com.pulumi.ovh.CloudProject.inputs.GetContainerRegistryUsersPlainArgs;
 import com.pulumi.ovh.CloudProject.inputs.GetFailoverIpAttachArgs;
 import com.pulumi.ovh.CloudProject.inputs.GetFailoverIpAttachPlainArgs;
 import com.pulumi.ovh.CloudProject.inputs.GetKubeArgs;
-import com.pulumi.ovh.CloudProject.inputs.GetKubeIpNodePoolArgs;
-import com.pulumi.ovh.CloudProject.inputs.GetKubeIpNodePoolPlainArgs;
 import com.pulumi.ovh.CloudProject.inputs.GetKubeIpRestrictionsArgs;
 import com.pulumi.ovh.CloudProject.inputs.GetKubeIpRestrictionsPlainArgs;
+import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolArgs;
+import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolNodesArgs;
+import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolNodesPlainArgs;
+import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolPlainArgs;
+import com.pulumi.ovh.CloudProject.inputs.GetKubeNodesArgs;
+import com.pulumi.ovh.CloudProject.inputs.GetKubeNodesPlainArgs;
+import com.pulumi.ovh.CloudProject.inputs.GetKubeOidcArgs;
+import com.pulumi.ovh.CloudProject.inputs.GetKubeOidcPlainArgs;
 import com.pulumi.ovh.CloudProject.inputs.GetKubePlainArgs;
 import com.pulumi.ovh.CloudProject.inputs.GetM3dbNamespaceArgs;
 import com.pulumi.ovh.CloudProject.inputs.GetM3dbNamespacePlainArgs;
@@ -61,8 +67,11 @@ import com.pulumi.ovh.CloudProject.outputs.GetContainerRegistriesInvokeResult;
 import com.pulumi.ovh.CloudProject.outputs.GetContainerRegistryResult;
 import com.pulumi.ovh.CloudProject.outputs.GetContainerRegistryUsersInvokeResult;
 import com.pulumi.ovh.CloudProject.outputs.GetFailoverIpAttachResult;
-import com.pulumi.ovh.CloudProject.outputs.GetKubeIpNodePoolResult;
 import com.pulumi.ovh.CloudProject.outputs.GetKubeIpRestrictionsResult;
+import com.pulumi.ovh.CloudProject.outputs.GetKubeNodePoolNodesResult;
+import com.pulumi.ovh.CloudProject.outputs.GetKubeNodePoolResult;
+import com.pulumi.ovh.CloudProject.outputs.GetKubeNodesResult;
+import com.pulumi.ovh.CloudProject.outputs.GetKubeOidcResult;
 import com.pulumi.ovh.CloudProject.outputs.GetKubeResult;
 import com.pulumi.ovh.CloudProject.outputs.GetM3dbNamespaceResult;
 import com.pulumi.ovh.CloudProject.outputs.GetM3dbNamespacesResult;
@@ -1172,166 +1181,6 @@ public final class CloudProjectFunctions {
         return Deployment.getInstance().invokeAsync("ovh:CloudProject/getKube:getKube", TypeShape.of(GetKubeResult.class), args, Utilities.withVersion(options));
     }
     /**
-     * Use this data source to get a OVHcloud Managed Kubernetes node pool.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetKubeIpNodePoolArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var nodepool = CloudProjectFunctions.getKubeIpNodePool(GetKubeIpNodePoolArgs.builder()
-     *             .serviceName(&#34;XXXXXX&#34;)
-     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
-     *             .name(&#34;xxxxxx&#34;)
-     *             .build());
-     * 
-     *         ctx.export(&#34;maxNodes&#34;, nodepool.applyValue(getKubeIpNodePoolResult -&gt; getKubeIpNodePoolResult.maxNodes()));
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static Output<GetKubeIpNodePoolResult> getKubeIpNodePool(GetKubeIpNodePoolArgs args) {
-        return getKubeIpNodePool(args, InvokeOptions.Empty);
-    }
-    /**
-     * Use this data source to get a OVHcloud Managed Kubernetes node pool.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetKubeIpNodePoolArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var nodepool = CloudProjectFunctions.getKubeIpNodePool(GetKubeIpNodePoolArgs.builder()
-     *             .serviceName(&#34;XXXXXX&#34;)
-     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
-     *             .name(&#34;xxxxxx&#34;)
-     *             .build());
-     * 
-     *         ctx.export(&#34;maxNodes&#34;, nodepool.applyValue(getKubeIpNodePoolResult -&gt; getKubeIpNodePoolResult.maxNodes()));
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static CompletableFuture<GetKubeIpNodePoolResult> getKubeIpNodePoolPlain(GetKubeIpNodePoolPlainArgs args) {
-        return getKubeIpNodePoolPlain(args, InvokeOptions.Empty);
-    }
-    /**
-     * Use this data source to get a OVHcloud Managed Kubernetes node pool.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetKubeIpNodePoolArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var nodepool = CloudProjectFunctions.getKubeIpNodePool(GetKubeIpNodePoolArgs.builder()
-     *             .serviceName(&#34;XXXXXX&#34;)
-     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
-     *             .name(&#34;xxxxxx&#34;)
-     *             .build());
-     * 
-     *         ctx.export(&#34;maxNodes&#34;, nodepool.applyValue(getKubeIpNodePoolResult -&gt; getKubeIpNodePoolResult.maxNodes()));
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static Output<GetKubeIpNodePoolResult> getKubeIpNodePool(GetKubeIpNodePoolArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invoke("ovh:CloudProject/getKubeIpNodePool:getKubeIpNodePool", TypeShape.of(GetKubeIpNodePoolResult.class), args, Utilities.withVersion(options));
-    }
-    /**
-     * Use this data source to get a OVHcloud Managed Kubernetes node pool.
-     * 
-     * ## Example Usage
-     * ```java
-     * package generated_program;
-     * 
-     * import com.pulumi.Context;
-     * import com.pulumi.Pulumi;
-     * import com.pulumi.core.Output;
-     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
-     * import com.pulumi.ovh.CloudProject.inputs.GetKubeIpNodePoolArgs;
-     * import java.util.List;
-     * import java.util.ArrayList;
-     * import java.util.Map;
-     * import java.io.File;
-     * import java.nio.file.Files;
-     * import java.nio.file.Paths;
-     * 
-     * public class App {
-     *     public static void main(String[] args) {
-     *         Pulumi.run(App::stack);
-     *     }
-     * 
-     *     public static void stack(Context ctx) {
-     *         final var nodepool = CloudProjectFunctions.getKubeIpNodePool(GetKubeIpNodePoolArgs.builder()
-     *             .serviceName(&#34;XXXXXX&#34;)
-     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
-     *             .name(&#34;xxxxxx&#34;)
-     *             .build());
-     * 
-     *         ctx.export(&#34;maxNodes&#34;, nodepool.applyValue(getKubeIpNodePoolResult -&gt; getKubeIpNodePoolResult.maxNodes()));
-     *     }
-     * }
-     * ```
-     * 
-     */
-    public static CompletableFuture<GetKubeIpNodePoolResult> getKubeIpNodePoolPlain(GetKubeIpNodePoolPlainArgs args, InvokeOptions options) {
-        return Deployment.getInstance().invokeAsync("ovh:CloudProject/getKubeIpNodePool:getKubeIpNodePool", TypeShape.of(GetKubeIpNodePoolResult.class), args, Utilities.withVersion(options));
-    }
-    /**
      * Use this data source to get a OVHcloud Managed Kubernetes Service cluster IP restrictions.
      * 
      * ## Example Usage
@@ -1486,6 +1335,638 @@ public final class CloudProjectFunctions {
      */
     public static CompletableFuture<GetKubeIpRestrictionsResult> getKubeIpRestrictionsPlain(GetKubeIpRestrictionsPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ovh:CloudProject/getKubeIpRestrictions:getKubeIpRestrictions", TypeShape.of(GetKubeIpRestrictionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a OVHcloud Managed Kubernetes node pool.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodepool = CloudProjectFunctions.getKubeNodePool(GetKubeNodePoolArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .name(&#34;xxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;maxNodes&#34;, nodepool.applyValue(getKubeNodePoolResult -&gt; getKubeNodePoolResult.maxNodes()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetKubeNodePoolResult> getKubeNodePool(GetKubeNodePoolArgs args) {
+        return getKubeNodePool(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a OVHcloud Managed Kubernetes node pool.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodepool = CloudProjectFunctions.getKubeNodePool(GetKubeNodePoolArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .name(&#34;xxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;maxNodes&#34;, nodepool.applyValue(getKubeNodePoolResult -&gt; getKubeNodePoolResult.maxNodes()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetKubeNodePoolResult> getKubeNodePoolPlain(GetKubeNodePoolPlainArgs args) {
+        return getKubeNodePoolPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a OVHcloud Managed Kubernetes node pool.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodepool = CloudProjectFunctions.getKubeNodePool(GetKubeNodePoolArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .name(&#34;xxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;maxNodes&#34;, nodepool.applyValue(getKubeNodePoolResult -&gt; getKubeNodePoolResult.maxNodes()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetKubeNodePoolResult> getKubeNodePool(GetKubeNodePoolArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:CloudProject/getKubeNodePool:getKubeNodePool", TypeShape.of(GetKubeNodePoolResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a OVHcloud Managed Kubernetes node pool.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodepool = CloudProjectFunctions.getKubeNodePool(GetKubeNodePoolArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .name(&#34;xxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;maxNodes&#34;, nodepool.applyValue(getKubeNodePoolResult -&gt; getKubeNodePoolResult.maxNodes()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetKubeNodePoolResult> getKubeNodePoolPlain(GetKubeNodePoolPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:CloudProject/getKubeNodePool:getKubeNodePool", TypeShape.of(GetKubeNodePoolResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of OVHcloud Managed Kubernetes nodes in a specific node pool.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodesKubeNodePoolNodes = CloudProjectFunctions.getKubeNodePoolNodes(GetKubeNodePoolNodesArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .name(&#34;XXXXXX&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;nodes&#34;, nodesKubeNodePoolNodes.applyValue(getKubeNodePoolNodesResult -&gt; getKubeNodePoolNodesResult));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetKubeNodePoolNodesResult> getKubeNodePoolNodes(GetKubeNodePoolNodesArgs args) {
+        return getKubeNodePoolNodes(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of OVHcloud Managed Kubernetes nodes in a specific node pool.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodesKubeNodePoolNodes = CloudProjectFunctions.getKubeNodePoolNodes(GetKubeNodePoolNodesArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .name(&#34;XXXXXX&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;nodes&#34;, nodesKubeNodePoolNodes.applyValue(getKubeNodePoolNodesResult -&gt; getKubeNodePoolNodesResult));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetKubeNodePoolNodesResult> getKubeNodePoolNodesPlain(GetKubeNodePoolNodesPlainArgs args) {
+        return getKubeNodePoolNodesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of OVHcloud Managed Kubernetes nodes in a specific node pool.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodesKubeNodePoolNodes = CloudProjectFunctions.getKubeNodePoolNodes(GetKubeNodePoolNodesArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .name(&#34;XXXXXX&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;nodes&#34;, nodesKubeNodePoolNodes.applyValue(getKubeNodePoolNodesResult -&gt; getKubeNodePoolNodesResult));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetKubeNodePoolNodesResult> getKubeNodePoolNodes(GetKubeNodePoolNodesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:CloudProject/getKubeNodePoolNodes:getKubeNodePoolNodes", TypeShape.of(GetKubeNodePoolNodesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of OVHcloud Managed Kubernetes nodes in a specific node pool.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodePoolNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodesKubeNodePoolNodes = CloudProjectFunctions.getKubeNodePoolNodes(GetKubeNodePoolNodesArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .name(&#34;XXXXXX&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;nodes&#34;, nodesKubeNodePoolNodes.applyValue(getKubeNodePoolNodesResult -&gt; getKubeNodePoolNodesResult));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetKubeNodePoolNodesResult> getKubeNodePoolNodesPlain(GetKubeNodePoolNodesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:CloudProject/getKubeNodePoolNodes:getKubeNodePoolNodes", TypeShape.of(GetKubeNodePoolNodesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of OVHcloud Managed Kubernetes nodes.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodesKubeNodes = CloudProjectFunctions.getKubeNodes(GetKubeNodesArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;nodes&#34;, nodesKubeNodes.applyValue(getKubeNodesResult -&gt; getKubeNodesResult));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetKubeNodesResult> getKubeNodes(GetKubeNodesArgs args) {
+        return getKubeNodes(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of OVHcloud Managed Kubernetes nodes.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodesKubeNodes = CloudProjectFunctions.getKubeNodes(GetKubeNodesArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;nodes&#34;, nodesKubeNodes.applyValue(getKubeNodesResult -&gt; getKubeNodesResult));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetKubeNodesResult> getKubeNodesPlain(GetKubeNodesPlainArgs args) {
+        return getKubeNodesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a list of OVHcloud Managed Kubernetes nodes.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodesKubeNodes = CloudProjectFunctions.getKubeNodes(GetKubeNodesArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;nodes&#34;, nodesKubeNodes.applyValue(getKubeNodesResult -&gt; getKubeNodesResult));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetKubeNodesResult> getKubeNodes(GetKubeNodesArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:CloudProject/getKubeNodes:getKubeNodes", TypeShape.of(GetKubeNodesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a list of OVHcloud Managed Kubernetes nodes.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeNodesArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var nodesKubeNodes = CloudProjectFunctions.getKubeNodes(GetKubeNodesArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;nodes&#34;, nodesKubeNodes.applyValue(getKubeNodesResult -&gt; getKubeNodesResult));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetKubeNodesResult> getKubeNodesPlain(GetKubeNodesPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:CloudProject/getKubeNodes:getKubeNodes", TypeShape.of(GetKubeNodesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a OVHcloud Managed Kubernetes Service cluster OIDC.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeOidcArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var oidc = CloudProjectFunctions.getKubeOidc(GetKubeOidcArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;oidc-val&#34;, oidc.applyValue(getKubeOidcResult -&gt; getKubeOidcResult.clientId()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetKubeOidcResult> getKubeOidc(GetKubeOidcArgs args) {
+        return getKubeOidc(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a OVHcloud Managed Kubernetes Service cluster OIDC.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeOidcArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var oidc = CloudProjectFunctions.getKubeOidc(GetKubeOidcArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;oidc-val&#34;, oidc.applyValue(getKubeOidcResult -&gt; getKubeOidcResult.clientId()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetKubeOidcResult> getKubeOidcPlain(GetKubeOidcPlainArgs args) {
+        return getKubeOidcPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to get a OVHcloud Managed Kubernetes Service cluster OIDC.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeOidcArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var oidc = CloudProjectFunctions.getKubeOidc(GetKubeOidcArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;oidc-val&#34;, oidc.applyValue(getKubeOidcResult -&gt; getKubeOidcResult.clientId()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetKubeOidcResult> getKubeOidc(GetKubeOidcArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:CloudProject/getKubeOidc:getKubeOidc", TypeShape.of(GetKubeOidcResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to get a OVHcloud Managed Kubernetes Service cluster OIDC.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.CloudProject.CloudProjectFunctions;
+     * import com.pulumi.ovh.CloudProject.inputs.GetKubeOidcArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var oidc = CloudProjectFunctions.getKubeOidc(GetKubeOidcArgs.builder()
+     *             .serviceName(&#34;XXXXXX&#34;)
+     *             .kubeId(&#34;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx&#34;)
+     *             .build());
+     * 
+     *         ctx.export(&#34;oidc-val&#34;, oidc.applyValue(getKubeOidcResult -&gt; getKubeOidcResult.clientId()));
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetKubeOidcResult> getKubeOidcPlain(GetKubeOidcPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:CloudProject/getKubeOidc:getKubeOidc", TypeShape.of(GetKubeOidcResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to get information about a namespace of a M3DB cluster associated with a public cloud project.

@@ -52,10 +52,6 @@ export class User extends pulumi.CustomResource {
     /**
      * The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `kafkaConnect`
-     * * `mysql`
      */
     public readonly engine!: pulumi.Output<string>;
     /**
@@ -143,10 +139,6 @@ export interface UserState {
     /**
      * The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `kafkaConnect`
-     * * `mysql`
      */
     engine?: pulumi.Input<string>;
     /**
@@ -183,10 +175,6 @@ export interface UserArgs {
     /**
      * The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
      * Available engines:
-     * * `cassandra`
-     * * `kafka`
-     * * `kafkaConnect`
-     * * `mysql`
      */
     engine: pulumi.Input<string>;
     /**

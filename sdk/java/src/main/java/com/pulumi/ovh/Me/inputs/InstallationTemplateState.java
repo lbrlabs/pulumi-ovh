@@ -20,14 +20,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     public static final InstallationTemplateState Empty = new InstallationTemplateState();
 
     /**
-     * List of all language available for this template
+     * List of all language available for this template.
      * 
      */
     @Import(name="availableLanguages")
     private @Nullable Output<List<String>> availableLanguages;
 
     /**
-     * @return List of all language available for this template
+     * @return List of all language available for this template.
      * 
      */
     public Optional<Output<List<String>>> availableLanguages() {
@@ -35,14 +35,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+     * The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
      * 
      */
     @Import(name="baseTemplateName")
     private @Nullable Output<String> baseTemplateName;
 
     /**
-     * @return OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+     * @return The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
      * 
      */
     public Optional<Output<String>> baseTemplateName() {
@@ -50,14 +50,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * This distribution is new and, although tested and functional, may still display odd behaviour
+     * This distribution is new and, although tested and functional, may still display odd behaviour.
      * 
      */
     @Import(name="beta")
     private @Nullable Output<Boolean> beta;
 
     /**
-     * @return This distribution is new and, although tested and functional, may still display odd behaviour
+     * @return This distribution is new and, although tested and functional, may still display odd behaviour.
      * 
      */
     public Optional<Output<Boolean>> beta() {
@@ -65,14 +65,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * This template bit format (32 or 64)
+     * This template bit format (32 or 64).
      * 
      */
     @Import(name="bitFormat")
     private @Nullable Output<Integer> bitFormat;
 
     /**
-     * @return This template bit format (32 or 64)
+     * @return This template bit format (32 or 64).
      * 
      */
     public Optional<Output<Integer>> bitFormat() {
@@ -80,14 +80,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+     * Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
      * 
      */
     @Import(name="category")
     private @Nullable Output<String> category;
 
     /**
-     * @return Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+     * @return Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
      * 
      */
     public Optional<Output<String>> category() {
@@ -102,14 +102,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * The default language of this template
+     * The default language of this template.
      * 
      */
     @Import(name="defaultLanguage")
     private @Nullable Output<String> defaultLanguage;
 
     /**
-     * @return The default language of this template
+     * @return The default language of this template.
      * 
      */
     public Optional<Output<String>> defaultLanguage() {
@@ -117,14 +117,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * is this distribution deprecated
+     * is this distribution deprecated.
      * 
      */
     @Import(name="deprecated")
     private @Nullable Output<Boolean> deprecated;
 
     /**
-     * @return is this distribution deprecated
+     * @return is this distribution deprecated.
      * 
      */
     public Optional<Output<Boolean>> deprecated() {
@@ -132,14 +132,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * information about this template
+     * information about this template.
      * 
      */
     @Import(name="description")
     private @Nullable Output<String> description;
 
     /**
-     * @return information about this template
+     * @return information about this template.
      * 
      */
     public Optional<Output<String>> description() {
@@ -147,14 +147,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * the distribution this template is based on
+     * the distribution this template is based on.
      * 
      */
     @Import(name="distribution")
     private @Nullable Output<String> distribution;
 
     /**
-     * @return the distribution this template is based on
+     * @return the distribution this template is based on.
      * 
      */
     public Optional<Output<String>> distribution() {
@@ -162,14 +162,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * this template family type (bsd,linux,solaris,windows)
+     * this template family type (bsd,linux,solaris,windows).
      * 
      */
     @Import(name="family")
     private @Nullable Output<String> family;
 
     /**
-     * @return this template family type (bsd,linux,solaris,windows)
+     * @return this template family type (bsd,linux,solaris,windows).
      * 
      */
     public Optional<Output<String>> family() {
@@ -177,14 +177,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+     * Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
      * 
      */
     @Import(name="filesystems")
     private @Nullable Output<List<String>> filesystems;
 
     /**
-     * @return Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+     * @return Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
      * 
      */
     public Optional<Output<List<String>>> filesystems() {
@@ -192,14 +192,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * This distribution supports hardware raid configuration through the OVH API
+     * This distribution supports hardware raid configuration through the OVHcloud API.
      * 
      */
     @Import(name="hardRaidConfiguration")
     private @Nullable Output<Boolean> hardRaidConfiguration;
 
     /**
-     * @return This distribution supports hardware raid configuration through the OVH API
+     * @return This distribution supports hardware raid configuration through the OVHcloud API.
      * 
      */
     public Optional<Output<Boolean>> hardRaidConfiguration() {
@@ -207,14 +207,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Date of last modification of the base image
+     * Date of last modification of the base image.
      * 
      */
     @Import(name="lastModification")
     private @Nullable Output<String> lastModification;
 
     /**
-     * @return Date of last modification of the base image
+     * @return Date of last modification of the base image.
      * 
      */
     public Optional<Output<String>> lastModification() {
@@ -237,14 +237,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * Remove default partition schemes at creation
+     * Remove default partition schemes at creation.
      * 
      */
     @Import(name="removeDefaultPartitionSchemes")
     private @Nullable Output<Boolean> removeDefaultPartitionSchemes;
 
     /**
-     * @return Remove default partition schemes at creation
+     * @return Remove default partition schemes at creation.
      * 
      */
     public Optional<Output<Boolean>> removeDefaultPartitionSchemes() {
@@ -252,14 +252,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVH kernel
+     * This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVHcloud kernel.
      * 
      */
     @Import(name="supportsDistributionKernel")
     private @Nullable Output<Boolean> supportsDistributionKernel;
 
     /**
-     * @return This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVH kernel
+     * @return This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVHcloud kernel.
      * 
      */
     public Optional<Output<Boolean>> supportsDistributionKernel() {
@@ -267,29 +267,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-     * 
-     */
-    @Import(name="supportsGptLabel")
-    private @Nullable Output<Boolean> supportsGptLabel;
-
-    /**
-     * @return This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-     * 
-     */
-    public Optional<Output<Boolean>> supportsGptLabel() {
-        return Optional.ofNullable(this.supportsGptLabel);
-    }
-
-    /**
-     * This distribution supports RTM software
+     * This distribution supports RTM software.
      * 
      */
     @Import(name="supportsRtm")
     private @Nullable Output<Boolean> supportsRtm;
 
     /**
-     * @return This distribution supports RTM software
+     * @return This distribution supports RTM software.
      * 
      */
     public Optional<Output<Boolean>> supportsRtm() {
@@ -297,14 +282,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * This distribution supports the microsoft SQL server
+     * This distribution supports the microsoft SQL server.
      * 
      */
     @Import(name="supportsSqlServer")
     private @Nullable Output<Boolean> supportsSqlServer;
 
     /**
-     * @return This distribution supports the microsoft SQL server
+     * @return This distribution supports the microsoft SQL server.
      * 
      */
     public Optional<Output<Boolean>> supportsSqlServer() {
@@ -312,29 +297,14 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
     }
 
     /**
-     * This distribution supports UEFI setup (no,only,yes)
-     * 
-     */
-    @Import(name="supportsUefi")
-    private @Nullable Output<String> supportsUefi;
-
-    /**
-     * @return This distribution supports UEFI setup (no,only,yes)
-     * 
-     */
-    public Optional<Output<String>> supportsUefi() {
-        return Optional.ofNullable(this.supportsUefi);
-    }
-
-    /**
-     * This template name
+     * This template name.
      * 
      */
     @Import(name="templateName")
     private @Nullable Output<String> templateName;
 
     /**
-     * @return This template name
+     * @return This template name.
      * 
      */
     public Optional<Output<String>> templateName() {
@@ -361,10 +331,8 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         this.lvmReady = $.lvmReady;
         this.removeDefaultPartitionSchemes = $.removeDefaultPartitionSchemes;
         this.supportsDistributionKernel = $.supportsDistributionKernel;
-        this.supportsGptLabel = $.supportsGptLabel;
         this.supportsRtm = $.supportsRtm;
         this.supportsSqlServer = $.supportsSqlServer;
-        this.supportsUefi = $.supportsUefi;
         this.templateName = $.templateName;
     }
 
@@ -387,7 +355,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param availableLanguages List of all language available for this template
+         * @param availableLanguages List of all language available for this template.
          * 
          * @return builder
          * 
@@ -398,7 +366,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param availableLanguages List of all language available for this template
+         * @param availableLanguages List of all language available for this template.
          * 
          * @return builder
          * 
@@ -408,7 +376,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param availableLanguages List of all language available for this template
+         * @param availableLanguages List of all language available for this template.
          * 
          * @return builder
          * 
@@ -418,7 +386,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param baseTemplateName OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+         * @param baseTemplateName The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
          * 
          * @return builder
          * 
@@ -429,7 +397,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param baseTemplateName OVH template name yours will be based on, choose one among the list given by compatibleTemplates function
+         * @param baseTemplateName The name of an existing installation template, choose one among the list given by `ovh.getInstallationTemplates` datasource.
          * 
          * @return builder
          * 
@@ -439,7 +407,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param beta This distribution is new and, although tested and functional, may still display odd behaviour
+         * @param beta This distribution is new and, although tested and functional, may still display odd behaviour.
          * 
          * @return builder
          * 
@@ -450,7 +418,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param beta This distribution is new and, although tested and functional, may still display odd behaviour
+         * @param beta This distribution is new and, although tested and functional, may still display odd behaviour.
          * 
          * @return builder
          * 
@@ -460,7 +428,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param bitFormat This template bit format (32 or 64)
+         * @param bitFormat This template bit format (32 or 64).
          * 
          * @return builder
          * 
@@ -471,7 +439,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param bitFormat This template bit format (32 or 64)
+         * @param bitFormat This template bit format (32 or 64).
          * 
          * @return builder
          * 
@@ -481,7 +449,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param category Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+         * @param category Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
          * 
          * @return builder
          * 
@@ -492,7 +460,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param category Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation)
+         * @param category Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
          * 
          * @return builder
          * 
@@ -511,7 +479,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param defaultLanguage The default language of this template
+         * @param defaultLanguage The default language of this template.
          * 
          * @return builder
          * 
@@ -522,7 +490,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param defaultLanguage The default language of this template
+         * @param defaultLanguage The default language of this template.
          * 
          * @return builder
          * 
@@ -532,7 +500,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param deprecated is this distribution deprecated
+         * @param deprecated is this distribution deprecated.
          * 
          * @return builder
          * 
@@ -543,7 +511,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param deprecated is this distribution deprecated
+         * @param deprecated is this distribution deprecated.
          * 
          * @return builder
          * 
@@ -553,7 +521,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param description information about this template
+         * @param description information about this template.
          * 
          * @return builder
          * 
@@ -564,7 +532,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param description information about this template
+         * @param description information about this template.
          * 
          * @return builder
          * 
@@ -574,7 +542,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param distribution the distribution this template is based on
+         * @param distribution the distribution this template is based on.
          * 
          * @return builder
          * 
@@ -585,7 +553,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param distribution the distribution this template is based on
+         * @param distribution the distribution this template is based on.
          * 
          * @return builder
          * 
@@ -595,7 +563,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param family this template family type (bsd,linux,solaris,windows)
+         * @param family this template family type (bsd,linux,solaris,windows).
          * 
          * @return builder
          * 
@@ -606,7 +574,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param family this template family type (bsd,linux,solaris,windows)
+         * @param family this template family type (bsd,linux,solaris,windows).
          * 
          * @return builder
          * 
@@ -616,7 +584,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param filesystems Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+         * @param filesystems Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
          * 
          * @return builder
          * 
@@ -627,7 +595,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param filesystems Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+         * @param filesystems Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
          * 
          * @return builder
          * 
@@ -637,7 +605,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param filesystems Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs)
+         * @param filesystems Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
          * 
          * @return builder
          * 
@@ -647,7 +615,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param hardRaidConfiguration This distribution supports hardware raid configuration through the OVH API
+         * @param hardRaidConfiguration This distribution supports hardware raid configuration through the OVHcloud API.
          * 
          * @return builder
          * 
@@ -658,7 +626,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param hardRaidConfiguration This distribution supports hardware raid configuration through the OVH API
+         * @param hardRaidConfiguration This distribution supports hardware raid configuration through the OVHcloud API.
          * 
          * @return builder
          * 
@@ -668,7 +636,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param lastModification Date of last modification of the base image
+         * @param lastModification Date of last modification of the base image.
          * 
          * @return builder
          * 
@@ -679,7 +647,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param lastModification Date of last modification of the base image
+         * @param lastModification Date of last modification of the base image.
          * 
          * @return builder
          * 
@@ -710,7 +678,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param removeDefaultPartitionSchemes Remove default partition schemes at creation
+         * @param removeDefaultPartitionSchemes Remove default partition schemes at creation.
          * 
          * @return builder
          * 
@@ -721,7 +689,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param removeDefaultPartitionSchemes Remove default partition schemes at creation
+         * @param removeDefaultPartitionSchemes Remove default partition schemes at creation.
          * 
          * @return builder
          * 
@@ -731,7 +699,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param supportsDistributionKernel This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVH kernel
+         * @param supportsDistributionKernel This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVHcloud kernel.
          * 
          * @return builder
          * 
@@ -742,7 +710,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param supportsDistributionKernel This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVH kernel
+         * @param supportsDistributionKernel This distribution supports installation using the distribution&#39;s native kernel instead of the recommended OVHcloud kernel.
          * 
          * @return builder
          * 
@@ -752,28 +720,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param supportsGptLabel This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-         * 
-         * @return builder
-         * 
-         */
-        public Builder supportsGptLabel(@Nullable Output<Boolean> supportsGptLabel) {
-            $.supportsGptLabel = supportsGptLabel;
-            return this;
-        }
-
-        /**
-         * @param supportsGptLabel This distribution supports the GUID Partition Table (GPT), providing up to 128 partitions that can have more than 2TB
-         * 
-         * @return builder
-         * 
-         */
-        public Builder supportsGptLabel(Boolean supportsGptLabel) {
-            return supportsGptLabel(Output.of(supportsGptLabel));
-        }
-
-        /**
-         * @param supportsRtm This distribution supports RTM software
+         * @param supportsRtm This distribution supports RTM software.
          * 
          * @return builder
          * 
@@ -784,7 +731,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param supportsRtm This distribution supports RTM software
+         * @param supportsRtm This distribution supports RTM software.
          * 
          * @return builder
          * 
@@ -794,7 +741,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param supportsSqlServer This distribution supports the microsoft SQL server
+         * @param supportsSqlServer This distribution supports the microsoft SQL server.
          * 
          * @return builder
          * 
@@ -805,7 +752,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param supportsSqlServer This distribution supports the microsoft SQL server
+         * @param supportsSqlServer This distribution supports the microsoft SQL server.
          * 
          * @return builder
          * 
@@ -815,28 +762,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param supportsUefi This distribution supports UEFI setup (no,only,yes)
-         * 
-         * @return builder
-         * 
-         */
-        public Builder supportsUefi(@Nullable Output<String> supportsUefi) {
-            $.supportsUefi = supportsUefi;
-            return this;
-        }
-
-        /**
-         * @param supportsUefi This distribution supports UEFI setup (no,only,yes)
-         * 
-         * @return builder
-         * 
-         */
-        public Builder supportsUefi(String supportsUefi) {
-            return supportsUefi(Output.of(supportsUefi));
-        }
-
-        /**
-         * @param templateName This template name
+         * @param templateName This template name.
          * 
          * @return builder
          * 
@@ -847,7 +773,7 @@ public final class InstallationTemplateState extends com.pulumi.resources.Resour
         }
 
         /**
-         * @param templateName This template name
+         * @param templateName This template name.
          * 
          * @return builder
          * 

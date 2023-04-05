@@ -8,11 +8,8 @@ import * as utilities from "../utilities";
  * Use this data source to retrieve the Secret Access Key of an Access Key ID associated with a public cloud project's user.
  */
 export function getUserS3Credential(args: GetUserS3CredentialArgs, opts?: pulumi.InvokeOptions): Promise<GetUserS3CredentialResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getUserS3Credential:getUserS3Credential", {
         "accessKeyId": args.accessKeyId,
         "serviceName": args.serviceName,
@@ -55,9 +52,11 @@ export interface GetUserS3CredentialResult {
     readonly serviceName: string;
     readonly userId: string;
 }
-
+/**
+ * Use this data source to retrieve the Secret Access Key of an Access Key ID associated with a public cloud project's user.
+ */
 export function getUserS3CredentialOutput(args: GetUserS3CredentialOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetUserS3CredentialResult> {
-    return pulumi.output(args).apply(a => getUserS3Credential(a, opts))
+    return pulumi.output(args).apply((a: any) => getUserS3Credential(a, opts))
 }
 
 /**

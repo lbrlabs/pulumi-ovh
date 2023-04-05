@@ -25,11 +25,8 @@ import * as utilities from "../utilities";
  * ```
  */
 export function getDatabase(args: GetDatabaseArgs, opts?: pulumi.InvokeOptions): Promise<GetDatabaseResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProjectDatabase/getDatabase:getDatabase", {
         "engine": args.engine,
         "id": args.id,
@@ -73,6 +70,14 @@ export interface GetDatabaseResult {
      * Small description of the database service.
      */
     readonly description: string;
+    /**
+     * The disk size (in GB) of the database service.
+     */
+    readonly diskSize: number;
+    /**
+     * The disk type of the database service.
+     */
+    readonly diskType: string;
     /**
      * List of all endpoints objects of the service.
      */
@@ -123,9 +128,26 @@ export interface GetDatabaseResult {
      */
     readonly version: string;
 }
-
+/**
+ * Use this data source to get the managed database of a public cloud project.
+ *
+ * ## Example Usage
+ *
+ * To get information of a database cluster service:
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const db = ovh.CloudProjectDatabase.getDatabase({
+ *     serviceName: "XXXXXX",
+ *     engine: "YYYY",
+ *     id: "ZZZZ",
+ * });
+ * export const clusterId = db.then(db => db.id);
+ * ```
+ */
 export function getDatabaseOutput(args: GetDatabaseOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetDatabaseResult> {
-    return pulumi.output(args).apply(a => getDatabase(a, opts))
+    return pulumi.output(args).apply((a: any) => getDatabase(a, opts))
 }
 
 /**

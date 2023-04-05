@@ -13,17 +13,14 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const mykey = pulumi.output(ovh.Me.getSshKey({
+ * const mykey = ovh.Me.getSshKey({
  *     keyName: "mykey",
- * }));
+ * });
  * ```
  */
 export function getSshKey(args: GetSshKeyArgs, opts?: pulumi.InvokeOptions): Promise<GetSshKeyResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Me/getSshKey:getSshKey", {
         "keyName": args.keyName,
     }, opts);
@@ -61,9 +58,22 @@ export interface GetSshKeyResult {
      */
     readonly keyName: string;
 }
-
+/**
+ * Use this data source to retrieve information about an SSH key.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const mykey = ovh.Me.getSshKey({
+ *     keyName: "mykey",
+ * });
+ * ```
+ */
 export function getSshKeyOutput(args: GetSshKeyOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetSshKeyResult> {
-    return pulumi.output(args).apply(a => getSshKey(a, opts))
+    return pulumi.output(args).apply((a: any) => getSshKey(a, opts))
 }
 
 /**

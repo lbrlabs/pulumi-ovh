@@ -100,12 +100,6 @@ public class MongoDbUser extends com.pulumi.resources.CustomResource {
     /**
      * Roles the user belongs to.
      * Available roles:
-     * * `backup`
-     * * `dbAdminAnyDatabase`
-     * * `readAnyDatabase`
-     * * `readWriteAnyDatabase`
-     * * `restore`
-     * * `userAdminAnyDatabase`
      * 
      */
     @Export(name="roles", type=List.class, parameters={String.class})
@@ -114,12 +108,6 @@ public class MongoDbUser extends com.pulumi.resources.CustomResource {
     /**
      * @return Roles the user belongs to.
      * Available roles:
-     * * `backup`
-     * * `dbAdminAnyDatabase`
-     * * `readAnyDatabase`
-     * * `readWriteAnyDatabase`
-     * * `restore`
-     * * `userAdminAnyDatabase`
      * 
      */
     public Output<Optional<List<String>>> roles() {

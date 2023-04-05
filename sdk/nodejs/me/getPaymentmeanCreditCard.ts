@@ -14,18 +14,15 @@ import * as utilities from "../utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const cc = pulumi.output(ovh.Me.getPaymentmeanCreditCard({
+ * const cc = ovh.Me.getPaymentmeanCreditCard({
  *     useDefault: true,
- * }));
+ * });
  * ```
  */
 export function getPaymentmeanCreditCard(args?: GetPaymentmeanCreditCardArgs, opts?: pulumi.InvokeOptions): Promise<GetPaymentmeanCreditCardResult> {
     args = args || {};
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:Me/getPaymentmeanCreditCard:getPaymentmeanCreditCard", {
         "descriptionRegexp": args.descriptionRegexp,
         "states": args.states,
@@ -85,9 +82,23 @@ export interface GetPaymentmeanCreditCardResult {
     readonly useDefault?: boolean;
     readonly useLastToExpire?: boolean;
 }
-
+/**
+ * Use this data source to retrieve information about a credit card
+ * payment mean associated with an OVHcloud account.
+ *
+ * ## Example Usage
+ *
+ * ```typescript
+ * import * as pulumi from "@pulumi/pulumi";
+ * import * as ovh from "@pulumi/ovh";
+ *
+ * const cc = ovh.Me.getPaymentmeanCreditCard({
+ *     useDefault: true,
+ * });
+ * ```
+ */
 export function getPaymentmeanCreditCardOutput(args?: GetPaymentmeanCreditCardOutputArgs, opts?: pulumi.InvokeOptions): pulumi.Output<GetPaymentmeanCreditCardResult> {
-    return pulumi.output(args).apply(a => getPaymentmeanCreditCard(a, opts))
+    return pulumi.output(args).apply((a: any) => getPaymentmeanCreditCard(a, opts))
 }
 
 /**

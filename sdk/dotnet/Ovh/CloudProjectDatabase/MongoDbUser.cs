@@ -55,12 +55,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// Roles the user belongs to.
         /// Available roles:
-        /// * `backup`
-        /// * `dbAdminAnyDatabase`
-        /// * `readAnyDatabase`
-        /// * `readWriteAnyDatabase`
-        /// * `restore`
-        /// * `userAdminAnyDatabase`
         /// </summary>
         [Output("roles")]
         public Output<ImmutableArray<string>> Roles { get; private set; } = null!;
@@ -153,12 +147,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// Roles the user belongs to.
         /// Available roles:
-        /// * `backup`
-        /// * `dbAdminAnyDatabase`
-        /// * `readAnyDatabase`
-        /// * `readWriteAnyDatabase`
-        /// * `restore`
-        /// * `userAdminAnyDatabase`
         /// </summary>
         public InputList<string> Roles
         {
@@ -227,12 +215,6 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// Roles the user belongs to.
         /// Available roles:
-        /// * `backup`
-        /// * `dbAdminAnyDatabase`
-        /// * `readAnyDatabase`
-        /// * `readWriteAnyDatabase`
-        /// * `restore`
-        /// * `userAdminAnyDatabase`
         /// </summary>
         public InputList<string> Roles
         {

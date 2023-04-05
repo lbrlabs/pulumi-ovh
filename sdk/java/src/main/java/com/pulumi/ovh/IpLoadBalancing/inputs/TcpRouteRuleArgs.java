@@ -34,7 +34,6 @@ public final class TcpRouteRuleArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * Matching operator. Not all operators are available for all fields. See &#34;availableRules&#34;
-     * * `negate`- Invert the matching operator effect
      * 
      */
     @Import(name="match")
@@ -42,16 +41,23 @@ public final class TcpRouteRuleArgs extends com.pulumi.resources.ResourceArgs {
 
     /**
      * @return Matching operator. Not all operators are available for all fields. See &#34;availableRules&#34;
-     * * `negate`- Invert the matching operator effect
      * 
      */
     public Optional<Output<String>> match() {
         return Optional.ofNullable(this.match);
     }
 
+    /**
+     * Invert the matching operator effect
+     * 
+     */
     @Import(name="negate")
     private @Nullable Output<Boolean> negate;
 
+    /**
+     * @return Invert the matching operator effect
+     * 
+     */
     public Optional<Output<Boolean>> negate() {
         return Optional.ofNullable(this.negate);
     }
@@ -153,7 +159,6 @@ public final class TcpRouteRuleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param match Matching operator. Not all operators are available for all fields. See &#34;availableRules&#34;
-         * * `negate`- Invert the matching operator effect
          * 
          * @return builder
          * 
@@ -165,7 +170,6 @@ public final class TcpRouteRuleArgs extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param match Matching operator. Not all operators are available for all fields. See &#34;availableRules&#34;
-         * * `negate`- Invert the matching operator effect
          * 
          * @return builder
          * 
@@ -174,11 +178,23 @@ public final class TcpRouteRuleArgs extends com.pulumi.resources.ResourceArgs {
             return match(Output.of(match));
         }
 
+        /**
+         * @param negate Invert the matching operator effect
+         * 
+         * @return builder
+         * 
+         */
         public Builder negate(@Nullable Output<Boolean> negate) {
             $.negate = negate;
             return this;
         }
 
+        /**
+         * @param negate Invert the matching operator effect
+         * 
+         * @return builder
+         * 
+         */
         public Builder negate(Boolean negate) {
             return negate(Output.of(negate));
         }

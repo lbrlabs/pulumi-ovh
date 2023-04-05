@@ -30,7 +30,7 @@ public final class ProjectOrder {
      */
     private @Nullable String expirationDate;
     /**
-     * @return order id
+     * @return order id, the same as the `id`
      * 
      */
     private @Nullable Integer orderId;
@@ -58,7 +58,7 @@ public final class ProjectOrder {
         return Optional.ofNullable(this.expirationDate);
     }
     /**
-     * @return order id
+     * @return order id, the same as the `id`
      * 
      */
     public Optional<Integer> orderId() {

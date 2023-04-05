@@ -47,6 +47,14 @@ import javax.annotation.Nullable;
  * }
  * ```
  * 
+ * ## Import
+ * 
+ * Attachment of a public cloud project and a VRack can be imported using the `project_id`, the `service_name` (vRackID) and the `attach_id`, separated by &#34;/&#34; E.g., bash
+ * 
+ * ```sh
+ *  $ pulumi import ovh:Vrack/cloudProject:CloudProject myattach ookie9mee8Shaeghaeleeju7Xeghohv6e/pn-12345678/vrack_pn-12345678-cloudproject_ookie9mee8Shaeghaeleeju7Xeghohv6e-attach
+ * ```
+ * 
  */
 @ResourceType(type="ovh:Vrack/cloudProject:CloudProject")
 public class CloudProject extends com.pulumi.resources.CustomResource {

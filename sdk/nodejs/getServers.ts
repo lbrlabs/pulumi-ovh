@@ -13,15 +13,12 @@ import * as utilities from "./utilities";
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
  *
- * const servers = pulumi.output(ovh.getServers());
+ * const servers = ovh.getServers({});
  * ```
  */
 export function getServers(opts?: pulumi.InvokeOptions): Promise<GetServersResult> {
-    if (!opts) {
-        opts = {}
-    }
 
-    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
+    opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:index/getServers:getServers", {
     }, opts);
 }

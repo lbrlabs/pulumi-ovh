@@ -70,6 +70,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
 
     public sealed class GetInstallationTemplateArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// This template name
+        /// </summary>
         [Input("templateName", required: true)]
         public string TemplateName { get; set; } = null!;
 
@@ -81,6 +84,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
 
     public sealed class GetInstallationTemplateInvokeArgs : global::Pulumi.InvokeArgs
     {
+        /// <summary>
+        /// This template name
+        /// </summary>
         [Input("templateName", required: true)]
         public Input<string> TemplateName { get; set; } = null!;
 
@@ -94,30 +100,73 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     [OutputType]
     public sealed class GetInstallationTemplateResult
     {
+        /// <summary>
+        /// List of all language available for this template.
+        /// </summary>
         public readonly ImmutableArray<string> AvailableLanguages;
+        /// <summary>
+        /// This distribution is new and, although tested and functional, may still display odd behaviour.
+        /// </summary>
         public readonly bool Beta;
+        /// <summary>
+        /// This template bit format (32 or 64).
+        /// </summary>
         public readonly int BitFormat;
+        /// <summary>
+        /// Category of this template (informative only). (basic, customer, hosting, other, readyToUse, virtualisation).
+        /// </summary>
         public readonly string Category;
         public readonly ImmutableArray<Outputs.GetInstallationTemplateCustomizationResult> Customizations;
+        /// <summary>
+        /// The default language of this template.
+        /// </summary>
         public readonly string DefaultLanguage;
+        /// <summary>
+        /// is this distribution deprecated.
+        /// </summary>
         public readonly bool Deprecated;
+        /// <summary>
+        /// information about this template.
+        /// </summary>
         public readonly string Description;
+        /// <summary>
+        /// the distribution this template is based on.
+        /// </summary>
         public readonly string Distribution;
+        /// <summary>
+        /// this template family type (bsd,linux,solaris,windows).
+        /// </summary>
         public readonly string Family;
+        /// <summary>
+        /// Filesystems available (btrfs,ext3,ext4,ntfs,reiserfs,swap,ufs,xfs,zfs).
+        /// </summary>
         public readonly ImmutableArray<string> Filesystems;
+        /// <summary>
+        /// This distribution supports hardware raid configuration through the OVHcloud API.
+        /// </summary>
         public readonly bool HardRaidConfiguration;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
+        /// <summary>
+        /// Date of last modification of the base image.
+        /// </summary>
         public readonly string LastModification;
         public readonly bool LvmReady;
         public readonly ImmutableArray<Outputs.GetInstallationTemplatePartitionSchemeResult> PartitionSchemes;
+        /// <summary>
+        /// This distribution supports installation using the distribution's native kernel instead of the recommended OVHcloud kernel.
+        /// </summary>
         public readonly bool SupportsDistributionKernel;
-        public readonly bool SupportsGptLabel;
+        /// <summary>
+        /// This distribution supports RTM software.
+        /// </summary>
         public readonly bool SupportsRtm;
+        /// <summary>
+        /// This distribution supports the microsoft SQL server.
+        /// </summary>
         public readonly bool SupportsSqlServer;
-        public readonly string SupportsUefi;
         public readonly string TemplateName;
 
         [OutputConstructor]
@@ -156,13 +205,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
 
             bool supportsDistributionKernel,
 
-            bool supportsGptLabel,
-
             bool supportsRtm,
 
             bool supportsSqlServer,
-
-            string supportsUefi,
 
             string templateName)
         {
@@ -183,10 +228,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
             LvmReady = lvmReady;
             PartitionSchemes = partitionSchemes;
             SupportsDistributionKernel = supportsDistributionKernel;
-            SupportsGptLabel = supportsGptLabel;
             SupportsRtm = supportsRtm;
             SupportsSqlServer = supportsSqlServer;
-            SupportsUefi = supportsUefi;
             TemplateName = templateName;
         }
     }
