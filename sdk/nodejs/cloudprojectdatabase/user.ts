@@ -55,7 +55,7 @@ export class User extends pulumi.CustomResource {
      */
     public readonly engine!: pulumi.Output<string>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
      */
     public readonly name!: pulumi.Output<string>;
     /**
@@ -142,7 +142,7 @@ export interface UserState {
      */
     engine?: pulumi.Input<string>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
      */
     name?: pulumi.Input<string>;
     /**
@@ -178,7 +178,7 @@ export interface UserArgs {
      */
     engine: pulumi.Input<string>;
     /**
-     * Name of the user.
+     * Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
      */
     name?: pulumi.Input<string>;
     /**

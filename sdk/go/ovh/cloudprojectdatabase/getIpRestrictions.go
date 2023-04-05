@@ -15,6 +15,7 @@ import (
 // ## Example Usage
 //
 // To get the list of IP restriction on a database cluster service:
+//
 // ```go
 // package main
 //

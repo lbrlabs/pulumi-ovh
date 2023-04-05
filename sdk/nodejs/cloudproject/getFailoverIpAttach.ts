@@ -5,7 +5,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Use this data source to get the details of a failover ip address of a service in a public cloud project.
+ * Use this data source to get the details of a failover IP address of a service in a public cloud project.
  *
  * ## Example Usage
  *
@@ -85,7 +85,7 @@ export interface GetFailoverIpAttachResult {
     readonly subType: string;
 }
 /**
- * Use this data source to get the details of a failover ip address of a service in a public cloud project.
+ * Use this data source to get the details of a failover IP address of a service in a public cloud project.
  *
  * ## Example Usage
  *

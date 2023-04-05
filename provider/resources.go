@@ -364,6 +364,12 @@ func Provider() tfbridge.ProviderInfo {
 					},
 				},
 			},
+			"ovh_cloud_project_workflow_backup": {
+				Tok: ovhResource(cloudProjectMod, "WorkflowBackup"),
+			},
+			"ovh_dbaas_logs_cluster": {
+				Tok: ovhResource(dbaasMod, "LogsCluster"),
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"ovh_cloud_project_capabilities_containerregistry": {
@@ -608,6 +614,9 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ovh_vracks": {
 				Tok: ovhDataSource(vrackMod, "getVracks"),
+			},
+			"ovh_dbaas_logs_cluster": {
+				Tok: ovhDataSource(dbaasMod, "getLogsCluster"),
 			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{

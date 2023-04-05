@@ -53,7 +53,7 @@ public class IpxeScript extends com.pulumi.resources.CustomResource {
      * For documentation purpose only. This attribute is not passed to the OVHcloud API as it cannot be retrieved back. Instead a fake description (&#39;$name auto description&#39;) is passed at creation time.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -67,7 +67,7 @@ public class IpxeScript extends com.pulumi.resources.CustomResource {
      * The name of the IPXE Script.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -81,7 +81,7 @@ public class IpxeScript extends com.pulumi.resources.CustomResource {
      * The content of the script.
      * 
      */
-    @Export(name="script", type=String.class, parameters={})
+    @Export(name="script", refs={String.class}, tree="[0]")
     private Output<String> script;
 
     /**

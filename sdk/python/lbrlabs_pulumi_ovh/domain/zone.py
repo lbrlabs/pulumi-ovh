@@ -17,19 +17,23 @@ __all__ = ['ZoneArgs', 'Zone']
 class ZoneArgs:
     def __init__(__self__, *,
                  ovh_subsidiary: pulumi.Input[str],
-                 payment_mean: pulumi.Input[str],
                  plan: pulumi.Input['ZonePlanArgs'],
+                 payment_mean: Optional[pulumi.Input[str]] = None,
                  plan_options: Optional[pulumi.Input[Sequence[pulumi.Input['ZonePlanOptionArgs']]]] = None):
         """
         The set of arguments for constructing a Zone resource.
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
         :param pulumi.Input['ZonePlanArgs'] plan: Product Plan to order
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[Sequence[pulumi.Input['ZonePlanOptionArgs']]] plan_options: Product Plan to order
         """
         pulumi.set(__self__, "ovh_subsidiary", ovh_subsidiary)
-        pulumi.set(__self__, "payment_mean", payment_mean)
         pulumi.set(__self__, "plan", plan)
+        if payment_mean is not None:
+            warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+            pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+        if payment_mean is not None:
+            pulumi.set(__self__, "payment_mean", payment_mean)
         if plan_options is not None:
             pulumi.set(__self__, "plan_options", plan_options)
 
@@ -46,18 +50,6 @@ class ZoneArgs:
         pulumi.set(self, "ovh_subsidiary", value)
 
     @property
-    @pulumi.getter(name="paymentMean")
-    def payment_mean(self) -> pulumi.Input[str]:
-        """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-        """
-        return pulumi.get(self, "payment_mean")
-
-    @payment_mean.setter
-    def payment_mean(self, value: pulumi.Input[str]):
-        pulumi.set(self, "payment_mean", value)
-
-    @property
     @pulumi.getter
     def plan(self) -> pulumi.Input['ZonePlanArgs']:
         """
@@ -68,6 +60,18 @@ class ZoneArgs:
     @plan.setter
     def plan(self, value: pulumi.Input['ZonePlanArgs']):
         pulumi.set(self, "plan", value)
+
+    @property
+    @pulumi.getter(name="paymentMean")
+    def payment_mean(self) -> Optional[pulumi.Input[str]]:
+        """
+        Ovh payment mode
+        """
+        return pulumi.get(self, "payment_mean")
+
+    @payment_mean.setter
+    def payment_mean(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "payment_mean", value)
 
     @property
     @pulumi.getter(name="planOptions")
@@ -104,7 +108,7 @@ class _ZoneState:
         :param pulumi.Input[Sequence[pulumi.Input[str]]] name_servers: Name servers that host the DNS zone
         :param pulumi.Input[Sequence[pulumi.Input['ZoneOrderArgs']]] orders: Details about an Order
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input['ZonePlanArgs'] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input['ZonePlanOptionArgs']]] plan_options: Product Plan to order
         """
@@ -122,6 +126,9 @@ class _ZoneState:
             pulumi.set(__self__, "orders", orders)
         if ovh_subsidiary is not None:
             pulumi.set(__self__, "ovh_subsidiary", ovh_subsidiary)
+        if payment_mean is not None:
+            warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+            pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
         if payment_mean is not None:
             pulumi.set(__self__, "payment_mean", payment_mean)
         if plan is not None:
@@ -217,7 +224,7 @@ class _ZoneState:
     @pulumi.getter(name="paymentMean")
     def payment_mean(self) -> Optional[pulumi.Input[str]]:
         """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        Ovh payment mode
         """
         return pulumi.get(self, "payment_mean")
 
@@ -261,12 +268,6 @@ class Zone(pulumi.CustomResource):
                  plan_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ZonePlanOptionArgs']]]]] = None,
                  __props__=None):
         """
-        Creates a domain zone.
-
-        ## Important
-
-        > __WARNING__ This resource is in beta state. Use with caution.
-
         ## Example Usage
 
         ```python
@@ -281,7 +282,6 @@ class Zone(pulumi.CustomResource):
             plan_code="zone")
         zone_zone = ovh.domain.Zone("zoneZone",
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="fidelity",
             plan=ovh.domain.ZonePlanArgs(
                 duration=zone_cart_product_plan.selected_prices[0].duration,
                 plan_code=zone_cart_product_plan.plan_code,
@@ -302,7 +302,7 @@ class Zone(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[pulumi.InputType['ZonePlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ZonePlanOptionArgs']]]] plan_options: Product Plan to order
         """
@@ -313,12 +313,6 @@ class Zone(pulumi.CustomResource):
                  args: ZoneArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates a domain zone.
-
-        ## Important
-
-        > __WARNING__ This resource is in beta state. Use with caution.
-
         ## Example Usage
 
         ```python
@@ -333,7 +327,6 @@ class Zone(pulumi.CustomResource):
             plan_code="zone")
         zone_zone = ovh.domain.Zone("zoneZone",
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="fidelity",
             plan=ovh.domain.ZonePlanArgs(
                 duration=zone_cart_product_plan.selected_prices[0].duration,
                 plan_code=zone_cart_product_plan.plan_code,
@@ -382,8 +375,9 @@ class Zone(pulumi.CustomResource):
             if ovh_subsidiary is None and not opts.urn:
                 raise TypeError("Missing required property 'ovh_subsidiary'")
             __props__.__dict__["ovh_subsidiary"] = ovh_subsidiary
-            if payment_mean is None and not opts.urn:
-                raise TypeError("Missing required property 'payment_mean'")
+            if payment_mean is not None and not opts.urn:
+                warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+                pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
             __props__.__dict__["payment_mean"] = payment_mean
             if plan is None and not opts.urn:
                 raise TypeError("Missing required property 'plan'")
@@ -429,7 +423,7 @@ class Zone(pulumi.CustomResource):
         :param pulumi.Input[Sequence[pulumi.Input[str]]] name_servers: Name servers that host the DNS zone
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ZoneOrderArgs']]]] orders: Details about an Order
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[pulumi.InputType['ZonePlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ZonePlanOptionArgs']]]] plan_options: Product Plan to order
         """
@@ -507,9 +501,9 @@ class Zone(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="paymentMean")
-    def payment_mean(self) -> pulumi.Output[str]:
+    def payment_mean(self) -> pulumi.Output[Optional[str]]:
         """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        Ovh payment mode
         """
         return pulumi.get(self, "payment_mean")
 

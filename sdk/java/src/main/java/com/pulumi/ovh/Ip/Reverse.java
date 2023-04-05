@@ -63,7 +63,7 @@ public class Reverse extends com.pulumi.resources.CustomResource {
      * The IP to set the reverse of
      * 
      */
-    @Export(name="ReverseIp", type=String.class, parameters={})
+    @Export(name="ReverseIp", refs={String.class}, tree="[0]")
     private Output<String> ReverseIp;
 
     /**
@@ -77,7 +77,7 @@ public class Reverse extends com.pulumi.resources.CustomResource {
      * The value of the reverse
      * 
      */
-    @Export(name="ReverseValue", type=String.class, parameters={})
+    @Export(name="ReverseValue", refs={String.class}, tree="[0]")
     private Output<String> ReverseValue;
 
     /**
@@ -91,7 +91,7 @@ public class Reverse extends com.pulumi.resources.CustomResource {
      * The IP block to which the IP belongs
      * 
      */
-    @Export(name="ip", type=String.class, parameters={})
+    @Export(name="ip", refs={String.class}, tree="[0]")
     private Output<String> ip;
 
     /**

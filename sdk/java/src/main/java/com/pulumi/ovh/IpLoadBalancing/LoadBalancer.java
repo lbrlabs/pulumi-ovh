@@ -21,15 +21,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Orders an IP load balancing.
- * 
- * ## Important
- * 
- * &gt; __WARNING__ This resource orders an OVHcloud product for a long period of time and may generate heavy costs!
- * Use with caution.
- * 
- * &gt; __NOTE__ The &#34;default-payment-mean&#34; will scan your registered bank accounts, credit card and paypal payment means to find your default payment mean.
- * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -81,7 +72,6 @@ import javax.annotation.Nullable;
  *         var iplb_lb1 = new LoadBalancer(&#34;iplb-lb1&#34;, LoadBalancerArgs.builder()        
  *             .ovhSubsidiary(mycart.applyValue(getCartResult -&gt; getCartResult.ovhSubsidiary()))
  *             .displayName(&#34;my ip loadbalancing&#34;)
- *             .paymentMean(&#34;ovh-account&#34;)
  *             .plan(LoadBalancerPlanArgs.builder()
  *                 .duration(iplb.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.selectedPrices()[0].duration()))
  *                 .planCode(iplb.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.planCode()))
@@ -105,7 +95,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * Set the name displayed in ManagerV6 for your iplb (max 50 chars)
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output<String> displayName;
 
     /**
@@ -119,7 +109,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * Your IP load balancing
      * 
      */
-    @Export(name="ipLoadbalancing", type=String.class, parameters={})
+    @Export(name="ipLoadbalancing", refs={String.class}, tree="[0]")
     private Output<String> ipLoadbalancing;
 
     /**
@@ -133,7 +123,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * The IPV4 associated to your IP load balancing
      * 
      */
-    @Export(name="ipv4", type=String.class, parameters={})
+    @Export(name="ipv4", refs={String.class}, tree="[0]")
     private Output<String> ipv4;
 
     /**
@@ -147,7 +137,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * The IPV6 associated to your IP load balancing. DEPRECATED.
      * 
      */
-    @Export(name="ipv6", type=String.class, parameters={})
+    @Export(name="ipv6", refs={String.class}, tree="[0]")
     private Output<String> ipv6;
 
     /**
@@ -161,7 +151,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * The metrics token associated with your IP load balancing
      * 
      */
-    @Export(name="metricsToken", type=String.class, parameters={})
+    @Export(name="metricsToken", refs={String.class}, tree="[0]")
     private Output<String> metricsToken;
 
     /**
@@ -175,7 +165,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * The offer of your IP load balancing
      * 
      */
-    @Export(name="offer", type=String.class, parameters={})
+    @Export(name="offer", refs={String.class}, tree="[0]")
     private Output<String> offer;
 
     /**
@@ -189,7 +179,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * Available additional zone for your Load Balancer
      * 
      */
-    @Export(name="orderableZones", type=List.class, parameters={LoadBalancerOrderableZone.class})
+    @Export(name="orderableZones", refs={List.class,LoadBalancerOrderableZone.class}, tree="[0,1]")
     private Output<List<LoadBalancerOrderableZone>> orderableZones;
 
     /**
@@ -203,7 +193,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * Details about an Order
      * 
      */
-    @Export(name="orders", type=List.class, parameters={LoadBalancerOrder.class})
+    @Export(name="orders", refs={List.class,LoadBalancerOrder.class}, tree="[0,1]")
     private Output<List<LoadBalancerOrder>> orders;
 
     /**
@@ -217,7 +207,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * OVHcloud Subsidiary
      * 
      */
-    @Export(name="ovhSubsidiary", type=String.class, parameters={})
+    @Export(name="ovhSubsidiary", refs={String.class}, tree="[0]")
     private Output<String> ovhSubsidiary;
 
     /**
@@ -228,24 +218,28 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
         return this.ovhSubsidiary;
     }
     /**
-     * OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * Ovh payment mode
+     * 
+     * @deprecated
+     * This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      * 
      */
-    @Export(name="paymentMean", type=String.class, parameters={})
-    private Output<String> paymentMean;
+    @Deprecated /* This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used. */
+    @Export(name="paymentMean", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> paymentMean;
 
     /**
-     * @return OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * @return Ovh payment mode
      * 
      */
-    public Output<String> paymentMean() {
-        return this.paymentMean;
+    public Output<Optional<String>> paymentMean() {
+        return Codegen.optional(this.paymentMean);
     }
     /**
      * Product Plan to order
      * 
      */
-    @Export(name="plan", type=LoadBalancerPlan.class, parameters={})
+    @Export(name="plan", refs={LoadBalancerPlan.class}, tree="[0]")
     private Output<LoadBalancerPlan> plan;
 
     /**
@@ -259,7 +253,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * Product Plan to order
      * 
      */
-    @Export(name="planOptions", type=List.class, parameters={LoadBalancerPlanOption.class})
+    @Export(name="planOptions", refs={List.class,LoadBalancerPlanOption.class}, tree="[0,1]")
     private Output</* @Nullable */ List<LoadBalancerPlanOption>> planOptions;
 
     /**
@@ -273,7 +267,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * The internal name of your IP load balancing
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -287,7 +281,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null. one of &#34;intermediate&#34;, &#34;modern&#34;.
      * 
      */
-    @Export(name="sslConfiguration", type=String.class, parameters={})
+    @Export(name="sslConfiguration", refs={String.class}, tree="[0]")
     private Output<String> sslConfiguration;
 
     /**
@@ -301,7 +295,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * Current state of your IP
      * 
      */
-    @Export(name="state", type=String.class, parameters={})
+    @Export(name="state", refs={String.class}, tree="[0]")
     private Output<String> state;
 
     /**
@@ -315,7 +309,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * Vrack eligibility
      * 
      */
-    @Export(name="vrackEligibility", type=Boolean.class, parameters={})
+    @Export(name="vrackEligibility", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> vrackEligibility;
 
     /**
@@ -329,7 +323,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * Name of the vRack on which the current Load Balancer is attached to, as it is named on vRack product
      * 
      */
-    @Export(name="vrackName", type=String.class, parameters={})
+    @Export(name="vrackName", refs={String.class}, tree="[0]")
     private Output<String> vrackName;
 
     /**
@@ -343,7 +337,7 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
      * Location where your service is
      * 
      */
-    @Export(name="zones", type=List.class, parameters={String.class})
+    @Export(name="zones", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> zones;
 
     /**

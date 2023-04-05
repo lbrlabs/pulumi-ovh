@@ -14,12 +14,15 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject.Outputs
     [OutputType]
     public sealed class GetKubeCustomizationResult
     {
-        public readonly Outputs.GetKubeCustomizationApiserverResult Apiserver;
+        /// <summary>
+        /// Kubernetes API server customization
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetKubeCustomizationApiserverResult> Apiservers;
 
         [OutputConstructor]
-        private GetKubeCustomizationResult(Outputs.GetKubeCustomizationApiserverResult apiserver)
+        private GetKubeCustomizationResult(ImmutableArray<Outputs.GetKubeCustomizationApiserverResult> apiservers)
         {
-            Apiserver = apiserver;
+            Apiservers = apiservers;
         }
     }
 }

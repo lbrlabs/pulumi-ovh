@@ -57,7 +57,7 @@ public class ZoneRedirection extends com.pulumi.resources.CustomResource {
      * A description of this redirection
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> description;
 
     /**
@@ -71,7 +71,7 @@ public class ZoneRedirection extends com.pulumi.resources.CustomResource {
      * Keywords to describe this redirection
      * 
      */
-    @Export(name="keywords", type=String.class, parameters={})
+    @Export(name="keywords", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> keywords;
 
     /**
@@ -85,7 +85,7 @@ public class ZoneRedirection extends com.pulumi.resources.CustomResource {
      * The name of the redirection
      * 
      */
-    @Export(name="subdomain", type=String.class, parameters={})
+    @Export(name="subdomain", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> subdomain;
 
     /**
@@ -99,7 +99,7 @@ public class ZoneRedirection extends com.pulumi.resources.CustomResource {
      * The value of the redirection
      * 
      */
-    @Export(name="target", type=String.class, parameters={})
+    @Export(name="target", refs={String.class}, tree="[0]")
     private Output<String> target;
 
     /**
@@ -113,7 +113,7 @@ public class ZoneRedirection extends com.pulumi.resources.CustomResource {
      * Title of this redirection
      * 
      */
-    @Export(name="title", type=String.class, parameters={})
+    @Export(name="title", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> title;
 
     /**
@@ -127,7 +127,7 @@ public class ZoneRedirection extends com.pulumi.resources.CustomResource {
      * The type of the redirection, with values:
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -141,7 +141,7 @@ public class ZoneRedirection extends com.pulumi.resources.CustomResource {
      * The domain to add the redirection to
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

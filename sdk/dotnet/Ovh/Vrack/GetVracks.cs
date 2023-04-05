@@ -21,6 +21,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Vrack
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 

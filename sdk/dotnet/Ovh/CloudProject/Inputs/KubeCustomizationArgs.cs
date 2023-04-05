@@ -13,8 +13,18 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject.Inputs
 
     public sealed class KubeCustomizationArgs : global::Pulumi.ResourceArgs
     {
-        [Input("apiserver")]
-        public Input<Inputs.KubeCustomizationApiserverArgs>? Apiserver { get; set; }
+        [Input("apiservers")]
+        private InputList<Inputs.KubeCustomizationApiserverArgs>? _apiservers;
+
+        /// <summary>
+        /// Kubernetes API server customization
+        /// </summary>
+        [Obsolete(@"Use customization_apiserver instead")]
+        public InputList<Inputs.KubeCustomizationApiserverArgs> Apiservers
+        {
+            get => _apiservers ?? (_apiservers = new InputList<Inputs.KubeCustomizationApiserverArgs>());
+            set => _apiservers = value;
+        }
 
         public KubeCustomizationArgs()
         {

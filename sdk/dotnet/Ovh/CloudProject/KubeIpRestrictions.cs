@@ -17,6 +17,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// 
@@ -53,14 +54,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Output<ImmutableArray<string>> Ips { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the managed Kubernetes cluster.
+        /// The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
         /// </summary>
         [Output("kubeId")]
         public Output<string> KubeId { get; private set; } = null!;
 
         /// <summary>
-        /// The id of the public cloud project. If omitted,
-        /// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        /// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         /// </summary>
         [Output("serviceName")]
         public Output<string> ServiceName { get; private set; } = null!;
@@ -125,14 +125,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         }
 
         /// <summary>
-        /// The id of the managed Kubernetes cluster.
+        /// The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
         /// </summary>
         [Input("kubeId", required: true)]
         public Input<string> KubeId { get; set; } = null!;
 
         /// <summary>
-        /// The id of the public cloud project. If omitted,
-        /// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        /// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         /// </summary>
         [Input("serviceName", required: true)]
         public Input<string> ServiceName { get; set; } = null!;
@@ -158,14 +157,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         }
 
         /// <summary>
-        /// The id of the managed Kubernetes cluster.
+        /// The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
         /// </summary>
         [Input("kubeId")]
         public Input<string>? KubeId { get; set; }
 
         /// <summary>
-        /// The id of the public cloud project. If omitted,
-        /// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        /// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }

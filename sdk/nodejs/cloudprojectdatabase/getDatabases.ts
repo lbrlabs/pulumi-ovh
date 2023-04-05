@@ -10,6 +10,7 @@ import * as utilities from "../utilities";
  * ## Example Usage
  *
  * To get the list of database clusters service for a given engine:
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
@@ -73,6 +74,7 @@ export interface GetDatabasesResult {
  * ## Example Usage
  *
  * To get the list of database clusters service for a given engine:
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";

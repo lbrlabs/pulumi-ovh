@@ -62,7 +62,6 @@ import javax.annotation.Nullable;
  *         var vrackVrack = new Vrack(&#34;vrackVrack&#34;, VrackArgs.builder()        
  *             .description(mycart.applyValue(getCartResult -&gt; getCartResult.description()))
  *             .ovhSubsidiary(mycart.applyValue(getCartResult -&gt; getCartResult.ovhSubsidiary()))
- *             .paymentMean(&#34;fidelity&#34;)
  *             .plan(VrackPlanArgs.builder()
  *                 .duration(vrackCartProductPlan.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.selectedPrices()[0].duration()))
  *                 .planCode(vrackCartProductPlan.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.planCode()))
@@ -79,7 +78,6 @@ import javax.annotation.Nullable;
  * 
  *         var ipblockIpService = new IpService(&#34;ipblockIpService&#34;, IpServiceArgs.builder()        
  *             .ovhSubsidiary(mycart.applyValue(getCartResult -&gt; getCartResult.ovhSubsidiary()))
- *             .paymentMean(&#34;ovh-account&#34;)
  *             .description(mycart.applyValue(getCartResult -&gt; getCartResult.description()))
  *             .plan(IpServicePlanArgs.builder()
  *                 .duration(ipblockCartProductPlan.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.selectedPrices()[0].duration()))
@@ -108,7 +106,7 @@ public class IpAddress extends com.pulumi.resources.CustomResource {
      * Your IP block.
      * 
      */
-    @Export(name="block", type=String.class, parameters={})
+    @Export(name="block", refs={String.class}, tree="[0]")
     private Output<String> block;
 
     /**
@@ -122,7 +120,7 @@ public class IpAddress extends com.pulumi.resources.CustomResource {
      * Your gateway
      * 
      */
-    @Export(name="gateway", type=String.class, parameters={})
+    @Export(name="gateway", refs={String.class}, tree="[0]")
     private Output<String> gateway;
 
     /**
@@ -136,7 +134,7 @@ public class IpAddress extends com.pulumi.resources.CustomResource {
      * Your IP block
      * 
      */
-    @Export(name="ip", type=String.class, parameters={})
+    @Export(name="ip", refs={String.class}, tree="[0]")
     private Output<String> ip;
 
     /**
@@ -150,7 +148,7 @@ public class IpAddress extends com.pulumi.resources.CustomResource {
      * The internal name of your vrack
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -164,7 +162,7 @@ public class IpAddress extends com.pulumi.resources.CustomResource {
      * Where you want your block announced on the network
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

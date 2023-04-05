@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * 
  *         var farmname = new TcpFarm(&#34;farmname&#34;, TcpFarmArgs.builder()        
  *             .port(8080)
- *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
+ *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.serviceName()))
  *             .zone(&#34;all&#34;)
  *             .build());
  * 
@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  *             .port(80)
  *             .probe(true)
  *             .proxyProtocolVersion(&#34;v2&#34;)
- *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
+ *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.serviceName()))
  *             .ssl(false)
  *             .status(&#34;active&#34;)
  *             .weight(2)
@@ -81,7 +81,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * Address of the backend server (IP from either internal or OVHcloud network)
      * 
      */
-    @Export(name="address", type=String.class, parameters={})
+    @Export(name="address", refs={String.class}, tree="[0]")
     private Output<String> address;
 
     /**
@@ -95,7 +95,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * is it a backup server used in case of failure of all the non-backup backends
      * 
      */
-    @Export(name="backup", type=Boolean.class, parameters={})
+    @Export(name="backup", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> backup;
 
     /**
@@ -105,7 +105,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
     public Output<Optional<Boolean>> backup() {
         return Codegen.optional(this.backup);
     }
-    @Export(name="chain", type=String.class, parameters={})
+    @Export(name="chain", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> chain;
 
     public Output<Optional<String>> chain() {
@@ -115,7 +115,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * Label for the server
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -129,7 +129,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * ID of the farm this server is attached to
      * 
      */
-    @Export(name="farmId", type=Integer.class, parameters={})
+    @Export(name="farmId", refs={Integer.class}, tree="[0]")
     private Output<Integer> farmId;
 
     /**
@@ -143,7 +143,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * enable action when backend marked down. (`shutdown-sessions`)
      * 
      */
-    @Export(name="onMarkedDown", type=String.class, parameters={})
+    @Export(name="onMarkedDown", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> onMarkedDown;
 
     /**
@@ -157,7 +157,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * Port that backend will respond on
      * 
      */
-    @Export(name="port", type=Integer.class, parameters={})
+    @Export(name="port", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> port;
 
     /**
@@ -171,7 +171,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * defines if backend will be probed to determine health and keep as active in farm if healthy
      * 
      */
-    @Export(name="probe", type=Boolean.class, parameters={})
+    @Export(name="probe", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> probe;
 
     /**
@@ -185,7 +185,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * version of the PROXY protocol used to pass origin connection information from loadbalancer to receiving service (`v1`, `v2`, `v2-ssl`, `v2-ssl-cn`)
      * 
      */
-    @Export(name="proxyProtocolVersion", type=String.class, parameters={})
+    @Export(name="proxyProtocolVersion", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> proxyProtocolVersion;
 
     /**
@@ -199,7 +199,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * The internal name of your IP load balancing
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -213,7 +213,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * is the connection ciphered with SSL (TLS)
      * 
      */
-    @Export(name="ssl", type=Boolean.class, parameters={})
+    @Export(name="ssl", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> ssl;
 
     /**
@@ -227,7 +227,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * backend status - `active` or `inactive`
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -241,7 +241,7 @@ public class TcpFarmServer extends com.pulumi.resources.CustomResource {
      * used in loadbalancing algorithm
      * 
      */
-    @Export(name="weight", type=Integer.class, parameters={})
+    @Export(name="weight", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> weight;
 
     /**

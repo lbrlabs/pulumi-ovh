@@ -99,7 +99,7 @@ public class S3Policy extends com.pulumi.resources.CustomResource {
      * The policy document. This is a JSON formatted string. See examples of policies on [public documentation](https://docs.ovh.com/gb/en/storage/s3/identity-and-access-management/).
      * 
      */
-    @Export(name="policy", type=String.class, parameters={})
+    @Export(name="policy", refs={String.class}, tree="[0]")
     private Output<String> policy;
 
     /**
@@ -114,7 +114,7 @@ public class S3Policy extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -129,7 +129,7 @@ public class S3Policy extends com.pulumi.resources.CustomResource {
      * The ID of a public cloud project&#39;s user.
      * 
      */
-    @Export(name="userId", type=String.class, parameters={})
+    @Export(name="userId", refs={String.class}, tree="[0]")
     private Output<String> userId;
 
     /**

@@ -65,7 +65,7 @@ public class PrivateDatabaseAllowlist extends com.pulumi.resources.CustomResourc
      * The whitelisted IP in your instance.
      * 
      */
-    @Export(name="ip", type=String.class, parameters={})
+    @Export(name="ip", refs={String.class}, tree="[0]")
     private Output<String> ip;
 
     /**
@@ -79,7 +79,7 @@ public class PrivateDatabaseAllowlist extends com.pulumi.resources.CustomResourc
      * Custom name for your Whitelisted IP.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -93,7 +93,7 @@ public class PrivateDatabaseAllowlist extends com.pulumi.resources.CustomResourc
      * Authorize this IP to access service port. Values can be `true` or `false`
      * 
      */
-    @Export(name="service", type=Boolean.class, parameters={})
+    @Export(name="service", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> service;
 
     /**
@@ -107,7 +107,7 @@ public class PrivateDatabaseAllowlist extends com.pulumi.resources.CustomResourc
      * The internal name of your private database.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -121,7 +121,7 @@ public class PrivateDatabaseAllowlist extends com.pulumi.resources.CustomResourc
      * Authorize this IP to access SFTP port. Values can be `true` or `false`
      * 
      */
-    @Export(name="sftp", type=Boolean.class, parameters={})
+    @Export(name="sftp", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> sftp;
 
     /**

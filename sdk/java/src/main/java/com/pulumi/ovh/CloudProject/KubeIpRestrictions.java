@@ -64,7 +64,7 @@ public class KubeIpRestrictions extends com.pulumi.resources.CustomResource {
      * List of CIDR authorized to interact with the managed Kubernetes cluster.
      * 
      */
-    @Export(name="ips", type=List.class, parameters={String.class})
+    @Export(name="ips", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> ips;
 
     /**
@@ -75,30 +75,28 @@ public class KubeIpRestrictions extends com.pulumi.resources.CustomResource {
         return this.ips;
     }
     /**
-     * The id of the managed Kubernetes cluster.
+     * The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="kubeId", type=String.class, parameters={})
+    @Export(name="kubeId", refs={String.class}, tree="[0]")
     private Output<String> kubeId;
 
     /**
-     * @return The id of the managed Kubernetes cluster.
+     * @return The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
     public Output<String> kubeId() {
         return this.kubeId;
     }
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
-     * @return The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * @return The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     public Output<String> serviceName() {

@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * const httpsredirect = new ovh.iploadbalancing.HttpRoute("httpsredirect", {
  *     action: {
  *         status: 302,
- *         target: `https://${host}${path}${arguments}`,
+ *         target: "https://${host}${path}${arguments}",
  *         type: "redirect",
  *     },
  *     displayName: "Redirect to HTTPS",

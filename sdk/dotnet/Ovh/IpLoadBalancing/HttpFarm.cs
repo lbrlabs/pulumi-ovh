@@ -17,6 +17,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// using Ovh = Pulumi.Ovh;
@@ -32,7 +33,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
     ///     var farmname = new Ovh.IpLoadBalancing.HttpFarm("farmname", new()
     ///     {
     ///         DisplayName = "ingress-8080-gra",
-    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
+    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.ServiceName),
     ///         Zone = "GRA",
     ///     });
     /// 

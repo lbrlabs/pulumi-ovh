@@ -73,7 +73,7 @@ public class KafkaAcl extends com.pulumi.resources.CustomResource {
      * Cluster ID.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -88,7 +88,7 @@ public class KafkaAcl extends com.pulumi.resources.CustomResource {
      * Available permissions:
      * 
      */
-    @Export(name="permission", type=String.class, parameters={})
+    @Export(name="permission", refs={String.class}, tree="[0]")
     private Output<String> permission;
 
     /**
@@ -104,7 +104,7 @@ public class KafkaAcl extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -119,7 +119,7 @@ public class KafkaAcl extends com.pulumi.resources.CustomResource {
      * Topic affected by this ACL.
      * 
      */
-    @Export(name="topic", type=String.class, parameters={})
+    @Export(name="topic", refs={String.class}, tree="[0]")
     private Output<String> topic;
 
     /**
@@ -133,7 +133,7 @@ public class KafkaAcl extends com.pulumi.resources.CustomResource {
      * Username affected by this ACL.
      * 
      */
-    @Export(name="username", type=String.class, parameters={})
+    @Export(name="username", refs={String.class}, tree="[0]")
     private Output<String> username;
 
     /**

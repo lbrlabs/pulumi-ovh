@@ -62,14 +62,14 @@ public final class ZoneRecordArgs extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The TTL of the record
+     * The TTL of the record, it shall be &gt;= to 60.
      * 
      */
     @Import(name="ttl")
     private @Nullable Output<Integer> ttl;
 
     /**
-     * @return The TTL of the record
+     * @return The TTL of the record, it shall be &gt;= to 60.
      * 
      */
     public Optional<Output<Integer>> ttl() {
@@ -183,7 +183,7 @@ public final class ZoneRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ttl The TTL of the record
+         * @param ttl The TTL of the record, it shall be &gt;= to 60.
          * 
          * @return builder
          * 
@@ -194,7 +194,7 @@ public final class ZoneRecordArgs extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param ttl The TTL of the record
+         * @param ttl The TTL of the record, it shall be &gt;= to 60.
          * 
          * @return builder
          * 

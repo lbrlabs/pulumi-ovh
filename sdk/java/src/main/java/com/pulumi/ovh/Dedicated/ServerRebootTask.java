@@ -70,7 +70,7 @@ public class ServerRebootTask extends com.pulumi.resources.CustomResource {
      * Details of this task. (should be `Reboot asked`)
      * 
      */
-    @Export(name="comment", type=String.class, parameters={})
+    @Export(name="comment", refs={String.class}, tree="[0]")
     private Output<String> comment;
 
     /**
@@ -84,7 +84,7 @@ public class ServerRebootTask extends com.pulumi.resources.CustomResource {
      * Completion date in RFC3339 format.
      * 
      */
-    @Export(name="doneDate", type=String.class, parameters={})
+    @Export(name="doneDate", refs={String.class}, tree="[0]")
     private Output<String> doneDate;
 
     /**
@@ -98,7 +98,7 @@ public class ServerRebootTask extends com.pulumi.resources.CustomResource {
      * Function name (should be `hardReboot`).
      * 
      */
-    @Export(name="function", type=String.class, parameters={})
+    @Export(name="function", refs={String.class}, tree="[0]")
     private Output<String> function;
 
     /**
@@ -112,7 +112,7 @@ public class ServerRebootTask extends com.pulumi.resources.CustomResource {
      * List of values tracked to trigger reboot, used also to form implicit dependencies.
      * 
      */
-    @Export(name="keepers", type=List.class, parameters={String.class})
+    @Export(name="keepers", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> keepers;
 
     /**
@@ -126,7 +126,7 @@ public class ServerRebootTask extends com.pulumi.resources.CustomResource {
      * Last update in RFC3339 format.
      * 
      */
-    @Export(name="lastUpdate", type=String.class, parameters={})
+    @Export(name="lastUpdate", refs={String.class}, tree="[0]")
     private Output<String> lastUpdate;
 
     /**
@@ -140,7 +140,7 @@ public class ServerRebootTask extends com.pulumi.resources.CustomResource {
      * The service_name of your dedicated server.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -154,7 +154,7 @@ public class ServerRebootTask extends com.pulumi.resources.CustomResource {
      * Task creation date in RFC3339 format.
      * 
      */
-    @Export(name="startDate", type=String.class, parameters={})
+    @Export(name="startDate", refs={String.class}, tree="[0]")
     private Output<String> startDate;
 
     /**
@@ -168,7 +168,7 @@ public class ServerRebootTask extends com.pulumi.resources.CustomResource {
      * Task status (should be `done`)
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

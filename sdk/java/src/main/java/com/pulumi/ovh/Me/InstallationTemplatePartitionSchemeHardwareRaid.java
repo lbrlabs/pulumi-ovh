@@ -84,7 +84,7 @@ public class InstallationTemplatePartitionSchemeHardwareRaid extends com.pulumi.
      * Disk List. Syntax is cX:dY for disks and [cX:dY,cX:dY] for groups. With X and Y resp. the controller id and the disk id.
      * 
      */
-    @Export(name="disks", type=List.class, parameters={String.class})
+    @Export(name="disks", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> disks;
 
     /**
@@ -98,7 +98,7 @@ public class InstallationTemplatePartitionSchemeHardwareRaid extends com.pulumi.
      * RAID mode (raid0, raid1, raid10, raid5, raid50, raid6, raid60).
      * 
      */
-    @Export(name="mode", type=String.class, parameters={})
+    @Export(name="mode", refs={String.class}, tree="[0]")
     private Output<String> mode;
 
     /**
@@ -112,7 +112,7 @@ public class InstallationTemplatePartitionSchemeHardwareRaid extends com.pulumi.
      * Hardware RAID name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -126,7 +126,7 @@ public class InstallationTemplatePartitionSchemeHardwareRaid extends com.pulumi.
      * The partition scheme name.
      * 
      */
-    @Export(name="schemeName", type=String.class, parameters={})
+    @Export(name="schemeName", refs={String.class}, tree="[0]")
     private Output<String> schemeName;
 
     /**
@@ -140,7 +140,7 @@ public class InstallationTemplatePartitionSchemeHardwareRaid extends com.pulumi.
      * Specifies the creation order of the hardware RAID.
      * 
      */
-    @Export(name="step", type=Integer.class, parameters={})
+    @Export(name="step", refs={Integer.class}, tree="[0]")
     private Output<Integer> step;
 
     /**
@@ -154,7 +154,7 @@ public class InstallationTemplatePartitionSchemeHardwareRaid extends com.pulumi.
      * The template name of the partition scheme.
      * 
      */
-    @Export(name="templateName", type=String.class, parameters={})
+    @Export(name="templateName", refs={String.class}, tree="[0]")
     private Output<String> templateName;
 
     /**

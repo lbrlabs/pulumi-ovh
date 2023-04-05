@@ -7,18 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Orders a vrack.
-//
-// ## Important
-//
-// > __WARNING__ This resource is in beta state. Use with caution.
-//
-// > __NOTE__ Currently, the OVHcloud API doesn't support Vrack termination. You have to open a support ticket to ask for vrack termination. Otherwise, you may hit vrack quota issues.
-//
 // ## Example Usage
 //
 // ```go
@@ -52,7 +44,6 @@ import (
 //			}
 //			_, err = Vrack.NewVrack(ctx, "vrackVrack", &Vrack.VrackArgs{
 //				OvhSubsidiary: *pulumi.String(mycart.OvhSubsidiary),
-//				PaymentMean:   pulumi.String("fidelity"),
 //				Description:   pulumi.String("my vrack"),
 //				Plan: &vrack.VrackPlanArgs{
 //					Duration:    *pulumi.String(vrackCartProductPlan.SelectedPrices[0].Duration),
@@ -79,8 +70,10 @@ type Vrack struct {
 	Orders VrackOrderArrayOutput `pulumi:"orders"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringOutput `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean pulumi.StringOutput `pulumi:"paymentMean"`
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean pulumi.StringPtrOutput `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan VrackPlanOutput `pulumi:"plan"`
 	// Product Plan to order
@@ -98,9 +91,6 @@ func NewVrack(ctx *pulumi.Context,
 
 	if args.OvhSubsidiary == nil {
 		return nil, errors.New("invalid value for required argument 'OvhSubsidiary'")
-	}
-	if args.PaymentMean == nil {
-		return nil, errors.New("invalid value for required argument 'PaymentMean'")
 	}
 	if args.Plan == nil {
 		return nil, errors.New("invalid value for required argument 'Plan'")
@@ -136,7 +126,9 @@ type vrackState struct {
 	Orders []VrackOrder `pulumi:"orders"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary *string `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
 	PaymentMean *string `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan *VrackPlan `pulumi:"plan"`
@@ -155,7 +147,9 @@ type VrackState struct {
 	Orders VrackOrderArrayInput
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringPtrInput
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
 	PaymentMean pulumi.StringPtrInput
 	// Product Plan to order
 	Plan VrackPlanPtrInput
@@ -176,8 +170,10 @@ type vrackArgs struct {
 	Name *string `pulumi:"name"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary string `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean string `pulumi:"paymentMean"`
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean *string `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan VrackPlan `pulumi:"plan"`
 	// Product Plan to order
@@ -192,8 +188,10 @@ type VrackArgs struct {
 	Name pulumi.StringPtrInput
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringInput
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean pulumi.StringInput
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean pulumi.StringPtrInput
 	// Product Plan to order
 	Plan VrackPlanInput
 	// Product Plan to order
@@ -307,9 +305,11 @@ func (o VrackOutput) OvhSubsidiary() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vrack) pulumi.StringOutput { return v.OvhSubsidiary }).(pulumi.StringOutput)
 }
 
-// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-func (o VrackOutput) PaymentMean() pulumi.StringOutput {
-	return o.ApplyT(func(v *Vrack) pulumi.StringOutput { return v.PaymentMean }).(pulumi.StringOutput)
+// Ovh payment mode
+//
+// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+func (o VrackOutput) PaymentMean() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *Vrack) pulumi.StringPtrOutput { return v.PaymentMean }).(pulumi.StringPtrOutput)
 }
 
 // Product Plan to order

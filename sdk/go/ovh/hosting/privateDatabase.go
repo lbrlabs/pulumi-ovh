@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates an OVHcloud managed private cloud database.
-//
 // ## Example Usage
 //
 // ```go
@@ -46,7 +44,6 @@ import (
 //			}
 //			databasePrivateDatabase, err := Hosting.NewPrivateDatabase(ctx, "databasePrivateDatabase", &Hosting.PrivateDatabaseArgs{
 //				OvhSubsidiary: *pulumi.String(mycart.OvhSubsidiary),
-//				PaymentMean:   pulumi.String("ovh-account"),
 //				DisplayName:   pulumi.String("Postgresql-12"),
 //				Plan: &hosting.PrivateDatabasePlanArgs{
 //					Duration:    *pulumi.String(databaseCartProductPlan.Prices[3].Duration),
@@ -104,8 +101,10 @@ type PrivateDatabase struct {
 	Orders PrivateDatabaseOrderArrayOutput `pulumi:"orders"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringOutput `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean pulumi.StringOutput `pulumi:"paymentMean"`
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean pulumi.StringPtrOutput `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan PrivateDatabasePlanOutput `pulumi:"plan"`
 	// Product Plan to order
@@ -145,9 +144,6 @@ func NewPrivateDatabase(ctx *pulumi.Context,
 
 	if args.OvhSubsidiary == nil {
 		return nil, errors.New("invalid value for required argument 'OvhSubsidiary'")
-	}
-	if args.PaymentMean == nil {
-		return nil, errors.New("invalid value for required argument 'PaymentMean'")
 	}
 	if args.Plan == nil {
 		return nil, errors.New("invalid value for required argument 'Plan'")
@@ -193,7 +189,9 @@ type privateDatabaseState struct {
 	Orders []PrivateDatabaseOrder `pulumi:"orders"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary *string `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
 	PaymentMean *string `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan *PrivateDatabasePlan `pulumi:"plan"`
@@ -244,7 +242,9 @@ type PrivateDatabaseState struct {
 	Orders PrivateDatabaseOrderArrayInput
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringPtrInput
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
 	PaymentMean pulumi.StringPtrInput
 	// Product Plan to order
 	Plan PrivateDatabasePlanPtrInput
@@ -285,8 +285,10 @@ type privateDatabaseArgs struct {
 	DisplayName *string `pulumi:"displayName"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary string `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean string `pulumi:"paymentMean"`
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean *string `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan PrivateDatabasePlan `pulumi:"plan"`
 	// Product Plan to order
@@ -301,8 +303,10 @@ type PrivateDatabaseArgs struct {
 	DisplayName pulumi.StringPtrInput
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringInput
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean pulumi.StringInput
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean pulumi.StringPtrInput
 	// Product Plan to order
 	Plan PrivateDatabasePlanInput
 	// Product Plan to order
@@ -443,9 +447,11 @@ func (o PrivateDatabaseOutput) OvhSubsidiary() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateDatabase) pulumi.StringOutput { return v.OvhSubsidiary }).(pulumi.StringOutput)
 }
 
-// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-func (o PrivateDatabaseOutput) PaymentMean() pulumi.StringOutput {
-	return o.ApplyT(func(v *PrivateDatabase) pulumi.StringOutput { return v.PaymentMean }).(pulumi.StringOutput)
+// Ovh payment mode
+//
+// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+func (o PrivateDatabaseOutput) PaymentMean() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *PrivateDatabase) pulumi.StringPtrOutput { return v.PaymentMean }).(pulumi.StringPtrOutput)
 }
 
 // Product Plan to order

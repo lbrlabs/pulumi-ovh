@@ -164,7 +164,6 @@ class IpAddress(pulumi.CustomResource):
         vrack_vrack = ovh.vrack.Vrack("vrackVrack",
             description=mycart.description,
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="fidelity",
             plan=ovh.vrack.VrackPlanArgs(
                 duration=vrack_cart_product_plan.selected_prices[0].duration,
                 plan_code=vrack_cart_product_plan.plan_code,
@@ -176,7 +175,6 @@ class IpAddress(pulumi.CustomResource):
             plan_code="ip-v4-s30-ripe")
         ipblock_ip_service = ovh.ip.IpService("ipblockIpService",
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="ovh-account",
             description=mycart.description,
             plan=ovh.ip.IpServicePlanArgs(
                 duration=ipblock_cart_product_plan.selected_prices[0].duration,
@@ -222,7 +220,6 @@ class IpAddress(pulumi.CustomResource):
         vrack_vrack = ovh.vrack.Vrack("vrackVrack",
             description=mycart.description,
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="fidelity",
             plan=ovh.vrack.VrackPlanArgs(
                 duration=vrack_cart_product_plan.selected_prices[0].duration,
                 plan_code=vrack_cart_product_plan.plan_code,
@@ -234,7 +231,6 @@ class IpAddress(pulumi.CustomResource):
             plan_code="ip-v4-s30-ripe")
         ipblock_ip_service = ovh.ip.IpService("ipblockIpService",
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="ovh-account",
             description=mycart.description,
             plan=ovh.ip.IpServicePlanArgs(
                 duration=ipblock_cart_product_plan.selected_prices[0].duration,

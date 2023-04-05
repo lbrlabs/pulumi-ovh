@@ -102,6 +102,7 @@ def get_ip_restrictions(cluster_id: Optional[str] = None,
     ## Example Usage
 
     To get the list of IP restriction on a database cluster service:
+
     ```python
     import pulumi
     import pulumi_ovh as ovh
@@ -145,6 +146,7 @@ def get_ip_restrictions_output(cluster_id: Optional[pulumi.Input[str]] = None,
     ## Example Usage
 
     To get the list of IP restriction on a database cluster service:
+
     ```python
     import pulumi
     import pulumi_ovh as ovh

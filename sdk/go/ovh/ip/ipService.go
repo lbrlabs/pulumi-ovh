@@ -7,21 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Orders an ip service.
-//
-// ## Important
-//
-// This resource orders an OVHcloud product for a long period of time and may generate heavy costs !
-// Use with caution.
-//
-// __NOTE__ 1: the "default-payment-mean" will scan your registered bank accounts, credit card and paypal payment means to find your default payment mean.
-//
-// __NOTE__ 2: this resource is in beta state. Use with caution.
-//
 // ## Example Usage
 //
 // ```go
@@ -55,7 +44,6 @@ import (
 //			}
 //			_, err = Ip.NewIpService(ctx, "ipblockIpService", &Ip.IpServiceArgs{
 //				OvhSubsidiary: *pulumi.String(mycart.OvhSubsidiary),
-//				PaymentMean:   pulumi.String("ovh-account"),
 //				Description:   pulumi.String("my ip block"),
 //				Plan: &ip.IpServicePlanArgs{
 //					Duration:    *pulumi.String(ipblockCartProductPlan.SelectedPrices[0].Duration),
@@ -94,8 +82,10 @@ type IpService struct {
 	OrganisationId pulumi.StringOutput `pulumi:"organisationId"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringOutput `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean pulumi.StringOutput `pulumi:"paymentMean"`
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean pulumi.StringPtrOutput `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan IpServicePlanOutput `pulumi:"plan"`
 	// Product Plan to order
@@ -117,9 +107,6 @@ func NewIpService(ctx *pulumi.Context,
 
 	if args.OvhSubsidiary == nil {
 		return nil, errors.New("invalid value for required argument 'OvhSubsidiary'")
-	}
-	if args.PaymentMean == nil {
-		return nil, errors.New("invalid value for required argument 'PaymentMean'")
 	}
 	if args.Plan == nil {
 		return nil, errors.New("invalid value for required argument 'Plan'")
@@ -161,7 +148,9 @@ type ipServiceState struct {
 	OrganisationId *string `pulumi:"organisationId"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary *string `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
 	PaymentMean *string `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan *IpServicePlan `pulumi:"plan"`
@@ -190,7 +179,9 @@ type IpServiceState struct {
 	OrganisationId pulumi.StringPtrInput
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringPtrInput
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
 	PaymentMean pulumi.StringPtrInput
 	// Product Plan to order
 	Plan IpServicePlanPtrInput
@@ -213,8 +204,10 @@ type ipServiceArgs struct {
 	Description *string `pulumi:"description"`
 	// OVHcloud Subsidiary
 	OvhSubsidiary string `pulumi:"ovhSubsidiary"`
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean string `pulumi:"paymentMean"`
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean *string `pulumi:"paymentMean"`
 	// Product Plan to order
 	Plan IpServicePlan `pulumi:"plan"`
 	// Product Plan to order
@@ -227,8 +220,10 @@ type IpServiceArgs struct {
 	Description pulumi.StringPtrInput
 	// OVHcloud Subsidiary
 	OvhSubsidiary pulumi.StringInput
-	// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-	PaymentMean pulumi.StringInput
+	// Ovh payment mode
+	//
+	// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+	PaymentMean pulumi.StringPtrInput
 	// Product Plan to order
 	Plan IpServicePlanInput
 	// Product Plan to order
@@ -357,9 +352,11 @@ func (o IpServiceOutput) OvhSubsidiary() pulumi.StringOutput {
 	return o.ApplyT(func(v *IpService) pulumi.StringOutput { return v.OvhSubsidiary }).(pulumi.StringOutput)
 }
 
-// OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-func (o IpServiceOutput) PaymentMean() pulumi.StringOutput {
-	return o.ApplyT(func(v *IpService) pulumi.StringOutput { return v.PaymentMean }).(pulumi.StringOutput)
+// Ovh payment mode
+//
+// Deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
+func (o IpServiceOutput) PaymentMean() pulumi.StringPtrOutput {
+	return o.ApplyT(func(v *IpService) pulumi.StringPtrOutput { return v.PaymentMean }).(pulumi.StringPtrOutput)
 }
 
 // Product Plan to order

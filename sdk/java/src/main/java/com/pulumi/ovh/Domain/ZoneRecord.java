@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *             .fieldtype(&#34;A&#34;)
  *             .subdomain(&#34;test&#34;)
  *             .target(&#34;0.0.0.0&#34;)
- *             .ttl(&#34;3600&#34;)
+ *             .ttl(3600)
  *             .zone(&#34;testdemo.ovh&#34;)
  *             .build());
  * 
@@ -67,7 +67,7 @@ public class ZoneRecord extends com.pulumi.resources.CustomResource {
      * The type of the record
      * 
      */
-    @Export(name="fieldtype", type=String.class, parameters={})
+    @Export(name="fieldtype", refs={String.class}, tree="[0]")
     private Output<String> fieldtype;
 
     /**
@@ -81,7 +81,7 @@ public class ZoneRecord extends com.pulumi.resources.CustomResource {
      * The name of the record
      * 
      */
-    @Export(name="subdomain", type=String.class, parameters={})
+    @Export(name="subdomain", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> subdomain;
 
     /**
@@ -95,7 +95,7 @@ public class ZoneRecord extends com.pulumi.resources.CustomResource {
      * The value of the record
      * 
      */
-    @Export(name="target", type=String.class, parameters={})
+    @Export(name="target", refs={String.class}, tree="[0]")
     private Output<String> target;
 
     /**
@@ -106,14 +106,14 @@ public class ZoneRecord extends com.pulumi.resources.CustomResource {
         return this.target;
     }
     /**
-     * The TTL of the record
+     * The TTL of the record, it shall be &gt;= to 60.
      * 
      */
-    @Export(name="ttl", type=Integer.class, parameters={})
+    @Export(name="ttl", refs={Integer.class}, tree="[0]")
     private Output</* @Nullable */ Integer> ttl;
 
     /**
-     * @return The TTL of the record
+     * @return The TTL of the record, it shall be &gt;= to 60.
      * 
      */
     public Output<Optional<Integer>> ttl() {
@@ -123,7 +123,7 @@ public class ZoneRecord extends com.pulumi.resources.CustomResource {
      * The domain to add the record to
      * 
      */
-    @Export(name="zone", type=String.class, parameters={})
+    @Export(name="zone", refs={String.class}, tree="[0]")
     private Output<String> zone;
 
     /**

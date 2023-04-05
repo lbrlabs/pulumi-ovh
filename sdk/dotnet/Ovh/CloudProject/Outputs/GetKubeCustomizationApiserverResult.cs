@@ -14,10 +14,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject.Outputs
     [OutputType]
     public sealed class GetKubeCustomizationApiserverResult
     {
-        public readonly Outputs.GetKubeCustomizationApiserverAdmissionpluginsResult Admissionplugins;
+        /// <summary>
+        /// Kubernetes API server admission plugins customization
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetKubeCustomizationApiserverAdmissionpluginResult> Admissionplugins;
 
         [OutputConstructor]
-        private GetKubeCustomizationApiserverResult(Outputs.GetKubeCustomizationApiserverAdmissionpluginsResult admissionplugins)
+        private GetKubeCustomizationApiserverResult(ImmutableArray<Outputs.GetKubeCustomizationApiserverAdmissionpluginResult> admissionplugins)
         {
             Admissionplugins = admissionplugins;
         }

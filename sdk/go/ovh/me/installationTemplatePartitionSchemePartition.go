@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -72,13 +72,27 @@ import (
 type InstallationTemplatePartitionSchemePartition struct {
 	pulumi.CustomResourceState
 
-	// Partition filesystem.
+	// Partition filesystem. Enum with possibles values:
+	// - btrfs
+	// - ext3
+	// - ext4
+	// - ntfs
+	// - reiserfs
+	// - swap
+	// - ufs
+	// - xfs
+	// - zfs
 	Filesystem pulumi.StringOutput `pulumi:"filesystem"`
 	// partition mount point.
 	Mountpoint pulumi.StringOutput `pulumi:"mountpoint"`
 	// step or order. specifies the creation order of the partition on the disk
 	Order pulumi.IntOutput `pulumi:"order"`
-	// raid partition type.
+	// raid partition type. Enum with possible values:
+	// - raid0
+	// - raid1
+	// - raid10
+	// - raid5
+	// - raid6
 	Raid pulumi.StringOutput `pulumi:"raid"`
 	// The partition scheme name.
 	SchemeName pulumi.StringOutput `pulumi:"schemeName"`
@@ -86,7 +100,10 @@ type InstallationTemplatePartitionSchemePartition struct {
 	Size pulumi.IntOutput `pulumi:"size"`
 	// The template name of the partition scheme.
 	TemplateName pulumi.StringOutput `pulumi:"templateName"`
-	// partition type.
+	// partition type. Enum with possible values:
+	// - lv
+	// - primary
+	// - logical
 	Type pulumi.StringOutput `pulumi:"type"`
 	// The volume name needed for proxmox distribution
 	VolumeName pulumi.StringOutput `pulumi:"volumeName"`
@@ -143,13 +160,27 @@ func GetInstallationTemplatePartitionSchemePartition(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering InstallationTemplatePartitionSchemePartition resources.
 type installationTemplatePartitionSchemePartitionState struct {
-	// Partition filesystem.
+	// Partition filesystem. Enum with possibles values:
+	// - btrfs
+	// - ext3
+	// - ext4
+	// - ntfs
+	// - reiserfs
+	// - swap
+	// - ufs
+	// - xfs
+	// - zfs
 	Filesystem *string `pulumi:"filesystem"`
 	// partition mount point.
 	Mountpoint *string `pulumi:"mountpoint"`
 	// step or order. specifies the creation order of the partition on the disk
 	Order *int `pulumi:"order"`
-	// raid partition type.
+	// raid partition type. Enum with possible values:
+	// - raid0
+	// - raid1
+	// - raid10
+	// - raid5
+	// - raid6
 	Raid *string `pulumi:"raid"`
 	// The partition scheme name.
 	SchemeName *string `pulumi:"schemeName"`
@@ -157,20 +188,37 @@ type installationTemplatePartitionSchemePartitionState struct {
 	Size *int `pulumi:"size"`
 	// The template name of the partition scheme.
 	TemplateName *string `pulumi:"templateName"`
-	// partition type.
+	// partition type. Enum with possible values:
+	// - lv
+	// - primary
+	// - logical
 	Type *string `pulumi:"type"`
 	// The volume name needed for proxmox distribution
 	VolumeName *string `pulumi:"volumeName"`
 }
 
 type InstallationTemplatePartitionSchemePartitionState struct {
-	// Partition filesystem.
+	// Partition filesystem. Enum with possibles values:
+	// - btrfs
+	// - ext3
+	// - ext4
+	// - ntfs
+	// - reiserfs
+	// - swap
+	// - ufs
+	// - xfs
+	// - zfs
 	Filesystem pulumi.StringPtrInput
 	// partition mount point.
 	Mountpoint pulumi.StringPtrInput
 	// step or order. specifies the creation order of the partition on the disk
 	Order pulumi.IntPtrInput
-	// raid partition type.
+	// raid partition type. Enum with possible values:
+	// - raid0
+	// - raid1
+	// - raid10
+	// - raid5
+	// - raid6
 	Raid pulumi.StringPtrInput
 	// The partition scheme name.
 	SchemeName pulumi.StringPtrInput
@@ -178,7 +226,10 @@ type InstallationTemplatePartitionSchemePartitionState struct {
 	Size pulumi.IntPtrInput
 	// The template name of the partition scheme.
 	TemplateName pulumi.StringPtrInput
-	// partition type.
+	// partition type. Enum with possible values:
+	// - lv
+	// - primary
+	// - logical
 	Type pulumi.StringPtrInput
 	// The volume name needed for proxmox distribution
 	VolumeName pulumi.StringPtrInput
@@ -189,13 +240,27 @@ func (InstallationTemplatePartitionSchemePartitionState) ElementType() reflect.T
 }
 
 type installationTemplatePartitionSchemePartitionArgs struct {
-	// Partition filesystem.
+	// Partition filesystem. Enum with possibles values:
+	// - btrfs
+	// - ext3
+	// - ext4
+	// - ntfs
+	// - reiserfs
+	// - swap
+	// - ufs
+	// - xfs
+	// - zfs
 	Filesystem string `pulumi:"filesystem"`
 	// partition mount point.
 	Mountpoint string `pulumi:"mountpoint"`
 	// step or order. specifies the creation order of the partition on the disk
 	Order int `pulumi:"order"`
-	// raid partition type.
+	// raid partition type. Enum with possible values:
+	// - raid0
+	// - raid1
+	// - raid10
+	// - raid5
+	// - raid6
 	Raid *string `pulumi:"raid"`
 	// The partition scheme name.
 	SchemeName string `pulumi:"schemeName"`
@@ -203,7 +268,10 @@ type installationTemplatePartitionSchemePartitionArgs struct {
 	Size int `pulumi:"size"`
 	// The template name of the partition scheme.
 	TemplateName string `pulumi:"templateName"`
-	// partition type.
+	// partition type. Enum with possible values:
+	// - lv
+	// - primary
+	// - logical
 	Type string `pulumi:"type"`
 	// The volume name needed for proxmox distribution
 	VolumeName *string `pulumi:"volumeName"`
@@ -211,13 +279,27 @@ type installationTemplatePartitionSchemePartitionArgs struct {
 
 // The set of arguments for constructing a InstallationTemplatePartitionSchemePartition resource.
 type InstallationTemplatePartitionSchemePartitionArgs struct {
-	// Partition filesystem.
+	// Partition filesystem. Enum with possibles values:
+	// - btrfs
+	// - ext3
+	// - ext4
+	// - ntfs
+	// - reiserfs
+	// - swap
+	// - ufs
+	// - xfs
+	// - zfs
 	Filesystem pulumi.StringInput
 	// partition mount point.
 	Mountpoint pulumi.StringInput
 	// step or order. specifies the creation order of the partition on the disk
 	Order pulumi.IntInput
-	// raid partition type.
+	// raid partition type. Enum with possible values:
+	// - raid0
+	// - raid1
+	// - raid10
+	// - raid5
+	// - raid6
 	Raid pulumi.StringPtrInput
 	// The partition scheme name.
 	SchemeName pulumi.StringInput
@@ -225,7 +307,10 @@ type InstallationTemplatePartitionSchemePartitionArgs struct {
 	Size pulumi.IntInput
 	// The template name of the partition scheme.
 	TemplateName pulumi.StringInput
-	// partition type.
+	// partition type. Enum with possible values:
+	// - lv
+	// - primary
+	// - logical
 	Type pulumi.StringInput
 	// The volume name needed for proxmox distribution
 	VolumeName pulumi.StringPtrInput
@@ -318,7 +403,16 @@ func (o InstallationTemplatePartitionSchemePartitionOutput) ToInstallationTempla
 	return o
 }
 
-// Partition filesystem.
+// Partition filesystem. Enum with possibles values:
+// - btrfs
+// - ext3
+// - ext4
+// - ntfs
+// - reiserfs
+// - swap
+// - ufs
+// - xfs
+// - zfs
 func (o InstallationTemplatePartitionSchemePartitionOutput) Filesystem() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.StringOutput { return v.Filesystem }).(pulumi.StringOutput)
 }
@@ -333,7 +427,12 @@ func (o InstallationTemplatePartitionSchemePartitionOutput) Order() pulumi.IntOu
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.IntOutput { return v.Order }).(pulumi.IntOutput)
 }
 
-// raid partition type.
+// raid partition type. Enum with possible values:
+// - raid0
+// - raid1
+// - raid10
+// - raid5
+// - raid6
 func (o InstallationTemplatePartitionSchemePartitionOutput) Raid() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.StringOutput { return v.Raid }).(pulumi.StringOutput)
 }
@@ -353,7 +452,10 @@ func (o InstallationTemplatePartitionSchemePartitionOutput) TemplateName() pulum
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.StringOutput { return v.TemplateName }).(pulumi.StringOutput)
 }
 
-// partition type.
+// partition type. Enum with possible values:
+// - lv
+// - primary
+// - logical
 func (o InstallationTemplatePartitionSchemePartitionOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *InstallationTemplatePartitionSchemePartition) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
 }

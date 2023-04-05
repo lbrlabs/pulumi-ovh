@@ -42,7 +42,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         public Output<string> Engine { get; private set; } = null!;
 
         /// <summary>
-        /// Name of the user.
+        /// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
         /// </summary>
         [Output("name")]
         public Output<string> Name { get; private set; } = null!;
@@ -137,7 +137,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         public Input<string> Engine { get; set; } = null!;
 
         /// <summary>
-        /// Name of the user.
+        /// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }
@@ -183,7 +183,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         public Input<string>? Engine { get; set; }
 
         /// <summary>
-        /// Name of the user.
+        /// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
         /// </summary>
         [Input("name")]
         public Input<string>? Name { get; set; }

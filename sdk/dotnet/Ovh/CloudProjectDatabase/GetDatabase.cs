@@ -20,8 +20,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// {{% example %}}
         /// 
         /// To get information of a database cluster service:
+        /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 
@@ -54,8 +56,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// {{% example %}}
         /// 
         /// To get information of a database cluster service:
+        /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 
@@ -143,6 +147,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
     public sealed class GetDatabaseResult
     {
         /// <summary>
+        /// Advanced configuration key / value.
+        /// </summary>
+        public readonly ImmutableDictionary<string, string> AdvancedConfiguration;
+        /// <summary>
         /// Time on which backups start every day.
         /// </summary>
         public readonly string BackupTime;
@@ -214,6 +222,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
 
         [OutputConstructor]
         private GetDatabaseResult(
+            ImmutableDictionary<string, string> advancedConfiguration,
+
             string backupTime,
 
             string createdAt,
@@ -250,6 +260,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
 
             string version)
         {
+            AdvancedConfiguration = advancedConfiguration;
             BackupTime = backupTime;
             CreatedAt = createdAt;
             Description = description;

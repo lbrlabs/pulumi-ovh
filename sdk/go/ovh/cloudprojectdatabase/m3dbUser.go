@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -29,7 +29,7 @@ type M3DbUser struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Group of the user:
 	Group pulumi.StringPtrOutput `pulumi:"group"`
-	// Name of the user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user instead of create a new user.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// (Sensitive) Password of the user.
 	Password pulumi.StringOutput `pulumi:"password"`
@@ -88,7 +88,7 @@ type m3dbUserState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Group of the user:
 	Group *string `pulumi:"group"`
-	// Name of the user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user instead of create a new user.
 	Name *string `pulumi:"name"`
 	// (Sensitive) Password of the user.
 	Password *string `pulumi:"password"`
@@ -108,7 +108,7 @@ type M3DbUserState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Group of the user:
 	Group pulumi.StringPtrInput
-	// Name of the user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user instead of create a new user.
 	Name pulumi.StringPtrInput
 	// (Sensitive) Password of the user.
 	Password pulumi.StringPtrInput
@@ -130,7 +130,7 @@ type m3dbUserArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// Group of the user:
 	Group *string `pulumi:"group"`
-	// Name of the user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user instead of create a new user.
 	Name *string `pulumi:"name"`
 	// See Argument Reference above.
 	PasswordReset *string `pulumi:"passwordReset"`
@@ -145,7 +145,7 @@ type M3DbUserArgs struct {
 	ClusterId pulumi.StringInput
 	// Group of the user:
 	Group pulumi.StringPtrInput
-	// Name of the user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user instead of create a new user.
 	Name pulumi.StringPtrInput
 	// See Argument Reference above.
 	PasswordReset pulumi.StringPtrInput
@@ -256,7 +256,7 @@ func (o M3DbUserOutput) Group() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *M3DbUser) pulumi.StringPtrOutput { return v.Group }).(pulumi.StringPtrOutput)
 }
 
-// Name of the user.
+// Name of the user. A user named "avnadmin" is map with already created admin user instead of create a new user.
 func (o M3DbUserOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *M3DbUser) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

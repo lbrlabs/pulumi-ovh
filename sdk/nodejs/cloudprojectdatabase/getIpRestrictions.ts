@@ -10,6 +10,7 @@ import * as utilities from "../utilities";
  * ## Example Usage
  *
  * To get the list of IP restriction on a database cluster service:
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";
@@ -83,6 +84,7 @@ export interface GetIpRestrictionsResult {
  * ## Example Usage
  *
  * To get the list of IP restriction on a database cluster service:
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@pulumi/ovh";

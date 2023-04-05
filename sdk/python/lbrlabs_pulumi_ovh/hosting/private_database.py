@@ -17,25 +17,29 @@ __all__ = ['PrivateDatabaseArgs', 'PrivateDatabase']
 class PrivateDatabaseArgs:
     def __init__(__self__, *,
                  ovh_subsidiary: pulumi.Input[str],
-                 payment_mean: pulumi.Input[str],
                  plan: pulumi.Input['PrivateDatabasePlanArgs'],
                  display_name: Optional[pulumi.Input[str]] = None,
+                 payment_mean: Optional[pulumi.Input[str]] = None,
                  plan_options: Optional[pulumi.Input[Sequence[pulumi.Input['PrivateDatabasePlanOptionArgs']]]] = None,
                  service_name: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a PrivateDatabase resource.
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
         :param pulumi.Input['PrivateDatabasePlanArgs'] plan: Product Plan to order
         :param pulumi.Input[str] display_name: Name displayed in customer panel for your private database
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[Sequence[pulumi.Input['PrivateDatabasePlanOptionArgs']]] plan_options: Product Plan to order
         :param pulumi.Input[str] service_name: Service name
         """
         pulumi.set(__self__, "ovh_subsidiary", ovh_subsidiary)
-        pulumi.set(__self__, "payment_mean", payment_mean)
         pulumi.set(__self__, "plan", plan)
         if display_name is not None:
             pulumi.set(__self__, "display_name", display_name)
+        if payment_mean is not None:
+            warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+            pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+        if payment_mean is not None:
+            pulumi.set(__self__, "payment_mean", payment_mean)
         if plan_options is not None:
             pulumi.set(__self__, "plan_options", plan_options)
         if service_name is not None:
@@ -52,18 +56,6 @@ class PrivateDatabaseArgs:
     @ovh_subsidiary.setter
     def ovh_subsidiary(self, value: pulumi.Input[str]):
         pulumi.set(self, "ovh_subsidiary", value)
-
-    @property
-    @pulumi.getter(name="paymentMean")
-    def payment_mean(self) -> pulumi.Input[str]:
-        """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-        """
-        return pulumi.get(self, "payment_mean")
-
-    @payment_mean.setter
-    def payment_mean(self, value: pulumi.Input[str]):
-        pulumi.set(self, "payment_mean", value)
 
     @property
     @pulumi.getter
@@ -88,6 +80,18 @@ class PrivateDatabaseArgs:
     @display_name.setter
     def display_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "display_name", value)
+
+    @property
+    @pulumi.getter(name="paymentMean")
+    def payment_mean(self) -> Optional[pulumi.Input[str]]:
+        """
+        Ovh payment mode
+        """
+        return pulumi.get(self, "payment_mean")
+
+    @payment_mean.setter
+    def payment_mean(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "payment_mean", value)
 
     @property
     @pulumi.getter(name="planOptions")
@@ -152,7 +156,7 @@ class _PrivateDatabaseState:
         :param pulumi.Input[str] offer: Type of the private database offer
         :param pulumi.Input[Sequence[pulumi.Input['PrivateDatabaseOrderArgs']]] orders: Details about your Order
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input['PrivateDatabasePlanArgs'] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input['PrivateDatabasePlanOptionArgs']]] plan_options: Product Plan to order
         :param pulumi.Input[int] port: Private database service port
@@ -186,6 +190,9 @@ class _PrivateDatabaseState:
             pulumi.set(__self__, "orders", orders)
         if ovh_subsidiary is not None:
             pulumi.set(__self__, "ovh_subsidiary", ovh_subsidiary)
+        if payment_mean is not None:
+            warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+            pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
         if payment_mean is not None:
             pulumi.set(__self__, "payment_mean", payment_mean)
         if plan is not None:
@@ -329,7 +336,7 @@ class _PrivateDatabaseState:
     @pulumi.getter(name="paymentMean")
     def payment_mean(self) -> Optional[pulumi.Input[str]]:
         """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        Ovh payment mode
         """
         return pulumi.get(self, "payment_mean")
 
@@ -519,8 +526,6 @@ class PrivateDatabase(pulumi.CustomResource):
                  service_name: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates an OVHcloud managed private cloud database.
-
         ## Example Usage
 
         ```python
@@ -536,7 +541,6 @@ class PrivateDatabase(pulumi.CustomResource):
             plan_code="private-sql-512-instance")
         database_private_database = ovh.hosting.PrivateDatabase("databasePrivateDatabase",
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="ovh-account",
             display_name="Postgresql-12",
             plan=ovh.hosting.PrivateDatabasePlanArgs(
                 duration=database_cart_product_plan.prices[3].duration,
@@ -568,7 +572,7 @@ class PrivateDatabase(pulumi.CustomResource):
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[str] display_name: Name displayed in customer panel for your private database
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[pulumi.InputType['PrivateDatabasePlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateDatabasePlanOptionArgs']]]] plan_options: Product Plan to order
         :param pulumi.Input[str] service_name: Service name
@@ -580,8 +584,6 @@ class PrivateDatabase(pulumi.CustomResource):
                  args: PrivateDatabaseArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates an OVHcloud managed private cloud database.
-
         ## Example Usage
 
         ```python
@@ -597,7 +599,6 @@ class PrivateDatabase(pulumi.CustomResource):
             plan_code="private-sql-512-instance")
         database_private_database = ovh.hosting.PrivateDatabase("databasePrivateDatabase",
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="ovh-account",
             display_name="Postgresql-12",
             plan=ovh.hosting.PrivateDatabasePlanArgs(
                 duration=database_cart_product_plan.prices[3].duration,
@@ -659,8 +660,9 @@ class PrivateDatabase(pulumi.CustomResource):
             if ovh_subsidiary is None and not opts.urn:
                 raise TypeError("Missing required property 'ovh_subsidiary'")
             __props__.__dict__["ovh_subsidiary"] = ovh_subsidiary
-            if payment_mean is None and not opts.urn:
-                raise TypeError("Missing required property 'payment_mean'")
+            if payment_mean is not None and not opts.urn:
+                warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+                pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
             __props__.__dict__["payment_mean"] = payment_mean
             if plan is None and not opts.urn:
                 raise TypeError("Missing required property 'plan'")
@@ -735,7 +737,7 @@ class PrivateDatabase(pulumi.CustomResource):
         :param pulumi.Input[str] offer: Type of the private database offer
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateDatabaseOrderArgs']]]] orders: Details about your Order
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[pulumi.InputType['PrivateDatabasePlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['PrivateDatabasePlanOptionArgs']]]] plan_options: Product Plan to order
         :param pulumi.Input[int] port: Private database service port
@@ -855,9 +857,9 @@ class PrivateDatabase(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="paymentMean")
-    def payment_mean(self) -> pulumi.Output[str]:
+    def payment_mean(self) -> pulumi.Output[Optional[str]]:
         """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        Ovh payment mode
         """
         return pulumi.get(self, "payment_mean")
 

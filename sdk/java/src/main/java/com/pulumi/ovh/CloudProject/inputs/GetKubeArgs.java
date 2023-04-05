@@ -5,8 +5,11 @@ package com.pulumi.ovh.CloudProject.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
+import com.pulumi.ovh.CloudProject.inputs.GetKubeCustomizationApiserverArgs;
 import com.pulumi.ovh.CloudProject.inputs.GetKubeCustomizationArgs;
+import com.pulumi.ovh.CloudProject.inputs.GetKubeCustomizationKubeProxyArgs;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -17,26 +20,56 @@ public final class GetKubeArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetKubeArgs Empty = new GetKubeArgs();
 
     /**
-     * Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - Kubernetes API server admission plugins customization
-     * * enabled - Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-     * * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * Kubernetes API server customization
      * 
      */
-    @Import(name="customization")
-    private @Nullable Output<GetKubeCustomizationArgs> customization;
+    @Import(name="customizationApiservers")
+    private @Nullable Output<List<GetKubeCustomizationApiserverArgs>> customizationApiservers;
 
     /**
-     * @return Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - Kubernetes API server admission plugins customization
-     * * enabled - Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-     * * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * @return Kubernetes API server customization
      * 
      */
-    public Optional<Output<GetKubeCustomizationArgs>> customization() {
-        return Optional.ofNullable(this.customization);
+    public Optional<Output<List<GetKubeCustomizationApiserverArgs>>> customizationApiservers() {
+        return Optional.ofNullable(this.customizationApiservers);
+    }
+
+    /**
+     * Kubernetes kube-proxy customization
+     * 
+     */
+    @Import(name="customizationKubeProxy")
+    private @Nullable Output<GetKubeCustomizationKubeProxyArgs> customizationKubeProxy;
+
+    /**
+     * @return Kubernetes kube-proxy customization
+     * 
+     */
+    public Optional<Output<GetKubeCustomizationKubeProxyArgs>> customizationKubeProxy() {
+        return Optional.ofNullable(this.customizationKubeProxy);
+    }
+
+    /**
+     * **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    @Import(name="customizations")
+    private @Nullable Output<List<GetKubeCustomizationArgs>> customizations;
+
+    /**
+     * @return **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    public Optional<Output<List<GetKubeCustomizationArgs>>> customizations() {
+        return Optional.ofNullable(this.customizations);
     }
 
     /**
@@ -52,6 +85,21 @@ public final class GetKubeArgs extends com.pulumi.resources.InvokeArgs {
      */
     public Output<String> kubeId() {
         return this.kubeId;
+    }
+
+    /**
+     * Selected mode for kube-proxy.
+     * 
+     */
+    @Import(name="kubeProxyMode")
+    private @Nullable Output<String> kubeProxyMode;
+
+    /**
+     * @return Selected mode for kube-proxy.
+     * 
+     */
+    public Optional<Output<String>> kubeProxyMode() {
+        return Optional.ofNullable(this.kubeProxyMode);
     }
 
     /**
@@ -85,16 +133,14 @@ public final class GetKubeArgs extends com.pulumi.resources.InvokeArgs {
     }
 
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
     @Import(name="serviceName", required=true)
     private Output<String> serviceName;
 
     /**
-     * @return The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * @return The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
     public Output<String> serviceName() {
@@ -134,8 +180,11 @@ public final class GetKubeArgs extends com.pulumi.resources.InvokeArgs {
     private GetKubeArgs() {}
 
     private GetKubeArgs(GetKubeArgs $) {
-        this.customization = $.customization;
+        this.customizationApiservers = $.customizationApiservers;
+        this.customizationKubeProxy = $.customizationKubeProxy;
+        this.customizations = $.customizations;
         this.kubeId = $.kubeId;
+        this.kubeProxyMode = $.kubeProxyMode;
         this.name = $.name;
         this.region = $.region;
         this.serviceName = $.serviceName;
@@ -162,32 +211,98 @@ public final class GetKubeArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param customization Customer customization object
-         * * apiserver - Kubernetes API server customization
-         * * admissionplugins - Kubernetes API server admission plugins customization
-         * * enabled - Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-         * * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+         * @param customizationApiservers Kubernetes API server customization
          * 
          * @return builder
          * 
          */
-        public Builder customization(@Nullable Output<GetKubeCustomizationArgs> customization) {
-            $.customization = customization;
+        public Builder customizationApiservers(@Nullable Output<List<GetKubeCustomizationApiserverArgs>> customizationApiservers) {
+            $.customizationApiservers = customizationApiservers;
             return this;
         }
 
         /**
-         * @param customization Customer customization object
-         * * apiserver - Kubernetes API server customization
-         * * admissionplugins - Kubernetes API server admission plugins customization
-         * * enabled - Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-         * * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+         * @param customizationApiservers Kubernetes API server customization
          * 
          * @return builder
          * 
          */
-        public Builder customization(GetKubeCustomizationArgs customization) {
-            return customization(Output.of(customization));
+        public Builder customizationApiservers(List<GetKubeCustomizationApiserverArgs> customizationApiservers) {
+            return customizationApiservers(Output.of(customizationApiservers));
+        }
+
+        /**
+         * @param customizationApiservers Kubernetes API server customization
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customizationApiservers(GetKubeCustomizationApiserverArgs... customizationApiservers) {
+            return customizationApiservers(List.of(customizationApiservers));
+        }
+
+        /**
+         * @param customizationKubeProxy Kubernetes kube-proxy customization
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customizationKubeProxy(@Nullable Output<GetKubeCustomizationKubeProxyArgs> customizationKubeProxy) {
+            $.customizationKubeProxy = customizationKubeProxy;
+            return this;
+        }
+
+        /**
+         * @param customizationKubeProxy Kubernetes kube-proxy customization
+         * 
+         * @return builder
+         * 
+         */
+        public Builder customizationKubeProxy(GetKubeCustomizationKubeProxyArgs customizationKubeProxy) {
+            return customizationKubeProxy(Output.of(customizationKubeProxy));
+        }
+
+        /**
+         * @param customizations **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Use customization_apiserver instead
+         * 
+         */
+        @Deprecated /* Use customization_apiserver instead */
+        public Builder customizations(@Nullable Output<List<GetKubeCustomizationArgs>> customizations) {
+            $.customizations = customizations;
+            return this;
+        }
+
+        /**
+         * @param customizations **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Use customization_apiserver instead
+         * 
+         */
+        @Deprecated /* Use customization_apiserver instead */
+        public Builder customizations(List<GetKubeCustomizationArgs> customizations) {
+            return customizations(Output.of(customizations));
+        }
+
+        /**
+         * @param customizations **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+         * 
+         * @return builder
+         * 
+         * @deprecated
+         * Use customization_apiserver instead
+         * 
+         */
+        @Deprecated /* Use customization_apiserver instead */
+        public Builder customizations(GetKubeCustomizationArgs... customizations) {
+            return customizations(List.of(customizations));
         }
 
         /**
@@ -209,6 +324,27 @@ public final class GetKubeArgs extends com.pulumi.resources.InvokeArgs {
          */
         public Builder kubeId(String kubeId) {
             return kubeId(Output.of(kubeId));
+        }
+
+        /**
+         * @param kubeProxyMode Selected mode for kube-proxy.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kubeProxyMode(@Nullable Output<String> kubeProxyMode) {
+            $.kubeProxyMode = kubeProxyMode;
+            return this;
+        }
+
+        /**
+         * @param kubeProxyMode Selected mode for kube-proxy.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder kubeProxyMode(String kubeProxyMode) {
+            return kubeProxyMode(Output.of(kubeProxyMode));
         }
 
         /**
@@ -254,8 +390,7 @@ public final class GetKubeArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param serviceName The id of the public cloud project. If omitted,
-         * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+         * @param serviceName The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
          * 
          * @return builder
          * 
@@ -266,8 +401,7 @@ public final class GetKubeArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param serviceName The id of the public cloud project. If omitted,
-         * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+         * @param serviceName The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
          * 
          * @return builder
          * 

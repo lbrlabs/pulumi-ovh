@@ -32,7 +32,7 @@ public class S3Credential extends com.pulumi.resources.CustomResource {
      * the Access Key ID
      * 
      */
-    @Export(name="accessKeyId", type=String.class, parameters={})
+    @Export(name="accessKeyId", refs={String.class}, tree="[0]")
     private Output<String> accessKeyId;
 
     /**
@@ -42,7 +42,7 @@ public class S3Credential extends com.pulumi.resources.CustomResource {
     public Output<String> accessKeyId() {
         return this.accessKeyId;
     }
-    @Export(name="internalUserId", type=String.class, parameters={})
+    @Export(name="internalUserId", refs={String.class}, tree="[0]")
     private Output<String> internalUserId;
 
     public Output<String> internalUserId() {
@@ -52,7 +52,7 @@ public class S3Credential extends com.pulumi.resources.CustomResource {
      * (Sensitive) the Secret Access Key
      * 
      */
-    @Export(name="secretAccessKey", type=String.class, parameters={})
+    @Export(name="secretAccessKey", refs={String.class}, tree="[0]")
     private Output<String> secretAccessKey;
 
     /**
@@ -67,7 +67,7 @@ public class S3Credential extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -82,7 +82,7 @@ public class S3Credential extends com.pulumi.resources.CustomResource {
      * The ID of a public cloud project&#39;s user.
      * 
      */
-    @Export(name="userId", type=String.class, parameters={})
+    @Export(name="userId", refs={String.class}, tree="[0]")
     private Output<String> userId;
 
     /**

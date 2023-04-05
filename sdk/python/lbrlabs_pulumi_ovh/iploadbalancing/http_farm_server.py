@@ -480,7 +480,7 @@ class HttpFarmServer(pulumi.CustomResource):
             state="ok")
         farmname = ovh.ip_load_balancing.HttpFarm("farmname",
             port=8080,
-            service_name=lb.id,
+            service_name=lb.service_name,
             zone="all")
         backend = ovh.ip_load_balancing.HttpFarmServer("backend",
             address="4.5.6.7",
@@ -490,7 +490,7 @@ class HttpFarmServer(pulumi.CustomResource):
             port=80,
             probe=True,
             proxy_protocol_version="v2",
-            service_name=lb.id,
+            service_name=lb.service_name,
             ssl=False,
             status="active",
             weight=2)
@@ -531,7 +531,7 @@ class HttpFarmServer(pulumi.CustomResource):
             state="ok")
         farmname = ovh.ip_load_balancing.HttpFarm("farmname",
             port=8080,
-            service_name=lb.id,
+            service_name=lb.service_name,
             zone="all")
         backend = ovh.ip_load_balancing.HttpFarmServer("backend",
             address="4.5.6.7",
@@ -541,7 +541,7 @@ class HttpFarmServer(pulumi.CustomResource):
             port=80,
             probe=True,
             proxy_protocol_version="v2",
-            service_name=lb.id,
+            service_name=lb.service_name,
             ssl=False,
             status="active",
             weight=2)

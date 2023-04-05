@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -20,6 +20,7 @@ import (
 // ## Example Usage
 //
 // Push PostgreSQL logs in an OpenSearch DB:
+//
 // ```go
 // package main
 //

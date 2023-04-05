@@ -21,6 +21,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 
@@ -53,6 +54,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 
@@ -80,21 +82,48 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
 
     public sealed class GetKubeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("customizationApiservers")]
+        private List<Inputs.GetKubeCustomizationApiserverArgs>? _customizationApiservers;
+
         /// <summary>
-        /// Customer customization object
-        /// * apiserver - Kubernetes API server customization
-        /// * admissionplugins - Kubernetes API server admission plugins customization
-        /// * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-        /// * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        /// Kubernetes API server customization
         /// </summary>
-        [Input("customization")]
-        public Inputs.GetKubeCustomizationArgs? Customization { get; set; }
+        public List<Inputs.GetKubeCustomizationApiserverArgs> CustomizationApiservers
+        {
+            get => _customizationApiservers ?? (_customizationApiservers = new List<Inputs.GetKubeCustomizationApiserverArgs>());
+            set => _customizationApiservers = value;
+        }
+
+        /// <summary>
+        /// Kubernetes kube-proxy customization
+        /// </summary>
+        [Input("customizationKubeProxy")]
+        public Inputs.GetKubeCustomizationKubeProxyArgs? CustomizationKubeProxy { get; set; }
+
+        [Input("customizations")]
+        private List<Inputs.GetKubeCustomizationArgs>? _customizations;
+
+        /// <summary>
+        /// **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        /// </summary>
+        [Obsolete(@"Use customization_apiserver instead")]
+        public List<Inputs.GetKubeCustomizationArgs> Customizations
+        {
+            get => _customizations ?? (_customizations = new List<Inputs.GetKubeCustomizationArgs>());
+            set => _customizations = value;
+        }
 
         /// <summary>
         /// The id of the managed kubernetes cluster.
         /// </summary>
         [Input("kubeId", required: true)]
         public string KubeId { get; set; } = null!;
+
+        /// <summary>
+        /// Selected mode for kube-proxy.
+        /// </summary>
+        [Input("kubeProxyMode")]
+        public string? KubeProxyMode { get; set; }
 
         /// <summary>
         /// The name of the managed kubernetes cluster.
@@ -109,8 +138,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public string? Region { get; set; }
 
         /// <summary>
-        /// The id of the public cloud project. If omitted,
-        /// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        /// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         /// </summary>
         [Input("serviceName", required: true)]
         public string ServiceName { get; set; } = null!;
@@ -135,21 +163,48 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
 
     public sealed class GetKubeInvokeArgs : global::Pulumi.InvokeArgs
     {
+        [Input("customizationApiservers")]
+        private InputList<Inputs.GetKubeCustomizationApiserverInputArgs>? _customizationApiservers;
+
         /// <summary>
-        /// Customer customization object
-        /// * apiserver - Kubernetes API server customization
-        /// * admissionplugins - Kubernetes API server admission plugins customization
-        /// * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-        /// * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        /// Kubernetes API server customization
         /// </summary>
-        [Input("customization")]
-        public Input<Inputs.GetKubeCustomizationInputArgs>? Customization { get; set; }
+        public InputList<Inputs.GetKubeCustomizationApiserverInputArgs> CustomizationApiservers
+        {
+            get => _customizationApiservers ?? (_customizationApiservers = new InputList<Inputs.GetKubeCustomizationApiserverInputArgs>());
+            set => _customizationApiservers = value;
+        }
+
+        /// <summary>
+        /// Kubernetes kube-proxy customization
+        /// </summary>
+        [Input("customizationKubeProxy")]
+        public Input<Inputs.GetKubeCustomizationKubeProxyInputArgs>? CustomizationKubeProxy { get; set; }
+
+        [Input("customizations")]
+        private InputList<Inputs.GetKubeCustomizationInputArgs>? _customizations;
+
+        /// <summary>
+        /// **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        /// </summary>
+        [Obsolete(@"Use customization_apiserver instead")]
+        public InputList<Inputs.GetKubeCustomizationInputArgs> Customizations
+        {
+            get => _customizations ?? (_customizations = new InputList<Inputs.GetKubeCustomizationInputArgs>());
+            set => _customizations = value;
+        }
 
         /// <summary>
         /// The id of the managed kubernetes cluster.
         /// </summary>
         [Input("kubeId", required: true)]
         public Input<string> KubeId { get; set; } = null!;
+
+        /// <summary>
+        /// Selected mode for kube-proxy.
+        /// </summary>
+        [Input("kubeProxyMode")]
+        public Input<string>? KubeProxyMode { get; set; }
 
         /// <summary>
         /// The name of the managed kubernetes cluster.
@@ -164,8 +219,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         public Input<string>? Region { get; set; }
 
         /// <summary>
-        /// The id of the public cloud project. If omitted,
-        /// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        /// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         /// </summary>
         [Input("serviceName", required: true)]
         public Input<string> ServiceName { get; set; } = null!;
@@ -193,29 +247,37 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     public sealed class GetKubeResult
     {
         /// <summary>
-        /// True if control-plane is up to date.
+        /// True if control-plane is up-to-date.
         /// </summary>
         public readonly bool ControlPlaneIsUpToDate;
         /// <summary>
-        /// Customer customization object
-        /// * apiserver - Kubernetes API server customization
-        /// * admissionplugins - Kubernetes API server admission plugins customization
-        /// * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-        /// * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        /// Kubernetes API server customization
         /// </summary>
-        public readonly Outputs.GetKubeCustomizationResult Customization;
+        public readonly ImmutableArray<Outputs.GetKubeCustomizationApiserverResult> CustomizationApiservers;
+        /// <summary>
+        /// Kubernetes kube-proxy customization
+        /// </summary>
+        public readonly Outputs.GetKubeCustomizationKubeProxyResult? CustomizationKubeProxy;
+        /// <summary>
+        /// **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        /// </summary>
+        public readonly ImmutableArray<Outputs.GetKubeCustomizationResult> Customizations;
         /// <summary>
         /// The provider-assigned unique ID for this managed resource.
         /// </summary>
         public readonly string Id;
         /// <summary>
-        /// True if all nodes and control-plane are up to date.
+        /// True if all nodes and control-plane are up-to-date.
         /// </summary>
         public readonly bool IsUpToDate;
         /// <summary>
         /// See Argument Reference above.
         /// </summary>
         public readonly string KubeId;
+        /// <summary>
+        /// Selected mode for kube-proxy.
+        /// </summary>
+        public readonly string? KubeProxyMode;
         /// <summary>
         /// The name of the managed kubernetes cluster.
         /// </summary>
@@ -261,13 +323,19 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         private GetKubeResult(
             bool controlPlaneIsUpToDate,
 
-            Outputs.GetKubeCustomizationResult customization,
+            ImmutableArray<Outputs.GetKubeCustomizationApiserverResult> customizationApiservers,
+
+            Outputs.GetKubeCustomizationKubeProxyResult? customizationKubeProxy,
+
+            ImmutableArray<Outputs.GetKubeCustomizationResult> customizations,
 
             string id,
 
             bool isUpToDate,
 
             string kubeId,
+
+            string? kubeProxyMode,
 
             string? name,
 
@@ -290,10 +358,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
             string? version)
         {
             ControlPlaneIsUpToDate = controlPlaneIsUpToDate;
-            Customization = customization;
+            CustomizationApiservers = customizationApiservers;
+            CustomizationKubeProxy = customizationKubeProxy;
+            Customizations = customizations;
             Id = id;
             IsUpToDate = isUpToDate;
             KubeId = kubeId;
+            KubeProxyMode = kubeProxyMode;
             Name = name;
             NextUpgradeVersions = nextUpgradeVersions;
             NodesUrl = nodesUrl;

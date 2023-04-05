@@ -74,7 +74,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * Cluster ID.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -88,7 +88,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * Name of the namespace.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -102,7 +102,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
      * 
      */
-    @Export(name="resolution", type=String.class, parameters={})
+    @Export(name="resolution", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> resolution;
 
     /**
@@ -116,7 +116,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
      * 
      */
-    @Export(name="retentionBlockDataExpirationDuration", type=String.class, parameters={})
+    @Export(name="retentionBlockDataExpirationDuration", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> retentionBlockDataExpirationDuration;
 
     /**
@@ -130,7 +130,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * Controls how long to keep a block in memory before flushing to a fileset on disk. Should follow Rfc3339 e.g P2D, PT48H.
      * 
      */
-    @Export(name="retentionBlockSizeDuration", type=String.class, parameters={})
+    @Export(name="retentionBlockSizeDuration", refs={String.class}, tree="[0]")
     private Output<String> retentionBlockSizeDuration;
 
     /**
@@ -144,7 +144,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * Controls how far into the future writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
      * 
      */
-    @Export(name="retentionBufferFutureDuration", type=String.class, parameters={})
+    @Export(name="retentionBufferFutureDuration", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> retentionBufferFutureDuration;
 
     /**
@@ -158,7 +158,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * Controls how far into the past writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
      * 
      */
-    @Export(name="retentionBufferPastDuration", type=String.class, parameters={})
+    @Export(name="retentionBufferPastDuration", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> retentionBufferPastDuration;
 
     /**
@@ -172,7 +172,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * Controls the duration of time that M3DB will retain data for the namespace. Should follow Rfc3339 e.g P2D, PT48H.
      * 
      */
-    @Export(name="retentionPeriodDuration", type=String.class, parameters={})
+    @Export(name="retentionPeriodDuration", refs={String.class}, tree="[0]")
     private Output<String> retentionPeriodDuration;
 
     /**
@@ -187,7 +187,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -202,7 +202,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * Defines whether M3DB will create snapshot files for this namespace.
      * 
      */
-    @Export(name="snapshotEnabled", type=Boolean.class, parameters={})
+    @Export(name="snapshotEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> snapshotEnabled;
 
     /**
@@ -216,7 +216,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * Type of namespace.
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**
@@ -230,7 +230,7 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * Defines whether M3DB will include writes to this namespace in the commit log.
      * 
      */
-    @Export(name="writesToCommitLogEnabled", type=Boolean.class, parameters={})
+    @Export(name="writesToCommitLogEnabled", refs={Boolean.class}, tree="[0]")
     private Output</* @Nullable */ Boolean> writesToCommitLogEnabled;
 
     /**

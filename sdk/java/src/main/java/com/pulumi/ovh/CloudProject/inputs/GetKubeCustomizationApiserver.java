@@ -4,7 +4,8 @@
 package com.pulumi.ovh.CloudProject.inputs;
 
 import com.pulumi.core.annotations.Import;
-import com.pulumi.ovh.CloudProject.inputs.GetKubeCustomizationApiserverAdmissionplugins;
+import com.pulumi.ovh.CloudProject.inputs.GetKubeCustomizationApiserverAdmissionplugin;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -12,10 +13,18 @@ public final class GetKubeCustomizationApiserver extends com.pulumi.resources.In
 
     public static final GetKubeCustomizationApiserver Empty = new GetKubeCustomizationApiserver();
 
+    /**
+     * Kubernetes API server admission plugins customization
+     * 
+     */
     @Import(name="admissionplugins", required=true)
-    private GetKubeCustomizationApiserverAdmissionplugins admissionplugins;
+    private List<GetKubeCustomizationApiserverAdmissionplugin> admissionplugins;
 
-    public GetKubeCustomizationApiserverAdmissionplugins admissionplugins() {
+    /**
+     * @return Kubernetes API server admission plugins customization
+     * 
+     */
+    public List<GetKubeCustomizationApiserverAdmissionplugin> admissionplugins() {
         return this.admissionplugins;
     }
 
@@ -43,9 +52,25 @@ public final class GetKubeCustomizationApiserver extends com.pulumi.resources.In
             $ = new GetKubeCustomizationApiserver(Objects.requireNonNull(defaults));
         }
 
-        public Builder admissionplugins(GetKubeCustomizationApiserverAdmissionplugins admissionplugins) {
+        /**
+         * @param admissionplugins Kubernetes API server admission plugins customization
+         * 
+         * @return builder
+         * 
+         */
+        public Builder admissionplugins(List<GetKubeCustomizationApiserverAdmissionplugin> admissionplugins) {
             $.admissionplugins = admissionplugins;
             return this;
+        }
+
+        /**
+         * @param admissionplugins Kubernetes API server admission plugins customization
+         * 
+         * @return builder
+         * 
+         */
+        public Builder admissionplugins(GetKubeCustomizationApiserverAdmissionplugin... admissionplugins) {
+            return admissionplugins(List.of(admissionplugins));
         }
 
         public GetKubeCustomizationApiserver build() {

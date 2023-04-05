@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -19,8 +19,6 @@ import (
 // package main
 //
 // import (
-//
-//	"fmt"
 //
 //	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Dbaas"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
@@ -57,15 +55,7 @@ import (
 //				NbInstance:  pulumi.Int(2),
 //				Configuration: &dbaas.LogsInputConfigurationArgs{
 //					Logstash: &dbaas.LogsInputConfigurationLogstashArgs{
-//						InputSection: pulumi.String(fmt.Sprintf(`  beats {
-//	    port => 6514
-//	    ssl => true
-//	    ssl_certificate => "/etc/ssl/private/server.crt"
-//	    ssl_key => "/etc/ssl/private/server.key"
-//	  }
-//
-// `)),
-//
+//						InputSection: pulumi.String("  beats {\n    port => 6514\n    ssl => true\n    ssl_certificate => \"/etc/ssl/private/server.crt\"\n    ssl_key => \"/etc/ssl/private/server.key\"\n  }\n"),
 //					},
 //				},
 //			})

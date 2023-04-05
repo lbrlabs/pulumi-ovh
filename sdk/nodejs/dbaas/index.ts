@@ -5,6 +5,11 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetLogsClusterArgs, GetLogsClusterResult, GetLogsClusterOutputArgs } from "./getLogsCluster";
+export const getLogsCluster: typeof import("./getLogsCluster").getLogsCluster = null as any;
+export const getLogsClusterOutput: typeof import("./getLogsCluster").getLogsClusterOutput = null as any;
+utilities.lazyLoad(exports, ["getLogsCluster","getLogsClusterOutput"], () => require("./getLogsCluster"));
+
 export { GetLogsInputEngineArgs, GetLogsInputEngineResult, GetLogsInputEngineOutputArgs } from "./getLogsInputEngine";
 export const getLogsInputEngine: typeof import("./getLogsInputEngine").getLogsInputEngine = null as any;
 export const getLogsInputEngineOutput: typeof import("./getLogsInputEngine").getLogsInputEngineOutput = null as any;
@@ -14,6 +19,11 @@ export { GetLogsOutputGraylogStreamArgs, GetLogsOutputGraylogStreamResult, GetLo
 export const getLogsOutputGraylogStream: typeof import("./getLogsOutputGraylogStream").getLogsOutputGraylogStream = null as any;
 export const getLogsOutputGraylogStreamOutput: typeof import("./getLogsOutputGraylogStream").getLogsOutputGraylogStreamOutput = null as any;
 utilities.lazyLoad(exports, ["getLogsOutputGraylogStream","getLogsOutputGraylogStreamOutput"], () => require("./getLogsOutputGraylogStream"));
+
+export { LogsClusterArgs, LogsClusterState } from "./logsCluster";
+export type LogsCluster = import("./logsCluster").LogsCluster;
+export const LogsCluster: typeof import("./logsCluster").LogsCluster = null as any;
+utilities.lazyLoad(exports, ["LogsCluster"], () => require("./logsCluster"));
 
 export { LogsInputArgs, LogsInputState } from "./logsInput";
 export type LogsInput = import("./logsInput").LogsInput;
@@ -30,6 +40,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "ovh:Dbaas/logsCluster:LogsCluster":
+                return new LogsCluster(name, <any>undefined, { urn })
             case "ovh:Dbaas/logsInput:LogsInput":
                 return new LogsInput(name, <any>undefined, { urn })
             case "ovh:Dbaas/logsOutputGraylogStream:LogsOutputGraylogStream":
@@ -39,5 +51,6 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("ovh", "Dbaas/logsCluster", _module)
 pulumi.runtime.registerResourceModule("ovh", "Dbaas/logsInput", _module)
 pulumi.runtime.registerResourceModule("ovh", "Dbaas/logsOutputGraylogStream", _module)

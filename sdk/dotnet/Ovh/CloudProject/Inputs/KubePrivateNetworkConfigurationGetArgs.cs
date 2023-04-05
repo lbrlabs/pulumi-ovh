@@ -13,9 +13,15 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject.Inputs
 
     public sealed class KubePrivateNetworkConfigurationGetArgs : global::Pulumi.ResourceArgs
     {
+        /// <summary>
+        /// If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
+        /// </summary>
         [Input("defaultVrackGateway", required: true)]
         public Input<string> DefaultVrackGateway { get; set; } = null!;
 
+        /// <summary>
+        /// Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
+        /// </summary>
         [Input("privateNetworkRoutingAsDefault", required: true)]
         public Input<bool> PrivateNetworkRoutingAsDefault { get; set; } = null!;
 

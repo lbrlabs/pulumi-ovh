@@ -5,7 +5,8 @@ package com.pulumi.ovh.CloudProject.inputs;
 
 import com.pulumi.core.Output;
 import com.pulumi.core.annotations.Import;
-import com.pulumi.ovh.CloudProject.inputs.KubeCustomizationApiserverAdmissionpluginsArgs;
+import com.pulumi.ovh.CloudProject.inputs.KubeCustomizationApiserverAdmissionpluginArgs;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -15,10 +16,18 @@ public final class KubeCustomizationApiserverArgs extends com.pulumi.resources.R
 
     public static final KubeCustomizationApiserverArgs Empty = new KubeCustomizationApiserverArgs();
 
+    /**
+     * Kubernetes API server admission plugins customization
+     * 
+     */
     @Import(name="admissionplugins")
-    private @Nullable Output<KubeCustomizationApiserverAdmissionpluginsArgs> admissionplugins;
+    private @Nullable Output<List<KubeCustomizationApiserverAdmissionpluginArgs>> admissionplugins;
 
-    public Optional<Output<KubeCustomizationApiserverAdmissionpluginsArgs>> admissionplugins() {
+    /**
+     * @return Kubernetes API server admission plugins customization
+     * 
+     */
+    public Optional<Output<List<KubeCustomizationApiserverAdmissionpluginArgs>>> admissionplugins() {
         return Optional.ofNullable(this.admissionplugins);
     }
 
@@ -46,13 +55,35 @@ public final class KubeCustomizationApiserverArgs extends com.pulumi.resources.R
             $ = new KubeCustomizationApiserverArgs(Objects.requireNonNull(defaults));
         }
 
-        public Builder admissionplugins(@Nullable Output<KubeCustomizationApiserverAdmissionpluginsArgs> admissionplugins) {
+        /**
+         * @param admissionplugins Kubernetes API server admission plugins customization
+         * 
+         * @return builder
+         * 
+         */
+        public Builder admissionplugins(@Nullable Output<List<KubeCustomizationApiserverAdmissionpluginArgs>> admissionplugins) {
             $.admissionplugins = admissionplugins;
             return this;
         }
 
-        public Builder admissionplugins(KubeCustomizationApiserverAdmissionpluginsArgs admissionplugins) {
+        /**
+         * @param admissionplugins Kubernetes API server admission plugins customization
+         * 
+         * @return builder
+         * 
+         */
+        public Builder admissionplugins(List<KubeCustomizationApiserverAdmissionpluginArgs> admissionplugins) {
             return admissionplugins(Output.of(admissionplugins));
+        }
+
+        /**
+         * @param admissionplugins Kubernetes API server admission plugins customization
+         * 
+         * @return builder
+         * 
+         */
+        public Builder admissionplugins(KubeCustomizationApiserverAdmissionpluginArgs... admissionplugins) {
+            return admissionplugins(List.of(admissionplugins));
         }
 
         public KubeCustomizationApiserverArgs build() {

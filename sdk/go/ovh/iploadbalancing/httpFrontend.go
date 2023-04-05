@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -65,8 +65,6 @@ import (
 //
 // import (
 //
-//	"fmt"
-//
 //	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/IpLoadBalancing"
 //	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 //
@@ -94,8 +92,8 @@ import (
 //				DefaultFarmId: farm80.ID(),
 //				DisplayName:   pulumi.String("ingress-8080-gra"),
 //				HttpHeaders: pulumi.StringArray{
-//					pulumi.String(fmt.Sprintf("X-Ip-Header %v%vci", "%", "%")),
-//					pulumi.String(fmt.Sprintf("X-Port-Header %v%vcp", "%", "%")),
+//					pulumi.String("X-Ip-Header %%ci"),
+//					pulumi.String("X-Port-Header %%cp"),
 //				},
 //				Port:        pulumi.String("80,443"),
 //				ServiceName: *pulumi.String(lb.ServiceName),

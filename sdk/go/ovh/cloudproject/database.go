@@ -7,13 +7,14 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // ## Example Usage
 //
 // Minimum settings for each engine (region choice is up to the user):
+//
 // ```go
 // package main
 //
@@ -27,9 +28,11 @@ import (
 //	func main() {
 //		pulumi.Run(func(ctx *pulumi.Context) error {
 //			_, err := CloudProject.NewDatabase(ctx, "cassandradb", &CloudProject.DatabaseArgs{
+//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
 //				Description: pulumi.String("my-first-cassandra"),
 //				Engine:      pulumi.String("cassandra"),
-//				Flavor:      pulumi.String("db1-4"),
+//				Version:     pulumi.String("4.0"),
+//				Plan:        pulumi.String("essential"),
 //				Nodes: cloudproject.DatabaseNodeArray{
 //					&cloudproject.DatabaseNodeArgs{
 //						Region: pulumi.String("BHS"),
@@ -41,17 +44,17 @@ import (
 //						Region: pulumi.String("BHS"),
 //					},
 //				},
-//				Plan:        pulumi.String("essential"),
-//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
-//				Version:     pulumi.String("4.0"),
+//				Flavor: pulumi.String("db1-4"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = CloudProject.NewDatabase(ctx, "kafkadb", &CloudProject.DatabaseArgs{
+//				ServiceName:  pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
 //				Description:  pulumi.String("my-first-kafka"),
 //				Engine:       pulumi.String("kafka"),
-//				Flavor:       pulumi.String("db1-4"),
+//				Version:      pulumi.String("3.1"),
+//				Plan:         pulumi.String("business"),
 //				KafkaRestApi: pulumi.Bool(true),
 //				Nodes: cloudproject.DatabaseNodeArray{
 //					&cloudproject.DatabaseNodeArgs{
@@ -64,106 +67,108 @@ import (
 //						Region: pulumi.String("DE"),
 //					},
 //				},
-//				Plan:        pulumi.String("business"),
-//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
-//				Version:     pulumi.String("3.1"),
+//				Flavor: pulumi.String("db1-4"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = CloudProject.NewDatabase(ctx, "m3db", &CloudProject.DatabaseArgs{
+//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
 //				Description: pulumi.String("my-first-m3db"),
 //				Engine:      pulumi.String("m3db"),
-//				Flavor:      pulumi.String("db1-7"),
+//				Version:     pulumi.String("1.2"),
+//				Plan:        pulumi.String("essential"),
 //				Nodes: cloudproject.DatabaseNodeArray{
 //					&cloudproject.DatabaseNodeArgs{
 //						Region: pulumi.String("BHS"),
 //					},
 //				},
-//				Plan:        pulumi.String("essential"),
-//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
-//				Version:     pulumi.String("1.2"),
+//				Flavor: pulumi.String("db1-7"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = CloudProject.NewDatabase(ctx, "mongodb", &CloudProject.DatabaseArgs{
+//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
 //				Description: pulumi.String("my-first-mongodb"),
 //				Engine:      pulumi.String("mongodb"),
-//				Flavor:      pulumi.String("db1-2"),
+//				Version:     pulumi.String("5.0"),
+//				Plan:        pulumi.String("essential"),
 //				Nodes: cloudproject.DatabaseNodeArray{
 //					&cloudproject.DatabaseNodeArgs{
 //						Region: pulumi.String("GRA"),
 //					},
 //				},
-//				Plan:        pulumi.String("essential"),
-//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
-//				Version:     pulumi.String("5.0"),
+//				Flavor: pulumi.String("db1-2"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = CloudProject.NewDatabase(ctx, "mysqldb", &CloudProject.DatabaseArgs{
+//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
 //				Description: pulumi.String("my-first-mysql"),
 //				Engine:      pulumi.String("mysql"),
-//				Flavor:      pulumi.String("db1-4"),
+//				Version:     pulumi.String("8"),
+//				Plan:        pulumi.String("essential"),
 //				Nodes: cloudproject.DatabaseNodeArray{
 //					&cloudproject.DatabaseNodeArgs{
 //						Region: pulumi.String("SBG"),
 //					},
 //				},
-//				Plan:        pulumi.String("essential"),
-//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
-//				Version:     pulumi.String("8"),
+//				Flavor: pulumi.String("db1-4"),
+//				AdvancedConfiguration: pulumi.StringMap{
+//					"mysql.sql_mode":                pulumi.String("ANSI,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,STRICT_ALL_TABLES"),
+//					"mysql.sql_require_primary_key": pulumi.String("true"),
+//				},
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = CloudProject.NewDatabase(ctx, "opensearchdb", &CloudProject.DatabaseArgs{
-//				Description: pulumi.String("my-first-opensearch"),
-//				Engine:      pulumi.String("opensearch"),
-//				Flavor:      pulumi.String("db1-4"),
+//				ServiceName:           pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+//				Description:           pulumi.String("my-first-opensearch"),
+//				Engine:                pulumi.String("opensearch"),
+//				Version:               pulumi.String("1"),
+//				Plan:                  pulumi.String("essential"),
+//				OpensearchAclsEnabled: pulumi.Bool(true),
 //				Nodes: cloudproject.DatabaseNodeArray{
 //					&cloudproject.DatabaseNodeArgs{
 //						Region: pulumi.String("UK"),
 //					},
 //				},
-//				OpensearchAclsEnabled: pulumi.Bool(true),
-//				Plan:                  pulumi.String("essential"),
-//				ServiceName:           pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
-//				Version:               pulumi.String("1"),
+//				Flavor: pulumi.String("db1-4"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = CloudProject.NewDatabase(ctx, "pgsqldb", &CloudProject.DatabaseArgs{
+//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
 //				Description: pulumi.String("my-first-postgresql"),
 //				Engine:      pulumi.String("postgresql"),
-//				Flavor:      pulumi.String("db1-4"),
+//				Version:     pulumi.String("14"),
+//				Plan:        pulumi.String("essential"),
 //				Nodes: cloudproject.DatabaseNodeArray{
 //					&cloudproject.DatabaseNodeArgs{
 //						Region: pulumi.String("WAW"),
 //					},
 //				},
-//				Plan:        pulumi.String("essential"),
-//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
-//				Version:     pulumi.String("14"),
+//				Flavor: pulumi.String("db1-4"),
 //			})
 //			if err != nil {
 //				return err
 //			}
 //			_, err = CloudProject.NewDatabase(ctx, "redisdb", &CloudProject.DatabaseArgs{
+//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
 //				Description: pulumi.String("my-first-redis"),
 //				Engine:      pulumi.String("redis"),
-//				Flavor:      pulumi.String("db1-4"),
+//				Version:     pulumi.String("6.2"),
+//				Plan:        pulumi.String("essential"),
 //				Nodes: cloudproject.DatabaseNodeArray{
 //					&cloudproject.DatabaseNodeArgs{
 //						Region: pulumi.String("BHS"),
 //					},
 //				},
-//				Plan:        pulumi.String("essential"),
-//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
-//				Version:     pulumi.String("6.2"),
+//				Flavor: pulumi.String("db1-4"),
 //			})
 //			if err != nil {
 //				return err
@@ -175,6 +180,7 @@ import (
 // ```
 //
 // To deploy a business PostgreSQL service with two nodes on public network:
+//
 // ```go
 // package main
 //
@@ -213,6 +219,7 @@ import (
 // ```
 //
 // To deploy an enterprise MongoDB service with three nodes on private network:
+//
 // ```go
 // package main
 //
@@ -271,6 +278,8 @@ import (
 type Database struct {
 	pulumi.CustomResourceState
 
+	// Advanced configuration key / value.
+	AdvancedConfiguration pulumi.StringMapOutput `pulumi:"advancedConfiguration"`
 	// Time on which backups start every day.
 	BackupTime pulumi.StringOutput `pulumi:"backupTime"`
 	// Date of the creation of the cluster.
@@ -361,6 +370,8 @@ func GetDatabase(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Database resources.
 type databaseState struct {
+	// Advanced configuration key / value.
+	AdvancedConfiguration map[string]string `pulumi:"advancedConfiguration"`
 	// Time on which backups start every day.
 	BackupTime *string `pulumi:"backupTime"`
 	// Date of the creation of the cluster.
@@ -404,6 +415,8 @@ type databaseState struct {
 }
 
 type DatabaseState struct {
+	// Advanced configuration key / value.
+	AdvancedConfiguration pulumi.StringMapInput
 	// Time on which backups start every day.
 	BackupTime pulumi.StringPtrInput
 	// Date of the creation of the cluster.
@@ -451,6 +464,8 @@ func (DatabaseState) ElementType() reflect.Type {
 }
 
 type databaseArgs struct {
+	// Advanced configuration key / value.
+	AdvancedConfiguration map[string]string `pulumi:"advancedConfiguration"`
 	// Small description of the database service.
 	Description *string `pulumi:"description"`
 	// The disk size (in GB) of the database service.
@@ -481,6 +496,8 @@ type databaseArgs struct {
 
 // The set of arguments for constructing a Database resource.
 type DatabaseArgs struct {
+	// Advanced configuration key / value.
+	AdvancedConfiguration pulumi.StringMapInput
 	// Small description of the database service.
 	Description pulumi.StringPtrInput
 	// The disk size (in GB) of the database service.
@@ -594,6 +611,11 @@ func (o DatabaseOutput) ToDatabaseOutput() DatabaseOutput {
 
 func (o DatabaseOutput) ToDatabaseOutputWithContext(ctx context.Context) DatabaseOutput {
 	return o
+}
+
+// Advanced configuration key / value.
+func (o DatabaseOutput) AdvancedConfiguration() pulumi.StringMapOutput {
+	return o.ApplyT(func(v *Database) pulumi.StringMapOutput { return v.AdvancedConfiguration }).(pulumi.StringMapOutput)
 }
 
 // Time on which backups start every day.

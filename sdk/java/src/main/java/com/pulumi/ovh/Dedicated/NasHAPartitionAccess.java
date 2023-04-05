@@ -65,7 +65,7 @@ public class NasHAPartitionAccess extends com.pulumi.resources.CustomResource {
      * ip block in x.x.x.x/x format
      * 
      */
-    @Export(name="ip", type=String.class, parameters={})
+    @Export(name="ip", refs={String.class}, tree="[0]")
     private Output<String> ip;
 
     /**
@@ -79,7 +79,7 @@ public class NasHAPartitionAccess extends com.pulumi.resources.CustomResource {
      * name of the partition
      * 
      */
-    @Export(name="partitionName", type=String.class, parameters={})
+    @Export(name="partitionName", refs={String.class}, tree="[0]")
     private Output<String> partitionName;
 
     /**
@@ -93,7 +93,7 @@ public class NasHAPartitionAccess extends com.pulumi.resources.CustomResource {
      * The internal name of your HA-NAS (it has to be ordered via OVHcloud interface)
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -107,7 +107,7 @@ public class NasHAPartitionAccess extends com.pulumi.resources.CustomResource {
      * one of &#34;readwrite&#34;, &#34;readonly&#34;
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> type;
 
     /**

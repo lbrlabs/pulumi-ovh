@@ -5,15 +5,32 @@ package com.pulumi.ovh.CloudProject.outputs;
 
 import com.pulumi.core.annotations.CustomType;
 import com.pulumi.ovh.CloudProject.outputs.GetKubeCustomizationApiserver;
+import java.util.List;
 import java.util.Objects;
 
 @CustomType
 public final class GetKubeCustomization {
-    private GetKubeCustomizationApiserver apiserver;
+    /**
+     * @return Kubernetes API server customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    private List<GetKubeCustomizationApiserver> apiservers;
 
     private GetKubeCustomization() {}
-    public GetKubeCustomizationApiserver apiserver() {
-        return this.apiserver;
+    /**
+     * @return Kubernetes API server customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    public List<GetKubeCustomizationApiserver> apiservers() {
+        return this.apiservers;
     }
 
     public static Builder builder() {
@@ -25,21 +42,24 @@ public final class GetKubeCustomization {
     }
     @CustomType.Builder
     public static final class Builder {
-        private GetKubeCustomizationApiserver apiserver;
+        private List<GetKubeCustomizationApiserver> apiservers;
         public Builder() {}
         public Builder(GetKubeCustomization defaults) {
     	      Objects.requireNonNull(defaults);
-    	      this.apiserver = defaults.apiserver;
+    	      this.apiservers = defaults.apiservers;
         }
 
         @CustomType.Setter
-        public Builder apiserver(GetKubeCustomizationApiserver apiserver) {
-            this.apiserver = Objects.requireNonNull(apiserver);
+        public Builder apiservers(List<GetKubeCustomizationApiserver> apiservers) {
+            this.apiservers = Objects.requireNonNull(apiservers);
             return this;
+        }
+        public Builder apiservers(GetKubeCustomizationApiserver... apiservers) {
+            return apiservers(List.of(apiservers));
         }
         public GetKubeCustomization build() {
             final var o = new GetKubeCustomization();
-            o.apiserver = apiserver;
+            o.apiservers = apiservers;
             return o;
         }
     }

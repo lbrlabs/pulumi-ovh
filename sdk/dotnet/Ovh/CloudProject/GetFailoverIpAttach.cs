@@ -13,7 +13,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     public static class GetFailoverIpAttach
     {
         /// <summary>
-        /// Use this data source to get the details of a failover ip address of a service in a public cloud project.
+        /// Use this data source to get the details of a failover IP address of a service in a public cloud project.
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -21,6 +21,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 
@@ -41,7 +42,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetFailoverIpAttachResult>("ovh:CloudProject/getFailoverIpAttach:getFailoverIpAttach", args ?? new GetFailoverIpAttachArgs(), options.WithDefaults());
 
         /// <summary>
-        /// Use this data source to get the details of a failover ip address of a service in a public cloud project.
+        /// Use this data source to get the details of a failover IP address of a service in a public cloud project.
         /// 
         /// {{% examples %}}
         /// ## Example Usage
@@ -49,6 +50,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 

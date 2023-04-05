@@ -180,6 +180,14 @@ _utilities.register(
  },
  {
   "pkg": "ovh",
+  "mod": "CloudProject/workflowBackup",
+  "fqn": "lbrlabs_pulumi_ovh.cloudproject",
+  "classes": {
+   "ovh:CloudProject/workflowBackup:WorkflowBackup": "WorkflowBackup"
+  }
+ },
+ {
+  "pkg": "ovh",
   "mod": "CloudProjectDatabase/databaseInstance",
   "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
@@ -280,6 +288,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_ovh.cloudprojectdatabase",
   "classes": {
    "ovh:CloudProjectDatabase/user:User": "User"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Dbaas/logsCluster",
+  "fqn": "lbrlabs_pulumi_ovh.dbaas",
+  "classes": {
+   "ovh:Dbaas/logsCluster:LogsCluster": "LogsCluster"
   }
  },
  {

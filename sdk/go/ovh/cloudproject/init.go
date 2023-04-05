@@ -51,6 +51,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &S3Policy{}
 	case "ovh:CloudProject/user:User":
 		r = &User{}
+	case "ovh:CloudProject/workflowBackup:WorkflowBackup":
+		r = &WorkflowBackup{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -137,6 +139,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ovh",
 		"CloudProject/user",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ovh",
+		"CloudProject/workflowBackup",
 		&module{version},
 	)
 }

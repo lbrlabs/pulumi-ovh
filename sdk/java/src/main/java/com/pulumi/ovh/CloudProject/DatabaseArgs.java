@@ -10,6 +10,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -18,6 +19,21 @@ import javax.annotation.Nullable;
 public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
 
     public static final DatabaseArgs Empty = new DatabaseArgs();
+
+    /**
+     * Advanced configuration key / value.
+     * 
+     */
+    @Import(name="advancedConfiguration")
+    private @Nullable Output<Map<String,String>> advancedConfiguration;
+
+    /**
+     * @return Advanced configuration key / value.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> advancedConfiguration() {
+        return Optional.ofNullable(this.advancedConfiguration);
+    }
 
     /**
      * Small description of the database service.
@@ -184,6 +200,7 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
     private DatabaseArgs() {}
 
     private DatabaseArgs(DatabaseArgs $) {
+        this.advancedConfiguration = $.advancedConfiguration;
         this.description = $.description;
         this.diskSize = $.diskSize;
         this.engine = $.engine;
@@ -212,6 +229,27 @@ public final class DatabaseArgs extends com.pulumi.resources.ResourceArgs {
 
         public Builder(DatabaseArgs defaults) {
             $ = new DatabaseArgs(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param advancedConfiguration Advanced configuration key / value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder advancedConfiguration(@Nullable Output<Map<String,String>> advancedConfiguration) {
+            $.advancedConfiguration = advancedConfiguration;
+            return this;
+        }
+
+        /**
+         * @param advancedConfiguration Advanced configuration key / value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder advancedConfiguration(Map<String,String> advancedConfiguration) {
+            return advancedConfiguration(Output.of(advancedConfiguration));
         }
 
         /**

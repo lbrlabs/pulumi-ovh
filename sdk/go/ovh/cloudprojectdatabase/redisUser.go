@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -35,7 +35,7 @@ type RedisUser struct {
 	CreatedAt pulumi.StringOutput `pulumi:"createdAt"`
 	// Keys of the user.
 	Keys pulumi.StringArrayOutput `pulumi:"keys"`
-	// Name of the user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// (Sensitive) Password of the user.
 	Password pulumi.StringOutput `pulumi:"password"`
@@ -100,7 +100,7 @@ type redisUserState struct {
 	CreatedAt *string `pulumi:"createdAt"`
 	// Keys of the user.
 	Keys []string `pulumi:"keys"`
-	// Name of the user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
 	Name *string `pulumi:"name"`
 	// (Sensitive) Password of the user.
 	Password *string `pulumi:"password"`
@@ -126,7 +126,7 @@ type RedisUserState struct {
 	CreatedAt pulumi.StringPtrInput
 	// Keys of the user.
 	Keys pulumi.StringArrayInput
-	// Name of the user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
 	Name pulumi.StringPtrInput
 	// (Sensitive) Password of the user.
 	Password pulumi.StringPtrInput
@@ -154,7 +154,7 @@ type redisUserArgs struct {
 	Commands []string `pulumi:"commands"`
 	// Keys of the user.
 	Keys []string `pulumi:"keys"`
-	// Name of the user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
 	Name *string `pulumi:"name"`
 	// Arbitrary string to change to trigger a password update.
 	PasswordReset *string `pulumi:"passwordReset"`
@@ -175,7 +175,7 @@ type RedisUserArgs struct {
 	Commands pulumi.StringArrayInput
 	// Keys of the user.
 	Keys pulumi.StringArrayInput
-	// Name of the user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
 	Name pulumi.StringPtrInput
 	// Arbitrary string to change to trigger a password update.
 	PasswordReset pulumi.StringPtrInput
@@ -301,7 +301,7 @@ func (o RedisUserOutput) Keys() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v *RedisUser) pulumi.StringArrayOutput { return v.Keys }).(pulumi.StringArrayOutput)
 }
 
-// Name of the user.
+// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
 func (o RedisUserOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *RedisUser) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

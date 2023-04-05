@@ -63,7 +63,7 @@ public class TcpRoute extends com.pulumi.resources.CustomResource {
      * Action triggered when all rules match
      * 
      */
-    @Export(name="action", type=TcpRouteAction.class, parameters={})
+    @Export(name="action", refs={TcpRouteAction.class}, tree="[0]")
     private Output<TcpRouteAction> action;
 
     /**
@@ -77,7 +77,7 @@ public class TcpRoute extends com.pulumi.resources.CustomResource {
      * Human readable name for your route, this field is for you
      * 
      */
-    @Export(name="displayName", type=String.class, parameters={})
+    @Export(name="displayName", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> displayName;
 
     /**
@@ -91,7 +91,7 @@ public class TcpRoute extends com.pulumi.resources.CustomResource {
      * Route traffic for this frontend
      * 
      */
-    @Export(name="frontendId", type=Integer.class, parameters={})
+    @Export(name="frontendId", refs={Integer.class}, tree="[0]")
     private Output<Integer> frontendId;
 
     /**
@@ -105,7 +105,7 @@ public class TcpRoute extends com.pulumi.resources.CustomResource {
      * List of rules to match to trigger action
      * 
      */
-    @Export(name="rules", type=List.class, parameters={TcpRouteRule.class})
+    @Export(name="rules", refs={List.class,TcpRouteRule.class}, tree="[0,1]")
     private Output<List<TcpRouteRule>> rules;
 
     /**
@@ -119,7 +119,7 @@ public class TcpRoute extends com.pulumi.resources.CustomResource {
      * The internal name of your IP load balancing
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -133,7 +133,7 @@ public class TcpRoute extends com.pulumi.resources.CustomResource {
      * Route status. Routes in &#34;ok&#34; state are ready to operate
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -147,7 +147,7 @@ public class TcpRoute extends com.pulumi.resources.CustomResource {
      * Route priority ([0..255]). 0 if null. Highest priority routes are evaluated first. Only the first matching route will trigger an action
      * 
      */
-    @Export(name="weight", type=Integer.class, parameters={})
+    @Export(name="weight", refs={Integer.class}, tree="[0]")
     private Output<Integer> weight;
 
     /**

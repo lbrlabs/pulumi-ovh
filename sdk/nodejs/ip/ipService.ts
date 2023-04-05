@@ -7,17 +7,6 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Orders an ip service.
- *
- * ## Important
- *
- * This resource orders an OVHcloud product for a long period of time and may generate heavy costs !
- * Use with caution.
- *
- * __NOTE__ 1: the "default-payment-mean" will scan your registered bank accounts, credit card and paypal payment means to find your default payment mean.
- *
- * __NOTE__ 2: this resource is in beta state. Use with caution.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -37,7 +26,6 @@ import * as utilities from "../utilities";
  * }));
  * const ipblockIpService = new ovh.ip.IpService("ipblockIpService", {
  *     ovhSubsidiary: mycart.then(mycart => mycart.ovhSubsidiary),
- *     paymentMean: "ovh-account",
  *     description: "my ip block",
  *     plan: {
  *         duration: ipblockCartProductPlan.then(ipblockCartProductPlan => ipblockCartProductPlan.selectedPrices?.[0]?.duration),
@@ -108,9 +96,11 @@ export class IpService extends pulumi.CustomResource {
      */
     public readonly ovhSubsidiary!: pulumi.Output<string>;
     /**
-     * OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+     * Ovh payment mode
+     *
+     * @deprecated This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      */
-    public readonly paymentMean!: pulumi.Output<string>;
+    public readonly paymentMean!: pulumi.Output<string | undefined>;
     /**
      * Product Plan to order
      */
@@ -162,9 +152,6 @@ export class IpService extends pulumi.CustomResource {
             const args = argsOrState as IpServiceArgs | undefined;
             if ((!args || args.ovhSubsidiary === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ovhSubsidiary'");
-            }
-            if ((!args || args.paymentMean === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'paymentMean'");
             }
             if ((!args || args.plan === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'plan'");
@@ -221,7 +208,9 @@ export interface IpServiceState {
      */
     ovhSubsidiary?: pulumi.Input<string>;
     /**
-     * OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+     * Ovh payment mode
+     *
+     * @deprecated This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      */
     paymentMean?: pulumi.Input<string>;
     /**
@@ -259,9 +248,11 @@ export interface IpServiceArgs {
      */
     ovhSubsidiary: pulumi.Input<string>;
     /**
-     * OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+     * Ovh payment mode
+     *
+     * @deprecated This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      */
-    paymentMean: pulumi.Input<string>;
+    paymentMean?: pulumi.Input<string>;
     /**
      * Product Plan to order
      */

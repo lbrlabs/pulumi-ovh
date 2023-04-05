@@ -7,7 +7,7 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -36,7 +36,7 @@ import (
 //			}
 //			farmname, err := IpLoadBalancing.NewTcpFarm(ctx, "farmname", &IpLoadBalancing.TcpFarmArgs{
 //				Port:        pulumi.Int(8080),
-//				ServiceName: *pulumi.String(lb.Id),
+//				ServiceName: *pulumi.String(lb.ServiceName),
 //				Zone:        pulumi.String("all"),
 //			})
 //			if err != nil {
@@ -50,7 +50,7 @@ import (
 //				Port:                 pulumi.Int(80),
 //				Probe:                pulumi.Bool(true),
 //				ProxyProtocolVersion: pulumi.String("v2"),
-//				ServiceName:          *pulumi.String(lb.Id),
+//				ServiceName:          *pulumi.String(lb.ServiceName),
 //				Ssl:                  pulumi.Bool(false),
 //				Status:               pulumi.String("active"),
 //				Weight:               pulumi.Int(2),

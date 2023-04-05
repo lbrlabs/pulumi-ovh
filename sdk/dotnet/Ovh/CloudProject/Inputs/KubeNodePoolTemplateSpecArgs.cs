@@ -15,12 +15,19 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject.Inputs
     {
         [Input("taints")]
         private InputList<ImmutableDictionary<string, object>>? _taints;
+
+        /// <summary>
+        /// Taints to apply to each node
+        /// </summary>
         public InputList<ImmutableDictionary<string, object>> Taints
         {
             get => _taints ?? (_taints = new InputList<ImmutableDictionary<string, object>>());
             set => _taints = value;
         }
 
+        /// <summary>
+        /// If true, set nodes as un-schedulable
+        /// </summary>
         [Input("unschedulable")]
         public Input<bool>? Unschedulable { get; set; }
 

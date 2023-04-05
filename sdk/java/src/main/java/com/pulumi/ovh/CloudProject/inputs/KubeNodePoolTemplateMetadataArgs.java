@@ -17,23 +17,47 @@ public final class KubeNodePoolTemplateMetadataArgs extends com.pulumi.resources
 
     public static final KubeNodePoolTemplateMetadataArgs Empty = new KubeNodePoolTemplateMetadataArgs();
 
+    /**
+     * Annotations to apply to each node
+     * 
+     */
     @Import(name="annotations")
     private @Nullable Output<Map<String,String>> annotations;
 
+    /**
+     * @return Annotations to apply to each node
+     * 
+     */
     public Optional<Output<Map<String,String>>> annotations() {
         return Optional.ofNullable(this.annotations);
     }
 
+    /**
+     * Finalizers to apply to each node
+     * 
+     */
     @Import(name="finalizers")
     private @Nullable Output<List<String>> finalizers;
 
+    /**
+     * @return Finalizers to apply to each node
+     * 
+     */
     public Optional<Output<List<String>>> finalizers() {
         return Optional.ofNullable(this.finalizers);
     }
 
+    /**
+     * Labels to apply to each node
+     * 
+     */
     @Import(name="labels")
     private @Nullable Output<Map<String,String>> labels;
 
+    /**
+     * @return Labels to apply to each node
+     * 
+     */
     public Optional<Output<Map<String,String>>> labels() {
         return Optional.ofNullable(this.labels);
     }
@@ -64,33 +88,75 @@ public final class KubeNodePoolTemplateMetadataArgs extends com.pulumi.resources
             $ = new KubeNodePoolTemplateMetadataArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param annotations Annotations to apply to each node
+         * 
+         * @return builder
+         * 
+         */
         public Builder annotations(@Nullable Output<Map<String,String>> annotations) {
             $.annotations = annotations;
             return this;
         }
 
+        /**
+         * @param annotations Annotations to apply to each node
+         * 
+         * @return builder
+         * 
+         */
         public Builder annotations(Map<String,String> annotations) {
             return annotations(Output.of(annotations));
         }
 
+        /**
+         * @param finalizers Finalizers to apply to each node
+         * 
+         * @return builder
+         * 
+         */
         public Builder finalizers(@Nullable Output<List<String>> finalizers) {
             $.finalizers = finalizers;
             return this;
         }
 
+        /**
+         * @param finalizers Finalizers to apply to each node
+         * 
+         * @return builder
+         * 
+         */
         public Builder finalizers(List<String> finalizers) {
             return finalizers(Output.of(finalizers));
         }
 
+        /**
+         * @param finalizers Finalizers to apply to each node
+         * 
+         * @return builder
+         * 
+         */
         public Builder finalizers(String... finalizers) {
             return finalizers(List.of(finalizers));
         }
 
+        /**
+         * @param labels Labels to apply to each node
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(@Nullable Output<Map<String,String>> labels) {
             $.labels = labels;
             return this;
         }
 
+        /**
+         * @param labels Labels to apply to each node
+         * 
+         * @return builder
+         * 
+         */
         public Builder labels(Map<String,String> labels) {
             return labels(Output.of(labels));
         }

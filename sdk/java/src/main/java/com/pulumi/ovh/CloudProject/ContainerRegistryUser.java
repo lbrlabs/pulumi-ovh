@@ -64,7 +64,7 @@ public class ContainerRegistryUser extends com.pulumi.resources.CustomResource {
      * User email
      * 
      */
-    @Export(name="email", type=String.class, parameters={})
+    @Export(name="email", refs={String.class}, tree="[0]")
     private Output<String> email;
 
     /**
@@ -78,7 +78,7 @@ public class ContainerRegistryUser extends com.pulumi.resources.CustomResource {
      * Registry name
      * 
      */
-    @Export(name="login", type=String.class, parameters={})
+    @Export(name="login", refs={String.class}, tree="[0]")
     private Output<String> login;
 
     /**
@@ -92,7 +92,7 @@ public class ContainerRegistryUser extends com.pulumi.resources.CustomResource {
      * (Sensitive) User password
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
@@ -106,7 +106,7 @@ public class ContainerRegistryUser extends com.pulumi.resources.CustomResource {
      * Registry ID
      * 
      */
-    @Export(name="registryId", type=String.class, parameters={})
+    @Export(name="registryId", refs={String.class}, tree="[0]")
     private Output<String> registryId;
 
     /**
@@ -121,7 +121,7 @@ public class ContainerRegistryUser extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -136,7 +136,7 @@ public class ContainerRegistryUser extends com.pulumi.resources.CustomResource {
      * User name
      * 
      */
-    @Export(name="user", type=String.class, parameters={})
+    @Export(name="user", refs={String.class}, tree="[0]")
     private Output<String> user;
 
     /**

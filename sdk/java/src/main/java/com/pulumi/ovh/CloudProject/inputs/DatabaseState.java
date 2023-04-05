@@ -11,6 +11,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import javax.annotation.Nullable;
@@ -19,6 +20,21 @@ import javax.annotation.Nullable;
 public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
 
     public static final DatabaseState Empty = new DatabaseState();
+
+    /**
+     * Advanced configuration key / value.
+     * 
+     */
+    @Import(name="advancedConfiguration")
+    private @Nullable Output<Map<String,String>> advancedConfiguration;
+
+    /**
+     * @return Advanced configuration key / value.
+     * 
+     */
+    public Optional<Output<Map<String,String>>> advancedConfiguration() {
+        return Optional.ofNullable(this.advancedConfiguration);
+    }
 
     /**
      * Time on which backups start every day.
@@ -290,6 +306,7 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
     private DatabaseState() {}
 
     private DatabaseState(DatabaseState $) {
+        this.advancedConfiguration = $.advancedConfiguration;
         this.backupTime = $.backupTime;
         this.createdAt = $.createdAt;
         this.description = $.description;
@@ -325,6 +342,27 @@ public final class DatabaseState extends com.pulumi.resources.ResourceArgs {
 
         public Builder(DatabaseState defaults) {
             $ = new DatabaseState(Objects.requireNonNull(defaults));
+        }
+
+        /**
+         * @param advancedConfiguration Advanced configuration key / value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder advancedConfiguration(@Nullable Output<Map<String,String>> advancedConfiguration) {
+            $.advancedConfiguration = advancedConfiguration;
+            return this;
+        }
+
+        /**
+         * @param advancedConfiguration Advanced configuration key / value.
+         * 
+         * @return builder
+         * 
+         */
+        public Builder advancedConfiguration(Map<String,String> advancedConfiguration) {
+            return advancedConfiguration(Output.of(advancedConfiguration));
         }
 
         /**

@@ -14,7 +14,13 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject.Outputs
     [OutputType]
     public sealed class KubeNodePoolTemplateSpec
     {
+        /// <summary>
+        /// Taints to apply to each node
+        /// </summary>
         public readonly ImmutableArray<ImmutableDictionary<string, object>> Taints;
+        /// <summary>
+        /// If true, set nodes as un-schedulable
+        /// </summary>
         public readonly bool? Unschedulable;
 
         [OutputConstructor]

@@ -53,8 +53,8 @@ import * as utilities from "../utilities";
  *     defaultFarmId: farm80.id,
  *     displayName: "ingress-8080-gra",
  *     httpHeaders: [
- *         `X-Ip-Header %%ci`,
- *         `X-Port-Header %%cp`,
+ *         "X-Ip-Header %%ci",
+ *         "X-Port-Header %%cp",
  *     ],
  *     port: "80,443",
  *     serviceName: lb.then(lb => lb.serviceName),

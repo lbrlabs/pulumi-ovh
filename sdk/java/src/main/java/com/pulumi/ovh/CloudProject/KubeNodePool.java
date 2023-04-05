@@ -130,14 +130,14 @@ import javax.annotation.Nullable;
 @ResourceType(type="ovh:CloudProject/kubeNodePool:KubeNodePool")
 public class KubeNodePool extends com.pulumi.resources.CustomResource {
     /**
-     * should the pool use the anti-affinity feature. Default to `false`.
+     * should the pool use the anti-affinity feature. Default to `false`. **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="antiAffinity", type=Boolean.class, parameters={})
+    @Export(name="antiAffinity", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> antiAffinity;
 
     /**
-     * @return should the pool use the anti-affinity feature. Default to `false`.
+     * @return should the pool use the anti-affinity feature. Default to `false`. **Changing this value recreates the resource.**
      * 
      */
     public Output<Boolean> antiAffinity() {
@@ -145,13 +145,15 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
     }
     /**
      * Enable auto-scaling for the pool. Default to `false`.
+     * * ` template  ` - (Optional) Managed Kubernetes nodepool template, which is a complex object constituted by two main nested objects:
      * 
      */
-    @Export(name="autoscale", type=Boolean.class, parameters={})
+    @Export(name="autoscale", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> autoscale;
 
     /**
      * @return Enable auto-scaling for the pool. Default to `false`.
+     * * ` template  ` - (Optional) Managed Kubernetes nodepool template, which is a complex object constituted by two main nested objects:
      * 
      */
     public Output<Boolean> autoscale() {
@@ -161,7 +163,7 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * Number of nodes which are actually ready in the pool
      * 
      */
-    @Export(name="availableNodes", type=Integer.class, parameters={})
+    @Export(name="availableNodes", refs={Integer.class}, tree="[0]")
     private Output<Integer> availableNodes;
 
     /**
@@ -175,7 +177,7 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * Creation date
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -189,7 +191,7 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * Number of nodes present in the pool
      * 
      */
-    @Export(name="currentNodes", type=Integer.class, parameters={})
+    @Export(name="currentNodes", refs={Integer.class}, tree="[0]")
     private Output<Integer> currentNodes;
 
     /**
@@ -203,7 +205,7 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * number of nodes to start.
      * 
      */
-    @Export(name="desiredNodes", type=Integer.class, parameters={})
+    @Export(name="desiredNodes", refs={Integer.class}, tree="[0]")
     private Output<Integer> desiredNodes;
 
     /**
@@ -217,7 +219,7 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * Flavor name
      * 
      */
-    @Export(name="flavor", type=String.class, parameters={})
+    @Export(name="flavor", refs={String.class}, tree="[0]")
     private Output<String> flavor;
 
     /**
@@ -228,96 +230,86 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
         return this.flavor;
     }
     /**
-     * a valid OVHcloud public cloud flavor ID in which the nodes will be started.
-     * Ex: &#34;b2-7&#34;. Changing this value recreates the resource.
-     * You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/
+     * a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: &#34;b2-7&#34;. You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/.
+     * **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="flavorName", type=String.class, parameters={})
+    @Export(name="flavorName", refs={String.class}, tree="[0]")
     private Output<String> flavorName;
 
     /**
-     * @return a valid OVHcloud public cloud flavor ID in which the nodes will be started.
-     * Ex: &#34;b2-7&#34;. Changing this value recreates the resource.
-     * You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/
+     * @return a valid OVHcloud public cloud flavor ID in which the nodes will be started. Ex: &#34;b2-7&#34;. You can find the list of flavor IDs: https://www.ovhcloud.com/fr/public-cloud/prices/.
+     * **Changing this value recreates the resource.**
      * 
      */
     public Output<String> flavorName() {
         return this.flavorName;
     }
     /**
-     * The id of the managed kubernetes cluster.
+     * The id of the managed kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="kubeId", type=String.class, parameters={})
+    @Export(name="kubeId", refs={String.class}, tree="[0]")
     private Output<String> kubeId;
 
     /**
-     * @return The id of the managed kubernetes cluster.
+     * @return The id of the managed kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
     public Output<String> kubeId() {
         return this.kubeId;
     }
     /**
-     * maximum number of nodes allowed in the pool.
-     * Setting `desired_nodes` over this value will raise an error.
+     * maximum number of nodes allowed in the pool. Setting `desired_nodes` over this value will raise an error.
      * 
      */
-    @Export(name="maxNodes", type=Integer.class, parameters={})
+    @Export(name="maxNodes", refs={Integer.class}, tree="[0]")
     private Output<Integer> maxNodes;
 
     /**
-     * @return maximum number of nodes allowed in the pool.
-     * Setting `desired_nodes` over this value will raise an error.
+     * @return maximum number of nodes allowed in the pool. Setting `desired_nodes` over this value will raise an error.
      * 
      */
     public Output<Integer> maxNodes() {
         return this.maxNodes;
     }
     /**
-     * minimum number of nodes allowed in the pool.
-     * Setting `desired_nodes` under this value will raise an error.
+     * minimum number of nodes allowed in the pool. Setting `desired_nodes` under this value will raise an error.
      * 
      */
-    @Export(name="minNodes", type=Integer.class, parameters={})
+    @Export(name="minNodes", refs={Integer.class}, tree="[0]")
     private Output<Integer> minNodes;
 
     /**
-     * @return minimum number of nodes allowed in the pool.
-     * Setting `desired_nodes` under this value will raise an error.
+     * @return minimum number of nodes allowed in the pool. Setting `desired_nodes` under this value will raise an error.
      * 
      */
     public Output<Integer> minNodes() {
         return this.minNodes;
     }
     /**
-     * should the nodes be billed on a monthly basis. Default to `false`.
+     * should the nodes be billed on a monthly basis. Default to `false`. **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="monthlyBilled", type=Boolean.class, parameters={})
+    @Export(name="monthlyBilled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> monthlyBilled;
 
     /**
-     * @return should the nodes be billed on a monthly basis. Default to `false`.
+     * @return should the nodes be billed on a monthly basis. Default to `false`. **Changing this value recreates the resource.**
      * 
      */
     public Output<Boolean> monthlyBilled() {
         return this.monthlyBilled;
     }
     /**
-     * The name of the nodepool.
-     * Changing this value recreates the resource.
-     * Warning: &#34;_&#34; char is not allowed!
+     * The name of the nodepool. Warning: `_` char is not allowed! **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return The name of the nodepool.
-     * Changing this value recreates the resource.
-     * Warning: &#34;_&#34; char is not allowed!
+     * @return The name of the nodepool. Warning: `_` char is not allowed! **Changing this value recreates the resource.**
      * 
      */
     public Output<String> name() {
@@ -327,7 +319,7 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * Project id
      * 
      */
-    @Export(name="projectId", type=String.class, parameters={})
+    @Export(name="projectId", refs={String.class}, tree="[0]")
     private Output<String> projectId;
 
     /**
@@ -338,16 +330,14 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
         return this.projectId;
     }
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
-     * @return The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * @return The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     public Output<String> serviceName() {
@@ -357,7 +347,7 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * Status describing the state between number of nodes wanted and available ones
      * 
      */
-    @Export(name="sizeStatus", type=String.class, parameters={})
+    @Export(name="sizeStatus", refs={String.class}, tree="[0]")
     private Output<String> sizeStatus;
 
     /**
@@ -371,7 +361,7 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * Current status
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -385,7 +375,7 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * Node pool template
      * 
      */
-    @Export(name="template", type=KubeNodePoolTemplate.class, parameters={})
+    @Export(name="template", refs={KubeNodePoolTemplate.class}, tree="[0]")
     private Output</* @Nullable */ KubeNodePoolTemplate> template;
 
     /**
@@ -396,14 +386,14 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.template);
     }
     /**
-     * Number of nodes with latest version installed in the pool
+     * Number of nodes with the latest version installed in the pool
      * 
      */
-    @Export(name="upToDateNodes", type=Integer.class, parameters={})
+    @Export(name="upToDateNodes", refs={Integer.class}, tree="[0]")
     private Output<Integer> upToDateNodes;
 
     /**
-     * @return Number of nodes with latest version installed in the pool
+     * @return Number of nodes with the latest version installed in the pool
      * 
      */
     public Output<Integer> upToDateNodes() {
@@ -413,7 +403,7 @@ public class KubeNodePool extends com.pulumi.resources.CustomResource {
      * Last update date
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**

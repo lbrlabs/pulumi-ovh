@@ -31,7 +31,7 @@ public class M3DbUser extends com.pulumi.resources.CustomResource {
      * Cluster ID.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -45,7 +45,7 @@ public class M3DbUser extends com.pulumi.resources.CustomResource {
      * Date of the creation of the user.
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -59,7 +59,7 @@ public class M3DbUser extends com.pulumi.resources.CustomResource {
      * Group of the user:
      * 
      */
-    @Export(name="group", type=String.class, parameters={})
+    @Export(name="group", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> group;
 
     /**
@@ -70,14 +70,14 @@ public class M3DbUser extends com.pulumi.resources.CustomResource {
         return Codegen.optional(this.group);
     }
     /**
-     * Name of the user.
+     * Name of the user. A user named &#34;avnadmin&#34; is map with already created admin user instead of create a new user.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
-     * @return Name of the user.
+     * @return Name of the user. A user named &#34;avnadmin&#34; is map with already created admin user instead of create a new user.
      * 
      */
     public Output<String> name() {
@@ -87,7 +87,7 @@ public class M3DbUser extends com.pulumi.resources.CustomResource {
      * (Sensitive) Password of the user.
      * 
      */
-    @Export(name="password", type=String.class, parameters={})
+    @Export(name="password", refs={String.class}, tree="[0]")
     private Output<String> password;
 
     /**
@@ -101,7 +101,7 @@ public class M3DbUser extends com.pulumi.resources.CustomResource {
      * See Argument Reference above.
      * 
      */
-    @Export(name="passwordReset", type=String.class, parameters={})
+    @Export(name="passwordReset", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> passwordReset;
 
     /**
@@ -116,7 +116,7 @@ public class M3DbUser extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -131,7 +131,7 @@ public class M3DbUser extends com.pulumi.resources.CustomResource {
      * Current status of the user.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**

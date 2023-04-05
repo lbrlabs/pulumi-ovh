@@ -7,12 +7,10 @@ import (
 	"context"
 	"reflect"
 
-	"github.com/pkg/errors"
+	"errors"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Creates a OVHcloud Managed Kubernetes Service cluster in a public cloud project.
-//
 // ## Import
 //
 // OVHcloud Managed Kubernetes Service clusters can be imported using the `service_name` and the `id` of the cluster, separated by "/" E.g., bash
@@ -25,18 +23,24 @@ import (
 type Kube struct {
 	pulumi.CustomResourceState
 
-	// True if control-plane is up to date.
+	// True if control-plane is up-to-date.
 	ControlPlaneIsUpToDate pulumi.BoolOutput `pulumi:"controlPlaneIsUpToDate"`
-	// Customer customization object
-	// * apiserver - Kubernetes API server customization
-	// * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-	// * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-	// * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-	Customization KubeCustomizationOutput `pulumi:"customization"`
-	// True if all nodes and control-plane are up to date.
+	// Kubernetes API server customization
+	CustomizationApiservers KubeCustomizationApiserverArrayOutput `pulumi:"customizationApiservers"`
+	// Kubernetes kube-proxy customization
+	CustomizationKubeProxy KubeCustomizationKubeProxyPtrOutput `pulumi:"customizationKubeProxy"`
+	// **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Customizations KubeCustomizationArrayOutput `pulumi:"customizations"`
+	// True if all nodes and control-plane are up-to-date.
 	IsUpToDate pulumi.BoolOutput `pulumi:"isUpToDate"`
+	// Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+	KubeProxyMode pulumi.StringOutput `pulumi:"kubeProxyMode"`
 	// The kubeconfig file. Use this file to connect to your kubernetes cluster.
 	Kubeconfig pulumi.StringOutput `pulumi:"kubeconfig"`
+	// The kubeconfig file attributes.
+	KubeconfigAttributes KubeKubeconfigAttributeArrayOutput `pulumi:"kubeconfigAttributes"`
 	// The name of the kubernetes cluster.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Kubernetes versions available for upgrade.
@@ -44,18 +48,12 @@ type Kube struct {
 	// Cluster nodes URL.
 	NodesUrl pulumi.StringOutput `pulumi:"nodesUrl"`
 	// The private network configuration
-	// * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-	// * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkConfiguration KubePrivateNetworkConfigurationPtrOutput `pulumi:"privateNetworkConfiguration"`
-	// OpenStack private network (or vrack) ID to use.
-	// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+	// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
 	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
-	// a valid OVHcloud public cloud region ID in which the kubernetes
-	// cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-	// Changing this value recreates the resource.
+	// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
 	Region pulumi.StringOutput `pulumi:"region"`
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
 	// Cluster status. Should be normally set to 'READY'.
 	Status pulumi.StringOutput `pulumi:"status"`
@@ -63,8 +61,7 @@ type Kube struct {
 	UpdatePolicy pulumi.StringOutput `pulumi:"updatePolicy"`
 	// Management URL of your cluster.
 	Url pulumi.StringOutput `pulumi:"url"`
-	// kubernetes version to use.
-	// Changing this value updates the resource. Defaults to latest available.
+	// kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
 	Version pulumi.StringOutput `pulumi:"version"`
 }
 
@@ -83,6 +80,7 @@ func NewKube(ctx *pulumi.Context,
 	}
 	secrets := pulumi.AdditionalSecretOutputs([]string{
 		"kubeconfig",
+		"kubeconfigAttributes",
 	})
 	opts = append(opts, secrets)
 	opts = pkgResourceDefaultOpts(opts)
@@ -108,18 +106,24 @@ func GetKube(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Kube resources.
 type kubeState struct {
-	// True if control-plane is up to date.
+	// True if control-plane is up-to-date.
 	ControlPlaneIsUpToDate *bool `pulumi:"controlPlaneIsUpToDate"`
-	// Customer customization object
-	// * apiserver - Kubernetes API server customization
-	// * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-	// * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-	// * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-	Customization *KubeCustomization `pulumi:"customization"`
-	// True if all nodes and control-plane are up to date.
+	// Kubernetes API server customization
+	CustomizationApiservers []KubeCustomizationApiserver `pulumi:"customizationApiservers"`
+	// Kubernetes kube-proxy customization
+	CustomizationKubeProxy *KubeCustomizationKubeProxy `pulumi:"customizationKubeProxy"`
+	// **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Customizations []KubeCustomization `pulumi:"customizations"`
+	// True if all nodes and control-plane are up-to-date.
 	IsUpToDate *bool `pulumi:"isUpToDate"`
+	// Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+	KubeProxyMode *string `pulumi:"kubeProxyMode"`
 	// The kubeconfig file. Use this file to connect to your kubernetes cluster.
 	Kubeconfig *string `pulumi:"kubeconfig"`
+	// The kubeconfig file attributes.
+	KubeconfigAttributes []KubeKubeconfigAttribute `pulumi:"kubeconfigAttributes"`
 	// The name of the kubernetes cluster.
 	Name *string `pulumi:"name"`
 	// Kubernetes versions available for upgrade.
@@ -127,18 +131,12 @@ type kubeState struct {
 	// Cluster nodes URL.
 	NodesUrl *string `pulumi:"nodesUrl"`
 	// The private network configuration
-	// * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-	// * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkConfiguration *KubePrivateNetworkConfiguration `pulumi:"privateNetworkConfiguration"`
-	// OpenStack private network (or vrack) ID to use.
-	// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+	// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
-	// a valid OVHcloud public cloud region ID in which the kubernetes
-	// cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-	// Changing this value recreates the resource.
+	// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
 	Region *string `pulumi:"region"`
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName *string `pulumi:"serviceName"`
 	// Cluster status. Should be normally set to 'READY'.
 	Status *string `pulumi:"status"`
@@ -146,24 +144,29 @@ type kubeState struct {
 	UpdatePolicy *string `pulumi:"updatePolicy"`
 	// Management URL of your cluster.
 	Url *string `pulumi:"url"`
-	// kubernetes version to use.
-	// Changing this value updates the resource. Defaults to latest available.
+	// kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
 	Version *string `pulumi:"version"`
 }
 
 type KubeState struct {
-	// True if control-plane is up to date.
+	// True if control-plane is up-to-date.
 	ControlPlaneIsUpToDate pulumi.BoolPtrInput
-	// Customer customization object
-	// * apiserver - Kubernetes API server customization
-	// * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-	// * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-	// * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-	Customization KubeCustomizationPtrInput
-	// True if all nodes and control-plane are up to date.
+	// Kubernetes API server customization
+	CustomizationApiservers KubeCustomizationApiserverArrayInput
+	// Kubernetes kube-proxy customization
+	CustomizationKubeProxy KubeCustomizationKubeProxyPtrInput
+	// **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Customizations KubeCustomizationArrayInput
+	// True if all nodes and control-plane are up-to-date.
 	IsUpToDate pulumi.BoolPtrInput
+	// Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+	KubeProxyMode pulumi.StringPtrInput
 	// The kubeconfig file. Use this file to connect to your kubernetes cluster.
 	Kubeconfig pulumi.StringPtrInput
+	// The kubeconfig file attributes.
+	KubeconfigAttributes KubeKubeconfigAttributeArrayInput
 	// The name of the kubernetes cluster.
 	Name pulumi.StringPtrInput
 	// Kubernetes versions available for upgrade.
@@ -171,18 +174,12 @@ type KubeState struct {
 	// Cluster nodes URL.
 	NodesUrl pulumi.StringPtrInput
 	// The private network configuration
-	// * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-	// * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkConfiguration KubePrivateNetworkConfigurationPtrInput
-	// OpenStack private network (or vrack) ID to use.
-	// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+	// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
 	PrivateNetworkId pulumi.StringPtrInput
-	// a valid OVHcloud public cloud region ID in which the kubernetes
-	// cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-	// Changing this value recreates the resource.
+	// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
 	Region pulumi.StringPtrInput
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName pulumi.StringPtrInput
 	// Cluster status. Should be normally set to 'READY'.
 	Status pulumi.StringPtrInput
@@ -190,8 +187,7 @@ type KubeState struct {
 	UpdatePolicy pulumi.StringPtrInput
 	// Management URL of your cluster.
 	Url pulumi.StringPtrInput
-	// kubernetes version to use.
-	// Changing this value updates the resource. Defaults to latest available.
+	// kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
 	Version pulumi.StringPtrInput
 }
 
@@ -200,63 +196,57 @@ func (KubeState) ElementType() reflect.Type {
 }
 
 type kubeArgs struct {
-	// Customer customization object
-	// * apiserver - Kubernetes API server customization
-	// * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-	// * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-	// * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-	Customization *KubeCustomization `pulumi:"customization"`
+	// Kubernetes API server customization
+	CustomizationApiservers []KubeCustomizationApiserver `pulumi:"customizationApiservers"`
+	// Kubernetes kube-proxy customization
+	CustomizationKubeProxy *KubeCustomizationKubeProxy `pulumi:"customizationKubeProxy"`
+	// **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Customizations []KubeCustomization `pulumi:"customizations"`
+	// Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+	KubeProxyMode *string `pulumi:"kubeProxyMode"`
 	// The name of the kubernetes cluster.
 	Name *string `pulumi:"name"`
 	// The private network configuration
-	// * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-	// * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkConfiguration *KubePrivateNetworkConfiguration `pulumi:"privateNetworkConfiguration"`
-	// OpenStack private network (or vrack) ID to use.
-	// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+	// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
-	// a valid OVHcloud public cloud region ID in which the kubernetes
-	// cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-	// Changing this value recreates the resource.
+	// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
 	Region string `pulumi:"region"`
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName string `pulumi:"serviceName"`
 	// Cluster update policy. Choose between [ALWAYS_UPDATE, MINIMAL_DOWNTIME, NEVER_UPDATE].
 	UpdatePolicy *string `pulumi:"updatePolicy"`
-	// kubernetes version to use.
-	// Changing this value updates the resource. Defaults to latest available.
+	// kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
 	Version *string `pulumi:"version"`
 }
 
 // The set of arguments for constructing a Kube resource.
 type KubeArgs struct {
-	// Customer customization object
-	// * apiserver - Kubernetes API server customization
-	// * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-	// * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-	// * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-	Customization KubeCustomizationPtrInput
+	// Kubernetes API server customization
+	CustomizationApiservers KubeCustomizationApiserverArrayInput
+	// Kubernetes kube-proxy customization
+	CustomizationKubeProxy KubeCustomizationKubeProxyPtrInput
+	// **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+	//
+	// Deprecated: Use customization_apiserver instead
+	Customizations KubeCustomizationArrayInput
+	// Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+	KubeProxyMode pulumi.StringPtrInput
 	// The name of the kubernetes cluster.
 	Name pulumi.StringPtrInput
 	// The private network configuration
-	// * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-	// * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 	PrivateNetworkConfiguration KubePrivateNetworkConfigurationPtrInput
-	// OpenStack private network (or vrack) ID to use.
-	// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+	// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
 	PrivateNetworkId pulumi.StringPtrInput
-	// a valid OVHcloud public cloud region ID in which the kubernetes
-	// cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-	// Changing this value recreates the resource.
+	// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
 	Region pulumi.StringInput
-	// The id of the public cloud project. If omitted,
-	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+	// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 	ServiceName pulumi.StringInput
 	// Cluster update policy. Choose between [ALWAYS_UPDATE, MINIMAL_DOWNTIME, NEVER_UPDATE].
 	UpdatePolicy pulumi.StringPtrInput
-	// kubernetes version to use.
-	// Changing this value updates the resource. Defaults to latest available.
+	// kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
 	Version pulumi.StringPtrInput
 }
 
@@ -347,28 +337,46 @@ func (o KubeOutput) ToKubeOutputWithContext(ctx context.Context) KubeOutput {
 	return o
 }
 
-// True if control-plane is up to date.
+// True if control-plane is up-to-date.
 func (o KubeOutput) ControlPlaneIsUpToDate() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Kube) pulumi.BoolOutput { return v.ControlPlaneIsUpToDate }).(pulumi.BoolOutput)
 }
 
-// Customer customization object
-// * apiserver - Kubernetes API server customization
-// * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-// * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-// * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-func (o KubeOutput) Customization() KubeCustomizationOutput {
-	return o.ApplyT(func(v *Kube) KubeCustomizationOutput { return v.Customization }).(KubeCustomizationOutput)
+// Kubernetes API server customization
+func (o KubeOutput) CustomizationApiservers() KubeCustomizationApiserverArrayOutput {
+	return o.ApplyT(func(v *Kube) KubeCustomizationApiserverArrayOutput { return v.CustomizationApiservers }).(KubeCustomizationApiserverArrayOutput)
 }
 
-// True if all nodes and control-plane are up to date.
+// Kubernetes kube-proxy customization
+func (o KubeOutput) CustomizationKubeProxy() KubeCustomizationKubeProxyPtrOutput {
+	return o.ApplyT(func(v *Kube) KubeCustomizationKubeProxyPtrOutput { return v.CustomizationKubeProxy }).(KubeCustomizationKubeProxyPtrOutput)
+}
+
+// **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+//
+// Deprecated: Use customization_apiserver instead
+func (o KubeOutput) Customizations() KubeCustomizationArrayOutput {
+	return o.ApplyT(func(v *Kube) KubeCustomizationArrayOutput { return v.Customizations }).(KubeCustomizationArrayOutput)
+}
+
+// True if all nodes and control-plane are up-to-date.
 func (o KubeOutput) IsUpToDate() pulumi.BoolOutput {
 	return o.ApplyT(func(v *Kube) pulumi.BoolOutput { return v.IsUpToDate }).(pulumi.BoolOutput)
+}
+
+// Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+func (o KubeOutput) KubeProxyMode() pulumi.StringOutput {
+	return o.ApplyT(func(v *Kube) pulumi.StringOutput { return v.KubeProxyMode }).(pulumi.StringOutput)
 }
 
 // The kubeconfig file. Use this file to connect to your kubernetes cluster.
 func (o KubeOutput) Kubeconfig() pulumi.StringOutput {
 	return o.ApplyT(func(v *Kube) pulumi.StringOutput { return v.Kubeconfig }).(pulumi.StringOutput)
+}
+
+// The kubeconfig file attributes.
+func (o KubeOutput) KubeconfigAttributes() KubeKubeconfigAttributeArrayOutput {
+	return o.ApplyT(func(v *Kube) KubeKubeconfigAttributeArrayOutput { return v.KubeconfigAttributes }).(KubeKubeconfigAttributeArrayOutput)
 }
 
 // The name of the kubernetes cluster.
@@ -387,27 +395,21 @@ func (o KubeOutput) NodesUrl() pulumi.StringOutput {
 }
 
 // The private network configuration
-// * defaultVrackGateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-// * privateNetworkRoutingAsDefault - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
 func (o KubeOutput) PrivateNetworkConfiguration() KubePrivateNetworkConfigurationPtrOutput {
 	return o.ApplyT(func(v *Kube) KubePrivateNetworkConfigurationPtrOutput { return v.PrivateNetworkConfiguration }).(KubePrivateNetworkConfigurationPtrOutput)
 }
 
-// OpenStack private network (or vrack) ID to use.
-// Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
 func (o KubeOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Kube) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }
 
-// a valid OVHcloud public cloud region ID in which the kubernetes
-// cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-// Changing this value recreates the resource.
+// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
 func (o KubeOutput) Region() pulumi.StringOutput {
 	return o.ApplyT(func(v *Kube) pulumi.StringOutput { return v.Region }).(pulumi.StringOutput)
 }
 
-// The id of the public cloud project. If omitted,
-// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+// The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
 func (o KubeOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Kube) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
 }
@@ -427,8 +429,7 @@ func (o KubeOutput) Url() pulumi.StringOutput {
 	return o.ApplyT(func(v *Kube) pulumi.StringOutput { return v.Url }).(pulumi.StringOutput)
 }
 
-// kubernetes version to use.
-// Changing this value updates the resource. Defaults to latest available.
+// kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
 func (o KubeOutput) Version() pulumi.StringOutput {
 	return o.ApplyT(func(v *Kube) pulumi.StringOutput { return v.Version }).(pulumi.StringOutput)
 }

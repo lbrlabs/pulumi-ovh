@@ -54,7 +54,7 @@ public class IpLoadbalancing extends com.pulumi.resources.CustomResource {
      * The id of the IP Load Balancing.
      * 
      */
-    @Export(name="LoadbalancingId", type=String.class, parameters={})
+    @Export(name="LoadbalancingId", refs={String.class}, tree="[0]")
     private Output<String> LoadbalancingId;
 
     /**
@@ -68,7 +68,7 @@ public class IpLoadbalancing extends com.pulumi.resources.CustomResource {
      * The id of the vrack.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**

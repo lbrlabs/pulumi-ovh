@@ -61,7 +61,7 @@ public class CephAcl extends com.pulumi.resources.CustomResource {
      * IP family. `IPv4` or `IPv6`
      * 
      */
-    @Export(name="family", type=String.class, parameters={})
+    @Export(name="family", refs={String.class}, tree="[0]")
     private Output<String> family;
 
     /**
@@ -75,7 +75,7 @@ public class CephAcl extends com.pulumi.resources.CustomResource {
      * The network mask to apply
      * 
      */
-    @Export(name="netmask", type=String.class, parameters={})
+    @Export(name="netmask", refs={String.class}, tree="[0]")
     private Output<String> netmask;
 
     /**
@@ -89,7 +89,7 @@ public class CephAcl extends com.pulumi.resources.CustomResource {
      * The network IP to authorize
      * 
      */
-    @Export(name="network", type=String.class, parameters={})
+    @Export(name="network", refs={String.class}, tree="[0]")
     private Output<String> network;
 
     /**
@@ -103,7 +103,7 @@ public class CephAcl extends com.pulumi.resources.CustomResource {
      * The internal name of your dedicated CEPH
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**

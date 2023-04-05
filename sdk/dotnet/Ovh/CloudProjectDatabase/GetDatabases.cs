@@ -20,8 +20,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// {{% example %}}
         /// 
         /// To get the list of database clusters service for a given engine:
+        /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 
@@ -53,8 +55,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// {{% example %}}
         /// 
         /// To get the list of database clusters service for a given engine:
+        /// 
         /// ```csharp
         /// using System.Collections.Generic;
+        /// using System.Linq;
         /// using Pulumi;
         /// using Ovh = Pulumi.Ovh;
         /// 

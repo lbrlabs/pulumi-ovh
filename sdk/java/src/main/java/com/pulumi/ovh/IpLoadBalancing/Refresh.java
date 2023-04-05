@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * 
  *         var farmname = new TcpFarm(&#34;farmname&#34;, TcpFarmArgs.builder()        
  *             .port(8080)
- *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
+ *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.serviceName()))
  *             .zone(&#34;all&#34;)
  *             .build());
  * 
@@ -64,7 +64,7 @@ import javax.annotation.Nullable;
  *             .port(80)
  *             .probe(true)
  *             .proxyProtocolVersion(&#34;v2&#34;)
- *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
+ *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.serviceName()))
  *             .ssl(false)
  *             .status(&#34;active&#34;)
  *             .weight(2)
@@ -72,7 +72,7 @@ import javax.annotation.Nullable;
  * 
  *         var mylb = new Refresh(&#34;mylb&#34;, RefreshArgs.builder()        
  *             .keepers(backend.stream().map(element -&gt; element.address()).collect(toList()))
- *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.id()))
+ *             .serviceName(lb.applyValue(getIpLoadBalancingResult -&gt; getIpLoadBalancingResult.serviceName()))
  *             .build());
  * 
  *     }
@@ -86,7 +86,7 @@ public class Refresh extends com.pulumi.resources.CustomResource {
      * List of values tracked to trigger refresh, used also to form implicit dependencies
      * 
      */
-    @Export(name="keepers", type=List.class, parameters={String.class})
+    @Export(name="keepers", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> keepers;
 
     /**
@@ -100,7 +100,7 @@ public class Refresh extends com.pulumi.resources.CustomResource {
      * The internal name of your IP load balancing
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**

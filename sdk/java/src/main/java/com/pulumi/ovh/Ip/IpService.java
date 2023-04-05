@@ -21,17 +21,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Orders an ip service.
- * 
- * ## Important
- * 
- * This resource orders an OVHcloud product for a long period of time and may generate heavy costs !
- * Use with caution.
- * 
- * __NOTE__ 1: the &#34;default-payment-mean&#34; will scan your registered bank accounts, credit card and paypal payment means to find your default payment mean.
- * 
- * __NOTE__ 2: this resource is in beta state. Use with caution.
- * 
  * ## Example Usage
  * ```java
  * package generated_program;
@@ -72,7 +61,6 @@ import javax.annotation.Nullable;
  * 
  *         var ipblockIpService = new IpService(&#34;ipblockIpService&#34;, IpServiceArgs.builder()        
  *             .ovhSubsidiary(mycart.applyValue(getCartResult -&gt; getCartResult.ovhSubsidiary()))
- *             .paymentMean(&#34;ovh-account&#34;)
  *             .description(&#34;my ip block&#34;)
  *             .plan(IpServicePlanArgs.builder()
  *                 .duration(ipblockCartProductPlan.applyValue(getCartProductPlanResult -&gt; getCartProductPlanResult.selectedPrices()[0].duration()))
@@ -96,7 +84,7 @@ public class IpService extends com.pulumi.resources.CustomResource {
      * can be terminated
      * 
      */
-    @Export(name="canBeTerminated", type=Boolean.class, parameters={})
+    @Export(name="canBeTerminated", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> canBeTerminated;
 
     /**
@@ -110,7 +98,7 @@ public class IpService extends com.pulumi.resources.CustomResource {
      * country
      * 
      */
-    @Export(name="country", type=String.class, parameters={})
+    @Export(name="country", refs={String.class}, tree="[0]")
     private Output<String> country;
 
     /**
@@ -124,7 +112,7 @@ public class IpService extends com.pulumi.resources.CustomResource {
      * Custom description on your ip.
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -138,7 +126,7 @@ public class IpService extends com.pulumi.resources.CustomResource {
      * ip block
      * 
      */
-    @Export(name="ip", type=String.class, parameters={})
+    @Export(name="ip", refs={String.class}, tree="[0]")
     private Output<String> ip;
 
     /**
@@ -152,7 +140,7 @@ public class IpService extends com.pulumi.resources.CustomResource {
      * Details about an Order
      * 
      */
-    @Export(name="orders", type=List.class, parameters={IpServiceOrder.class})
+    @Export(name="orders", refs={List.class,IpServiceOrder.class}, tree="[0,1]")
     private Output<List<IpServiceOrder>> orders;
 
     /**
@@ -166,7 +154,7 @@ public class IpService extends com.pulumi.resources.CustomResource {
      * IP block organisation Id
      * 
      */
-    @Export(name="organisationId", type=String.class, parameters={})
+    @Export(name="organisationId", refs={String.class}, tree="[0]")
     private Output<String> organisationId;
 
     /**
@@ -180,7 +168,7 @@ public class IpService extends com.pulumi.resources.CustomResource {
      * OVHcloud Subsidiary
      * 
      */
-    @Export(name="ovhSubsidiary", type=String.class, parameters={})
+    @Export(name="ovhSubsidiary", refs={String.class}, tree="[0]")
     private Output<String> ovhSubsidiary;
 
     /**
@@ -191,24 +179,28 @@ public class IpService extends com.pulumi.resources.CustomResource {
         return this.ovhSubsidiary;
     }
     /**
-     * OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * Ovh payment mode
+     * 
+     * @deprecated
+     * This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      * 
      */
-    @Export(name="paymentMean", type=String.class, parameters={})
-    private Output<String> paymentMean;
+    @Deprecated /* This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used. */
+    @Export(name="paymentMean", refs={String.class}, tree="[0]")
+    private Output</* @Nullable */ String> paymentMean;
 
     /**
-     * @return OVHcloud payment mode (One of &#34;default-payment-mean&#34;, &#34;fidelity&#34;, &#34;ovh-account&#34;)
+     * @return Ovh payment mode
      * 
      */
-    public Output<String> paymentMean() {
-        return this.paymentMean;
+    public Output<Optional<String>> paymentMean() {
+        return Codegen.optional(this.paymentMean);
     }
     /**
      * Product Plan to order
      * 
      */
-    @Export(name="plan", type=IpServicePlan.class, parameters={})
+    @Export(name="plan", refs={IpServicePlan.class}, tree="[0]")
     private Output<IpServicePlan> plan;
 
     /**
@@ -222,7 +214,7 @@ public class IpService extends com.pulumi.resources.CustomResource {
      * Product Plan to order
      * 
      */
-    @Export(name="planOptions", type=List.class, parameters={IpServicePlanOption.class})
+    @Export(name="planOptions", refs={List.class,IpServicePlanOption.class}, tree="[0,1]")
     private Output</* @Nullable */ List<IpServicePlanOption>> planOptions;
 
     /**
@@ -236,7 +228,7 @@ public class IpService extends com.pulumi.resources.CustomResource {
      * Routage information
      * 
      */
-    @Export(name="routedTos", type=List.class, parameters={IpServiceRoutedTo.class})
+    @Export(name="routedTos", refs={List.class,IpServiceRoutedTo.class}, tree="[0,1]")
     private Output<List<IpServiceRoutedTo>> routedTos;
 
     /**
@@ -250,7 +242,7 @@ public class IpService extends com.pulumi.resources.CustomResource {
      * service name
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -264,7 +256,7 @@ public class IpService extends com.pulumi.resources.CustomResource {
      * Possible values for ip type
      * 
      */
-    @Export(name="type", type=String.class, parameters={})
+    @Export(name="type", refs={String.class}, tree="[0]")
     private Output<String> type;
 
     /**

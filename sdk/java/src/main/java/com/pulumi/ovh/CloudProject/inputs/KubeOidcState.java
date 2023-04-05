@@ -47,14 +47,14 @@ public final class KubeOidcState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of the managed kubernetes cluster.
+     * The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
     @Import(name="kubeId")
     private @Nullable Output<String> kubeId;
 
     /**
-     * @return The ID of the managed kubernetes cluster.
+     * @return The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
      * 
      */
     public Optional<Output<String>> kubeId() {
@@ -111,14 +111,14 @@ public final class KubeOidcState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
-     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     @Import(name="serviceName")
     private @Nullable Output<String> serviceName;
 
     /**
-     * @return The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * @return The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     public Optional<Output<String>> serviceName() {
@@ -202,7 +202,7 @@ public final class KubeOidcState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kubeId The ID of the managed kubernetes cluster.
+         * @param kubeId The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -213,7 +213,7 @@ public final class KubeOidcState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param kubeId The ID of the managed kubernetes cluster.
+         * @param kubeId The ID of the managed kubernetes cluster. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -298,7 +298,7 @@ public final class KubeOidcState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceName The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+         * @param serviceName The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 
@@ -309,7 +309,7 @@ public final class KubeOidcState extends com.pulumi.resources.ResourceArgs {
         }
 
         /**
-         * @param serviceName The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+         * @param serviceName The ID of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
          * 
          * @return builder
          * 

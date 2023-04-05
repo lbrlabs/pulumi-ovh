@@ -17,6 +17,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// using Ovh = Pulumi.Ovh;
@@ -32,7 +33,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
     ///     var farmname = new Ovh.IpLoadBalancing.TcpFarm("farmname", new()
     ///     {
     ///         Port = 8080,
-    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
+    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.ServiceName),
     ///         Zone = "all",
     ///     });
     /// 
@@ -45,7 +46,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
     ///         Port = 80,
     ///         Probe = true,
     ///         ProxyProtocolVersion = "v2",
-    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.Id),
+    ///         ServiceName = lb.Apply(getIpLoadBalancingResult =&gt; getIpLoadBalancingResult.ServiceName),
     ///         Ssl = false,
     ///         Status = "active",
     ///         Weight = 2,

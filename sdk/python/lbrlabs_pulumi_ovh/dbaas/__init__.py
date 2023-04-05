@@ -5,8 +5,10 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_logs_cluster import *
 from .get_logs_input_engine import *
 from .get_logs_output_graylog_stream import *
+from .logs_cluster import *
 from .logs_input import *
 from .logs_output_graylog_stream import *
 from ._inputs import *

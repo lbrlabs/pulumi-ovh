@@ -20,7 +20,7 @@ import * as utilities from "../utilities";
  * });
  * const farmname = new ovh.iploadbalancing.HttpFarm("farmname", {
  *     port: 8080,
- *     serviceName: lb.then(lb => lb.id),
+ *     serviceName: lb.then(lb => lb.serviceName),
  *     zone: "all",
  * });
  * const backend = new ovh.iploadbalancing.HttpFarmServer("backend", {
@@ -31,7 +31,7 @@ import * as utilities from "../utilities";
  *     port: 80,
  *     probe: true,
  *     proxyProtocolVersion: "v2",
- *     serviceName: lb.then(lb => lb.id),
+ *     serviceName: lb.then(lb => lb.serviceName),
  *     ssl: false,
  *     status: "active",
  *     weight: 2,

@@ -56,7 +56,6 @@ type GetUsersArgs struct {
 	ClusterId string `pulumi:"clusterId"`
 	// The engine of the database cluster you want to list users. To get a full list of available engine visit:
 	// [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
-	// Available engines:
 	Engine string `pulumi:"engine"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -96,7 +95,6 @@ type GetUsersOutputArgs struct {
 	ClusterId pulumi.StringInput `pulumi:"clusterId"`
 	// The engine of the database cluster you want to list users. To get a full list of available engine visit:
 	// [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
-	// Available engines:
 	Engine pulumi.StringInput `pulumi:"engine"`
 	// The id of the public cloud project. If omitted,
 	// the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.

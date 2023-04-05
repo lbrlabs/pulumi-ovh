@@ -10,6 +10,9 @@ import com.pulumi.core.internal.Codegen;
 import com.pulumi.ovh.CloudProject.KubeArgs;
 import com.pulumi.ovh.CloudProject.inputs.KubeState;
 import com.pulumi.ovh.CloudProject.outputs.KubeCustomization;
+import com.pulumi.ovh.CloudProject.outputs.KubeCustomizationApiserver;
+import com.pulumi.ovh.CloudProject.outputs.KubeCustomizationKubeProxy;
+import com.pulumi.ovh.CloudProject.outputs.KubeKubeconfigAttribute;
 import com.pulumi.ovh.CloudProject.outputs.KubePrivateNetworkConfiguration;
 import com.pulumi.ovh.Utilities;
 import java.lang.Boolean;
@@ -19,8 +22,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Creates a OVHcloud Managed Kubernetes Service cluster in a public cloud project.
- * 
  * ## Import
  * 
  * OVHcloud Managed Kubernetes Service clusters can be imported using the `service_name` and the `id` of the cluster, separated by &#34;/&#34; E.g., bash
@@ -33,60 +34,98 @@ import javax.annotation.Nullable;
 @ResourceType(type="ovh:CloudProject/kube:Kube")
 public class Kube extends com.pulumi.resources.CustomResource {
     /**
-     * True if control-plane is up to date.
+     * True if control-plane is up-to-date.
      * 
      */
-    @Export(name="controlPlaneIsUpToDate", type=Boolean.class, parameters={})
+    @Export(name="controlPlaneIsUpToDate", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> controlPlaneIsUpToDate;
 
     /**
-     * @return True if control-plane is up to date.
+     * @return True if control-plane is up-to-date.
      * 
      */
     public Output<Boolean> controlPlaneIsUpToDate() {
         return this.controlPlaneIsUpToDate;
     }
     /**
-     * Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-     * * enabled - (Optional) Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-     * * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * Kubernetes API server customization
      * 
      */
-    @Export(name="customization", type=KubeCustomization.class, parameters={})
-    private Output<KubeCustomization> customization;
+    @Export(name="customizationApiservers", refs={List.class,KubeCustomizationApiserver.class}, tree="[0,1]")
+    private Output<List<KubeCustomizationApiserver>> customizationApiservers;
 
     /**
-     * @return Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-     * * enabled - (Optional) Array of admission plugins enabled, default is [&#34;NodeRestriction&#34;,&#34;AlwaysPulImages&#34;] and only these admission plugins can be enabled at this time.
-     * * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * @return Kubernetes API server customization
      * 
      */
-    public Output<KubeCustomization> customization() {
-        return this.customization;
+    public Output<List<KubeCustomizationApiserver>> customizationApiservers() {
+        return this.customizationApiservers;
     }
     /**
-     * True if all nodes and control-plane are up to date.
+     * Kubernetes kube-proxy customization
      * 
      */
-    @Export(name="isUpToDate", type=Boolean.class, parameters={})
+    @Export(name="customizationKubeProxy", refs={KubeCustomizationKubeProxy.class}, tree="[0]")
+    private Output</* @Nullable */ KubeCustomizationKubeProxy> customizationKubeProxy;
+
+    /**
+     * @return Kubernetes kube-proxy customization
+     * 
+     */
+    public Output<Optional<KubeCustomizationKubeProxy>> customizationKubeProxy() {
+        return Codegen.optional(this.customizationKubeProxy);
+    }
+    /**
+     * **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+     * 
+     * @deprecated
+     * Use customization_apiserver instead
+     * 
+     */
+    @Deprecated /* Use customization_apiserver instead */
+    @Export(name="customizations", refs={List.class,KubeCustomization.class}, tree="[0,1]")
+    private Output<List<KubeCustomization>> customizations;
+
+    /**
+     * @return **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+     * 
+     */
+    public Output<List<KubeCustomization>> customizations() {
+        return this.customizations;
+    }
+    /**
+     * True if all nodes and control-plane are up-to-date.
+     * 
+     */
+    @Export(name="isUpToDate", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isUpToDate;
 
     /**
-     * @return True if all nodes and control-plane are up to date.
+     * @return True if all nodes and control-plane are up-to-date.
      * 
      */
     public Output<Boolean> isUpToDate() {
         return this.isUpToDate;
     }
     /**
+     * Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+     * 
+     */
+    @Export(name="kubeProxyMode", refs={String.class}, tree="[0]")
+    private Output<String> kubeProxyMode;
+
+    /**
+     * @return Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+     * 
+     */
+    public Output<String> kubeProxyMode() {
+        return this.kubeProxyMode;
+    }
+    /**
      * The kubeconfig file. Use this file to connect to your kubernetes cluster.
      * 
      */
-    @Export(name="kubeconfig", type=String.class, parameters={})
+    @Export(name="kubeconfig", refs={String.class}, tree="[0]")
     private Output<String> kubeconfig;
 
     /**
@@ -97,10 +136,24 @@ public class Kube extends com.pulumi.resources.CustomResource {
         return this.kubeconfig;
     }
     /**
+     * The kubeconfig file attributes.
+     * 
+     */
+    @Export(name="kubeconfigAttributes", refs={List.class,KubeKubeconfigAttribute.class}, tree="[0,1]")
+    private Output<List<KubeKubeconfigAttribute>> kubeconfigAttributes;
+
+    /**
+     * @return The kubeconfig file attributes.
+     * 
+     */
+    public Output<List<KubeKubeconfigAttribute>> kubeconfigAttributes() {
+        return this.kubeconfigAttributes;
+    }
+    /**
      * The name of the kubernetes cluster.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -114,7 +167,7 @@ public class Kube extends com.pulumi.resources.CustomResource {
      * Kubernetes versions available for upgrade.
      * 
      */
-    @Export(name="nextUpgradeVersions", type=List.class, parameters={String.class})
+    @Export(name="nextUpgradeVersions", refs={List.class,String.class}, tree="[0,1]")
     private Output<List<String>> nextUpgradeVersions;
 
     /**
@@ -128,7 +181,7 @@ public class Kube extends com.pulumi.resources.CustomResource {
      * Cluster nodes URL.
      * 
      */
-    @Export(name="nodesUrl", type=String.class, parameters={})
+    @Export(name="nodesUrl", refs={String.class}, tree="[0]")
     private Output<String> nodesUrl;
 
     /**
@@ -140,67 +193,55 @@ public class Kube extends com.pulumi.resources.CustomResource {
     }
     /**
      * The private network configuration
-     * * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-     * * private_network_routing_as_default - Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
      * 
      */
-    @Export(name="privateNetworkConfiguration", type=KubePrivateNetworkConfiguration.class, parameters={})
+    @Export(name="privateNetworkConfiguration", refs={KubePrivateNetworkConfiguration.class}, tree="[0]")
     private Output</* @Nullable */ KubePrivateNetworkConfiguration> privateNetworkConfiguration;
 
     /**
      * @return The private network configuration
-     * * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-     * * private_network_routing_as_default - Defines whether routing should default to using the nodes&#39; private interface, instead of their public interface. Default is false.
      * 
      */
     public Output<Optional<KubePrivateNetworkConfiguration>> privateNetworkConfiguration() {
         return Codegen.optional(this.privateNetworkConfiguration);
     }
     /**
-     * OpenStack private network (or vrack) ID to use.
-     * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+     * OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
      * 
      */
-    @Export(name="privateNetworkId", type=String.class, parameters={})
+    @Export(name="privateNetworkId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> privateNetworkId;
 
     /**
-     * @return OpenStack private network (or vrack) ID to use.
-     * Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+     * @return OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
      * 
      */
     public Output<Optional<String>> privateNetworkId() {
         return Codegen.optional(this.privateNetworkId);
     }
     /**
-     * a valid OVHcloud public cloud region ID in which the kubernetes
-     * cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions.
-     * Changing this value recreates the resource.
+     * a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions. **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="region", type=String.class, parameters={})
+    @Export(name="region", refs={String.class}, tree="[0]")
     private Output<String> region;
 
     /**
-     * @return a valid OVHcloud public cloud region ID in which the kubernetes
-     * cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions.
-     * Changing this value recreates the resource.
+     * @return a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: &#34;GRA1&#34;. Defaults to all public cloud regions. **Changing this value recreates the resource.**
      * 
      */
     public Output<String> region() {
         return this.region;
     }
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
-     * @return The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * @return The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
      * 
      */
     public Output<String> serviceName() {
@@ -210,7 +251,7 @@ public class Kube extends com.pulumi.resources.CustomResource {
      * Cluster status. Should be normally set to &#39;READY&#39;.
      * 
      */
-    @Export(name="status", type=String.class, parameters={})
+    @Export(name="status", refs={String.class}, tree="[0]")
     private Output<String> status;
 
     /**
@@ -224,7 +265,7 @@ public class Kube extends com.pulumi.resources.CustomResource {
      * Cluster update policy. Choose between [ALWAYS_UPDATE, MINIMAL_DOWNTIME, NEVER_UPDATE].
      * 
      */
-    @Export(name="updatePolicy", type=String.class, parameters={})
+    @Export(name="updatePolicy", refs={String.class}, tree="[0]")
     private Output<String> updatePolicy;
 
     /**
@@ -238,7 +279,7 @@ public class Kube extends com.pulumi.resources.CustomResource {
      * Management URL of your cluster.
      * 
      */
-    @Export(name="url", type=String.class, parameters={})
+    @Export(name="url", refs={String.class}, tree="[0]")
     private Output<String> url;
 
     /**
@@ -249,16 +290,14 @@ public class Kube extends com.pulumi.resources.CustomResource {
         return this.url;
     }
     /**
-     * kubernetes version to use.
-     * Changing this value updates the resource. Defaults to latest available.
+     * kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
      * 
      */
-    @Export(name="version", type=String.class, parameters={})
+    @Export(name="version", refs={String.class}, tree="[0]")
     private Output<String> version;
 
     /**
-     * @return kubernetes version to use.
-     * Changing this value updates the resource. Defaults to latest available.
+     * @return kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
      * 
      */
     public Output<String> version() {
@@ -298,7 +337,8 @@ public class Kube extends com.pulumi.resources.CustomResource {
         var defaultOptions = com.pulumi.resources.CustomResourceOptions.builder()
             .version(Utilities.getVersion())
             .additionalSecretOutputs(List.of(
-                "kubeconfig"
+                "kubeconfig",
+                "kubeconfigAttributes"
             ))
             .build();
         return com.pulumi.resources.CustomResourceOptions.merge(defaultOptions, options, id);

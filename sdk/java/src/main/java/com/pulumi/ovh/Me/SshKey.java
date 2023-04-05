@@ -55,7 +55,7 @@ public class SshKey extends com.pulumi.resources.CustomResource {
      * True when this public SSH key is used for rescue mode and reinstallations.
      * 
      */
-    @Export(name="default", type=Boolean.class, parameters={})
+    @Export(name="default", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> default_;
 
     /**
@@ -69,7 +69,7 @@ public class SshKey extends com.pulumi.resources.CustomResource {
      * The content of the public key in the form &#34;ssh-algo content&#34;, e.g. &#34;ssh-ed25519 AAAAC3...&#34;.
      * 
      */
-    @Export(name="key", type=String.class, parameters={})
+    @Export(name="key", refs={String.class}, tree="[0]")
     private Output<String> key;
 
     /**
@@ -83,7 +83,7 @@ public class SshKey extends com.pulumi.resources.CustomResource {
      * The friendly name of this SSH key.
      * 
      */
-    @Export(name="keyName", type=String.class, parameters={})
+    @Export(name="keyName", refs={String.class}, tree="[0]")
     private Output<String> keyName;
 
     /**

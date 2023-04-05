@@ -26,8 +26,11 @@ export function getKube(args: GetKubeArgs, opts?: pulumi.InvokeOptions): Promise
 
     opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts || {});
     return pulumi.runtime.invoke("ovh:CloudProject/getKube:getKube", {
-        "customization": args.customization,
+        "customizationApiservers": args.customizationApiservers,
+        "customizationKubeProxy": args.customizationKubeProxy,
+        "customizations": args.customizations,
         "kubeId": args.kubeId,
+        "kubeProxyMode": args.kubeProxyMode,
         "name": args.name,
         "region": args.region,
         "serviceName": args.serviceName,
@@ -41,17 +44,27 @@ export function getKube(args: GetKubeArgs, opts?: pulumi.InvokeOptions): Promise
  */
 export interface GetKubeArgs {
     /**
-     * Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - Kubernetes API server admission plugins customization
-     * * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-     * * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * Kubernetes API server customization
      */
-    customization?: inputs.CloudProject.GetKubeCustomization;
+    customizationApiservers?: inputs.CloudProject.GetKubeCustomizationApiserver[];
+    /**
+     * Kubernetes kube-proxy customization
+     */
+    customizationKubeProxy?: inputs.CloudProject.GetKubeCustomizationKubeProxy;
+    /**
+     * **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+     *
+     * @deprecated Use customization_apiserver instead
+     */
+    customizations?: inputs.CloudProject.GetKubeCustomization[];
     /**
      * The id of the managed kubernetes cluster.
      */
     kubeId: string;
+    /**
+     * Selected mode for kube-proxy.
+     */
+    kubeProxyMode?: string;
     /**
      * The name of the managed kubernetes cluster.
      */
@@ -61,8 +74,7 @@ export interface GetKubeArgs {
      */
     region?: string;
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      */
     serviceName: string;
     /**
@@ -80,29 +92,39 @@ export interface GetKubeArgs {
  */
 export interface GetKubeResult {
     /**
-     * True if control-plane is up to date.
+     * True if control-plane is up-to-date.
      */
     readonly controlPlaneIsUpToDate: boolean;
     /**
-     * Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - Kubernetes API server admission plugins customization
-     * * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-     * * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * Kubernetes API server customization
      */
-    readonly customization: outputs.CloudProject.GetKubeCustomization;
+    readonly customizationApiservers: outputs.CloudProject.GetKubeCustomizationApiserver[];
+    /**
+     * Kubernetes kube-proxy customization
+     */
+    readonly customizationKubeProxy?: outputs.CloudProject.GetKubeCustomizationKubeProxy;
+    /**
+     * **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+     *
+     * @deprecated Use customization_apiserver instead
+     */
+    readonly customizations: outputs.CloudProject.GetKubeCustomization[];
     /**
      * The provider-assigned unique ID for this managed resource.
      */
     readonly id: string;
     /**
-     * True if all nodes and control-plane are up to date.
+     * True if all nodes and control-plane are up-to-date.
      */
     readonly isUpToDate: boolean;
     /**
      * See Argument Reference above.
      */
     readonly kubeId: string;
+    /**
+     * Selected mode for kube-proxy.
+     */
+    readonly kubeProxyMode?: string;
     /**
      * The name of the managed kubernetes cluster.
      */
@@ -169,17 +191,27 @@ export function getKubeOutput(args: GetKubeOutputArgs, opts?: pulumi.InvokeOptio
  */
 export interface GetKubeOutputArgs {
     /**
-     * Customer customization object
-     * * apiserver - Kubernetes API server customization
-     * * admissionplugins - Kubernetes API server admission plugins customization
-     * * enabled - Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-     * * disabled - Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+     * Kubernetes API server customization
      */
-    customization?: pulumi.Input<inputs.CloudProject.GetKubeCustomizationArgs>;
+    customizationApiservers?: pulumi.Input<pulumi.Input<inputs.CloudProject.GetKubeCustomizationApiserverArgs>[]>;
+    /**
+     * Kubernetes kube-proxy customization
+     */
+    customizationKubeProxy?: pulumi.Input<inputs.CloudProject.GetKubeCustomizationKubeProxyArgs>;
+    /**
+     * **Deprecated** (Optional) Use `customizationApiserver` and `customizationKubeProxy` instead. Kubernetes cluster customization
+     *
+     * @deprecated Use customization_apiserver instead
+     */
+    customizations?: pulumi.Input<pulumi.Input<inputs.CloudProject.GetKubeCustomizationArgs>[]>;
     /**
      * The id of the managed kubernetes cluster.
      */
     kubeId: pulumi.Input<string>;
+    /**
+     * Selected mode for kube-proxy.
+     */
+    kubeProxyMode?: pulumi.Input<string>;
     /**
      * The name of the managed kubernetes cluster.
      */
@@ -189,8 +221,7 @@ export interface GetKubeOutputArgs {
      */
     region?: pulumi.Input<string>;
     /**
-     * The id of the public cloud project. If omitted,
-     * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+     * The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      */
     serviceName: pulumi.Input<string>;
     /**

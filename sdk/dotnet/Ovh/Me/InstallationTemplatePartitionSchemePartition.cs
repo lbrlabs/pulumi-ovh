@@ -17,6 +17,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// 
@@ -61,7 +62,16 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public partial class InstallationTemplatePartitionSchemePartition : global::Pulumi.CustomResource
     {
         /// <summary>
-        /// Partition filesystem.
+        /// Partition filesystem. Enum with possibles values:
+        /// - btrfs
+        /// - ext3
+        /// - ext4
+        /// - ntfs
+        /// - reiserfs
+        /// - swap
+        /// - ufs
+        /// - xfs
+        /// - zfs
         /// </summary>
         [Output("filesystem")]
         public Output<string> Filesystem { get; private set; } = null!;
@@ -79,7 +89,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Output<int> Order { get; private set; } = null!;
 
         /// <summary>
-        /// raid partition type.
+        /// raid partition type. Enum with possible values: 
+        /// - raid0
+        /// - raid1
+        /// - raid10
+        /// - raid5
+        /// - raid6
         /// </summary>
         [Output("raid")]
         public Output<string> Raid { get; private set; } = null!;
@@ -103,7 +118,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Output<string> TemplateName { get; private set; } = null!;
 
         /// <summary>
-        /// partition type.
+        /// partition type. Enum with possible values:
+        /// - lv
+        /// - primary
+        /// - logical
         /// </summary>
         [Output("type")]
         public Output<string> Type { get; private set; } = null!;
@@ -162,7 +180,16 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public sealed class InstallationTemplatePartitionSchemePartitionArgs : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Partition filesystem.
+        /// Partition filesystem. Enum with possibles values:
+        /// - btrfs
+        /// - ext3
+        /// - ext4
+        /// - ntfs
+        /// - reiserfs
+        /// - swap
+        /// - ufs
+        /// - xfs
+        /// - zfs
         /// </summary>
         [Input("filesystem", required: true)]
         public Input<string> Filesystem { get; set; } = null!;
@@ -180,7 +207,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Input<int> Order { get; set; } = null!;
 
         /// <summary>
-        /// raid partition type.
+        /// raid partition type. Enum with possible values: 
+        /// - raid0
+        /// - raid1
+        /// - raid10
+        /// - raid5
+        /// - raid6
         /// </summary>
         [Input("raid")]
         public Input<string>? Raid { get; set; }
@@ -204,7 +236,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Input<string> TemplateName { get; set; } = null!;
 
         /// <summary>
-        /// partition type.
+        /// partition type. Enum with possible values:
+        /// - lv
+        /// - primary
+        /// - logical
         /// </summary>
         [Input("type", required: true)]
         public Input<string> Type { get; set; } = null!;
@@ -224,7 +259,16 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
     public sealed class InstallationTemplatePartitionSchemePartitionState : global::Pulumi.ResourceArgs
     {
         /// <summary>
-        /// Partition filesystem.
+        /// Partition filesystem. Enum with possibles values:
+        /// - btrfs
+        /// - ext3
+        /// - ext4
+        /// - ntfs
+        /// - reiserfs
+        /// - swap
+        /// - ufs
+        /// - xfs
+        /// - zfs
         /// </summary>
         [Input("filesystem")]
         public Input<string>? Filesystem { get; set; }
@@ -242,7 +286,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Input<int>? Order { get; set; }
 
         /// <summary>
-        /// raid partition type.
+        /// raid partition type. Enum with possible values: 
+        /// - raid0
+        /// - raid1
+        /// - raid10
+        /// - raid5
+        /// - raid6
         /// </summary>
         [Input("raid")]
         public Input<string>? Raid { get; set; }
@@ -266,7 +315,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         public Input<string>? TemplateName { get; set; }
 
         /// <summary>
-        /// partition type.
+        /// partition type. Enum with possible values:
+        /// - lv
+        /// - primary
+        /// - logical
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }

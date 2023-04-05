@@ -12,17 +12,41 @@ import javax.annotation.Nullable;
 
 @CustomType
 public final class KubeNodePoolTemplateMetadata {
+    /**
+     * @return Annotations to apply to each node
+     * 
+     */
     private @Nullable Map<String,String> annotations;
+    /**
+     * @return Finalizers to apply to each node
+     * 
+     */
     private @Nullable List<String> finalizers;
+    /**
+     * @return Labels to apply to each node
+     * 
+     */
     private @Nullable Map<String,String> labels;
 
     private KubeNodePoolTemplateMetadata() {}
+    /**
+     * @return Annotations to apply to each node
+     * 
+     */
     public Map<String,String> annotations() {
         return this.annotations == null ? Map.of() : this.annotations;
     }
+    /**
+     * @return Finalizers to apply to each node
+     * 
+     */
     public List<String> finalizers() {
         return this.finalizers == null ? List.of() : this.finalizers;
     }
+    /**
+     * @return Labels to apply to each node
+     * 
+     */
     public Map<String,String> labels() {
         return this.labels == null ? Map.of() : this.labels;
     }

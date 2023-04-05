@@ -76,7 +76,7 @@ public class KafkaTopic extends com.pulumi.resources.CustomResource {
      * Cluster ID.
      * 
      */
-    @Export(name="clusterId", type=String.class, parameters={})
+    @Export(name="clusterId", refs={String.class}, tree="[0]")
     private Output<String> clusterId;
 
     /**
@@ -90,7 +90,7 @@ public class KafkaTopic extends com.pulumi.resources.CustomResource {
      * Minimum insync replica accepted for this topic. Should be superior to 0
      * 
      */
-    @Export(name="minInsyncReplicas", type=Integer.class, parameters={})
+    @Export(name="minInsyncReplicas", refs={Integer.class}, tree="[0]")
     private Output<Integer> minInsyncReplicas;
 
     /**
@@ -104,7 +104,7 @@ public class KafkaTopic extends com.pulumi.resources.CustomResource {
      * Name of the topic. No spaces allowed.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -118,7 +118,7 @@ public class KafkaTopic extends com.pulumi.resources.CustomResource {
      * Number of partitions for this topic. Should be superior to 0
      * 
      */
-    @Export(name="partitions", type=Integer.class, parameters={})
+    @Export(name="partitions", refs={Integer.class}, tree="[0]")
     private Output<Integer> partitions;
 
     /**
@@ -132,7 +132,7 @@ public class KafkaTopic extends com.pulumi.resources.CustomResource {
      * Number of replication for this topic. Should be superior to 1
      * 
      */
-    @Export(name="replication", type=Integer.class, parameters={})
+    @Export(name="replication", refs={Integer.class}, tree="[0]")
     private Output<Integer> replication;
 
     /**
@@ -146,7 +146,7 @@ public class KafkaTopic extends com.pulumi.resources.CustomResource {
      * Number of bytes for the retention of the data for this topic. Inferior to 0 means unlimited
      * 
      */
-    @Export(name="retentionBytes", type=Integer.class, parameters={})
+    @Export(name="retentionBytes", refs={Integer.class}, tree="[0]")
     private Output<Integer> retentionBytes;
 
     /**
@@ -160,7 +160,7 @@ public class KafkaTopic extends com.pulumi.resources.CustomResource {
      * Number of hours for the retention of the data for this topic. Should be superior to -2. Inferior to 0 means unlimited
      * 
      */
-    @Export(name="retentionHours", type=Integer.class, parameters={})
+    @Export(name="retentionHours", refs={Integer.class}, tree="[0]")
     private Output<Integer> retentionHours;
 
     /**
@@ -175,7 +175,7 @@ public class KafkaTopic extends com.pulumi.resources.CustomResource {
      * the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**

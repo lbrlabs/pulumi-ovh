@@ -14,6 +14,7 @@ import * as utilities from "../utilities";
  * ## Example Usage
  *
  * Push PostgreSQL logs in an OpenSearch DB:
+ *
  * ```typescript
  * import * as pulumi from "@pulumi/pulumi";
  * import * as ovh from "@lbrlabs/pulumi-ovh";

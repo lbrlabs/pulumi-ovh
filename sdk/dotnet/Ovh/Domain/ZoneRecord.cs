@@ -17,6 +17,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Domain
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// 
@@ -65,7 +66,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Domain
         public Output<string> Target { get; private set; } = null!;
 
         /// <summary>
-        /// The TTL of the record
+        /// The TTL of the record, it shall be &gt;= to 60.
         /// </summary>
         [Output("ttl")]
         public Output<int?> Ttl { get; private set; } = null!;
@@ -142,7 +143,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Domain
         public Input<string> Target { get; set; } = null!;
 
         /// <summary>
-        /// The TTL of the record
+        /// The TTL of the record, it shall be &gt;= to 60.
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }
@@ -180,7 +181,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Domain
         public Input<string>? Target { get; set; }
 
         /// <summary>
-        /// The TTL of the record
+        /// The TTL of the record, it shall be &gt;= to 60.
         /// </summary>
         [Input("ttl")]
         public Input<int>? Ttl { get; set; }

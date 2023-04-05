@@ -17,6 +17,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
     /// 
     /// ```csharp
     /// using System.Collections.Generic;
+    /// using System.Linq;
     /// using Pulumi;
     /// using Ovh = Lbrlabs.PulumiPackage.Ovh;
     /// 

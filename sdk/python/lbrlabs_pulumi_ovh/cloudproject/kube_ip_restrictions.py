@@ -20,9 +20,8 @@ class KubeIpRestrictionsArgs:
         """
         The set of arguments for constructing a KubeIpRestrictions resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: List of CIDR authorized to interact with the managed Kubernetes cluster.
-        :param pulumi.Input[str] kube_id: The id of the managed Kubernetes cluster.
-        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
-               the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        :param pulumi.Input[str] kube_id: The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         pulumi.set(__self__, "ips", ips)
         pulumi.set(__self__, "kube_id", kube_id)
@@ -44,7 +43,7 @@ class KubeIpRestrictionsArgs:
     @pulumi.getter(name="kubeId")
     def kube_id(self) -> pulumi.Input[str]:
         """
-        The id of the managed Kubernetes cluster.
+        The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "kube_id")
 
@@ -56,8 +55,7 @@ class KubeIpRestrictionsArgs:
     @pulumi.getter(name="serviceName")
     def service_name(self) -> pulumi.Input[str]:
         """
-        The id of the public cloud project. If omitted,
-        the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "service_name")
 
@@ -75,9 +73,8 @@ class _KubeIpRestrictionsState:
         """
         Input properties used for looking up and filtering KubeIpRestrictions resources.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: List of CIDR authorized to interact with the managed Kubernetes cluster.
-        :param pulumi.Input[str] kube_id: The id of the managed Kubernetes cluster.
-        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
-               the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        :param pulumi.Input[str] kube_id: The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         if ips is not None:
             pulumi.set(__self__, "ips", ips)
@@ -102,7 +99,7 @@ class _KubeIpRestrictionsState:
     @pulumi.getter(name="kubeId")
     def kube_id(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the managed Kubernetes cluster.
+        The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "kube_id")
 
@@ -114,8 +111,7 @@ class _KubeIpRestrictionsState:
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the public cloud project. If omitted,
-        the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "service_name")
 
@@ -159,9 +155,8 @@ class KubeIpRestrictions(pulumi.CustomResource):
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: List of CIDR authorized to interact with the managed Kubernetes cluster.
-        :param pulumi.Input[str] kube_id: The id of the managed Kubernetes cluster.
-        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
-               the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        :param pulumi.Input[str] kube_id: The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         ...
     @overload
@@ -249,9 +244,8 @@ class KubeIpRestrictions(pulumi.CustomResource):
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] ips: List of CIDR authorized to interact with the managed Kubernetes cluster.
-        :param pulumi.Input[str] kube_id: The id of the managed Kubernetes cluster.
-        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
-               the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        :param pulumi.Input[str] kube_id: The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -274,7 +268,7 @@ class KubeIpRestrictions(pulumi.CustomResource):
     @pulumi.getter(name="kubeId")
     def kube_id(self) -> pulumi.Output[str]:
         """
-        The id of the managed Kubernetes cluster.
+        The id of the managed Kubernetes cluster. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "kube_id")
 
@@ -282,8 +276,7 @@ class KubeIpRestrictions(pulumi.CustomResource):
     @pulumi.getter(name="serviceName")
     def service_name(self) -> pulumi.Output[str]:
         """
-        The id of the public cloud project. If omitted,
-        the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "service_name")
 

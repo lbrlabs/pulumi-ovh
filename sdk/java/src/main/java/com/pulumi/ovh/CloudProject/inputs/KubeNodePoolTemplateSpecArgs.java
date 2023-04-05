@@ -19,16 +19,32 @@ public final class KubeNodePoolTemplateSpecArgs extends com.pulumi.resources.Res
 
     public static final KubeNodePoolTemplateSpecArgs Empty = new KubeNodePoolTemplateSpecArgs();
 
+    /**
+     * Taints to apply to each node
+     * 
+     */
     @Import(name="taints")
     private @Nullable Output<List<Map<String,Object>>> taints;
 
+    /**
+     * @return Taints to apply to each node
+     * 
+     */
     public Optional<Output<List<Map<String,Object>>>> taints() {
         return Optional.ofNullable(this.taints);
     }
 
+    /**
+     * If true, set nodes as un-schedulable
+     * 
+     */
     @Import(name="unschedulable")
     private @Nullable Output<Boolean> unschedulable;
 
+    /**
+     * @return If true, set nodes as un-schedulable
+     * 
+     */
     public Optional<Output<Boolean>> unschedulable() {
         return Optional.ofNullable(this.unschedulable);
     }
@@ -58,24 +74,54 @@ public final class KubeNodePoolTemplateSpecArgs extends com.pulumi.resources.Res
             $ = new KubeNodePoolTemplateSpecArgs(Objects.requireNonNull(defaults));
         }
 
+        /**
+         * @param taints Taints to apply to each node
+         * 
+         * @return builder
+         * 
+         */
         public Builder taints(@Nullable Output<List<Map<String,Object>>> taints) {
             $.taints = taints;
             return this;
         }
 
+        /**
+         * @param taints Taints to apply to each node
+         * 
+         * @return builder
+         * 
+         */
         public Builder taints(List<Map<String,Object>> taints) {
             return taints(Output.of(taints));
         }
 
+        /**
+         * @param taints Taints to apply to each node
+         * 
+         * @return builder
+         * 
+         */
         public Builder taints(Map<String,Object>... taints) {
             return taints(List.of(taints));
         }
 
+        /**
+         * @param unschedulable If true, set nodes as un-schedulable
+         * 
+         * @return builder
+         * 
+         */
         public Builder unschedulable(@Nullable Output<Boolean> unschedulable) {
             $.unschedulable = unschedulable;
             return this;
         }
 
+        /**
+         * @param unschedulable If true, set nodes as un-schedulable
+         * 
+         * @return builder
+         * 
+         */
         public Builder unschedulable(Boolean unschedulable) {
             return unschedulable(Output.of(unschedulable));
         }

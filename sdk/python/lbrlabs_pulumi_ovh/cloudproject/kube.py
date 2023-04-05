@@ -18,7 +18,10 @@ class KubeArgs:
     def __init__(__self__, *,
                  region: pulumi.Input[str],
                  service_name: pulumi.Input[str],
-                 customization: Optional[pulumi.Input['KubeCustomizationArgs']] = None,
+                 customization_apiservers: Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationApiserverArgs']]]] = None,
+                 customization_kube_proxy: Optional[pulumi.Input['KubeCustomizationKubeProxyArgs']] = None,
+                 customizations: Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationArgs']]]] = None,
+                 kube_proxy_mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_network_configuration: Optional[pulumi.Input['KubePrivateNetworkConfigurationArgs']] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
@@ -26,30 +29,31 @@ class KubeArgs:
                  version: Optional[pulumi.Input[str]] = None):
         """
         The set of arguments for constructing a Kube resource.
-        :param pulumi.Input[str] region: a valid OVHcloud public cloud region ID in which the kubernetes
-               cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-               Changing this value recreates the resource.
-        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
-               the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
-        :param pulumi.Input['KubeCustomizationArgs'] customization: Customer customization object
-               * apiserver - Kubernetes API server customization
-               * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-               * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-               * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        :param pulumi.Input[str] region: a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
+        :param pulumi.Input[Sequence[pulumi.Input['KubeCustomizationApiserverArgs']]] customization_apiservers: Kubernetes API server customization
+        :param pulumi.Input['KubeCustomizationKubeProxyArgs'] customization_kube_proxy: Kubernetes kube-proxy customization
+        :param pulumi.Input[Sequence[pulumi.Input['KubeCustomizationArgs']]] customizations: **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        :param pulumi.Input[str] kube_proxy_mode: Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
         :param pulumi.Input[str] name: The name of the kubernetes cluster.
         :param pulumi.Input['KubePrivateNetworkConfigurationArgs'] private_network_configuration: The private network configuration
-               * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-               * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
-        :param pulumi.Input[str] private_network_id: OpenStack private network (or vrack) ID to use.
-               Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+        :param pulumi.Input[str] private_network_id: OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
         :param pulumi.Input[str] update_policy: Cluster update policy. Choose between [ALWAYS_UPDATE, MINIMAL_DOWNTIME, NEVER_UPDATE].
-        :param pulumi.Input[str] version: kubernetes version to use.
-               Changing this value updates the resource. Defaults to latest available.
+        :param pulumi.Input[str] version: kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
         """
         pulumi.set(__self__, "region", region)
         pulumi.set(__self__, "service_name", service_name)
-        if customization is not None:
-            pulumi.set(__self__, "customization", customization)
+        if customization_apiservers is not None:
+            pulumi.set(__self__, "customization_apiservers", customization_apiservers)
+        if customization_kube_proxy is not None:
+            pulumi.set(__self__, "customization_kube_proxy", customization_kube_proxy)
+        if customizations is not None:
+            warnings.warn("""Use customization_apiserver instead""", DeprecationWarning)
+            pulumi.log.warn("""customizations is deprecated: Use customization_apiserver instead""")
+        if customizations is not None:
+            pulumi.set(__self__, "customizations", customizations)
+        if kube_proxy_mode is not None:
+            pulumi.set(__self__, "kube_proxy_mode", kube_proxy_mode)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if private_network_configuration is not None:
@@ -65,9 +69,7 @@ class KubeArgs:
     @pulumi.getter
     def region(self) -> pulumi.Input[str]:
         """
-        a valid OVHcloud public cloud region ID in which the kubernetes
-        cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-        Changing this value recreates the resource.
+        a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "region")
 
@@ -79,8 +81,7 @@ class KubeArgs:
     @pulumi.getter(name="serviceName")
     def service_name(self) -> pulumi.Input[str]:
         """
-        The id of the public cloud project. If omitted,
-        the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "service_name")
 
@@ -89,20 +90,52 @@ class KubeArgs:
         pulumi.set(self, "service_name", value)
 
     @property
-    @pulumi.getter
-    def customization(self) -> Optional[pulumi.Input['KubeCustomizationArgs']]:
+    @pulumi.getter(name="customizationApiservers")
+    def customization_apiservers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationApiserverArgs']]]]:
         """
-        Customer customization object
-        * apiserver - Kubernetes API server customization
-        * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-        * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-        * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        Kubernetes API server customization
         """
-        return pulumi.get(self, "customization")
+        return pulumi.get(self, "customization_apiservers")
 
-    @customization.setter
-    def customization(self, value: Optional[pulumi.Input['KubeCustomizationArgs']]):
-        pulumi.set(self, "customization", value)
+    @customization_apiservers.setter
+    def customization_apiservers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationApiserverArgs']]]]):
+        pulumi.set(self, "customization_apiservers", value)
+
+    @property
+    @pulumi.getter(name="customizationKubeProxy")
+    def customization_kube_proxy(self) -> Optional[pulumi.Input['KubeCustomizationKubeProxyArgs']]:
+        """
+        Kubernetes kube-proxy customization
+        """
+        return pulumi.get(self, "customization_kube_proxy")
+
+    @customization_kube_proxy.setter
+    def customization_kube_proxy(self, value: Optional[pulumi.Input['KubeCustomizationKubeProxyArgs']]):
+        pulumi.set(self, "customization_kube_proxy", value)
+
+    @property
+    @pulumi.getter
+    def customizations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationArgs']]]]:
+        """
+        **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        """
+        return pulumi.get(self, "customizations")
+
+    @customizations.setter
+    def customizations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationArgs']]]]):
+        pulumi.set(self, "customizations", value)
+
+    @property
+    @pulumi.getter(name="kubeProxyMode")
+    def kube_proxy_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+        """
+        return pulumi.get(self, "kube_proxy_mode")
+
+    @kube_proxy_mode.setter
+    def kube_proxy_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kube_proxy_mode", value)
 
     @property
     @pulumi.getter
@@ -121,8 +154,6 @@ class KubeArgs:
     def private_network_configuration(self) -> Optional[pulumi.Input['KubePrivateNetworkConfigurationArgs']]:
         """
         The private network configuration
-        * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-        * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
         """
         return pulumi.get(self, "private_network_configuration")
 
@@ -134,8 +165,7 @@ class KubeArgs:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[pulumi.Input[str]]:
         """
-        OpenStack private network (or vrack) ID to use.
-        Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+        OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -159,8 +189,7 @@ class KubeArgs:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        kubernetes version to use.
-        Changing this value updates the resource. Defaults to latest available.
+        kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
         """
         return pulumi.get(self, "version")
 
@@ -173,9 +202,13 @@ class KubeArgs:
 class _KubeState:
     def __init__(__self__, *,
                  control_plane_is_up_to_date: Optional[pulumi.Input[bool]] = None,
-                 customization: Optional[pulumi.Input['KubeCustomizationArgs']] = None,
+                 customization_apiservers: Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationApiserverArgs']]]] = None,
+                 customization_kube_proxy: Optional[pulumi.Input['KubeCustomizationKubeProxyArgs']] = None,
+                 customizations: Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationArgs']]]] = None,
                  is_up_to_date: Optional[pulumi.Input[bool]] = None,
+                 kube_proxy_mode: Optional[pulumi.Input[str]] = None,
                  kubeconfig: Optional[pulumi.Input[str]] = None,
+                 kubeconfig_attributes: Optional[pulumi.Input[Sequence[pulumi.Input['KubeKubeconfigAttributeArgs']]]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  next_upgrade_versions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
                  nodes_url: Optional[pulumi.Input[str]] = None,
@@ -189,41 +222,45 @@ class _KubeState:
                  version: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Kube resources.
-        :param pulumi.Input[bool] control_plane_is_up_to_date: True if control-plane is up to date.
-        :param pulumi.Input['KubeCustomizationArgs'] customization: Customer customization object
-               * apiserver - Kubernetes API server customization
-               * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-               * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-               * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-        :param pulumi.Input[bool] is_up_to_date: True if all nodes and control-plane are up to date.
+        :param pulumi.Input[bool] control_plane_is_up_to_date: True if control-plane is up-to-date.
+        :param pulumi.Input[Sequence[pulumi.Input['KubeCustomizationApiserverArgs']]] customization_apiservers: Kubernetes API server customization
+        :param pulumi.Input['KubeCustomizationKubeProxyArgs'] customization_kube_proxy: Kubernetes kube-proxy customization
+        :param pulumi.Input[Sequence[pulumi.Input['KubeCustomizationArgs']]] customizations: **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        :param pulumi.Input[bool] is_up_to_date: True if all nodes and control-plane are up-to-date.
+        :param pulumi.Input[str] kube_proxy_mode: Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
         :param pulumi.Input[str] kubeconfig: The kubeconfig file. Use this file to connect to your kubernetes cluster.
+        :param pulumi.Input[Sequence[pulumi.Input['KubeKubeconfigAttributeArgs']]] kubeconfig_attributes: The kubeconfig file attributes.
         :param pulumi.Input[str] name: The name of the kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] next_upgrade_versions: Kubernetes versions available for upgrade.
         :param pulumi.Input[str] nodes_url: Cluster nodes URL.
         :param pulumi.Input['KubePrivateNetworkConfigurationArgs'] private_network_configuration: The private network configuration
-               * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-               * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
-        :param pulumi.Input[str] private_network_id: OpenStack private network (or vrack) ID to use.
-               Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
-        :param pulumi.Input[str] region: a valid OVHcloud public cloud region ID in which the kubernetes
-               cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-               Changing this value recreates the resource.
-        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
-               the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        :param pulumi.Input[str] private_network_id: OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+        :param pulumi.Input[str] region: a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         :param pulumi.Input[str] status: Cluster status. Should be normally set to 'READY'.
         :param pulumi.Input[str] update_policy: Cluster update policy. Choose between [ALWAYS_UPDATE, MINIMAL_DOWNTIME, NEVER_UPDATE].
         :param pulumi.Input[str] url: Management URL of your cluster.
-        :param pulumi.Input[str] version: kubernetes version to use.
-               Changing this value updates the resource. Defaults to latest available.
+        :param pulumi.Input[str] version: kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
         """
         if control_plane_is_up_to_date is not None:
             pulumi.set(__self__, "control_plane_is_up_to_date", control_plane_is_up_to_date)
-        if customization is not None:
-            pulumi.set(__self__, "customization", customization)
+        if customization_apiservers is not None:
+            pulumi.set(__self__, "customization_apiservers", customization_apiservers)
+        if customization_kube_proxy is not None:
+            pulumi.set(__self__, "customization_kube_proxy", customization_kube_proxy)
+        if customizations is not None:
+            warnings.warn("""Use customization_apiserver instead""", DeprecationWarning)
+            pulumi.log.warn("""customizations is deprecated: Use customization_apiserver instead""")
+        if customizations is not None:
+            pulumi.set(__self__, "customizations", customizations)
         if is_up_to_date is not None:
             pulumi.set(__self__, "is_up_to_date", is_up_to_date)
+        if kube_proxy_mode is not None:
+            pulumi.set(__self__, "kube_proxy_mode", kube_proxy_mode)
         if kubeconfig is not None:
             pulumi.set(__self__, "kubeconfig", kubeconfig)
+        if kubeconfig_attributes is not None:
+            pulumi.set(__self__, "kubeconfig_attributes", kubeconfig_attributes)
         if name is not None:
             pulumi.set(__self__, "name", name)
         if next_upgrade_versions is not None:
@@ -251,7 +288,7 @@ class _KubeState:
     @pulumi.getter(name="controlPlaneIsUpToDate")
     def control_plane_is_up_to_date(self) -> Optional[pulumi.Input[bool]]:
         """
-        True if control-plane is up to date.
+        True if control-plane is up-to-date.
         """
         return pulumi.get(self, "control_plane_is_up_to_date")
 
@@ -260,32 +297,64 @@ class _KubeState:
         pulumi.set(self, "control_plane_is_up_to_date", value)
 
     @property
-    @pulumi.getter
-    def customization(self) -> Optional[pulumi.Input['KubeCustomizationArgs']]:
+    @pulumi.getter(name="customizationApiservers")
+    def customization_apiservers(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationApiserverArgs']]]]:
         """
-        Customer customization object
-        * apiserver - Kubernetes API server customization
-        * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-        * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-        * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        Kubernetes API server customization
         """
-        return pulumi.get(self, "customization")
+        return pulumi.get(self, "customization_apiservers")
 
-    @customization.setter
-    def customization(self, value: Optional[pulumi.Input['KubeCustomizationArgs']]):
-        pulumi.set(self, "customization", value)
+    @customization_apiservers.setter
+    def customization_apiservers(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationApiserverArgs']]]]):
+        pulumi.set(self, "customization_apiservers", value)
+
+    @property
+    @pulumi.getter(name="customizationKubeProxy")
+    def customization_kube_proxy(self) -> Optional[pulumi.Input['KubeCustomizationKubeProxyArgs']]:
+        """
+        Kubernetes kube-proxy customization
+        """
+        return pulumi.get(self, "customization_kube_proxy")
+
+    @customization_kube_proxy.setter
+    def customization_kube_proxy(self, value: Optional[pulumi.Input['KubeCustomizationKubeProxyArgs']]):
+        pulumi.set(self, "customization_kube_proxy", value)
+
+    @property
+    @pulumi.getter
+    def customizations(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationArgs']]]]:
+        """
+        **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        """
+        return pulumi.get(self, "customizations")
+
+    @customizations.setter
+    def customizations(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubeCustomizationArgs']]]]):
+        pulumi.set(self, "customizations", value)
 
     @property
     @pulumi.getter(name="isUpToDate")
     def is_up_to_date(self) -> Optional[pulumi.Input[bool]]:
         """
-        True if all nodes and control-plane are up to date.
+        True if all nodes and control-plane are up-to-date.
         """
         return pulumi.get(self, "is_up_to_date")
 
     @is_up_to_date.setter
     def is_up_to_date(self, value: Optional[pulumi.Input[bool]]):
         pulumi.set(self, "is_up_to_date", value)
+
+    @property
+    @pulumi.getter(name="kubeProxyMode")
+    def kube_proxy_mode(self) -> Optional[pulumi.Input[str]]:
+        """
+        Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+        """
+        return pulumi.get(self, "kube_proxy_mode")
+
+    @kube_proxy_mode.setter
+    def kube_proxy_mode(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "kube_proxy_mode", value)
 
     @property
     @pulumi.getter
@@ -298,6 +367,18 @@ class _KubeState:
     @kubeconfig.setter
     def kubeconfig(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "kubeconfig", value)
+
+    @property
+    @pulumi.getter(name="kubeconfigAttributes")
+    def kubeconfig_attributes(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['KubeKubeconfigAttributeArgs']]]]:
+        """
+        The kubeconfig file attributes.
+        """
+        return pulumi.get(self, "kubeconfig_attributes")
+
+    @kubeconfig_attributes.setter
+    def kubeconfig_attributes(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['KubeKubeconfigAttributeArgs']]]]):
+        pulumi.set(self, "kubeconfig_attributes", value)
 
     @property
     @pulumi.getter
@@ -340,8 +421,6 @@ class _KubeState:
     def private_network_configuration(self) -> Optional[pulumi.Input['KubePrivateNetworkConfigurationArgs']]:
         """
         The private network configuration
-        * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-        * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
         """
         return pulumi.get(self, "private_network_configuration")
 
@@ -353,8 +432,7 @@ class _KubeState:
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> Optional[pulumi.Input[str]]:
         """
-        OpenStack private network (or vrack) ID to use.
-        Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+        OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -366,9 +444,7 @@ class _KubeState:
     @pulumi.getter
     def region(self) -> Optional[pulumi.Input[str]]:
         """
-        a valid OVHcloud public cloud region ID in which the kubernetes
-        cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-        Changing this value recreates the resource.
+        a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "region")
 
@@ -380,8 +456,7 @@ class _KubeState:
     @pulumi.getter(name="serviceName")
     def service_name(self) -> Optional[pulumi.Input[str]]:
         """
-        The id of the public cloud project. If omitted,
-        the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "service_name")
 
@@ -429,8 +504,7 @@ class _KubeState:
     @pulumi.getter
     def version(self) -> Optional[pulumi.Input[str]]:
         """
-        kubernetes version to use.
-        Changing this value updates the resource. Defaults to latest available.
+        kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
         """
         return pulumi.get(self, "version")
 
@@ -444,7 +518,10 @@ class Kube(pulumi.CustomResource):
     def __init__(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 customization: Optional[pulumi.Input[pulumi.InputType['KubeCustomizationArgs']]] = None,
+                 customization_apiservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeCustomizationApiserverArgs']]]]] = None,
+                 customization_kube_proxy: Optional[pulumi.Input[pulumi.InputType['KubeCustomizationKubeProxyArgs']]] = None,
+                 customizations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeCustomizationArgs']]]]] = None,
+                 kube_proxy_mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_network_configuration: Optional[pulumi.Input[pulumi.InputType['KubePrivateNetworkConfigurationArgs']]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
@@ -454,8 +531,6 @@ class Kube(pulumi.CustomResource):
                  version: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Creates a OVHcloud Managed Kubernetes Service cluster in a public cloud project.
-
         ## Import
 
         OVHcloud Managed Kubernetes Service clusters can be imported using the `service_name` and the `id` of the cluster, separated by "/" E.g., bash
@@ -466,25 +541,17 @@ class Kube(pulumi.CustomResource):
 
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[pulumi.InputType['KubeCustomizationArgs']] customization: Customer customization object
-               * apiserver - Kubernetes API server customization
-               * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-               * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-               * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeCustomizationApiserverArgs']]]] customization_apiservers: Kubernetes API server customization
+        :param pulumi.Input[pulumi.InputType['KubeCustomizationKubeProxyArgs']] customization_kube_proxy: Kubernetes kube-proxy customization
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeCustomizationArgs']]]] customizations: **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        :param pulumi.Input[str] kube_proxy_mode: Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
         :param pulumi.Input[str] name: The name of the kubernetes cluster.
         :param pulumi.Input[pulumi.InputType['KubePrivateNetworkConfigurationArgs']] private_network_configuration: The private network configuration
-               * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-               * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
-        :param pulumi.Input[str] private_network_id: OpenStack private network (or vrack) ID to use.
-               Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
-        :param pulumi.Input[str] region: a valid OVHcloud public cloud region ID in which the kubernetes
-               cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-               Changing this value recreates the resource.
-        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
-               the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        :param pulumi.Input[str] private_network_id: OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+        :param pulumi.Input[str] region: a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         :param pulumi.Input[str] update_policy: Cluster update policy. Choose between [ALWAYS_UPDATE, MINIMAL_DOWNTIME, NEVER_UPDATE].
-        :param pulumi.Input[str] version: kubernetes version to use.
-               Changing this value updates the resource. Defaults to latest available.
+        :param pulumi.Input[str] version: kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
         """
         ...
     @overload
@@ -493,8 +560,6 @@ class Kube(pulumi.CustomResource):
                  args: KubeArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Creates a OVHcloud Managed Kubernetes Service cluster in a public cloud project.
-
         ## Import
 
         OVHcloud Managed Kubernetes Service clusters can be imported using the `service_name` and the `id` of the cluster, separated by "/" E.g., bash
@@ -518,7 +583,10 @@ class Kube(pulumi.CustomResource):
     def _internal_init(__self__,
                  resource_name: str,
                  opts: Optional[pulumi.ResourceOptions] = None,
-                 customization: Optional[pulumi.Input[pulumi.InputType['KubeCustomizationArgs']]] = None,
+                 customization_apiservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeCustomizationApiserverArgs']]]]] = None,
+                 customization_kube_proxy: Optional[pulumi.Input[pulumi.InputType['KubeCustomizationKubeProxyArgs']]] = None,
+                 customizations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeCustomizationArgs']]]]] = None,
+                 kube_proxy_mode: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
                  private_network_configuration: Optional[pulumi.Input[pulumi.InputType['KubePrivateNetworkConfigurationArgs']]] = None,
                  private_network_id: Optional[pulumi.Input[str]] = None,
@@ -535,7 +603,13 @@ class Kube(pulumi.CustomResource):
                 raise TypeError('__props__ is only valid when passed in combination with a valid opts.id to get an existing resource')
             __props__ = KubeArgs.__new__(KubeArgs)
 
-            __props__.__dict__["customization"] = customization
+            __props__.__dict__["customization_apiservers"] = customization_apiservers
+            __props__.__dict__["customization_kube_proxy"] = customization_kube_proxy
+            if customizations is not None and not opts.urn:
+                warnings.warn("""Use customization_apiserver instead""", DeprecationWarning)
+                pulumi.log.warn("""customizations is deprecated: Use customization_apiserver instead""")
+            __props__.__dict__["customizations"] = customizations
+            __props__.__dict__["kube_proxy_mode"] = kube_proxy_mode
             __props__.__dict__["name"] = name
             __props__.__dict__["private_network_configuration"] = private_network_configuration
             __props__.__dict__["private_network_id"] = private_network_id
@@ -550,11 +624,12 @@ class Kube(pulumi.CustomResource):
             __props__.__dict__["control_plane_is_up_to_date"] = None
             __props__.__dict__["is_up_to_date"] = None
             __props__.__dict__["kubeconfig"] = None
+            __props__.__dict__["kubeconfig_attributes"] = None
             __props__.__dict__["next_upgrade_versions"] = None
             __props__.__dict__["nodes_url"] = None
             __props__.__dict__["status"] = None
             __props__.__dict__["url"] = None
-        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["kubeconfig"])
+        secret_opts = pulumi.ResourceOptions(additional_secret_outputs=["kubeconfig", "kubeconfigAttributes"])
         opts = pulumi.ResourceOptions.merge(opts, secret_opts)
         super(Kube, __self__).__init__(
             'ovh:CloudProject/kube:Kube',
@@ -567,9 +642,13 @@ class Kube(pulumi.CustomResource):
             id: pulumi.Input[str],
             opts: Optional[pulumi.ResourceOptions] = None,
             control_plane_is_up_to_date: Optional[pulumi.Input[bool]] = None,
-            customization: Optional[pulumi.Input[pulumi.InputType['KubeCustomizationArgs']]] = None,
+            customization_apiservers: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeCustomizationApiserverArgs']]]]] = None,
+            customization_kube_proxy: Optional[pulumi.Input[pulumi.InputType['KubeCustomizationKubeProxyArgs']]] = None,
+            customizations: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeCustomizationArgs']]]]] = None,
             is_up_to_date: Optional[pulumi.Input[bool]] = None,
+            kube_proxy_mode: Optional[pulumi.Input[str]] = None,
             kubeconfig: Optional[pulumi.Input[str]] = None,
+            kubeconfig_attributes: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeKubeconfigAttributeArgs']]]]] = None,
             name: Optional[pulumi.Input[str]] = None,
             next_upgrade_versions: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None,
             nodes_url: Optional[pulumi.Input[str]] = None,
@@ -588,41 +667,38 @@ class Kube(pulumi.CustomResource):
         :param str resource_name: The unique name of the resulting resource.
         :param pulumi.Input[str] id: The unique provider ID of the resource to lookup.
         :param pulumi.ResourceOptions opts: Options for the resource.
-        :param pulumi.Input[bool] control_plane_is_up_to_date: True if control-plane is up to date.
-        :param pulumi.Input[pulumi.InputType['KubeCustomizationArgs']] customization: Customer customization object
-               * apiserver - Kubernetes API server customization
-               * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-               * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-               * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
-        :param pulumi.Input[bool] is_up_to_date: True if all nodes and control-plane are up to date.
+        :param pulumi.Input[bool] control_plane_is_up_to_date: True if control-plane is up-to-date.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeCustomizationApiserverArgs']]]] customization_apiservers: Kubernetes API server customization
+        :param pulumi.Input[pulumi.InputType['KubeCustomizationKubeProxyArgs']] customization_kube_proxy: Kubernetes kube-proxy customization
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeCustomizationArgs']]]] customizations: **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
+        :param pulumi.Input[bool] is_up_to_date: True if all nodes and control-plane are up-to-date.
+        :param pulumi.Input[str] kube_proxy_mode: Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
         :param pulumi.Input[str] kubeconfig: The kubeconfig file. Use this file to connect to your kubernetes cluster.
+        :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['KubeKubeconfigAttributeArgs']]]] kubeconfig_attributes: The kubeconfig file attributes.
         :param pulumi.Input[str] name: The name of the kubernetes cluster.
         :param pulumi.Input[Sequence[pulumi.Input[str]]] next_upgrade_versions: Kubernetes versions available for upgrade.
         :param pulumi.Input[str] nodes_url: Cluster nodes URL.
         :param pulumi.Input[pulumi.InputType['KubePrivateNetworkConfigurationArgs']] private_network_configuration: The private network configuration
-               * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-               * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
-        :param pulumi.Input[str] private_network_id: OpenStack private network (or vrack) ID to use.
-               Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
-        :param pulumi.Input[str] region: a valid OVHcloud public cloud region ID in which the kubernetes
-               cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-               Changing this value recreates the resource.
-        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
-               the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        :param pulumi.Input[str] private_network_id: OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+        :param pulumi.Input[str] region: a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
+        :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         :param pulumi.Input[str] status: Cluster status. Should be normally set to 'READY'.
         :param pulumi.Input[str] update_policy: Cluster update policy. Choose between [ALWAYS_UPDATE, MINIMAL_DOWNTIME, NEVER_UPDATE].
         :param pulumi.Input[str] url: Management URL of your cluster.
-        :param pulumi.Input[str] version: kubernetes version to use.
-               Changing this value updates the resource. Defaults to latest available.
+        :param pulumi.Input[str] version: kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
         __props__ = _KubeState.__new__(_KubeState)
 
         __props__.__dict__["control_plane_is_up_to_date"] = control_plane_is_up_to_date
-        __props__.__dict__["customization"] = customization
+        __props__.__dict__["customization_apiservers"] = customization_apiservers
+        __props__.__dict__["customization_kube_proxy"] = customization_kube_proxy
+        __props__.__dict__["customizations"] = customizations
         __props__.__dict__["is_up_to_date"] = is_up_to_date
+        __props__.__dict__["kube_proxy_mode"] = kube_proxy_mode
         __props__.__dict__["kubeconfig"] = kubeconfig
+        __props__.__dict__["kubeconfig_attributes"] = kubeconfig_attributes
         __props__.__dict__["name"] = name
         __props__.__dict__["next_upgrade_versions"] = next_upgrade_versions
         __props__.__dict__["nodes_url"] = nodes_url
@@ -640,29 +716,49 @@ class Kube(pulumi.CustomResource):
     @pulumi.getter(name="controlPlaneIsUpToDate")
     def control_plane_is_up_to_date(self) -> pulumi.Output[bool]:
         """
-        True if control-plane is up to date.
+        True if control-plane is up-to-date.
         """
         return pulumi.get(self, "control_plane_is_up_to_date")
 
     @property
+    @pulumi.getter(name="customizationApiservers")
+    def customization_apiservers(self) -> pulumi.Output[Sequence['outputs.KubeCustomizationApiserver']]:
+        """
+        Kubernetes API server customization
+        """
+        return pulumi.get(self, "customization_apiservers")
+
+    @property
+    @pulumi.getter(name="customizationKubeProxy")
+    def customization_kube_proxy(self) -> pulumi.Output[Optional['outputs.KubeCustomizationKubeProxy']]:
+        """
+        Kubernetes kube-proxy customization
+        """
+        return pulumi.get(self, "customization_kube_proxy")
+
+    @property
     @pulumi.getter
-    def customization(self) -> pulumi.Output['outputs.KubeCustomization']:
+    def customizations(self) -> pulumi.Output[Sequence['outputs.KubeCustomization']]:
         """
-        Customer customization object
-        * apiserver - Kubernetes API server customization
-        * admissionplugins - (Optional) Kubernetes API server admission plugins customization
-        * enabled - (Optional) Array of admission plugins enabled, default is ["NodeRestriction","AlwaysPulImages"] and only these admission plugins can be enabled at this time.
-        * disabled - (Optional) Array of admission plugins disabled, default is [] and only AlwaysPulImages can be disabled at this time.
+        **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
         """
-        return pulumi.get(self, "customization")
+        return pulumi.get(self, "customizations")
 
     @property
     @pulumi.getter(name="isUpToDate")
     def is_up_to_date(self) -> pulumi.Output[bool]:
         """
-        True if all nodes and control-plane are up to date.
+        True if all nodes and control-plane are up-to-date.
         """
         return pulumi.get(self, "is_up_to_date")
+
+    @property
+    @pulumi.getter(name="kubeProxyMode")
+    def kube_proxy_mode(self) -> pulumi.Output[str]:
+        """
+        Selected mode for kube-proxy. **Changing this value recreates the resource, including ETCD user data.** Defaults to `iptables`.
+        """
+        return pulumi.get(self, "kube_proxy_mode")
 
     @property
     @pulumi.getter
@@ -671,6 +767,14 @@ class Kube(pulumi.CustomResource):
         The kubeconfig file. Use this file to connect to your kubernetes cluster.
         """
         return pulumi.get(self, "kubeconfig")
+
+    @property
+    @pulumi.getter(name="kubeconfigAttributes")
+    def kubeconfig_attributes(self) -> pulumi.Output[Sequence['outputs.KubeKubeconfigAttribute']]:
+        """
+        The kubeconfig file attributes.
+        """
+        return pulumi.get(self, "kubeconfig_attributes")
 
     @property
     @pulumi.getter
@@ -701,8 +805,6 @@ class Kube(pulumi.CustomResource):
     def private_network_configuration(self) -> pulumi.Output[Optional['outputs.KubePrivateNetworkConfiguration']]:
         """
         The private network configuration
-        * default_vrack_gateway - If defined, all egress traffic will be routed towards this IP address, which should belong to the private network. Empty string means disabled.
-        * private_network_routing_as_default - Defines whether routing should default to using the nodes' private interface, instead of their public interface. Default is false.
         """
         return pulumi.get(self, "private_network_configuration")
 
@@ -710,8 +812,7 @@ class Kube(pulumi.CustomResource):
     @pulumi.getter(name="privateNetworkId")
     def private_network_id(self) -> pulumi.Output[Optional[str]]:
         """
-        OpenStack private network (or vrack) ID to use.
-        Changing this value delete the resource(including ETCD user data). Defaults - not use private network.
+        OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
         """
         return pulumi.get(self, "private_network_id")
 
@@ -719,9 +820,7 @@ class Kube(pulumi.CustomResource):
     @pulumi.getter
     def region(self) -> pulumi.Output[str]:
         """
-        a valid OVHcloud public cloud region ID in which the kubernetes
-        cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions.
-        Changing this value recreates the resource.
+        a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "region")
 
@@ -729,8 +828,7 @@ class Kube(pulumi.CustomResource):
     @pulumi.getter(name="serviceName")
     def service_name(self) -> pulumi.Output[str]:
         """
-        The id of the public cloud project. If omitted,
-        the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
+        The id of the public cloud project. If omitted, the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used. **Changing this value recreates the resource.**
         """
         return pulumi.get(self, "service_name")
 
@@ -762,8 +860,7 @@ class Kube(pulumi.CustomResource):
     @pulumi.getter
     def version(self) -> pulumi.Output[str]:
         """
-        kubernetes version to use.
-        Changing this value updates the resource. Defaults to latest available.
+        kubernetes version to use. Changing this value updates the resource. Defaults to the latest available.
         """
         return pulumi.get(self, "version")
 

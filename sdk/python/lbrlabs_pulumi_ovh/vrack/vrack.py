@@ -17,27 +17,31 @@ __all__ = ['VrackArgs', 'Vrack']
 class VrackArgs:
     def __init__(__self__, *,
                  ovh_subsidiary: pulumi.Input[str],
-                 payment_mean: pulumi.Input[str],
                  plan: pulumi.Input['VrackPlanArgs'],
                  description: Optional[pulumi.Input[str]] = None,
                  name: Optional[pulumi.Input[str]] = None,
+                 payment_mean: Optional[pulumi.Input[str]] = None,
                  plan_options: Optional[pulumi.Input[Sequence[pulumi.Input['VrackPlanOptionArgs']]]] = None):
         """
         The set of arguments for constructing a Vrack resource.
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
         :param pulumi.Input['VrackPlanArgs'] plan: Product Plan to order
         :param pulumi.Input[str] description: yourvrackdescription
         :param pulumi.Input[str] name: yourvrackname
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[Sequence[pulumi.Input['VrackPlanOptionArgs']]] plan_options: Product Plan to order
         """
         pulumi.set(__self__, "ovh_subsidiary", ovh_subsidiary)
-        pulumi.set(__self__, "payment_mean", payment_mean)
         pulumi.set(__self__, "plan", plan)
         if description is not None:
             pulumi.set(__self__, "description", description)
         if name is not None:
             pulumi.set(__self__, "name", name)
+        if payment_mean is not None:
+            warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+            pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+        if payment_mean is not None:
+            pulumi.set(__self__, "payment_mean", payment_mean)
         if plan_options is not None:
             pulumi.set(__self__, "plan_options", plan_options)
 
@@ -52,18 +56,6 @@ class VrackArgs:
     @ovh_subsidiary.setter
     def ovh_subsidiary(self, value: pulumi.Input[str]):
         pulumi.set(self, "ovh_subsidiary", value)
-
-    @property
-    @pulumi.getter(name="paymentMean")
-    def payment_mean(self) -> pulumi.Input[str]:
-        """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
-        """
-        return pulumi.get(self, "payment_mean")
-
-    @payment_mean.setter
-    def payment_mean(self, value: pulumi.Input[str]):
-        pulumi.set(self, "payment_mean", value)
 
     @property
     @pulumi.getter
@@ -102,6 +94,18 @@ class VrackArgs:
         pulumi.set(self, "name", value)
 
     @property
+    @pulumi.getter(name="paymentMean")
+    def payment_mean(self) -> Optional[pulumi.Input[str]]:
+        """
+        Ovh payment mode
+        """
+        return pulumi.get(self, "payment_mean")
+
+    @payment_mean.setter
+    def payment_mean(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "payment_mean", value)
+
+    @property
     @pulumi.getter(name="planOptions")
     def plan_options(self) -> Optional[pulumi.Input[Sequence[pulumi.Input['VrackPlanOptionArgs']]]]:
         """
@@ -131,7 +135,7 @@ class _VrackState:
         :param pulumi.Input[str] name: yourvrackname
         :param pulumi.Input[Sequence[pulumi.Input['VrackOrderArgs']]] orders: Details about an Order
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input['VrackPlanArgs'] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input['VrackPlanOptionArgs']]] plan_options: Product Plan to order
         :param pulumi.Input[str] service_name: The internal name of your vrack
@@ -144,6 +148,9 @@ class _VrackState:
             pulumi.set(__self__, "orders", orders)
         if ovh_subsidiary is not None:
             pulumi.set(__self__, "ovh_subsidiary", ovh_subsidiary)
+        if payment_mean is not None:
+            warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+            pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
         if payment_mean is not None:
             pulumi.set(__self__, "payment_mean", payment_mean)
         if plan is not None:
@@ -205,7 +212,7 @@ class _VrackState:
     @pulumi.getter(name="paymentMean")
     def payment_mean(self) -> Optional[pulumi.Input[str]]:
         """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        Ovh payment mode
         """
         return pulumi.get(self, "payment_mean")
 
@@ -263,14 +270,6 @@ class Vrack(pulumi.CustomResource):
                  plan_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VrackPlanOptionArgs']]]]] = None,
                  __props__=None):
         """
-        Orders a vrack.
-
-        ## Important
-
-        > __WARNING__ This resource is in beta state. Use with caution.
-
-        > __NOTE__ Currently, the OVHcloud API doesn't support Vrack termination. You have to open a support ticket to ask for vrack termination. Otherwise, you may hit vrack quota issues.
-
         ## Example Usage
 
         ```python
@@ -286,7 +285,6 @@ class Vrack(pulumi.CustomResource):
             plan_code="vrack")
         vrack_vrack = ovh.vrack.Vrack("vrackVrack",
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="fidelity",
             description="my vrack",
             plan=ovh.vrack.VrackPlanArgs(
                 duration=vrack_cart_product_plan.selected_prices[0].duration,
@@ -300,7 +298,7 @@ class Vrack(pulumi.CustomResource):
         :param pulumi.Input[str] description: yourvrackdescription
         :param pulumi.Input[str] name: yourvrackname
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[pulumi.InputType['VrackPlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VrackPlanOptionArgs']]]] plan_options: Product Plan to order
         """
@@ -311,14 +309,6 @@ class Vrack(pulumi.CustomResource):
                  args: VrackArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Orders a vrack.
-
-        ## Important
-
-        > __WARNING__ This resource is in beta state. Use with caution.
-
-        > __NOTE__ Currently, the OVHcloud API doesn't support Vrack termination. You have to open a support ticket to ask for vrack termination. Otherwise, you may hit vrack quota issues.
-
         ## Example Usage
 
         ```python
@@ -334,7 +324,6 @@ class Vrack(pulumi.CustomResource):
             plan_code="vrack")
         vrack_vrack = ovh.vrack.Vrack("vrackVrack",
             ovh_subsidiary=mycart.ovh_subsidiary,
-            payment_mean="fidelity",
             description="my vrack",
             plan=ovh.vrack.VrackPlanArgs(
                 duration=vrack_cart_product_plan.selected_prices[0].duration,
@@ -378,8 +367,9 @@ class Vrack(pulumi.CustomResource):
             if ovh_subsidiary is None and not opts.urn:
                 raise TypeError("Missing required property 'ovh_subsidiary'")
             __props__.__dict__["ovh_subsidiary"] = ovh_subsidiary
-            if payment_mean is None and not opts.urn:
-                raise TypeError("Missing required property 'payment_mean'")
+            if payment_mean is not None and not opts.urn:
+                warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+                pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
             __props__.__dict__["payment_mean"] = payment_mean
             if plan is None and not opts.urn:
                 raise TypeError("Missing required property 'plan'")
@@ -416,7 +406,7 @@ class Vrack(pulumi.CustomResource):
         :param pulumi.Input[str] name: yourvrackname
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VrackOrderArgs']]]] orders: Details about an Order
         :param pulumi.Input[str] ovh_subsidiary: OVHcloud Subsidiary
-        :param pulumi.Input[str] payment_mean: OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        :param pulumi.Input[str] payment_mean: Ovh payment mode
         :param pulumi.Input[pulumi.InputType['VrackPlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VrackPlanOptionArgs']]]] plan_options: Product Plan to order
         :param pulumi.Input[str] service_name: The internal name of your vrack
@@ -469,9 +459,9 @@ class Vrack(pulumi.CustomResource):
 
     @property
     @pulumi.getter(name="paymentMean")
-    def payment_mean(self) -> pulumi.Output[str]:
+    def payment_mean(self) -> pulumi.Output[Optional[str]]:
         """
-        OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+        Ovh payment mode
         """
         return pulumi.get(self, "payment_mean")
 

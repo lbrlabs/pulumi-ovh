@@ -7,14 +7,6 @@ import * as outputs from "../types/output";
 import * as utilities from "../utilities";
 
 /**
- * Orders a vrack.
- *
- * ## Important
- *
- * > __WARNING__ This resource is in beta state. Use with caution.
- *
- * > __NOTE__ Currently, the OVHcloud API doesn't support Vrack termination. You have to open a support ticket to ask for vrack termination. Otherwise, you may hit vrack quota issues.
- *
  * ## Example Usage
  *
  * ```typescript
@@ -34,7 +26,6 @@ import * as utilities from "../utilities";
  * }));
  * const vrackVrack = new ovh.vrack.Vrack("vrackVrack", {
  *     ovhSubsidiary: mycart.then(mycart => mycart.ovhSubsidiary),
- *     paymentMean: "fidelity",
  *     description: "my vrack",
  *     plan: {
  *         duration: vrackCartProductPlan.then(vrackCartProductPlan => vrackCartProductPlan.selectedPrices?.[0]?.duration),
@@ -89,9 +80,11 @@ export class Vrack extends pulumi.CustomResource {
      */
     public readonly ovhSubsidiary!: pulumi.Output<string>;
     /**
-     * OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+     * Ovh payment mode
+     *
+     * @deprecated This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      */
-    public readonly paymentMean!: pulumi.Output<string>;
+    public readonly paymentMean!: pulumi.Output<string | undefined>;
     /**
      * Product Plan to order
      */
@@ -131,9 +124,6 @@ export class Vrack extends pulumi.CustomResource {
             if ((!args || args.ovhSubsidiary === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'ovhSubsidiary'");
             }
-            if ((!args || args.paymentMean === undefined) && !opts.urn) {
-                throw new Error("Missing required property 'paymentMean'");
-            }
             if ((!args || args.plan === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'plan'");
             }
@@ -172,7 +162,9 @@ export interface VrackState {
      */
     ovhSubsidiary?: pulumi.Input<string>;
     /**
-     * OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+     * Ovh payment mode
+     *
+     * @deprecated This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      */
     paymentMean?: pulumi.Input<string>;
     /**
@@ -206,9 +198,11 @@ export interface VrackArgs {
      */
     ovhSubsidiary: pulumi.Input<string>;
     /**
-     * OVHcloud payment mode (One of "default-payment-mean", "fidelity", "ovh-account")
+     * Ovh payment mode
+     *
+     * @deprecated This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.
      */
-    paymentMean: pulumi.Input<string>;
+    paymentMean?: pulumi.Input<string>;
     /**
      * Product Plan to order
      */

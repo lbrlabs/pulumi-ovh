@@ -15,6 +15,7 @@ import (
 // ## Example Usage
 //
 // To get information of a database cluster service:
+//
 // ```go
 // package main
 //
@@ -65,6 +66,8 @@ type GetDatabaseArgs struct {
 
 // A collection of values returned by getDatabase.
 type GetDatabaseResult struct {
+	// Advanced configuration key / value.
+	AdvancedConfiguration map[string]string `pulumi:"advancedConfiguration"`
 	// Time on which backups start every day.
 	BackupTime string `pulumi:"backupTime"`
 	// Date of the creation of the cluster.
@@ -144,6 +147,11 @@ func (o GetDatabaseResultOutput) ToGetDatabaseResultOutput() GetDatabaseResultOu
 
 func (o GetDatabaseResultOutput) ToGetDatabaseResultOutputWithContext(ctx context.Context) GetDatabaseResultOutput {
 	return o
+}
+
+// Advanced configuration key / value.
+func (o GetDatabaseResultOutput) AdvancedConfiguration() pulumi.StringMapOutput {
+	return o.ApplyT(func(v GetDatabaseResult) map[string]string { return v.AdvancedConfiguration }).(pulumi.StringMapOutput)
 }
 
 // Time on which backups start every day.

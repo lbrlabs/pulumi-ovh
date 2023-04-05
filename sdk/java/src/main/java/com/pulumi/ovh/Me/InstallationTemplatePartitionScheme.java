@@ -71,7 +71,7 @@ public class InstallationTemplatePartitionScheme extends com.pulumi.resources.Cu
      * (Required) This partition scheme name.
      * 
      */
-    @Export(name="name", type=String.class, parameters={})
+    @Export(name="name", refs={String.class}, tree="[0]")
     private Output<String> name;
 
     /**
@@ -85,7 +85,7 @@ public class InstallationTemplatePartitionScheme extends com.pulumi.resources.Cu
      * on a reinstall, if a partitioning scheme is not specified, the one with the higher priority will be used by default, among all the compatible partitioning schemes (given the underlying hardware specifications).
      * 
      */
-    @Export(name="priority", type=Integer.class, parameters={})
+    @Export(name="priority", refs={Integer.class}, tree="[0]")
     private Output<Integer> priority;
 
     /**
@@ -99,7 +99,7 @@ public class InstallationTemplatePartitionScheme extends com.pulumi.resources.Cu
      * The template name of the partition scheme.
      * 
      */
-    @Export(name="templateName", type=String.class, parameters={})
+    @Export(name="templateName", refs={String.class}, tree="[0]")
     private Output<String> templateName;
 
     /**

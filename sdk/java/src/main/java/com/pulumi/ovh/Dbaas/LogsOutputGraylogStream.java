@@ -22,7 +22,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Indicates if the current user can create alert on the stream
      * 
      */
-    @Export(name="canAlert", type=Boolean.class, parameters={})
+    @Export(name="canAlert", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> canAlert;
 
     /**
@@ -36,7 +36,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Cold storage compression method
      * 
      */
-    @Export(name="coldStorageCompression", type=String.class, parameters={})
+    @Export(name="coldStorageCompression", refs={String.class}, tree="[0]")
     private Output<String> coldStorageCompression;
 
     /**
@@ -50,7 +50,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * ColdStorage content
      * 
      */
-    @Export(name="coldStorageContent", type=String.class, parameters={})
+    @Export(name="coldStorageContent", refs={String.class}, tree="[0]")
     private Output<String> coldStorageContent;
 
     /**
@@ -64,7 +64,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Is Cold storage enabled?
      * 
      */
-    @Export(name="coldStorageEnabled", type=Boolean.class, parameters={})
+    @Export(name="coldStorageEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> coldStorageEnabled;
 
     /**
@@ -78,7 +78,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Notify on new Cold storage archive
      * 
      */
-    @Export(name="coldStorageNotifyEnabled", type=Boolean.class, parameters={})
+    @Export(name="coldStorageNotifyEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> coldStorageNotifyEnabled;
 
     /**
@@ -92,7 +92,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Cold storage retention in year
      * 
      */
-    @Export(name="coldStorageRetention", type=Integer.class, parameters={})
+    @Export(name="coldStorageRetention", refs={Integer.class}, tree="[0]")
     private Output<Integer> coldStorageRetention;
 
     /**
@@ -106,7 +106,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * ColdStorage destination
      * 
      */
-    @Export(name="coldStorageTarget", type=String.class, parameters={})
+    @Export(name="coldStorageTarget", refs={String.class}, tree="[0]")
     private Output<String> coldStorageTarget;
 
     /**
@@ -120,7 +120,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Stream creation
      * 
      */
-    @Export(name="createdAt", type=String.class, parameters={})
+    @Export(name="createdAt", refs={String.class}, tree="[0]")
     private Output<String> createdAt;
 
     /**
@@ -134,7 +134,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Stream description
      * 
      */
-    @Export(name="description", type=String.class, parameters={})
+    @Export(name="description", refs={String.class}, tree="[0]")
     private Output<String> description;
 
     /**
@@ -148,7 +148,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Enable ES indexing
      * 
      */
-    @Export(name="indexingEnabled", type=Boolean.class, parameters={})
+    @Export(name="indexingEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> indexingEnabled;
 
     /**
@@ -162,7 +162,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Maximum indexing size (in GB)
      * 
      */
-    @Export(name="indexingMaxSize", type=Integer.class, parameters={})
+    @Export(name="indexingMaxSize", refs={Integer.class}, tree="[0]")
     private Output<Integer> indexingMaxSize;
 
     /**
@@ -176,7 +176,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * If set, notify when size is near 80, 90 or 100 % of the maximum configured setting
      * 
      */
-    @Export(name="indexingNotifyEnabled", type=Boolean.class, parameters={})
+    @Export(name="indexingNotifyEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> indexingNotifyEnabled;
 
     /**
@@ -190,7 +190,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Indicates if you are allowed to edit entry
      * 
      */
-    @Export(name="isEditable", type=Boolean.class, parameters={})
+    @Export(name="isEditable", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isEditable;
 
     /**
@@ -204,7 +204,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Indicates if you are allowed to share entry
      * 
      */
-    @Export(name="isShareable", type=Boolean.class, parameters={})
+    @Export(name="isShareable", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> isShareable;
 
     /**
@@ -218,7 +218,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Number of alert condition
      * 
      */
-    @Export(name="nbAlertCondition", type=Integer.class, parameters={})
+    @Export(name="nbAlertCondition", refs={Integer.class}, tree="[0]")
     private Output<Integer> nbAlertCondition;
 
     /**
@@ -232,7 +232,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Number of coldstored archives
      * 
      */
-    @Export(name="nbArchive", type=Integer.class, parameters={})
+    @Export(name="nbArchive", refs={Integer.class}, tree="[0]")
     private Output<Integer> nbArchive;
 
     /**
@@ -246,7 +246,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Parent stream ID
      * 
      */
-    @Export(name="parentStreamId", type=String.class, parameters={})
+    @Export(name="parentStreamId", refs={String.class}, tree="[0]")
     private Output</* @Nullable */ String> parentStreamId;
 
     /**
@@ -260,7 +260,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * If set, pause indexing when maximum size is reach
      * 
      */
-    @Export(name="pauseIndexingOnMaxSize", type=Boolean.class, parameters={})
+    @Export(name="pauseIndexingOnMaxSize", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> pauseIndexingOnMaxSize;
 
     /**
@@ -274,7 +274,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Retention ID
      * 
      */
-    @Export(name="retentionId", type=String.class, parameters={})
+    @Export(name="retentionId", refs={String.class}, tree="[0]")
     private Output<String> retentionId;
 
     /**
@@ -288,7 +288,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * The service name
      * 
      */
-    @Export(name="serviceName", type=String.class, parameters={})
+    @Export(name="serviceName", refs={String.class}, tree="[0]")
     private Output<String> serviceName;
 
     /**
@@ -302,7 +302,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Stream ID
      * 
      */
-    @Export(name="streamId", type=String.class, parameters={})
+    @Export(name="streamId", refs={String.class}, tree="[0]")
     private Output<String> streamId;
 
     /**
@@ -316,7 +316,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Stream description
      * 
      */
-    @Export(name="title", type=String.class, parameters={})
+    @Export(name="title", refs={String.class}, tree="[0]")
     private Output<String> title;
 
     /**
@@ -330,7 +330,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Stream last update
      * 
      */
-    @Export(name="updatedAt", type=String.class, parameters={})
+    @Export(name="updatedAt", refs={String.class}, tree="[0]")
     private Output<String> updatedAt;
 
     /**
@@ -344,7 +344,7 @@ public class LogsOutputGraylogStream extends com.pulumi.resources.CustomResource
      * Enable Websocket
      * 
      */
-    @Export(name="webSocketEnabled", type=Boolean.class, parameters={})
+    @Export(name="webSocketEnabled", refs={Boolean.class}, tree="[0]")
     private Output<Boolean> webSocketEnabled;
 
     /**
