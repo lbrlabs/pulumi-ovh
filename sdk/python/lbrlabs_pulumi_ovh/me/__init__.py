@@ -5,6 +5,8 @@
 from .. import _utilities
 import typing
 # Export this package's modules as members:
+from .get_identity_group import *
+from .get_identity_groups import *
 from .get_identity_user import *
 from .get_identity_users import *
 from .get_installation_template import *
@@ -16,6 +18,7 @@ from .get_paymentmean_bank_account import *
 from .get_paymentmean_credit_card import *
 from .get_ssh_key import *
 from .get_ssh_keys import *
+from .identity_group import *
 from .identity_user import *
 from .installation_template import *
 from .installation_template_partition_scheme import *

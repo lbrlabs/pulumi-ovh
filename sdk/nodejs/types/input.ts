@@ -952,6 +952,9 @@ export namespace Hosting {
     }
 }
 
+export namespace Iam {
+}
+
 export namespace Ip {
     export interface IpServiceOrder {
         /**

@@ -5,24 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
-export { GetIamPoliciesResult } from "./getIamPolicies";
-export const getIamPolicies: typeof import("./getIamPolicies").getIamPolicies = null as any;
-utilities.lazyLoad(exports, ["getIamPolicies"], () => require("./getIamPolicies"));
-
-export { GetIamPolicyArgs, GetIamPolicyResult, GetIamPolicyOutputArgs } from "./getIamPolicy";
-export const getIamPolicy: typeof import("./getIamPolicy").getIamPolicy = null as any;
-export const getIamPolicyOutput: typeof import("./getIamPolicy").getIamPolicyOutput = null as any;
-utilities.lazyLoad(exports, ["getIamPolicy","getIamPolicyOutput"], () => require("./getIamPolicy"));
-
-export { GetIamReferenceActionsArgs, GetIamReferenceActionsResult, GetIamReferenceActionsOutputArgs } from "./getIamReferenceActions";
-export const getIamReferenceActions: typeof import("./getIamReferenceActions").getIamReferenceActions = null as any;
-export const getIamReferenceActionsOutput: typeof import("./getIamReferenceActions").getIamReferenceActionsOutput = null as any;
-utilities.lazyLoad(exports, ["getIamReferenceActions","getIamReferenceActionsOutput"], () => require("./getIamReferenceActions"));
-
-export { GetIamReferenceResourceTypeResult } from "./getIamReferenceResourceType";
-export const getIamReferenceResourceType: typeof import("./getIamReferenceResourceType").getIamReferenceResourceType = null as any;
-utilities.lazyLoad(exports, ["getIamReferenceResourceType"], () => require("./getIamReferenceResourceType"));
-
 export { GetLogsClusterArgs, GetLogsClusterResult, GetLogsClusterOutputArgs } from "./getLogsCluster";
 export const getLogsCluster: typeof import("./getLogsCluster").getLogsCluster = null as any;
 export const getLogsClusterOutput: typeof import("./getLogsCluster").getLogsClusterOutput = null as any;
@@ -37,20 +19,6 @@ export { GetLogsOutputGraylogStreamArgs, GetLogsOutputGraylogStreamResult, GetLo
 export const getLogsOutputGraylogStream: typeof import("./getLogsOutputGraylogStream").getLogsOutputGraylogStream = null as any;
 export const getLogsOutputGraylogStreamOutput: typeof import("./getLogsOutputGraylogStream").getLogsOutputGraylogStreamOutput = null as any;
 utilities.lazyLoad(exports, ["getLogsOutputGraylogStream","getLogsOutputGraylogStreamOutput"], () => require("./getLogsOutputGraylogStream"));
-
-export { GetMeIdentityGroupArgs, GetMeIdentityGroupResult, GetMeIdentityGroupOutputArgs } from "./getMeIdentityGroup";
-export const getMeIdentityGroup: typeof import("./getMeIdentityGroup").getMeIdentityGroup = null as any;
-export const getMeIdentityGroupOutput: typeof import("./getMeIdentityGroup").getMeIdentityGroupOutput = null as any;
-utilities.lazyLoad(exports, ["getMeIdentityGroup","getMeIdentityGroupOutput"], () => require("./getMeIdentityGroup"));
-
-export { GetMeIdentityGroupsResult } from "./getMeIdentityGroups";
-export const getMeIdentityGroups: typeof import("./getMeIdentityGroups").getMeIdentityGroups = null as any;
-utilities.lazyLoad(exports, ["getMeIdentityGroups"], () => require("./getMeIdentityGroups"));
-
-export { IamPolicyArgs, IamPolicyState } from "./iamPolicy";
-export type IamPolicy = import("./iamPolicy").IamPolicy;
-export const IamPolicy: typeof import("./iamPolicy").IamPolicy = null as any;
-utilities.lazyLoad(exports, ["IamPolicy"], () => require("./iamPolicy"));
 
 export { LogsClusterArgs, LogsClusterState } from "./logsCluster";
 export type LogsCluster = import("./logsCluster").LogsCluster;
@@ -67,33 +35,22 @@ export type LogsOutputGraylogStream = import("./logsOutputGraylogStream").LogsOu
 export const LogsOutputGraylogStream: typeof import("./logsOutputGraylogStream").LogsOutputGraylogStream = null as any;
 utilities.lazyLoad(exports, ["LogsOutputGraylogStream"], () => require("./logsOutputGraylogStream"));
 
-export { MeIdentityGroupArgs, MeIdentityGroupState } from "./meIdentityGroup";
-export type MeIdentityGroup = import("./meIdentityGroup").MeIdentityGroup;
-export const MeIdentityGroup: typeof import("./meIdentityGroup").MeIdentityGroup = null as any;
-utilities.lazyLoad(exports, ["MeIdentityGroup"], () => require("./meIdentityGroup"));
-
 
 const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
-            case "ovh:Dbaas/iamPolicy:IamPolicy":
-                return new IamPolicy(name, <any>undefined, { urn })
             case "ovh:Dbaas/logsCluster:LogsCluster":
                 return new LogsCluster(name, <any>undefined, { urn })
             case "ovh:Dbaas/logsInput:LogsInput":
                 return new LogsInput(name, <any>undefined, { urn })
             case "ovh:Dbaas/logsOutputGraylogStream:LogsOutputGraylogStream":
                 return new LogsOutputGraylogStream(name, <any>undefined, { urn })
-            case "ovh:Dbaas/meIdentityGroup:MeIdentityGroup":
-                return new MeIdentityGroup(name, <any>undefined, { urn })
             default:
                 throw new Error(`unknown resource type ${type}`);
         }
     },
 };
-pulumi.runtime.registerResourceModule("ovh", "Dbaas/iamPolicy", _module)
 pulumi.runtime.registerResourceModule("ovh", "Dbaas/logsCluster", _module)
 pulumi.runtime.registerResourceModule("ovh", "Dbaas/logsInput", _module)
 pulumi.runtime.registerResourceModule("ovh", "Dbaas/logsOutputGraylogStream", _module)
-pulumi.runtime.registerResourceModule("ovh", "Dbaas/meIdentityGroup", _module)
