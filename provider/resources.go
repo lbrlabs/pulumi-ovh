@@ -46,6 +46,7 @@ const (
 	vrackMod           = "Vrack"
 	orderMod           = "Order"
 	vpsMod             = "Vps"
+	iamMod             = "Iam"
 )
 
 // boolRef returns a reference to the bool argument.
@@ -371,10 +372,10 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: ovhResource(dbaasMod, "LogsCluster"),
 			},
 			"ovh_iam_policy": {
-				Tok: ovhResource(dbaasMod, "IamPolicy"),
+				Tok: ovhResource(iamMod, "IamPolicy"),
 			},
 			"ovh_me_identity_group": {
-				Tok: ovhResource(dbaasMod, "MeIdentityGroup"),
+				Tok: ovhResource(meMod, "MeIdentityGroup"),
 			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
@@ -625,22 +626,22 @@ func Provider() tfbridge.ProviderInfo {
 				Tok: ovhDataSource(dbaasMod, "getLogsCluster"),
 			},
 			"ovh_iam_policies": {
-				Tok: ovhDataSource(dbaasMod, "getIamPolicies"),
+				Tok: ovhDataSource(iamMod, "getIamPolicies"),
 			},
 			"ovh_iam_policy": {
-				Tok: ovhDataSource(dbaasMod, "getIamPolicy"),
+				Tok: ovhDataSource(iamMod, "getIamPolicy"),
 			},
 			"ovh_iam_reference_actions": {
-				Tok: ovhDataSource(dbaasMod, "getIamReferenceActions"),
+				Tok: ovhDataSource(iamMod, "getIamReferenceActions"),
 			},
 			"ovh_iam_reference_resource_type": {
-				Tok: ovhDataSource(dbaasMod, "getIamReferenceResourceType"),
+				Tok: ovhDataSource(iamMod, "getIamReferenceResourceType"),
 			},
 			"ovh_me_identity_group": {
-				Tok: ovhDataSource(dbaasMod, "getMeIdentityGroup"),
+				Tok: ovhDataSource(meMod, "getMeIdentityGroup"),
 			},
 			"ovh_me_identity_groups": {
-				Tok: ovhDataSource(dbaasMod, "getMeIdentityGroups"),
+				Tok: ovhDataSource(meMod, "getMeIdentityGroups"),
 			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
