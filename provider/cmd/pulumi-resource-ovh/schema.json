@@ -1768,41 +1768,6 @@
                 "inputSection"
             ]
         },
-        "ovh:Dbaas/getIamReferenceActionsAction:getIamReferenceActionsAction": {
-            "properties": {
-                "action": {
-                    "type": "string",
-                    "description": "Name of the action\n"
-                },
-                "categories": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of the categories of the action\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "Description of the action\n"
-                },
-                "resourceType": {
-                    "type": "string",
-                    "description": "Resource type the action is related to\n"
-                }
-            },
-            "type": "object",
-            "required": [
-                "action",
-                "categories",
-                "description",
-                "resourceType"
-            ],
-            "language": {
-                "nodejs": {
-                    "requiredInputs": []
-                }
-            }
-        },
         "ovh:Dedicated/ServerInstallTaskDetails:ServerInstallTaskDetails": {
             "properties": {
                 "changeLog": {
@@ -2267,6 +2232,41 @@
             "required": [
                 "databaseName",
                 "grantType"
+            ],
+            "language": {
+                "nodejs": {
+                    "requiredInputs": []
+                }
+            }
+        },
+        "ovh:Iam/getIamReferenceActionsAction:getIamReferenceActionsAction": {
+            "properties": {
+                "action": {
+                    "type": "string",
+                    "description": "Name of the action\n"
+                },
+                "categories": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of the categories of the action\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description of the action\n"
+                },
+                "resourceType": {
+                    "type": "string",
+                    "description": "Resource type the action is related to\n"
+                }
+            },
+            "type": "object",
+            "required": [
+                "action",
+                "categories",
+                "description",
+                "resourceType"
             ],
             "language": {
                 "nodejs": {
@@ -8185,172 +8185,6 @@
                 "type": "object"
             }
         },
-        "ovh:Dbaas/iamPolicy:IamPolicy": {
-            "description": "Creates an IAM policy.\n\n## Important\n\n\u003e Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/) \n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@lbrlabs/pulumi-ovh\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst account = ovh.Me.getMe({});\nconst myGroup = new ovh.dbaas.MeIdentityGroup(\"myGroup\", {description: \"my_group created in Terraform\"});\nconst manager = new ovh.dbaas.IamPolicy(\"manager\", {\n    description: \"Users are allowed to use the OVH manager\",\n    identities: [myGroup.urn],\n    resources: [account.then(account =\u003e account.urn)],\n    allows: [\n        \"account:apiovh:me/get\",\n        \"account:apiovh:me/supportLevel/get\",\n        \"account:apiovh:me/certificates/get\",\n        \"account:apiovh:me/tag/get\",\n        \"account:apiovh:services/get\",\n        \"account:apiovh:*\",\n    ],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_ovh as ovh\nimport pulumi_ovh as ovh\n\naccount = ovh.Me.get_me()\nmy_group = ovh.dbaas.MeIdentityGroup(\"myGroup\", description=\"my_group created in Terraform\")\nmanager = ovh.dbaas.IamPolicy(\"manager\",\n    description=\"Users are allowed to use the OVH manager\",\n    identities=[my_group.urn],\n    resources=[account.urn],\n    allows=[\n        \"account:apiovh:me/get\",\n        \"account:apiovh:me/supportLevel/get\",\n        \"account:apiovh:me/certificates/get\",\n        \"account:apiovh:me/tag/get\",\n        \"account:apiovh:services/get\",\n        \"account:apiovh:*\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Lbrlabs.PulumiPackage.Ovh;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var account = Ovh.Me.GetMe.Invoke();\n\n    var myGroup = new Ovh.Dbaas.MeIdentityGroup(\"myGroup\", new()\n    {\n        Description = \"my_group created in Terraform\",\n    });\n\n    var manager = new Ovh.Dbaas.IamPolicy(\"manager\", new()\n    {\n        Description = \"Users are allowed to use the OVH manager\",\n        Identities = new[]\n        {\n            myGroup.Urn,\n        },\n        Resources = new[]\n        {\n            account.Apply(getMeResult =\u003e getMeResult.Urn),\n        },\n        Allows = new[]\n        {\n            \"account:apiovh:me/get\",\n            \"account:apiovh:me/supportLevel/get\",\n            \"account:apiovh:me/certificates/get\",\n            \"account:apiovh:me/tag/get\",\n            \"account:apiovh:services/get\",\n            \"account:apiovh:*\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Dbaas\"\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Me\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\taccount, err := Me.GetMe(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmyGroup, err := Dbaas.NewMeIdentityGroup(ctx, \"myGroup\", \u0026Dbaas.MeIdentityGroupArgs{\n\t\t\tDescription: pulumi.String(\"my_group created in Terraform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = Dbaas.NewIamPolicy(ctx, \"manager\", \u0026Dbaas.IamPolicyArgs{\n\t\t\tDescription: pulumi.String(\"Users are allowed to use the OVH manager\"),\n\t\t\tIdentities: pulumi.StringArray{\n\t\t\t\tmyGroup.Urn,\n\t\t\t},\n\t\t\tResources: pulumi.StringArray{\n\t\t\t\t*pulumi.String(account.Urn),\n\t\t\t},\n\t\t\tAllows: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"account:apiovh:me/get\"),\n\t\t\t\tpulumi.String(\"account:apiovh:me/supportLevel/get\"),\n\t\t\t\tpulumi.String(\"account:apiovh:me/certificates/get\"),\n\t\t\t\tpulumi.String(\"account:apiovh:me/tag/get\"),\n\t\t\t\tpulumi.String(\"account:apiovh:services/get\"),\n\t\t\t\tpulumi.String(\"account:apiovh:*\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Me.MeFunctions;\nimport com.pulumi.ovh.Dbaas.MeIdentityGroup;\nimport com.pulumi.ovh.Dbaas.MeIdentityGroupArgs;\nimport com.pulumi.ovh.Dbaas.IamPolicy;\nimport com.pulumi.ovh.Dbaas.IamPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var account = MeFunctions.getMe();\n\n        var myGroup = new MeIdentityGroup(\"myGroup\", MeIdentityGroupArgs.builder()        \n            .description(\"my_group created in Terraform\")\n            .build());\n\n        var manager = new IamPolicy(\"manager\", IamPolicyArgs.builder()        \n            .description(\"Users are allowed to use the OVH manager\")\n            .identities(myGroup.urn())\n            .resources(account.applyValue(getMeResult -\u003e getMeResult.urn()))\n            .allows(            \n                \"account:apiovh:me/get\",\n                \"account:apiovh:me/supportLevel/get\",\n                \"account:apiovh:me/certificates/get\",\n                \"account:apiovh:me/tag/get\",\n                \"account:apiovh:services/get\",\n                \"account:apiovh:*\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myGroup:\n    type: ovh:Dbaas:MeIdentityGroup\n    properties:\n      description: my_group created in Terraform\n  manager:\n    type: ovh:Dbaas:IamPolicy\n    properties:\n      description: Users are allowed to use the OVH manager\n      identities:\n        - ${myGroup.urn}\n      resources:\n        - ${account.urn}\n      # these are all the actions\n      allows:\n        - account:apiovh:me/get\n        - account:apiovh:me/supportLevel/get\n        - account:apiovh:me/certificates/get\n        - account:apiovh:me/tag/get\n        - account:apiovh:services/get\n        - account:apiovh:*\nvariables:\n  account:\n    fn::invoke:\n      Function: ovh:Me:getMe\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
-            "properties": {
-                "allows": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of actions allowed on resources by identities\n"
-                },
-                "createdAt": {
-                    "type": "string",
-                    "description": "Creation date of this group.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "Description of the policy\n"
-                },
-                "excepts": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.\n"
-                },
-                "identities": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of identities affected by the policy\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the policy, must be unique\n"
-                },
-                "owner": {
-                    "type": "string",
-                    "description": "Owner of the policy.\n"
-                },
-                "readOnly": {
-                    "type": "boolean",
-                    "description": "Indicates that the policy is a default one.\n"
-                },
-                "resources": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of resources affected by the policy\n"
-                },
-                "updatedAt": {
-                    "type": "string",
-                    "description": "Date of the last update of this group.\n"
-                }
-            },
-            "required": [
-                "createdAt",
-                "identities",
-                "name",
-                "owner",
-                "readOnly",
-                "resources",
-                "updatedAt"
-            ],
-            "inputProperties": {
-                "allows": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of actions allowed on resources by identities\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "Description of the policy\n"
-                },
-                "excepts": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.\n"
-                },
-                "identities": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of identities affected by the policy\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Name of the policy, must be unique\n"
-                },
-                "resources": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    },
-                    "description": "List of resources affected by the policy\n"
-                }
-            },
-            "requiredInputs": [
-                "identities",
-                "resources"
-            ],
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering IamPolicy resources.\n",
-                "properties": {
-                    "allows": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of actions allowed on resources by identities\n"
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "description": "Creation date of this group.\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Description of the policy\n"
-                    },
-                    "excepts": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.\n"
-                    },
-                    "identities": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of identities affected by the policy\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Name of the policy, must be unique\n"
-                    },
-                    "owner": {
-                        "type": "string",
-                        "description": "Owner of the policy.\n"
-                    },
-                    "readOnly": {
-                        "type": "boolean",
-                        "description": "Indicates that the policy is a default one.\n"
-                    },
-                    "resources": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of resources affected by the policy\n"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "description": "Date of the last update of this group.\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
         "ovh:Dbaas/logsCluster:LogsCluster": {
             "description": "{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@lbrlabs/pulumi-ovh\";\n\nconst ldp = new ovh.dbaas.LogsCluster(\"ldp\", {\n    archiveAllowedNetworks: [\"10.0.0.0/16\"],\n    directInputAllowedNetworks: [\"10.0.0.0/16\"],\n    queryAllowedNetworks: [\"10.0.0.0/16\"],\n    serviceName: \"ldp-xx-xxxxx\",\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_ovh as ovh\n\nldp = ovh.dbaas.LogsCluster(\"ldp\",\n    archive_allowed_networks=[\"10.0.0.0/16\"],\n    direct_input_allowed_networks=[\"10.0.0.0/16\"],\n    query_allowed_networks=[\"10.0.0.0/16\"],\n    service_name=\"ldp-xx-xxxxx\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Lbrlabs.PulumiPackage.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var ldp = new Ovh.Dbaas.LogsCluster(\"ldp\", new()\n    {\n        ArchiveAllowedNetworks = new[]\n        {\n            \"10.0.0.0/16\",\n        },\n        DirectInputAllowedNetworks = new[]\n        {\n            \"10.0.0.0/16\",\n        },\n        QueryAllowedNetworks = new[]\n        {\n            \"10.0.0.0/16\",\n        },\n        ServiceName = \"ldp-xx-xxxxx\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Dbaas.NewLogsCluster(ctx, \"ldp\", \u0026Dbaas.LogsClusterArgs{\n\t\t\tArchiveAllowedNetworks: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.0.0.0/16\"),\n\t\t\t},\n\t\t\tDirectInputAllowedNetworks: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.0.0.0/16\"),\n\t\t\t},\n\t\t\tQueryAllowedNetworks: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"10.0.0.0/16\"),\n\t\t\t},\n\t\t\tServiceName: pulumi.String(\"ldp-xx-xxxxx\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Dbaas.LogsCluster;\nimport com.pulumi.ovh.Dbaas.LogsClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var ldp = new LogsCluster(\"ldp\", LogsClusterArgs.builder()        \n            .archiveAllowedNetworks(\"10.0.0.0/16\")\n            .directInputAllowedNetworks(\"10.0.0.0/16\")\n            .queryAllowedNetworks(\"10.0.0.0/16\")\n            .serviceName(\"ldp-xx-xxxxx\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  ldp:\n    type: ovh:Dbaas:LogsCluster\n    properties:\n      archiveAllowedNetworks:\n        - 10.0.0.0/16\n      directInputAllowedNetworks:\n        - 10.0.0.0/16\n      queryAllowedNetworks:\n        - 10.0.0.0/16\n      serviceName: ldp-xx-xxxxx\n```\n{{% /example %}}\n{{% /examples %}}\n\n## Import\n\nOVHcloud DBaaS Log Data Platform clusters can be imported using the `service_name` and `id` of the cluster, separated by \"/\" E.g., bash\n\n```sh\n $ pulumi import ovh:Dbaas/logsCluster:LogsCluster ldp service_name/id\n```\n\n ",
             "properties": {
@@ -9086,96 +8920,6 @@
                     "webSocketEnabled": {
                         "type": "boolean",
                         "description": "Enable Websocket\n"
-                    }
-                },
-                "type": "object"
-            }
-        },
-        "ovh:Dbaas/meIdentityGroup:MeIdentityGroup": {
-            "description": "Creates an identity group.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@lbrlabs/pulumi-ovh\";\n\nconst myGroup = new ovh.dbaas.MeIdentityGroup(\"myGroup\", {\n    description: \"Some custom description\",\n    role: \"NONE\",\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_ovh as ovh\n\nmy_group = ovh.dbaas.MeIdentityGroup(\"myGroup\",\n    description=\"Some custom description\",\n    role=\"NONE\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Lbrlabs.PulumiPackage.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myGroup = new Ovh.Dbaas.MeIdentityGroup(\"myGroup\", new()\n    {\n        Description = \"Some custom description\",\n        Role = \"NONE\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Dbaas.NewMeIdentityGroup(ctx, \"myGroup\", \u0026Dbaas.MeIdentityGroupArgs{\n\t\t\tDescription: pulumi.String(\"Some custom description\"),\n\t\t\tRole:        pulumi.String(\"NONE\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Dbaas.MeIdentityGroup;\nimport com.pulumi.ovh.Dbaas.MeIdentityGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myGroup = new MeIdentityGroup(\"myGroup\", MeIdentityGroupArgs.builder()        \n            .description(\"Some custom description\")\n            .role(\"NONE\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myGroup:\n    type: ovh:Dbaas:MeIdentityGroup\n    properties:\n      description: Some custom description\n      role: NONE\n```\n{{% /example %}}\n{{% /examples %}}",
-            "properties": {
-                "creation": {
-                    "type": "string",
-                    "description": "Creation date of this group.\n"
-                },
-                "defaultGroup": {
-                    "type": "boolean",
-                    "description": "Is the group a default and immutable one.\n"
-                },
-                "description": {
-                    "type": "string",
-                    "description": "Group description.\n"
-                },
-                "lastUpdate": {
-                    "type": "string",
-                    "description": "Date of the last update of this group.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Group name.\n"
-                },
-                "role": {
-                    "type": "string",
-                    "description": "Role associated with the group. Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.\n"
-                },
-                "urn": {
-                    "type": "string",
-                    "description": "URN of the user group, used when writing IAM policies\n"
-                }
-            },
-            "required": [
-                "creation",
-                "defaultGroup",
-                "lastUpdate",
-                "name",
-                "urn"
-            ],
-            "inputProperties": {
-                "description": {
-                    "type": "string",
-                    "description": "Group description.\n"
-                },
-                "name": {
-                    "type": "string",
-                    "description": "Group name.\n",
-                    "willReplaceOnChanges": true
-                },
-                "role": {
-                    "type": "string",
-                    "description": "Role associated with the group. Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.\n"
-                }
-            },
-            "stateInputs": {
-                "description": "Input properties used for looking up and filtering MeIdentityGroup resources.\n",
-                "properties": {
-                    "creation": {
-                        "type": "string",
-                        "description": "Creation date of this group.\n"
-                    },
-                    "defaultGroup": {
-                        "type": "boolean",
-                        "description": "Is the group a default and immutable one.\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Group description.\n"
-                    },
-                    "lastUpdate": {
-                        "type": "string",
-                        "description": "Date of the last update of this group.\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Group name.\n",
-                        "willReplaceOnChanges": true
-                    },
-                    "role": {
-                        "type": "string",
-                        "description": "Role associated with the group. Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.\n"
-                    },
-                    "urn": {
-                        "type": "string",
-                        "description": "URN of the user group, used when writing IAM policies\n"
                     }
                 },
                 "type": "object"
@@ -10837,6 +10581,172 @@
                         "type": "string",
                         "description": "User name used to connect on your databases.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ovh:Iam/iamPolicy:IamPolicy": {
+            "description": "Creates an IAM policy.\n\n## Important\n\n\u003e Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/) \n\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@lbrlabs/pulumi-ovh\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst account = ovh.Me.getMe({});\nconst myGroup = new ovh.me.MeIdentityGroup(\"myGroup\", {description: \"my_group created in Terraform\"});\nconst manager = new ovh.iam.IamPolicy(\"manager\", {\n    description: \"Users are allowed to use the OVH manager\",\n    identities: [myGroup.urn],\n    resources: [account.then(account =\u003e account.urn)],\n    allows: [\n        \"account:apiovh:me/get\",\n        \"account:apiovh:me/supportLevel/get\",\n        \"account:apiovh:me/certificates/get\",\n        \"account:apiovh:me/tag/get\",\n        \"account:apiovh:services/get\",\n        \"account:apiovh:*\",\n    ],\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_ovh as ovh\nimport pulumi_ovh as ovh\n\naccount = ovh.Me.get_me()\nmy_group = ovh.me.MeIdentityGroup(\"myGroup\", description=\"my_group created in Terraform\")\nmanager = ovh.iam.IamPolicy(\"manager\",\n    description=\"Users are allowed to use the OVH manager\",\n    identities=[my_group.urn],\n    resources=[account.urn],\n    allows=[\n        \"account:apiovh:me/get\",\n        \"account:apiovh:me/supportLevel/get\",\n        \"account:apiovh:me/certificates/get\",\n        \"account:apiovh:me/tag/get\",\n        \"account:apiovh:services/get\",\n        \"account:apiovh:*\",\n    ])\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Lbrlabs.PulumiPackage.Ovh;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var account = Ovh.Me.GetMe.Invoke();\n\n    var myGroup = new Ovh.Me.MeIdentityGroup(\"myGroup\", new()\n    {\n        Description = \"my_group created in Terraform\",\n    });\n\n    var manager = new Ovh.Iam.IamPolicy(\"manager\", new()\n    {\n        Description = \"Users are allowed to use the OVH manager\",\n        Identities = new[]\n        {\n            myGroup.Urn,\n        },\n        Resources = new[]\n        {\n            account.Apply(getMeResult =\u003e getMeResult.Urn),\n        },\n        Allows = new[]\n        {\n            \"account:apiovh:me/get\",\n            \"account:apiovh:me/supportLevel/get\",\n            \"account:apiovh:me/certificates/get\",\n            \"account:apiovh:me/tag/get\",\n            \"account:apiovh:services/get\",\n            \"account:apiovh:*\",\n        },\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Iam\"\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Me\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\taccount, err := Me.GetMe(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\tmyGroup, err := Me.NewMeIdentityGroup(ctx, \"myGroup\", \u0026Me.MeIdentityGroupArgs{\n\t\t\tDescription: pulumi.String(\"my_group created in Terraform\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\t_, err = Iam.NewIamPolicy(ctx, \"manager\", \u0026Iam.IamPolicyArgs{\n\t\t\tDescription: pulumi.String(\"Users are allowed to use the OVH manager\"),\n\t\t\tIdentities: pulumi.StringArray{\n\t\t\t\tmyGroup.Urn,\n\t\t\t},\n\t\t\tResources: pulumi.StringArray{\n\t\t\t\t*pulumi.String(account.Urn),\n\t\t\t},\n\t\t\tAllows: pulumi.StringArray{\n\t\t\t\tpulumi.String(\"account:apiovh:me/get\"),\n\t\t\t\tpulumi.String(\"account:apiovh:me/supportLevel/get\"),\n\t\t\t\tpulumi.String(\"account:apiovh:me/certificates/get\"),\n\t\t\t\tpulumi.String(\"account:apiovh:me/tag/get\"),\n\t\t\t\tpulumi.String(\"account:apiovh:services/get\"),\n\t\t\t\tpulumi.String(\"account:apiovh:*\"),\n\t\t\t},\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Me.MeFunctions;\nimport com.pulumi.ovh.Me.MeIdentityGroup;\nimport com.pulumi.ovh.Me.MeIdentityGroupArgs;\nimport com.pulumi.ovh.Iam.IamPolicy;\nimport com.pulumi.ovh.Iam.IamPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var account = MeFunctions.getMe();\n\n        var myGroup = new MeIdentityGroup(\"myGroup\", MeIdentityGroupArgs.builder()        \n            .description(\"my_group created in Terraform\")\n            .build());\n\n        var manager = new IamPolicy(\"manager\", IamPolicyArgs.builder()        \n            .description(\"Users are allowed to use the OVH manager\")\n            .identities(myGroup.urn())\n            .resources(account.applyValue(getMeResult -\u003e getMeResult.urn()))\n            .allows(            \n                \"account:apiovh:me/get\",\n                \"account:apiovh:me/supportLevel/get\",\n                \"account:apiovh:me/certificates/get\",\n                \"account:apiovh:me/tag/get\",\n                \"account:apiovh:services/get\",\n                \"account:apiovh:*\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myGroup:\n    type: ovh:Me:MeIdentityGroup\n    properties:\n      description: my_group created in Terraform\n  manager:\n    type: ovh:Iam:IamPolicy\n    properties:\n      description: Users are allowed to use the OVH manager\n      identities:\n        - ${myGroup.urn}\n      resources:\n        - ${account.urn}\n      # these are all the actions\n      allows:\n        - account:apiovh:me/get\n        - account:apiovh:me/supportLevel/get\n        - account:apiovh:me/certificates/get\n        - account:apiovh:me/tag/get\n        - account:apiovh:services/get\n        - account:apiovh:*\nvariables:\n  account:\n    fn::invoke:\n      Function: ovh:Me:getMe\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "allows": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of actions allowed on resources by identities\n"
+                },
+                "createdAt": {
+                    "type": "string",
+                    "description": "Creation date of this group.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description of the policy\n"
+                },
+                "excepts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.\n"
+                },
+                "identities": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of identities affected by the policy\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the policy, must be unique\n"
+                },
+                "owner": {
+                    "type": "string",
+                    "description": "Owner of the policy.\n"
+                },
+                "readOnly": {
+                    "type": "boolean",
+                    "description": "Indicates that the policy is a default one.\n"
+                },
+                "resources": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of resources affected by the policy\n"
+                },
+                "updatedAt": {
+                    "type": "string",
+                    "description": "Date of the last update of this group.\n"
+                }
+            },
+            "required": [
+                "createdAt",
+                "identities",
+                "name",
+                "owner",
+                "readOnly",
+                "resources",
+                "updatedAt"
+            ],
+            "inputProperties": {
+                "allows": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of actions allowed on resources by identities\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Description of the policy\n"
+                },
+                "excepts": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.\n"
+                },
+                "identities": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of identities affected by the policy\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Name of the policy, must be unique\n"
+                },
+                "resources": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    },
+                    "description": "List of resources affected by the policy\n"
+                }
+            },
+            "requiredInputs": [
+                "identities",
+                "resources"
+            ],
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering IamPolicy resources.\n",
+                "properties": {
+                    "allows": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of actions allowed on resources by identities\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Creation date of this group.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description of the policy\n"
+                    },
+                    "excepts": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of overrides of action that must not be allowed even if they are caught by allow. Only makes sens if allow contains wildcards.\n"
+                    },
+                    "identities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of identities affected by the policy\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the policy, must be unique\n"
+                    },
+                    "owner": {
+                        "type": "string",
+                        "description": "Owner of the policy.\n"
+                    },
+                    "readOnly": {
+                        "type": "boolean",
+                        "description": "Indicates that the policy is a default one.\n"
+                    },
+                    "resources": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of resources affected by the policy\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Date of the last update of this group.\n"
                     }
                 },
                 "type": "object"
@@ -13716,6 +13626,96 @@
                         "type": "string",
                         "description": "The content of the script.\n",
                         "willReplaceOnChanges": true
+                    }
+                },
+                "type": "object"
+            }
+        },
+        "ovh:Me/meIdentityGroup:MeIdentityGroup": {
+            "description": "Creates an identity group.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@lbrlabs/pulumi-ovh\";\n\nconst myGroup = new ovh.me.MeIdentityGroup(\"myGroup\", {\n    description: \"Some custom description\",\n    role: \"NONE\",\n});\n```\n```python\nimport pulumi\nimport lbrlabs_pulumi_ovh as ovh\n\nmy_group = ovh.me.MeIdentityGroup(\"myGroup\",\n    description=\"Some custom description\",\n    role=\"NONE\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Lbrlabs.PulumiPackage.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myGroup = new Ovh.Me.MeIdentityGroup(\"myGroup\", new()\n    {\n        Description = \"Some custom description\",\n        Role = \"NONE\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Me\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Me.NewMeIdentityGroup(ctx, \"myGroup\", \u0026Me.MeIdentityGroupArgs{\n\t\t\tDescription: pulumi.String(\"Some custom description\"),\n\t\t\tRole:        pulumi.String(\"NONE\"),\n\t\t})\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Me.MeIdentityGroup;\nimport com.pulumi.ovh.Me.MeIdentityGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        var myGroup = new MeIdentityGroup(\"myGroup\", MeIdentityGroupArgs.builder()        \n            .description(\"Some custom description\")\n            .role(\"NONE\")\n            .build());\n\n    }\n}\n```\n```yaml\nresources:\n  myGroup:\n    type: ovh:Me:MeIdentityGroup\n    properties:\n      description: Some custom description\n      role: NONE\n```\n{{% /example %}}\n{{% /examples %}}",
+            "properties": {
+                "creation": {
+                    "type": "string",
+                    "description": "Creation date of this group.\n"
+                },
+                "defaultGroup": {
+                    "type": "boolean",
+                    "description": "Is the group a default and immutable one.\n"
+                },
+                "description": {
+                    "type": "string",
+                    "description": "Group description.\n"
+                },
+                "lastUpdate": {
+                    "type": "string",
+                    "description": "Date of the last update of this group.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Group name.\n"
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Role associated with the group. Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.\n"
+                },
+                "urn": {
+                    "type": "string",
+                    "description": "URN of the user group, used when writing IAM policies\n"
+                }
+            },
+            "required": [
+                "creation",
+                "defaultGroup",
+                "lastUpdate",
+                "name",
+                "urn"
+            ],
+            "inputProperties": {
+                "description": {
+                    "type": "string",
+                    "description": "Group description.\n"
+                },
+                "name": {
+                    "type": "string",
+                    "description": "Group name.\n",
+                    "willReplaceOnChanges": true
+                },
+                "role": {
+                    "type": "string",
+                    "description": "Role associated with the group. Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.\n"
+                }
+            },
+            "stateInputs": {
+                "description": "Input properties used for looking up and filtering MeIdentityGroup resources.\n",
+                "properties": {
+                    "creation": {
+                        "type": "string",
+                        "description": "Creation date of this group.\n"
+                    },
+                    "defaultGroup": {
+                        "type": "boolean",
+                        "description": "Is the group a default and immutable one.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Group description.\n"
+                    },
+                    "lastUpdate": {
+                        "type": "string",
+                        "description": "Date of the last update of this group.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Group name.\n",
+                        "willReplaceOnChanges": true
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "Role associated with the group. Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.\n"
+                    },
+                    "urn": {
+                        "type": "string",
+                        "description": "URN of the user group, used when writing IAM policies\n"
                     }
                 },
                 "type": "object"
@@ -17331,200 +17331,6 @@
                 ]
             }
         },
-        "ovh:Dbaas/getIamPolicies:getIamPolicies": {
-            "description": "Use this data source to list the existing IAM policies of an account.\n\n## Important\n\n\u003e Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/) \n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst myPolicies = ovh.Dbaas.getIamPolicies({});\n```\n```python\nimport pulumi\nimport pulumi_ovh as ovh\n\nmy_policies = ovh.Dbaas.get_iam_policies()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myPolicies = Ovh.Dbaas.GetIamPolicies.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Dbaas.GetIamPolicies(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Dbaas.DbaasFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myPolicies = DbaasFunctions.getIamPolicies();\n\n    }\n}\n```\n```yaml\nvariables:\n  myPolicies:\n    fn::invoke:\n      Function: ovh:Dbaas:getIamPolicies\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
-            "outputs": {
-                "description": "A collection of values returned by getIamPolicies.\n",
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
-                    },
-                    "policies": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of the policies IDs.\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "policies",
-                    "id"
-                ]
-            }
-        },
-        "ovh:Dbaas/getIamPolicy:getIamPolicy": {
-            "description": "Use this data source to retrieve am IAM policy.\n\n## Important\n\n\u003e Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/) \n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst myPolicy = ovh.Dbaas.getIamPolicy({\n    id: \"my_policy_id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ovh as ovh\n\nmy_policy = ovh.Dbaas.get_iam_policy(id=\"my_policy_id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myPolicy = Ovh.Dbaas.GetIamPolicy.Invoke(new()\n    {\n        Id = \"my_policy_id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Dbaas.GetIamPolicy(ctx, \u0026dbaas.GetIamPolicyArgs{\n\t\t\tId: \"my_policy_id\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Dbaas.DbaasFunctions;\nimport com.pulumi.ovh.Dbaas.inputs.GetIamPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myPolicy = DbaasFunctions.getIamPolicy(GetIamPolicyArgs.builder()\n            .id(\"my_policy_id\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myPolicy:\n    fn::invoke:\n      Function: ovh:Dbaas:getIamPolicy\n      Arguments:\n        id: my_policy_id\n```\n{{% /example %}}\n{{% /examples %}}",
-            "inputs": {
-                "description": "A collection of arguments for invoking getIamPolicy.\n",
-                "properties": {
-                    "allows": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of actions allowed by the policy.\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Group description.\n"
-                    },
-                    "excepts": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of actions.\n"
-                    },
-                    "id": {
-                        "type": "string",
-                        "description": "UUID of the policy.\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "id"
-                ]
-            },
-            "outputs": {
-                "description": "A collection of values returned by getIamPolicy.\n",
-                "properties": {
-                    "allows": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of actions allowed by the policy.\n"
-                    },
-                    "createdAt": {
-                        "type": "string",
-                        "description": "Creation date of this group.\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Group description.\n"
-                    },
-                    "excepts": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of actions.\n"
-                    },
-                    "id": {
-                        "type": "string"
-                    },
-                    "identities": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of identities affected by the policy.\n"
-                    },
-                    "name": {
-                        "type": "string",
-                        "description": "Name of the policy.\n"
-                    },
-                    "owner": {
-                        "type": "string",
-                        "description": "Owner of the policy.\n"
-                    },
-                    "readOnly": {
-                        "type": "boolean",
-                        "description": "Indicates that the policy is a default one.\n"
-                    },
-                    "resources": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of resources affected by the policy.\n"
-                    },
-                    "updatedAt": {
-                        "type": "string",
-                        "description": "Date of the last update of this group.\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "createdAt",
-                    "id",
-                    "identities",
-                    "name",
-                    "owner",
-                    "readOnly",
-                    "resources",
-                    "updatedAt"
-                ]
-            }
-        },
-        "ovh:Dbaas/getIamReferenceActions:getIamReferenceActions": {
-            "description": "Use this data source to list the IAM action associated with a resource type.\n\n## Important\n\n\u003e Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/) \n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Dbaas.DbaasFunctions;\nimport com.pulumi.ovh.Dbaas.inputs.GetIamReferenceActionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var vpsActions = DbaasFunctions.getIamReferenceActions(GetIamReferenceActionsArgs.builder()\n            .resourceType(\"vps\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  vpsActions:\n    fn::invoke:\n      Function: ovh:Dbaas:getIamReferenceActions\n      Arguments:\n        resourceType: vps\n```\n{{% /example %}}\n{{% /examples %}}",
-            "inputs": {
-                "description": "A collection of arguments for invoking getIamReferenceActions.\n",
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "description": "Kind of resource we want the actions for\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "type"
-                ]
-            },
-            "outputs": {
-                "description": "A collection of values returned by getIamReferenceActions.\n",
-                "properties": {
-                    "actions": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/types/ovh:Dbaas/getIamReferenceActionsAction:getIamReferenceActionsAction"
-                        },
-                        "description": "List of actions\n"
-                    },
-                    "id": {
-                        "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
-                    },
-                    "type": {
-                        "type": "string"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "actions",
-                    "type",
-                    "id"
-                ]
-            }
-        },
-        "ovh:Dbaas/getIamReferenceResourceType:getIamReferenceResourceType": {
-            "description": "Use this data source to list all the IAM resource types.\n\n## Important\n\n\u003e Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/) \n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst types = ovh.Dbaas.getIamReferenceResourceType({});\n```\n```python\nimport pulumi\nimport pulumi_ovh as ovh\n\ntypes = ovh.Dbaas.get_iam_reference_resource_type()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var types = Ovh.Dbaas.GetIamReferenceResourceType.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Dbaas.GetIamReferenceResourceType(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Dbaas.DbaasFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var types = DbaasFunctions.getIamReferenceResourceType();\n\n    }\n}\n```\n```yaml\nvariables:\n  types:\n    fn::invoke:\n      Function: ovh:Dbaas:getIamReferenceResourceType\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
-            "outputs": {
-                "description": "A collection of values returned by getIamReferenceResourceType.\n",
-                "properties": {
-                    "id": {
-                        "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
-                    },
-                    "types": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "List of resource types\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "types",
-                    "id"
-                ]
-            }
-        },
         "ovh:Dbaas/getLogsCluster:getLogsCluster": {
             "description": "Use this data source to retrieve informations about a DBaas logs cluster tenant.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst logstash = ovh.Dbaas.getLogsCluster({\n    serviceName: \"ldp-xx-xxxxx\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ovh as ovh\n\nlogstash = ovh.Dbaas.get_logs_cluster(service_name=\"ldp-xx-xxxxx\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var logstash = Ovh.Dbaas.GetLogsCluster.Invoke(new()\n    {\n        ServiceName = \"ldp-xx-xxxxx\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Dbaas.GetLogsCluster(ctx, \u0026dbaas.GetLogsClusterArgs{\n\t\t\tServiceName: \"ldp-xx-xxxxx\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Dbaas.DbaasFunctions;\nimport com.pulumi.ovh.Dbaas.inputs.GetLogsClusterArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var logstash = DbaasFunctions.getLogsCluster(GetLogsClusterArgs.builder()\n            .serviceName(\"ldp-xx-xxxxx\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  logstash:\n    fn::invoke:\n      Function: ovh:Dbaas:getLogsCluster\n      Arguments:\n        serviceName: ldp-xx-xxxxx\n```\n{{% /example %}}\n{{% /examples %}}",
             "inputs": {
@@ -17828,88 +17634,6 @@
                     "title",
                     "updatedAt",
                     "webSocketEnabled",
-                    "id"
-                ]
-            }
-        },
-        "ovh:Dbaas/getMeIdentityGroup:getMeIdentityGroup": {
-            "description": "Use this data source to retrieve information about an identity group.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst myGroup = ovh.Dbaas.getMeIdentityGroup({\n    name: \"my_group_name\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ovh as ovh\n\nmy_group = ovh.Dbaas.get_me_identity_group(name=\"my_group_name\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myGroup = Ovh.Dbaas.GetMeIdentityGroup.Invoke(new()\n    {\n        Name = \"my_group_name\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Dbaas.GetMeIdentityGroup(ctx, \u0026dbaas.GetMeIdentityGroupArgs{\n\t\t\tName: \"my_group_name\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Dbaas.DbaasFunctions;\nimport com.pulumi.ovh.Dbaas.inputs.GetMeIdentityGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myGroup = DbaasFunctions.getMeIdentityGroup(GetMeIdentityGroupArgs.builder()\n            .name(\"my_group_name\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myGroup:\n    fn::invoke:\n      Function: ovh:Dbaas:getMeIdentityGroup\n      Arguments:\n        name: my_group_name\n```\n{{% /example %}}\n{{% /examples %}}",
-            "inputs": {
-                "description": "A collection of arguments for invoking getMeIdentityGroup.\n",
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "description": "Group name.\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "name"
-                ]
-            },
-            "outputs": {
-                "description": "A collection of values returned by getMeIdentityGroup.\n",
-                "properties": {
-                    "creation": {
-                        "type": "string",
-                        "description": "Creation date of this group.\n"
-                    },
-                    "defaultGroup": {
-                        "type": "boolean",
-                        "description": "Is the group a default and immutable one.\n"
-                    },
-                    "description": {
-                        "type": "string",
-                        "description": "Group description.\n"
-                    },
-                    "id": {
-                        "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
-                    },
-                    "lastUpdate": {
-                        "type": "string",
-                        "description": "Date of the last update of this group.\n"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "role": {
-                        "type": "string",
-                        "description": "Role associated with the group. Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "creation",
-                    "defaultGroup",
-                    "description",
-                    "lastUpdate",
-                    "name",
-                    "role",
-                    "id"
-                ]
-            }
-        },
-        "ovh:Dbaas/getMeIdentityGroups:getMeIdentityGroups": {
-            "description": "Use this data source to retrieve the list of the account's identity groups\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst groups = ovh.Dbaas.getMeIdentityGroups({});\n```\n```python\nimport pulumi\nimport pulumi_ovh as ovh\n\ngroups = ovh.Dbaas.get_me_identity_groups()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var groups = Ovh.Dbaas.GetMeIdentityGroups.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Dbaas\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Dbaas.GetMeIdentityGroups(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Dbaas.DbaasFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var groups = DbaasFunctions.getMeIdentityGroups();\n\n    }\n}\n```\n```yaml\nvariables:\n  groups:\n    fn::invoke:\n      Function: ovh:Dbaas:getMeIdentityGroups\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
-            "outputs": {
-                "description": "A collection of values returned by getMeIdentityGroups.\n",
-                "properties": {
-                    "groups": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        },
-                        "description": "The list of the group names of all the identity groups.\n"
-                    },
-                    "id": {
-                        "type": "string",
-                        "description": "The provider-assigned unique ID for this managed resource.\n"
-                    }
-                },
-                "type": "object",
-                "required": [
-                    "groups",
                     "id"
                 ]
             }
@@ -18571,6 +18295,200 @@
                     "grant",
                     "serviceName",
                     "userName",
+                    "id"
+                ]
+            }
+        },
+        "ovh:Iam/getIamPolicies:getIamPolicies": {
+            "description": "Use this data source to list the existing IAM policies of an account.\n\n## Important\n\n\u003e Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/) \n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst myPolicies = ovh.Iam.getIamPolicies({});\n```\n```python\nimport pulumi\nimport pulumi_ovh as ovh\n\nmy_policies = ovh.Iam.get_iam_policies()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myPolicies = Ovh.Iam.GetIamPolicies.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Iam\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Iam.GetIamPolicies(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Iam.IamFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myPolicies = IamFunctions.getIamPolicies();\n\n    }\n}\n```\n```yaml\nvariables:\n  myPolicies:\n    fn::invoke:\n      Function: ovh:Iam:getIamPolicies\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by getIamPolicies.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "policies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of the policies IDs.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "policies",
+                    "id"
+                ]
+            }
+        },
+        "ovh:Iam/getIamPolicy:getIamPolicy": {
+            "description": "Use this data source to retrieve am IAM policy.\n\n## Important\n\n\u003e Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/) \n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst myPolicy = ovh.Iam.getIamPolicy({\n    id: \"my_policy_id\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ovh as ovh\n\nmy_policy = ovh.Iam.get_iam_policy(id=\"my_policy_id\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myPolicy = Ovh.Iam.GetIamPolicy.Invoke(new()\n    {\n        Id = \"my_policy_id\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Iam\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Iam.GetIamPolicy(ctx, \u0026iam.GetIamPolicyArgs{\n\t\t\tId: \"my_policy_id\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Iam.IamFunctions;\nimport com.pulumi.ovh.Iam.inputs.GetIamPolicyArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myPolicy = IamFunctions.getIamPolicy(GetIamPolicyArgs.builder()\n            .id(\"my_policy_id\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myPolicy:\n    fn::invoke:\n      Function: ovh:Iam:getIamPolicy\n      Arguments:\n        id: my_policy_id\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getIamPolicy.\n",
+                "properties": {
+                    "allows": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of actions allowed by the policy.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Group description.\n"
+                    },
+                    "excepts": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of actions.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "UUID of the policy.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "id"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getIamPolicy.\n",
+                "properties": {
+                    "allows": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of actions allowed by the policy.\n"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "description": "Creation date of this group.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Group description.\n"
+                    },
+                    "excepts": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of actions.\n"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "identities": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of identities affected by the policy.\n"
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the policy.\n"
+                    },
+                    "owner": {
+                        "type": "string",
+                        "description": "Owner of the policy.\n"
+                    },
+                    "readOnly": {
+                        "type": "boolean",
+                        "description": "Indicates that the policy is a default one.\n"
+                    },
+                    "resources": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of resources affected by the policy.\n"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "description": "Date of the last update of this group.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "createdAt",
+                    "id",
+                    "identities",
+                    "name",
+                    "owner",
+                    "readOnly",
+                    "resources",
+                    "updatedAt"
+                ]
+            }
+        },
+        "ovh:Iam/getIamReferenceActions:getIamReferenceActions": {
+            "description": "Use this data source to list the IAM action associated with a resource type.\n\n## Important\n\n\u003e Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/) \n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Iam.IamFunctions;\nimport com.pulumi.ovh.Iam.inputs.GetIamReferenceActionsArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var vpsActions = IamFunctions.getIamReferenceActions(GetIamReferenceActionsArgs.builder()\n            .resourceType(\"vps\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  vpsActions:\n    fn::invoke:\n      Function: ovh:Iam:getIamReferenceActions\n      Arguments:\n        resourceType: vps\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getIamReferenceActions.\n",
+                "properties": {
+                    "type": {
+                        "type": "string",
+                        "description": "Kind of resource we want the actions for\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "type"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getIamReferenceActions.\n",
+                "properties": {
+                    "actions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/types/ovh:Iam/getIamReferenceActionsAction:getIamReferenceActionsAction"
+                        },
+                        "description": "List of actions\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "type": {
+                        "type": "string"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "actions",
+                    "type",
+                    "id"
+                ]
+            }
+        },
+        "ovh:Iam/getIamReferenceResourceType:getIamReferenceResourceType": {
+            "description": "Use this data source to list all the IAM resource types.\n\n## Important\n\n\u003e Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/) \n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst types = ovh.Iam.getIamReferenceResourceType({});\n```\n```python\nimport pulumi\nimport pulumi_ovh as ovh\n\ntypes = ovh.Iam.get_iam_reference_resource_type()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var types = Ovh.Iam.GetIamReferenceResourceType.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Iam\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Iam.GetIamReferenceResourceType(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Iam.IamFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var types = IamFunctions.getIamReferenceResourceType();\n\n    }\n}\n```\n```yaml\nvariables:\n  types:\n    fn::invoke:\n      Function: ovh:Iam:getIamReferenceResourceType\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by getIamReferenceResourceType.\n",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "types": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of resource types\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "types",
                     "id"
                 ]
             }
@@ -19330,6 +19248,88 @@
                     "urn",
                     "vat",
                     "zip",
+                    "id"
+                ]
+            }
+        },
+        "ovh:Me/getMeIdentityGroup:getMeIdentityGroup": {
+            "description": "Use this data source to retrieve information about an identity group.\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst myGroup = ovh.Me.getMeIdentityGroup({\n    name: \"my_group_name\",\n});\n```\n```python\nimport pulumi\nimport pulumi_ovh as ovh\n\nmy_group = ovh.Me.get_me_identity_group(name=\"my_group_name\")\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var myGroup = Ovh.Me.GetMeIdentityGroup.Invoke(new()\n    {\n        Name = \"my_group_name\",\n    });\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Me\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Me.GetMeIdentityGroup(ctx, \u0026me.GetMeIdentityGroupArgs{\n\t\t\tName: \"my_group_name\",\n\t\t}, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Me.MeFunctions;\nimport com.pulumi.ovh.Me.inputs.GetMeIdentityGroupArgs;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var myGroup = MeFunctions.getMeIdentityGroup(GetMeIdentityGroupArgs.builder()\n            .name(\"my_group_name\")\n            .build());\n\n    }\n}\n```\n```yaml\nvariables:\n  myGroup:\n    fn::invoke:\n      Function: ovh:Me:getMeIdentityGroup\n      Arguments:\n        name: my_group_name\n```\n{{% /example %}}\n{{% /examples %}}",
+            "inputs": {
+                "description": "A collection of arguments for invoking getMeIdentityGroup.\n",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "description": "Group name.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "name"
+                ]
+            },
+            "outputs": {
+                "description": "A collection of values returned by getMeIdentityGroup.\n",
+                "properties": {
+                    "creation": {
+                        "type": "string",
+                        "description": "Creation date of this group.\n"
+                    },
+                    "defaultGroup": {
+                        "type": "boolean",
+                        "description": "Is the group a default and immutable one.\n"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Group description.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    },
+                    "lastUpdate": {
+                        "type": "string",
+                        "description": "Date of the last update of this group.\n"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string",
+                        "description": "Role associated with the group. Valid roles are ADMIN, REGULAR, UNPRIVILEGED, and NONE.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "creation",
+                    "defaultGroup",
+                    "description",
+                    "lastUpdate",
+                    "name",
+                    "role",
+                    "id"
+                ]
+            }
+        },
+        "ovh:Me/getMeIdentityGroups:getMeIdentityGroups": {
+            "description": "Use this data source to retrieve the list of the account's identity groups\n\n{{% examples %}}\n## Example Usage\n{{% example %}}\n\n```typescript\nimport * as pulumi from \"@pulumi/pulumi\";\nimport * as ovh from \"@pulumi/ovh\";\n\nconst groups = ovh.Me.getMeIdentityGroups({});\n```\n```python\nimport pulumi\nimport pulumi_ovh as ovh\n\ngroups = ovh.Me.get_me_identity_groups()\n```\n```csharp\nusing System.Collections.Generic;\nusing System.Linq;\nusing Pulumi;\nusing Ovh = Pulumi.Ovh;\n\nreturn await Deployment.RunAsync(() =\u003e \n{\n    var groups = Ovh.Me.GetMeIdentityGroups.Invoke();\n\n});\n```\n```go\npackage main\n\nimport (\n\t\"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/Me\"\n\t\"github.com/pulumi/pulumi/sdk/v3/go/pulumi\"\n)\n\nfunc main() {\n\tpulumi.Run(func(ctx *pulumi.Context) error {\n\t\t_, err := Me.GetMeIdentityGroups(ctx, nil, nil)\n\t\tif err != nil {\n\t\t\treturn err\n\t\t}\n\t\treturn nil\n\t})\n}\n```\n```java\npackage generated_program;\n\nimport com.pulumi.Context;\nimport com.pulumi.Pulumi;\nimport com.pulumi.core.Output;\nimport com.pulumi.ovh.Me.MeFunctions;\nimport java.util.List;\nimport java.util.ArrayList;\nimport java.util.Map;\nimport java.io.File;\nimport java.nio.file.Files;\nimport java.nio.file.Paths;\n\npublic class App {\n    public static void main(String[] args) {\n        Pulumi.run(App::stack);\n    }\n\n    public static void stack(Context ctx) {\n        final var groups = MeFunctions.getMeIdentityGroups();\n\n    }\n}\n```\n```yaml\nvariables:\n  groups:\n    fn::invoke:\n      Function: ovh:Me:getMeIdentityGroups\n      Arguments: {}\n```\n{{% /example %}}\n{{% /examples %}}",
+            "outputs": {
+                "description": "A collection of values returned by getMeIdentityGroups.\n",
+                "properties": {
+                    "groups": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "The list of the group names of all the identity groups.\n"
+                    },
+                    "id": {
+                        "type": "string",
+                        "description": "The provider-assigned unique ID for this managed resource.\n"
+                    }
+                },
+                "type": "object",
+                "required": [
+                    "groups",
                     "id"
                 ]
             }
