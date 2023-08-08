@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -80,6 +81,8 @@ type Vrack struct {
 	PlanOptions VrackPlanOptionArrayOutput `pulumi:"planOptions"`
 	// The internal name of your vrack
 	ServiceName pulumi.StringOutput `pulumi:"serviceName"`
+	// The URN of the vrack, used with IAM permissions
+	Urn pulumi.StringOutput `pulumi:"urn"`
 }
 
 // NewVrack registers a new resource with the given unique name, arguments, and options.
@@ -95,7 +98,7 @@ func NewVrack(ctx *pulumi.Context,
 	if args.Plan == nil {
 		return nil, errors.New("invalid value for required argument 'Plan'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Vrack
 	err := ctx.RegisterResource("ovh:Vrack/vrack:Vrack", name, args, &resource, opts...)
 	if err != nil {
@@ -136,6 +139,8 @@ type vrackState struct {
 	PlanOptions []VrackPlanOption `pulumi:"planOptions"`
 	// The internal name of your vrack
 	ServiceName *string `pulumi:"serviceName"`
+	// The URN of the vrack, used with IAM permissions
+	Urn *string `pulumi:"urn"`
 }
 
 type VrackState struct {
@@ -157,6 +162,8 @@ type VrackState struct {
 	PlanOptions VrackPlanOptionArrayInput
 	// The internal name of your vrack
 	ServiceName pulumi.StringPtrInput
+	// The URN of the vrack, used with IAM permissions
+	Urn pulumi.StringPtrInput
 }
 
 func (VrackState) ElementType() reflect.Type {
@@ -325,6 +332,11 @@ func (o VrackOutput) PlanOptions() VrackPlanOptionArrayOutput {
 // The internal name of your vrack
 func (o VrackOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v *Vrack) pulumi.StringOutput { return v.ServiceName }).(pulumi.StringOutput)
+}
+
+// The URN of the vrack, used with IAM permissions
+func (o VrackOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Vrack) pulumi.StringOutput { return v.Urn }).(pulumi.StringOutput)
 }
 
 type VrackArrayOutput struct{ *pulumi.OutputState }

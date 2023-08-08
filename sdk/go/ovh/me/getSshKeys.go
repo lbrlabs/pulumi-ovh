@@ -4,6 +4,7 @@
 package me
 
 import (
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ import (
 //
 // ```
 func GetSshKeys(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetSshKeysResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetSshKeysResult
 	err := ctx.Invoke("ovh:Me/getSshKeys:getSshKeys", nil, &rv, opts...)
 	if err != nil {

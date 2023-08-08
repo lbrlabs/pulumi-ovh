@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -123,7 +124,7 @@ func NewS3Policy(ctx *pulumi.Context,
 	if args.UserId == nil {
 		return nil, errors.New("invalid value for required argument 'UserId'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource S3Policy
 	err := ctx.RegisterResource("ovh:CloudProject/s3Policy:S3Policy", name, args, &resource, opts...)
 	if err != nil {

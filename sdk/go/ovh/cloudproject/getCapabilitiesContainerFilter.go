@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,7 +41,7 @@ import (
 //
 // ```
 func GetCapabilitiesContainerFilter(ctx *pulumi.Context, args *GetCapabilitiesContainerFilterArgs, opts ...pulumi.InvokeOption) (*GetCapabilitiesContainerFilterResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCapabilitiesContainerFilterResult
 	err := ctx.Invoke("ovh:CloudProject/getCapabilitiesContainerFilter:getCapabilitiesContainerFilter", args, &rv, opts...)
 	if err != nil {

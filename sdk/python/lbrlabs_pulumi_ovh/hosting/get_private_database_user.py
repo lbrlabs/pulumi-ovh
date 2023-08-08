@@ -114,11 +114,11 @@ def get_private_database_user(service_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Hosting/getPrivateDatabaseUser:getPrivateDatabaseUser', __args__, opts=opts, typ=GetPrivateDatabaseUserResult).value
 
     return AwaitableGetPrivateDatabaseUserResult(
-        creation_date=__ret__.creation_date,
-        databases=__ret__.databases,
-        id=__ret__.id,
-        service_name=__ret__.service_name,
-        user_name=__ret__.user_name)
+        creation_date=pulumi.get(__ret__, 'creation_date'),
+        databases=pulumi.get(__ret__, 'databases'),
+        id=pulumi.get(__ret__, 'id'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        user_name=pulumi.get(__ret__, 'user_name'))
 
 
 @_utilities.lift_output_func(get_private_database_user)

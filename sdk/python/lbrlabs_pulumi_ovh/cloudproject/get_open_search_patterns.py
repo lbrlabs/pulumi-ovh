@@ -109,10 +109,10 @@ def get_open_search_patterns(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getOpenSearchPatterns:getOpenSearchPatterns', __args__, opts=opts, typ=GetOpenSearchPatternsResult).value
 
     return AwaitableGetOpenSearchPatternsResult(
-        cluster_id=__ret__.cluster_id,
-        id=__ret__.id,
-        pattern_ids=__ret__.pattern_ids,
-        service_name=__ret__.service_name)
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        id=pulumi.get(__ret__, 'id'),
+        pattern_ids=pulumi.get(__ret__, 'pattern_ids'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_open_search_patterns)

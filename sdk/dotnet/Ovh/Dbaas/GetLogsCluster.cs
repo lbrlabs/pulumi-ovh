@@ -147,6 +147,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
         /// </summary>
         public readonly string Region;
         public readonly string ServiceName;
+        /// <summary>
+        /// is the URN of the DBaas logs instance
+        /// </summary>
+        public readonly string Urn;
 
         [OutputConstructor]
         private GetLogsClusterResult(
@@ -172,7 +176,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
 
             string region,
 
-            string serviceName)
+            string serviceName,
+
+            string urn)
         {
             ArchiveAllowedNetworks = archiveAllowedNetworks;
             ClusterType = clusterType;
@@ -186,6 +192,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dbaas
             QueryAllowedNetworks = queryAllowedNetworks;
             Region = region;
             ServiceName = serviceName;
+            Urn = urn;
         }
     }
 }

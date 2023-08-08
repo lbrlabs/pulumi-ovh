@@ -17,14 +17,14 @@ public final class GetCartArgs extends com.pulumi.resources.InvokeArgs {
     public static final GetCartArgs Empty = new GetCartArgs();
 
     /**
-     * Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+     * Assign a shopping cart to a logged in client. Values can be `true` or `false`.
      * 
      */
     @Import(name="assign")
     private @Nullable Output<Boolean> assign;
 
     /**
-     * @return Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+     * @return Assign a shopping cart to a logged in client. Values can be `true` or `false`.
      * 
      */
     public Optional<Output<Boolean>> assign() {
@@ -104,7 +104,7 @@ public final class GetCartArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param assign Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+         * @param assign Assign a shopping cart to a logged in client. Values can be `true` or `false`.
          * 
          * @return builder
          * 
@@ -115,7 +115,7 @@ public final class GetCartArgs extends com.pulumi.resources.InvokeArgs {
         }
 
         /**
-         * @param assign Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+         * @param assign Assign a shopping cart to a logged in client. Values can be `true` or `false`.
          * 
          * @return builder
          * 

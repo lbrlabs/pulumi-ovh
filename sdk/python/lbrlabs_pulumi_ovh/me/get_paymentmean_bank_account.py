@@ -141,13 +141,13 @@ def get_paymentmean_bank_account(description_regexp: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Me/getPaymentmeanBankAccount:getPaymentmeanBankAccount', __args__, opts=opts, typ=GetPaymentmeanBankAccountResult).value
 
     return AwaitableGetPaymentmeanBankAccountResult(
-        default=__ret__.default,
-        description=__ret__.description,
-        description_regexp=__ret__.description_regexp,
-        id=__ret__.id,
-        state=__ret__.state,
-        use_default=__ret__.use_default,
-        use_oldest=__ret__.use_oldest)
+        default=pulumi.get(__ret__, 'default'),
+        description=pulumi.get(__ret__, 'description'),
+        description_regexp=pulumi.get(__ret__, 'description_regexp'),
+        id=pulumi.get(__ret__, 'id'),
+        state=pulumi.get(__ret__, 'state'),
+        use_default=pulumi.get(__ret__, 'use_default'),
+        use_oldest=pulumi.get(__ret__, 'use_oldest'))
 
 
 @_utilities.lift_output_func(get_paymentmean_bank_account)

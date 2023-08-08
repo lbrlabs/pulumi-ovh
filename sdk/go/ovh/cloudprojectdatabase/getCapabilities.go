@@ -7,12 +7,13 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to get information about capabilities of a public cloud project.
 func GetCapabilities(ctx *pulumi.Context, args *GetCapabilitiesArgs, opts ...pulumi.InvokeOption) (*GetCapabilitiesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCapabilitiesResult
 	err := ctx.Invoke("ovh:CloudProjectDatabase/getCapabilities:getCapabilities", args, &rv, opts...)
 	if err != nil {

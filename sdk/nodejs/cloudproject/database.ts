@@ -125,6 +125,17 @@ import * as utilities from "../utilities";
  *     }],
  *     flavor: "db1-4",
  * });
+ * const grafana = new ovh.cloudproject.Database("grafana", {
+ *     serviceName: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+ *     description: "my-first-grafana",
+ *     engine: "grafana",
+ *     version: "9.1",
+ *     plan: "essential",
+ *     nodes: [{
+ *         region: "GRA",
+ *     }],
+ *     flavor: "db1-4",
+ * });
  * ```
  *
  * To deploy a business PostgreSQL service with two nodes on public network:

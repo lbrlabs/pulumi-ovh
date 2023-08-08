@@ -5,8 +5,6 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 /**
- * Provides a OVHcloud domain zone record.
- *
  * ## Example Usage
  *
  * ```typescript

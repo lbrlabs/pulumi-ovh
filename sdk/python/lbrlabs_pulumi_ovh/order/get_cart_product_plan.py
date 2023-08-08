@@ -181,16 +181,16 @@ def get_cart_product_plan(cart_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Order/getCartProductPlan:getCartProductPlan', __args__, opts=opts, typ=GetCartProductPlanResult).value
 
     return AwaitableGetCartProductPlanResult(
-        cart_id=__ret__.cart_id,
-        catalog_name=__ret__.catalog_name,
-        id=__ret__.id,
-        plan_code=__ret__.plan_code,
-        price_capacity=__ret__.price_capacity,
-        prices=__ret__.prices,
-        product=__ret__.product,
-        product_name=__ret__.product_name,
-        product_type=__ret__.product_type,
-        selected_prices=__ret__.selected_prices)
+        cart_id=pulumi.get(__ret__, 'cart_id'),
+        catalog_name=pulumi.get(__ret__, 'catalog_name'),
+        id=pulumi.get(__ret__, 'id'),
+        plan_code=pulumi.get(__ret__, 'plan_code'),
+        price_capacity=pulumi.get(__ret__, 'price_capacity'),
+        prices=pulumi.get(__ret__, 'prices'),
+        product=pulumi.get(__ret__, 'product'),
+        product_name=pulumi.get(__ret__, 'product_name'),
+        product_type=pulumi.get(__ret__, 'product_type'),
+        selected_prices=pulumi.get(__ret__, 'selected_prices'))
 
 
 @_utilities.lift_output_func(get_cart_product_plan)

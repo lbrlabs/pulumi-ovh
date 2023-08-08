@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -114,7 +115,7 @@ func NewHttpFarmServer(ctx *pulumi.Context,
 	if args.Status == nil {
 		return nil, errors.New("invalid value for required argument 'Status'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource HttpFarmServer
 	err := ctx.RegisterResource("ovh:IpLoadBalancing/httpFarmServer:HttpFarmServer", name, args, &resource, opts...)
 	if err != nil {

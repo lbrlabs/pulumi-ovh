@@ -87,6 +87,9 @@ class LoadBalancerArgs:
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @payment_mean.setter
@@ -136,6 +139,7 @@ class _LoadBalancerState:
                  service_name: Optional[pulumi.Input[str]] = None,
                  ssl_configuration: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
+                 urn: Optional[pulumi.Input[str]] = None,
                  vrack_eligibility: Optional[pulumi.Input[bool]] = None,
                  vrack_name: Optional[pulumi.Input[str]] = None,
                  zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None):
@@ -156,6 +160,7 @@ class _LoadBalancerState:
         :param pulumi.Input[str] service_name: The internal name of your IP load balancing
         :param pulumi.Input[str] ssl_configuration: Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null. one of "intermediate", "modern".
         :param pulumi.Input[str] state: Current state of your IP
+        :param pulumi.Input[str] urn: URN of the load balancer, used when writing IAM policies
         :param pulumi.Input[bool] vrack_eligibility: Vrack eligibility
         :param pulumi.Input[str] vrack_name: Name of the vRack on which the current Load Balancer is attached to, as it is named on vRack product
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zones: Location where your service is
@@ -193,6 +198,8 @@ class _LoadBalancerState:
             pulumi.set(__self__, "ssl_configuration", ssl_configuration)
         if state is not None:
             pulumi.set(__self__, "state", state)
+        if urn is not None:
+            pulumi.set(__self__, "urn", urn)
         if vrack_eligibility is not None:
             pulumi.set(__self__, "vrack_eligibility", vrack_eligibility)
         if vrack_name is not None:
@@ -314,6 +321,9 @@ class _LoadBalancerState:
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @payment_mean.setter
@@ -379,6 +389,18 @@ class _LoadBalancerState:
     @state.setter
     def state(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "state", value)
+
+    @property
+    @pulumi.getter
+    def urn(self) -> Optional[pulumi.Input[str]]:
+        """
+        URN of the load balancer, used when writing IAM policies
+        """
+        return pulumi.get(self, "urn")
+
+    @urn.setter
+    def urn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "urn", value)
 
     @property
     @pulumi.getter(name="vrackEligibility")
@@ -564,6 +586,7 @@ class LoadBalancer(pulumi.CustomResource):
             __props__.__dict__["orders"] = None
             __props__.__dict__["service_name"] = None
             __props__.__dict__["state"] = None
+            __props__.__dict__["urn"] = None
             __props__.__dict__["vrack_eligibility"] = None
             __props__.__dict__["vrack_name"] = None
             __props__.__dict__["zones"] = None
@@ -594,6 +617,7 @@ class LoadBalancer(pulumi.CustomResource):
             service_name: Optional[pulumi.Input[str]] = None,
             ssl_configuration: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
+            urn: Optional[pulumi.Input[str]] = None,
             vrack_eligibility: Optional[pulumi.Input[bool]] = None,
             vrack_name: Optional[pulumi.Input[str]] = None,
             zones: Optional[pulumi.Input[Sequence[pulumi.Input[str]]]] = None) -> 'LoadBalancer':
@@ -619,6 +643,7 @@ class LoadBalancer(pulumi.CustomResource):
         :param pulumi.Input[str] service_name: The internal name of your IP load balancing
         :param pulumi.Input[str] ssl_configuration: Modern oldest compatible clients : Firefox 27, Chrome 30, IE 11 on Windows 7, Edge, Opera 17, Safari 9, Android 5.0, and Java 8. Intermediate oldest compatible clients : Firefox 1, Chrome 1, IE 7, Opera 5, Safari 1, Windows XP IE8, Android 2.3, Java 7. Intermediate if null. one of "intermediate", "modern".
         :param pulumi.Input[str] state: Current state of your IP
+        :param pulumi.Input[str] urn: URN of the load balancer, used when writing IAM policies
         :param pulumi.Input[bool] vrack_eligibility: Vrack eligibility
         :param pulumi.Input[str] vrack_name: Name of the vRack on which the current Load Balancer is attached to, as it is named on vRack product
         :param pulumi.Input[Sequence[pulumi.Input[str]]] zones: Location where your service is
@@ -642,6 +667,7 @@ class LoadBalancer(pulumi.CustomResource):
         __props__.__dict__["service_name"] = service_name
         __props__.__dict__["ssl_configuration"] = ssl_configuration
         __props__.__dict__["state"] = state
+        __props__.__dict__["urn"] = urn
         __props__.__dict__["vrack_eligibility"] = vrack_eligibility
         __props__.__dict__["vrack_name"] = vrack_name
         __props__.__dict__["zones"] = zones
@@ -725,6 +751,9 @@ class LoadBalancer(pulumi.CustomResource):
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @property
@@ -766,6 +795,14 @@ class LoadBalancer(pulumi.CustomResource):
         Current state of your IP
         """
         return pulumi.get(self, "state")
+
+    @property
+    @pulumi.getter
+    def urn(self) -> pulumi.Output[str]:
+        """
+        URN of the load balancer, used when writing IAM policies
+        """
+        return pulumi.get(self, "urn")
 
     @property
     @pulumi.getter(name="vrackEligibility")

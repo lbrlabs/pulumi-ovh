@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -111,6 +112,8 @@ type LoadBalancer struct {
 	SslConfiguration pulumi.StringOutput `pulumi:"sslConfiguration"`
 	// Current state of your IP
 	State pulumi.StringOutput `pulumi:"state"`
+	// URN of the load balancer, used when writing IAM policies
+	Urn pulumi.StringOutput `pulumi:"urn"`
 	// Vrack eligibility
 	VrackEligibility pulumi.BoolOutput `pulumi:"vrackEligibility"`
 	// Name of the vRack on which the current Load Balancer is attached to, as it is named on vRack product
@@ -136,7 +139,7 @@ func NewLoadBalancer(ctx *pulumi.Context,
 		"metricsToken",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LoadBalancer
 	err := ctx.RegisterResource("ovh:IpLoadBalancing/loadBalancer:LoadBalancer", name, args, &resource, opts...)
 	if err != nil {
@@ -191,6 +194,8 @@ type loadBalancerState struct {
 	SslConfiguration *string `pulumi:"sslConfiguration"`
 	// Current state of your IP
 	State *string `pulumi:"state"`
+	// URN of the load balancer, used when writing IAM policies
+	Urn *string `pulumi:"urn"`
 	// Vrack eligibility
 	VrackEligibility *bool `pulumi:"vrackEligibility"`
 	// Name of the vRack on which the current Load Balancer is attached to, as it is named on vRack product
@@ -232,6 +237,8 @@ type LoadBalancerState struct {
 	SslConfiguration pulumi.StringPtrInput
 	// Current state of your IP
 	State pulumi.StringPtrInput
+	// URN of the load balancer, used when writing IAM policies
+	Urn pulumi.StringPtrInput
 	// Vrack eligibility
 	VrackEligibility pulumi.BoolPtrInput
 	// Name of the vRack on which the current Load Balancer is attached to, as it is named on vRack product
@@ -441,6 +448,11 @@ func (o LoadBalancerOutput) SslConfiguration() pulumi.StringOutput {
 // Current state of your IP
 func (o LoadBalancerOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v *LoadBalancer) pulumi.StringOutput { return v.State }).(pulumi.StringOutput)
+}
+
+// URN of the load balancer, used when writing IAM policies
+func (o LoadBalancerOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v *LoadBalancer) pulumi.StringOutput { return v.Urn }).(pulumi.StringOutput)
 }
 
 // Vrack eligibility

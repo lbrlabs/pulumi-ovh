@@ -35,10 +35,6 @@ class GetKubeResult:
         pulumi.set(__self__, "customization_kube_proxy", customization_kube_proxy)
         if customizations and not isinstance(customizations, list):
             raise TypeError("Expected argument 'customizations' to be a list")
-        if customizations is not None:
-            warnings.warn("""Use customization_apiserver instead""", DeprecationWarning)
-            pulumi.log.warn("""customizations is deprecated: Use customization_apiserver instead""")
-
         pulumi.set(__self__, "customizations", customizations)
         if id and not isinstance(id, str):
             raise TypeError("Expected argument 'id' to be a str")
@@ -113,6 +109,9 @@ class GetKubeResult:
         """
         **Deprecated** (Optional) Use `customization_apiserver` and `customization_kube_proxy` instead. Kubernetes cluster customization
         """
+        warnings.warn("""Use customization_apiserver instead""", DeprecationWarning)
+        pulumi.log.warn("""customizations is deprecated: Use customization_apiserver instead""")
+
         return pulumi.get(self, "customizations")
 
     @property
@@ -306,24 +305,24 @@ def get_kube(customization_apiservers: Optional[Sequence[pulumi.InputType['GetKu
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getKube:getKube', __args__, opts=opts, typ=GetKubeResult).value
 
     return AwaitableGetKubeResult(
-        control_plane_is_up_to_date=__ret__.control_plane_is_up_to_date,
-        customization_apiservers=__ret__.customization_apiservers,
-        customization_kube_proxy=__ret__.customization_kube_proxy,
-        customizations=__ret__.customizations,
-        id=__ret__.id,
-        is_up_to_date=__ret__.is_up_to_date,
-        kube_id=__ret__.kube_id,
-        kube_proxy_mode=__ret__.kube_proxy_mode,
-        name=__ret__.name,
-        next_upgrade_versions=__ret__.next_upgrade_versions,
-        nodes_url=__ret__.nodes_url,
-        private_network_id=__ret__.private_network_id,
-        region=__ret__.region,
-        service_name=__ret__.service_name,
-        status=__ret__.status,
-        update_policy=__ret__.update_policy,
-        url=__ret__.url,
-        version=__ret__.version)
+        control_plane_is_up_to_date=pulumi.get(__ret__, 'control_plane_is_up_to_date'),
+        customization_apiservers=pulumi.get(__ret__, 'customization_apiservers'),
+        customization_kube_proxy=pulumi.get(__ret__, 'customization_kube_proxy'),
+        customizations=pulumi.get(__ret__, 'customizations'),
+        id=pulumi.get(__ret__, 'id'),
+        is_up_to_date=pulumi.get(__ret__, 'is_up_to_date'),
+        kube_id=pulumi.get(__ret__, 'kube_id'),
+        kube_proxy_mode=pulumi.get(__ret__, 'kube_proxy_mode'),
+        name=pulumi.get(__ret__, 'name'),
+        next_upgrade_versions=pulumi.get(__ret__, 'next_upgrade_versions'),
+        nodes_url=pulumi.get(__ret__, 'nodes_url'),
+        private_network_id=pulumi.get(__ret__, 'private_network_id'),
+        region=pulumi.get(__ret__, 'region'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        status=pulumi.get(__ret__, 'status'),
+        update_policy=pulumi.get(__ret__, 'update_policy'),
+        url=pulumi.get(__ret__, 'url'),
+        version=pulumi.get(__ret__, 'version'))
 
 
 @_utilities.lift_output_func(get_kube)

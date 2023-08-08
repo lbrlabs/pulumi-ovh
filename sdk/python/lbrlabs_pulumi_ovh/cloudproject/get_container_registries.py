@@ -90,9 +90,9 @@ def get_container_registries(service_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getContainerRegistries:getContainerRegistries', __args__, opts=opts, typ=GetContainerRegistriesResult).value
 
     return AwaitableGetContainerRegistriesResult(
-        id=__ret__.id,
-        results=__ret__.results,
-        service_name=__ret__.service_name)
+        id=pulumi.get(__ret__, 'id'),
+        results=pulumi.get(__ret__, 'results'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_container_registries)

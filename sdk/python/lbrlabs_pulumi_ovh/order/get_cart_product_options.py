@@ -132,12 +132,12 @@ def get_cart_product_options(cart_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Order/getCartProductOptions:getCartProductOptions', __args__, opts=opts, typ=GetCartProductOptionsResult).value
 
     return AwaitableGetCartProductOptionsResult(
-        cart_id=__ret__.cart_id,
-        catalog_name=__ret__.catalog_name,
-        id=__ret__.id,
-        plan_code=__ret__.plan_code,
-        product=__ret__.product,
-        results=__ret__.results)
+        cart_id=pulumi.get(__ret__, 'cart_id'),
+        catalog_name=pulumi.get(__ret__, 'catalog_name'),
+        id=pulumi.get(__ret__, 'id'),
+        plan_code=pulumi.get(__ret__, 'plan_code'),
+        product=pulumi.get(__ret__, 'product'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_cart_product_options)

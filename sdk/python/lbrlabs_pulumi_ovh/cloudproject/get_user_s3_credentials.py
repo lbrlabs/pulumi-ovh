@@ -103,10 +103,10 @@ def get_user_s3_credentials(service_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getUserS3Credentials:getUserS3Credentials', __args__, opts=opts, typ=GetUserS3CredentialsResult).value
 
     return AwaitableGetUserS3CredentialsResult(
-        access_key_ids=__ret__.access_key_ids,
-        id=__ret__.id,
-        service_name=__ret__.service_name,
-        user_id=__ret__.user_id)
+        access_key_ids=pulumi.get(__ret__, 'access_key_ids'),
+        id=pulumi.get(__ret__, 'id'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        user_id=pulumi.get(__ret__, 'user_id'))
 
 
 @_utilities.lift_output_func(get_user_s3_credentials)

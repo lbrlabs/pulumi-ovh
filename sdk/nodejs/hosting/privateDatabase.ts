@@ -169,6 +169,10 @@ export class PrivateDatabase extends pulumi.CustomResource {
      */
     public /*out*/ readonly type!: pulumi.Output<string>;
     /**
+     * URN of the private database, used when writing IAM policies
+     */
+    public /*out*/ readonly urn!: pulumi.Output<string>;
+    /**
      * Private database available versions
      */
     public /*out*/ readonly version!: pulumi.Output<string>;
@@ -215,6 +219,7 @@ export class PrivateDatabase extends pulumi.CustomResource {
             resourceInputs["serviceName"] = state ? state.serviceName : undefined;
             resourceInputs["state"] = state ? state.state : undefined;
             resourceInputs["type"] = state ? state.type : undefined;
+            resourceInputs["urn"] = state ? state.urn : undefined;
             resourceInputs["version"] = state ? state.version : undefined;
             resourceInputs["versionLabel"] = state ? state.versionLabel : undefined;
             resourceInputs["versionNumber"] = state ? state.versionNumber : undefined;
@@ -247,6 +252,7 @@ export class PrivateDatabase extends pulumi.CustomResource {
             resourceInputs["server"] = undefined /*out*/;
             resourceInputs["state"] = undefined /*out*/;
             resourceInputs["type"] = undefined /*out*/;
+            resourceInputs["urn"] = undefined /*out*/;
             resourceInputs["version"] = undefined /*out*/;
             resourceInputs["versionLabel"] = undefined /*out*/;
             resourceInputs["versionNumber"] = undefined /*out*/;
@@ -346,6 +352,10 @@ export interface PrivateDatabaseState {
      * Private database type
      */
     type?: pulumi.Input<string>;
+    /**
+     * URN of the private database, used when writing IAM policies
+     */
+    urn?: pulumi.Input<string>;
     /**
      * Private database available versions
      */

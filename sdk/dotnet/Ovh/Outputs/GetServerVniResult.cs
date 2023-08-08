@@ -26,6 +26,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Outputs
         /// User defined VirtualNetworkInterface name
         /// </summary>
         public readonly string Name;
+        /// <summary>
+        /// NetworkInterfaceControllers bound to this VirtualNetworkInterface
+        /// </summary>
         public readonly ImmutableArray<string> Nics;
         /// <summary>
         /// Server bound to this VirtualNetworkInterface

@@ -152,6 +152,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         /// </summary>
         public readonly string State;
         /// <summary>
+        /// The resource URN of the account, to be used when writing IAM policies
+        /// </summary>
+        public readonly string Urn;
+        /// <summary>
         /// VAT number
         /// </summary>
         public readonly string Vat;
@@ -218,6 +222,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
 
             string state,
 
+            string urn,
+
             string vat,
 
             string zip)
@@ -250,6 +256,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
             Sex = sex;
             SpareEmail = spareEmail;
             State = state;
+            Urn = urn;
             Vat = vat;
             Zip = zip;
         }

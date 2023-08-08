@@ -8,11 +8,10 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Provides a OVHcloud domain zone record.
-//
 // ## Example Usage
 //
 // ```go
@@ -83,7 +82,7 @@ func NewZoneRecord(ctx *pulumi.Context,
 	if args.Zone == nil {
 		return nil, errors.New("invalid value for required argument 'Zone'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ZoneRecord
 	err := ctx.RegisterResource("ovh:Domain/zoneRecord:ZoneRecord", name, args, &resource, opts...)
 	if err != nil {

@@ -69,7 +69,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
         /// </summary>
         [Output("resolution")]
-        public Output<string?> Resolution { get; private set; } = null!;
+        public Output<string> Resolution { get; private set; } = null!;
 
         /// <summary>
         /// Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
@@ -188,8 +188,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProjectDatabase
         /// <summary>
         /// Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
         /// </summary>
-        [Input("resolution")]
-        public Input<string>? Resolution { get; set; }
+        [Input("resolution", required: true)]
+        public Input<string> Resolution { get; set; } = null!;
 
         /// <summary>
         /// Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.

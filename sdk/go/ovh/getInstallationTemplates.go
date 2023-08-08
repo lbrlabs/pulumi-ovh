@@ -4,6 +4,7 @@
 package ovh
 
 import (
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ import (
 //
 // ```
 func GetInstallationTemplates(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetInstallationTemplatesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetInstallationTemplatesResult
 	err := ctx.Invoke("ovh:index/getInstallationTemplates:getInstallationTemplates", nil, &rv, opts...)
 	if err != nil {

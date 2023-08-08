@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -30,7 +31,7 @@ type User struct {
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
 	Engine pulumi.StringOutput `pulumi:"engine"`
-	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user. The "Grafana" engine only allows the "avnadmin" mapping.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// (Sensitive) Password of the user.
 	Password pulumi.StringOutput `pulumi:"password"`
@@ -63,7 +64,7 @@ func NewUser(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource User
 	err := ctx.RegisterResource("ovh:CloudProjectDatabase/user:User", name, args, &resource, opts...)
 	if err != nil {
@@ -93,7 +94,7 @@ type userState struct {
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
 	Engine *string `pulumi:"engine"`
-	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user. The "Grafana" engine only allows the "avnadmin" mapping.
 	Name *string `pulumi:"name"`
 	// (Sensitive) Password of the user.
 	Password *string `pulumi:"password"`
@@ -114,7 +115,7 @@ type UserState struct {
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
 	Engine pulumi.StringPtrInput
-	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user. The "Grafana" engine only allows the "avnadmin" mapping.
 	Name pulumi.StringPtrInput
 	// (Sensitive) Password of the user.
 	Password pulumi.StringPtrInput
@@ -137,7 +138,7 @@ type userArgs struct {
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
 	Engine string `pulumi:"engine"`
-	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user. The "Grafana" engine only allows the "avnadmin" mapping.
 	Name *string `pulumi:"name"`
 	// Arbitrary string to change to trigger a password update.
 	PasswordReset *string `pulumi:"passwordReset"`
@@ -153,7 +154,7 @@ type UserArgs struct {
 	// The engine of the database cluster you want to add. You can find the complete list of available engine in the [public documentation](https://docs.ovh.com/gb/en/publiccloud/databases).
 	// Available engines:
 	Engine pulumi.StringInput
-	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
+	// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user. The "Grafana" engine only allows the "avnadmin" mapping.
 	Name pulumi.StringPtrInput
 	// Arbitrary string to change to trigger a password update.
 	PasswordReset pulumi.StringPtrInput
@@ -265,7 +266,7 @@ func (o UserOutput) Engine() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Engine }).(pulumi.StringOutput)
 }
 
-// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user.
+// Name of the user. A user named "avnadmin" is map with already created admin user and reset his password instead of create a new user. The "Grafana" engine only allows the "avnadmin" mapping.
 func (o UserOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *User) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

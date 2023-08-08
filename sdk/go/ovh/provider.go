@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -35,16 +36,24 @@ func NewProvider(ctx *pulumi.Context,
 	}
 
 	if args.ApplicationKey == nil {
-		args.ApplicationKey = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_APPLICATION_KEY").(string))
+		if d := internal.GetEnvOrDefault(nil, nil, "OVH_APPLICATION_KEY"); d != nil {
+			args.ApplicationKey = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.ApplicationSecret == nil {
-		args.ApplicationSecret = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_APPLICATION_SECRET").(string))
+		if d := internal.GetEnvOrDefault(nil, nil, "OVH_APPLICATION_SECRET"); d != nil {
+			args.ApplicationSecret = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.ConsumerKey == nil {
-		args.ConsumerKey = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_CONSUMER_KEY").(string))
+		if d := internal.GetEnvOrDefault(nil, nil, "OVH_CONSUMER_KEY"); d != nil {
+			args.ConsumerKey = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.Endpoint == nil {
-		args.Endpoint = pulumi.StringPtr(getEnvOrDefault("", nil, "OVH_ENDPOINT").(string))
+		if d := internal.GetEnvOrDefault(nil, nil, "OVH_ENDPOINT"); d != nil {
+			args.Endpoint = pulumi.StringPtr(d.(string))
+		}
 	}
 	if args.ConsumerKey != nil {
 		args.ConsumerKey = pulumi.ToSecret(args.ConsumerKey).(pulumi.StringPtrInput)
@@ -53,7 +62,7 @@ func NewProvider(ctx *pulumi.Context,
 		"consumerKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Provider
 	err := ctx.RegisterResource("pulumi:providers:ovh", name, args, &resource, opts...)
 	if err != nil {

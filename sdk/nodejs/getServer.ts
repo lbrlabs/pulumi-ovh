@@ -47,7 +47,7 @@ export interface GetServerResult {
      */
     readonly bootId: number;
     /**
-     * dedicater server commercial range
+     * dedicated server commercial range
      */
     readonly commercialRange: string;
     /**
@@ -127,6 +127,10 @@ export interface GetServerResult {
      * Dedicated server support level (critical, fastpath, gs, pro)
      */
     readonly supportLevel: string;
+    /**
+     * URN of the dedicated server instance
+     */
+    readonly urn: string;
     /**
      * the list of Virtualnetworkinterface assiociated with this server
      */

@@ -109,10 +109,10 @@ def get_m3db_namespaces(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getM3dbNamespaces:getM3dbNamespaces', __args__, opts=opts, typ=GetM3dbNamespacesResult).value
 
     return AwaitableGetM3dbNamespacesResult(
-        cluster_id=__ret__.cluster_id,
-        id=__ret__.id,
-        namespace_ids=__ret__.namespace_ids,
-        service_name=__ret__.service_name)
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        id=pulumi.get(__ret__, 'id'),
+        namespace_ids=pulumi.get(__ret__, 'namespace_ids'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_m3db_namespaces)

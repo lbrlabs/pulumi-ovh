@@ -73,5 +73,5 @@ def get_vpss(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVpssRes
     __ret__ = pulumi.runtime.invoke('ovh:Vps/getVpss:getVpss', __args__, opts=opts, typ=GetVpssResult).value
 
     return AwaitableGetVpssResult(
-        id=__ret__.id,
-        results=__ret__.results)
+        id=pulumi.get(__ret__, 'id'),
+        results=pulumi.get(__ret__, 'results'))

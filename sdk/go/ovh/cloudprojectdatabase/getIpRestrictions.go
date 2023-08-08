@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -43,7 +44,7 @@ import (
 //
 // ```
 func GetIpRestrictions(ctx *pulumi.Context, args *GetIpRestrictionsArgs, opts ...pulumi.InvokeOption) (*GetIpRestrictionsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetIpRestrictionsResult
 	err := ctx.Invoke("ovh:CloudProjectDatabase/getIpRestrictions:getIpRestrictions", args, &rv, opts...)
 	if err != nil {

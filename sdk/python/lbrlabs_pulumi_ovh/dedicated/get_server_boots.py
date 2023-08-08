@@ -112,11 +112,11 @@ def get_server_boots(boot_type: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Dedicated/getServerBoots:getServerBoots', __args__, opts=opts, typ=GetServerBootsResult).value
 
     return AwaitableGetServerBootsResult(
-        boot_type=__ret__.boot_type,
-        id=__ret__.id,
-        kernel=__ret__.kernel,
-        results=__ret__.results,
-        service_name=__ret__.service_name)
+        boot_type=pulumi.get(__ret__, 'boot_type'),
+        id=pulumi.get(__ret__, 'id'),
+        kernel=pulumi.get(__ret__, 'kernel'),
+        results=pulumi.get(__ret__, 'results'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_server_boots)

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func LookupZone(ctx *pulumi.Context, args *LookupZoneArgs, opts ...pulumi.InvokeOption) (*LookupZoneResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupZoneResult
 	err := ctx.Invoke("ovh:Domain/getZone:getZone", args, &rv, opts...)
 	if err != nil {
@@ -66,6 +67,8 @@ type LookupZoneResult struct {
 	Name       string `pulumi:"name"`
 	// Name servers that host the DNS zone
 	NameServers []string `pulumi:"nameServers"`
+	// URN of the DNS zone
+	Urn string `pulumi:"urn"`
 }
 
 func LookupZoneOutput(ctx *pulumi.Context, args LookupZoneOutputArgs, opts ...pulumi.InvokeOption) LookupZoneResultOutput {
@@ -133,6 +136,11 @@ func (o LookupZoneResultOutput) Name() pulumi.StringOutput {
 // Name servers that host the DNS zone
 func (o LookupZoneResultOutput) NameServers() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v LookupZoneResult) []string { return v.NameServers }).(pulumi.StringArrayOutput)
+}
+
+// URN of the DNS zone
+func (o LookupZoneResultOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupZoneResult) string { return v.Urn }).(pulumi.StringOutput)
 }
 
 func init() {

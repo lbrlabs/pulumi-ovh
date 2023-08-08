@@ -161,15 +161,15 @@ def get_private_database_allowlist(ip: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Hosting/getPrivateDatabaseAllowlist:getPrivateDatabaseAllowlist', __args__, opts=opts, typ=GetPrivateDatabaseAllowlistResult).value
 
     return AwaitableGetPrivateDatabaseAllowlistResult(
-        creation_date=__ret__.creation_date,
-        id=__ret__.id,
-        ip=__ret__.ip,
-        last_update=__ret__.last_update,
-        name=__ret__.name,
-        service=__ret__.service,
-        service_name=__ret__.service_name,
-        sftp=__ret__.sftp,
-        status=__ret__.status)
+        creation_date=pulumi.get(__ret__, 'creation_date'),
+        id=pulumi.get(__ret__, 'id'),
+        ip=pulumi.get(__ret__, 'ip'),
+        last_update=pulumi.get(__ret__, 'last_update'),
+        name=pulumi.get(__ret__, 'name'),
+        service=pulumi.get(__ret__, 'service'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        sftp=pulumi.get(__ret__, 'sftp'),
+        status=pulumi.get(__ret__, 'status'))
 
 
 @_utilities.lift_output_func(get_private_database_allowlist)

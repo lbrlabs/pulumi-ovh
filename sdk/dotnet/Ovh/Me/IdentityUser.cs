@@ -92,6 +92,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
+        /// <summary>
+        /// URN of the user, used when writing IAM policies
+        /// </summary>
+        [Output("urn")]
+        public Output<string> Urn { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a IdentityUser resource with the given unique name, arguments, and options.
@@ -254,6 +260,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// URN of the user, used when writing IAM policies
+        /// </summary>
+        [Input("urn")]
+        public Input<string>? Urn { get; set; }
 
         public IdentityUserState()
         {

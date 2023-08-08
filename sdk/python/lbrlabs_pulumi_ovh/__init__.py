@@ -28,6 +28,8 @@ if typing.TYPE_CHECKING:
     domain = __domain
     import lbrlabs_pulumi_ovh.hosting as __hosting
     hosting = __hosting
+    import lbrlabs_pulumi_ovh.iam as __iam
+    iam = __iam
     import lbrlabs_pulumi_ovh.ip as __ip
     ip = __ip
     import lbrlabs_pulumi_ovh.iploadbalancing as __iploadbalancing
@@ -48,6 +50,7 @@ else:
     dedicated = _utilities.lazy_import('lbrlabs_pulumi_ovh.dedicated')
     domain = _utilities.lazy_import('lbrlabs_pulumi_ovh.domain')
     hosting = _utilities.lazy_import('lbrlabs_pulumi_ovh.hosting')
+    iam = _utilities.lazy_import('lbrlabs_pulumi_ovh.iam')
     ip = _utilities.lazy_import('lbrlabs_pulumi_ovh.ip')
     iploadbalancing = _utilities.lazy_import('lbrlabs_pulumi_ovh.iploadbalancing')
     me = _utilities.lazy_import('lbrlabs_pulumi_ovh.me')
@@ -444,6 +447,14 @@ _utilities.register(
  },
  {
   "pkg": "ovh",
+  "mod": "Iam/policy",
+  "fqn": "lbrlabs_pulumi_ovh.iam",
+  "classes": {
+   "ovh:Iam/policy:Policy": "Policy"
+  }
+ },
+ {
+  "pkg": "ovh",
   "mod": "Ip/ipService",
   "fqn": "lbrlabs_pulumi_ovh.ip",
   "classes": {
@@ -560,6 +571,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_ovh.iploadbalancing",
   "classes": {
    "ovh:IpLoadBalancing/vrackNetwork:VrackNetwork": "VrackNetwork"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Me/identityGroup",
+  "fqn": "lbrlabs_pulumi_ovh.me",
+  "classes": {
+   "ovh:Me/identityGroup:IdentityGroup": "IdentityGroup"
   }
  },
  {

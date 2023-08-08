@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -49,7 +50,7 @@ import (
 //
 // ```
 func GetCartProductOptionsPlan(ctx *pulumi.Context, args *GetCartProductOptionsPlanArgs, opts ...pulumi.InvokeOption) (*GetCartProductOptionsPlanResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCartProductOptionsPlanResult
 	err := ctx.Invoke("ovh:Order/getCartProductOptionsPlan:getCartProductOptionsPlan", args, &rv, opts...)
 	if err != nil {

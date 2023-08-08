@@ -21,7 +21,7 @@ class GetIdentityUserResult:
     """
     A collection of values returned by getIdentityUser.
     """
-    def __init__(__self__, creation=None, description=None, email=None, group=None, id=None, last_update=None, login=None, password_last_update=None, status=None, user=None):
+    def __init__(__self__, creation=None, description=None, email=None, group=None, id=None, last_update=None, login=None, password_last_update=None, status=None, urn=None, user=None):
         if creation and not isinstance(creation, str):
             raise TypeError("Expected argument 'creation' to be a str")
         pulumi.set(__self__, "creation", creation)
@@ -49,6 +49,9 @@ class GetIdentityUserResult:
         if status and not isinstance(status, str):
             raise TypeError("Expected argument 'status' to be a str")
         pulumi.set(__self__, "status", status)
+        if urn and not isinstance(urn, str):
+            raise TypeError("Expected argument 'urn' to be a str")
+        pulumi.set(__self__, "urn", urn)
         if user and not isinstance(user, str):
             raise TypeError("Expected argument 'user' to be a str")
         pulumi.set(__self__, "user", user)
@@ -127,6 +130,14 @@ class GetIdentityUserResult:
 
     @property
     @pulumi.getter
+    def urn(self) -> str:
+        """
+        User's identity URN.
+        """
+        return pulumi.get(self, "urn")
+
+    @property
+    @pulumi.getter
     def user(self) -> str:
         return pulumi.get(self, "user")
 
@@ -146,6 +157,7 @@ class AwaitableGetIdentityUserResult(GetIdentityUserResult):
             login=self.login,
             password_last_update=self.password_last_update,
             status=self.status,
+            urn=self.urn,
             user=self.user)
 
 
@@ -172,16 +184,17 @@ def get_identity_user(user: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Me/getIdentityUser:getIdentityUser', __args__, opts=opts, typ=GetIdentityUserResult).value
 
     return AwaitableGetIdentityUserResult(
-        creation=__ret__.creation,
-        description=__ret__.description,
-        email=__ret__.email,
-        group=__ret__.group,
-        id=__ret__.id,
-        last_update=__ret__.last_update,
-        login=__ret__.login,
-        password_last_update=__ret__.password_last_update,
-        status=__ret__.status,
-        user=__ret__.user)
+        creation=pulumi.get(__ret__, 'creation'),
+        description=pulumi.get(__ret__, 'description'),
+        email=pulumi.get(__ret__, 'email'),
+        group=pulumi.get(__ret__, 'group'),
+        id=pulumi.get(__ret__, 'id'),
+        last_update=pulumi.get(__ret__, 'last_update'),
+        login=pulumi.get(__ret__, 'login'),
+        password_last_update=pulumi.get(__ret__, 'password_last_update'),
+        status=pulumi.get(__ret__, 'status'),
+        urn=pulumi.get(__ret__, 'urn'),
+        user=pulumi.get(__ret__, 'user'))
 
 
 @_utilities.lift_output_func(get_identity_user)

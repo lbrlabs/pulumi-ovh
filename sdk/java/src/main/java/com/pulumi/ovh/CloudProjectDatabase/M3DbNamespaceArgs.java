@@ -50,15 +50,15 @@ public final class M3DbNamespaceArgs extends com.pulumi.resources.ResourceArgs {
      * Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
      * 
      */
-    @Import(name="resolution")
-    private @Nullable Output<String> resolution;
+    @Import(name="resolution", required=true)
+    private Output<String> resolution;
 
     /**
      * @return Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
      * 
      */
-    public Optional<Output<String>> resolution() {
-        return Optional.ofNullable(this.resolution);
+    public Output<String> resolution() {
+        return this.resolution;
     }
 
     /**
@@ -265,7 +265,7 @@ public final class M3DbNamespaceArgs extends com.pulumi.resources.ResourceArgs {
          * @return builder
          * 
          */
-        public Builder resolution(@Nullable Output<String> resolution) {
+        public Builder resolution(Output<String> resolution) {
             $.resolution = resolution;
             return this;
         }
@@ -452,6 +452,7 @@ public final class M3DbNamespaceArgs extends com.pulumi.resources.ResourceArgs {
 
         public M3DbNamespaceArgs build() {
             $.clusterId = Objects.requireNonNull($.clusterId, "expected parameter 'clusterId' to be non-null");
+            $.resolution = Objects.requireNonNull($.resolution, "expected parameter 'resolution' to be non-null");
             $.retentionPeriodDuration = Objects.requireNonNull($.retentionPeriodDuration, "expected parameter 'retentionPeriodDuration' to be non-null");
             $.serviceName = Objects.requireNonNull($.serviceName, "expected parameter 'serviceName' to be non-null");
             return $;

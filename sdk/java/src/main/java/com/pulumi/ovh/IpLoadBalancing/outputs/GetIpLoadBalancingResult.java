@@ -36,6 +36,11 @@ public final class GetIpLoadBalancingResult {
     private String serviceName;
     private String sslConfiguration;
     private String state;
+    /**
+     * @return The URN of the load balancer, to be used in IAM policies
+     * 
+     */
+    private String urn;
     private Boolean vrackEligibility;
     private String vrackName;
     private List<String> zones;
@@ -87,6 +92,13 @@ public final class GetIpLoadBalancingResult {
     public String state() {
         return this.state;
     }
+    /**
+     * @return The URN of the load balancer, to be used in IAM policies
+     * 
+     */
+    public String urn() {
+        return this.urn;
+    }
     public Boolean vrackEligibility() {
         return this.vrackEligibility;
     }
@@ -117,6 +129,7 @@ public final class GetIpLoadBalancingResult {
         private String serviceName;
         private String sslConfiguration;
         private String state;
+        private String urn;
         private Boolean vrackEligibility;
         private String vrackName;
         private List<String> zones;
@@ -134,6 +147,7 @@ public final class GetIpLoadBalancingResult {
     	      this.serviceName = defaults.serviceName;
     	      this.sslConfiguration = defaults.sslConfiguration;
     	      this.state = defaults.state;
+    	      this.urn = defaults.urn;
     	      this.vrackEligibility = defaults.vrackEligibility;
     	      this.vrackName = defaults.vrackName;
     	      this.zones = defaults.zones;
@@ -198,6 +212,11 @@ public final class GetIpLoadBalancingResult {
             return this;
         }
         @CustomType.Setter
+        public Builder urn(String urn) {
+            this.urn = Objects.requireNonNull(urn);
+            return this;
+        }
+        @CustomType.Setter
         public Builder vrackEligibility(Boolean vrackEligibility) {
             this.vrackEligibility = Objects.requireNonNull(vrackEligibility);
             return this;
@@ -228,6 +247,7 @@ public final class GetIpLoadBalancingResult {
             o.serviceName = serviceName;
             o.sslConfiguration = sslConfiguration;
             o.state = state;
+            o.urn = urn;
             o.vrackEligibility = vrackEligibility;
             o.vrackName = vrackName;
             o.zones = zones;

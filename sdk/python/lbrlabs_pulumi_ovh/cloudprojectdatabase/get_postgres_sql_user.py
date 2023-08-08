@@ -149,13 +149,13 @@ def get_postgres_sql_user(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProjectDatabase/getPostgresSqlUser:getPostgresSqlUser', __args__, opts=opts, typ=GetPostgresSqlUserResult).value
 
     return AwaitableGetPostgresSqlUserResult(
-        cluster_id=__ret__.cluster_id,
-        created_at=__ret__.created_at,
-        id=__ret__.id,
-        name=__ret__.name,
-        roles=__ret__.roles,
-        service_name=__ret__.service_name,
-        status=__ret__.status)
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        roles=pulumi.get(__ret__, 'roles'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        status=pulumi.get(__ret__, 'status'))
 
 
 @_utilities.lift_output_func(get_postgres_sql_user)

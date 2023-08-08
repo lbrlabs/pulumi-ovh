@@ -190,6 +190,20 @@ public class Vrack extends com.pulumi.resources.CustomResource {
     public Output<String> serviceName() {
         return this.serviceName;
     }
+    /**
+     * The URN of the vrack, used with IAM permissions
+     * 
+     */
+    @Export(name="urn", refs={String.class}, tree="[0]")
+    private Output<String> urn;
+
+    /**
+     * @return The URN of the vrack, used with IAM permissions
+     * 
+     */
+    public Output<String> urn_() {
+        return this.urn;
+    }
 
     /**
      *

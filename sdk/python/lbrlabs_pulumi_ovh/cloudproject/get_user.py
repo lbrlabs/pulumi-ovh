@@ -130,6 +130,19 @@ def get_user(service_name: Optional[str] = None,
     """
     Get the user details of a previously created public cloud project user.
 
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ovh as ovh
+
+    project_users = ovh.CloudProject.get_users(service_name="XXX")
+    users = [user.user_id for user in project_users.users if user.description == "S3-User"]
+    s3_user_id = users[0]
+    my_user = ovh.CloudProject.get_user(service_name=project_users.service_name,
+        user_id=s3_user_id)
+    ```
+
 
     :param str service_name: The ID of the public cloud project. If omitted,
            the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
@@ -142,14 +155,14 @@ def get_user(service_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getUser:getUser', __args__, opts=opts, typ=GetUserResult).value
 
     return AwaitableGetUserResult(
-        creation_date=__ret__.creation_date,
-        description=__ret__.description,
-        id=__ret__.id,
-        roles=__ret__.roles,
-        service_name=__ret__.service_name,
-        status=__ret__.status,
-        user_id=__ret__.user_id,
-        username=__ret__.username)
+        creation_date=pulumi.get(__ret__, 'creation_date'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        roles=pulumi.get(__ret__, 'roles'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        status=pulumi.get(__ret__, 'status'),
+        user_id=pulumi.get(__ret__, 'user_id'),
+        username=pulumi.get(__ret__, 'username'))
 
 
 @_utilities.lift_output_func(get_user)
@@ -158,6 +171,19 @@ def get_user_output(service_name: Optional[pulumi.Input[str]] = None,
                     opts: Optional[pulumi.InvokeOptions] = None) -> pulumi.Output[GetUserResult]:
     """
     Get the user details of a previously created public cloud project user.
+
+    ## Example Usage
+
+    ```python
+    import pulumi
+    import pulumi_ovh as ovh
+
+    project_users = ovh.CloudProject.get_users(service_name="XXX")
+    users = [user.user_id for user in project_users.users if user.description == "S3-User"]
+    s3_user_id = users[0]
+    my_user = ovh.CloudProject.get_user(service_name=project_users.service_name,
+        user_id=s3_user_id)
+    ```
 
 
     :param str service_name: The ID of the public cloud project. If omitted,

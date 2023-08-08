@@ -27,6 +27,7 @@ class GetServerVniResult(dict):
         :param bool enabled: VirtualNetworkInterface activation state
         :param str mode: VirtualNetworkInterface mode (public,vrack,vrack_aggregation)
         :param str name: User defined VirtualNetworkInterface name
+        :param Sequence[str] nics: NetworkInterfaceControllers bound to this VirtualNetworkInterface
         :param str server_name: Server bound to this VirtualNetworkInterface
         :param str uuid: VirtualNetworkInterface unique id
         :param str vrack: vRack name
@@ -66,6 +67,9 @@ class GetServerVniResult(dict):
     @property
     @pulumi.getter
     def nics(self) -> Sequence[str]:
+        """
+        NetworkInterfaceControllers bound to this VirtualNetworkInterface
+        """
         return pulumi.get(self, "nics")
 
     @property

@@ -181,6 +181,20 @@ public class IdentityUser extends com.pulumi.resources.CustomResource {
     public Output<String> status() {
         return this.status;
     }
+    /**
+     * URN of the user, used when writing IAM policies
+     * 
+     */
+    @Export(name="urn", refs={String.class}, tree="[0]")
+    private Output<String> urn;
+
+    /**
+     * @return URN of the user, used when writing IAM policies
+     * 
+     */
+    public Output<String> urn_() {
+        return this.urn;
+    }
 
     /**
      *

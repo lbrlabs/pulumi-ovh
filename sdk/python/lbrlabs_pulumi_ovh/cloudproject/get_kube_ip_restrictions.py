@@ -109,10 +109,10 @@ def get_kube_ip_restrictions(kube_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getKubeIpRestrictions:getKubeIpRestrictions', __args__, opts=opts, typ=GetKubeIpRestrictionsResult).value
 
     return AwaitableGetKubeIpRestrictionsResult(
-        id=__ret__.id,
-        ips=__ret__.ips,
-        kube_id=__ret__.kube_id,
-        service_name=__ret__.service_name)
+        id=pulumi.get(__ret__, 'id'),
+        ips=pulumi.get(__ret__, 'ips'),
+        kube_id=pulumi.get(__ret__, 'kube_id'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_kube_ip_restrictions)

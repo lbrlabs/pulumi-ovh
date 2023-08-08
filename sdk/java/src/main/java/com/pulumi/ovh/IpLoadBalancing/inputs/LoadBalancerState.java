@@ -255,6 +255,21 @@ public final class LoadBalancerState extends com.pulumi.resources.ResourceArgs {
     }
 
     /**
+     * URN of the load balancer, used when writing IAM policies
+     * 
+     */
+    @Import(name="urn")
+    private @Nullable Output<String> urn;
+
+    /**
+     * @return URN of the load balancer, used when writing IAM policies
+     * 
+     */
+    public Optional<Output<String>> urn() {
+        return Optional.ofNullable(this.urn);
+    }
+
+    /**
      * Vrack eligibility
      * 
      */
@@ -317,6 +332,7 @@ public final class LoadBalancerState extends com.pulumi.resources.ResourceArgs {
         this.serviceName = $.serviceName;
         this.sslConfiguration = $.sslConfiguration;
         this.state = $.state;
+        this.urn = $.urn;
         this.vrackEligibility = $.vrackEligibility;
         this.vrackName = $.vrackName;
         this.zones = $.zones;
@@ -691,6 +707,27 @@ public final class LoadBalancerState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder state(String state) {
             return state(Output.of(state));
+        }
+
+        /**
+         * @param urn URN of the load balancer, used when writing IAM policies
+         * 
+         * @return builder
+         * 
+         */
+        public Builder urn(@Nullable Output<String> urn) {
+            $.urn = urn;
+            return this;
+        }
+
+        /**
+         * @param urn URN of the load balancer, used when writing IAM policies
+         * 
+         * @return builder
+         * 
+         */
+        public Builder urn(String urn) {
+            return urn(Output.of(urn));
         }
 
         /**

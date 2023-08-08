@@ -95,6 +95,10 @@ export interface GetCephResult {
      * the status of the service
      */
     readonly status: string;
+    /**
+     * URN of the CEPH instance
+     */
+    readonly urn: string;
 }
 /**
  * Use this data source to retrieve information about a dedicated CEPH.

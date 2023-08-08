@@ -171,6 +171,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
         /// the status of the service
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// URN of the CEPH instance
+        /// </summary>
+        public readonly string Urn;
 
         [OutputConstructor]
         private GetCephResult(
@@ -192,7 +196,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
 
             string state,
 
-            string status)
+            string status,
+
+            string urn)
         {
             CephMons = cephMons;
             CephVersion = cephVersion;
@@ -204,6 +210,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
             Size = size;
             State = state;
             Status = status;
+            Urn = urn;
         }
     }
 }

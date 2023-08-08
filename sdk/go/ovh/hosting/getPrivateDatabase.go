@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func LookupPrivateDatabase(ctx *pulumi.Context, args *LookupPrivateDatabaseArgs, opts ...pulumi.InvokeOption) (*LookupPrivateDatabaseResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivateDatabaseResult
 	err := ctx.Invoke("ovh:Hosting/getPrivateDatabase:getPrivateDatabase", args, &rv, opts...)
 	if err != nil {
@@ -87,6 +88,8 @@ type LookupPrivateDatabaseResult struct {
 	// Private database state
 	State string `pulumi:"state"`
 	Type  string `pulumi:"type"`
+	// URN of the private database
+	Urn string `pulumi:"urn"`
 	// Private database available versions
 	Version string `pulumi:"version"`
 	// Private database version label
@@ -214,6 +217,11 @@ func (o LookupPrivateDatabaseResultOutput) State() pulumi.StringOutput {
 
 func (o LookupPrivateDatabaseResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupPrivateDatabaseResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// URN of the private database
+func (o LookupPrivateDatabaseResultOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupPrivateDatabaseResult) string { return v.Urn }).(pulumi.StringOutput)
 }
 
 // Private database available versions

@@ -5,6 +5,15 @@ import * as pulumi from "@pulumi/pulumi";
 import * as utilities from "../utilities";
 
 // Export members:
+export { GetIdentityGroupArgs, GetIdentityGroupResult, GetIdentityGroupOutputArgs } from "./getIdentityGroup";
+export const getIdentityGroup: typeof import("./getIdentityGroup").getIdentityGroup = null as any;
+export const getIdentityGroupOutput: typeof import("./getIdentityGroup").getIdentityGroupOutput = null as any;
+utilities.lazyLoad(exports, ["getIdentityGroup","getIdentityGroupOutput"], () => require("./getIdentityGroup"));
+
+export { GetIdentityGroupsResult } from "./getIdentityGroups";
+export const getIdentityGroups: typeof import("./getIdentityGroups").getIdentityGroups = null as any;
+utilities.lazyLoad(exports, ["getIdentityGroups"], () => require("./getIdentityGroups"));
+
 export { GetIdentityUserArgs, GetIdentityUserResult, GetIdentityUserOutputArgs } from "./getIdentityUser";
 export const getIdentityUser: typeof import("./getIdentityUser").getIdentityUser = null as any;
 export const getIdentityUserOutput: typeof import("./getIdentityUser").getIdentityUserOutput = null as any;
@@ -55,6 +64,11 @@ export { GetSshKeysResult } from "./getSshKeys";
 export const getSshKeys: typeof import("./getSshKeys").getSshKeys = null as any;
 utilities.lazyLoad(exports, ["getSshKeys"], () => require("./getSshKeys"));
 
+export { IdentityGroupArgs, IdentityGroupState } from "./identityGroup";
+export type IdentityGroup = import("./identityGroup").IdentityGroup;
+export const IdentityGroup: typeof import("./identityGroup").IdentityGroup = null as any;
+utilities.lazyLoad(exports, ["IdentityGroup"], () => require("./identityGroup"));
+
 export { IdentityUserArgs, IdentityUserState } from "./identityUser";
 export type IdentityUser = import("./identityUser").IdentityUser;
 export const IdentityUser: typeof import("./identityUser").IdentityUser = null as any;
@@ -95,6 +109,8 @@ const _module = {
     version: utilities.getVersion(),
     construct: (name: string, type: string, urn: string): pulumi.Resource => {
         switch (type) {
+            case "ovh:Me/identityGroup:IdentityGroup":
+                return new IdentityGroup(name, <any>undefined, { urn })
             case "ovh:Me/identityUser:IdentityUser":
                 return new IdentityUser(name, <any>undefined, { urn })
             case "ovh:Me/installationTemplate:InstallationTemplate":
@@ -114,6 +130,7 @@ const _module = {
         }
     },
 };
+pulumi.runtime.registerResourceModule("ovh", "Me/identityGroup", _module)
 pulumi.runtime.registerResourceModule("ovh", "Me/identityUser", _module)
 pulumi.runtime.registerResourceModule("ovh", "Me/installationTemplate", _module)
 pulumi.runtime.registerResourceModule("ovh", "Me/installationTemplatePartitionScheme", _module)

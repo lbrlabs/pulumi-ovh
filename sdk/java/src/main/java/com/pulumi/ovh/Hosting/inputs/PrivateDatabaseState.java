@@ -345,6 +345,21 @@ public final class PrivateDatabaseState extends com.pulumi.resources.ResourceArg
     }
 
     /**
+     * URN of the private database, used when writing IAM policies
+     * 
+     */
+    @Import(name="urn")
+    private @Nullable Output<String> urn;
+
+    /**
+     * @return URN of the private database, used when writing IAM policies
+     * 
+     */
+    public Optional<Output<String>> urn() {
+        return Optional.ofNullable(this.urn);
+    }
+
+    /**
      * Private database available versions
      * 
      */
@@ -413,6 +428,7 @@ public final class PrivateDatabaseState extends com.pulumi.resources.ResourceArg
         this.serviceName = $.serviceName;
         this.state = $.state;
         this.type = $.type;
+        this.urn = $.urn;
         this.version = $.version;
         this.versionLabel = $.versionLabel;
         this.versionNumber = $.versionNumber;
@@ -903,6 +919,27 @@ public final class PrivateDatabaseState extends com.pulumi.resources.ResourceArg
          */
         public Builder type(String type) {
             return type(Output.of(type));
+        }
+
+        /**
+         * @param urn URN of the private database, used when writing IAM policies
+         * 
+         * @return builder
+         * 
+         */
+        public Builder urn(@Nullable Output<String> urn) {
+            $.urn = urn;
+            return this;
+        }
+
+        /**
+         * @param urn URN of the private database, used when writing IAM policies
+         * 
+         * @return builder
+         * 
+         */
+        public Builder urn(String urn) {
+            return urn(Output.of(urn));
         }
 
         /**

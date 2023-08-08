@@ -22,7 +22,7 @@ class GetServerResult:
     """
     A collection of values returned by getServer.
     """
-    def __init__(__self__, boot_id=None, commercial_range=None, datacenter=None, enabled_public_vnis=None, enabled_vrack_aggregation_vnis=None, enabled_vrack_vnis=None, id=None, ip=None, ips=None, link_speed=None, monitoring=None, name=None, os=None, professional_use=None, rack=None, rescue_mail=None, reverse=None, root_device=None, server_id=None, service_name=None, state=None, support_level=None, vnis=None):
+    def __init__(__self__, boot_id=None, commercial_range=None, datacenter=None, enabled_public_vnis=None, enabled_vrack_aggregation_vnis=None, enabled_vrack_vnis=None, id=None, ip=None, ips=None, link_speed=None, monitoring=None, name=None, os=None, professional_use=None, rack=None, rescue_mail=None, reverse=None, root_device=None, server_id=None, service_name=None, state=None, support_level=None, urn=None, vnis=None):
         if boot_id and not isinstance(boot_id, int):
             raise TypeError("Expected argument 'boot_id' to be a int")
         pulumi.set(__self__, "boot_id", boot_id)
@@ -89,6 +89,9 @@ class GetServerResult:
         if support_level and not isinstance(support_level, str):
             raise TypeError("Expected argument 'support_level' to be a str")
         pulumi.set(__self__, "support_level", support_level)
+        if urn and not isinstance(urn, str):
+            raise TypeError("Expected argument 'urn' to be a str")
+        pulumi.set(__self__, "urn", urn)
         if vnis and not isinstance(vnis, list):
             raise TypeError("Expected argument 'vnis' to be a list")
         pulumi.set(__self__, "vnis", vnis)
@@ -105,7 +108,7 @@ class GetServerResult:
     @pulumi.getter(name="commercialRange")
     def commercial_range(self) -> str:
         """
-        dedicater server commercial range
+        dedicated server commercial range
         """
         return pulumi.get(self, "commercial_range")
 
@@ -268,6 +271,14 @@ class GetServerResult:
 
     @property
     @pulumi.getter
+    def urn(self) -> str:
+        """
+        URN of the dedicated server instance
+        """
+        return pulumi.get(self, "urn")
+
+    @property
+    @pulumi.getter
     def vnis(self) -> Sequence['outputs.GetServerVniResult']:
         """
         the list of Virtualnetworkinterface assiociated with this server
@@ -303,6 +314,7 @@ class AwaitableGetServerResult(GetServerResult):
             service_name=self.service_name,
             state=self.state,
             support_level=self.support_level,
+            urn=self.urn,
             vnis=self.vnis)
 
 
@@ -329,29 +341,30 @@ def get_server(service_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:index/getServer:getServer', __args__, opts=opts, typ=GetServerResult).value
 
     return AwaitableGetServerResult(
-        boot_id=__ret__.boot_id,
-        commercial_range=__ret__.commercial_range,
-        datacenter=__ret__.datacenter,
-        enabled_public_vnis=__ret__.enabled_public_vnis,
-        enabled_vrack_aggregation_vnis=__ret__.enabled_vrack_aggregation_vnis,
-        enabled_vrack_vnis=__ret__.enabled_vrack_vnis,
-        id=__ret__.id,
-        ip=__ret__.ip,
-        ips=__ret__.ips,
-        link_speed=__ret__.link_speed,
-        monitoring=__ret__.monitoring,
-        name=__ret__.name,
-        os=__ret__.os,
-        professional_use=__ret__.professional_use,
-        rack=__ret__.rack,
-        rescue_mail=__ret__.rescue_mail,
-        reverse=__ret__.reverse,
-        root_device=__ret__.root_device,
-        server_id=__ret__.server_id,
-        service_name=__ret__.service_name,
-        state=__ret__.state,
-        support_level=__ret__.support_level,
-        vnis=__ret__.vnis)
+        boot_id=pulumi.get(__ret__, 'boot_id'),
+        commercial_range=pulumi.get(__ret__, 'commercial_range'),
+        datacenter=pulumi.get(__ret__, 'datacenter'),
+        enabled_public_vnis=pulumi.get(__ret__, 'enabled_public_vnis'),
+        enabled_vrack_aggregation_vnis=pulumi.get(__ret__, 'enabled_vrack_aggregation_vnis'),
+        enabled_vrack_vnis=pulumi.get(__ret__, 'enabled_vrack_vnis'),
+        id=pulumi.get(__ret__, 'id'),
+        ip=pulumi.get(__ret__, 'ip'),
+        ips=pulumi.get(__ret__, 'ips'),
+        link_speed=pulumi.get(__ret__, 'link_speed'),
+        monitoring=pulumi.get(__ret__, 'monitoring'),
+        name=pulumi.get(__ret__, 'name'),
+        os=pulumi.get(__ret__, 'os'),
+        professional_use=pulumi.get(__ret__, 'professional_use'),
+        rack=pulumi.get(__ret__, 'rack'),
+        rescue_mail=pulumi.get(__ret__, 'rescue_mail'),
+        reverse=pulumi.get(__ret__, 'reverse'),
+        root_device=pulumi.get(__ret__, 'root_device'),
+        server_id=pulumi.get(__ret__, 'server_id'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        state=pulumi.get(__ret__, 'state'),
+        support_level=pulumi.get(__ret__, 'support_level'),
+        urn=pulumi.get(__ret__, 'urn'),
+        vnis=pulumi.get(__ret__, 'vnis'))
 
 
 @_utilities.lift_output_func(get_server)

@@ -74,7 +74,7 @@ export class M3DbNamespace extends pulumi.CustomResource {
     /**
      * Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
      */
-    public readonly resolution!: pulumi.Output<string | undefined>;
+    public readonly resolution!: pulumi.Output<string>;
     /**
      * Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
      */
@@ -142,6 +142,9 @@ export class M3DbNamespace extends pulumi.CustomResource {
             const args = argsOrState as M3DbNamespaceArgs | undefined;
             if ((!args || args.clusterId === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'clusterId'");
+            }
+            if ((!args || args.resolution === undefined) && !opts.urn) {
+                throw new Error("Missing required property 'resolution'");
             }
             if ((!args || args.retentionPeriodDuration === undefined) && !opts.urn) {
                 throw new Error("Missing required property 'retentionPeriodDuration'");
@@ -237,7 +240,7 @@ export interface M3DbNamespaceArgs {
     /**
      * Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
      */
-    resolution?: pulumi.Input<string>;
+    resolution: pulumi.Input<string>;
     /**
      * Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
      */

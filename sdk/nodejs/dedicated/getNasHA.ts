@@ -73,6 +73,10 @@ export interface GetNasHAResult {
      */
     readonly serviceName: string;
     /**
+     * the URN of the HA-NAS instance
+     */
+    readonly urn: string;
+    /**
      * percentage of HA-NAS space used in %
      */
     readonly zpoolCapacity: number;

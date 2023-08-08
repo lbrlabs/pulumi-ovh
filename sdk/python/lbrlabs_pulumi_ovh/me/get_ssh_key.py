@@ -104,10 +104,10 @@ def get_ssh_key(key_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Me/getSshKey:getSshKey', __args__, opts=opts, typ=GetSshKeyResult).value
 
     return AwaitableGetSshKeyResult(
-        default=__ret__.default,
-        id=__ret__.id,
-        key=__ret__.key,
-        key_name=__ret__.key_name)
+        default=pulumi.get(__ret__, 'default'),
+        id=pulumi.get(__ret__, 'id'),
+        key=pulumi.get(__ret__, 'key'),
+        key_name=pulumi.get(__ret__, 'key_name'))
 
 
 @_utilities.lift_output_func(get_ssh_key)

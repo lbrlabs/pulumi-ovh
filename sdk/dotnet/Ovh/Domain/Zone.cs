@@ -125,6 +125,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Domain
         [Output("planOptions")]
         public Output<ImmutableArray<Outputs.ZonePlanOption>> PlanOptions { get; private set; } = null!;
 
+        [Output("urn")]
+        public Output<string> Urn { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Zone resource with the given unique name, arguments, and options.
@@ -287,6 +290,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Domain
             get => _planOptions ?? (_planOptions = new InputList<Inputs.ZonePlanOptionGetArgs>());
             set => _planOptions = value;
         }
+
+        [Input("urn")]
+        public Input<string>? Urn { get; set; }
 
         public ZoneState()
         {

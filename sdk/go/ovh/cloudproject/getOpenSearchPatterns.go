@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,7 +41,7 @@ import (
 //
 // ```
 func GetOpenSearchPatterns(ctx *pulumi.Context, args *GetOpenSearchPatternsArgs, opts ...pulumi.InvokeOption) (*GetOpenSearchPatternsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetOpenSearchPatternsResult
 	err := ctx.Invoke("ovh:CloudProject/getOpenSearchPatterns:getOpenSearchPatterns", args, &rv, opts...)
 	if err != nil {

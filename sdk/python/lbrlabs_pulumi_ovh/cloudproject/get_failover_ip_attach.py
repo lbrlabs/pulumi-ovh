@@ -174,16 +174,16 @@ def get_failover_ip_attach(block: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getFailoverIpAttach:getFailoverIpAttach', __args__, opts=opts, typ=GetFailoverIpAttachResult).value
 
     return AwaitableGetFailoverIpAttachResult(
-        block=__ret__.block,
-        continent_code=__ret__.continent_code,
-        geo_loc=__ret__.geo_loc,
-        id=__ret__.id,
-        ip=__ret__.ip,
-        progress=__ret__.progress,
-        routed_to=__ret__.routed_to,
-        service_name=__ret__.service_name,
-        status=__ret__.status,
-        sub_type=__ret__.sub_type)
+        block=pulumi.get(__ret__, 'block'),
+        continent_code=pulumi.get(__ret__, 'continent_code'),
+        geo_loc=pulumi.get(__ret__, 'geo_loc'),
+        id=pulumi.get(__ret__, 'id'),
+        ip=pulumi.get(__ret__, 'ip'),
+        progress=pulumi.get(__ret__, 'progress'),
+        routed_to=pulumi.get(__ret__, 'routed_to'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        status=pulumi.get(__ret__, 'status'),
+        sub_type=pulumi.get(__ret__, 'sub_type'))
 
 
 @_utilities.lift_output_func(get_failover_ip_attach)

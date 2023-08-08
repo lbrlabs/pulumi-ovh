@@ -35,7 +35,7 @@ export function getCart(args: GetCartArgs, opts?: pulumi.InvokeOptions): Promise
  */
 export interface GetCartArgs {
     /**
-     * Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+     * Assign a shopping cart to a logged in client. Values can be `true` or `false`.
      */
     assign?: boolean;
     /**
@@ -101,7 +101,7 @@ export function getCartOutput(args: GetCartOutputArgs, opts?: pulumi.InvokeOptio
  */
 export interface GetCartOutputArgs {
     /**
-     * Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+     * Assign a shopping cart to a logged in client. Values can be `true` or `false`.
      */
     assign?: pulumi.Input<boolean>;
     /**

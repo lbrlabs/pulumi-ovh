@@ -105,10 +105,10 @@ def get_container_registry_users(registry_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getContainerRegistryUsers:getContainerRegistryUsers', __args__, opts=opts, typ=GetContainerRegistryUsersResult).value
 
     return AwaitableGetContainerRegistryUsersResult(
-        id=__ret__.id,
-        registry_id=__ret__.registry_id,
-        results=__ret__.results,
-        service_name=__ret__.service_name)
+        id=pulumi.get(__ret__, 'id'),
+        registry_id=pulumi.get(__ret__, 'registry_id'),
+        results=pulumi.get(__ret__, 'results'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_container_registry_users)

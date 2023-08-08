@@ -19,7 +19,7 @@ public final class GetServerResult {
      */
     private Integer bootId;
     /**
-     * @return dedicater server commercial range
+     * @return dedicated server commercial range
      * 
      */
     private String commercialRange;
@@ -120,6 +120,11 @@ public final class GetServerResult {
      */
     private String supportLevel;
     /**
+     * @return URN of the dedicated server instance
+     * 
+     */
+    private String urn;
+    /**
      * @return the list of Virtualnetworkinterface assiociated with this server
      * 
      */
@@ -134,7 +139,7 @@ public final class GetServerResult {
         return this.bootId;
     }
     /**
-     * @return dedicater server commercial range
+     * @return dedicated server commercial range
      * 
      */
     public String commercialRange() {
@@ -277,6 +282,13 @@ public final class GetServerResult {
         return this.supportLevel;
     }
     /**
+     * @return URN of the dedicated server instance
+     * 
+     */
+    public String urn() {
+        return this.urn;
+    }
+    /**
      * @return the list of Virtualnetworkinterface assiociated with this server
      * 
      */
@@ -315,6 +327,7 @@ public final class GetServerResult {
         private String serviceName;
         private String state;
         private String supportLevel;
+        private String urn;
         private List<GetServerVni> vnis;
         public Builder() {}
         public Builder(GetServerResult defaults) {
@@ -341,6 +354,7 @@ public final class GetServerResult {
     	      this.serviceName = defaults.serviceName;
     	      this.state = defaults.state;
     	      this.supportLevel = defaults.supportLevel;
+    	      this.urn = defaults.urn;
     	      this.vnis = defaults.vnis;
         }
 
@@ -467,6 +481,11 @@ public final class GetServerResult {
             return this;
         }
         @CustomType.Setter
+        public Builder urn(String urn) {
+            this.urn = Objects.requireNonNull(urn);
+            return this;
+        }
+        @CustomType.Setter
         public Builder vnis(List<GetServerVni> vnis) {
             this.vnis = Objects.requireNonNull(vnis);
             return this;
@@ -498,6 +517,7 @@ public final class GetServerResult {
             o.serviceName = serviceName;
             o.state = state;
             o.supportLevel = supportLevel;
+            o.urn = urn;
             o.vnis = vnis;
             return o;
         }

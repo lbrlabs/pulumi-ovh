@@ -91,9 +91,9 @@ def get_ipxe_script(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Me/getIpxeScript:getIpxeScript', __args__, opts=opts, typ=GetIpxeScriptResult).value
 
     return AwaitableGetIpxeScriptResult(
-        id=__ret__.id,
-        name=__ret__.name,
-        script=__ret__.script)
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        script=pulumi.get(__ret__, 'script'))
 
 
 @_utilities.lift_output_func(get_ipxe_script)

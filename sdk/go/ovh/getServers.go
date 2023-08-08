@@ -4,6 +4,7 @@
 package ovh
 
 import (
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ import (
 //
 // ```
 func GetServers(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetServersResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetServersResult
 	err := ctx.Invoke("ovh:index/getServers:getServers", nil, &rv, opts...)
 	if err != nil {

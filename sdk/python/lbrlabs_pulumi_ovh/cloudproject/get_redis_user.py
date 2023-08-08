@@ -185,16 +185,16 @@ def get_redis_user(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getRedisUser:getRedisUser', __args__, opts=opts, typ=GetRedisUserResult).value
 
     return AwaitableGetRedisUserResult(
-        categories=__ret__.categories,
-        channels=__ret__.channels,
-        cluster_id=__ret__.cluster_id,
-        commands=__ret__.commands,
-        created_at=__ret__.created_at,
-        id=__ret__.id,
-        keys=__ret__.keys,
-        name=__ret__.name,
-        service_name=__ret__.service_name,
-        status=__ret__.status)
+        categories=pulumi.get(__ret__, 'categories'),
+        channels=pulumi.get(__ret__, 'channels'),
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        commands=pulumi.get(__ret__, 'commands'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        id=pulumi.get(__ret__, 'id'),
+        keys=pulumi.get(__ret__, 'keys'),
+        name=pulumi.get(__ret__, 'name'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        status=pulumi.get(__ret__, 'status'))
 
 
 @_utilities.lift_output_func(get_redis_user)

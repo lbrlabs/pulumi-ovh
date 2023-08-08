@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func GetServerBoots(ctx *pulumi.Context, args *GetServerBootsArgs, opts ...pulumi.InvokeOption) (*GetServerBootsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetServerBootsResult
 	err := ctx.Invoke("ovh:Dedicated/getServerBoots:getServerBoots", args, &rv, opts...)
 	if err != nil {

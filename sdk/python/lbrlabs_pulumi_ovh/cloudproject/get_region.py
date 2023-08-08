@@ -133,12 +133,12 @@ def get_region(name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getRegion:getRegion', __args__, opts=opts, typ=GetRegionResult).value
 
     return AwaitableGetRegionResult(
-        continent_code=__ret__.continent_code,
-        datacenter_location=__ret__.datacenter_location,
-        id=__ret__.id,
-        name=__ret__.name,
-        service_name=__ret__.service_name,
-        services=__ret__.services)
+        continent_code=pulumi.get(__ret__, 'continent_code'),
+        datacenter_location=pulumi.get(__ret__, 'datacenter_location'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        services=pulumi.get(__ret__, 'services'))
 
 
 @_utilities.lift_output_func(get_region)

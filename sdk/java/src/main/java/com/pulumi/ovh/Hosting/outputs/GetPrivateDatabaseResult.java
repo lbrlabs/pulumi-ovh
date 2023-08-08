@@ -89,6 +89,11 @@ public final class GetPrivateDatabaseResult {
     private String state;
     private String type;
     /**
+     * @return URN of the private database
+     * 
+     */
+    private String urn;
+    /**
      * @return Private database available versions
      * 
      */
@@ -217,6 +222,13 @@ public final class GetPrivateDatabaseResult {
         return this.type;
     }
     /**
+     * @return URN of the private database
+     * 
+     */
+    public String urn() {
+        return this.urn;
+    }
+    /**
      * @return Private database available versions
      * 
      */
@@ -264,6 +276,7 @@ public final class GetPrivateDatabaseResult {
         private String serviceName;
         private String state;
         private String type;
+        private String urn;
         private String version;
         private String versionLabel;
         private Double versionNumber;
@@ -287,6 +300,7 @@ public final class GetPrivateDatabaseResult {
     	      this.serviceName = defaults.serviceName;
     	      this.state = defaults.state;
     	      this.type = defaults.type;
+    	      this.urn = defaults.urn;
     	      this.version = defaults.version;
     	      this.versionLabel = defaults.versionLabel;
     	      this.versionNumber = defaults.versionNumber;
@@ -378,6 +392,11 @@ public final class GetPrivateDatabaseResult {
             return this;
         }
         @CustomType.Setter
+        public Builder urn(String urn) {
+            this.urn = Objects.requireNonNull(urn);
+            return this;
+        }
+        @CustomType.Setter
         public Builder version(String version) {
             this.version = Objects.requireNonNull(version);
             return this;
@@ -411,6 +430,7 @@ public final class GetPrivateDatabaseResult {
             o.serviceName = serviceName;
             o.state = state;
             o.type = type;
+            o.urn = urn;
             o.version = version;
             o.versionLabel = versionLabel;
             o.versionNumber = versionNumber;

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -60,7 +61,7 @@ func NewPostgresSqlUser(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PostgresSqlUser
 	err := ctx.RegisterResource("ovh:CloudProjectDatabase/postgresSqlUser:PostgresSqlUser", name, args, &resource, opts...)
 	if err != nil {

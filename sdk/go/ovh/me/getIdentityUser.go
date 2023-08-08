@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func LookupIdentityUser(ctx *pulumi.Context, args *LookupIdentityUserArgs, opts ...pulumi.InvokeOption) (*LookupIdentityUserResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupIdentityUserResult
 	err := ctx.Invoke("ovh:Me/getIdentityUser:getIdentityUser", args, &rv, opts...)
 	if err != nil {
@@ -73,7 +74,9 @@ type LookupIdentityUserResult struct {
 	PasswordLastUpdate string `pulumi:"passwordLastUpdate"`
 	// Current user's status.
 	Status string `pulumi:"status"`
-	User   string `pulumi:"user"`
+	// User's identity URN.
+	Urn  string `pulumi:"urn"`
+	User string `pulumi:"user"`
 }
 
 func LookupIdentityUserOutput(ctx *pulumi.Context, args LookupIdentityUserOutputArgs, opts ...pulumi.InvokeOption) LookupIdentityUserResultOutput {
@@ -157,6 +160,11 @@ func (o LookupIdentityUserResultOutput) PasswordLastUpdate() pulumi.StringOutput
 // Current user's status.
 func (o LookupIdentityUserResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupIdentityUserResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// User's identity URN.
+func (o LookupIdentityUserResultOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupIdentityUserResult) string { return v.Urn }).(pulumi.StringOutput)
 }
 
 func (o LookupIdentityUserResultOutput) User() pulumi.StringOutput {

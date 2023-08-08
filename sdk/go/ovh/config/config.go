@@ -4,9 +4,12 @@
 package config
 
 import (
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi/config"
 )
+
+var _ = internal.GetEnvOrDefault
 
 // The OVH API Application Key.
 func GetApplicationKey(ctx *pulumi.Context) string {
@@ -14,7 +17,11 @@ func GetApplicationKey(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "OVH_APPLICATION_KEY").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "OVH_APPLICATION_KEY"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The OVH API Application Secret.
@@ -23,7 +30,11 @@ func GetApplicationSecret(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "OVH_APPLICATION_SECRET").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "OVH_APPLICATION_SECRET"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The OVH API Consumer key.
@@ -32,7 +43,11 @@ func GetConsumerKey(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "OVH_CONSUMER_KEY").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "OVH_CONSUMER_KEY"); d != nil {
+		value = d.(string)
+	}
+	return value
 }
 
 // The OVH API endpoint to target (ex: "ovh-eu").
@@ -41,5 +56,9 @@ func GetEndpoint(ctx *pulumi.Context) string {
 	if err == nil {
 		return v
 	}
-	return getEnvOrDefault("", nil, "OVH_ENDPOINT").(string)
+	var value string
+	if d := internal.GetEnvOrDefault(nil, nil, "OVH_ENDPOINT"); d != nil {
+		value = d.(string)
+	}
+	return value
 }

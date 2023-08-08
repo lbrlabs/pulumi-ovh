@@ -46,6 +46,7 @@ const (
 	vrackMod           = "Vrack"
 	orderMod           = "Order"
 	vpsMod             = "Vps"
+	iamMod             = "Iam"
 )
 
 // boolRef returns a reference to the bool argument.
@@ -370,6 +371,12 @@ func Provider() tfbridge.ProviderInfo {
 			"ovh_dbaas_logs_cluster": {
 				Tok: ovhResource(dbaasMod, "LogsCluster"),
 			},
+			"ovh_iam_policy": {
+				Tok: ovhResource(iamMod, "Policy"),
+			},
+			"ovh_me_identity_group": {
+				Tok: ovhResource(meMod, "IdentityGroup"),
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"ovh_cloud_project_capabilities_containerregistry": {
@@ -617,6 +624,24 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ovh_dbaas_logs_cluster": {
 				Tok: ovhDataSource(dbaasMod, "getLogsCluster"),
+			},
+			"ovh_iam_policies": {
+				Tok: ovhDataSource(iamMod, "getPolicies"),
+			},
+			"ovh_iam_policy": {
+				Tok: ovhDataSource(iamMod, "getPolicy"),
+			},
+			"ovh_iam_reference_actions": {
+				Tok: ovhDataSource(iamMod, "getReferenceActions"),
+			},
+			"ovh_iam_reference_resource_type": {
+				Tok: ovhDataSource(iamMod, "getReferenceResourceType"),
+			},
+			"ovh_me_identity_group": {
+				Tok: ovhDataSource(meMod, "getIdentityGroup"),
+			},
+			"ovh_me_identity_groups": {
+				Tok: ovhDataSource(meMod, "getIdentityGroups"),
 			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{

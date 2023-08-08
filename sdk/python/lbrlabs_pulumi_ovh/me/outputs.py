@@ -86,6 +86,9 @@ class InstallationTemplateCustomization(dict):
         """
         Template change log details.
         """
+        warnings.warn("""field is not used anymore""", DeprecationWarning)
+        pulumi.log.warn("""change_log is deprecated: field is not used anymore""")
+
         return pulumi.get(self, "change_log")
 
     @property
@@ -118,6 +121,9 @@ class InstallationTemplateCustomization(dict):
         """
         Rating.
         """
+        warnings.warn("""field is not used anymore""", DeprecationWarning)
+        pulumi.log.warn("""rating is deprecated: field is not used anymore""")
+
         return pulumi.get(self, "rating")
 
     @property
@@ -170,6 +176,9 @@ class GetInstallationTemplateCustomizationResult(dict):
         """
         (DEPRECATED) Template change log details.
         """
+        warnings.warn("""field is not used anymore""", DeprecationWarning)
+        pulumi.log.warn("""change_log is deprecated: field is not used anymore""")
+
         return pulumi.get(self, "change_log")
 
     @property
@@ -202,6 +211,9 @@ class GetInstallationTemplateCustomizationResult(dict):
         """
         (DEPRECATED) Rating.
         """
+        warnings.warn("""field is not used anymore""", DeprecationWarning)
+        pulumi.log.warn("""rating is deprecated: field is not used anymore""")
+
         return pulumi.get(self, "rating")
 
     @property

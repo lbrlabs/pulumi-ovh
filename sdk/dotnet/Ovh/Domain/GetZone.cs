@@ -123,6 +123,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Domain
         /// Name servers that host the DNS zone
         /// </summary>
         public readonly ImmutableArray<string> NameServers;
+        /// <summary>
+        /// URN of the DNS zone
+        /// </summary>
+        public readonly string Urn;
 
         [OutputConstructor]
         private GetZoneResult(
@@ -136,7 +140,9 @@ namespace Lbrlabs.PulumiPackage.Ovh.Domain
 
             string name,
 
-            ImmutableArray<string> nameServers)
+            ImmutableArray<string> nameServers,
+
+            string urn)
         {
             DnssecSupported = dnssecSupported;
             HasDnsAnycast = hasDnsAnycast;
@@ -144,6 +150,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Domain
             LastUpdate = lastUpdate;
             Name = name;
             NameServers = nameServers;
+            Urn = urn;
         }
     }
 }

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -99,7 +100,7 @@ func NewKafkaAcl(ctx *pulumi.Context,
 	if args.Username == nil {
 		return nil, errors.New("invalid value for required argument 'Username'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource KafkaAcl
 	err := ctx.RegisterResource("ovh:CloudProjectDatabase/kafkaAcl:KafkaAcl", name, args, &resource, opts...)
 	if err != nil {

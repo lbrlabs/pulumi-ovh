@@ -169,6 +169,21 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.status);
     }
 
+    /**
+     * The URN of the cloud project
+     * 
+     */
+    @Import(name="urn")
+    private @Nullable Output<String> urn;
+
+    /**
+     * @return The URN of the cloud project
+     * 
+     */
+    public Optional<Output<String>> urn() {
+        return Optional.ofNullable(this.urn);
+    }
+
     private ProjectState() {}
 
     private ProjectState(ProjectState $) {
@@ -182,6 +197,7 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
         this.projectId = $.projectId;
         this.projectName = $.projectName;
         this.status = $.status;
+        this.urn = $.urn;
     }
 
     public static Builder builder() {
@@ -426,6 +442,27 @@ public final class ProjectState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder status(String status) {
             return status(Output.of(status));
+        }
+
+        /**
+         * @param urn The URN of the cloud project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder urn(@Nullable Output<String> urn) {
+            $.urn = urn;
+            return this;
+        }
+
+        /**
+         * @param urn The URN of the cloud project
+         * 
+         * @return builder
+         * 
+         */
+        public Builder urn(String urn) {
+            return urn(Output.of(urn));
         }
 
         public ProjectState build() {

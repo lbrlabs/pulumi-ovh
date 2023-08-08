@@ -7,19 +7,820 @@ import com.pulumi.core.Output;
 import com.pulumi.core.TypeShape;
 import com.pulumi.deployment.Deployment;
 import com.pulumi.deployment.InvokeOptions;
+import com.pulumi.ovh.Dbaas.inputs.GetIamPolicyArgs;
+import com.pulumi.ovh.Dbaas.inputs.GetIamPolicyPlainArgs;
+import com.pulumi.ovh.Dbaas.inputs.GetIamReferenceActionsArgs;
+import com.pulumi.ovh.Dbaas.inputs.GetIamReferenceActionsPlainArgs;
 import com.pulumi.ovh.Dbaas.inputs.GetLogsClusterArgs;
 import com.pulumi.ovh.Dbaas.inputs.GetLogsClusterPlainArgs;
 import com.pulumi.ovh.Dbaas.inputs.GetLogsInputEngineArgs;
 import com.pulumi.ovh.Dbaas.inputs.GetLogsInputEnginePlainArgs;
 import com.pulumi.ovh.Dbaas.inputs.GetLogsOutputGraylogStreamArgs;
 import com.pulumi.ovh.Dbaas.inputs.GetLogsOutputGraylogStreamPlainArgs;
+import com.pulumi.ovh.Dbaas.inputs.GetMeIdentityGroupArgs;
+import com.pulumi.ovh.Dbaas.inputs.GetMeIdentityGroupPlainArgs;
+import com.pulumi.ovh.Dbaas.outputs.GetIamPoliciesResult;
+import com.pulumi.ovh.Dbaas.outputs.GetIamPolicyResult;
+import com.pulumi.ovh.Dbaas.outputs.GetIamReferenceActionsResult;
+import com.pulumi.ovh.Dbaas.outputs.GetIamReferenceResourceTypeResult;
 import com.pulumi.ovh.Dbaas.outputs.GetLogsClusterResult;
 import com.pulumi.ovh.Dbaas.outputs.GetLogsInputEngineResult;
 import com.pulumi.ovh.Dbaas.outputs.GetLogsOutputGraylogStreamResult;
+import com.pulumi.ovh.Dbaas.outputs.GetMeIdentityGroupResult;
+import com.pulumi.ovh.Dbaas.outputs.GetMeIdentityGroupsResult;
 import com.pulumi.ovh.Utilities;
+import com.pulumi.resources.InvokeArgs;
 import java.util.concurrent.CompletableFuture;
 
 public final class DbaasFunctions {
+    /**
+     * Use this data source to list the existing IAM policies of an account.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myPolicies = DbaasFunctions.getIamPolicies();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamPoliciesResult> getIamPolicies() {
+        return getIamPolicies(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list the existing IAM policies of an account.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myPolicies = DbaasFunctions.getIamPolicies();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamPoliciesResult> getIamPoliciesPlain() {
+        return getIamPoliciesPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list the existing IAM policies of an account.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myPolicies = DbaasFunctions.getIamPolicies();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamPoliciesResult> getIamPolicies(InvokeArgs args) {
+        return getIamPolicies(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list the existing IAM policies of an account.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myPolicies = DbaasFunctions.getIamPolicies();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamPoliciesResult> getIamPoliciesPlain(InvokeArgs args) {
+        return getIamPoliciesPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list the existing IAM policies of an account.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myPolicies = DbaasFunctions.getIamPolicies();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamPoliciesResult> getIamPolicies(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:Dbaas/getIamPolicies:getIamPolicies", TypeShape.of(GetIamPoliciesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list the existing IAM policies of an account.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myPolicies = DbaasFunctions.getIamPolicies();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamPoliciesResult> getIamPoliciesPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:Dbaas/getIamPolicies:getIamPolicies", TypeShape.of(GetIamPoliciesResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve am IAM policy.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetIamPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myPolicy = DbaasFunctions.getIamPolicy(GetIamPolicyArgs.builder()
+     *             .id(&#34;my_policy_id&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamPolicyResult> getIamPolicy(GetIamPolicyArgs args) {
+        return getIamPolicy(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve am IAM policy.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetIamPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myPolicy = DbaasFunctions.getIamPolicy(GetIamPolicyArgs.builder()
+     *             .id(&#34;my_policy_id&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamPolicyResult> getIamPolicyPlain(GetIamPolicyPlainArgs args) {
+        return getIamPolicyPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve am IAM policy.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetIamPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myPolicy = DbaasFunctions.getIamPolicy(GetIamPolicyArgs.builder()
+     *             .id(&#34;my_policy_id&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamPolicyResult> getIamPolicy(GetIamPolicyArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:Dbaas/getIamPolicy:getIamPolicy", TypeShape.of(GetIamPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve am IAM policy.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetIamPolicyArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myPolicy = DbaasFunctions.getIamPolicy(GetIamPolicyArgs.builder()
+     *             .id(&#34;my_policy_id&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamPolicyResult> getIamPolicyPlain(GetIamPolicyPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:Dbaas/getIamPolicy:getIamPolicy", TypeShape.of(GetIamPolicyResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list the IAM action associated with a resource type.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetIamReferenceActionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpsActions = DbaasFunctions.getIamReferenceActions(GetIamReferenceActionsArgs.builder()
+     *             .resourceType(&#34;vps&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamReferenceActionsResult> getIamReferenceActions(GetIamReferenceActionsArgs args) {
+        return getIamReferenceActions(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list the IAM action associated with a resource type.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetIamReferenceActionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpsActions = DbaasFunctions.getIamReferenceActions(GetIamReferenceActionsArgs.builder()
+     *             .resourceType(&#34;vps&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamReferenceActionsResult> getIamReferenceActionsPlain(GetIamReferenceActionsPlainArgs args) {
+        return getIamReferenceActionsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list the IAM action associated with a resource type.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetIamReferenceActionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpsActions = DbaasFunctions.getIamReferenceActions(GetIamReferenceActionsArgs.builder()
+     *             .resourceType(&#34;vps&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamReferenceActionsResult> getIamReferenceActions(GetIamReferenceActionsArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:Dbaas/getIamReferenceActions:getIamReferenceActions", TypeShape.of(GetIamReferenceActionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list the IAM action associated with a resource type.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * 
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetIamReferenceActionsArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var vpsActions = DbaasFunctions.getIamReferenceActions(GetIamReferenceActionsArgs.builder()
+     *             .resourceType(&#34;vps&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamReferenceActionsResult> getIamReferenceActionsPlain(GetIamReferenceActionsPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:Dbaas/getIamReferenceActions:getIamReferenceActions", TypeShape.of(GetIamReferenceActionsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list all the IAM resource types.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var types = DbaasFunctions.getIamReferenceResourceType();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamReferenceResourceTypeResult> getIamReferenceResourceType() {
+        return getIamReferenceResourceType(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list all the IAM resource types.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var types = DbaasFunctions.getIamReferenceResourceType();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamReferenceResourceTypeResult> getIamReferenceResourceTypePlain() {
+        return getIamReferenceResourceTypePlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list all the IAM resource types.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var types = DbaasFunctions.getIamReferenceResourceType();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamReferenceResourceTypeResult> getIamReferenceResourceType(InvokeArgs args) {
+        return getIamReferenceResourceType(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list all the IAM resource types.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var types = DbaasFunctions.getIamReferenceResourceType();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamReferenceResourceTypeResult> getIamReferenceResourceTypePlain(InvokeArgs args) {
+        return getIamReferenceResourceTypePlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to list all the IAM resource types.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var types = DbaasFunctions.getIamReferenceResourceType();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetIamReferenceResourceTypeResult> getIamReferenceResourceType(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:Dbaas/getIamReferenceResourceType:getIamReferenceResourceType", TypeShape.of(GetIamReferenceResourceTypeResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to list all the IAM resource types.
+     * 
+     * ## Important
+     * 
+     * &gt; Using this resource requires that the account is enrolled in the OVHcloud [IAM beta](https://labs.ovhcloud.com/en/iam/)
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var types = DbaasFunctions.getIamReferenceResourceType();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetIamReferenceResourceTypeResult> getIamReferenceResourceTypePlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:Dbaas/getIamReferenceResourceType:getIamReferenceResourceType", TypeShape.of(GetIamReferenceResourceTypeResult.class), args, Utilities.withVersion(options));
+    }
     /**
      * Use this data source to retrieve informations about a DBaas logs cluster tenant.
      * 
@@ -479,5 +1280,357 @@ public final class DbaasFunctions {
      */
     public static CompletableFuture<GetLogsOutputGraylogStreamResult> getLogsOutputGraylogStreamPlain(GetLogsOutputGraylogStreamPlainArgs args, InvokeOptions options) {
         return Deployment.getInstance().invokeAsync("ovh:Dbaas/getLogsOutputGraylogStream:getLogsOutputGraylogStream", TypeShape.of(GetLogsOutputGraylogStreamResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about an identity group.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetMeIdentityGroupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myGroup = DbaasFunctions.getMeIdentityGroup(GetMeIdentityGroupArgs.builder()
+     *             .name(&#34;my_group_name&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetMeIdentityGroupResult> getMeIdentityGroup(GetMeIdentityGroupArgs args) {
+        return getMeIdentityGroup(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve information about an identity group.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetMeIdentityGroupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myGroup = DbaasFunctions.getMeIdentityGroup(GetMeIdentityGroupArgs.builder()
+     *             .name(&#34;my_group_name&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetMeIdentityGroupResult> getMeIdentityGroupPlain(GetMeIdentityGroupPlainArgs args) {
+        return getMeIdentityGroupPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve information about an identity group.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetMeIdentityGroupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myGroup = DbaasFunctions.getMeIdentityGroup(GetMeIdentityGroupArgs.builder()
+     *             .name(&#34;my_group_name&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetMeIdentityGroupResult> getMeIdentityGroup(GetMeIdentityGroupArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:Dbaas/getMeIdentityGroup:getMeIdentityGroup", TypeShape.of(GetMeIdentityGroupResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve information about an identity group.
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import com.pulumi.ovh.Dbaas.inputs.GetMeIdentityGroupArgs;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var myGroup = DbaasFunctions.getMeIdentityGroup(GetMeIdentityGroupArgs.builder()
+     *             .name(&#34;my_group_name&#34;)
+     *             .build());
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetMeIdentityGroupResult> getMeIdentityGroupPlain(GetMeIdentityGroupPlainArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:Dbaas/getMeIdentityGroup:getMeIdentityGroup", TypeShape.of(GetMeIdentityGroupResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve the list of the account&#39;s identity groups
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var groups = DbaasFunctions.getMeIdentityGroups();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetMeIdentityGroupsResult> getMeIdentityGroups() {
+        return getMeIdentityGroups(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve the list of the account&#39;s identity groups
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var groups = DbaasFunctions.getMeIdentityGroups();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetMeIdentityGroupsResult> getMeIdentityGroupsPlain() {
+        return getMeIdentityGroupsPlain(InvokeArgs.Empty, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve the list of the account&#39;s identity groups
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var groups = DbaasFunctions.getMeIdentityGroups();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetMeIdentityGroupsResult> getMeIdentityGroups(InvokeArgs args) {
+        return getMeIdentityGroups(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve the list of the account&#39;s identity groups
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var groups = DbaasFunctions.getMeIdentityGroups();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetMeIdentityGroupsResult> getMeIdentityGroupsPlain(InvokeArgs args) {
+        return getMeIdentityGroupsPlain(args, InvokeOptions.Empty);
+    }
+    /**
+     * Use this data source to retrieve the list of the account&#39;s identity groups
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var groups = DbaasFunctions.getMeIdentityGroups();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static Output<GetMeIdentityGroupsResult> getMeIdentityGroups(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invoke("ovh:Dbaas/getMeIdentityGroups:getMeIdentityGroups", TypeShape.of(GetMeIdentityGroupsResult.class), args, Utilities.withVersion(options));
+    }
+    /**
+     * Use this data source to retrieve the list of the account&#39;s identity groups
+     * 
+     * ## Example Usage
+     * ```java
+     * package generated_program;
+     * 
+     * import com.pulumi.Context;
+     * import com.pulumi.Pulumi;
+     * import com.pulumi.core.Output;
+     * import com.pulumi.ovh.Dbaas.DbaasFunctions;
+     * import java.util.List;
+     * import java.util.ArrayList;
+     * import java.util.Map;
+     * import java.io.File;
+     * import java.nio.file.Files;
+     * import java.nio.file.Paths;
+     * 
+     * public class App {
+     *     public static void main(String[] args) {
+     *         Pulumi.run(App::stack);
+     *     }
+     * 
+     *     public static void stack(Context ctx) {
+     *         final var groups = DbaasFunctions.getMeIdentityGroups();
+     * 
+     *     }
+     * }
+     * ```
+     * 
+     */
+    public static CompletableFuture<GetMeIdentityGroupsResult> getMeIdentityGroupsPlain(InvokeArgs args, InvokeOptions options) {
+        return Deployment.getInstance().invokeAsync("ovh:Dbaas/getMeIdentityGroups:getMeIdentityGroups", TypeShape.of(GetMeIdentityGroupsResult.class), args, Utilities.withVersion(options));
     }
 }

@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -41,7 +42,7 @@ import (
 //
 // ```
 func LookupKubeNodePool(ctx *pulumi.Context, args *LookupKubeNodePoolArgs, opts ...pulumi.InvokeOption) (*LookupKubeNodePoolResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupKubeNodePoolResult
 	err := ctx.Invoke("ovh:CloudProject/getKubeNodePool:getKubeNodePool", args, &rv, opts...)
 	if err != nil {

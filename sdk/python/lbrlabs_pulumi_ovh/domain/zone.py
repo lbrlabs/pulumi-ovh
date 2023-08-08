@@ -67,6 +67,9 @@ class ZoneArgs:
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @payment_mean.setter
@@ -98,7 +101,8 @@ class _ZoneState:
                  ovh_subsidiary: Optional[pulumi.Input[str]] = None,
                  payment_mean: Optional[pulumi.Input[str]] = None,
                  plan: Optional[pulumi.Input['ZonePlanArgs']] = None,
-                 plan_options: Optional[pulumi.Input[Sequence[pulumi.Input['ZonePlanOptionArgs']]]] = None):
+                 plan_options: Optional[pulumi.Input[Sequence[pulumi.Input['ZonePlanOptionArgs']]]] = None,
+                 urn: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Zone resources.
         :param pulumi.Input[bool] dnssec_supported: Is DNSSEC supported by this zone
@@ -135,6 +139,8 @@ class _ZoneState:
             pulumi.set(__self__, "plan", plan)
         if plan_options is not None:
             pulumi.set(__self__, "plan_options", plan_options)
+        if urn is not None:
+            pulumi.set(__self__, "urn", urn)
 
     @property
     @pulumi.getter(name="dnssecSupported")
@@ -226,6 +232,9 @@ class _ZoneState:
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @payment_mean.setter
@@ -255,6 +264,15 @@ class _ZoneState:
     @plan_options.setter
     def plan_options(self, value: Optional[pulumi.Input[Sequence[pulumi.Input['ZonePlanOptionArgs']]]]):
         pulumi.set(self, "plan_options", value)
+
+    @property
+    @pulumi.getter
+    def urn(self) -> Optional[pulumi.Input[str]]:
+        return pulumi.get(self, "urn")
+
+    @urn.setter
+    def urn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "urn", value)
 
 
 class Zone(pulumi.CustomResource):
@@ -389,6 +407,7 @@ class Zone(pulumi.CustomResource):
             __props__.__dict__["name"] = None
             __props__.__dict__["name_servers"] = None
             __props__.__dict__["orders"] = None
+            __props__.__dict__["urn"] = None
         super(Zone, __self__).__init__(
             'ovh:Domain/zone:Zone',
             resource_name,
@@ -408,7 +427,8 @@ class Zone(pulumi.CustomResource):
             ovh_subsidiary: Optional[pulumi.Input[str]] = None,
             payment_mean: Optional[pulumi.Input[str]] = None,
             plan: Optional[pulumi.Input[pulumi.InputType['ZonePlanArgs']]] = None,
-            plan_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ZonePlanOptionArgs']]]]] = None) -> 'Zone':
+            plan_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ZonePlanOptionArgs']]]]] = None,
+            urn: Optional[pulumi.Input[str]] = None) -> 'Zone':
         """
         Get an existing Zone resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -441,6 +461,7 @@ class Zone(pulumi.CustomResource):
         __props__.__dict__["payment_mean"] = payment_mean
         __props__.__dict__["plan"] = plan
         __props__.__dict__["plan_options"] = plan_options
+        __props__.__dict__["urn"] = urn
         return Zone(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -505,6 +526,9 @@ class Zone(pulumi.CustomResource):
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @property
@@ -522,4 +546,9 @@ class Zone(pulumi.CustomResource):
         Product Plan to order
         """
         return pulumi.get(self, "plan_options")
+
+    @property
+    @pulumi.getter
+    def urn(self) -> pulumi.Output[str]:
+        return pulumi.get(self, "urn")
 

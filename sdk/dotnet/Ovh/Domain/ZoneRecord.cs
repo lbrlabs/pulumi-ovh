@@ -11,8 +11,6 @@ using Pulumi;
 namespace Lbrlabs.PulumiPackage.Ovh.Domain
 {
     /// <summary>
-    /// Provides a OVHcloud domain zone record.
-    /// 
     /// ## Example Usage
     /// 
     /// ```csharp

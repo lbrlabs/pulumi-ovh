@@ -83,6 +83,9 @@ class ProjectArgs:
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @payment_mean.setter
@@ -114,7 +117,8 @@ class _ProjectState:
                  plan_options: Optional[pulumi.Input[Sequence[pulumi.Input['ProjectPlanOptionArgs']]]] = None,
                  project_id: Optional[pulumi.Input[str]] = None,
                  project_name: Optional[pulumi.Input[str]] = None,
-                 status: Optional[pulumi.Input[str]] = None):
+                 status: Optional[pulumi.Input[str]] = None,
+                 urn: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Project resources.
         :param pulumi.Input[str] description: A description associated with the user.
@@ -126,6 +130,7 @@ class _ProjectState:
         :param pulumi.Input[str] project_id: openstack project id
         :param pulumi.Input[str] project_name: openstack project name
         :param pulumi.Input[str] status: project status
+        :param pulumi.Input[str] urn: The URN of the cloud project
         """
         if access is not None:
             pulumi.set(__self__, "access", access)
@@ -150,6 +155,8 @@ class _ProjectState:
             pulumi.set(__self__, "project_name", project_name)
         if status is not None:
             pulumi.set(__self__, "status", status)
+        if urn is not None:
+            pulumi.set(__self__, "urn", urn)
 
     @property
     @pulumi.getter
@@ -202,6 +209,9 @@ class _ProjectState:
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @payment_mean.setter
@@ -267,6 +277,18 @@ class _ProjectState:
     @status.setter
     def status(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "status", value)
+
+    @property
+    @pulumi.getter
+    def urn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URN of the cloud project
+        """
+        return pulumi.get(self, "urn")
+
+    @urn.setter
+    def urn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "urn", value)
 
 
 class Project(pulumi.CustomResource):
@@ -408,6 +430,7 @@ class Project(pulumi.CustomResource):
             __props__.__dict__["project_id"] = None
             __props__.__dict__["project_name"] = None
             __props__.__dict__["status"] = None
+            __props__.__dict__["urn"] = None
         super(Project, __self__).__init__(
             'ovh:CloudProject/project:Project',
             resource_name,
@@ -427,7 +450,8 @@ class Project(pulumi.CustomResource):
             plan_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['ProjectPlanOptionArgs']]]]] = None,
             project_id: Optional[pulumi.Input[str]] = None,
             project_name: Optional[pulumi.Input[str]] = None,
-            status: Optional[pulumi.Input[str]] = None) -> 'Project':
+            status: Optional[pulumi.Input[str]] = None,
+            urn: Optional[pulumi.Input[str]] = None) -> 'Project':
         """
         Get an existing Project resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -444,6 +468,7 @@ class Project(pulumi.CustomResource):
         :param pulumi.Input[str] project_id: openstack project id
         :param pulumi.Input[str] project_name: openstack project name
         :param pulumi.Input[str] status: project status
+        :param pulumi.Input[str] urn: The URN of the cloud project
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -459,6 +484,7 @@ class Project(pulumi.CustomResource):
         __props__.__dict__["project_id"] = project_id
         __props__.__dict__["project_name"] = project_name
         __props__.__dict__["status"] = status
+        __props__.__dict__["urn"] = urn
         return Project(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -496,6 +522,9 @@ class Project(pulumi.CustomResource):
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @property
@@ -537,4 +566,12 @@ class Project(pulumi.CustomResource):
         project status
         """
         return pulumi.get(self, "status")
+
+    @property
+    @pulumi.getter
+    def urn(self) -> pulumi.Output[str]:
+        """
+        The URN of the cloud project
+        """
+        return pulumi.get(self, "urn")
 

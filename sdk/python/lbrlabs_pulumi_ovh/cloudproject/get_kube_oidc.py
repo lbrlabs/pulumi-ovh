@@ -204,18 +204,18 @@ def get_kube_oidc(client_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getKubeOidc:getKubeOidc', __args__, opts=opts, typ=GetKubeOidcResult).value
 
     return AwaitableGetKubeOidcResult(
-        client_id=__ret__.client_id,
-        id=__ret__.id,
-        issuer_url=__ret__.issuer_url,
-        kube_id=__ret__.kube_id,
-        oidc_ca_content=__ret__.oidc_ca_content,
-        oidc_groups_claims=__ret__.oidc_groups_claims,
-        oidc_groups_prefix=__ret__.oidc_groups_prefix,
-        oidc_required_claims=__ret__.oidc_required_claims,
-        oidc_signing_algs=__ret__.oidc_signing_algs,
-        oidc_username_claim=__ret__.oidc_username_claim,
-        oidc_username_prefix=__ret__.oidc_username_prefix,
-        service_name=__ret__.service_name)
+        client_id=pulumi.get(__ret__, 'client_id'),
+        id=pulumi.get(__ret__, 'id'),
+        issuer_url=pulumi.get(__ret__, 'issuer_url'),
+        kube_id=pulumi.get(__ret__, 'kube_id'),
+        oidc_ca_content=pulumi.get(__ret__, 'oidc_ca_content'),
+        oidc_groups_claims=pulumi.get(__ret__, 'oidc_groups_claims'),
+        oidc_groups_prefix=pulumi.get(__ret__, 'oidc_groups_prefix'),
+        oidc_required_claims=pulumi.get(__ret__, 'oidc_required_claims'),
+        oidc_signing_algs=pulumi.get(__ret__, 'oidc_signing_algs'),
+        oidc_username_claim=pulumi.get(__ret__, 'oidc_username_claim'),
+        oidc_username_prefix=pulumi.get(__ret__, 'oidc_username_prefix'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_kube_oidc)

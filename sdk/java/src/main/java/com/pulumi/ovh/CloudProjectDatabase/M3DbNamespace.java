@@ -103,14 +103,14 @@ public class M3DbNamespace extends com.pulumi.resources.CustomResource {
      * 
      */
     @Export(name="resolution", refs={String.class}, tree="[0]")
-    private Output</* @Nullable */ String> resolution;
+    private Output<String> resolution;
 
     /**
      * @return Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
      * 
      */
-    public Output<Optional<String>> resolution() {
-        return Codegen.optional(this.resolution);
+    public Output<String> resolution() {
+        return this.resolution;
     }
     /**
      * Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.

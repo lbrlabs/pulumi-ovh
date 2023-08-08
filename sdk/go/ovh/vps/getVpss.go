@@ -4,6 +4,7 @@
 package vps
 
 import (
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ import (
 //
 // ```
 func GetVpss(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetVpssResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVpssResult
 	err := ctx.Invoke("ovh:Vps/getVpss:getVpss", nil, &rv, opts...)
 	if err != nil {

@@ -121,6 +121,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         [Output("status")]
         public Output<string> Status { get; private set; } = null!;
 
+        /// <summary>
+        /// The URN of the cloud project
+        /// </summary>
+        [Output("urn")]
+        public Output<string> Urn { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Project resource with the given unique name, arguments, and options.
@@ -280,6 +286,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
         /// </summary>
         [Input("status")]
         public Input<string>? Status { get; set; }
+
+        /// <summary>
+        /// The URN of the cloud project
+        /// </summary>
+        [Input("urn")]
+        public Input<string>? Urn { get; set; }
 
         public ProjectState()
         {

@@ -73,5 +73,5 @@ def get_vracks(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetVrack
     __ret__ = pulumi.runtime.invoke('ovh:Vrack/getVracks:getVracks', __args__, opts=opts, typ=GetVracksResult).value
 
     return AwaitableGetVracksResult(
-        id=__ret__.id,
-        results=__ret__.results)
+        id=pulumi.get(__ret__, 'id'),
+        results=pulumi.get(__ret__, 'results'))

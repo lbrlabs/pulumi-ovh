@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -70,7 +71,7 @@ func NewIpxeScript(ctx *pulumi.Context,
 	if args.Script == nil {
 		return nil, errors.New("invalid value for required argument 'Script'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IpxeScript
 	err := ctx.RegisterResource("ovh:Me/ipxeScript:IpxeScript", name, args, &resource, opts...)
 	if err != nil {

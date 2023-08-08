@@ -188,6 +188,9 @@ class _NetworkPrivateState:
         * `regions_status/region` - (Deprecated) The id of the region.
         * `regions_status/status` - (Deprecated) The status of the network in the region.
         """
+        warnings.warn("""use the regions_attributes field instead""", DeprecationWarning)
+        pulumi.log.warn("""regions_statuses is deprecated: use the regions_attributes field instead""")
+
         return pulumi.get(self, "regions_statuses")
 
     @regions_statuses.setter
@@ -451,6 +454,9 @@ class NetworkPrivate(pulumi.CustomResource):
         * `regions_status/region` - (Deprecated) The id of the region.
         * `regions_status/status` - (Deprecated) The status of the network in the region.
         """
+        warnings.warn("""use the regions_attributes field instead""", DeprecationWarning)
+        pulumi.log.warn("""regions_statuses is deprecated: use the regions_attributes field instead""")
+
         return pulumi.get(self, "regions_statuses")
 
     @property

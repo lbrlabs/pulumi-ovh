@@ -909,6 +909,8 @@ export namespace Hosting {
         label: pulumi.Input<string>;
         /**
          * Path to the resource in API.OVH.COM
+         *
+         * Plan order valid values can be found on OVHcloud [APIv6](https://api.ovh.com/console/#/hosting/privateDatabase/availableOrderCapacities~GET)
          */
         value: pulumi.Input<string>;
     }
@@ -943,9 +945,14 @@ export namespace Hosting {
         label: pulumi.Input<string>;
         /**
          * Path to the resource in API.OVH.COM
+         *
+         * Plan order valid values can be found on OVHcloud [APIv6](https://api.ovh.com/console/#/hosting/privateDatabase/availableOrderCapacities~GET)
          */
         value: pulumi.Input<string>;
     }
+}
+
+export namespace Iam {
 }
 
 export namespace Ip {

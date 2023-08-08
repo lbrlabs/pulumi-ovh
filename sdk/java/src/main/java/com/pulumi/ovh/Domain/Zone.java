@@ -226,6 +226,12 @@ public class Zone extends com.pulumi.resources.CustomResource {
     public Output<Optional<List<ZonePlanOption>>> planOptions() {
         return Codegen.optional(this.planOptions);
     }
+    @Export(name="urn", refs={String.class}, tree="[0]")
+    private Output<String> urn;
+
+    public Output<String> urn_() {
+        return this.urn;
+    }
 
     /**
      *

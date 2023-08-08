@@ -14,12 +14,82 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     {
         /// <summary>
         /// Get the user details of a previously created public cloud project user.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ovh = Pulumi.Ovh;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var projectUsers = Ovh.CloudProject.GetUsers.Invoke(new()
+        ///     {
+        ///         ServiceName = "XXX",
+        ///     });
+        /// 
+        ///     var users = .Where(user =&gt; user.Description == "S3-User").Select(user =&gt; 
+        ///     {
+        ///         return  user.UserId;
+        ///     });
+        /// 
+        ///     var s3UserId = users[0];
+        /// 
+        ///     var myUser = Ovh.CloudProject.GetUser.Invoke(new()
+        ///     {
+        ///         ServiceName = projectUsers.Apply(getUsersResult =&gt; getUsersResult.ServiceName),
+        ///         UserId = s3UserId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Task<GetUserResult> InvokeAsync(GetUserArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.InvokeAsync<GetUserResult>("ovh:CloudProject/getUser:getUser", args ?? new GetUserArgs(), options.WithDefaults());
 
         /// <summary>
         /// Get the user details of a previously created public cloud project user.
+        /// 
+        /// {{% examples %}}
+        /// ## Example Usage
+        /// {{% example %}}
+        /// 
+        /// ```csharp
+        /// using System.Collections.Generic;
+        /// using System.Linq;
+        /// using Pulumi;
+        /// using Ovh = Pulumi.Ovh;
+        /// 
+        /// return await Deployment.RunAsync(() =&gt; 
+        /// {
+        ///     var projectUsers = Ovh.CloudProject.GetUsers.Invoke(new()
+        ///     {
+        ///         ServiceName = "XXX",
+        ///     });
+        /// 
+        ///     var users = .Where(user =&gt; user.Description == "S3-User").Select(user =&gt; 
+        ///     {
+        ///         return  user.UserId;
+        ///     });
+        /// 
+        ///     var s3UserId = users[0];
+        /// 
+        ///     var myUser = Ovh.CloudProject.GetUser.Invoke(new()
+        ///     {
+        ///         ServiceName = projectUsers.Apply(getUsersResult =&gt; getUsersResult.ServiceName),
+        ///         UserId = s3UserId,
+        ///     });
+        /// 
+        /// });
+        /// ```
+        /// {{% /example %}}
+        /// {{% /examples %}}
         /// </summary>
         public static Output<GetUserResult> Invoke(GetUserInvokeArgs args, InvokeOptions? options = null)
             => global::Pulumi.Deployment.Instance.Invoke<GetUserResult>("ovh:CloudProject/getUser:getUser", args ?? new GetUserInvokeArgs(), options.WithDefaults());

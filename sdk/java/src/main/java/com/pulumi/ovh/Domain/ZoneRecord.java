@@ -16,8 +16,6 @@ import java.util.Optional;
 import javax.annotation.Nullable;
 
 /**
- * Provides a OVHcloud domain zone record.
- * 
  * ## Example Usage
  * ```java
  * package generated_program;

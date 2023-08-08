@@ -135,7 +135,7 @@ def get_cart(assign: Optional[bool] = None,
     ```
 
 
-    :param bool assign: Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+    :param bool assign: Assign a shopping cart to a logged in client. Values can be `true` or `false`.
     :param str description: Description of your cart
     :param str expire: Expiration time (format: 2006-01-02T15:04:05+00:00)
     :param str ovh_subsidiary: OVHcloud Subsidiary
@@ -149,14 +149,14 @@ def get_cart(assign: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Order/getCart:getCart', __args__, opts=opts, typ=GetCartResult).value
 
     return AwaitableGetCartResult(
-        assign=__ret__.assign,
-        cart_id=__ret__.cart_id,
-        description=__ret__.description,
-        expire=__ret__.expire,
-        id=__ret__.id,
-        items=__ret__.items,
-        ovh_subsidiary=__ret__.ovh_subsidiary,
-        read_only=__ret__.read_only)
+        assign=pulumi.get(__ret__, 'assign'),
+        cart_id=pulumi.get(__ret__, 'cart_id'),
+        description=pulumi.get(__ret__, 'description'),
+        expire=pulumi.get(__ret__, 'expire'),
+        id=pulumi.get(__ret__, 'id'),
+        items=pulumi.get(__ret__, 'items'),
+        ovh_subsidiary=pulumi.get(__ret__, 'ovh_subsidiary'),
+        read_only=pulumi.get(__ret__, 'read_only'))
 
 
 @_utilities.lift_output_func(get_cart)
@@ -179,7 +179,7 @@ def get_cart_output(assign: Optional[pulumi.Input[Optional[bool]]] = None,
     ```
 
 
-    :param bool assign: Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+    :param bool assign: Assign a shopping cart to a logged in client. Values can be `true` or `false`.
     :param str description: Description of your cart
     :param str expire: Expiration time (format: 2006-01-02T15:04:05+00:00)
     :param str ovh_subsidiary: OVHcloud Subsidiary

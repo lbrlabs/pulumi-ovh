@@ -15,10 +15,10 @@ __all__ = ['M3DbNamespaceArgs', 'M3DbNamespace']
 class M3DbNamespaceArgs:
     def __init__(__self__, *,
                  cluster_id: pulumi.Input[str],
+                 resolution: pulumi.Input[str],
                  retention_period_duration: pulumi.Input[str],
                  service_name: pulumi.Input[str],
                  name: Optional[pulumi.Input[str]] = None,
-                 resolution: Optional[pulumi.Input[str]] = None,
                  retention_block_data_expiration_duration: Optional[pulumi.Input[str]] = None,
                  retention_block_size_duration: Optional[pulumi.Input[str]] = None,
                  retention_buffer_future_duration: Optional[pulumi.Input[str]] = None,
@@ -28,11 +28,11 @@ class M3DbNamespaceArgs:
         """
         The set of arguments for constructing a M3DbNamespace resource.
         :param pulumi.Input[str] cluster_id: Cluster ID.
+        :param pulumi.Input[str] resolution: Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
         :param pulumi.Input[str] retention_period_duration: Controls the duration of time that M3DB will retain data for the namespace. Should follow Rfc3339 e.g P2D, PT48H.
         :param pulumi.Input[str] service_name: The id of the public cloud project. If omitted,
                the `OVH_CLOUD_PROJECT_SERVICE` environment variable is used.
         :param pulumi.Input[str] name: Name of the namespace.
-        :param pulumi.Input[str] resolution: Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
         :param pulumi.Input[str] retention_block_data_expiration_duration: Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
         :param pulumi.Input[str] retention_block_size_duration: Controls how long to keep a block in memory before flushing to a fileset on disk. Should follow Rfc3339 e.g P2D, PT48H.
         :param pulumi.Input[str] retention_buffer_future_duration: Controls how far into the future writes to the namespace will be accepted. Should follow Rfc3339 e.g P2D, PT48H.
@@ -41,12 +41,11 @@ class M3DbNamespaceArgs:
         :param pulumi.Input[bool] writes_to_commit_log_enabled: Defines whether M3DB will include writes to this namespace in the commit log.
         """
         pulumi.set(__self__, "cluster_id", cluster_id)
+        pulumi.set(__self__, "resolution", resolution)
         pulumi.set(__self__, "retention_period_duration", retention_period_duration)
         pulumi.set(__self__, "service_name", service_name)
         if name is not None:
             pulumi.set(__self__, "name", name)
-        if resolution is not None:
-            pulumi.set(__self__, "resolution", resolution)
         if retention_block_data_expiration_duration is not None:
             pulumi.set(__self__, "retention_block_data_expiration_duration", retention_block_data_expiration_duration)
         if retention_block_size_duration is not None:
@@ -71,6 +70,18 @@ class M3DbNamespaceArgs:
     @cluster_id.setter
     def cluster_id(self, value: pulumi.Input[str]):
         pulumi.set(self, "cluster_id", value)
+
+    @property
+    @pulumi.getter
+    def resolution(self) -> pulumi.Input[str]:
+        """
+        Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
+        """
+        return pulumi.get(self, "resolution")
+
+    @resolution.setter
+    def resolution(self, value: pulumi.Input[str]):
+        pulumi.set(self, "resolution", value)
 
     @property
     @pulumi.getter(name="retentionPeriodDuration")
@@ -108,18 +119,6 @@ class M3DbNamespaceArgs:
     @name.setter
     def name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "name", value)
-
-    @property
-    @pulumi.getter
-    def resolution(self) -> Optional[pulumi.Input[str]]:
-        """
-        Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
-        """
-        return pulumi.get(self, "resolution")
-
-    @resolution.setter
-    def resolution(self, value: Optional[pulumi.Input[str]]):
-        pulumi.set(self, "resolution", value)
 
     @property
     @pulumi.getter(name="retentionBlockDataExpirationDuration")
@@ -529,6 +528,8 @@ class M3DbNamespace(pulumi.CustomResource):
                 raise TypeError("Missing required property 'cluster_id'")
             __props__.__dict__["cluster_id"] = cluster_id
             __props__.__dict__["name"] = name
+            if resolution is None and not opts.urn:
+                raise TypeError("Missing required property 'resolution'")
             __props__.__dict__["resolution"] = resolution
             __props__.__dict__["retention_block_data_expiration_duration"] = retention_block_data_expiration_duration
             __props__.__dict__["retention_block_size_duration"] = retention_block_size_duration
@@ -622,7 +623,7 @@ class M3DbNamespace(pulumi.CustomResource):
 
     @property
     @pulumi.getter
-    def resolution(self) -> pulumi.Output[Optional[str]]:
+    def resolution(self) -> pulumi.Output[str]:
         """
         Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
         """

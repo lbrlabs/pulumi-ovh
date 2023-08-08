@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func GetServer(ctx *pulumi.Context, args *GetServerArgs, opts ...pulumi.InvokeOption) (*GetServerResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetServerResult
 	err := ctx.Invoke("ovh:index/getServer:getServer", args, &rv, opts...)
 	if err != nil {
@@ -57,7 +58,7 @@ type GetServerArgs struct {
 type GetServerResult struct {
 	// boot id of the server
 	BootId int `pulumi:"bootId"`
-	// dedicater server commercial range
+	// dedicated server commercial range
 	CommercialRange string `pulumi:"commercialRange"`
 	// dedicated datacenter localisation (bhs1,bhs2,...)
 	Datacenter string `pulumi:"datacenter"`
@@ -98,6 +99,8 @@ type GetServerResult struct {
 	State string `pulumi:"state"`
 	// Dedicated server support level (critical, fastpath, gs, pro)
 	SupportLevel string `pulumi:"supportLevel"`
+	// URN of the dedicated server instance
+	Urn string `pulumi:"urn"`
 	// the list of Virtualnetworkinterface assiociated with this server
 	Vnis []GetServerVni `pulumi:"vnis"`
 }
@@ -145,7 +148,7 @@ func (o GetServerResultOutput) BootId() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServerResult) int { return v.BootId }).(pulumi.IntOutput)
 }
 
-// dedicater server commercial range
+// dedicated server commercial range
 func (o GetServerResultOutput) CommercialRange() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerResult) string { return v.CommercialRange }).(pulumi.StringOutput)
 }
@@ -247,6 +250,11 @@ func (o GetServerResultOutput) State() pulumi.StringOutput {
 // Dedicated server support level (critical, fastpath, gs, pro)
 func (o GetServerResultOutput) SupportLevel() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerResult) string { return v.SupportLevel }).(pulumi.StringOutput)
+}
+
+// URN of the dedicated server instance
+func (o GetServerResultOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServerResult) string { return v.Urn }).(pulumi.StringOutput)
 }
 
 // the list of Virtualnetworkinterface assiociated with this server

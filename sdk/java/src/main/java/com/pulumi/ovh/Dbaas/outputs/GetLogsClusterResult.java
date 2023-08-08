@@ -67,6 +67,11 @@ public final class GetLogsClusterResult {
      */
     private String region;
     private String serviceName;
+    /**
+     * @return is the URN of the DBaas logs instance
+     * 
+     */
+    private String urn;
 
     private GetLogsClusterResult() {}
     /**
@@ -149,6 +154,13 @@ public final class GetLogsClusterResult {
     public String serviceName() {
         return this.serviceName;
     }
+    /**
+     * @return is the URN of the DBaas logs instance
+     * 
+     */
+    public String urn() {
+        return this.urn;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -171,6 +183,7 @@ public final class GetLogsClusterResult {
         private List<String> queryAllowedNetworks;
         private String region;
         private String serviceName;
+        private String urn;
         public Builder() {}
         public Builder(GetLogsClusterResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -186,6 +199,7 @@ public final class GetLogsClusterResult {
     	      this.queryAllowedNetworks = defaults.queryAllowedNetworks;
     	      this.region = defaults.region;
     	      this.serviceName = defaults.serviceName;
+    	      this.urn = defaults.urn;
         }
 
         @CustomType.Setter
@@ -257,6 +271,11 @@ public final class GetLogsClusterResult {
             this.serviceName = Objects.requireNonNull(serviceName);
             return this;
         }
+        @CustomType.Setter
+        public Builder urn(String urn) {
+            this.urn = Objects.requireNonNull(urn);
+            return this;
+        }
         public GetLogsClusterResult build() {
             final var o = new GetLogsClusterResult();
             o.archiveAllowedNetworks = archiveAllowedNetworks;
@@ -271,6 +290,7 @@ public final class GetLogsClusterResult {
             o.queryAllowedNetworks = queryAllowedNetworks;
             o.region = region;
             o.serviceName = serviceName;
+            o.urn = urn;
             return o;
         }
     }

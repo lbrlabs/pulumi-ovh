@@ -26,6 +26,10 @@ public final class GetServerVni {
      * 
      */
     private String name;
+    /**
+     * @return NetworkInterfaceControllers bound to this VirtualNetworkInterface
+     * 
+     */
     private List<String> nics;
     /**
      * @return Server bound to this VirtualNetworkInterface
@@ -65,6 +69,10 @@ public final class GetServerVni {
     public String name() {
         return this.name;
     }
+    /**
+     * @return NetworkInterfaceControllers bound to this VirtualNetworkInterface
+     * 
+     */
     public List<String> nics() {
         return this.nics;
     }

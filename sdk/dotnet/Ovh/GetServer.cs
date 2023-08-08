@@ -107,7 +107,7 @@ namespace Lbrlabs.PulumiPackage.Ovh
         /// </summary>
         public readonly int BootId;
         /// <summary>
-        /// dedicater server commercial range
+        /// dedicated server commercial range
         /// </summary>
         public readonly string CommercialRange;
         /// <summary>
@@ -188,6 +188,10 @@ namespace Lbrlabs.PulumiPackage.Ovh
         /// </summary>
         public readonly string SupportLevel;
         /// <summary>
+        /// URN of the dedicated server instance
+        /// </summary>
+        public readonly string Urn;
+        /// <summary>
         /// the list of Virtualnetworkinterface assiociated with this server
         /// </summary>
         public readonly ImmutableArray<Outputs.GetServerVniResult> Vnis;
@@ -238,6 +242,8 @@ namespace Lbrlabs.PulumiPackage.Ovh
 
             string supportLevel,
 
+            string urn,
+
             ImmutableArray<Outputs.GetServerVniResult> vnis)
         {
             BootId = bootId;
@@ -262,6 +268,7 @@ namespace Lbrlabs.PulumiPackage.Ovh
             ServiceName = serviceName;
             State = state;
             SupportLevel = supportLevel;
+            Urn = urn;
             Vnis = vnis;
         }
     }

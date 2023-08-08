@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func LookupContainerRegistries(ctx *pulumi.Context, args *LookupContainerRegistriesArgs, opts ...pulumi.InvokeOption) (*LookupContainerRegistriesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupContainerRegistriesResult
 	err := ctx.Invoke("ovh:CloudProject/getContainerRegistries:getContainerRegistries", args, &rv, opts...)
 	if err != nil {

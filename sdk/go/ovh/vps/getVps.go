@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func GetVps(ctx *pulumi.Context, args *GetVpsArgs, opts ...pulumi.InvokeOption) (*GetVpsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVpsResult
 	err := ctx.Invoke("ovh:Vps/getVps:getVps", args, &rv, opts...)
 	if err != nil {
@@ -88,6 +89,8 @@ type GetVpsResult struct {
 	State string `pulumi:"state"`
 	// The type of server
 	Type string `pulumi:"type"`
+	// The URN of the vps
+	Urn string `pulumi:"urn"`
 	// The number of vcore of the vps
 	Vcore int `pulumi:"vcore"`
 	// The OVHcloud zone where the vps is
@@ -208,6 +211,11 @@ func (o GetVpsResultOutput) State() pulumi.StringOutput {
 // The type of server
 func (o GetVpsResultOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v GetVpsResult) string { return v.Type }).(pulumi.StringOutput)
+}
+
+// The URN of the vps
+func (o GetVpsResultOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetVpsResult) string { return v.Urn }).(pulumi.StringOutput)
 }
 
 // The number of vcore of the vps
