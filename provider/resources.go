@@ -370,6 +370,12 @@ func Provider() tfbridge.ProviderInfo {
 			"ovh_dbaas_logs_cluster": {
 				Tok: ovhResource(dbaasMod, "LogsCluster"),
 			},
+			"ovh_iam_policy": {
+				Tok: ovhResource(dbaasMod, "IamPolicy"),
+			},
+			"ovh_me_identity_group": {
+				Tok: ovhResource(dbaasMod, "MeIdentityGroup"),
+			},
 		},
 		DataSources: map[string]*tfbridge.DataSourceInfo{
 			"ovh_cloud_project_capabilities_containerregistry": {
@@ -617,6 +623,24 @@ func Provider() tfbridge.ProviderInfo {
 			},
 			"ovh_dbaas_logs_cluster": {
 				Tok: ovhDataSource(dbaasMod, "getLogsCluster"),
+			},
+			"ovh_iam_policies": {
+				Tok: ovhDataSource(dbaasMod, "getIamPolicies"),
+			},
+			"ovh_iam_policy": {
+				Tok: ovhDataSource(dbaasMod, "getIamPolicy"),
+			},
+			"ovh_iam_reference_actions": {
+				Tok: ovhDataSource(dbaasMod, "getIamReferenceActions"),
+			},
+			"ovh_iam_reference_resource_type": {
+				Tok: ovhDataSource(dbaasMod, "getIamReferenceResourceType"),
+			},
+			"ovh_me_identity_group": {
+				Tok: ovhDataSource(dbaasMod, "getMeIdentityGroup"),
+			},
+			"ovh_me_identity_groups": {
+				Tok: ovhDataSource(dbaasMod, "getMeIdentityGroups"),
 			},
 		},
 		JavaScript: &tfbridge.JavaScriptInfo{
