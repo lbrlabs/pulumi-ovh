@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -41,7 +42,7 @@ import (
 //
 // ```
 func GetKafkaUserAccess(ctx *pulumi.Context, args *GetKafkaUserAccessArgs, opts ...pulumi.InvokeOption) (*GetKafkaUserAccessResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetKafkaUserAccessResult
 	err := ctx.Invoke("ovh:CloudProjectDatabase/getKafkaUserAccess:getKafkaUserAccess", args, &rv, opts...)
 	if err != nil {

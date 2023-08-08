@@ -182,6 +182,23 @@ namespace Lbrlabs.PulumiPackage.Ovh.CloudProject
     ///         Flavor = "db1-4",
     ///     });
     /// 
+    ///     var grafana = new Ovh.CloudProject.Database("grafana", new()
+    ///     {
+    ///         ServiceName = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    ///         Description = "my-first-grafana",
+    ///         Engine = "grafana",
+    ///         Version = "9.1",
+    ///         Plan = "essential",
+    ///         Nodes = new[]
+    ///         {
+    ///             new Ovh.CloudProject.Inputs.DatabaseNodeArgs
+    ///             {
+    ///                 Region = "GRA",
+    ///             },
+    ///         },
+    ///         Flavor = "db1-4",
+    ///     });
+    /// 
     /// });
     /// ```
     /// 

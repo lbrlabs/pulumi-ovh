@@ -143,12 +143,12 @@ def get_database_instance(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProjectDatabase/getDatabaseInstance:getDatabaseInstance', __args__, opts=opts, typ=GetDatabaseInstanceResult).value
 
     return AwaitableGetDatabaseInstanceResult(
-        cluster_id=__ret__.cluster_id,
-        default=__ret__.default,
-        engine=__ret__.engine,
-        id=__ret__.id,
-        name=__ret__.name,
-        service_name=__ret__.service_name)
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        default=pulumi.get(__ret__, 'default'),
+        engine=pulumi.get(__ret__, 'engine'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_database_instance)

@@ -4,6 +4,7 @@
 package me
 
 import (
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ import (
 //
 // ```
 func GetMe(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetMeResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetMeResult
 	err := ctx.Invoke("ovh:Me/getMe:getMe", nil, &rv, opts...)
 	if err != nil {
@@ -99,6 +100,8 @@ type GetMeResult struct {
 	SpareEmail string `pulumi:"spareEmail"`
 	// State of the postal address
 	State string `pulumi:"state"`
+	// The resource URN of the account, to be used when writing IAM policies
+	Urn string `pulumi:"urn"`
 	// VAT number
 	Vat string `pulumi:"vat"`
 	// Zipcode of the address

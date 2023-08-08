@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func LookupLogsCluster(ctx *pulumi.Context, args *LookupLogsClusterArgs, opts ...pulumi.InvokeOption) (*LookupLogsClusterResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupLogsClusterResult
 	err := ctx.Invoke("ovh:Dbaas/getLogsCluster:getLogsCluster", args, &rv, opts...)
 	if err != nil {
@@ -78,6 +79,8 @@ type LookupLogsClusterResult struct {
 	// is datacenter localization
 	Region      string `pulumi:"region"`
 	ServiceName string `pulumi:"serviceName"`
+	// is the URN of the DBaas logs instance
+	Urn string `pulumi:"urn"`
 }
 
 func LookupLogsClusterOutput(ctx *pulumi.Context, args LookupLogsClusterOutputArgs, opts ...pulumi.InvokeOption) LookupLogsClusterResultOutput {
@@ -175,6 +178,11 @@ func (o LookupLogsClusterResultOutput) Region() pulumi.StringOutput {
 
 func (o LookupLogsClusterResultOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupLogsClusterResult) string { return v.ServiceName }).(pulumi.StringOutput)
+}
+
+// is the URN of the DBaas logs instance
+func (o LookupLogsClusterResultOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupLogsClusterResult) string { return v.Urn }).(pulumi.StringOutput)
 }
 
 func init() {

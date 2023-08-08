@@ -149,13 +149,13 @@ def get_m3db_user(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getM3dbUser:getM3dbUser', __args__, opts=opts, typ=GetM3dbUserResult).value
 
     return AwaitableGetM3dbUserResult(
-        cluster_id=__ret__.cluster_id,
-        created_at=__ret__.created_at,
-        group=__ret__.group,
-        id=__ret__.id,
-        name=__ret__.name,
-        service_name=__ret__.service_name,
-        status=__ret__.status)
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        group=pulumi.get(__ret__, 'group'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        status=pulumi.get(__ret__, 'status'))
 
 
 @_utilities.lift_output_func(get_m3db_user)

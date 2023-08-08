@@ -7,7 +7,7 @@ import (
 	"fmt"
 
 	"github.com/blang/semver"
-	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -21,12 +21,16 @@ func (m *module) Version() semver.Version {
 
 func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi.Resource, err error) {
 	switch typ {
+	case "ovh:Dbaas/iamPolicy:IamPolicy":
+		r = &IamPolicy{}
 	case "ovh:Dbaas/logsCluster:LogsCluster":
 		r = &LogsCluster{}
 	case "ovh:Dbaas/logsInput:LogsInput":
 		r = &LogsInput{}
 	case "ovh:Dbaas/logsOutputGraylogStream:LogsOutputGraylogStream":
 		r = &LogsOutputGraylogStream{}
+	case "ovh:Dbaas/meIdentityGroup:MeIdentityGroup":
+		r = &MeIdentityGroup{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -36,10 +40,15 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 }
 
 func init() {
-	version, err := ovh.PkgVersion()
+	version, err := internal.PkgVersion()
 	if err != nil {
 		version = semver.Version{Major: 1}
 	}
+	pulumi.RegisterResourceModule(
+		"ovh",
+		"Dbaas/iamPolicy",
+		&module{version},
+	)
 	pulumi.RegisterResourceModule(
 		"ovh",
 		"Dbaas/logsCluster",
@@ -53,6 +62,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"ovh",
 		"Dbaas/logsOutputGraylogStream",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"ovh",
+		"Dbaas/meIdentityGroup",
 		&module{version},
 	)
 }

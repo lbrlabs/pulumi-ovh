@@ -76,6 +76,10 @@ export interface GetIdentityUserResult {
      * Current user's status.
      */
     readonly status: string;
+    /**
+     * User's identity URN.
+     */
+    readonly urn: string;
     readonly user: string;
 }
 /**

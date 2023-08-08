@@ -75,7 +75,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Order
     public sealed class GetCartArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+        /// Assign a shopping cart to a logged in client. Values can be `true` or `false`.
         /// </summary>
         [Input("assign")]
         public bool? Assign { get; set; }
@@ -107,7 +107,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Order
     public sealed class GetCartInvokeArgs : global::Pulumi.InvokeArgs
     {
         /// <summary>
-        /// Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+        /// Assign a shopping cart to a logged in client. Values can be `true` or `false`.
         /// </summary>
         [Input("assign")]
         public Input<bool>? Assign { get; set; }

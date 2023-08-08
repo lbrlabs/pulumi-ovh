@@ -113,6 +113,7 @@ export class Zone extends pulumi.CustomResource {
      * Product Plan to order
      */
     public readonly planOptions!: pulumi.Output<outputs.Domain.ZonePlanOption[] | undefined>;
+    public /*out*/ readonly urn!: pulumi.Output<string>;
 
     /**
      * Create a Zone resource with the given unique name, arguments, and options.
@@ -137,6 +138,7 @@ export class Zone extends pulumi.CustomResource {
             resourceInputs["paymentMean"] = state ? state.paymentMean : undefined;
             resourceInputs["plan"] = state ? state.plan : undefined;
             resourceInputs["planOptions"] = state ? state.planOptions : undefined;
+            resourceInputs["urn"] = state ? state.urn : undefined;
         } else {
             const args = argsOrState as ZoneArgs | undefined;
             if ((!args || args.ovhSubsidiary === undefined) && !opts.urn) {
@@ -155,6 +157,7 @@ export class Zone extends pulumi.CustomResource {
             resourceInputs["name"] = undefined /*out*/;
             resourceInputs["nameServers"] = undefined /*out*/;
             resourceInputs["orders"] = undefined /*out*/;
+            resourceInputs["urn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Zone.__pulumiType, name, resourceInputs, opts);
@@ -207,6 +210,7 @@ export interface ZoneState {
      * Product Plan to order
      */
     planOptions?: pulumi.Input<pulumi.Input<inputs.Domain.ZonePlanOption>[]>;
+    urn?: pulumi.Input<string>;
 }
 
 /**

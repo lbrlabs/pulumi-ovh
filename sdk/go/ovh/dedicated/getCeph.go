@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func GetCeph(ctx *pulumi.Context, args *GetCephArgs, opts ...pulumi.InvokeOption) (*GetCephResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCephResult
 	err := ctx.Invoke("ovh:Dedicated/getCeph:getCeph", args, &rv, opts...)
 	if err != nil {
@@ -86,6 +87,8 @@ type GetCephResult struct {
 	State string `pulumi:"state"`
 	// the status of the service
 	Status string `pulumi:"status"`
+	// URN of the CEPH instance
+	Urn string `pulumi:"urn"`
 }
 
 func GetCephOutput(ctx *pulumi.Context, args GetCephOutputArgs, opts ...pulumi.InvokeOption) GetCephResultOutput {
@@ -185,6 +188,11 @@ func (o GetCephResultOutput) State() pulumi.StringOutput {
 // the status of the service
 func (o GetCephResultOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v GetCephResult) string { return v.Status }).(pulumi.StringOutput)
+}
+
+// URN of the CEPH instance
+func (o GetCephResultOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetCephResult) string { return v.Urn }).(pulumi.StringOutput)
 }
 
 func init() {

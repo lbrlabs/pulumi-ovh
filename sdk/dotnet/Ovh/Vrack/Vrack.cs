@@ -102,6 +102,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Vrack
         [Output("serviceName")]
         public Output<string> ServiceName { get; private set; } = null!;
 
+        /// <summary>
+        /// The URN of the vrack, used with IAM permissions
+        /// </summary>
+        [Output("urn")]
+        public Output<string> Urn { get; private set; } = null!;
+
 
         /// <summary>
         /// Create a Vrack resource with the given unique name, arguments, and options.
@@ -258,6 +264,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Vrack
         /// </summary>
         [Input("serviceName")]
         public Input<string>? ServiceName { get; set; }
+
+        /// <summary>
+        /// The URN of the vrack, used with IAM permissions
+        /// </summary>
+        [Input("urn")]
+        public Input<string>? Urn { get; set; }
 
         public VrackState()
         {

@@ -21,7 +21,7 @@ class GetPrivateDatabaseResult:
     """
     A collection of values returned by getPrivateDatabase.
     """
-    def __init__(__self__, cpu=None, datacenter=None, display_name=None, hostname=None, hostname_ftp=None, id=None, infrastructure=None, offer=None, port=None, port_ftp=None, quota_size=None, quota_used=None, ram=None, server=None, service_name=None, state=None, type=None, version=None, version_label=None, version_number=None):
+    def __init__(__self__, cpu=None, datacenter=None, display_name=None, hostname=None, hostname_ftp=None, id=None, infrastructure=None, offer=None, port=None, port_ftp=None, quota_size=None, quota_used=None, ram=None, server=None, service_name=None, state=None, type=None, urn=None, version=None, version_label=None, version_number=None):
         if cpu and not isinstance(cpu, int):
             raise TypeError("Expected argument 'cpu' to be a int")
         pulumi.set(__self__, "cpu", cpu)
@@ -73,6 +73,9 @@ class GetPrivateDatabaseResult:
         if type and not isinstance(type, str):
             raise TypeError("Expected argument 'type' to be a str")
         pulumi.set(__self__, "type", type)
+        if urn and not isinstance(urn, str):
+            raise TypeError("Expected argument 'urn' to be a str")
+        pulumi.set(__self__, "urn", urn)
         if version and not isinstance(version, str):
             raise TypeError("Expected argument 'version' to be a str")
         pulumi.set(__self__, "version", version)
@@ -215,6 +218,14 @@ class GetPrivateDatabaseResult:
 
     @property
     @pulumi.getter
+    def urn(self) -> str:
+        """
+        URN of the private database
+        """
+        return pulumi.get(self, "urn")
+
+    @property
+    @pulumi.getter
     def version(self) -> str:
         """
         Private database available versions
@@ -261,6 +272,7 @@ class AwaitableGetPrivateDatabaseResult(GetPrivateDatabaseResult):
             service_name=self.service_name,
             state=self.state,
             type=self.type,
+            urn=self.urn,
             version=self.version,
             version_label=self.version_label,
             version_number=self.version_number)
@@ -289,26 +301,27 @@ def get_private_database(service_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Hosting/getPrivateDatabase:getPrivateDatabase', __args__, opts=opts, typ=GetPrivateDatabaseResult).value
 
     return AwaitableGetPrivateDatabaseResult(
-        cpu=__ret__.cpu,
-        datacenter=__ret__.datacenter,
-        display_name=__ret__.display_name,
-        hostname=__ret__.hostname,
-        hostname_ftp=__ret__.hostname_ftp,
-        id=__ret__.id,
-        infrastructure=__ret__.infrastructure,
-        offer=__ret__.offer,
-        port=__ret__.port,
-        port_ftp=__ret__.port_ftp,
-        quota_size=__ret__.quota_size,
-        quota_used=__ret__.quota_used,
-        ram=__ret__.ram,
-        server=__ret__.server,
-        service_name=__ret__.service_name,
-        state=__ret__.state,
-        type=__ret__.type,
-        version=__ret__.version,
-        version_label=__ret__.version_label,
-        version_number=__ret__.version_number)
+        cpu=pulumi.get(__ret__, 'cpu'),
+        datacenter=pulumi.get(__ret__, 'datacenter'),
+        display_name=pulumi.get(__ret__, 'display_name'),
+        hostname=pulumi.get(__ret__, 'hostname'),
+        hostname_ftp=pulumi.get(__ret__, 'hostname_ftp'),
+        id=pulumi.get(__ret__, 'id'),
+        infrastructure=pulumi.get(__ret__, 'infrastructure'),
+        offer=pulumi.get(__ret__, 'offer'),
+        port=pulumi.get(__ret__, 'port'),
+        port_ftp=pulumi.get(__ret__, 'port_ftp'),
+        quota_size=pulumi.get(__ret__, 'quota_size'),
+        quota_used=pulumi.get(__ret__, 'quota_used'),
+        ram=pulumi.get(__ret__, 'ram'),
+        server=pulumi.get(__ret__, 'server'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        state=pulumi.get(__ret__, 'state'),
+        type=pulumi.get(__ret__, 'type'),
+        urn=pulumi.get(__ret__, 'urn'),
+        version=pulumi.get(__ret__, 'version'),
+        version_label=pulumi.get(__ret__, 'version_label'),
+        version_number=pulumi.get(__ret__, 'version_number'))
 
 
 @_utilities.lift_output_func(get_private_database)

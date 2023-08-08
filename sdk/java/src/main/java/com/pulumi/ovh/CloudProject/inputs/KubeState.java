@@ -213,12 +213,16 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
     /**
      * OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
      * 
+     * &gt; __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
+     * 
      */
     @Import(name="privateNetworkId")
     private @Nullable Output<String> privateNetworkId;
 
     /**
      * @return OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+     * 
+     * &gt; __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
      * 
      */
     public Optional<Output<String>> privateNetworkId() {
@@ -664,6 +668,8 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
         /**
          * @param privateNetworkId OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
          * 
+         * &gt; __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
+         * 
          * @return builder
          * 
          */
@@ -674,6 +680,8 @@ public final class KubeState extends com.pulumi.resources.ResourceArgs {
 
         /**
          * @param privateNetworkId OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+         * 
+         * &gt; __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
          * 
          * @return builder
          * 

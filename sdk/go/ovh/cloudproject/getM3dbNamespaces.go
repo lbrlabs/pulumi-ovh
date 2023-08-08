@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,7 +41,7 @@ import (
 //
 // ```
 func GetM3dbNamespaces(ctx *pulumi.Context, args *GetM3dbNamespacesArgs, opts ...pulumi.InvokeOption) (*GetM3dbNamespacesResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetM3dbNamespacesResult
 	err := ctx.Invoke("ovh:CloudProject/getM3dbNamespaces:getM3dbNamespaces", args, &rv, opts...)
 	if err != nil {

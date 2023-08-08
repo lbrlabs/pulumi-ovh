@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func LookupPrivateDatabaseUser(ctx *pulumi.Context, args *LookupPrivateDatabaseUserArgs, opts ...pulumi.InvokeOption) (*LookupPrivateDatabaseUserResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupPrivateDatabaseUserResult
 	err := ctx.Invoke("ovh:Hosting/getPrivateDatabaseUser:getPrivateDatabaseUser", args, &rv, opts...)
 	if err != nil {

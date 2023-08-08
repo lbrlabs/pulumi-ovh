@@ -126,11 +126,11 @@ def get_kube_node_pool_nodes(kube_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getKubeNodePoolNodes:getKubeNodePoolNodes', __args__, opts=opts, typ=GetKubeNodePoolNodesResult).value
 
     return AwaitableGetKubeNodePoolNodesResult(
-        id=__ret__.id,
-        kube_id=__ret__.kube_id,
-        name=__ret__.name,
-        nodes=__ret__.nodes,
-        service_name=__ret__.service_name)
+        id=pulumi.get(__ret__, 'id'),
+        kube_id=pulumi.get(__ret__, 'kube_id'),
+        name=pulumi.get(__ret__, 'name'),
+        nodes=pulumi.get(__ret__, 'nodes'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_kube_node_pool_nodes)

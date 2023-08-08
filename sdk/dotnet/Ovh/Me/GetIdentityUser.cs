@@ -138,6 +138,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
         /// Current user's status.
         /// </summary>
         public readonly string Status;
+        /// <summary>
+        /// User's identity URN.
+        /// </summary>
+        public readonly string Urn;
         public readonly string User;
 
         [OutputConstructor]
@@ -160,6 +164,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
 
             string status,
 
+            string urn,
+
             string user)
         {
             Creation = creation;
@@ -171,6 +177,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Me
             Login = login;
             PasswordLastUpdate = passwordLastUpdate;
             Status = status;
+            Urn = urn;
             User = user;
         }
     }

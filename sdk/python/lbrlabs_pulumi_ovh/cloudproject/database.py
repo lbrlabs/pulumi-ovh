@@ -639,6 +639,16 @@ class Database(pulumi.CustomResource):
                 region="BHS",
             )],
             flavor="db1-4")
+        grafana = ovh.cloud_project.Database("grafana",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            description="my-first-grafana",
+            engine="grafana",
+            version="9.1",
+            plan="essential",
+            nodes=[ovh.cloud_project.DatabaseNodeArgs(
+                region="GRA",
+            )],
+            flavor="db1-4")
         ```
 
         To deploy a business PostgreSQL service with two nodes on public network:
@@ -839,6 +849,16 @@ class Database(pulumi.CustomResource):
             plan="essential",
             nodes=[ovh.cloud_project.DatabaseNodeArgs(
                 region="BHS",
+            )],
+            flavor="db1-4")
+        grafana = ovh.cloud_project.Database("grafana",
+            service_name="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+            description="my-first-grafana",
+            engine="grafana",
+            version="9.1",
+            plan="essential",
+            nodes=[ovh.cloud_project.DatabaseNodeArgs(
+                region="GRA",
             )],
             flavor="db1-4")
         ```

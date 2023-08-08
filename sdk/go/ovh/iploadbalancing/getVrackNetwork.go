@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func LookupVrackNetwork(ctx *pulumi.Context, args *LookupVrackNetworkArgs, opts ...pulumi.InvokeOption) (*LookupVrackNetworkResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupVrackNetworkResult
 	err := ctx.Invoke("ovh:IpLoadBalancing/getVrackNetwork:getVrackNetwork", args, &rv, opts...)
 	if err != nil {

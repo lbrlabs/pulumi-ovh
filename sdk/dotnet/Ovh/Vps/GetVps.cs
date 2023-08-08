@@ -162,6 +162,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Vps
         /// </summary>
         public readonly string Type;
         /// <summary>
+        /// The URN of the vps
+        /// </summary>
+        public readonly string Urn;
+        /// <summary>
         /// The number of vcore of the vps
         /// </summary>
         public readonly int Vcore;
@@ -202,6 +206,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.Vps
 
             string type,
 
+            string urn,
+
             int vcore,
 
             string zone)
@@ -221,6 +227,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Vps
             Slamonitoring = slamonitoring;
             State = state;
             Type = type;
+            Urn = urn;
             Vcore = vcore;
             Zone = zone;
         }

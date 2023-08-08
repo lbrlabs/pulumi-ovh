@@ -87,6 +87,9 @@ class PrivateDatabaseArgs:
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @payment_mean.setter
@@ -142,6 +145,7 @@ class _PrivateDatabaseState:
                  service_name: Optional[pulumi.Input[str]] = None,
                  state: Optional[pulumi.Input[str]] = None,
                  type: Optional[pulumi.Input[str]] = None,
+                 urn: Optional[pulumi.Input[str]] = None,
                  version: Optional[pulumi.Input[str]] = None,
                  version_label: Optional[pulumi.Input[str]] = None,
                  version_number: Optional[pulumi.Input[float]] = None):
@@ -168,6 +172,7 @@ class _PrivateDatabaseState:
         :param pulumi.Input[str] service_name: Service name
         :param pulumi.Input[str] state: Private database state
         :param pulumi.Input[str] type: Private database type
+        :param pulumi.Input[str] urn: URN of the private database, used when writing IAM policies
         :param pulumi.Input[str] version: Private database available versions
         :param pulumi.Input[str] version_label: Private database version label
         :param pulumi.Input[float] version_number: Private database version number
@@ -217,6 +222,8 @@ class _PrivateDatabaseState:
             pulumi.set(__self__, "state", state)
         if type is not None:
             pulumi.set(__self__, "type", type)
+        if urn is not None:
+            pulumi.set(__self__, "urn", urn)
         if version is not None:
             pulumi.set(__self__, "version", version)
         if version_label is not None:
@@ -338,6 +345,9 @@ class _PrivateDatabaseState:
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @payment_mean.setter
@@ -475,6 +485,18 @@ class _PrivateDatabaseState:
     @type.setter
     def type(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "type", value)
+
+    @property
+    @pulumi.getter
+    def urn(self) -> Optional[pulumi.Input[str]]:
+        """
+        URN of the private database, used when writing IAM policies
+        """
+        return pulumi.get(self, "urn")
+
+    @urn.setter
+    def urn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "urn", value)
 
     @property
     @pulumi.getter
@@ -684,6 +706,7 @@ class PrivateDatabase(pulumi.CustomResource):
             __props__.__dict__["server"] = None
             __props__.__dict__["state"] = None
             __props__.__dict__["type"] = None
+            __props__.__dict__["urn"] = None
             __props__.__dict__["version"] = None
             __props__.__dict__["version_label"] = None
             __props__.__dict__["version_number"] = None
@@ -718,6 +741,7 @@ class PrivateDatabase(pulumi.CustomResource):
             service_name: Optional[pulumi.Input[str]] = None,
             state: Optional[pulumi.Input[str]] = None,
             type: Optional[pulumi.Input[str]] = None,
+            urn: Optional[pulumi.Input[str]] = None,
             version: Optional[pulumi.Input[str]] = None,
             version_label: Optional[pulumi.Input[str]] = None,
             version_number: Optional[pulumi.Input[float]] = None) -> 'PrivateDatabase':
@@ -749,6 +773,7 @@ class PrivateDatabase(pulumi.CustomResource):
         :param pulumi.Input[str] service_name: Service name
         :param pulumi.Input[str] state: Private database state
         :param pulumi.Input[str] type: Private database type
+        :param pulumi.Input[str] urn: URN of the private database, used when writing IAM policies
         :param pulumi.Input[str] version: Private database available versions
         :param pulumi.Input[str] version_label: Private database version label
         :param pulumi.Input[float] version_number: Private database version number
@@ -778,6 +803,7 @@ class PrivateDatabase(pulumi.CustomResource):
         __props__.__dict__["service_name"] = service_name
         __props__.__dict__["state"] = state
         __props__.__dict__["type"] = type
+        __props__.__dict__["urn"] = urn
         __props__.__dict__["version"] = version
         __props__.__dict__["version_label"] = version_label
         __props__.__dict__["version_number"] = version_number
@@ -861,6 +887,9 @@ class PrivateDatabase(pulumi.CustomResource):
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @property
@@ -950,6 +979,14 @@ class PrivateDatabase(pulumi.CustomResource):
         Private database type
         """
         return pulumi.get(self, "type")
+
+    @property
+    @pulumi.getter
+    def urn(self) -> pulumi.Output[str]:
+        """
+        URN of the private database, used when writing IAM policies
+        """
+        return pulumi.get(self, "urn")
 
     @property
     @pulumi.getter

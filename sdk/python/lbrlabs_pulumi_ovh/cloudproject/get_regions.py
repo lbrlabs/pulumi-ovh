@@ -104,10 +104,10 @@ def get_regions(has_services_ups: Optional[Sequence[str]] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getRegions:getRegions', __args__, opts=opts, typ=GetRegionsResult).value
 
     return AwaitableGetRegionsResult(
-        has_services_ups=__ret__.has_services_ups,
-        id=__ret__.id,
-        names=__ret__.names,
-        service_name=__ret__.service_name)
+        has_services_ups=pulumi.get(__ret__, 'has_services_ups'),
+        id=pulumi.get(__ret__, 'id'),
+        names=pulumi.get(__ret__, 'names'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_regions)

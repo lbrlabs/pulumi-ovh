@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -54,7 +55,7 @@ func NewS3Credential(ctx *pulumi.Context,
 		"secretAccessKey",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource S3Credential
 	err := ctx.RegisterResource("ovh:CloudProject/s3Credential:S3Credential", name, args, &resource, opts...)
 	if err != nil {

@@ -115,11 +115,11 @@ def get_logs_input_engine(is_deprecated: Optional[bool] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Dbaas/getLogsInputEngine:getLogsInputEngine', __args__, opts=opts, typ=GetLogsInputEngineResult).value
 
     return AwaitableGetLogsInputEngineResult(
-        id=__ret__.id,
-        is_deprecated=__ret__.is_deprecated,
-        name=__ret__.name,
-        service_name=__ret__.service_name,
-        version=__ret__.version)
+        id=pulumi.get(__ret__, 'id'),
+        is_deprecated=pulumi.get(__ret__, 'is_deprecated'),
+        name=pulumi.get(__ret__, 'name'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        version=pulumi.get(__ret__, 'version'))
 
 
 @_utilities.lift_output_func(get_logs_input_engine)

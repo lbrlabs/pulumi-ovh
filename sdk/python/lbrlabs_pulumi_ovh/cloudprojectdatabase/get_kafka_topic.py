@@ -173,15 +173,15 @@ def get_kafka_topic(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProjectDatabase/getKafkaTopic:getKafkaTopic', __args__, opts=opts, typ=GetKafkaTopicResult).value
 
     return AwaitableGetKafkaTopicResult(
-        cluster_id=__ret__.cluster_id,
-        id=__ret__.id,
-        min_insync_replicas=__ret__.min_insync_replicas,
-        name=__ret__.name,
-        partitions=__ret__.partitions,
-        replication=__ret__.replication,
-        retention_bytes=__ret__.retention_bytes,
-        retention_hours=__ret__.retention_hours,
-        service_name=__ret__.service_name)
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        id=pulumi.get(__ret__, 'id'),
+        min_insync_replicas=pulumi.get(__ret__, 'min_insync_replicas'),
+        name=pulumi.get(__ret__, 'name'),
+        partitions=pulumi.get(__ret__, 'partitions'),
+        replication=pulumi.get(__ret__, 'replication'),
+        retention_bytes=pulumi.get(__ret__, 'retention_bytes'),
+        retention_hours=pulumi.get(__ret__, 'retention_hours'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_kafka_topic)

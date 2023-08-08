@@ -165,6 +165,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
         public readonly string State;
         public readonly string Type;
         /// <summary>
+        /// URN of the private database
+        /// </summary>
+        public readonly string Urn;
+        /// <summary>
         /// Private database available versions
         /// </summary>
         public readonly string Version;
@@ -213,6 +217,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
 
             string type,
 
+            string urn,
+
             string version,
 
             string versionLabel,
@@ -236,6 +242,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
             ServiceName = serviceName;
             State = state;
             Type = type;
+            Urn = urn;
             Version = version;
             VersionLabel = versionLabel;
             VersionNumber = versionNumber;

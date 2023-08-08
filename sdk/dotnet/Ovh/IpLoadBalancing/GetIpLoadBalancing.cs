@@ -269,6 +269,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         public readonly string ServiceName;
         public readonly string SslConfiguration;
         public readonly string State;
+        /// <summary>
+        /// The URN of the load balancer, to be used in IAM policies
+        /// </summary>
+        public readonly string Urn;
         public readonly bool VrackEligibility;
         public readonly string VrackName;
         public readonly ImmutableArray<string> Zones;
@@ -297,6 +301,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
 
             string state,
 
+            string urn,
+
             bool vrackEligibility,
 
             string vrackName,
@@ -314,6 +320,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
             ServiceName = serviceName;
             SslConfiguration = sslConfiguration;
             State = state;
+            Urn = urn;
             VrackEligibility = vrackEligibility;
             VrackName = vrackName;
             Zones = zones;

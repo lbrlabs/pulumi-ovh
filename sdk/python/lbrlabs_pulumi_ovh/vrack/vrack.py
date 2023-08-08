@@ -99,6 +99,9 @@ class VrackArgs:
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @payment_mean.setter
@@ -128,7 +131,8 @@ class _VrackState:
                  payment_mean: Optional[pulumi.Input[str]] = None,
                  plan: Optional[pulumi.Input['VrackPlanArgs']] = None,
                  plan_options: Optional[pulumi.Input[Sequence[pulumi.Input['VrackPlanOptionArgs']]]] = None,
-                 service_name: Optional[pulumi.Input[str]] = None):
+                 service_name: Optional[pulumi.Input[str]] = None,
+                 urn: Optional[pulumi.Input[str]] = None):
         """
         Input properties used for looking up and filtering Vrack resources.
         :param pulumi.Input[str] description: yourvrackdescription
@@ -139,6 +143,7 @@ class _VrackState:
         :param pulumi.Input['VrackPlanArgs'] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input['VrackPlanOptionArgs']]] plan_options: Product Plan to order
         :param pulumi.Input[str] service_name: The internal name of your vrack
+        :param pulumi.Input[str] urn: The URN of the vrack, used with IAM permissions
         """
         if description is not None:
             pulumi.set(__self__, "description", description)
@@ -159,6 +164,8 @@ class _VrackState:
             pulumi.set(__self__, "plan_options", plan_options)
         if service_name is not None:
             pulumi.set(__self__, "service_name", service_name)
+        if urn is not None:
+            pulumi.set(__self__, "urn", urn)
 
     @property
     @pulumi.getter
@@ -214,6 +221,9 @@ class _VrackState:
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @payment_mean.setter
@@ -255,6 +265,18 @@ class _VrackState:
     @service_name.setter
     def service_name(self, value: Optional[pulumi.Input[str]]):
         pulumi.set(self, "service_name", value)
+
+    @property
+    @pulumi.getter
+    def urn(self) -> Optional[pulumi.Input[str]]:
+        """
+        The URN of the vrack, used with IAM permissions
+        """
+        return pulumi.get(self, "urn")
+
+    @urn.setter
+    def urn(self, value: Optional[pulumi.Input[str]]):
+        pulumi.set(self, "urn", value)
 
 
 class Vrack(pulumi.CustomResource):
@@ -377,6 +399,7 @@ class Vrack(pulumi.CustomResource):
             __props__.__dict__["plan_options"] = plan_options
             __props__.__dict__["orders"] = None
             __props__.__dict__["service_name"] = None
+            __props__.__dict__["urn"] = None
         super(Vrack, __self__).__init__(
             'ovh:Vrack/vrack:Vrack',
             resource_name,
@@ -394,7 +417,8 @@ class Vrack(pulumi.CustomResource):
             payment_mean: Optional[pulumi.Input[str]] = None,
             plan: Optional[pulumi.Input[pulumi.InputType['VrackPlanArgs']]] = None,
             plan_options: Optional[pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VrackPlanOptionArgs']]]]] = None,
-            service_name: Optional[pulumi.Input[str]] = None) -> 'Vrack':
+            service_name: Optional[pulumi.Input[str]] = None,
+            urn: Optional[pulumi.Input[str]] = None) -> 'Vrack':
         """
         Get an existing Vrack resource's state with the given name, id, and optional extra
         properties used to qualify the lookup.
@@ -410,6 +434,7 @@ class Vrack(pulumi.CustomResource):
         :param pulumi.Input[pulumi.InputType['VrackPlanArgs']] plan: Product Plan to order
         :param pulumi.Input[Sequence[pulumi.Input[pulumi.InputType['VrackPlanOptionArgs']]]] plan_options: Product Plan to order
         :param pulumi.Input[str] service_name: The internal name of your vrack
+        :param pulumi.Input[str] urn: The URN of the vrack, used with IAM permissions
         """
         opts = pulumi.ResourceOptions.merge(opts, pulumi.ResourceOptions(id=id))
 
@@ -423,6 +448,7 @@ class Vrack(pulumi.CustomResource):
         __props__.__dict__["plan"] = plan
         __props__.__dict__["plan_options"] = plan_options
         __props__.__dict__["service_name"] = service_name
+        __props__.__dict__["urn"] = urn
         return Vrack(resource_name, opts=opts, __props__=__props__)
 
     @property
@@ -463,6 +489,9 @@ class Vrack(pulumi.CustomResource):
         """
         Ovh payment mode
         """
+        warnings.warn("""This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""", DeprecationWarning)
+        pulumi.log.warn("""payment_mean is deprecated: This field is not anymore used since the API has been deprecated in favor of /payment/mean. Now, the default payment mean is used.""")
+
         return pulumi.get(self, "payment_mean")
 
     @property
@@ -488,4 +517,12 @@ class Vrack(pulumi.CustomResource):
         The internal name of your vrack
         """
         return pulumi.get(self, "service_name")
+
+    @property
+    @pulumi.getter
+    def urn(self) -> pulumi.Output[str]:
+        """
+        The URN of the vrack, used with IAM permissions
+        """
+        return pulumi.get(self, "urn")
 

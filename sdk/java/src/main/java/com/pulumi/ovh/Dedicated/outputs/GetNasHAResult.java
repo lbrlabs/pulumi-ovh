@@ -52,6 +52,11 @@ public final class GetNasHAResult {
      */
     private String serviceName;
     /**
+     * @return the URN of the HA-NAS instance
+     * 
+     */
+    private String urn;
+    /**
      * @return percentage of HA-NAS space used in %
      * 
      */
@@ -120,6 +125,13 @@ public final class GetNasHAResult {
         return this.serviceName;
     }
     /**
+     * @return the URN of the HA-NAS instance
+     * 
+     */
+    public String urn() {
+        return this.urn;
+    }
+    /**
      * @return percentage of HA-NAS space used in %
      * 
      */
@@ -151,6 +163,7 @@ public final class GetNasHAResult {
         private String ip;
         private Boolean monitored;
         private String serviceName;
+        private String urn;
         private Double zpoolCapacity;
         private Double zpoolSize;
         public Builder() {}
@@ -164,6 +177,7 @@ public final class GetNasHAResult {
     	      this.ip = defaults.ip;
     	      this.monitored = defaults.monitored;
     	      this.serviceName = defaults.serviceName;
+    	      this.urn = defaults.urn;
     	      this.zpoolCapacity = defaults.zpoolCapacity;
     	      this.zpoolSize = defaults.zpoolSize;
         }
@@ -209,6 +223,11 @@ public final class GetNasHAResult {
             return this;
         }
         @CustomType.Setter
+        public Builder urn(String urn) {
+            this.urn = Objects.requireNonNull(urn);
+            return this;
+        }
+        @CustomType.Setter
         public Builder zpoolCapacity(Double zpoolCapacity) {
             this.zpoolCapacity = Objects.requireNonNull(zpoolCapacity);
             return this;
@@ -228,6 +247,7 @@ public final class GetNasHAResult {
             o.ip = ip;
             o.monitored = monitored;
             o.serviceName = serviceName;
+            o.urn = urn;
             o.zpoolCapacity = zpoolCapacity;
             o.zpoolSize = zpoolSize;
             return o;

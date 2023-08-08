@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -95,6 +96,8 @@ type Project struct {
 	ProjectName pulumi.StringOutput `pulumi:"projectName"`
 	// project status
 	Status pulumi.StringOutput `pulumi:"status"`
+	// The URN of the cloud project
+	Urn pulumi.StringOutput `pulumi:"urn"`
 }
 
 // NewProject registers a new resource with the given unique name, arguments, and options.
@@ -110,7 +113,7 @@ func NewProject(ctx *pulumi.Context,
 	if args.Plan == nil {
 		return nil, errors.New("invalid value for required argument 'Plan'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Project
 	err := ctx.RegisterResource("ovh:CloudProject/project:Project", name, args, &resource, opts...)
 	if err != nil {
@@ -154,6 +157,8 @@ type projectState struct {
 	ProjectName *string `pulumi:"projectName"`
 	// project status
 	Status *string `pulumi:"status"`
+	// The URN of the cloud project
+	Urn *string `pulumi:"urn"`
 }
 
 type ProjectState struct {
@@ -178,6 +183,8 @@ type ProjectState struct {
 	ProjectName pulumi.StringPtrInput
 	// project status
 	Status pulumi.StringPtrInput
+	// The URN of the cloud project
+	Urn pulumi.StringPtrInput
 }
 
 func (ProjectState) ElementType() reflect.Type {
@@ -351,6 +358,11 @@ func (o ProjectOutput) ProjectName() pulumi.StringOutput {
 // project status
 func (o ProjectOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// The URN of the cloud project
+func (o ProjectOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Urn }).(pulumi.StringOutput)
 }
 
 type ProjectArrayOutput struct{ *pulumi.OutputState }

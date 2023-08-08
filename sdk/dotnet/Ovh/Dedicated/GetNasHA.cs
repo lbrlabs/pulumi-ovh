@@ -135,6 +135,10 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
         /// </summary>
         public readonly string ServiceName;
         /// <summary>
+        /// the URN of the HA-NAS instance
+        /// </summary>
+        public readonly string Urn;
+        /// <summary>
         /// percentage of HA-NAS space used in %
         /// </summary>
         public readonly double ZpoolCapacity;
@@ -161,6 +165,8 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
 
             string serviceName,
 
+            string urn,
+
             double zpoolCapacity,
 
             double zpoolSize)
@@ -173,6 +179,7 @@ namespace Lbrlabs.PulumiPackage.Ovh.Dedicated
             Ip = ip;
             Monitored = monitored;
             ServiceName = serviceName;
+            Urn = urn;
             ZpoolCapacity = zpoolCapacity;
             ZpoolSize = zpoolSize;
         }

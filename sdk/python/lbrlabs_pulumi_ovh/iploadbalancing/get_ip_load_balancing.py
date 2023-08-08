@@ -22,7 +22,7 @@ class GetIpLoadBalancingResult:
     """
     A collection of values returned by getIpLoadBalancing.
     """
-    def __init__(__self__, display_name=None, id=None, ip_loadbalancing=None, ipv4=None, ipv6=None, metrics_token=None, offer=None, orderable_zones=None, service_name=None, ssl_configuration=None, state=None, vrack_eligibility=None, vrack_name=None, zones=None):
+    def __init__(__self__, display_name=None, id=None, ip_loadbalancing=None, ipv4=None, ipv6=None, metrics_token=None, offer=None, orderable_zones=None, service_name=None, ssl_configuration=None, state=None, urn=None, vrack_eligibility=None, vrack_name=None, zones=None):
         if display_name and not isinstance(display_name, str):
             raise TypeError("Expected argument 'display_name' to be a str")
         pulumi.set(__self__, "display_name", display_name)
@@ -56,6 +56,9 @@ class GetIpLoadBalancingResult:
         if state and not isinstance(state, str):
             raise TypeError("Expected argument 'state' to be a str")
         pulumi.set(__self__, "state", state)
+        if urn and not isinstance(urn, str):
+            raise TypeError("Expected argument 'urn' to be a str")
+        pulumi.set(__self__, "urn", urn)
         if vrack_eligibility and not isinstance(vrack_eligibility, bool):
             raise TypeError("Expected argument 'vrack_eligibility' to be a bool")
         pulumi.set(__self__, "vrack_eligibility", vrack_eligibility)
@@ -132,6 +135,14 @@ class GetIpLoadBalancingResult:
         return pulumi.get(self, "state")
 
     @property
+    @pulumi.getter
+    def urn(self) -> str:
+        """
+        The URN of the load balancer, to be used in IAM policies
+        """
+        return pulumi.get(self, "urn")
+
+    @property
     @pulumi.getter(name="vrackEligibility")
     def vrack_eligibility(self) -> bool:
         return pulumi.get(self, "vrack_eligibility")
@@ -164,6 +175,7 @@ class AwaitableGetIpLoadBalancingResult(GetIpLoadBalancingResult):
             service_name=self.service_name,
             ssl_configuration=self.ssl_configuration,
             state=self.state,
+            urn=self.urn,
             vrack_eligibility=self.vrack_eligibility,
             vrack_name=self.vrack_name,
             zones=self.zones)
@@ -229,20 +241,21 @@ def get_ip_load_balancing(display_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:IpLoadBalancing/getIpLoadBalancing:getIpLoadBalancing', __args__, opts=opts, typ=GetIpLoadBalancingResult).value
 
     return AwaitableGetIpLoadBalancingResult(
-        display_name=__ret__.display_name,
-        id=__ret__.id,
-        ip_loadbalancing=__ret__.ip_loadbalancing,
-        ipv4=__ret__.ipv4,
-        ipv6=__ret__.ipv6,
-        metrics_token=__ret__.metrics_token,
-        offer=__ret__.offer,
-        orderable_zones=__ret__.orderable_zones,
-        service_name=__ret__.service_name,
-        ssl_configuration=__ret__.ssl_configuration,
-        state=__ret__.state,
-        vrack_eligibility=__ret__.vrack_eligibility,
-        vrack_name=__ret__.vrack_name,
-        zones=__ret__.zones)
+        display_name=pulumi.get(__ret__, 'display_name'),
+        id=pulumi.get(__ret__, 'id'),
+        ip_loadbalancing=pulumi.get(__ret__, 'ip_loadbalancing'),
+        ipv4=pulumi.get(__ret__, 'ipv4'),
+        ipv6=pulumi.get(__ret__, 'ipv6'),
+        metrics_token=pulumi.get(__ret__, 'metrics_token'),
+        offer=pulumi.get(__ret__, 'offer'),
+        orderable_zones=pulumi.get(__ret__, 'orderable_zones'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        ssl_configuration=pulumi.get(__ret__, 'ssl_configuration'),
+        state=pulumi.get(__ret__, 'state'),
+        urn=pulumi.get(__ret__, 'urn'),
+        vrack_eligibility=pulumi.get(__ret__, 'vrack_eligibility'),
+        vrack_name=pulumi.get(__ret__, 'vrack_name'),
+        zones=pulumi.get(__ret__, 'zones'))
 
 
 @_utilities.lift_output_func(get_ip_load_balancing)

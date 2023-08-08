@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func GetCart(ctx *pulumi.Context, args *GetCartArgs, opts ...pulumi.InvokeOption) (*GetCartResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetCartResult
 	err := ctx.Invoke("ovh:Order/getCart:getCart", args, &rv, opts...)
 	if err != nil {
@@ -50,7 +51,7 @@ func GetCart(ctx *pulumi.Context, args *GetCartArgs, opts ...pulumi.InvokeOption
 
 // A collection of arguments for invoking getCart.
 type GetCartArgs struct {
-	// Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+	// Assign a shopping cart to a logged in client. Values can be `true` or `false`.
 	Assign *bool `pulumi:"assign"`
 	// Description of your cart
 	Description *string `pulumi:"description"`
@@ -91,7 +92,7 @@ func GetCartOutput(ctx *pulumi.Context, args GetCartOutputArgs, opts ...pulumi.I
 
 // A collection of arguments for invoking getCart.
 type GetCartOutputArgs struct {
-	// Assign a shopping cart to an loggedin client. Values can be `true` or `false`.
+	// Assign a shopping cart to a logged in client. Values can be `true` or `false`.
 	Assign pulumi.BoolPtrInput `pulumi:"assign"`
 	// Description of your cart
 	Description pulumi.StringPtrInput `pulumi:"description"`

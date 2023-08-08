@@ -138,13 +138,13 @@ def get_private_database_db(database_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Hosting/getPrivateDatabaseDb:getPrivateDatabaseDb', __args__, opts=opts, typ=GetPrivateDatabaseDbResult).value
 
     return AwaitableGetPrivateDatabaseDbResult(
-        backup_time=__ret__.backup_time,
-        creation_date=__ret__.creation_date,
-        database_name=__ret__.database_name,
-        id=__ret__.id,
-        quota_used=__ret__.quota_used,
-        service_name=__ret__.service_name,
-        users=__ret__.users)
+        backup_time=pulumi.get(__ret__, 'backup_time'),
+        creation_date=pulumi.get(__ret__, 'creation_date'),
+        database_name=pulumi.get(__ret__, 'database_name'),
+        id=pulumi.get(__ret__, 'id'),
+        quota_used=pulumi.get(__ret__, 'quota_used'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        users=pulumi.get(__ret__, 'users'))
 
 
 @_utilities.lift_output_func(get_private_database_db)

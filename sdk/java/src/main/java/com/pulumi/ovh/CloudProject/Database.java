@@ -162,6 +162,18 @@ import javax.annotation.Nullable;
  *             .flavor(&#34;db1-4&#34;)
  *             .build());
  * 
+ *         var grafana = new Database(&#34;grafana&#34;, DatabaseArgs.builder()        
+ *             .serviceName(&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;)
+ *             .description(&#34;my-first-grafana&#34;)
+ *             .engine(&#34;grafana&#34;)
+ *             .version(&#34;9.1&#34;)
+ *             .plan(&#34;essential&#34;)
+ *             .nodes(DatabaseNodeArgs.builder()
+ *                 .region(&#34;GRA&#34;)
+ *                 .build())
+ *             .flavor(&#34;db1-4&#34;)
+ *             .build());
+ * 
  *     }
  * }
  * ```

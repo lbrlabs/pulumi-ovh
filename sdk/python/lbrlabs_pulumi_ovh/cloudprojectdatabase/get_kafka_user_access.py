@@ -137,12 +137,12 @@ def get_kafka_user_access(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProjectDatabase/getKafkaUserAccess:getKafkaUserAccess', __args__, opts=opts, typ=GetKafkaUserAccessResult).value
 
     return AwaitableGetKafkaUserAccessResult(
-        cert=__ret__.cert,
-        cluster_id=__ret__.cluster_id,
-        id=__ret__.id,
-        key=__ret__.key,
-        service_name=__ret__.service_name,
-        user_id=__ret__.user_id)
+        cert=pulumi.get(__ret__, 'cert'),
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        id=pulumi.get(__ret__, 'id'),
+        key=pulumi.get(__ret__, 'key'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        user_id=pulumi.get(__ret__, 'user_id'))
 
 
 @_utilities.lift_output_func(get_kafka_user_access)

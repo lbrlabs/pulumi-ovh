@@ -37,6 +37,11 @@ public final class GetZoneResult {
      * 
      */
     private List<String> nameServers;
+    /**
+     * @return URN of the DNS zone
+     * 
+     */
+    private String urn;
 
     private GetZoneResult() {}
     /**
@@ -77,6 +82,13 @@ public final class GetZoneResult {
     public List<String> nameServers() {
         return this.nameServers;
     }
+    /**
+     * @return URN of the DNS zone
+     * 
+     */
+    public String urn() {
+        return this.urn;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -93,6 +105,7 @@ public final class GetZoneResult {
         private String lastUpdate;
         private String name;
         private List<String> nameServers;
+        private String urn;
         public Builder() {}
         public Builder(GetZoneResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -102,6 +115,7 @@ public final class GetZoneResult {
     	      this.lastUpdate = defaults.lastUpdate;
     	      this.name = defaults.name;
     	      this.nameServers = defaults.nameServers;
+    	      this.urn = defaults.urn;
         }
 
         @CustomType.Setter
@@ -137,6 +151,11 @@ public final class GetZoneResult {
         public Builder nameServers(String... nameServers) {
             return nameServers(List.of(nameServers));
         }
+        @CustomType.Setter
+        public Builder urn(String urn) {
+            this.urn = Objects.requireNonNull(urn);
+            return this;
+        }
         public GetZoneResult build() {
             final var o = new GetZoneResult();
             o.dnssecSupported = dnssecSupported;
@@ -145,6 +164,7 @@ public final class GetZoneResult {
             o.lastUpdate = lastUpdate;
             o.name = name;
             o.nameServers = nameServers;
+            o.urn = urn;
             return o;
         }
     }

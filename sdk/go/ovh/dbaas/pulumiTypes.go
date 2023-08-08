@@ -7,8 +7,11 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type LogsInputConfiguration struct {
 	// Flowgger configuration
@@ -497,6 +500,130 @@ func (o LogsInputConfigurationLogstashPtrOutput) PatternSection() pulumi.StringP
 	}).(pulumi.StringPtrOutput)
 }
 
+type GetIamReferenceActionsAction struct {
+	// Name of the action
+	Action string `pulumi:"action"`
+	// List of the categories of the action
+	Categories []string `pulumi:"categories"`
+	// Description of the action
+	Description string `pulumi:"description"`
+	// Resource type the action is related to
+	ResourceType string `pulumi:"resourceType"`
+}
+
+// GetIamReferenceActionsActionInput is an input type that accepts GetIamReferenceActionsActionArgs and GetIamReferenceActionsActionOutput values.
+// You can construct a concrete instance of `GetIamReferenceActionsActionInput` via:
+//
+//	GetIamReferenceActionsActionArgs{...}
+type GetIamReferenceActionsActionInput interface {
+	pulumi.Input
+
+	ToGetIamReferenceActionsActionOutput() GetIamReferenceActionsActionOutput
+	ToGetIamReferenceActionsActionOutputWithContext(context.Context) GetIamReferenceActionsActionOutput
+}
+
+type GetIamReferenceActionsActionArgs struct {
+	// Name of the action
+	Action pulumi.StringInput `pulumi:"action"`
+	// List of the categories of the action
+	Categories pulumi.StringArrayInput `pulumi:"categories"`
+	// Description of the action
+	Description pulumi.StringInput `pulumi:"description"`
+	// Resource type the action is related to
+	ResourceType pulumi.StringInput `pulumi:"resourceType"`
+}
+
+func (GetIamReferenceActionsActionArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIamReferenceActionsAction)(nil)).Elem()
+}
+
+func (i GetIamReferenceActionsActionArgs) ToGetIamReferenceActionsActionOutput() GetIamReferenceActionsActionOutput {
+	return i.ToGetIamReferenceActionsActionOutputWithContext(context.Background())
+}
+
+func (i GetIamReferenceActionsActionArgs) ToGetIamReferenceActionsActionOutputWithContext(ctx context.Context) GetIamReferenceActionsActionOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIamReferenceActionsActionOutput)
+}
+
+// GetIamReferenceActionsActionArrayInput is an input type that accepts GetIamReferenceActionsActionArray and GetIamReferenceActionsActionArrayOutput values.
+// You can construct a concrete instance of `GetIamReferenceActionsActionArrayInput` via:
+//
+//	GetIamReferenceActionsActionArray{ GetIamReferenceActionsActionArgs{...} }
+type GetIamReferenceActionsActionArrayInput interface {
+	pulumi.Input
+
+	ToGetIamReferenceActionsActionArrayOutput() GetIamReferenceActionsActionArrayOutput
+	ToGetIamReferenceActionsActionArrayOutputWithContext(context.Context) GetIamReferenceActionsActionArrayOutput
+}
+
+type GetIamReferenceActionsActionArray []GetIamReferenceActionsActionInput
+
+func (GetIamReferenceActionsActionArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIamReferenceActionsAction)(nil)).Elem()
+}
+
+func (i GetIamReferenceActionsActionArray) ToGetIamReferenceActionsActionArrayOutput() GetIamReferenceActionsActionArrayOutput {
+	return i.ToGetIamReferenceActionsActionArrayOutputWithContext(context.Background())
+}
+
+func (i GetIamReferenceActionsActionArray) ToGetIamReferenceActionsActionArrayOutputWithContext(ctx context.Context) GetIamReferenceActionsActionArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetIamReferenceActionsActionArrayOutput)
+}
+
+type GetIamReferenceActionsActionOutput struct{ *pulumi.OutputState }
+
+func (GetIamReferenceActionsActionOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetIamReferenceActionsAction)(nil)).Elem()
+}
+
+func (o GetIamReferenceActionsActionOutput) ToGetIamReferenceActionsActionOutput() GetIamReferenceActionsActionOutput {
+	return o
+}
+
+func (o GetIamReferenceActionsActionOutput) ToGetIamReferenceActionsActionOutputWithContext(ctx context.Context) GetIamReferenceActionsActionOutput {
+	return o
+}
+
+// Name of the action
+func (o GetIamReferenceActionsActionOutput) Action() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIamReferenceActionsAction) string { return v.Action }).(pulumi.StringOutput)
+}
+
+// List of the categories of the action
+func (o GetIamReferenceActionsActionOutput) Categories() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetIamReferenceActionsAction) []string { return v.Categories }).(pulumi.StringArrayOutput)
+}
+
+// Description of the action
+func (o GetIamReferenceActionsActionOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIamReferenceActionsAction) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Resource type the action is related to
+func (o GetIamReferenceActionsActionOutput) ResourceType() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIamReferenceActionsAction) string { return v.ResourceType }).(pulumi.StringOutput)
+}
+
+type GetIamReferenceActionsActionArrayOutput struct{ *pulumi.OutputState }
+
+func (GetIamReferenceActionsActionArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetIamReferenceActionsAction)(nil)).Elem()
+}
+
+func (o GetIamReferenceActionsActionArrayOutput) ToGetIamReferenceActionsActionArrayOutput() GetIamReferenceActionsActionArrayOutput {
+	return o
+}
+
+func (o GetIamReferenceActionsActionArrayOutput) ToGetIamReferenceActionsActionArrayOutputWithContext(ctx context.Context) GetIamReferenceActionsActionArrayOutput {
+	return o
+}
+
+func (o GetIamReferenceActionsActionArrayOutput) Index(i pulumi.IntInput) GetIamReferenceActionsActionOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetIamReferenceActionsAction {
+		return vs[0].([]GetIamReferenceActionsAction)[vs[1].(int)]
+	}).(GetIamReferenceActionsActionOutput)
+}
+
 func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LogsInputConfigurationInput)(nil)).Elem(), LogsInputConfigurationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogsInputConfigurationPtrInput)(nil)).Elem(), LogsInputConfigurationArgs{})
@@ -504,10 +631,14 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*LogsInputConfigurationFlowggerPtrInput)(nil)).Elem(), LogsInputConfigurationFlowggerArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogsInputConfigurationLogstashInput)(nil)).Elem(), LogsInputConfigurationLogstashArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*LogsInputConfigurationLogstashPtrInput)(nil)).Elem(), LogsInputConfigurationLogstashArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIamReferenceActionsActionInput)(nil)).Elem(), GetIamReferenceActionsActionArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetIamReferenceActionsActionArrayInput)(nil)).Elem(), GetIamReferenceActionsActionArray{})
 	pulumi.RegisterOutputType(LogsInputConfigurationOutput{})
 	pulumi.RegisterOutputType(LogsInputConfigurationPtrOutput{})
 	pulumi.RegisterOutputType(LogsInputConfigurationFlowggerOutput{})
 	pulumi.RegisterOutputType(LogsInputConfigurationFlowggerPtrOutput{})
 	pulumi.RegisterOutputType(LogsInputConfigurationLogstashOutput{})
 	pulumi.RegisterOutputType(LogsInputConfigurationLogstashPtrOutput{})
+	pulumi.RegisterOutputType(GetIamReferenceActionsActionOutput{})
+	pulumi.RegisterOutputType(GetIamReferenceActionsActionArrayOutput{})
 }

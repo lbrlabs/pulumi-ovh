@@ -112,10 +112,10 @@ def get_databases(engine: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProjectDatabase/getDatabases:getDatabases', __args__, opts=opts, typ=GetDatabasesResult).value
 
     return AwaitableGetDatabasesResult(
-        cluster_ids=__ret__.cluster_ids,
-        engine=__ret__.engine,
-        id=__ret__.id,
-        service_name=__ret__.service_name)
+        cluster_ids=pulumi.get(__ret__, 'cluster_ids'),
+        engine=pulumi.get(__ret__, 'engine'),
+        id=pulumi.get(__ret__, 'id'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_databases)

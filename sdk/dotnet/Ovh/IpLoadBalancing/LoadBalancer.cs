@@ -163,6 +163,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         public Output<string> State { get; private set; } = null!;
 
         /// <summary>
+        /// URN of the load balancer, used when writing IAM policies
+        /// </summary>
+        [Output("urn")]
+        public Output<string> Urn { get; private set; } = null!;
+
+        /// <summary>
         /// Vrack eligibility
         /// </summary>
         [Output("vrackEligibility")]
@@ -398,6 +404,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.IpLoadBalancing
         /// </summary>
         [Input("state")]
         public Input<string>? State { get; set; }
+
+        /// <summary>
+        /// URN of the load balancer, used when writing IAM policies
+        /// </summary>
+        [Input("urn")]
+        public Input<string>? Urn { get; set; }
 
         /// <summary>
         /// Vrack eligibility

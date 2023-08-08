@@ -148,6 +148,11 @@ public final class GetMeResult {
      */
     private String state;
     /**
+     * @return The resource URN of the account, to be used when writing IAM policies
+     * 
+     */
+    private String urn;
+    /**
      * @return VAT number
      * 
      */
@@ -352,6 +357,13 @@ public final class GetMeResult {
         return this.state;
     }
     /**
+     * @return The resource URN of the account, to be used when writing IAM policies
+     * 
+     */
+    public String urn() {
+        return this.urn;
+    }
+    /**
      * @return VAT number
      * 
      */
@@ -403,6 +415,7 @@ public final class GetMeResult {
         private String sex;
         private String spareEmail;
         private String state;
+        private String urn;
         private String vat;
         private String zip;
         public Builder() {}
@@ -436,6 +449,7 @@ public final class GetMeResult {
     	      this.sex = defaults.sex;
     	      this.spareEmail = defaults.spareEmail;
     	      this.state = defaults.state;
+    	      this.urn = defaults.urn;
     	      this.vat = defaults.vat;
     	      this.zip = defaults.zip;
         }
@@ -584,6 +598,11 @@ public final class GetMeResult {
             return this;
         }
         @CustomType.Setter
+        public Builder urn(String urn) {
+            this.urn = Objects.requireNonNull(urn);
+            return this;
+        }
+        @CustomType.Setter
         public Builder vat(String vat) {
             this.vat = Objects.requireNonNull(vat);
             return this;
@@ -623,6 +642,7 @@ public final class GetMeResult {
             o.sex = sex;
             o.spareEmail = spareEmail;
             o.state = state;
+            o.urn = urn;
             o.vat = vat;
             o.zip = zip;
             return o;

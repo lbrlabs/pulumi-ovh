@@ -18,9 +18,8 @@ import * as utilities from "../utilities";
  *         serviceName: "XXXXXX",
  *         kubeId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx",
  *     });
- *     const oidc_val = oidc.clientId;
  *     return {
- *         "oidc-val": oidc_val,
+ *         "oidc-val": oidc.clientId,
  *     };
  * }
  * ```
@@ -119,9 +118,8 @@ export interface GetKubeOidcResult {
  *         serviceName: "XXXXXX",
  *         kubeId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx",
  *     });
- *     const oidc_val = oidc.clientId;
  *     return {
- *         "oidc-val": oidc_val,
+ *         "oidc-val": oidc.clientId,
  *     };
  * }
  * ```

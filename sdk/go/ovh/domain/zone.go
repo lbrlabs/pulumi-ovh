@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -92,6 +93,7 @@ type Zone struct {
 	Plan ZonePlanOutput `pulumi:"plan"`
 	// Product Plan to order
 	PlanOptions ZonePlanOptionArrayOutput `pulumi:"planOptions"`
+	Urn         pulumi.StringOutput       `pulumi:"urn"`
 }
 
 // NewZone registers a new resource with the given unique name, arguments, and options.
@@ -107,7 +109,7 @@ func NewZone(ctx *pulumi.Context,
 	if args.Plan == nil {
 		return nil, errors.New("invalid value for required argument 'Plan'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Zone
 	err := ctx.RegisterResource("ovh:Domain/zone:Zone", name, args, &resource, opts...)
 	if err != nil {
@@ -152,6 +154,7 @@ type zoneState struct {
 	Plan *ZonePlan `pulumi:"plan"`
 	// Product Plan to order
 	PlanOptions []ZonePlanOption `pulumi:"planOptions"`
+	Urn         *string          `pulumi:"urn"`
 }
 
 type ZoneState struct {
@@ -177,6 +180,7 @@ type ZoneState struct {
 	Plan ZonePlanPtrInput
 	// Product Plan to order
 	PlanOptions ZonePlanOptionArrayInput
+	Urn         pulumi.StringPtrInput
 }
 
 func (ZoneState) ElementType() reflect.Type {
@@ -347,6 +351,10 @@ func (o ZoneOutput) Plan() ZonePlanOutput {
 // Product Plan to order
 func (o ZoneOutput) PlanOptions() ZonePlanOptionArrayOutput {
 	return o.ApplyT(func(v *Zone) ZonePlanOptionArrayOutput { return v.PlanOptions }).(ZonePlanOptionArrayOutput)
+}
+
+func (o ZoneOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v *Zone) pulumi.StringOutput { return v.Urn }).(pulumi.StringOutput)
 }
 
 type ZoneArrayOutput struct{ *pulumi.OutputState }

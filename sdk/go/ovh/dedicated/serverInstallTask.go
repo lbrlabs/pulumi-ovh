@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -67,6 +68,18 @@ import (
 //	}
 //
 // ```
+//
+// ## Import
+//
+// Installation task can be imported using the `service_name` (`nsXXXX.ip...`) of the baremetal server, the `template_name` used
+//
+// and ths `task_id`, separated by "/" E.g., bash
+//
+// ```sh
+//
+//	$ pulumi import ovh:Dedicated/serverInstallTask:ServerInstallTask ovh_dedicated_server_install_task nsXXXX.ipXXXX/template_name/12345
+//
+// ```
 type ServerInstallTask struct {
 	pulumi.CustomResourceState
 
@@ -107,7 +120,7 @@ func NewServerInstallTask(ctx *pulumi.Context,
 	if args.TemplateName == nil {
 		return nil, errors.New("invalid value for required argument 'TemplateName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource ServerInstallTask
 	err := ctx.RegisterResource("ovh:Dedicated/serverInstallTask:ServerInstallTask", name, args, &resource, opts...)
 	if err != nil {

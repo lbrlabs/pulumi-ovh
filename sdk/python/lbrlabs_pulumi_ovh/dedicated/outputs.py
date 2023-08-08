@@ -123,6 +123,9 @@ class ServerInstallTaskDetails(dict):
         """
         Template change log details.
         """
+        warnings.warn("""field is not used anymore""", DeprecationWarning)
+        pulumi.log.warn("""change_log is deprecated: field is not used anymore""")
+
         return pulumi.get(self, "change_log")
 
     @property

@@ -164,15 +164,15 @@ def get_service(service_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Ip/getService:getService', __args__, opts=opts, typ=GetServiceResult).value
 
     return AwaitableGetServiceResult(
-        can_be_terminated=__ret__.can_be_terminated,
-        country=__ret__.country,
-        description=__ret__.description,
-        id=__ret__.id,
-        ip=__ret__.ip,
-        organisation_id=__ret__.organisation_id,
-        routed_tos=__ret__.routed_tos,
-        service_name=__ret__.service_name,
-        type=__ret__.type)
+        can_be_terminated=pulumi.get(__ret__, 'can_be_terminated'),
+        country=pulumi.get(__ret__, 'country'),
+        description=pulumi.get(__ret__, 'description'),
+        id=pulumi.get(__ret__, 'id'),
+        ip=pulumi.get(__ret__, 'ip'),
+        organisation_id=pulumi.get(__ret__, 'organisation_id'),
+        routed_tos=pulumi.get(__ret__, 'routed_tos'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        type=pulumi.get(__ret__, 'type'))
 
 
 @_utilities.lift_output_func(get_service)

@@ -95,6 +95,8 @@ export class Kube extends pulumi.CustomResource {
     public readonly privateNetworkConfiguration!: pulumi.Output<outputs.CloudProject.KubePrivateNetworkConfiguration | undefined>;
     /**
      * OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+     *
+     * > __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
      */
     public readonly privateNetworkId!: pulumi.Output<string | undefined>;
     /**
@@ -245,6 +247,8 @@ export interface KubeState {
     privateNetworkConfiguration?: pulumi.Input<inputs.CloudProject.KubePrivateNetworkConfiguration>;
     /**
      * OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+     *
+     * > __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**
@@ -305,6 +309,8 @@ export interface KubeArgs {
     privateNetworkConfiguration?: pulumi.Input<inputs.CloudProject.KubePrivateNetworkConfiguration>;
     /**
      * OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+     *
+     * > __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
      */
     privateNetworkId?: pulumi.Input<string>;
     /**

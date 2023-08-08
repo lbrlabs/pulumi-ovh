@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -50,6 +51,8 @@ type Kube struct {
 	// The private network configuration
 	PrivateNetworkConfiguration KubePrivateNetworkConfigurationPtrOutput `pulumi:"privateNetworkConfiguration"`
 	// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+	//
+	// > __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
 	PrivateNetworkId pulumi.StringPtrOutput `pulumi:"privateNetworkId"`
 	// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
 	Region pulumi.StringOutput `pulumi:"region"`
@@ -83,7 +86,7 @@ func NewKube(ctx *pulumi.Context,
 		"kubeconfigAttributes",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Kube
 	err := ctx.RegisterResource("ovh:CloudProject/kube:Kube", name, args, &resource, opts...)
 	if err != nil {
@@ -133,6 +136,8 @@ type kubeState struct {
 	// The private network configuration
 	PrivateNetworkConfiguration *KubePrivateNetworkConfiguration `pulumi:"privateNetworkConfiguration"`
 	// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+	//
+	// > __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
 	Region *string `pulumi:"region"`
@@ -176,6 +181,8 @@ type KubeState struct {
 	// The private network configuration
 	PrivateNetworkConfiguration KubePrivateNetworkConfigurationPtrInput
 	// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+	//
+	// > __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
 	PrivateNetworkId pulumi.StringPtrInput
 	// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
 	Region pulumi.StringPtrInput
@@ -211,6 +218,8 @@ type kubeArgs struct {
 	// The private network configuration
 	PrivateNetworkConfiguration *KubePrivateNetworkConfiguration `pulumi:"privateNetworkConfiguration"`
 	// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+	//
+	// > __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
 	PrivateNetworkId *string `pulumi:"privateNetworkId"`
 	// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
 	Region string `pulumi:"region"`
@@ -239,6 +248,8 @@ type KubeArgs struct {
 	// The private network configuration
 	PrivateNetworkConfiguration KubePrivateNetworkConfigurationPtrInput
 	// OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+	//
+	// > __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
 	PrivateNetworkId pulumi.StringPtrInput
 	// a valid OVHcloud public cloud region ID in which the kubernetes cluster will be available. Ex.: "GRA1". Defaults to all public cloud regions. **Changing this value recreates the resource.**
 	Region pulumi.StringInput
@@ -400,6 +411,8 @@ func (o KubeOutput) PrivateNetworkConfiguration() KubePrivateNetworkConfiguratio
 }
 
 // OpenStack private network (or vRack) ID to use. **Changing this value recreates the resource, including ETCD user data.** Defaults - not use private network.
+//
+// > __WARNING__ Updating the private network ID resets the cluster so that all user data is deleted.
 func (o KubeOutput) PrivateNetworkId() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *Kube) pulumi.StringPtrOutput { return v.PrivateNetworkId }).(pulumi.StringPtrOutput)
 }

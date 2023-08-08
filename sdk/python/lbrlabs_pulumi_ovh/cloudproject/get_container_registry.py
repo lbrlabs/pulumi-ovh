@@ -198,18 +198,18 @@ def get_container_registry(registry_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getContainerRegistry:getContainerRegistry', __args__, opts=opts, typ=GetContainerRegistryResult).value
 
     return AwaitableGetContainerRegistryResult(
-        created_at=__ret__.created_at,
-        id=__ret__.id,
-        name=__ret__.name,
-        project_id=__ret__.project_id,
-        region=__ret__.region,
-        registry_id=__ret__.registry_id,
-        service_name=__ret__.service_name,
-        size=__ret__.size,
-        status=__ret__.status,
-        updated_at=__ret__.updated_at,
-        url=__ret__.url,
-        version=__ret__.version)
+        created_at=pulumi.get(__ret__, 'created_at'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        project_id=pulumi.get(__ret__, 'project_id'),
+        region=pulumi.get(__ret__, 'region'),
+        registry_id=pulumi.get(__ret__, 'registry_id'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        size=pulumi.get(__ret__, 'size'),
+        status=pulumi.get(__ret__, 'status'),
+        updated_at=pulumi.get(__ret__, 'updated_at'),
+        url=pulumi.get(__ret__, 'url'),
+        version=pulumi.get(__ret__, 'version'))
 
 
 @_utilities.lift_output_func(get_container_registry)

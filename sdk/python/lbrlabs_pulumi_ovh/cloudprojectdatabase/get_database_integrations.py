@@ -127,11 +127,11 @@ def get_database_integrations(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProjectDatabase/getDatabaseIntegrations:getDatabaseIntegrations', __args__, opts=opts, typ=GetDatabaseIntegrationsResult).value
 
     return AwaitableGetDatabaseIntegrationsResult(
-        cluster_id=__ret__.cluster_id,
-        engine=__ret__.engine,
-        id=__ret__.id,
-        integration_ids=__ret__.integration_ids,
-        service_name=__ret__.service_name)
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        engine=pulumi.get(__ret__, 'engine'),
+        id=pulumi.get(__ret__, 'id'),
+        integration_ids=pulumi.get(__ret__, 'integration_ids'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_database_integrations)

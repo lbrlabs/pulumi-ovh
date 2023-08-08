@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -166,6 +167,22 @@ import (
 //				Nodes: cloudproject.DatabaseNodeArray{
 //					&cloudproject.DatabaseNodeArgs{
 //						Region: pulumi.String("BHS"),
+//					},
+//				},
+//				Flavor: pulumi.String("db1-4"),
+//			})
+//			if err != nil {
+//				return err
+//			}
+//			_, err = CloudProject.NewDatabase(ctx, "grafana", &CloudProject.DatabaseArgs{
+//				ServiceName: pulumi.String("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"),
+//				Description: pulumi.String("my-first-grafana"),
+//				Engine:      pulumi.String("grafana"),
+//				Version:     pulumi.String("9.1"),
+//				Plan:        pulumi.String("essential"),
+//				Nodes: cloudproject.DatabaseNodeArray{
+//					&cloudproject.DatabaseNodeArgs{
+//						Region: pulumi.String("GRA"),
 //					},
 //				},
 //				Flavor: pulumi.String("db1-4"),
@@ -347,7 +364,7 @@ func NewDatabase(ctx *pulumi.Context,
 	if args.Version == nil {
 		return nil, errors.New("invalid value for required argument 'Version'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource Database
 	err := ctx.RegisterResource("ovh:CloudProject/database:Database", name, args, &resource, opts...)
 	if err != nil {

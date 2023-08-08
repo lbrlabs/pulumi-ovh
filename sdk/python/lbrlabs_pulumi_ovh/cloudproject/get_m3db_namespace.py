@@ -221,19 +221,19 @@ def get_m3db_namespace(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getM3dbNamespace:getM3dbNamespace', __args__, opts=opts, typ=GetM3dbNamespaceResult).value
 
     return AwaitableGetM3dbNamespaceResult(
-        cluster_id=__ret__.cluster_id,
-        id=__ret__.id,
-        name=__ret__.name,
-        resolution=__ret__.resolution,
-        retention_block_data_expiration_duration=__ret__.retention_block_data_expiration_duration,
-        retention_block_size_duration=__ret__.retention_block_size_duration,
-        retention_buffer_future_duration=__ret__.retention_buffer_future_duration,
-        retention_buffer_past_duration=__ret__.retention_buffer_past_duration,
-        retention_period_duration=__ret__.retention_period_duration,
-        service_name=__ret__.service_name,
-        snapshot_enabled=__ret__.snapshot_enabled,
-        type=__ret__.type,
-        writes_to_commit_log_enabled=__ret__.writes_to_commit_log_enabled)
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        resolution=pulumi.get(__ret__, 'resolution'),
+        retention_block_data_expiration_duration=pulumi.get(__ret__, 'retention_block_data_expiration_duration'),
+        retention_block_size_duration=pulumi.get(__ret__, 'retention_block_size_duration'),
+        retention_buffer_future_duration=pulumi.get(__ret__, 'retention_buffer_future_duration'),
+        retention_buffer_past_duration=pulumi.get(__ret__, 'retention_buffer_past_duration'),
+        retention_period_duration=pulumi.get(__ret__, 'retention_period_duration'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        snapshot_enabled=pulumi.get(__ret__, 'snapshot_enabled'),
+        type=pulumi.get(__ret__, 'type'),
+        writes_to_commit_log_enabled=pulumi.get(__ret__, 'writes_to_commit_log_enabled'))
 
 
 @_utilities.lift_output_func(get_m3db_namespace)

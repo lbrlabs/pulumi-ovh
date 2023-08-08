@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -137,7 +138,7 @@ func NewInstallationTemplatePartitionSchemePartition(ctx *pulumi.Context,
 	if args.Type == nil {
 		return nil, errors.New("invalid value for required argument 'Type'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource InstallationTemplatePartitionSchemePartition
 	err := ctx.RegisterResource("ovh:Me/installationTemplatePartitionSchemePartition:InstallationTemplatePartitionSchemePartition", name, args, &resource, opts...)
 	if err != nil {

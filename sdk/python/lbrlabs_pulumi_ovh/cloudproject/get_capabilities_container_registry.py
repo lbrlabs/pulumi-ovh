@@ -90,9 +90,9 @@ def get_capabilities_container_registry(service_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getCapabilitiesContainerRegistry:getCapabilitiesContainerRegistry', __args__, opts=opts, typ=GetCapabilitiesContainerRegistryResult).value
 
     return AwaitableGetCapabilitiesContainerRegistryResult(
-        id=__ret__.id,
-        results=__ret__.results,
-        service_name=__ret__.service_name)
+        id=pulumi.get(__ret__, 'id'),
+        results=pulumi.get(__ret__, 'results'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_capabilities_container_registry)

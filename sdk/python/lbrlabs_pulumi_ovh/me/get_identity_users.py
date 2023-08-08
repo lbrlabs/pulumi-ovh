@@ -73,5 +73,5 @@ def get_identity_users(opts: Optional[pulumi.InvokeOptions] = None) -> Awaitable
     __ret__ = pulumi.runtime.invoke('ovh:Me/getIdentityUsers:getIdentityUsers', __args__, opts=opts, typ=GetIdentityUsersResult).value
 
     return AwaitableGetIdentityUsersResult(
-        id=__ret__.id,
-        users=__ret__.users)
+        id=pulumi.get(__ret__, 'id'),
+        users=pulumi.get(__ret__, 'users'))

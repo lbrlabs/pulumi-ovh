@@ -126,12 +126,12 @@ def get_private_database_user_grant(database_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Hosting/getPrivateDatabaseUserGrant:getPrivateDatabaseUserGrant', __args__, opts=opts, typ=GetPrivateDatabaseUserGrantResult).value
 
     return AwaitableGetPrivateDatabaseUserGrantResult(
-        creation_date=__ret__.creation_date,
-        database_name=__ret__.database_name,
-        grant=__ret__.grant,
-        id=__ret__.id,
-        service_name=__ret__.service_name,
-        user_name=__ret__.user_name)
+        creation_date=pulumi.get(__ret__, 'creation_date'),
+        database_name=pulumi.get(__ret__, 'database_name'),
+        grant=pulumi.get(__ret__, 'grant'),
+        id=pulumi.get(__ret__, 'id'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        user_name=pulumi.get(__ret__, 'user_name'))
 
 
 @_utilities.lift_output_func(get_private_database_user_grant)

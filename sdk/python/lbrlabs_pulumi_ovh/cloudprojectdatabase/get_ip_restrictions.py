@@ -128,11 +128,11 @@ def get_ip_restrictions(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProjectDatabase/getIpRestrictions:getIpRestrictions', __args__, opts=opts, typ=GetIpRestrictionsResult).value
 
     return AwaitableGetIpRestrictionsResult(
-        cluster_id=__ret__.cluster_id,
-        engine=__ret__.engine,
-        id=__ret__.id,
-        ips=__ret__.ips,
-        service_name=__ret__.service_name)
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        engine=pulumi.get(__ret__, 'engine'),
+        id=pulumi.get(__ret__, 'id'),
+        ips=pulumi.get(__ret__, 'ips'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_ip_restrictions)

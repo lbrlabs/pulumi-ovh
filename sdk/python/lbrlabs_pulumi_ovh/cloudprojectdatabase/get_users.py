@@ -126,11 +126,11 @@ def get_users(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProjectDatabase/getUsers:getUsers', __args__, opts=opts, typ=GetUsersResult).value
 
     return AwaitableGetUsersResult(
-        cluster_id=__ret__.cluster_id,
-        engine=__ret__.engine,
-        id=__ret__.id,
-        service_name=__ret__.service_name,
-        user_ids=__ret__.user_ids)
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        engine=pulumi.get(__ret__, 'engine'),
+        id=pulumi.get(__ret__, 'id'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        user_ids=pulumi.get(__ret__, 'user_ids'))
 
 
 @_utilities.lift_output_func(get_users)

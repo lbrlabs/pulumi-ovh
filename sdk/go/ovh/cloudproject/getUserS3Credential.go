@@ -7,12 +7,58 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Use this data source to retrieve the Secret Access Key of an Access Key ID associated with a public cloud project's user.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/CloudProject"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			projectUsers, err := CloudProject.GetUsers(ctx, &cloudproject.GetUsersArgs{
+//				ServiceName: "XXX",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			users := "TODO: For expression"
+//			s3UserId := users[0]
+//			myS3Credentials, err := CloudProject.GetUserS3Credentials(ctx, &cloudproject.GetUserS3CredentialsArgs{
+//				ServiceName: projectUsers.ServiceName,
+//				UserId:      s3UserId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			myS3Credential, err := CloudProject.GetUserS3Credential(ctx, &cloudproject.GetUserS3CredentialArgs{
+//				ServiceName: myS3Credentials.ServiceName,
+//				UserId:      myS3Credentials.UserId,
+//				AccessKeyId: myS3Credentials.AccessKeyIds[0],
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			ctx.Export("myAccessKeyId", myS3Credential.AccessKeyId)
+//			ctx.Export("mySecretAccessKey", myS3Credential.SecretAccessKey)
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetUserS3Credential(ctx *pulumi.Context, args *GetUserS3CredentialArgs, opts ...pulumi.InvokeOption) (*GetUserS3CredentialResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetUserS3CredentialResult
 	err := ctx.Invoke("ovh:CloudProject/getUserS3Credential:getUserS3Credential", args, &rv, opts...)
 	if err != nil {

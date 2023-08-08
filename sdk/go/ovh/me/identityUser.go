@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -63,6 +64,8 @@ type IdentityUser struct {
 	PasswordLastUpdate pulumi.StringOutput `pulumi:"passwordLastUpdate"`
 	// Current user's status.
 	Status pulumi.StringOutput `pulumi:"status"`
+	// URN of the user, used when writing IAM policies
+	Urn pulumi.StringOutput `pulumi:"urn"`
 }
 
 // NewIdentityUser registers a new resource with the given unique name, arguments, and options.
@@ -88,7 +91,7 @@ func NewIdentityUser(ctx *pulumi.Context,
 		"password",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource IdentityUser
 	err := ctx.RegisterResource("ovh:Me/identityUser:IdentityUser", name, args, &resource, opts...)
 	if err != nil {
@@ -129,6 +132,8 @@ type identityUserState struct {
 	PasswordLastUpdate *string `pulumi:"passwordLastUpdate"`
 	// Current user's status.
 	Status *string `pulumi:"status"`
+	// URN of the user, used when writing IAM policies
+	Urn *string `pulumi:"urn"`
 }
 
 type IdentityUserState struct {
@@ -150,6 +155,8 @@ type IdentityUserState struct {
 	PasswordLastUpdate pulumi.StringPtrInput
 	// Current user's status.
 	Status pulumi.StringPtrInput
+	// URN of the user, used when writing IAM policies
+	Urn pulumi.StringPtrInput
 }
 
 func (IdentityUserState) ElementType() reflect.Type {
@@ -313,6 +320,11 @@ func (o IdentityUserOutput) PasswordLastUpdate() pulumi.StringOutput {
 // Current user's status.
 func (o IdentityUserOutput) Status() pulumi.StringOutput {
 	return o.ApplyT(func(v *IdentityUser) pulumi.StringOutput { return v.Status }).(pulumi.StringOutput)
+}
+
+// URN of the user, used when writing IAM policies
+func (o IdentityUserOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v *IdentityUser) pulumi.StringOutput { return v.Urn }).(pulumi.StringOutput)
 }
 
 type IdentityUserArrayOutput struct{ *pulumi.OutputState }

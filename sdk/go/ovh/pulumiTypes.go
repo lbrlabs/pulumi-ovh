@@ -7,8 +7,11 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
+
+var _ = internal.GetEnvOrDefault
 
 type GetServerVni struct {
 	// VirtualNetworkInterface activation state
@@ -16,7 +19,8 @@ type GetServerVni struct {
 	// VirtualNetworkInterface mode (public,vrack,vrack_aggregation)
 	Mode string `pulumi:"mode"`
 	// User defined VirtualNetworkInterface name
-	Name string   `pulumi:"name"`
+	Name string `pulumi:"name"`
+	// NetworkInterfaceControllers bound to this VirtualNetworkInterface
 	Nics []string `pulumi:"nics"`
 	// Server bound to this VirtualNetworkInterface
 	ServerName string `pulumi:"serverName"`
@@ -43,7 +47,8 @@ type GetServerVniArgs struct {
 	// VirtualNetworkInterface mode (public,vrack,vrack_aggregation)
 	Mode pulumi.StringInput `pulumi:"mode"`
 	// User defined VirtualNetworkInterface name
-	Name pulumi.StringInput      `pulumi:"name"`
+	Name pulumi.StringInput `pulumi:"name"`
+	// NetworkInterfaceControllers bound to this VirtualNetworkInterface
 	Nics pulumi.StringArrayInput `pulumi:"nics"`
 	// Server bound to this VirtualNetworkInterface
 	ServerName pulumi.StringInput `pulumi:"serverName"`
@@ -119,6 +124,7 @@ func (o GetServerVniOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServerVni) string { return v.Name }).(pulumi.StringOutput)
 }
 
+// NetworkInterfaceControllers bound to this VirtualNetworkInterface
 func (o GetServerVniOutput) Nics() pulumi.StringArrayOutput {
 	return o.ApplyT(func(v GetServerVni) []string { return v.Nics }).(pulumi.StringArrayOutput)
 }

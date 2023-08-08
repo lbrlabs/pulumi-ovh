@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -67,7 +68,7 @@ type M3DbNamespace struct {
 	// Name of the namespace.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
-	Resolution pulumi.StringPtrOutput `pulumi:"resolution"`
+	Resolution pulumi.StringOutput `pulumi:"resolution"`
 	// Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
 	RetentionBlockDataExpirationDuration pulumi.StringPtrOutput `pulumi:"retentionBlockDataExpirationDuration"`
 	// Controls how long to keep a block in memory before flushing to a fileset on disk. Should follow Rfc3339 e.g P2D, PT48H.
@@ -99,13 +100,16 @@ func NewM3DbNamespace(ctx *pulumi.Context,
 	if args.ClusterId == nil {
 		return nil, errors.New("invalid value for required argument 'ClusterId'")
 	}
+	if args.Resolution == nil {
+		return nil, errors.New("invalid value for required argument 'Resolution'")
+	}
 	if args.RetentionPeriodDuration == nil {
 		return nil, errors.New("invalid value for required argument 'RetentionPeriodDuration'")
 	}
 	if args.ServiceName == nil {
 		return nil, errors.New("invalid value for required argument 'ServiceName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource M3DbNamespace
 	err := ctx.RegisterResource("ovh:CloudProjectDatabase/m3DbNamespace:M3DbNamespace", name, args, &resource, opts...)
 	if err != nil {
@@ -193,7 +197,7 @@ type m3dbNamespaceArgs struct {
 	// Name of the namespace.
 	Name *string `pulumi:"name"`
 	// Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
-	Resolution *string `pulumi:"resolution"`
+	Resolution string `pulumi:"resolution"`
 	// Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
 	RetentionBlockDataExpirationDuration *string `pulumi:"retentionBlockDataExpirationDuration"`
 	// Controls how long to keep a block in memory before flushing to a fileset on disk. Should follow Rfc3339 e.g P2D, PT48H.
@@ -220,7 +224,7 @@ type M3DbNamespaceArgs struct {
 	// Name of the namespace.
 	Name pulumi.StringPtrInput
 	// Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
-	Resolution pulumi.StringPtrInput
+	Resolution pulumi.StringInput
 	// Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.
 	RetentionBlockDataExpirationDuration pulumi.StringPtrInput
 	// Controls how long to keep a block in memory before flushing to a fileset on disk. Should follow Rfc3339 e.g P2D, PT48H.
@@ -338,8 +342,8 @@ func (o M3DbNamespaceOutput) Name() pulumi.StringOutput {
 }
 
 // Resolution for an aggregated namespace. Should follow Rfc3339 e.g P2D, PT48H.
-func (o M3DbNamespaceOutput) Resolution() pulumi.StringPtrOutput {
-	return o.ApplyT(func(v *M3DbNamespace) pulumi.StringPtrOutput { return v.Resolution }).(pulumi.StringPtrOutput)
+func (o M3DbNamespaceOutput) Resolution() pulumi.StringOutput {
+	return o.ApplyT(func(v *M3DbNamespace) pulumi.StringOutput { return v.Resolution }).(pulumi.StringOutput)
 }
 
 // Controls how long we wait before expiring stale data. Should follow Rfc3339 e.g P2D, PT48H.

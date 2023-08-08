@@ -3547,12 +3547,16 @@ public final class CloudProjectFunctions {
     /**
      * Get the user details of a previously created public cloud project user.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUserResult> getUser(GetUserArgs args) {
         return getUser(args, InvokeOptions.Empty);
     }
     /**
      * Get the user details of a previously created public cloud project user.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetUserResult> getUserPlain(GetUserPlainArgs args) {
@@ -3561,12 +3565,16 @@ public final class CloudProjectFunctions {
     /**
      * Get the user details of a previously created public cloud project user.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUserResult> getUser(GetUserArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("ovh:CloudProject/getUser:getUser", TypeShape.of(GetUserResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Get the user details of a previously created public cloud project user.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetUserResult> getUserPlain(GetUserPlainArgs args, InvokeOptions options) {
@@ -3575,12 +3583,16 @@ public final class CloudProjectFunctions {
     /**
      * Use this data source to retrieve the Secret Access Key of an Access Key ID associated with a public cloud project&#39;s user.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUserS3CredentialResult> getUserS3Credential(GetUserS3CredentialArgs args) {
         return getUserS3Credential(args, InvokeOptions.Empty);
     }
     /**
      * Use this data source to retrieve the Secret Access Key of an Access Key ID associated with a public cloud project&#39;s user.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetUserS3CredentialResult> getUserS3CredentialPlain(GetUserS3CredentialPlainArgs args) {
@@ -3589,12 +3601,16 @@ public final class CloudProjectFunctions {
     /**
      * Use this data source to retrieve the Secret Access Key of an Access Key ID associated with a public cloud project&#39;s user.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUserS3CredentialResult> getUserS3Credential(GetUserS3CredentialArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("ovh:CloudProject/getUserS3Credential:getUserS3Credential", TypeShape.of(GetUserS3CredentialResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Use this data source to retrieve the Secret Access Key of an Access Key ID associated with a public cloud project&#39;s user.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetUserS3CredentialResult> getUserS3CredentialPlain(GetUserS3CredentialPlainArgs args, InvokeOptions options) {
@@ -3759,12 +3775,16 @@ public final class CloudProjectFunctions {
     /**
      * Get the S3 Policy of a public cloud project user. The policy can be set by using the `ovh.CloudProject.S3Policy` resource.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUserS3PolicyResult> getUserS3Policy(GetUserS3PolicyArgs args) {
         return getUserS3Policy(args, InvokeOptions.Empty);
     }
     /**
      * Get the S3 Policy of a public cloud project user. The policy can be set by using the `ovh.CloudProject.S3Policy` resource.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetUserS3PolicyResult> getUserS3PolicyPlain(GetUserS3PolicyPlainArgs args) {
@@ -3773,12 +3793,16 @@ public final class CloudProjectFunctions {
     /**
      * Get the S3 Policy of a public cloud project user. The policy can be set by using the `ovh.CloudProject.S3Policy` resource.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUserS3PolicyResult> getUserS3Policy(GetUserS3PolicyArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("ovh:CloudProject/getUserS3Policy:getUserS3Policy", TypeShape.of(GetUserS3PolicyResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Get the S3 Policy of a public cloud project user. The policy can be set by using the `ovh.CloudProject.S3Policy` resource.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetUserS3PolicyResult> getUserS3PolicyPlain(GetUserS3PolicyPlainArgs args, InvokeOptions options) {
@@ -3787,12 +3811,16 @@ public final class CloudProjectFunctions {
     /**
      * Get the list of all users of a public cloud project.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUsersResult> getUsers(GetUsersArgs args) {
         return getUsers(args, InvokeOptions.Empty);
     }
     /**
      * Get the list of all users of a public cloud project.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetUsersResult> getUsersPlain(GetUsersPlainArgs args) {
@@ -3801,12 +3829,16 @@ public final class CloudProjectFunctions {
     /**
      * Get the list of all users of a public cloud project.
      * 
+     * ## Example Usage
+     * 
      */
     public static Output<GetUsersResult> getUsers(GetUsersArgs args, InvokeOptions options) {
         return Deployment.getInstance().invoke("ovh:CloudProject/getUsers:getUsers", TypeShape.of(GetUsersResult.class), args, Utilities.withVersion(options));
     }
     /**
      * Get the list of all users of a public cloud project.
+     * 
+     * ## Example Usage
      * 
      */
     public static CompletableFuture<GetUsersResult> getUsersPlain(GetUsersPlainArgs args, InvokeOptions options) {

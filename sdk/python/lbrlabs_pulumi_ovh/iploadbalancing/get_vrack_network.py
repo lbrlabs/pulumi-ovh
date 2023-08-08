@@ -137,13 +137,13 @@ def get_vrack_network(service_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:IpLoadBalancing/getVrackNetwork:getVrackNetwork', __args__, opts=opts, typ=GetVrackNetworkResult).value
 
     return AwaitableGetVrackNetworkResult(
-        display_name=__ret__.display_name,
-        id=__ret__.id,
-        nat_ip=__ret__.nat_ip,
-        service_name=__ret__.service_name,
-        subnet=__ret__.subnet,
-        vlan=__ret__.vlan,
-        vrack_network_id=__ret__.vrack_network_id)
+        display_name=pulumi.get(__ret__, 'display_name'),
+        id=pulumi.get(__ret__, 'id'),
+        nat_ip=pulumi.get(__ret__, 'nat_ip'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        subnet=pulumi.get(__ret__, 'subnet'),
+        vlan=pulumi.get(__ret__, 'vlan'),
+        vrack_network_id=pulumi.get(__ret__, 'vrack_network_id'))
 
 
 @_utilities.lift_output_func(get_vrack_network)

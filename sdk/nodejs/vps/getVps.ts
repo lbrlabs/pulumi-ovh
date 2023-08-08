@@ -100,6 +100,10 @@ export interface GetVpsResult {
      */
     readonly type: string;
     /**
+     * The URN of the vps
+     */
+    readonly urn: string;
+    /**
      * The number of vcore of the vps
      */
     readonly vcore: number;

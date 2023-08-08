@@ -4,6 +4,7 @@
 package vrack
 
 import (
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ import (
 //
 // ```
 func GetVracks(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetVracksResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVracksResult
 	err := ctx.Invoke("ovh:Vrack/getVracks:getVracks", nil, &rv, opts...)
 	if err != nil {

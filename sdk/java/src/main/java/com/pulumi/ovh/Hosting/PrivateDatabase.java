@@ -393,6 +393,20 @@ public class PrivateDatabase extends com.pulumi.resources.CustomResource {
         return this.type;
     }
     /**
+     * URN of the private database, used when writing IAM policies
+     * 
+     */
+    @Export(name="urn", refs={String.class}, tree="[0]")
+    private Output<String> urn;
+
+    /**
+     * @return URN of the private database, used when writing IAM policies
+     * 
+     */
+    public Output<String> urn_() {
+        return this.urn;
+    }
+    /**
      * Private database available versions
      * 
      */

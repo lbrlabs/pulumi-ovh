@@ -176,16 +176,16 @@ def get_capabilities_container_filter(plan_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getCapabilitiesContainerFilter:getCapabilitiesContainerFilter', __args__, opts=opts, typ=GetCapabilitiesContainerFilterResult).value
 
     return AwaitableGetCapabilitiesContainerFilterResult(
-        code=__ret__.code,
-        created_at=__ret__.created_at,
-        features=__ret__.features,
-        id=__ret__.id,
-        name=__ret__.name,
-        plan_name=__ret__.plan_name,
-        region=__ret__.region,
-        registry_limits=__ret__.registry_limits,
-        service_name=__ret__.service_name,
-        updated_at=__ret__.updated_at)
+        code=pulumi.get(__ret__, 'code'),
+        created_at=pulumi.get(__ret__, 'created_at'),
+        features=pulumi.get(__ret__, 'features'),
+        id=pulumi.get(__ret__, 'id'),
+        name=pulumi.get(__ret__, 'name'),
+        plan_name=pulumi.get(__ret__, 'plan_name'),
+        region=pulumi.get(__ret__, 'region'),
+        registry_limits=pulumi.get(__ret__, 'registry_limits'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        updated_at=pulumi.get(__ret__, 'updated_at'))
 
 
 @_utilities.lift_output_func(get_capabilities_container_filter)

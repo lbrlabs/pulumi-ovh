@@ -7,12 +7,48 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
 // Get the S3 Policy of a public cloud project user. The policy can be set by using the `CloudProject.S3Policy` resource.
+//
+// ## Example Usage
+//
+// ```go
+// package main
+//
+// import (
+//
+//	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/CloudProject"
+//	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
+//
+// )
+//
+//	func main() {
+//		pulumi.Run(func(ctx *pulumi.Context) error {
+//			projectUsers, err := CloudProject.GetUsers(ctx, &cloudproject.GetUsersArgs{
+//				ServiceName: "XXX",
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			users := "TODO: For expression"
+//			s3UserId := users[0]
+//			_, err = CloudProject.GetUserS3Policy(ctx, &cloudproject.GetUserS3PolicyArgs{
+//				ServiceName: projectUsers.ServiceName,
+//				UserId:      s3UserId,
+//			}, nil)
+//			if err != nil {
+//				return err
+//			}
+//			return nil
+//		})
+//	}
+//
+// ```
 func GetUserS3Policy(ctx *pulumi.Context, args *GetUserS3PolicyArgs, opts ...pulumi.InvokeOption) (*GetUserS3PolicyResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetUserS3PolicyResult
 	err := ctx.Invoke("ovh:CloudProject/getUserS3Policy:getUserS3Policy", args, &rv, opts...)
 	if err != nil {

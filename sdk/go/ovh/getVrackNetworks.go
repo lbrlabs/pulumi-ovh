@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func GetVrackNetworks(ctx *pulumi.Context, args *GetVrackNetworksArgs, opts ...pulumi.InvokeOption) (*GetVrackNetworksResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetVrackNetworksResult
 	err := ctx.Invoke("ovh:index/getVrackNetworks:getVrackNetworks", args, &rv, opts...)
 	if err != nil {

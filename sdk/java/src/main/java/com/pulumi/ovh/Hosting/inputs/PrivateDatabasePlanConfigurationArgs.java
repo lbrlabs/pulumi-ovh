@@ -31,12 +31,16 @@ public final class PrivateDatabasePlanConfigurationArgs extends com.pulumi.resou
     /**
      * Path to the resource in API.OVH.COM
      * 
+     * Plan order valid values can be found on OVHcloud [APIv6](https://api.ovh.com/console/#/hosting/privateDatabase/availableOrderCapacities~GET)
+     * 
      */
     @Import(name="value", required=true)
     private Output<String> value;
 
     /**
      * @return Path to the resource in API.OVH.COM
+     * 
+     * Plan order valid values can be found on OVHcloud [APIv6](https://api.ovh.com/console/#/hosting/privateDatabase/availableOrderCapacities~GET)
      * 
      */
     public Output<String> value() {
@@ -92,6 +96,8 @@ public final class PrivateDatabasePlanConfigurationArgs extends com.pulumi.resou
         /**
          * @param value Path to the resource in API.OVH.COM
          * 
+         * Plan order valid values can be found on OVHcloud [APIv6](https://api.ovh.com/console/#/hosting/privateDatabase/availableOrderCapacities~GET)
+         * 
          * @return builder
          * 
          */
@@ -102,6 +108,8 @@ public final class PrivateDatabasePlanConfigurationArgs extends com.pulumi.resou
 
         /**
          * @param value Path to the resource in API.OVH.COM
+         * 
+         * Plan order valid values can be found on OVHcloud [APIv6](https://api.ovh.com/console/#/hosting/privateDatabase/availableOrderCapacities~GET)
          * 
          * @return builder
          * 

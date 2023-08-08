@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -38,7 +39,7 @@ import (
 //
 // ```
 func GetNasHA(ctx *pulumi.Context, args *GetNasHAArgs, opts ...pulumi.InvokeOption) (*GetNasHAResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetNasHAResult
 	err := ctx.Invoke("ovh:Dedicated/getNasHA:getNasHA", args, &rv, opts...)
 	if err != nil {
@@ -71,6 +72,8 @@ type GetNasHAResult struct {
 	Monitored bool `pulumi:"monitored"`
 	// The storage service name
 	ServiceName string `pulumi:"serviceName"`
+	// the URN of the HA-NAS instance
+	Urn string `pulumi:"urn"`
 	// percentage of HA-NAS space used in %
 	ZpoolCapacity float64 `pulumi:"zpoolCapacity"`
 	// the size of the HA-NAS in GB
@@ -153,6 +156,11 @@ func (o GetNasHAResultOutput) Monitored() pulumi.BoolOutput {
 // The storage service name
 func (o GetNasHAResultOutput) ServiceName() pulumi.StringOutput {
 	return o.ApplyT(func(v GetNasHAResult) string { return v.ServiceName }).(pulumi.StringOutput)
+}
+
+// the URN of the HA-NAS instance
+func (o GetNasHAResultOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetNasHAResult) string { return v.Urn }).(pulumi.StringOutput)
 }
 
 // percentage of HA-NAS space used in %

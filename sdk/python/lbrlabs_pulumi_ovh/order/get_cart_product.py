@@ -104,10 +104,10 @@ def get_cart_product(cart_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Order/getCartProduct:getCartProduct', __args__, opts=opts, typ=GetCartProductResult).value
 
     return AwaitableGetCartProductResult(
-        cart_id=__ret__.cart_id,
-        id=__ret__.id,
-        product=__ret__.product,
-        results=__ret__.results)
+        cart_id=pulumi.get(__ret__, 'cart_id'),
+        id=pulumi.get(__ret__, 'id'),
+        product=pulumi.get(__ret__, 'product'),
+        results=pulumi.get(__ret__, 'results'))
 
 
 @_utilities.lift_output_func(get_cart_product)

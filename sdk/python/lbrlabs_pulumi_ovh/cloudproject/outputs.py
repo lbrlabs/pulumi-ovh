@@ -443,6 +443,9 @@ class KubeCustomization(dict):
         """
         Kubernetes API server customization
         """
+        warnings.warn("""Use customization_apiserver instead""", DeprecationWarning)
+        pulumi.log.warn("""apiservers is deprecated: Use customization_apiserver instead""")
+
         return pulumi.get(self, "apiservers")
 
 
@@ -1857,6 +1860,9 @@ class GetKubeCustomizationResult(dict):
         """
         Kubernetes API server customization
         """
+        warnings.warn("""Use customization_apiserver instead""", DeprecationWarning)
+        pulumi.log.warn("""apiservers is deprecated: Use customization_apiserver instead""")
+
         return pulumi.get(self, "apiservers")
 
 

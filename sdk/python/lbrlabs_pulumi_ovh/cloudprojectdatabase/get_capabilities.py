@@ -120,12 +120,12 @@ def get_capabilities(service_name: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProjectDatabase/getCapabilities:getCapabilities', __args__, opts=opts, typ=GetCapabilitiesResult).value
 
     return AwaitableGetCapabilitiesResult(
-        engines=__ret__.engines,
-        flavors=__ret__.flavors,
-        id=__ret__.id,
-        options=__ret__.options,
-        plans=__ret__.plans,
-        service_name=__ret__.service_name)
+        engines=pulumi.get(__ret__, 'engines'),
+        flavors=pulumi.get(__ret__, 'flavors'),
+        id=pulumi.get(__ret__, 'id'),
+        options=pulumi.get(__ret__, 'options'),
+        plans=pulumi.get(__ret__, 'plans'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_capabilities)

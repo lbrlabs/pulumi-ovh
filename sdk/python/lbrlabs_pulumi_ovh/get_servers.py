@@ -73,5 +73,5 @@ def get_servers(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetServ
     __ret__ = pulumi.runtime.invoke('ovh:index/getServers:getServers', __args__, opts=opts, typ=GetServersResult).value
 
     return AwaitableGetServersResult(
-        id=__ret__.id,
-        results=__ret__.results)
+        id=pulumi.get(__ret__, 'id'),
+        results=pulumi.get(__ret__, 'results'))

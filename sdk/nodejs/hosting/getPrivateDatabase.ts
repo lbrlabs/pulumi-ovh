@@ -103,6 +103,10 @@ export interface GetPrivateDatabaseResult {
     readonly state: string;
     readonly type: string;
     /**
+     * URN of the private database
+     */
+    readonly urn: string;
+    /**
      * Private database available versions
      */
     readonly version: string;

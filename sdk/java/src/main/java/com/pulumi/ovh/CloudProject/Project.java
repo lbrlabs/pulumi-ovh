@@ -220,6 +220,20 @@ public class Project extends com.pulumi.resources.CustomResource {
     public Output<String> status() {
         return this.status;
     }
+    /**
+     * The URN of the cloud project
+     * 
+     */
+    @Export(name="urn", refs={String.class}, tree="[0]")
+    private Output<String> urn;
+
+    /**
+     * @return The URN of the cloud project
+     * 
+     */
+    public Output<String> urn_() {
+        return this.urn;
+    }
 
     /**
      *

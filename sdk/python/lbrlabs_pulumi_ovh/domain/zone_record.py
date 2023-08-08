@@ -196,8 +196,6 @@ class ZoneRecord(pulumi.CustomResource):
                  zone: Optional[pulumi.Input[str]] = None,
                  __props__=None):
         """
-        Provides a OVHcloud domain zone record.
-
         ## Example Usage
 
         ```python
@@ -236,8 +234,6 @@ class ZoneRecord(pulumi.CustomResource):
                  args: ZoneRecordArgs,
                  opts: Optional[pulumi.ResourceOptions] = None):
         """
-        Provides a OVHcloud domain zone record.
-
         ## Example Usage
 
         ```python

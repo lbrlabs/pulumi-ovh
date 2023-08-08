@@ -306,6 +306,20 @@ public class LoadBalancer extends com.pulumi.resources.CustomResource {
         return this.state;
     }
     /**
+     * URN of the load balancer, used when writing IAM policies
+     * 
+     */
+    @Export(name="urn", refs={String.class}, tree="[0]")
+    private Output<String> urn;
+
+    /**
+     * @return URN of the load balancer, used when writing IAM policies
+     * 
+     */
+    public Output<String> urn_() {
+        return this.urn;
+    }
+    /**
      * Vrack eligibility
      * 
      */

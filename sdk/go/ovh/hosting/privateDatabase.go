@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -127,6 +128,8 @@ type PrivateDatabase struct {
 	State pulumi.StringOutput `pulumi:"state"`
 	// Private database type
 	Type pulumi.StringOutput `pulumi:"type"`
+	// URN of the private database, used when writing IAM policies
+	Urn pulumi.StringOutput `pulumi:"urn"`
 	// Private database available versions
 	Version pulumi.StringOutput `pulumi:"version"`
 	// Private database version label
@@ -148,7 +151,7 @@ func NewPrivateDatabase(ctx *pulumi.Context,
 	if args.Plan == nil {
 		return nil, errors.New("invalid value for required argument 'Plan'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PrivateDatabase
 	err := ctx.RegisterResource("ovh:Hosting/privateDatabase:PrivateDatabase", name, args, &resource, opts...)
 	if err != nil {
@@ -215,6 +218,8 @@ type privateDatabaseState struct {
 	State *string `pulumi:"state"`
 	// Private database type
 	Type *string `pulumi:"type"`
+	// URN of the private database, used when writing IAM policies
+	Urn *string `pulumi:"urn"`
 	// Private database available versions
 	Version *string `pulumi:"version"`
 	// Private database version label
@@ -268,6 +273,8 @@ type PrivateDatabaseState struct {
 	State pulumi.StringPtrInput
 	// Private database type
 	Type pulumi.StringPtrInput
+	// URN of the private database, used when writing IAM policies
+	Urn pulumi.StringPtrInput
 	// Private database available versions
 	Version pulumi.StringPtrInput
 	// Private database version label
@@ -507,6 +514,11 @@ func (o PrivateDatabaseOutput) State() pulumi.StringOutput {
 // Private database type
 func (o PrivateDatabaseOutput) Type() pulumi.StringOutput {
 	return o.ApplyT(func(v *PrivateDatabase) pulumi.StringOutput { return v.Type }).(pulumi.StringOutput)
+}
+
+// URN of the private database, used when writing IAM policies
+func (o PrivateDatabaseOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v *PrivateDatabase) pulumi.StringOutput { return v.Urn }).(pulumi.StringOutput)
 }
 
 // Private database available versions

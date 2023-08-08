@@ -323,6 +323,16 @@ class ServerInstallTask(pulumi.CustomResource):
             ))
         ```
 
+        ## Import
+
+        Installation task can be imported using the `service_name` (`nsXXXX.ip...`) of the baremetal server, the `template_name` used
+
+        and ths `task_id`, separated by "/" E.g., bash
+
+        ```sh
+         $ pulumi import ovh:Dedicated/serverInstallTask:ServerInstallTask ovh_dedicated_server_install_task nsXXXX.ipXXXX/template_name/12345
+        ```
+
         :param str resource_name: The name of the resource.
         :param pulumi.ResourceOptions opts: Options for the resource.
         :param pulumi.Input[int] bootid_on_destroy: If set, reboot the server on the specified boot id during destroy phase.
@@ -364,6 +374,16 @@ class ServerInstallTask(pulumi.CustomResource):
             details=ovh.dedicated.ServerInstallTaskDetailsArgs(
                 custom_hostname="mytest",
             ))
+        ```
+
+        ## Import
+
+        Installation task can be imported using the `service_name` (`nsXXXX.ip...`) of the baremetal server, the `template_name` used
+
+        and ths `task_id`, separated by "/" E.g., bash
+
+        ```sh
+         $ pulumi import ovh:Dedicated/serverInstallTask:ServerInstallTask ovh_dedicated_server_install_task nsXXXX.ipXXXX/template_name/12345
         ```
 
         :param str resource_name: The name of the resource.

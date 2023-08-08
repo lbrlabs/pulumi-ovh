@@ -86,6 +86,11 @@ public final class GetVpsResult {
      */
     private String type;
     /**
+     * @return The URN of the vps
+     * 
+     */
+    private String urn;
+    /**
      * @return The number of vcore of the vps
      * 
      */
@@ -200,6 +205,13 @@ public final class GetVpsResult {
         return this.type;
     }
     /**
+     * @return The URN of the vps
+     * 
+     */
+    public String urn() {
+        return this.urn;
+    }
+    /**
      * @return The number of vcore of the vps
      * 
      */
@@ -238,6 +250,7 @@ public final class GetVpsResult {
         private Boolean slamonitoring;
         private String state;
         private String type;
+        private String urn;
         private Integer vcore;
         private String zone;
         public Builder() {}
@@ -258,6 +271,7 @@ public final class GetVpsResult {
     	      this.slamonitoring = defaults.slamonitoring;
     	      this.state = defaults.state;
     	      this.type = defaults.type;
+    	      this.urn = defaults.urn;
     	      this.vcore = defaults.vcore;
     	      this.zone = defaults.zone;
         }
@@ -341,6 +355,11 @@ public final class GetVpsResult {
             return this;
         }
         @CustomType.Setter
+        public Builder urn(String urn) {
+            this.urn = Objects.requireNonNull(urn);
+            return this;
+        }
+        @CustomType.Setter
         public Builder vcore(Integer vcore) {
             this.vcore = Objects.requireNonNull(vcore);
             return this;
@@ -367,6 +386,7 @@ public final class GetVpsResult {
             o.slamonitoring = slamonitoring;
             o.state = state;
             o.type = type;
+            o.urn = urn;
             o.vcore = vcore;
             o.zone = zone;
             return o;

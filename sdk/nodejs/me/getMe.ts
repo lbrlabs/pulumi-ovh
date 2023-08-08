@@ -139,6 +139,10 @@ export interface GetMeResult {
      */
     readonly state: string;
     /**
+     * The resource URN of the account, to be used when writing IAM policies
+     */
+    readonly urn: string;
+    /**
      * VAT number
      */
     readonly vat: string;

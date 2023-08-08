@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -40,7 +41,7 @@ import (
 //
 // ```
 func LookupKubeOidc(ctx *pulumi.Context, args *LookupKubeOidcArgs, opts ...pulumi.InvokeOption) (*LookupKubeOidcResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv LookupKubeOidcResult
 	err := ctx.Invoke("ovh:CloudProject/getKubeOidc:getKubeOidc", args, &rv, opts...)
 	if err != nil {

@@ -112,6 +112,10 @@ export class Project extends pulumi.CustomResource {
      * project status
      */
     public /*out*/ readonly status!: pulumi.Output<string>;
+    /**
+     * The URN of the cloud project
+     */
+    public /*out*/ readonly urn!: pulumi.Output<string>;
 
     /**
      * Create a Project resource with the given unique name, arguments, and options.
@@ -136,6 +140,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["projectId"] = state ? state.projectId : undefined;
             resourceInputs["projectName"] = state ? state.projectName : undefined;
             resourceInputs["status"] = state ? state.status : undefined;
+            resourceInputs["urn"] = state ? state.urn : undefined;
         } else {
             const args = argsOrState as ProjectArgs | undefined;
             if ((!args || args.ovhSubsidiary === undefined) && !opts.urn) {
@@ -154,6 +159,7 @@ export class Project extends pulumi.CustomResource {
             resourceInputs["projectId"] = undefined /*out*/;
             resourceInputs["projectName"] = undefined /*out*/;
             resourceInputs["status"] = undefined /*out*/;
+            resourceInputs["urn"] = undefined /*out*/;
         }
         opts = pulumi.mergeOptions(utilities.resourceOptsDefaults(), opts);
         super(Project.__pulumiType, name, resourceInputs, opts);
@@ -203,6 +209,10 @@ export interface ProjectState {
      * project status
      */
     status?: pulumi.Input<string>;
+    /**
+     * The URN of the cloud project
+     */
+    urn?: pulumi.Input<string>;
 }
 
 /**

@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -55,7 +56,15 @@ import (
 //				NbInstance:  pulumi.Int(2),
 //				Configuration: &dbaas.LogsInputConfigurationArgs{
 //					Logstash: &dbaas.LogsInputConfigurationLogstashArgs{
-//						InputSection: pulumi.String("  beats {\n    port => 6514\n    ssl => true\n    ssl_certificate => \"/etc/ssl/private/server.crt\"\n    ssl_key => \"/etc/ssl/private/server.key\"\n  }\n"),
+//						InputSection: pulumi.String(`  beats {
+//	    port => 6514
+//	    ssl => true
+//	    ssl_certificate => "/etc/ssl/private/server.crt"
+//	    ssl_key => "/etc/ssl/private/server.key"
+//	  }
+//
+// `),
+//
 //					},
 //				},
 //			})
@@ -135,7 +144,7 @@ func NewLogsInput(ctx *pulumi.Context,
 		"sslCertificate",
 	})
 	opts = append(opts, secrets)
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource LogsInput
 	err := ctx.RegisterResource("ovh:Dbaas/logsInput:LogsInput", name, args, &resource, opts...)
 	if err != nil {

@@ -121,6 +121,10 @@ export interface GetIpLoadBalancingResult {
     readonly serviceName: string;
     readonly sslConfiguration: string;
     readonly state: string;
+    /**
+     * The URN of the load balancer, to be used in IAM policies
+     */
+    readonly urn: string;
     readonly vrackEligibility: boolean;
     readonly vrackName: string;
     readonly zones: string[];

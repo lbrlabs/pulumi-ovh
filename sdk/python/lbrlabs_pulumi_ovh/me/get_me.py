@@ -21,7 +21,7 @@ class GetMeResult:
     """
     A collection of values returned by getMe.
     """
-    def __init__(__self__, address=None, area=None, birth_city=None, birth_day=None, city=None, company_national_identification_number=None, corporation_type=None, country=None, currencies=None, customer_code=None, email=None, fax=None, firstname=None, id=None, italian_sdi=None, language=None, legalform=None, name=None, national_identification_number=None, nichandle=None, organisation=None, ovh_company=None, ovh_subsidiary=None, phone=None, phone_country=None, sex=None, spare_email=None, state=None, vat=None, zip=None):
+    def __init__(__self__, address=None, area=None, birth_city=None, birth_day=None, city=None, company_national_identification_number=None, corporation_type=None, country=None, currencies=None, customer_code=None, email=None, fax=None, firstname=None, id=None, italian_sdi=None, language=None, legalform=None, name=None, national_identification_number=None, nichandle=None, organisation=None, ovh_company=None, ovh_subsidiary=None, phone=None, phone_country=None, sex=None, spare_email=None, state=None, urn=None, vat=None, zip=None):
         if address and not isinstance(address, str):
             raise TypeError("Expected argument 'address' to be a str")
         pulumi.set(__self__, "address", address)
@@ -106,6 +106,9 @@ class GetMeResult:
         if state and not isinstance(state, str):
             raise TypeError("Expected argument 'state' to be a str")
         pulumi.set(__self__, "state", state)
+        if urn and not isinstance(urn, str):
+            raise TypeError("Expected argument 'urn' to be a str")
+        pulumi.set(__self__, "urn", urn)
         if vat and not isinstance(vat, str):
             raise TypeError("Expected argument 'vat' to be a str")
         pulumi.set(__self__, "vat", vat)
@@ -336,6 +339,14 @@ class GetMeResult:
 
     @property
     @pulumi.getter
+    def urn(self) -> str:
+        """
+        The resource URN of the account, to be used when writing IAM policies
+        """
+        return pulumi.get(self, "urn")
+
+    @property
+    @pulumi.getter
     def vat(self) -> str:
         """
         VAT number
@@ -385,6 +396,7 @@ class AwaitableGetMeResult(GetMeResult):
             sex=self.sex,
             spare_email=self.spare_email,
             state=self.state,
+            urn=self.urn,
             vat=self.vat,
             zip=self.zip)
 
@@ -407,33 +419,34 @@ def get_me(opts: Optional[pulumi.InvokeOptions] = None) -> AwaitableGetMeResult:
     __ret__ = pulumi.runtime.invoke('ovh:Me/getMe:getMe', __args__, opts=opts, typ=GetMeResult).value
 
     return AwaitableGetMeResult(
-        address=__ret__.address,
-        area=__ret__.area,
-        birth_city=__ret__.birth_city,
-        birth_day=__ret__.birth_day,
-        city=__ret__.city,
-        company_national_identification_number=__ret__.company_national_identification_number,
-        corporation_type=__ret__.corporation_type,
-        country=__ret__.country,
-        currencies=__ret__.currencies,
-        customer_code=__ret__.customer_code,
-        email=__ret__.email,
-        fax=__ret__.fax,
-        firstname=__ret__.firstname,
-        id=__ret__.id,
-        italian_sdi=__ret__.italian_sdi,
-        language=__ret__.language,
-        legalform=__ret__.legalform,
-        name=__ret__.name,
-        national_identification_number=__ret__.national_identification_number,
-        nichandle=__ret__.nichandle,
-        organisation=__ret__.organisation,
-        ovh_company=__ret__.ovh_company,
-        ovh_subsidiary=__ret__.ovh_subsidiary,
-        phone=__ret__.phone,
-        phone_country=__ret__.phone_country,
-        sex=__ret__.sex,
-        spare_email=__ret__.spare_email,
-        state=__ret__.state,
-        vat=__ret__.vat,
-        zip=__ret__.zip)
+        address=pulumi.get(__ret__, 'address'),
+        area=pulumi.get(__ret__, 'area'),
+        birth_city=pulumi.get(__ret__, 'birth_city'),
+        birth_day=pulumi.get(__ret__, 'birth_day'),
+        city=pulumi.get(__ret__, 'city'),
+        company_national_identification_number=pulumi.get(__ret__, 'company_national_identification_number'),
+        corporation_type=pulumi.get(__ret__, 'corporation_type'),
+        country=pulumi.get(__ret__, 'country'),
+        currencies=pulumi.get(__ret__, 'currencies'),
+        customer_code=pulumi.get(__ret__, 'customer_code'),
+        email=pulumi.get(__ret__, 'email'),
+        fax=pulumi.get(__ret__, 'fax'),
+        firstname=pulumi.get(__ret__, 'firstname'),
+        id=pulumi.get(__ret__, 'id'),
+        italian_sdi=pulumi.get(__ret__, 'italian_sdi'),
+        language=pulumi.get(__ret__, 'language'),
+        legalform=pulumi.get(__ret__, 'legalform'),
+        name=pulumi.get(__ret__, 'name'),
+        national_identification_number=pulumi.get(__ret__, 'national_identification_number'),
+        nichandle=pulumi.get(__ret__, 'nichandle'),
+        organisation=pulumi.get(__ret__, 'organisation'),
+        ovh_company=pulumi.get(__ret__, 'ovh_company'),
+        ovh_subsidiary=pulumi.get(__ret__, 'ovh_subsidiary'),
+        phone=pulumi.get(__ret__, 'phone'),
+        phone_country=pulumi.get(__ret__, 'phone_country'),
+        sex=pulumi.get(__ret__, 'sex'),
+        spare_email=pulumi.get(__ret__, 'spare_email'),
+        state=pulumi.get(__ret__, 'state'),
+        urn=pulumi.get(__ret__, 'urn'),
+        vat=pulumi.get(__ret__, 'vat'),
+        zip=pulumi.get(__ret__, 'zip'))

@@ -137,12 +137,12 @@ def get_kafka_acl(cluster_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProjectDatabase/getKafkaAcl:getKafkaAcl', __args__, opts=opts, typ=GetKafkaAclResult).value
 
     return AwaitableGetKafkaAclResult(
-        cluster_id=__ret__.cluster_id,
-        id=__ret__.id,
-        permission=__ret__.permission,
-        service_name=__ret__.service_name,
-        topic=__ret__.topic,
-        username=__ret__.username)
+        cluster_id=pulumi.get(__ret__, 'cluster_id'),
+        id=pulumi.get(__ret__, 'id'),
+        permission=pulumi.get(__ret__, 'permission'),
+        service_name=pulumi.get(__ret__, 'service_name'),
+        topic=pulumi.get(__ret__, 'topic'),
+        username=pulumi.get(__ret__, 'username'))
 
 
 @_utilities.lift_output_func(get_kafka_acl)

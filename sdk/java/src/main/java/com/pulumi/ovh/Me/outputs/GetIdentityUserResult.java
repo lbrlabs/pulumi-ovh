@@ -54,6 +54,11 @@ public final class GetIdentityUserResult {
      * 
      */
     private String status;
+    /**
+     * @return User&#39;s identity URN.
+     * 
+     */
+    private String urn;
     private String user;
 
     private GetIdentityUserResult() {}
@@ -120,6 +125,13 @@ public final class GetIdentityUserResult {
     public String status() {
         return this.status;
     }
+    /**
+     * @return User&#39;s identity URN.
+     * 
+     */
+    public String urn() {
+        return this.urn;
+    }
     public String user() {
         return this.user;
     }
@@ -142,6 +154,7 @@ public final class GetIdentityUserResult {
         private String login;
         private String passwordLastUpdate;
         private String status;
+        private String urn;
         private String user;
         public Builder() {}
         public Builder(GetIdentityUserResult defaults) {
@@ -155,6 +168,7 @@ public final class GetIdentityUserResult {
     	      this.login = defaults.login;
     	      this.passwordLastUpdate = defaults.passwordLastUpdate;
     	      this.status = defaults.status;
+    	      this.urn = defaults.urn;
     	      this.user = defaults.user;
         }
 
@@ -204,6 +218,11 @@ public final class GetIdentityUserResult {
             return this;
         }
         @CustomType.Setter
+        public Builder urn(String urn) {
+            this.urn = Objects.requireNonNull(urn);
+            return this;
+        }
+        @CustomType.Setter
         public Builder user(String user) {
             this.user = Objects.requireNonNull(user);
             return this;
@@ -219,6 +238,7 @@ public final class GetIdentityUserResult {
             o.login = login;
             o.passwordLastUpdate = passwordLastUpdate;
             o.status = status;
+            o.urn = urn;
             o.user = user;
             return o;
         }

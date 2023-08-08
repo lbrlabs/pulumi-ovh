@@ -8,6 +8,7 @@ import (
 	"reflect"
 
 	"errors"
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -87,7 +88,7 @@ func NewPrivateDatabaseUserGrant(ctx *pulumi.Context,
 	if args.UserName == nil {
 		return nil, errors.New("invalid value for required argument 'UserName'")
 	}
-	opts = pkgResourceDefaultOpts(opts)
+	opts = internal.PkgResourceDefaultOpts(opts)
 	var resource PrivateDatabaseUserGrant
 	err := ctx.RegisterResource("ovh:Hosting/privateDatabaseUserGrant:PrivateDatabaseUserGrant", name, args, &resource, opts...)
 	if err != nil {

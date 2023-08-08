@@ -18,6 +18,9 @@ export interface GetServerVni {
      * User defined VirtualNetworkInterface name
      */
     name: string;
+    /**
+     * NetworkInterfaceControllers bound to this VirtualNetworkInterface
+     */
     nics: string[];
     /**
      * Server bound to this VirtualNetworkInterface
@@ -1003,6 +1006,25 @@ export namespace CloudProjectDatabase {
 }
 
 export namespace Dbaas {
+    export interface GetIamReferenceActionsAction {
+        /**
+         * Name of the action
+         */
+        action: string;
+        /**
+         * List of the categories of the action
+         */
+        categories: string[];
+        /**
+         * Description of the action
+         */
+        description: string;
+        /**
+         * Resource type the action is related to
+         */
+        resourceType: string;
+    }
+
     export interface LogsInputConfiguration {
         /**
          * Flowgger configuration
@@ -1317,6 +1339,8 @@ export namespace Hosting {
         label: string;
         /**
          * Path to the resource in API.OVH.COM
+         *
+         * Plan order valid values can be found on OVHcloud [APIv6](https://api.ovh.com/console/#/hosting/privateDatabase/availableOrderCapacities~GET)
          */
         value: string;
     }
@@ -1351,6 +1375,8 @@ export namespace Hosting {
         label: string;
         /**
          * Path to the resource in API.OVH.COM
+         *
+         * Plan order valid values can be found on OVHcloud [APIv6](https://api.ovh.com/console/#/hosting/privateDatabase/availableOrderCapacities~GET)
          */
         value: string;
     }

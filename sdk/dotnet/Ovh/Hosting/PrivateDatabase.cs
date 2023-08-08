@@ -206,6 +206,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
         public Output<string> Type { get; private set; } = null!;
 
         /// <summary>
+        /// URN of the private database, used when writing IAM policies
+        /// </summary>
+        [Output("urn")]
+        public Output<string> Urn { get; private set; } = null!;
+
+        /// <summary>
         /// Private database available versions
         /// </summary>
         [Output("version")]
@@ -457,6 +463,12 @@ namespace Lbrlabs.PulumiPackage.Ovh.Hosting
         /// </summary>
         [Input("type")]
         public Input<string>? Type { get; set; }
+
+        /// <summary>
+        /// URN of the private database, used when writing IAM policies
+        /// </summary>
+        [Input("urn")]
+        public Input<string>? Urn { get; set; }
 
         /// <summary>
         /// Private database available versions

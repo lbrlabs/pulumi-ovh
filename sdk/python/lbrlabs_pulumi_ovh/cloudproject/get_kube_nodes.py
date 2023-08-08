@@ -110,10 +110,10 @@ def get_kube_nodes(kube_id: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:CloudProject/getKubeNodes:getKubeNodes', __args__, opts=opts, typ=GetKubeNodesResult).value
 
     return AwaitableGetKubeNodesResult(
-        id=__ret__.id,
-        kube_id=__ret__.kube_id,
-        nodes=__ret__.nodes,
-        service_name=__ret__.service_name)
+        id=pulumi.get(__ret__, 'id'),
+        kube_id=pulumi.get(__ret__, 'kube_id'),
+        nodes=pulumi.get(__ret__, 'nodes'),
+        service_name=pulumi.get(__ret__, 'service_name'))
 
 
 @_utilities.lift_output_func(get_kube_nodes)

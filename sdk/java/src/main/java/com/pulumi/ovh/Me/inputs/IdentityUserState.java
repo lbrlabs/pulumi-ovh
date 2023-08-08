@@ -150,6 +150,21 @@ public final class IdentityUserState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.status);
     }
 
+    /**
+     * URN of the user, used when writing IAM policies
+     * 
+     */
+    @Import(name="urn")
+    private @Nullable Output<String> urn;
+
+    /**
+     * @return URN of the user, used when writing IAM policies
+     * 
+     */
+    public Optional<Output<String>> urn() {
+        return Optional.ofNullable(this.urn);
+    }
+
     private IdentityUserState() {}
 
     private IdentityUserState(IdentityUserState $) {
@@ -162,6 +177,7 @@ public final class IdentityUserState extends com.pulumi.resources.ResourceArgs {
         this.password = $.password;
         this.passwordLastUpdate = $.passwordLastUpdate;
         this.status = $.status;
+        this.urn = $.urn;
     }
 
     public static Builder builder() {
@@ -369,6 +385,27 @@ public final class IdentityUserState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder status(String status) {
             return status(Output.of(status));
+        }
+
+        /**
+         * @param urn URN of the user, used when writing IAM policies
+         * 
+         * @return builder
+         * 
+         */
+        public Builder urn(@Nullable Output<String> urn) {
+            $.urn = urn;
+            return this;
+        }
+
+        /**
+         * @param urn URN of the user, used when writing IAM policies
+         * 
+         * @return builder
+         * 
+         */
+        public Builder urn(String urn) {
+            return urn(Output.of(urn));
         }
 
         public IdentityUserState build() {

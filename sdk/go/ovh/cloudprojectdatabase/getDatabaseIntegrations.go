@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -41,7 +42,7 @@ import (
 //
 // ```
 func GetDatabaseIntegrations(ctx *pulumi.Context, args *GetDatabaseIntegrationsArgs, opts ...pulumi.InvokeOption) (*GetDatabaseIntegrationsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetDatabaseIntegrationsResult
 	err := ctx.Invoke("ovh:CloudProjectDatabase/getDatabaseIntegrations:getDatabaseIntegrations", args, &rv, opts...)
 	if err != nil {

@@ -4,6 +4,7 @@
 package me
 
 import (
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -33,7 +34,7 @@ import (
 //
 // ```
 func GetIpxeScripts(ctx *pulumi.Context, opts ...pulumi.InvokeOption) (*GetIpxeScriptsResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetIpxeScriptsResult
 	err := ctx.Invoke("ovh:Me/getIpxeScripts:getIpxeScripts", nil, &rv, opts...)
 	if err != nil {

@@ -65,6 +65,11 @@ public final class GetCephResult {
      * 
      */
     private String status;
+    /**
+     * @return URN of the CEPH instance
+     * 
+     */
+    private String urn;
 
     private GetCephResult() {}
     /**
@@ -141,6 +146,13 @@ public final class GetCephResult {
     public String status() {
         return this.status;
     }
+    /**
+     * @return URN of the CEPH instance
+     * 
+     */
+    public String urn() {
+        return this.urn;
+    }
 
     public static Builder builder() {
         return new Builder();
@@ -161,6 +173,7 @@ public final class GetCephResult {
         private Double size;
         private String state;
         private String status;
+        private String urn;
         public Builder() {}
         public Builder(GetCephResult defaults) {
     	      Objects.requireNonNull(defaults);
@@ -174,6 +187,7 @@ public final class GetCephResult {
     	      this.size = defaults.size;
     	      this.state = defaults.state;
     	      this.status = defaults.status;
+    	      this.urn = defaults.urn;
         }
 
         @CustomType.Setter
@@ -229,6 +243,11 @@ public final class GetCephResult {
             this.status = Objects.requireNonNull(status);
             return this;
         }
+        @CustomType.Setter
+        public Builder urn(String urn) {
+            this.urn = Objects.requireNonNull(urn);
+            return this;
+        }
         public GetCephResult build() {
             final var o = new GetCephResult();
             o.cephMons = cephMons;
@@ -241,6 +260,7 @@ public final class GetCephResult {
             o.size = size;
             o.state = state;
             o.status = status;
+            o.urn = urn;
             return o;
         }
     }

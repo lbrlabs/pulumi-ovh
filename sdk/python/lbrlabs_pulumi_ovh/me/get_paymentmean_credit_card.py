@@ -153,14 +153,14 @@ def get_paymentmean_credit_card(description_regexp: Optional[str] = None,
     __ret__ = pulumi.runtime.invoke('ovh:Me/getPaymentmeanCreditCard:getPaymentmeanCreditCard', __args__, opts=opts, typ=GetPaymentmeanCreditCardResult).value
 
     return AwaitableGetPaymentmeanCreditCardResult(
-        default=__ret__.default,
-        description=__ret__.description,
-        description_regexp=__ret__.description_regexp,
-        id=__ret__.id,
-        state=__ret__.state,
-        states=__ret__.states,
-        use_default=__ret__.use_default,
-        use_last_to_expire=__ret__.use_last_to_expire)
+        default=pulumi.get(__ret__, 'default'),
+        description=pulumi.get(__ret__, 'description'),
+        description_regexp=pulumi.get(__ret__, 'description_regexp'),
+        id=pulumi.get(__ret__, 'id'),
+        state=pulumi.get(__ret__, 'state'),
+        states=pulumi.get(__ret__, 'states'),
+        use_default=pulumi.get(__ret__, 'use_default'),
+        use_last_to_expire=pulumi.get(__ret__, 'use_last_to_expire'))
 
 
 @_utilities.lift_output_func(get_paymentmean_credit_card)

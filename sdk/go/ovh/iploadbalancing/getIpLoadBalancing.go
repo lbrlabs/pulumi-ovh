@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func GetIpLoadBalancing(ctx *pulumi.Context, args *GetIpLoadBalancingArgs, opts ...pulumi.InvokeOption) (*GetIpLoadBalancingResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetIpLoadBalancingResult
 	err := ctx.Invoke("ovh:IpLoadBalancing/getIpLoadBalancing:getIpLoadBalancing", args, &rv, opts...)
 	if err != nil {
@@ -97,9 +98,11 @@ type GetIpLoadBalancingResult struct {
 	ServiceName      string                            `pulumi:"serviceName"`
 	SslConfiguration string                            `pulumi:"sslConfiguration"`
 	State            string                            `pulumi:"state"`
-	VrackEligibility bool                              `pulumi:"vrackEligibility"`
-	VrackName        string                            `pulumi:"vrackName"`
-	Zones            []string                          `pulumi:"zones"`
+	// The URN of the load balancer, to be used in IAM policies
+	Urn              string   `pulumi:"urn"`
+	VrackEligibility bool     `pulumi:"vrackEligibility"`
+	VrackName        string   `pulumi:"vrackName"`
+	Zones            []string `pulumi:"zones"`
 }
 
 func GetIpLoadBalancingOutput(ctx *pulumi.Context, args GetIpLoadBalancingOutputArgs, opts ...pulumi.InvokeOption) GetIpLoadBalancingResultOutput {
@@ -212,6 +215,11 @@ func (o GetIpLoadBalancingResultOutput) SslConfiguration() pulumi.StringOutput {
 
 func (o GetIpLoadBalancingResultOutput) State() pulumi.StringOutput {
 	return o.ApplyT(func(v GetIpLoadBalancingResult) string { return v.State }).(pulumi.StringOutput)
+}
+
+// The URN of the load balancer, to be used in IAM policies
+func (o GetIpLoadBalancingResultOutput) Urn() pulumi.StringOutput {
+	return o.ApplyT(func(v GetIpLoadBalancingResult) string { return v.Urn }).(pulumi.StringOutput)
 }
 
 func (o GetIpLoadBalancingResultOutput) VrackEligibility() pulumi.BoolOutput {

@@ -178,6 +178,13 @@ public final class ZoneState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.planOptions);
     }
 
+    @Import(name="urn")
+    private @Nullable Output<String> urn;
+
+    public Optional<Output<String>> urn() {
+        return Optional.ofNullable(this.urn);
+    }
+
     private ZoneState() {}
 
     private ZoneState(ZoneState $) {
@@ -191,6 +198,7 @@ public final class ZoneState extends com.pulumi.resources.ResourceArgs {
         this.paymentMean = $.paymentMean;
         this.plan = $.plan;
         this.planOptions = $.planOptions;
+        this.urn = $.urn;
     }
 
     public static Builder builder() {
@@ -457,6 +465,15 @@ public final class ZoneState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder planOptions(ZonePlanOptionArgs... planOptions) {
             return planOptions(List.of(planOptions));
+        }
+
+        public Builder urn(@Nullable Output<String> urn) {
+            $.urn = urn;
+            return this;
+        }
+
+        public Builder urn(String urn) {
+            return urn(Output.of(urn));
         }
 
         public ZoneState build() {

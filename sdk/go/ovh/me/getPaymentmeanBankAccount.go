@@ -7,6 +7,7 @@ import (
 	"context"
 	"reflect"
 
+	"github.com/lbrlabs/pulumi-ovh/sdk/go/ovh/internal"
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
@@ -39,7 +40,7 @@ import (
 //
 // ```
 func GetPaymentmeanBankAccount(ctx *pulumi.Context, args *GetPaymentmeanBankAccountArgs, opts ...pulumi.InvokeOption) (*GetPaymentmeanBankAccountResult, error) {
-	opts = pkgInvokeDefaultOpts(opts)
+	opts = internal.PkgInvokeDefaultOpts(opts)
 	var rv GetPaymentmeanBankAccountResult
 	err := ctx.Invoke("ovh:Me/getPaymentmeanBankAccount:getPaymentmeanBankAccount", args, &rv, opts...)
 	if err != nil {

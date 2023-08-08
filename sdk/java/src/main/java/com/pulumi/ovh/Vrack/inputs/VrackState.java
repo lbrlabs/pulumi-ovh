@@ -147,6 +147,21 @@ public final class VrackState extends com.pulumi.resources.ResourceArgs {
         return Optional.ofNullable(this.serviceName);
     }
 
+    /**
+     * The URN of the vrack, used with IAM permissions
+     * 
+     */
+    @Import(name="urn")
+    private @Nullable Output<String> urn;
+
+    /**
+     * @return The URN of the vrack, used with IAM permissions
+     * 
+     */
+    public Optional<Output<String>> urn() {
+        return Optional.ofNullable(this.urn);
+    }
+
     private VrackState() {}
 
     private VrackState(VrackState $) {
@@ -158,6 +173,7 @@ public final class VrackState extends com.pulumi.resources.ResourceArgs {
         this.plan = $.plan;
         this.planOptions = $.planOptions;
         this.serviceName = $.serviceName;
+        this.urn = $.urn;
     }
 
     public static Builder builder() {
@@ -372,6 +388,27 @@ public final class VrackState extends com.pulumi.resources.ResourceArgs {
          */
         public Builder serviceName(String serviceName) {
             return serviceName(Output.of(serviceName));
+        }
+
+        /**
+         * @param urn The URN of the vrack, used with IAM permissions
+         * 
+         * @return builder
+         * 
+         */
+        public Builder urn(@Nullable Output<String> urn) {
+            $.urn = urn;
+            return this;
+        }
+
+        /**
+         * @param urn The URN of the vrack, used with IAM permissions
+         * 
+         * @return builder
+         * 
+         */
+        public Builder urn(String urn) {
+            return urn(Output.of(urn));
         }
 
         public VrackState build() {

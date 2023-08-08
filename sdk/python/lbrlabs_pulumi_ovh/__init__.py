@@ -292,6 +292,14 @@ _utilities.register(
  },
  {
   "pkg": "ovh",
+  "mod": "Dbaas/iamPolicy",
+  "fqn": "lbrlabs_pulumi_ovh.dbaas",
+  "classes": {
+   "ovh:Dbaas/iamPolicy:IamPolicy": "IamPolicy"
+  }
+ },
+ {
+  "pkg": "ovh",
   "mod": "Dbaas/logsCluster",
   "fqn": "lbrlabs_pulumi_ovh.dbaas",
   "classes": {
@@ -312,6 +320,14 @@ _utilities.register(
   "fqn": "lbrlabs_pulumi_ovh.dbaas",
   "classes": {
    "ovh:Dbaas/logsOutputGraylogStream:LogsOutputGraylogStream": "LogsOutputGraylogStream"
+  }
+ },
+ {
+  "pkg": "ovh",
+  "mod": "Dbaas/meIdentityGroup",
+  "fqn": "lbrlabs_pulumi_ovh.dbaas",
+  "classes": {
+   "ovh:Dbaas/meIdentityGroup:MeIdentityGroup": "MeIdentityGroup"
   }
  },
  {
